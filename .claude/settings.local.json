@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python scripts/refs.py --pmid 22392031 --clave volpicelli2012)",
+      "Bash(python scripts/refs.py --pmid 42257880 --clave volpicelli2025)",
+      "Bash(PYTHONIOENCODING=utf-8 python scripts/build.py)"
+    ]
+  }
+}
