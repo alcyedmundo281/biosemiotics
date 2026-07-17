@@ -1,0 +1,378 @@
+{
+ "fichas": [
+  {
+   "id": "artefacto-refuerzo-posterior",
+   "tipo": "concepto",
+   "titulo": "Refuerzo acústico posterior",
+   "nivel": "principiante",
+   "tags": [
+    "artefacto",
+    "liquido",
+    "vejiga"
+   ],
+   "autores": [
+    {
+     "nombre": "Alcy Torres"
+    }
+   ]
+  },
+  {
+   "id": "artefacto-reverberacion",
+   "tipo": "concepto",
+   "titulo": "Reverberación",
+   "nivel": "principiante",
+   "tags": [
+    "artefacto",
+    "pulmon",
+    "reverberacion"
+   ],
+   "autores": [
+    {
+     "nombre": "Alcy Torres"
+    }
+   ],
+   "refs": [
+    "lichtenstein2008"
+   ],
+   "n_refs": 1
+  },
+  {
+   "id": "artefacto-sombra-acustica",
+   "tipo": "concepto",
+   "titulo": "Sombra acústica",
+   "nivel": "principiante",
+   "tags": [
+    "artefacto",
+    "litiasis"
+   ],
+   "autores": [
+    {
+     "nombre": "Alcy Torres"
+    }
+   ]
+  },
+  {
+   "id": "ecogenicidad",
+   "tipo": "concepto",
+   "titulo": "El lenguaje de la ecogenicidad",
+   "url": "https://biosemiotics.ghost.io/aprender-a-leer-el-cuerpo-vivo/",
+   "nivel": "principiante",
+   "fecha": "2026-07-14",
+   "tags": [
+    "escala-grises",
+    "interpretacion",
+    "semiotica"
+   ],
+   "autores": [
+    {
+     "nombre": "Alcy Edmundo Torres Guerrero",
+     "orcid": null,
+     "afiliacion": "Hospital de Especialidades Carlos Andrade Marín"
+    }
+   ]
+  },
+  {
+   "id": "efecto-piezoelectrico",
+   "tipo": "concepto",
+   "titulo": "Efecto piezoeléctrico",
+   "nivel": "principiante",
+   "tags": [
+    "fisica",
+    "sonda",
+    "transductor"
+   ],
+   "autores": [
+    {
+     "nombre": "Alcy Torres"
+    }
+   ]
+  },
+  {
+   "id": "frecuencia-profundidad",
+   "tipo": "concepto",
+   "titulo": "Frecuencia vs. profundidad",
+   "nivel": "principiante",
+   "tags": [
+    "fisica",
+    "resolucion",
+    "penetracion"
+   ],
+   "autores": [
+    {
+     "nombre": "Alcy Torres"
+    }
+   ]
+  },
+  {
+   "id": "knobology-ganancia",
+   "tipo": "concepto",
+   "titulo": "Ganancia",
+   "nivel": "principiante",
+   "tags": [
+    "knobology",
+    "optimizacion"
+   ],
+   "autores": [
+    {
+     "nombre": "Alcy Torres"
+    }
+   ]
+  },
+  {
+   "id": "knobology-profundidad",
+   "tipo": "concepto",
+   "titulo": "Profundidad",
+   "nivel": "principiante",
+   "tags": [
+    "knobology",
+    "optimizacion"
+   ],
+   "autores": [
+    {
+     "nombre": "Alcy Torres"
+    }
+   ]
+  },
+  {
+   "id": "propagacion-sonido",
+   "tipo": "concepto",
+   "titulo": "Velocidad de propagación",
+   "nivel": "principiante",
+   "tags": [
+    "fisica"
+   ],
+   "autores": [
+    {
+     "nombre": "Alcy Torres"
+    }
+   ]
+  },
+  {
+   "id": "tipos-de-sonda",
+   "tipo": "concepto",
+   "titulo": "Sondas y orientación",
+   "nivel": "principiante",
+   "tags": [
+    "sonda",
+    "orientacion",
+    "regla-de-oro"
+   ],
+   "autores": [
+    {
+     "nombre": "Alcy Torres"
+    }
+   ]
+  },
+  {
+   "id": "signo-derrame-pleural",
+   "tipo": "signo",
+   "titulo": "Derrame pleural",
+   "organo": "pulmon",
+   "nivel": "principiante",
+   "ventana": "base-pulmonar",
+   "significante": "Espacio anecoico entre la pared torácica y el pulmón, sobre el diafragma.",
+   "significado": "Líquido en el espacio pleural.",
+   "decision": "Cuantificar. Considerar toracocentesis diagnóstica/terapéutica.",
+   "sonda": [
+    "convexa",
+    "sectorial"
+   ],
+   "falsos_positivos": [
+    "Confusión con ascitis subdiafragmática"
+   ],
+   "se_basa_en": [
+    "ecogenicidad",
+    "artefacto-refuerzo-posterior"
+   ],
+   "autores": [
+    {
+     "nombre": "Alcy Torres"
+    }
+   ]
+  },
+  {
+   "id": "signo-lineas-b",
+   "tipo": "signo",
+   "titulo": "Líneas B (pulmón húmedo)",
+   "titulo_en": "B-lines (wet lung)",
+   "url": "https://biosemiotics.ghost.io/lineas-b/",
+   "version": "1.0",
+   "abstract": "Artefactos verticales hiperecoicos, en cola de cometa, que nacen en la línea pleural, borran las líneas A y se mueven con la respiración. Indican engrosamiento del intersticio por líquido. Difusas y bilaterales orientan a edema cardiogénico y justifican diuresis; un perfil A seco la contraindica. Falso positivo en fibrosis, neumonía, SDRA y contusión.\n",
+   "sistema": "respiratorio",
+   "organo": "pulmon",
+   "nivel": "principiante",
+   "ventana": "intercostal",
+   "pregunta_clinica": "¿Este paciente con disnea está húmedo o seco?",
+   "significante": "Artefactos verticales hiperecoicos, en cola de cometa, que nacen en la línea pleural, borran las líneas A y se mueven con la respiración.",
+   "significado": "Engrosamiento del intersticio por líquido. Síndrome intersticial.",
+   "umbral": "≥3 líneas B por espacio intercostal = espacio positivo.",
+   "licencia": "CC-BY-NC-4.0",
+   "fecha": "2026-07-14",
+   "actualizado": "2026-07-14",
+   "decision": "Difusas y bilaterales → edema cardiogénico → diurético.",
+   "sonda": [
+    "lineal",
+    "sectorial",
+    "convexa"
+   ],
+   "escenario": [
+    "urgencias",
+    "consulta",
+    "hospitalizacion",
+    "uci"
+   ],
+   "descriptores": [
+    "lineas-b",
+    "sindrome-intersticial",
+    "edema-pulmonar",
+    "disnea",
+    "cola-de-cometa"
+   ],
+   "mesh": [
+    "Ultrasonography",
+    "Pulmonary Edema",
+    "Dyspnea",
+    "Lung"
+   ],
+   "falsos_positivos": [
+    "Fibrosis pulmonar",
+    "Neumonía",
+    "SDRA",
+    "Contusión pulmonar"
+   ],
+   "se_basa_en": [
+    "artefacto-reverberacion",
+    "ecogenicidad",
+    "tipos-de-sonda"
+   ],
+   "contrasta_con": [
+    "signo-perfil-a"
+   ],
+   "autores": [
+    {
+     "nombre": "Alcy Edmundo Torres Guerrero",
+     "orcid": null,
+     "afiliacion": "Hospital de Especialidades Carlos Andrade Marín, Quito",
+     "credit": [
+      "conceptualizacion",
+      "adquisicion-imagenes",
+      "redaccion"
+     ]
+    }
+   ],
+   "medios": [
+    {
+     "tipo": "loop",
+     "id": "yt:PENDIENTE",
+     "descripcion": "Líneas B difusas, campo anterior derecho",
+     "duracion_s": 6
+    },
+    {
+     "tipo": "loop",
+     "id": "yt:PENDIENTE",
+     "descripcion": "Perfil A normal para contraste",
+     "duracion_s": 5
+    }
+   ],
+   "n_loops": 2,
+   "n_imagenes": 0,
+   "refs": [
+    "lichtenstein2008",
+    "volpicelli2012",
+    "volpicelli2026"
+   ],
+   "n_refs": 3
+  },
+  {
+   "id": "signo-perfil-a",
+   "tipo": "signo",
+   "titulo": "Perfil A (pulmón seco)",
+   "organo": "pulmon",
+   "nivel": "principiante",
+   "ventana": "intercostal",
+   "significante": "Líneas horizontales paralelas, repetidas a intervalos regulares bajo la línea pleural.",
+   "significado": "Relación aire-tejido normal. Pulmón aireado, sin edema intersticial.",
+   "decision": "NO diuretizar. Buscar otra causa de la disnea (broncoespasmo, EPOC, TEP).",
+   "sonda": [
+    "lineal",
+    "sectorial",
+    "convexa"
+   ],
+   "falsos_positivos": [
+    "Ventana mal obtenida",
+    "Enfisema bulloso"
+   ],
+   "se_basa_en": [
+    "artefacto-reverberacion",
+    "ecogenicidad",
+    "tipos-de-sonda"
+   ],
+   "contrasta_con": [
+    "signo-lineas-b"
+   ],
+   "autores": [
+    {
+     "nombre": "Alcy Torres"
+    }
+   ],
+   "refs": [
+    "lichtenstein2008"
+   ],
+   "n_refs": 1
+  },
+  {
+   "id": "signo-riñon-cronico",
+   "tipo": "signo",
+   "titulo": "Riñón crónico",
+   "organo": "riñon",
+   "nivel": "principiante",
+   "ventana": "flanco",
+   "significante": "Riñón pequeño, hiperecoico, con cortical adelgazada y mala diferenciación cortico-medular.",
+   "significado": "Daño renal establecido y antiguo. **El órgano codifica el tiempo.**",
+   "decision": "Reencuadra el caso: no es IRA aguda pura → cambia todo el manejo.",
+   "sonda": [
+    "convexa"
+   ],
+   "falsos_positivos": [
+    "Riñón normal en anciano delgado"
+   ],
+   "se_basa_en": [
+    "ecogenicidad",
+    "tipos-de-sonda"
+   ],
+   "autores": [
+    {
+     "nombre": "Alcy Torres"
+    }
+   ]
+  },
+  {
+   "id": "caso-01-disnea",
+   "tipo": "caso",
+   "titulo": "El disneico: ¿húmedo o seco?",
+   "organo": "pulmon",
+   "nivel": "principiante",
+   "fecha": "2026-08-01",
+   "decision": "Líneas B difusas bilaterales → diurético. Perfil A → NO diurético.",
+   "signos": [
+    "signo-lineas-b",
+    "signo-perfil-a"
+   ],
+   "conceptos": [
+    "artefacto-reverberacion",
+    "ecogenicidad",
+    "tipos-de-sonda"
+   ],
+   "autores": [
+    {
+     "nombre": "Alcy Torres"
+    }
+   ],
+   "refs": [
+    "lichtenstein2008",
+    "volpicelli2012"
+   ],
+   "n_refs": 2
+  }
+ ]
+}
