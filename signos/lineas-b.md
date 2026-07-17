@@ -48,7 +48,7 @@ medios:
     descripcion: "Perfil A normal para contraste"
     duracion_s: 5
 
-refs: [lichtenstein2008, volpicelli2012, volpicelli2026]
+refs: [lichtenstein2008, volpicelli2012, volpicelli2026, demi2023, gargani2023]
 fecha: 2026-07-14
 actualizado: 2026-07-14
 licencia: CC-BY-NC-4.0
