@@ -10,7 +10,7 @@ tags: [escala-grises, interpretacion, semiotica]
 relacionado_con: [artefacto-sombra-acustica, artefacto-refuerzo-posterior]
 prerequisito_de: [signo-lineas-b, signo-derrame-pleural, signo-riñon-cronico]
 refs: []
-url: "https://biosemiotics.ghost.io/aprender-a-leer-el-cuerpo-vivo/"
+url: "https://www.biosemiotics.net/aprender-a-leer-el-cuerpo-vivo/"
 fecha: 2026-07-14
 autores:
   - nombre: "Alcy Edmundo Torres Guerrero"

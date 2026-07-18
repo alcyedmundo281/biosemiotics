@@ -3,7 +3,7 @@ id: signo-lineas-b
 tipo: signo
 titulo: "Líneas B (pulmón húmedo)"
 titulo_en: "B-lines (wet lung)"
-url: "https://biosemiotics.ghost.io/lineas-b/"
+url: "https://www.biosemiotics.net/lineas-b-ultrasonido-pulmonar/"
 doi: null
 version: "1.0"
 
