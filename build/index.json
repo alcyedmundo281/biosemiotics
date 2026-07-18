@@ -381,17 +381,21 @@
    "id": "signo-riñon-cronico",
    "tipo": "signo",
    "titulo": "Riñón crónico",
+   "url": "https://www.biosemiotics.net/rinon-cronico-ultrasonido/",
    "organo": "riñon",
-   "nivel": "principiante",
+   "nivel": "principiante-intermedio",
    "ventana": "flanco",
-   "significante": "Riñón pequeño, hiperecoico, con cortical adelgazada y mala diferenciación cortico-medular.",
-   "significado": "Daño renal establecido y antiguo. **El órgano codifica el tiempo.**",
-   "decision": "Reencuadra el caso: no es IRA aguda pura → cambia todo el manejo.",
+   "significante": "Patrón bilateral de reducción del tamaño renal, adelgazamiento cortical, aumento de ecogenicidad y pérdida de diferenciación corticomedular.",
+   "significado": "Morfología que apoya enfermedad parenquimatosa crónica; la imagen sugiere tiempo, pero no demuestra por sí sola irreversibilidad.",
+   "decision": "Integra el patrón con función renal y evolución, busca obstrucción y no descartes lesión renal aguda sobreañadida.",
    "sonda": [
     "convexa"
    ],
    "falsos_positivos": [
-    "Riñón normal en anciano delgado"
+    "medicion-oblicua-que-subestima-la-longitud",
+    "variacion-por-edad-talla-sexo-y-habito-corporal",
+    "hiperecogenicidad-renal-en-enfermedad-aguda",
+    "comparacion-con-higado-esteatosico"
    ],
    "se_basa_en": [
     "ecogenicidad",
@@ -401,7 +405,15 @@
     {
      "nombre": "Alcy Torres"
     }
-   ]
+   ],
+   "refs": [
+    "oneill2014",
+    "moghazi2005",
+    "beland2010",
+    "fiorini2007",
+    "emamian1993"
+   ],
+   "n_refs": 5
   },
   {
    "id": "caso-01-disnea",
