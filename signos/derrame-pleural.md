@@ -3,7 +3,7 @@ id: signo-derrame-pleural
 tipo: signo
 titulo: "Derrame pleural"
 titulo_en: "Pleural effusion"
-url: "https://biosemiotics.ghost.io/derrame-pleural-ultrasonido/"
+url: "https://www.biosemiotics.net/derrame-pleural-ultrasonido/"
 doi: null
 version: "2.0"
 
