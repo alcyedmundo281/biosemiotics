@@ -44,7 +44,7 @@ contrasta_con: [signo-lineas-b]
 autores:
   - nombre: "Alcy Edmundo Torres Guerrero"
     orcid: null
-    afiliacion: "Hospital de Especialidades Carlos Andrade Marín, Quito"
+    afiliacion: "Universidad Central del Ecuador"
     credit: [conceptualizacion, redaccion]
 
 refs: [volpicelli2012, soni2015, balik2006, asciak2023, roberts2023, ibitoye2018, teichgraeber2018, rodriguezlima2020]

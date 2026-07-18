@@ -1,0 +1,41 @@
+{
+  "title": "biosemiotics — atlas de POCUS para el médico de primer contacto",
+  "description": "<p>Atlas educativo de ecografía en el punto de atención (POCUS) en español, dirigido al médico de primer contacto. Su tesis es semi&oacute;tica: cada hallazgo ecogr&aacute;fico se modela como un <strong>signo</strong> que une un <strong>significante</strong> (lo que se ve en pantalla), un <strong>significado</strong> (la realidad cl&iacute;nica a la que remite) y una <strong>decisi&oacute;n</strong> (qu&eacute; cambia en el manejo del paciente).</p><p>El repositorio contiene un banco de contenidos estructurado en Markdown con front-matter YAML —conceptos (la f&iacute;sica y los artefactos), signos (significante &rarr; significado &rarr; decisi&oacute;n) y casos cl&iacute;nicos— junto con el pipeline en Python que lo compila. De una sola fuente se derivan m&uacute;ltiples salidas: base SQLite navegable, LaTeX/BibLaTeX para libro, grafo de conceptos en JSON, fichas JSON-LD (schema.org), XML JATS para dep&oacute;sito y archivo, y un &iacute;ndice con buscador facetado.</p><p>Principios editoriales del proyecto: toda cifra cl&iacute;nica se verifica contra PubMed antes de publicarse; todo signo incluye una secci&oacute;n obligatoria de l&iacute;mites (&laquo;d&oacute;nde NO confiar&raquo;); ning&uacute;n caso se publica sin consentimiento expl&iacute;cito para publicaci&oacute;n, distinto del consentimiento para escanear.</p><p><strong>Aviso:</strong> material educativo. No sustituye el juicio cl&iacute;nico, la formaci&oacute;n supervisada ni la valoraci&oacute;n presencial del paciente.</p>",
+  "upload_type": "software",
+  "language": "spa",
+  "access_right": "open",
+  "license": "cc-by-nc-4.0",
+  "creators": [
+    {
+      "name": "Torres Guerrero, Alcy Edmundo",
+      "orcid": "0000-0002-9742-375X"
+    }
+  ],
+  "keywords": [
+    "POCUS",
+    "ecografía en el punto de atención",
+    "point-of-care ultrasound",
+    "ultrasonido clínico",
+    "educación médica",
+    "semiótica clínica",
+    "atlas",
+    "medicina de primer contacto",
+    "recursos educativos abiertos",
+    "español"
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "https://www.biosemiotics.net/",
+      "relation": "isDocumentedBy",
+      "resource_type": "publication-other",
+      "scheme": "url"
+    },
+    {
+      "identifier": "https://github.com/alcyedmundo281/biosemiotics",
+      "relation": "isSupplementTo",
+      "resource_type": "software",
+      "scheme": "url"
+    }
+  ],
+  "notes": "Plataforma independiente. El contenido no implica aval ni representación de ninguna institución sanitaria."
+}

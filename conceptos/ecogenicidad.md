@@ -15,7 +15,7 @@ fecha: 2026-07-14
 autores:
   - nombre: "Alcy Edmundo Torres Guerrero"
     orcid: null
-    afiliacion: "Hospital de Especialidades Carlos Andrade Marín"
+    afiliacion: "Universidad Central del Ecuador"
 ---
 
 Escala de grises según cuánto sonido refleja cada estructura. **Este es el nivel
