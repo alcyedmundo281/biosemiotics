@@ -85,7 +85,15 @@
     {
      "nombre": "Alcy Torres"
     }
-   ]
+   ],
+   "refs": [
+    "abuzidan2011",
+    "hangiandreou2003",
+    "aldrich2007",
+    "jensen2007",
+    "he2022"
+   ],
+   "n_refs": 5
   },
   {
    "id": "frecuencia-profundidad",
@@ -101,7 +109,15 @@
     {
      "nombre": "Alcy Torres"
     }
-   ]
+   ],
+   "refs": [
+    "kossoff2000",
+    "hangiandreou2003",
+    "aldrich2007",
+    "abuzidan2011",
+    "jensen2007"
+   ],
+   "n_refs": 5
   },
   {
    "id": "knobology-ganancia",
@@ -116,7 +132,16 @@
     {
      "nombre": "Alcy Torres"
     }
-   ]
+   ],
+   "refs": [
+    "zander2020",
+    "pye1992",
+    "duggan2022",
+    "abuzidan2011",
+    "hangiandreou2003",
+    "aldrich2007"
+   ],
+   "n_refs": 6
   },
   {
    "id": "knobology-profundidad",
