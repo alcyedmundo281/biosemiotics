@@ -3,6 +3,9 @@
 **Atlas de POCUS para el médico de primer contacto.** En español, con cada cifra
 verificada contra la literatura y cada signo acompañado de sus límites.
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21435362.svg)](https://doi.org/10.5281/zenodo.21435362)
+[![Licencia: CC BY-NC 4.0](https://img.shields.io/badge/Licencia-CC%20BY--NC%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc/4.0/deed.es)
+
 🔗 **[www.biosemiotics.net](https://www.biosemiotics.net/)**
 
 ---
@@ -86,13 +89,16 @@ proyectadas— vive en
 
 ## Cómo citar
 
-> Torres Guerrero, A. E. *biosemiotics — atlas de POCUS para el médico de primer
-> contacto.* https://github.com/alcyedmundo281/biosemiotics
+> Torres Guerrero, A. E. (2026). *biosemiotics — atlas de POCUS para el médico
+> de primer contacto* [Software]. Zenodo.
+> https://doi.org/10.5281/zenodo.21435362
 
-El DOI de Zenodo se añadirá aquí una vez acuñado. Zenodo genera un **DOI de
-concepto** que agrupa todas las versiones, más un DOI específico por release:
-cita el de concepto para referirte al atlas en general, el de versión para
-reproducir un estado exacto.
+Ese es el **DOI de concepto**: agrupa todas las versiones y siempre resuelve a
+la más reciente. Úsalo para citar el atlas en general.
+
+Si necesitas referirte a un estado exacto y reproducible del banco —por ejemplo
+para respaldar un dato citado en una fecha concreta—, usa el DOI específico de
+esa versión, que aparece en su página de Zenodo.
 
 ## Licencia
 
