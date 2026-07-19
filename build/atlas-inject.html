@@ -1,0 +1,178 @@
+<style>
+#bs{max-width:840px;margin:0 auto;font-family:'Literata',Georgia,serif;color:#14181B}
+#bs *{box-sizing:border-box}
+#bsq{width:100%;padding:14px 16px;font-size:16px;font-family:inherit;
+border:1px solid #DFE3E6;border-radius:6px;background:#fff}
+#bsq:focus{outline:none;border-color:#A8322F}
+.bsfg{margin:14px 0}
+.bsfl{font-family:'IBM Plex Mono',monospace;font-size:10px;text-transform:uppercase;
+letter-spacing:.08em;color:#8A9199;margin-bottom:6px}
+.bsf{display:flex;gap:5px;flex-wrap:wrap}
+.bsf button{font-family:'IBM Plex Mono',monospace;font-size:11px;text-transform:uppercase;
+letter-spacing:.05em;padding:5px 11px;border:1px solid #DFE3E6;border-radius:20px;
+background:none;color:#5F676E;cursor:pointer}
+.bsf button:hover{border-color:#8A9199}
+.bsf button.on{background:#A8322F;border-color:#A8322F;color:#fff}
+#bsn{font-family:'IBM Plex Mono',monospace;font-size:11px;text-transform:uppercase;
+letter-spacing:.08em;color:#5F676E;margin:22px 0 4px;padding-top:16px;
+border-top:1px solid #E3E7EA}
+.bsr{border-top:1px solid #E3E7EA;padding:20px 0}
+.bsr:first-child{border-top:none}
+.bsk{font-family:'IBM Plex Mono',monospace;font-size:10px;text-transform:uppercase;
+letter-spacing:.08em;color:#8A9199;margin-bottom:5px}
+.bst{font-family:'Archivo',system-ui,sans-serif;font-weight:600;font-size:19px;
+margin:0 0 3px;letter-spacing:-.01em;line-height:1.3}
+.bst a{color:#A8322F;text-decoration:none}
+.bst a:hover{text-decoration:underline}
+.bsp{font-size:14px;color:#5F676E;font-style:italic;margin:2px 0 9px}
+.bsa{font-size:14.5px;line-height:1.6;color:#333;margin:0 0 10px}
+.bsd{font-size:14px;color:#A8322F;font-weight:600;margin:8px 0}
+.bsw{font-size:13px;color:#8A4B00;margin:6px 0}
+.bsm{font-family:'IBM Plex Mono',monospace;font-size:11px;color:#8A9199;
+margin-top:10px;display:flex;gap:14px;flex-wrap:wrap}
+.bsm a{color:#2E5A87}
+.bsg{font-size:13px;color:#5F676E;margin-top:7px}
+.bsg b{font-family:'IBM Plex Mono',monospace;font-size:10px;text-transform:uppercase;
+letter-spacing:.06em;font-weight:400;color:#8A9199;margin-right:5px}
+.bsg span{color:#2E5A87;cursor:pointer}
+.bsg span:hover{text-decoration:underline}
+.bsx{color:#8A9199;padding:44px 0;text-align:center}
+</style>
+
+<div id="bs">
+  <input id="bsq" placeholder="Buscar signo, órgano, pregunta clínica…" autocomplete="off">
+  <div id="bsfw"></div>
+  <p id="bsn"></p>
+  <div id="bso"></div>
+</div>
+
+<script>
+(function(){
+var IDX="https://raw.githubusercontent.com/alcyedmundo281/biosemiotics/main/build/index.json",IDX2="https://cdn.jsdelivr.net/gh/alcyedmundo281/biosemiotics@main/build/index.json",el=document.getElementById('bs');if(!el)return;
+var D=[],F={},BY={};
+var nm=function(s){return(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();};
+var es=function(s){return String(s).replace(/[&<>]/g,function(c){
+  return{'&':'&amp;','<':'&lt;','>':'&gt;'}[c];});};
+
+function facets(){
+  return [['tipo','Tipo'],['sistema','Sistema'],['organo','Órgano'],
+          ['nivel','Nivel'],['escenario','Escenario']].map(function(d){
+    var v={};
+    D.forEach(function(n){
+      var x=n[d[0]];
+      (Array.isArray(x)?x:[x]).forEach(function(y){if(y)v[y]=1;});
+    });
+    var ks=Object.keys(v).sort();
+    if(!ks.length)return'';
+    return '<div class="bsfg"><div class="bsfl">'+d[1]+'</div><div class="bsf">'+
+      ks.map(function(k){return '<button data-f="'+d[0]+'" data-v="'+es(k)+'">'+
+        es(k)+'</button>';}).join('')+'</div></div>';
+  }).join('');
+}
+
+function ok(n){
+  for(var k in F){
+    if(!F[k])continue;
+    var v=n[k];
+    if(!(Array.isArray(v)?v.indexOf(F[k])>-1:v===F[k]))return false;
+  }
+  return true;
+}
+
+function render(){
+  var q=nm(document.getElementById('bsq').value);
+  var h=D.filter(function(n){
+    if(!ok(n))return false;
+    if(!q)return true;
+    return nm([n.titulo,n.titulo_en,n.abstract,n.pregunta_clinica,n.organo,
+      n.sistema,n.decision,n.significante,n.significado,
+      (n.descriptores||[]).join(' '),(n.mesh||[]).join(' ')].join(' ')).indexOf(q)>-1;
+  });
+  var o={signo:0,caso:1,concepto:2};
+  h.sort(function(a,b){return(o[a.tipo]-o[b.tipo])||a.titulo.localeCompare(b.titulo);});
+  document.getElementById('bsn').textContent=h.length+
+    (h.length===1?' resultado':' resultados');
+  var out=document.getElementById('bso');
+  if(!h.length){out.innerHTML='<p class="bsx">Sin resultados.</p>';return;}
+
+  out.innerHTML=h.map(function(n){
+    var t=n.url?'<a href="'+n.url+'">'+es(n.titulo)+'</a>'
+      :es(n.titulo)+' <span style="font-size:12px;color:#8A9199">(sin publicar)</span>';
+    var s='<div class="bsr"><div class="bsk">'+n.tipo+
+      (n.sistema?' · '+n.sistema:'')+(n.organo?' · '+n.organo:'')+
+      (n.nivel?' · '+n.nivel:'')+'</div><h3 class="bst">'+t+'</h3>';
+    if(n.pregunta_clinica)s+='<p class="bsp">'+es(n.pregunta_clinica)+'</p>';
+    if(n.abstract)s+='<p class="bsa">'+es(n.abstract)+'</p>';
+    if(n.decision)s+='<p class="bsd">→ '+es(n.decision)+'</p>';
+    if(n.falsos_positivos&&n.falsos_positivos.length)
+      s+='<p class="bsw">No confiar si: '+n.falsos_positivos.map(es).join(' · ')+'</p>';
+
+    ['se_basa_en','contrasta_con','signos','conceptos'].forEach(function(r){
+      if(!n[r]||!n[r].length)return;
+      var lb={se_basa_en:'Se basa en',contrasta_con:'Contrasta con',
+              signos:'Signos',conceptos:'Conceptos'}[r];
+      var lk=n[r].map(function(id){
+        var x=BY[id];
+        return x?'<span data-go="'+id+'">'+es(x.titulo)+'</span>':'';
+      }).filter(Boolean).join(' · ');
+      if(lk)s+='<div class="bsg"><b>'+lb+'</b>'+lk+'</div>';
+    });
+
+    var m=[];
+    if(n.autores)m.push(n.autores.map(function(a){return es(a.nombre);}).join(', '));
+    if(n.fecha)m.push(n.fecha);
+    if(n.n_loops)m.push(n.n_loops+(n.n_loops===1?' loop':' loops'));
+    if(n.n_refs)m.push(n.n_refs+' refs');
+    if(n.doi)m.push('<a href="https://doi.org/'+n.doi+'">doi</a>');
+    if(m.length)s+='<div class="bsm">'+m.map(function(x){
+      return'<span>'+x+'</span>';}).join('')+'</div>';
+    return s+'</div>';
+  }).join('');
+
+  out.querySelectorAll('[data-go]').forEach(function(b){
+    b.onclick=function(){
+      F={};
+      document.querySelectorAll('.bsf button').forEach(function(x){x.classList.remove('on');});
+      var x=BY[b.dataset.go];
+      document.getElementById('bsq').value=x?x.titulo:'';
+      render();
+      window.scrollTo(0,el.offsetTop-20);
+    };
+  });
+}
+
+// El índice se pide primero a raw.githubusercontent (cache 5 min) y, si falla
+// —rate-limit, corte—, se reintenta contra jsDelivr (cache 12 h en ramas).
+// Ambos sirven el MISMO archivo del repo. Nunca se lee desde biosemiotics.net.
+function cargar(u){
+  return fetch(u,{cache:'no-cache'}).then(function(r){
+    if(!r.ok)throw new Error('HTTP '+r.status);
+    return r.json();
+  });
+}
+
+cargar(IDX).catch(function(){return cargar(IDX2);}).then(function(j){
+  D=j.fichas||j;
+  D.forEach(function(n){BY[n.id]=n;});
+  document.getElementById('bsfw').innerHTML=facets();
+  document.getElementById('bsq').addEventListener('input',render);
+  document.querySelectorAll('.bsf button').forEach(function(b){
+    b.onclick=function(){
+      var f=b.dataset.f,v=b.dataset.v;
+      if(F[f]===v){delete F[f];b.classList.remove('on');}
+      else{
+        F[f]=v;
+        document.querySelectorAll('.bsf button[data-f="'+f+'"]').forEach(
+          function(x){x.classList.remove('on');});
+        b.classList.add('on');
+      }
+      render();
+    };
+  });
+  render();
+}).catch(function(){
+  document.getElementById('bso').innerHTML=
+    '<p class="bsx">No se pudo cargar el índice.</p>';
+});
+})();
+</script>

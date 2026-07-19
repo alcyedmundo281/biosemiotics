@@ -14,6 +14,7 @@ Produce en build/:
   jats/*.xml          JATS para DEPÓSITO y archivo (NO se sube a Ghost)
 """
 import json
+import re
 import sys
 import xml.etree.ElementTree as ET
 from pathlib import Path
@@ -293,7 +294,7 @@ letter-spacing:.06em;font-weight:400;color:#8A9199;margin-right:5px}
 
 JS = r"""
 (function(){
-var IDX="%%URL%%",el=document.getElementById('bs');if(!el)return;
+var IDX="%%URL%%",IDX2="%%URL2%%",el=document.getElementById('bs');if(!el)return;
 var D=[],F={},BY={};
 var nm=function(s){return(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();};
 var es=function(s){return String(s).replace(/[&<>]/g,function(c){
@@ -386,7 +387,17 @@ function render(){
   });
 }
 
-fetch(IDX).then(function(r){return r.json();}).then(function(j){
+// El índice se pide primero a raw.githubusercontent (cache 5 min) y, si falla
+// —rate-limit, corte—, se reintenta contra jsDelivr (cache 12 h en ramas).
+// Ambos sirven el MISMO archivo del repo. Nunca se lee desde biosemiotics.net.
+function cargar(u){
+  return fetch(u,{cache:'no-cache'}).then(function(r){
+    if(!r.ok)throw new Error('HTTP '+r.status);
+    return r.json();
+  });
+}
+
+cargar(IDX).catch(function(){return cargar(IDX2);}).then(function(j){
   D=j.fichas||j;
   D.forEach(function(n){BY[n.id]=n;});
   document.getElementById('bsfw').innerHTML=facets();
@@ -413,9 +424,26 @@ fetch(IDX).then(function(r){return r.json();}).then(function(j){
 """
 
 
+def raw_desde_jsdelivr(url: str) -> str:
+    """https://cdn.jsdelivr.net/gh/USER/REPO@RAMA/ruta
+       → https://raw.githubusercontent.com/USER/REPO/RAMA/ruta
+
+    raw se cachea 5 min; jsDelivr cachea las rutas de RAMA 12 h y ni la purga
+    ni un query string la esquivan. Por eso raw va de primario y jsDelivr de
+    respaldo. Si la URL no es de jsDelivr, se devuelve tal cual.
+    """
+    m = re.match(r"https://cdn\.jsdelivr\.net/gh/([^/]+)/([^@/]+)@([^/]+)/(.+)", url)
+    if not m:
+        return url
+    usuario, repo, rama, ruta = m.groups()
+    return f"https://raw.githubusercontent.com/{usuario}/{repo}/{rama}/{ruta}"
+
+
 def main():
     raiz = Path(sys.argv[1] if len(sys.argv) > 1 else ".").resolve()
     url = sys.argv[2] if len(sys.argv) > 2 else "/content/index.json"
+    # Primario: raw (fresco). Respaldo: lo que se pasó por argumento (jsDelivr).
+    url_primaria = sys.argv[3] if len(sys.argv) > 3 else raw_desde_jsdelivr(url)
     ent = cargar(raiz)
     b = raiz / "build"
     b.mkdir(exist_ok=True)
@@ -440,7 +468,7 @@ def main():
         '  <p id="bsn"></p>\n'
         '  <div id="bso"></div>\n'
         '</div>\n\n'
-        f"<script>{JS.replace('%%URL%%', url)}</script>\n",
+        f"<script>{JS.replace('%%URL%%', url_primaria).replace('%%URL2%%', url)}</script>\n",
         encoding="utf-8")
 
     kb = (b / "index.json").stat().st_size / 1024
@@ -449,6 +477,8 @@ def main():
 
     print(f"→ index.json        {len(fichas)} fichas · {kb:.1f} KB · sin cuerpos")
     print(f"→ atlas-inject.html facetas + navegación de grafo")
+    print(f"   primario  {url_primaria}")
+    print(f"   respaldo  {url}")
     print(f"→ jsonld/           {len(ent)} · schema.org (Google + IA)")
     print(f"→ jats/             {len(ent)} · XML para DEPÓSITO (no para Ghost)")
     print(f"\n   proyección: 1.000 fichas ≈ {kb / len(fichas) * 1000:.0f} KB")

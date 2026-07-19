@@ -77,7 +77,25 @@ python -c "import json; d=json.load(open('build/index.json',encoding='utf-8'))['
 ```
 El contador `⚠ N sin url` que imprime `indice.py` debe BAJAR cuando publicas algo. Si no baja, la URL no entró.
 
-**Distinción crítica de URLs:** las de artículos usan `www.biosemiotics.net`. La URL del índice que consume el buscador (`var IDX` en atlas-inject.html) usa `cdn.jsdelivr.net/...` y NO cambia. No las confundas.
+**Distinción crítica de URLs.** Hay dos clases y NO son lo mismo:
+
+- **URLs de artículos** (campo `url` de cada `.md`, y las del JSON-LD) → `www.biosemiotics.net`.
+- **URL del índice** que consume el buscador → **siempre desde GitHub, JAMÁS desde `biosemiotics.net`.** El `index.json` vive en el repositorio, no en el sitio. Apuntar el buscador al dominio lo rompe.
+
+**El índice se pide con dos fuentes, primario y respaldo** (`var IDX` e `IDX2` en atlas-inject.html):
+
+| | URL | Caché |
+|---|---|---|
+| **Primario** | `raw.githubusercontent.com/alcyedmundo281/biosemiotics/main/build/index.json` | 5 min |
+| **Respaldo** | `cdn.jsdelivr.net/gh/alcyedmundo281/biosemiotics@main/build/index.json` | 12 h |
+
+Las dos sirven **el mismo archivo del mismo repositorio**. El buscador pide la primaria con `cache: 'no-cache'` y solo cae a la segunda si falla (rate-limit de GitHub, corte).
+
+**Por qué este diseño, y no solo jsDelivr:** jsDelivr cachea las rutas de RAMA (`@main`) durante 12 horas (`s-maxage=43200`). Purgar no siempre basta, y está comprobado que **ni `@latest` ni un `?v=<timestamp>` la esquivan** —jsDelivr ignora los query strings, y `@latest` resuelve al último *tag*, que congelaría el atlas en el release en vez de seguir a `main`. El resultado era publicar un signo y que el atlas siguiera diciendo "(sin publicar)" medio día. Por eso raw va primero: se actualiza en 5 minutos.
+
+`indice.py` deriva sola la URL primaria a partir de la de jsDelivr, así que **el comando no cambia**: le sigues pasando la de jsDelivr y él arma las dos. Imprime ambas al terminar; verifícalas ahí.
+
+**Cuándo hay que repegar `atlas-inject.html` en Ghost:** solo si cambia la estructura del buscador (diseño, facetas, lógica de fetch). Para publicar contenido NO hace falta —basta el ciclo de arriba.
 
 ## Trabajo en paralelo (dos sesiones)
 
