@@ -22,7 +22,7 @@ La **ganancia** amplifica electrónicamente los ecos recibidos y modifica el bri
 de la imagen. Actúa en la recepción: no aumenta la energía transmitida, la
 penetración acústica ni la resolución espacial. Una ganancia insuficiente puede
 ocultar ecos débiles; una excesiva amplifica también ruido y speckle, satura los
-graises y reduce el contraste útil.
+grises y reduce el contraste útil.
 
 La ganancia global actúa sobre toda la imagen. La **compensación de ganancia en el
 tiempo** (TGC) modifica la amplificación según el tiempo de retorno y, por tanto,
