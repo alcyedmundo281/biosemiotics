@@ -2,6 +2,9 @@
 id: {{ID}}
 tipo: signo
 titulo: "{{TITULO}}"
+url: ""           # se llena AL PUBLICAR en Ghost: https://www.biosemiotics.net/<slug>/
+                  # vacío → el atlas lo muestra "(sin publicar)"
+                  # NUNCA la URL del editor (/ghost/#/...)
 organo: TODO      # pulmon | corazon | riñon | vejiga | higado | vesicula
 ventana: TODO     # dónde se apoya la sonda
 sonda: []         # lineal | convexa | sectorial

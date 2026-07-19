@@ -45,7 +45,8 @@ La documentación de referencia (esquema completo, instructivo del artículo) vi
 4. **Abstract obligatorio:** 40-80 palabras, patrón qué se ve → qué significa → qué decide → dónde falla.
 5. **`falsos_positivos` obligatorio:** un signo sin límites enseña a reconocer sin enseñar a dudar. Distingue *falso positivo* (algo que imita el signo sin serlo) de *variante* (el signo real con otra textura) — van en campos distintos.
 6. **Referencias:** ver la regla dura abajo.
-7. **Valida:** `python scripts/build.py`. No continúes con errores.
+7. **`url` vacía por ahora.** La plantilla ya trae el campo `url: ""`. Déjalo vacío hasta que el artículo exista en Ghost — el atlas lo mostrará como "(sin publicar)", que es la verdad. **No inventes ni adivines el slug:** el de líneas B resultó ser `lineas-b-ultrasonido-pulmonar`, no `lineas-b`. La URL la da Alcy después de publicar.
+8. **Valida:** `python scripts/build.py`. No continúes con errores.
 
 ## Reglas duras (no se rompen nunca)
 
@@ -67,6 +68,14 @@ El texto completo del artículo se escribe/edita en Ghost directamente (Claude C
 4. `git add -f build/index.json` + los `.md` tocados
 5. `git commit` + `git push`
 6. Recuérdale a Alcy purgar jsDelivr: `https://purge.jsdelivr.net/gh/alcyedmundo281/biosemiotics@main/build/index.json`
+
+**El paso 3 no es opcional, y es el que más se olvida.** `build.py` NO regenera `index.json` — eso lo hace `indice.py`. Si commiteas `.md` y `refs.bib` sin correr `indice.py`, el buscador del sitio queda sirviendo datos viejos: entradas sin su URL, sin su conteo de referencias. Ya pasó dos veces. Regla práctica: **si tocaste un `.md`, corre los dos scripts antes de commitear.**
+
+**Verifica antes de commitear.** Después de `indice.py`, confirma que la ficha quedó como esperas:
+```bash
+python -c "import json; d=json.load(open('build/index.json',encoding='utf-8'))['fichas']; print([f['url'] for f in d if f['id']=='<id>'])"
+```
+El contador `⚠ N sin url` que imprime `indice.py` debe BAJAR cuando publicas algo. Si no baja, la URL no entró.
 
 **Distinción crítica de URLs:** las de artículos usan `www.biosemiotics.net`. La URL del índice que consume el buscador (`var IDX` en atlas-inject.html) usa `cdn.jsdelivr.net/...` y NO cambia. No las confundas.
 

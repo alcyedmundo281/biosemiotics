@@ -2,6 +2,9 @@
 id: {{ID}}
 tipo: caso
 titulo: "{{TITULO}}"
+url: ""           # se llena AL PUBLICAR en Ghost: https://www.biosemiotics.net/<slug>/
+                  # vacío → el atlas lo muestra "(sin publicar)"
+                  # NUNCA la URL del editor (/ghost/#/...)
 fecha: TODO
 organo: TODO
 signos: []        # ids de los signos que aparecen

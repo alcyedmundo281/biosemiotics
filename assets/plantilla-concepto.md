@@ -2,6 +2,9 @@
 id: {{ID}}
 tipo: concepto
 titulo: "{{TITULO}}"
+url: ""         # se llena AL PUBLICAR en Ghost: https://www.biosemiotics.net/<slug>/
+                # vacío → el atlas lo muestra "(sin publicar)"
+                # NUNCA la URL del editor (/ghost/#/...)
 dominio: TODO   # fisica | artefacto | tecnica | knobology | semiotica
 nivel: principiante
 capitulo: TODO  # posición en el recorrido LINEAL del libro
