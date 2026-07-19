@@ -9,12 +9,24 @@ orden: 1
 tags: [fisica, sonda, transductor]
 relacionado_con: [propagacion-sonido, tipos-de-sonda]
 prerequisito_de: [ecogenicidad]
-refs: []
+refs:
+  - abuzidan2011
+  - hangiandreou2003
+  - aldrich2007
+  - jensen2007
+  - he2022
 ---
 
-La máquina envía un estímulo eléctrico a los cristales de la sonda, que lo transforman
-en ondas mecánicas (sonido) que viajan al tejido (**efecto directo**). Cuando la onda
-rebota y golpea los cristales, se convierte de nuevo en señal eléctrica que la máquina
-procesa como imagen (**efecto inverso**).
+El transductor convierte energía en dos direcciones. Durante la transmisión, un
+campo eléctrico alternante deforma el material piezoeléctrico y genera una onda
+mecánica: es el **efecto piezoeléctrico inverso o converso**. Durante la
+recepción, la presión de los ecos deforma el material y produce una señal
+eléctrica: es el **efecto piezoeléctrico directo**.
 
-Descubierto en 1880 por los hermanos Jacques y Pierre Curie.
+En ecografía diagnóstica, la misma matriz funciona como emisor y receptor dentro
+de un ciclo pulso-eco. La electrónica mide el tiempo de retorno y la amplitud de
+los ecos para asignar profundidad y brillo.
+
+La frecuencia, el ancho de banda, el amortiguamiento, las capas de adaptación y
+la disposición de los elementos determinan qué pulso entra al cuerpo y qué
+señales pueden recuperarse.
