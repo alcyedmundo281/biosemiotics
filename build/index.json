@@ -76,6 +76,7 @@
    "tipo": "concepto",
    "titulo": "Efecto piezoeléctrico",
    "url": "https://www.biosemiotics.net/efecto-piezoelectrico-ultrasonido/",
+   "abstract": "El transductor convierte energía en dos direcciones: un campo eléctrico alternante deforma el material y genera la onda mecánica (efecto inverso); la presión de los ecos deforma el material y produce señal eléctrica (efecto directo). La misma matriz emite y recibe en un ciclo pulso-eco, del que la electrónica extrae profundidad y brillo. Frecuencia, ancho de banda, amortiguamiento y capas de adaptación determinan qué pulso entra y qué señal se recupera.\n",
    "nivel": "principiante",
    "tags": [
     "fisica",
@@ -101,6 +102,7 @@
    "tipo": "concepto",
    "titulo": "Frecuencia vs. profundidad",
    "url": "https://www.biosemiotics.net/frecuencia-profundidad-ultrasonido/",
+   "abstract": "Subir la frecuencia acorta la longitud de onda y mejora el detalle potencial, pero aumenta la atenuación: queda menos señal útil de objetivos profundos. La regla práctica es usar la frecuencia más alta que aún permita evaluar todo el objetivo. La frecuencia no determina sola la resolución —axial, lateral y elevacional dependen de factores distintos—, y ni el control de profundidad ni la ganancia recuperan información perdida por atenuación.\n",
    "nivel": "principiante",
    "tags": [
     "fisica",
@@ -126,6 +128,7 @@
    "tipo": "concepto",
    "titulo": "Ganancia",
    "url": "https://www.biosemiotics.net/ganancia-ultrasonido/",
+   "abstract": "La ganancia amplifica los ecos recibidos y cambia el brillo: actúa en recepción, sin aumentar energía transmitida, penetración ni resolución. Poca ganancia oculta ecos débiles; demasiada amplifica ruido y satura los grises. La TGC ajusta la amplificación según la profundidad para compensar la atenuación, y debe formar una transición suave para no crear bandas. Optimiza primero sonda, preset, frecuencia y profundidad; la ganancia se ajusta al final y no recupera lo perdido.\n",
    "nivel": "principiante",
    "tags": [
     "knobology",

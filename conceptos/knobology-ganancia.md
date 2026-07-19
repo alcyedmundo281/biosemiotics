@@ -3,6 +3,16 @@ id: knobology-ganancia
 tipo: concepto
 titulo: "Ganancia"
 url: "https://www.biosemiotics.net/ganancia-ultrasonido/"
+
+abstract: >
+  La ganancia amplifica los ecos recibidos y cambia el brillo: actúa en
+  recepción, sin aumentar energía transmitida, penetración ni resolución. Poca
+  ganancia oculta ecos débiles; demasiada amplifica ruido y satura los grises.
+  La TGC ajusta la amplificación según la profundidad para compensar la
+  atenuación, y debe formar una transición suave para no crear bandas. Optimiza
+  primero sonda, preset, frecuencia y profundidad; la ganancia se ajusta al
+  final y no recupera lo perdido.
+
 dominio: knobology
 nivel: principiante
 capitulo: 6

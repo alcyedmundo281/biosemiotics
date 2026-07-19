@@ -3,6 +3,16 @@ id: efecto-piezoelectrico
 tipo: concepto
 titulo: "Efecto piezoeléctrico"
 url: "https://www.biosemiotics.net/efecto-piezoelectrico-ultrasonido/"
+
+abstract: >
+  El transductor convierte energía en dos direcciones: un campo eléctrico
+  alternante deforma el material y genera la onda mecánica (efecto inverso); la
+  presión de los ecos deforma el material y produce señal eléctrica (efecto
+  directo). La misma matriz emite y recibe en un ciclo pulso-eco, del que la
+  electrónica extrae profundidad y brillo. Frecuencia, ancho de banda,
+  amortiguamiento y capas de adaptación determinan qué pulso entra y qué señal
+  se recupera.
+
 dominio: fisica
 nivel: principiante
 capitulo: 2

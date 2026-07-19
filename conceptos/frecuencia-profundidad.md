@@ -3,6 +3,15 @@ id: frecuencia-profundidad
 tipo: concepto
 titulo: "Frecuencia vs. profundidad"
 url: "https://www.biosemiotics.net/frecuencia-profundidad-ultrasonido/"
+
+abstract: >
+  Subir la frecuencia acorta la longitud de onda y mejora el detalle potencial,
+  pero aumenta la atenuación: queda menos señal útil de objetivos profundos. La
+  regla práctica es usar la frecuencia más alta que aún permita evaluar todo el
+  objetivo. La frecuencia no determina sola la resolución —axial, lateral y
+  elevacional dependen de factores distintos—, y ni el control de profundidad ni
+  la ganancia recuperan información perdida por atenuación.
+
 dominio: fisica
 nivel: principiante
 capitulo: 2
