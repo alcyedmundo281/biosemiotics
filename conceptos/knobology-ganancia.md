@@ -2,6 +2,7 @@
 id: knobology-ganancia
 tipo: concepto
 titulo: "Ganancia"
+url: "https://www.biosemiotics.net/ganancia-ultrasonido/"
 dominio: knobology
 nivel: principiante
 capitulo: 6

@@ -75,6 +75,7 @@
    "id": "efecto-piezoelectrico",
    "tipo": "concepto",
    "titulo": "Efecto piezoeléctrico",
+   "url": "https://www.biosemiotics.net/efecto-piezoelectrico-ultrasonido/",
    "nivel": "principiante",
    "tags": [
     "fisica",
@@ -99,6 +100,7 @@
    "id": "frecuencia-profundidad",
    "tipo": "concepto",
    "titulo": "Frecuencia vs. profundidad",
+   "url": "https://www.biosemiotics.net/frecuencia-profundidad-ultrasonido/",
    "nivel": "principiante",
    "tags": [
     "fisica",
@@ -123,6 +125,7 @@
    "id": "knobology-ganancia",
    "tipo": "concepto",
    "titulo": "Ganancia",
+   "url": "https://www.biosemiotics.net/ganancia-ultrasonido/",
    "nivel": "principiante",
    "tags": [
     "knobology",

@@ -2,6 +2,7 @@
 id: frecuencia-profundidad
 tipo: concepto
 titulo: "Frecuencia vs. profundidad"
+url: "https://www.biosemiotics.net/frecuencia-profundidad-ultrasonido/"
 dominio: fisica
 nivel: principiante
 capitulo: 2

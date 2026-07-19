@@ -2,6 +2,7 @@
 id: efecto-piezoelectrico
 tipo: concepto
 titulo: "Efecto piezoeléctrico"
+url: "https://www.biosemiotics.net/efecto-piezoelectrico-ultrasonido/"
 dominio: fisica
 nivel: principiante
 capitulo: 2
