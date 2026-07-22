@@ -4,6 +4,7 @@
    "id": "artefacto-refuerzo-posterior",
    "tipo": "concepto",
    "titulo": "Refuerzo acústico posterior",
+   "abstract": "Área brillante que aparece por detrás de una estructura llena de líquido, como la vejiga. Su presencia confirma que el contenido de esa estructura es líquido y no sólido. Su utilidad práctica es cerrar esa duda cuando la escala de grises por sí sola no basta. Es un artefacto: información que nace de la interacción del haz con el medio, no una estructura anatómica real.\n",
    "nivel": "principiante",
    "tags": [
     "artefacto",
@@ -20,6 +21,7 @@
    "id": "artefacto-reverberacion",
    "tipo": "concepto",
    "titulo": "Reverberación",
+   "abstract": "Líneas horizontales paralelas, repetidas, que aparecen en el pulmón sano y expresan una relación aire-tejido normal. Su lectura invierte la intuición del principiante: el artefacto no es un error del equipo, es el signo mismo. Es el fundamento sobre el que se apoyan el perfil A y las líneas B, de modo que sin reconocerlo primero no se puede distinguir el pulmón seco del húmedo.\n",
    "nivel": "principiante",
    "tags": [
     "artefacto",
@@ -40,6 +42,7 @@
    "id": "artefacto-sombra-acustica",
    "tipo": "concepto",
    "titulo": "Sombra acústica",
+   "abstract": "Área oscura que se proyecta por detrás de un objeto denso, como un lito vesicular, porque el sonido no logra atravesarlo. La sombra convierte la ausencia de señal en información: señala que algo bloqueó el haz. Reconocerla evita leer esa zona negra como líquido o como un hallazgo propio. Su límite es inherente: detrás de la sombra no hay imagen, y lo que quede oculto ahí no puede evaluarse.\n",
    "nivel": "principiante",
    "tags": [
     "artefacto",
@@ -56,6 +59,7 @@
    "tipo": "concepto",
    "titulo": "El lenguaje de la ecogenicidad",
    "url": "https://www.biosemiotics.net/aprender-a-leer-el-cuerpo-vivo/",
+   "abstract": "Escala de grises que ordena la imagen según cuánto sonido refleja cada estructura: anecoico y negro para los líquidos, hiperecoico y blanco para hueso, calcio y grasa, hipoecoico para lo que refleja menos que el tejido vecino, isoecoico para lo que iguala su brillo. Es el nivel semiótico primario del atlas, el significante que remite a una realidad física. Su límite es relacional: hipo e isoecoico solo existen por comparación con el tejido circundante.\n",
    "nivel": "principiante",
    "fecha": "2026-07-14",
    "tags": [
@@ -153,6 +157,7 @@
    "id": "knobology-profundidad",
    "tipo": "concepto",
    "titulo": "Profundidad",
+   "abstract": "Control que ajusta la escala de la imagen para que la estructura de interés quede centrada en la pantalla. No cambia lo que hay en el paciente: cambia cuánto campo se muestra y con qué tamaño, de modo que un mismo hallazgo puede pasar desapercibido si queda en el borde o fuera del rango elegido. Se ajusta junto con la ganancia y con la relación entre frecuencia y profundidad.\n",
    "nivel": "principiante",
    "tags": [
     "knobology",
@@ -168,6 +173,7 @@
    "id": "propagacion-sonido",
    "tipo": "concepto",
    "titulo": "Velocidad de propagación",
+   "abstract": "El equipo calcula la profundidad de cada eco asumiendo una velocidad fija: 1540 m/s, el valor estándar del tejido blando. Esa constante es la que permite que la imagen se forme con precisión, porque el tiempo de ida y vuelta del pulso solo se traduce en distancia si se supone una velocidad conocida. El supuesto es también el límite: la cifra es una calibración estándar, no la velocidad real de cada tejido.\n",
    "nivel": "principiante",
    "tags": [
     "fisica"
@@ -182,6 +188,7 @@
    "id": "tipos-de-sonda",
    "tipo": "concepto",
    "titulo": "Sondas y orientación",
+   "abstract": "Tres sondas y una regla de orientación. La convexa explora abdomen profundo y ginecología; la lineal, estructuras superficiales, neumotórax y acceso vascular; la sectorial, de huella pequeña, cabe entre costillas y abre las ventanas cardíacas. La regla de oro fija el sentido de la imagen: el marcador apunta a la cabeza del paciente en vista longitudinal y a su derecha en transversal. Invertir el marcador invierte la lectura, no la anatomía.\n",
    "nivel": "principiante",
    "tags": [
     "sonda",
@@ -375,6 +382,7 @@
    "id": "signo-perfil-a",
    "tipo": "signo",
    "titulo": "Perfil A (pulmón seco)",
+   "abstract": "Líneas horizontales paralelas, repetidas a intervalos regulares bajo la línea pleural. Expresan una relación aire-tejido normal: pulmón aireado, sin edema intersticial. Ante un disneico, el perfil A contraindica diuretizar y obliga a buscar otra causa —broncoespasmo, EPOC, TEP—. Ver líneas A no es ver nada: es ver aire normal, el estado basal contra el cual se lee toda la patología pulmonar. Falso positivo con ventana mal obtenida y en enfisema bulloso.\n",
    "organo": "pulmon",
    "nivel": "principiante",
    "ventana": "intercostal",
@@ -413,6 +421,7 @@
    "tipo": "signo",
    "titulo": "Riñón crónico",
    "url": "https://www.biosemiotics.net/rinon-cronico-ultrasonido/",
+   "abstract": "Patrón bilateral de riñones reducidos, con cortical adelgazada, ecogenicidad aumentada y pérdida de diferenciación corticomedular. Apoya enfermedad parenquimatosa crónica: la imagen sugiere tiempo, pero no demuestra por sí sola irreversibilidad. Obliga a integrar el patrón con función renal y evolución, buscar obstrucción y no descartar lesión aguda sobreañadida. La combinación informa más que cada hallazgo aislado: un riñón hiperecoico no equivale a enfermedad crónica y un tamaño conservado no la excluye.\n",
    "organo": "riñon",
    "nivel": "principiante-intermedio",
    "ventana": "flanco",
@@ -450,6 +459,7 @@
    "id": "caso-01-disnea",
    "tipo": "caso",
    "titulo": "El disneico: ¿húmedo o seco?",
+   "abstract": "Caso de disnea indiferenciada: el examen físico no distingue con fiabilidad al paciente húmedo del seco. Con la sonda sobre un espacio intercostal se busca primero la línea pleural y se lee la bifurcación: líneas B difusas bilaterales indican diuretizar; un perfil A, no hacerlo, porque ese paciente empeora si se le diuretiza. Los límites se heredan de las líneas B: fibrosis, neumonía, SDRA. Viñeta pendiente de captura prospectiva.\n",
    "organo": "pulmon",
    "nivel": "principiante",
    "fecha": "2026-08-01",

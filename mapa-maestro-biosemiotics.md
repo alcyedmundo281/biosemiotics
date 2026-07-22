@@ -142,6 +142,18 @@ El lector entra por el eyeball y el mismo nodo lo lleva, cuando madura, hasta Si
 - **Ventanas cardíacas** (paraesternal, apical, subcostal) → sustenta todo lo cardíaco
 - **Cuantificación y sus límites** → concepto transversal: toda fórmula es poblacional
 
+### Stubs: existen en el banco, pero el artículo sigue por escribir
+*Estos seis ya tienen ficha, taxonomía y abstract, así que el índice los muestra y el grafo no los ve como huérfanos. Pero su cuerpo es de una o dos líneas: son definiciones, no artículos. El abstract les da utilidad en el buscador; no sustituye el texto.*
+
+- **Refuerzo acústico posterior** (`artefacto-refuerzo-posterior`)
+- **Reverberación** (`artefacto-reverberacion`) — el más urgente: es prerrequisito de perfil A y líneas B
+- **Sombra acústica** (`artefacto-sombra-acustica`)
+- **Profundidad** (`knobology-profundidad`)
+- **Velocidad de propagación** (`propagacion-sonido`)
+- **Sondas y orientación** (`tipos-de-sonda`) — prerrequisito de perfil A y líneas B
+
+Al desarrollarlos, revisar el abstract: en varios, la pata de "dónde falla" se dedujo del propio enunciado por falta de cuerpo, y debe rehacerse contra el texto definitivo.
+
 ---
 
 ## 8. Orden de trabajo recomendado

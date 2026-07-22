@@ -2,6 +2,16 @@
 id: ecogenicidad
 tipo: concepto
 titulo: "El lenguaje de la ecogenicidad"
+
+abstract: >
+  Escala de grises que ordena la imagen según cuánto sonido refleja cada
+  estructura: anecoico y negro para los líquidos, hiperecoico y blanco para
+  hueso, calcio y grasa, hipoecoico para lo que refleja menos que el tejido
+  vecino, isoecoico para lo que iguala su brillo. Es el nivel semiótico primario
+  del atlas, el significante que remite a una realidad física. Su límite es
+  relacional: hipo e isoecoico solo existen por comparación con el tejido
+  circundante.
+
 dominio: semiotica
 nivel: principiante
 capitulo: 3

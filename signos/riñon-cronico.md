@@ -6,6 +6,16 @@ organo: riñon
 ventana: flanco
 sonda: [convexa]
 url: "https://www.biosemiotics.net/rinon-cronico-ultrasonido/"
+
+abstract: >
+  Patrón bilateral de riñones reducidos, con cortical adelgazada, ecogenicidad
+  aumentada y pérdida de diferenciación corticomedular. Apoya enfermedad
+  parenquimatosa crónica: la imagen sugiere tiempo, pero no demuestra por sí
+  sola irreversibilidad. Obliga a integrar el patrón con función renal y
+  evolución, buscar obstrucción y no descartar lesión aguda sobreañadida. La
+  combinación informa más que cada hallazgo aislado: un riñón hiperecoico no
+  equivale a enfermedad crónica y un tamaño conservado no la excluye.
+
 nivel: principiante-intermedio
 significante: "Patrón bilateral de reducción del tamaño renal, adelgazamiento cortical, aumento de ecogenicidad y pérdida de diferenciación corticomedular."
 significado: "Morfología que apoya enfermedad parenquimatosa crónica; la imagen sugiere tiempo, pero no demuestra por sí sola irreversibilidad."

@@ -2,6 +2,15 @@
 id: caso-01-disnea
 tipo: caso
 titulo: "El disneico: ¿húmedo o seco?"
+
+abstract: >
+  Caso de disnea indiferenciada: el examen físico no distingue con fiabilidad al
+  paciente húmedo del seco. Con la sonda sobre un espacio intercostal se busca
+  primero la línea pleural y se lee la bifurcación: líneas B difusas bilaterales
+  indican diuretizar; un perfil A, no hacerlo, porque ese paciente empeora si se
+  le diuretiza. Los límites se heredan de las líneas B: fibrosis, neumonía,
+  SDRA. Viñeta pendiente de captura prospectiva.
+
 fecha: 2026-08-01
 organo: pulmon
 signos: [signo-lineas-b, signo-perfil-a]
