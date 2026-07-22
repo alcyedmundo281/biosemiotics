@@ -22,6 +22,9 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent))
 from build import cargar  # noqa: E402
 
+# DOI de la obra completa (Zenodo). Se muestra bajo el buscador del atlas.
+DOI_OBRA = "10.5281/zenodo.21435362"
+
 
 # ══════════════════ 1. LA FICHA (el registro tipo PubMed) ══════════════════
 def ficha(e: dict) -> dict:
@@ -254,6 +257,10 @@ def jats(e: dict) -> str:
 CSS = """
 #bs{max-width:840px;margin:0 auto;font-family:'Literata',Georgia,serif;color:#14181B}
 #bs *{box-sizing:border-box}
+.bsdoi{font-family:'IBM Plex Mono',monospace;font-size:11px;color:#8A9199;
+margin:0 0 14px;letter-spacing:.03em}
+.bsdoi a{color:#A8322F;text-decoration:none}
+.bsdoi a:hover{text-decoration:underline}
 #bsq{width:100%;padding:14px 16px;font-size:16px;font-family:inherit;
 border:1px solid #DFE3E6;border-radius:6px;background:#fff}
 #bsq:focus{outline:none;border-color:#A8322F}
@@ -463,6 +470,7 @@ def main():
     (b / "atlas-inject.html").write_text(
         f"<style>{CSS}</style>\n\n"
         '<div id="bs">\n'
+        f'  <p class="bsdoi">Obra citable · <a href="https://doi.org/{DOI_OBRA}">DOI: {DOI_OBRA}</a></p>\n'
         '  <input id="bsq" placeholder="Buscar signo, órgano, pregunta clínica…" autocomplete="off">\n'
         '  <div id="bsfw"></div>\n'
         '  <p id="bsn"></p>\n'
