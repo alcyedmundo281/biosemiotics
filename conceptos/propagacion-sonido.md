@@ -2,7 +2,7 @@
 id: propagacion-sonido
 tipo: concepto
 titulo: "Velocidad de propagación"
-url: ""
+url: "https://www.biosemiotics.net/velocidad-propagacion-ultrasonido/"
 
 abstract: >
   El equipo convierte el tiempo de retorno de cada eco en profundidad suponiendo

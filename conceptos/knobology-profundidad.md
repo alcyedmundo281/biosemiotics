@@ -2,7 +2,7 @@
 id: knobology-profundidad
 tipo: concepto
 titulo: "Profundidad"
-url: ""
+url: "https://www.biosemiotics.net/profundidad-ultrasonido/"
 
 abstract: >
   Control que define cuánto campo se muestra y durante cuánto tiempo espera ecos

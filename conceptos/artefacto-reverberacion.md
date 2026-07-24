@@ -2,7 +2,7 @@
 id: artefacto-reverberacion
 tipo: concepto
 titulo: "Reverberación"
-url: ""
+url: "https://www.biosemiotics.net/reverberacion-ultrasonido/"
 
 abstract: >
   Ecos repetidos producidos cuando el pulso rebota varias veces entre

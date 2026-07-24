@@ -2,7 +2,7 @@
 id: tipos-de-sonda
 tipo: concepto
 titulo: "Sondas y orientación"
-url: ""
+url: "https://www.biosemiotics.net/sondas-orientacion-ultrasonido/"
 
 abstract: >
   La lineal prioriza detalle superficial; la convexa ofrece un campo abdominal

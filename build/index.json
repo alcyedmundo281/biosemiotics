@@ -4,6 +4,7 @@
    "id": "artefacto-refuerzo-posterior",
    "tipo": "concepto",
    "titulo": "Refuerzo acústico posterior",
+   "url": "https://www.biosemiotics.net/refuerzo-acustico-posterior-ultrasonido/",
    "abstract": "Aumento relativo del brillo detrás de una estructura que atenúa menos el haz que los tejidos vecinos, con frecuencia un quiste, vaso o vejiga con líquido. Apoya la caracterización de contenido de baja atenuación, pero no confirma por sí solo que una lesión sea líquida, simple o benigna. Ganancia, TGC, armónicos y el trayecto comparado pueden intensificarlo o esconderlo.\n",
    "nivel": "principiante",
    "tags": [
@@ -28,6 +29,7 @@
    "id": "artefacto-reverberacion",
    "tipo": "concepto",
    "titulo": "Reverberación",
+   "url": "https://www.biosemiotics.net/reverberacion-ultrasonido/",
    "abstract": "Ecos repetidos producidos cuando el pulso rebota varias veces entre interfaces reflectantes. El equipo interpreta el tiempo adicional como mayor profundidad y crea copias que no son anatomía. En pulmón, las líneas A son reverberaciones útiles del patrón aireado; otros ecos pueden ocultar o imitar estructuras. Su significado depende de origen, separación, movimiento, distribución y ajustes del equipo.\n",
    "nivel": "principiante",
    "tags": [
@@ -52,6 +54,7 @@
    "id": "artefacto-sombra-acustica",
    "tipo": "concepto",
    "titulo": "Sombra acústica",
+   "url": "https://www.biosemiotics.net/sombra-acustica-ultrasonido/",
    "abstract": "Región de señal reducida que aparece distal a una estructura que atenúa, refleja, dispersa o desvía gran parte del haz. Puede apoyar la identificación de cálculo, hueso, gas o una sombra de borde, pero no distingue por sí sola el material. Su límite es inherente: lo oculto detrás no puede evaluarse desde esa ventana y exige otro plano o trayecto acústico.\n",
    "nivel": "principiante",
    "tags": [
@@ -174,6 +177,7 @@
    "id": "knobology-profundidad",
    "tipo": "concepto",
    "titulo": "Profundidad",
+   "url": "https://www.biosemiotics.net/profundidad-ultrasonido/",
    "abstract": "Control que define cuánto campo se muestra y durante cuánto tiempo espera ecos el equipo. Debe incluir el objetivo completo con un margen posterior útil: demasiada profundidad lo hace pequeño y puede reducir la tasa de cuadros; muy poca recorta anatomía y artefactos. No aumenta la penetración acústica ni recupera señal perdida, y obliga a revisar foco, ganancia y TGC.\n",
    "nivel": "principiante",
    "tags": [
@@ -197,6 +201,7 @@
    "id": "propagacion-sonido",
    "tipo": "concepto",
    "titulo": "Velocidad de propagación",
+   "url": "https://www.biosemiotics.net/velocidad-propagacion-ultrasonido/",
    "abstract": "El equipo convierte el tiempo de retorno de cada eco en profundidad suponiendo una velocidad cercana a 1540 m/s en tejido blando y dividiendo el trayecto entre ida y vuelta. La cifra es una calibración, no la velocidad exacta de todos los tejidos. Cuando el medio o el trayecto rompen el supuesto, una interfaz puede desplazarse, deformarse o medirse de forma incorrecta.\n",
    "nivel": "principiante",
    "tags": [
@@ -220,6 +225,7 @@
    "id": "tipos-de-sonda",
    "tipo": "concepto",
    "titulo": "Sondas y orientación",
+   "url": "https://www.biosemiotics.net/sondas-orientacion-ultrasonido/",
    "abstract": "La lineal prioriza detalle superficial; la convexa ofrece un campo abdominal amplio; la sectorial combina huella pequeña y acceso intercostal. La elección integra frecuencia, profundidad, geometría y ventana. El marcador vincula un lado de la sonda con la pantalla, pero la convención cambia entre presets, especialmente en ecocardiografía. Verificar el indicador evita invertir la anatomía o documentar un plano oblicuo como estándar.\n",
    "nivel": "principiante",
    "tags": [

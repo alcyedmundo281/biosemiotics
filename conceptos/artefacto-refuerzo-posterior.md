@@ -2,7 +2,7 @@
 id: artefacto-refuerzo-posterior
 tipo: concepto
 titulo: "Refuerzo acústico posterior"
-url: ""
+url: "https://www.biosemiotics.net/refuerzo-acustico-posterior-ultrasonido/"
 
 abstract: >
   Aumento relativo del brillo detrás de una estructura que atenúa menos el haz

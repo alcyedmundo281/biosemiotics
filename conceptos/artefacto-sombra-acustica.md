@@ -2,7 +2,7 @@
 id: artefacto-sombra-acustica
 tipo: concepto
 titulo: "Sombra acústica"
-url: ""
+url: "https://www.biosemiotics.net/sombra-acustica-ultrasonido/"
 
 abstract: >
   Región de señal reducida que aparece distal a una estructura que atenúa,
