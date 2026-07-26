@@ -3,6 +3,7 @@ id: signo-perfil-a
 tipo: signo
 titulo: "Perfil A (pulmón seco)"
 titulo_en: "A-profile (dry lung)"
+url: "https://www.biosemiotics.net/perfil-a-leer-el-pulmon-seco-sin-confundirlo-con-neumotorax/"
 doi: null
 version: "1.0"
 
