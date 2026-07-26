@@ -3,7 +3,8 @@
     "allow": [
       "Bash(python scripts/refs.py --pmid 22392031 --clave volpicelli2012)",
       "Bash(python scripts/refs.py --pmid 42257880 --clave volpicelli2025)",
-      "Bash(PYTHONIOENCODING=utf-8 python scripts/build.py)"
+      "Bash(PYTHONIOENCODING=utf-8 python scripts/build.py)",
+      "Bash(rm -f build/pdflatex1.log build/pdflatex_old.log build/out.txt build/old_out.txt build/refs.bib build/libro.pdf build/libro.aux build/libro.bcf build/libro.run.xml build/libro.toc build/libro.log *)"
     ]
   }
 }

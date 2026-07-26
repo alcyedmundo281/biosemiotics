@@ -31,6 +31,20 @@ proyecto-biosemiotics/
 
 La documentación de referencia (esquema completo, instructivo del artículo) vive en la skill `biosemiotics-atlas`. Consúltala si necesitas el detalle de un campo.
 
+## Compilar el libro (`build/libro.tex`)
+
+El compilador correcto es **LuaLaTeX, no pdflatex**. El banco escribe umbrales y decisiones con símbolos Unicode estructurales (`≥`, `→`, `±`) porque así se leen en la clínica — parchearlos uno por uno no escala. El preámbulo que genera `build_latex()` usa `fontspec` (sin `inputenc`/`fontenc`, que son cosas de pdflatex) y fija `\setmainfont{FreeSerif}`, la única fuente disponible que cubre esos glifos sin fallback silencioso.
+
+```bash
+cd build
+lualatex -interaction=nonstopmode libro.tex
+biber libro
+lualatex -interaction=nonstopmode libro.tex
+lualatex -interaction=nonstopmode libro.tex   # segunda pasada: referencias cruzadas
+```
+
+Si compilas con pdflatex vas a ver `Missing character` o `Unicode character not set up for use with LaTeX` en cuanto el texto traiga `≥`/`→`/`±` — no es un error del banco, es el compilador equivocado.
+
 ## Lo primero al arrancar una sesión
 
 1. Corre `git status` y reporta el estado. Si hay cambios sin commitear, avísalo antes de empezar.

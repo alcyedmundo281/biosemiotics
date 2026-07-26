@@ -12,6 +12,8 @@ Nunca deja campos fuera: los campos obligatorios ausentes son el error #1 del ba
 import sys
 from pathlib import Path
 
+sys.stdout.reconfigure(encoding="utf-8")
+
 BASE = Path(__file__).resolve().parent.parent
 CARPETA = {"concepto": "conceptos", "signo": "signos", "caso": "casos"}
 
