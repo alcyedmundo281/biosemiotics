@@ -46,16 +46,16 @@ Plano completo del atlas: los dos cursos (cardiopulmonar y emergencias) más las
 ## 3. OLEADA 1 — los que desintimidan
 *Alto impacto clínico, baja dificultad de adquisición. Reconocimiento casi binario. Son la prueba de que "POCUS se puede empezar hoy". Publica estos primero.*
 
-| signo | sistema | organo | nivel | escenario | decisión que cambia |
-|---|---|---|---|---|---|
-| Derrame pericárdico | cardiovascular | pericardio | principiante | urgencias, uci | ¿hay líquido alrededor del corazón? → vigilar/drenar |
-| Eyeball EF (función VI a ojo) | cardiovascular | corazon | principiante | urgencias, uci | ¿el VI se contrae bien o mal? → fluidos vs inotrópicos |
-| Globo vesical | genitourinario | vejiga | principiante | urgencias, consulta | ¿retención? → sondar (y explica creatinina alta) |
-| Colelitiasis | digestivo | vesicula | principiante | urgencias, consulta | ¿cálculos? → orienta dolor en hipocondrio derecho |
-| Litiasis nefroureteral / hidronefrosis | genitourinario | riñon | principiante | urgencias | ¿obstrucción? → causa reversible de fallo renal/dolor |
-| Aneurisma aórtico abdominal (AAA) | vascular | aorta-abdominal | principiante | urgencias | ¿aorta > 3 cm? → catástrofe potencial, no demorar |
-| Neumotórax (ausencia de sliding) | respiratorio | pleura | principiante | urgencias, uci | ¿pulmón deslizante? → descarta/sugiere neumotórax |
-| Trombosis venosa profunda (compresión) | vascular | vena-profunda | principiante | urgencias | ¿vena compresible? → TVP, ancla el TEP |
+| signo | sistema | organo | nivel | escenario | decisión que cambia | concepto base requerido |
+|---|---|---|---|---|---|---|
+| Derrame pericárdico | cardiovascular | pericardio | principiante | urgencias, uci | ¿hay líquido alrededor del corazón? → vigilar/drenar | ventanas-cardiacas |
+| Eyeball EF (función VI a ojo) | cardiovascular | corazon | principiante | urgencias, uci | ¿el VI se contrae bien o mal? → fluidos vs inotrópicos | ventanas-cardiacas |
+| Globo vesical | genitourinario | vejiga | principiante | urgencias, consulta | ¿retención? → sondar (y explica creatinina alta) | conceptos ya en el banco |
+| Colelitiasis | digestivo | vesicula | principiante | urgencias, consulta | ¿cálculos? → orienta dolor en hipocondrio derecho | conceptos ya en el banco |
+| Litiasis nefroureteral / hidronefrosis | genitourinario | riñon | principiante | urgencias | ¿obstrucción? → causa reversible de fallo renal/dolor | conceptos ya en el banco |
+| Aneurisma aórtico abdominal (AAA) | vascular | aorta-abdominal | principiante | urgencias | ¿aorta > 3 cm? → catástrofe potencial, no demorar | conceptos ya en el banco |
+| Neumotórax (ausencia de sliding) | respiratorio | pleura | principiante | urgencias, uci | ¿pulmón deslizante? → descarta/sugiere neumotórax | sliding-lung-point, modo-m |
+| Trombosis venosa profunda (compresión) | vascular | vena-profunda | principiante | urgencias | ¿vena compresible? → TVP, ancla el TEP | compresibilidad-venosa |
 
 ---
 
@@ -149,7 +149,7 @@ El lector entra por el eyeball y el mismo nodo lo lleva, cuando madura, hasta Si
 1. **Ahora:** ampliar la taxonomía del esquema (sistema/organo) en la skill y en `esquema.md` con los valores de la sección 1.
 2. **Completar** los abstracts y URLs de lo que ya existe (4 signos + conceptos).
 3. **Oleada 1**, un signo por semana: cada uno con NotebookLM → refs.py verificado → Ghost → banco.
-4. **Conceptos base** intercalados cuando un signo los necesite (Doppler antes de la Oleada 3).
+4. **Conceptos base: regla dura.** Un signo NO se publica sin su concepto base ya en el banco. El "concepto base requerido" de cada signo (ver tabla de Oleada 1) se escribe y valida ANTES que el signo, no en paralelo ni después. Un signo cuyo concepto base falta queda bloqueado hasta que ese concepto exista.
 5. **Oleada 2**, luego **Oleada 3**, luego **Extensiones**.
 
 ### La regla que no cambia
