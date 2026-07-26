@@ -5,7 +5,11 @@
   ÍNDICE (index.json) = PubMed. Fichas de metadatos. NUNCA el cuerpo.
   GHOST (campo url)   = PMC. Texto completo, loops, imágenes, referencias.
 
-  python3 indice.py . <URL_DEL_INDEX_JSON>
+  python3 indice.py            # raíz = directorio actual
+  python3 indice.py <raiz>     # o indica la raíz del banco
+
+Las URLs del buscador (primaria raw, respaldo jsDelivr) son constantes fijas
+del script (URL_PRIMARIA / URL_RESPALDO), no se pasan por argumento.
 
 Produce en build/:
   index.json          fichas ricas → el buscador con facetas
@@ -13,6 +17,7 @@ Produce en build/:
   jsonld/*.json       schema.org por post (Google + sistemas de IA)
   jats/*.xml          JATS para DEPÓSITO y archivo (NO se sube a Ghost)
 """
+import argparse
 import json
 import sys
 import xml.etree.ElementTree as ET
@@ -440,10 +445,14 @@ cargar(IDX).catch(function(){return cargar(IDX2);}).then(function(j){
 
 
 def main():
-    raiz = Path(sys.argv[1] if len(sys.argv) > 1 else ".").resolve()
-    # Fuentes fijas en el script (ver URL_PRIMARIA / URL_RESPALDO arriba). No se
-    # toman del argumento: así las dos ranuras nunca salen iguales y el fallback
-    # siempre sirve. Un argumento extra (p. ej. la URL de jsDelivr) se ignora.
+    ap = argparse.ArgumentParser(
+        description="Genera index.json, atlas-inject.html, jsonld/ y jats/ del banco.")
+    ap.add_argument("raiz", nargs="?", default=".",
+                    help="raíz del banco (por defecto, el directorio actual)")
+    raiz = Path(ap.parse_args().raiz).resolve()
+    # URLs del buscador fijas en el script (URL_PRIMARIA / URL_RESPALDO, arriba):
+    # primaria raw, respaldo jsDelivr. No se configuran por argumento; si algún
+    # día hiciera falta, será una bandera explícita, no un positional ignorado.
     url_primaria = URL_PRIMARIA
     url = URL_RESPALDO
     ent = cargar(raiz)

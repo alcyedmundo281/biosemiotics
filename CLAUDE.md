@@ -64,7 +64,7 @@ El texto completo del artículo se escribe/edita en Ghost directamente (Claude C
 
 1. Pon la URL pública (`https://www.biosemiotics.net/<slug>/`) en el campo `url` del `.md`. Nunca la URL del editor (`/ghost/#/...`).
 2. `python scripts/build.py` (validar)
-3. `python scripts/indice.py . "https://cdn.jsdelivr.net/gh/alcyedmundo281/biosemiotics@main/build/index.json"`
+3. `python scripts/indice.py .`
 4. `git add -f build/index.json` + los `.md` tocados
 5. `git commit` + `git push`
 6. Recuérdale a Alcy purgar jsDelivr: `https://purge.jsdelivr.net/gh/alcyedmundo281/biosemiotics@main/build/index.json`
@@ -93,7 +93,7 @@ Las dos sirven **el mismo archivo del mismo repositorio**. El buscador pide la p
 
 **Por qué este diseño, y no solo jsDelivr:** jsDelivr cachea las rutas de RAMA (`@main`) durante 12 horas (`s-maxage=43200`). Purgar no siempre basta, y está comprobado que **ni `@latest` ni un `?v=<timestamp>` la esquivan** —jsDelivr ignora los query strings, y `@latest` resuelve al último *tag*, que congelaría el atlas en el release en vez de seguir a `main`. El resultado era publicar un signo y que el atlas siguiera diciendo "(sin publicar)" medio día. Por eso raw va primero: se actualiza en 5 minutos.
 
-`indice.py` deriva sola la URL primaria a partir de la de jsDelivr, así que **el comando no cambia**: le sigues pasando la de jsDelivr y él arma las dos. Imprime ambas al terminar; verifícalas ahí.
+Las dos URLs (primaria raw, respaldo jsDelivr) son **constantes fijas en `indice.py`** (`URL_PRIMARIA` / `URL_RESPALDO`); NO se pasan por argumento. El comando es `python scripts/indice.py .` a secas —si le pasas una URL, falla con `unrecognized arguments` en vez de ignorarla en silencio. `indice.py` imprime las dos al terminar; verifícalas ahí. Si algún día hay que reconfigurarlas, será una bandera explícita, no un positional.
 
 **Cuándo hay que repegar `atlas-inject.html` en Ghost:** solo si cambia la estructura del buscador (diseño, facetas, lógica de fetch). Para publicar contenido NO hace falta —basta el ciclo de arriba.
 
