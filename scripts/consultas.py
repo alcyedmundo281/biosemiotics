@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
 """Lo que el banco permite y Ghost NO: exploración estructurada del atlas."""
 import sqlite3
+import sys
 from pathlib import Path
+
+sys.stdout.reconfigure(encoding="utf-8")
 
 con = sqlite3.connect(Path(__file__).parent / "build" / "atlas.db")
 con.row_factory = sqlite3.Row

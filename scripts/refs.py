@@ -26,6 +26,8 @@ import urllib.parse
 import urllib.request
 from pathlib import Path
 
+sys.stdout.reconfigure(encoding="utf-8")
+
 sys.path.insert(0, str(Path(__file__).parent))
 from build import cargar  # noqa: E402
 

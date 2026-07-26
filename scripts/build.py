@@ -20,8 +20,37 @@ from pathlib import Path
 
 import yaml
 
+sys.stdout.reconfigure(encoding="utf-8")
+
 RELS = ("relacionado_con", "prerequisito_de", "se_basa_en",
         "contrasta_con", "signos", "conceptos")
+
+# Caracteres especiales de LaTeX. El orden de las claves no importa: se
+# recorre el string original una sola vez, así que una sustitución nunca
+# vuelve a procesarse (evita el doble escape de p.ej. '\' → '\textbackslash{}').
+_LATEX_ESPECIALES = {
+    "\\": r"\textbackslash{}",
+    "&": r"\&",
+    "%": r"\%",
+    "$": r"\$",
+    "#": r"\#",
+    "_": r"\_",
+    "{": r"\{",
+    "}": r"\}",
+    "~": r"\textasciitilde{}",
+    "^": r"\textasciicircum{}",
+}
+
+
+def escape_latex(s) -> str:
+    """Escapa caracteres especiales de LaTeX en texto libre (títulos, cuerpo).
+
+    Sin esto, un '%' suelto (p.ej. "1,2 % de complicaciones") comenta el
+    resto de la línea en silencio y el texto que sigue desaparece del PDF.
+    """
+    if s is None:
+        return ""
+    return "".join(_LATEX_ESPECIALES.get(c, c) for c in str(s))
 
 
 # ─────────────────────────── PARSER ───────────────────────────
@@ -112,7 +141,7 @@ def build_latex(entidades, build_dir: Path, autor="Alcy") -> Path:
          r"\usepackage[backend=biber,style=numeric]{biblatex}",
          r"\addbibresource{refs.bib}",
          r"\title{Biosemiótica del Cuerpo Vivo\\\large Manual de POCUS para el clínico}",
-         rf"\author{{{autor}}}",
+         rf"\author{{{escape_latex(autor)}}}",
          r"\begin{document}", r"\maketitle", r"\tableofcontents",
          "", r"\part{Fundamentos}"]
 
@@ -121,23 +150,24 @@ def build_latex(entidades, build_dir: Path, autor="Alcy") -> Path:
         if e.get("capitulo") != cap:
             cap = e.get("capitulo")
             L.append(f"\n\\chapter{{Capítulo {cap}}}")
-        L += [f"\n\\section{{{e['titulo']}}}", f"\\label{{sec:{e['id']}}}", e["cuerpo"]]
+        L += [f"\n\\section{{{escape_latex(e['titulo'])}}}",
+              f"\\label{{sec:{e['id']}}}", escape_latex(e["cuerpo"])]
         L += [f"\\cite{{{r}}}" for r in (e.get("refs") or [])]
 
     L.append("\n" + r"\part{Atlas de signos}")
     for e in signos:
-        L += [f"\n\\chapter{{{e['titulo']}}}", f"\\label{{sec:{e['id']}}}"]
+        L += [f"\n\\chapter{{{escape_latex(e['titulo'])}}}", f"\\label{{sec:{e['id']}}}"]
         for etiqueta, campo in (("Significante", "significante"),
                                 ("Significado", "significado"),
                                 ("Decisión", "decision"),
                                 ("Umbral", "umbral")):
             if e.get(campo):
-                L.append(f"\\paragraph{{{etiqueta}.}} {e[campo]}")
+                L.append(f"\\paragraph{{{etiqueta}.}} {escape_latex(e[campo])}")
         if e.get("falsos_positivos"):
             L.append(r"\paragraph{Dónde NO confiar.}\begin{itemize}")
-            L += [f"  \\item {fp}" for fp in e["falsos_positivos"]]
+            L += [f"  \\item {escape_latex(fp)}" for fp in e["falsos_positivos"]]
             L.append(r"\end{itemize}")
-        L.append(e["cuerpo"])
+        L.append(escape_latex(e["cuerpo"]))
         L += [f"\\cite{{{r}}}" for r in (e.get("refs") or [])]
 
     L += [r"\printbibliography", r"\end{document}"]
