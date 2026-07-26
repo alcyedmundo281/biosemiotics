@@ -428,21 +428,50 @@
    "id": "signo-perfil-a",
    "tipo": "signo",
    "titulo": "Perfil A (pulmón seco)",
+   "titulo_en": "A-profile (dry lung)",
+   "version": "1.0",
    "abstract": "Líneas horizontales paralelas, repetidas a intervalos regulares bajo la línea pleural. Expresan una relación aire-tejido normal: pulmón aireado, sin edema intersticial. Ante un disneico, el perfil A contraindica diuretizar y obliga a buscar otra causa —broncoespasmo, EPOC, TEP—. Ver líneas A no es ver nada: es ver aire normal, el estado basal contra el cual se lee toda la patología pulmonar. Falso positivo con ventana mal obtenida y en enfisema bulloso.\n",
+   "sistema": "respiratorio",
    "organo": "pulmon",
    "nivel": "principiante",
    "ventana": "intercostal",
-   "significante": "Líneas horizontales paralelas, repetidas a intervalos regulares bajo la línea pleural.",
+   "pregunta_clinica": "¿Este paciente con disnea está húmedo o seco?",
+   "significante": "Líneas horizontales paralelas, repetidas a intervalos regulares bajo la línea pleural, con deslizamiento pleural conservado.",
    "significado": "Relación aire-tejido normal. Pulmón aireado, sin edema intersticial.",
+   "umbral": "No es un conteo. El patrón exige líneas A en los campos anteriores, bilaterales, con deslizamiento pleural conservado. Un solo espacio no basta, y la ausencia de deslizamiento cambia por completo el significado.\n",
+   "licencia": "CC-BY-NC-4.0",
+   "fecha": "2026-07-25",
+   "actualizado": "2026-07-25",
    "decision": "NO diuretizar. Buscar otra causa de la disnea (broncoespasmo, EPOC, TEP).",
    "sonda": [
     "lineal",
     "sectorial",
     "convexa"
    ],
+   "escenario": [
+    "urgencias",
+    "consulta",
+    "hospitalizacion",
+    "uci"
+   ],
+   "descriptores": [
+    "lineas-a",
+    "perfil-a",
+    "pulmon-seco",
+    "disnea",
+    "ultrasonido-pulmonar"
+   ],
+   "mesh": [
+    "Ultrasonography",
+    "Lung",
+    "Dyspnea",
+    "Point-of-Care Systems"
+   ],
    "falsos_positivos": [
-    "Ventana mal obtenida",
-    "Enfisema bulloso"
+    "Ventana mala (ganancia baja o profundidad excesiva que borra líneas B)",
+    "Enfisema o bulla",
+    "Neumotórax (líneas A sin deslizamiento pleural)",
+    "Patrón anterior que no excluye consolidación o derrame posterior"
    ],
    "se_basa_en": [
     "artefacto-reverberacion",
@@ -454,13 +483,38 @@
    ],
    "autores": [
     {
-     "nombre": "Alcy Torres"
+     "nombre": "Alcy Edmundo Torres Guerrero",
+     "orcid": null,
+     "afiliacion": "Universidad Central del Ecuador",
+     "credit": [
+      "conceptualizacion",
+      "adquisicion-imagenes",
+      "redaccion"
+     ]
     }
    ],
-   "refs": [
-    "lichtenstein2008"
+   "medios": [
+    {
+     "tipo": "loop",
+     "id": "yt:PENDIENTE",
+     "descripcion": "Perfil A normal, campo anterior derecho",
+     "duracion_s": 5
+    },
+    {
+     "tipo": "loop",
+     "id": "yt:PENDIENTE",
+     "descripcion": "Deslizamiento pleural conservado sobre líneas A",
+     "duracion_s": 5
+    }
    ],
-   "n_refs": 1
+   "n_loops": 2,
+   "n_imagenes": 0,
+   "refs": [
+    "lichtenstein2008",
+    "volpicelli2012",
+    "volpicelli2026"
+   ],
+   "n_refs": 3
   },
   {
    "id": "signo-riñon-cronico",
