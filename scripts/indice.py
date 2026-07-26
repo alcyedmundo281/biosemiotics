@@ -14,7 +14,6 @@ Produce en build/:
   jats/*.xml          JATS para DEPÓSITO y archivo (NO se sube a Ghost)
 """
 import json
-import re
 import sys
 import xml.etree.ElementTree as ET
 from pathlib import Path
@@ -24,6 +23,15 @@ from build import cargar  # noqa: E402
 
 # DOI de la obra completa (Zenodo). Se muestra bajo el buscador del atlas.
 DOI_OBRA = "10.5281/zenodo.21435362"
+
+# Las DOS fuentes del MISMO index.json que consume el buscador. Son constantes
+# DISTINTAS a propósito, no se derivan del argumento: si ambas ranuras salen
+# iguales, el fallback queda anulado.
+#   - Primaria: raw.githubusercontent (se refresca en ~5 min).
+#   - Respaldo: jsDelivr (CDN robusto; cachea las rutas de rama 12 h).
+# El buscador pide la primaria con no-cache y solo cae a la respaldo si falla.
+URL_PRIMARIA = "https://raw.githubusercontent.com/alcyedmundo281/biosemiotics/main/build/index.json"
+URL_RESPALDO = "https://cdn.jsdelivr.net/gh/alcyedmundo281/biosemiotics@main/build/index.json"
 
 
 # ══════════════════ 1. LA FICHA (el registro tipo PubMed) ══════════════════
@@ -431,26 +439,13 @@ cargar(IDX).catch(function(){return cargar(IDX2);}).then(function(j){
 """
 
 
-def raw_desde_jsdelivr(url: str) -> str:
-    """https://cdn.jsdelivr.net/gh/USER/REPO@RAMA/ruta
-       → https://raw.githubusercontent.com/USER/REPO/RAMA/ruta
-
-    raw se cachea 5 min; jsDelivr cachea las rutas de RAMA 12 h y ni la purga
-    ni un query string la esquivan. Por eso raw va de primario y jsDelivr de
-    respaldo. Si la URL no es de jsDelivr, se devuelve tal cual.
-    """
-    m = re.match(r"https://cdn\.jsdelivr\.net/gh/([^/]+)/([^@/]+)@([^/]+)/(.+)", url)
-    if not m:
-        return url
-    usuario, repo, rama, ruta = m.groups()
-    return f"https://raw.githubusercontent.com/{usuario}/{repo}/{rama}/{ruta}"
-
-
 def main():
     raiz = Path(sys.argv[1] if len(sys.argv) > 1 else ".").resolve()
-    url = sys.argv[2] if len(sys.argv) > 2 else "/content/index.json"
-    # Primario: raw (fresco). Respaldo: lo que se pasó por argumento (jsDelivr).
-    url_primaria = sys.argv[3] if len(sys.argv) > 3 else raw_desde_jsdelivr(url)
+    # Fuentes fijas en el script (ver URL_PRIMARIA / URL_RESPALDO arriba). No se
+    # toman del argumento: así las dos ranuras nunca salen iguales y el fallback
+    # siempre sirve. Un argumento extra (p. ej. la URL de jsDelivr) se ignora.
+    url_primaria = URL_PRIMARIA
+    url = URL_RESPALDO
     ent = cargar(raiz)
     b = raiz / "build"
     b.mkdir(exist_ok=True)
