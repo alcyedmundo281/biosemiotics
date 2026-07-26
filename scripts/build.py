@@ -135,8 +135,12 @@ def build_latex(entidades, build_dir: Path, autor="Alcy") -> Path:
     signos = sorted([e for e in entidades if e["tipo"] == "signo"],
                     key=lambda e: (e.get("organo") or "", e["titulo"]))
 
+    # Se compila con LuaLaTeX (ver CLAUDE.md), no pdflatex: el banco usa
+    # símbolos Unicode estructurales (≥ → ±) en umbrales y decisiones, y
+    # fontspec los renderiza directo sin parchear cada uno a mano.
     L = [r"\documentclass[11pt]{book}",
-         r"\usepackage[utf8]{inputenc}",
+         r"\usepackage{fontspec}",
+         r"\setmainfont{FreeSerif}",
          r"\usepackage[spanish]{babel}",
          r"\usepackage[backend=biber,style=numeric]{biblatex}",
          r"\addbibresource{refs.bib}",
