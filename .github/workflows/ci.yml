@@ -62,6 +62,10 @@ jobs:
         with:
           python-version: '3.13'
 
+      - name: Instalar dependencias
+        # verificar_citas.py importa refs.py → build.py, que usa pyyaml.
+        run: pip install pyyaml
+
       - name: Verificar doble autoridad de refs.bib
         # Falla (exit 1) solo ante una discrepancia REAL: PMID inexistente,
         # DOI que no coincide con PubMed, o título PubMed != Crossref.
