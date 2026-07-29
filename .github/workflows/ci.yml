@@ -1,0 +1,69 @@
+name: CI del atlas
+
+# Automatiza el rigor que hasta ahora era manual:
+#   - integridad estructural del banco y del índice (cada push y PR)
+#   - verificación de citas contra PubMed + Crossref (PR, semanal y a demanda)
+# La regla de oro del proyecto —cada cifra verificada, el índice al día— deja
+# de depender de que alguien se acuerde de correr los scripts.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 6 * * 1'   # lunes 06:00 UTC: re-verifica que las citas sigan vivas
+
+permissions:
+  contents: read
+
+jobs:
+  integridad:
+    name: Integridad del banco e índice
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: Instalar dependencias
+        run: pip install pyyaml
+
+      - name: Compilar y validar el banco (build.py)
+        # Sale con código 1 si hay aristas rotas en el grafo o un caso
+        # publicado sin consentimiento. Esos ERRORES bloquean el merge.
+        run: python scripts/build.py
+
+      - name: Regenerar el índice y detectar deriva
+        # build.py NO regenera index.json; eso lo hace indice.py. Si el .md
+        # cambió pero no se regeneró el índice, aquí se cae —justo el desliz
+        # que ocurrió dos veces trabajando en paralelo.
+        run: |
+          python scripts/indice.py .
+          if ! git diff --quiet -- build/index.json; then
+            echo "::error::build/index.json está desactualizado."
+            echo "Corre 'python scripts/indice.py .' y commitea el resultado."
+            git --no-pager diff --stat -- build/index.json
+            exit 1
+          fi
+          echo "build/index.json está sincronizado con el banco."
+
+  citas:
+    name: Verificación de citas (PubMed + Crossref)
+    runs-on: ubuntu-latest
+    # En cada push a main no: evita martillar PubMed. Sí en PR, semanal y a mano.
+    if: github.event_name != 'push'
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: Verificar doble autoridad de refs.bib
+        # Falla (exit 1) solo ante una discrepancia REAL: PMID inexistente,
+        # DOI que no coincide con PubMed, o título PubMed != Crossref.
+        # Un error de red NO tumba el check (modo no estricto).
+        run: python scripts/verificar_citas.py
