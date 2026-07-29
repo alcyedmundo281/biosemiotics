@@ -34,28 +34,34 @@ Plano completo del atlas: los dos cursos (cardiopulmonar y emergencias) más las
 
 ## 2. Estado actual (lo ya publicado)
 
+El índice vigente contiene **19 entidades**: 11 conceptos, 7 signos y 1 caso. Los
+siete signos tienen URL pública en Ghost.
+
 | signo | sistema | organo | nivel | estado |
 |---|---|---|---|---|
-| Líneas B | respiratorio | pulmon | principiante | ✅ publicado |
-| Perfil A | respiratorio | pulmon | principiante | ⚠ en banco, sin publicar |
-| Derrame pleural | respiratorio | pulmon | principiante | ✅ publicado |
-| Riñón crónico | genitourinario | riñon | intermedio | ✅ publicado |
+| [Líneas B](https://www.biosemiotics.net/lineas-b-ultrasonido-pulmonar/) | respiratorio | pulmon | principiante | ✅ publicado |
+| [Perfil A](https://www.biosemiotics.net/perfil-a-leer-el-pulmon-seco-sin-confundirlo-con-neumotorax/) | respiratorio | pulmon | principiante | ✅ publicado |
+| [Derrame pleural](https://www.biosemiotics.net/derrame-pleural-ultrasonido/) | respiratorio | pulmon | principiante | ✅ publicado |
+| [Riñón crónico](https://www.biosemiotics.net/rinon-cronico-ultrasonido/) | genitourinario | riñon | intermedio | ✅ publicado |
+| [Derrame pericárdico](https://www.biosemiotics.net/derrame-pericardico-en-pocus-reconocer-liquido-sin-confundirlo-con-taponamiento/) | cardiovascular | pericardio | principiante | ✅ publicado |
+| [Eyeball EF](https://www.biosemiotics.net/funcion-sistolica-del-vi-a-ojo-clasificar-antes-de-cuantificar/) | cardiovascular | corazon | principiante | ✅ publicado |
+| [Globo vesical](https://www.biosemiotics.net/globo-vesical-en-pocus-confirmar-retencion-antes-de-sondar/) | genitourinario | vejiga | principiante | ✅ publicado |
 
 ---
 
 ## 3. OLEADA 1 — los que desintimidan
 *Alto impacto clínico, baja dificultad de adquisición. Reconocimiento casi binario. Son la prueba de que "POCUS se puede empezar hoy". Publica estos primero.*
 
-| signo | sistema | organo | nivel | escenario | decisión que cambia | concepto base requerido |
-|---|---|---|---|---|---|---|
-| Derrame pericárdico | cardiovascular | pericardio | principiante | urgencias, uci | ¿hay líquido alrededor del corazón? → vigilar/drenar | ventanas-cardiacas |
-| Eyeball EF (función VI a ojo) | cardiovascular | corazon | principiante | urgencias, uci | ¿el VI se contrae bien o mal? → fluidos vs inotrópicos | ventanas-cardiacas |
-| Globo vesical | genitourinario | vejiga | principiante | urgencias, consulta | ¿retención? → sondar (y explica creatinina alta) | conceptos ya en el banco |
-| Colelitiasis | digestivo | vesicula | principiante | urgencias, consulta | ¿cálculos? → orienta dolor en hipocondrio derecho | conceptos ya en el banco |
-| Litiasis nefroureteral / hidronefrosis | genitourinario | riñon | principiante | urgencias | ¿obstrucción? → causa reversible de fallo renal/dolor | conceptos ya en el banco |
-| Aneurisma aórtico abdominal (AAA) | vascular | aorta-abdominal | principiante | urgencias | ¿aorta > 3 cm? → catástrofe potencial, no demorar | conceptos ya en el banco |
-| Neumotórax (ausencia de sliding) | respiratorio | pleura | principiante | urgencias, uci | ¿pulmón deslizante? → descarta/sugiere neumotórax | sliding-lung-point, modo-m |
-| Trombosis venosa profunda (compresión) | vascular | vena-profunda | principiante | urgencias | ¿vena compresible? → TVP, ancla el TEP | compresibilidad-venosa |
+| signo | sistema | organo | nivel | escenario | decisión que cambia | concepto base requerido | estado |
+|---|---|---|---|---|---|---|---|
+| Derrame pericárdico | cardiovascular | pericardio | principiante | urgencias, uci | ¿hay líquido alrededor del corazón? → vigilar/drenar | ventanas-cardiacas | ✅ publicado |
+| Eyeball EF (función VI a ojo) | cardiovascular | corazon | principiante | urgencias, uci | ¿el VI se contrae bien o mal? → fluidos vs inotrópicos | ventanas-cardiacas | ✅ publicado |
+| Globo vesical | genitourinario | vejiga | principiante | urgencias, consulta | ¿retención? → sondar (y explica creatinina alta) | conceptos ya en el banco | ✅ publicado |
+| **Colelitiasis** | digestivo | vesicula | principiante | urgencias, consulta | ¿cálculos? → orienta dolor en hipocondrio derecho | conceptos ya en el banco | ⏭ siguiente |
+| Litiasis nefroureteral / hidronefrosis | genitourinario | riñon | principiante | urgencias | ¿obstrucción? → causa reversible de fallo renal/dolor | conceptos ya en el banco | ⬜ pendiente |
+| Aneurisma aórtico abdominal (AAA) | vascular | aorta-abdominal | principiante | urgencias | ¿aorta > 3 cm? → catástrofe potencial, no demorar | conceptos ya en el banco | ⬜ pendiente |
+| Neumotórax (ausencia de sliding) | respiratorio | pleura | principiante | urgencias, uci | ¿pulmón deslizante? → descarta/sugiere neumotórax | sliding-lung-point, modo-m | 🔒 bloqueado por conceptos base |
+| Trombosis venosa profunda (compresión) | vascular | vena-profunda | principiante | urgencias | ¿vena compresible? → TVP, ancla el TEP | compresibilidad-venosa | 🔒 bloqueado por concepto base |
 
 ---
 
@@ -139,27 +145,30 @@ El lector entra por el eyeball y el mismo nodo lo lleva, cuando madura, hasta Si
 - **Modo M** → sustenta sliding pulmonar, TAPSE, diafragma
 - **Signo del sliding / lung point** → sustenta neumotórax
 - **Compresibilidad venosa** → sustenta TVP, VExUS
-- **Ventanas cardíacas** (paraesternal, apical, subcostal) → sustenta todo lo cardíaco
 - **Cuantificación y sus límites** → concepto transversal: toda fórmula es poblacional
+
+**Completado:** Ventanas cardíacas ya está en el banco y sustenta Derrame
+pericárdico y Eyeball EF.
 
 ---
 
 ## 8. Orden de trabajo recomendado
 
-1. **Ahora:** ampliar la taxonomía del esquema (sistema/organo) en la skill y en `esquema.md` con los valores de la sección 1.
-2. **Completar** los abstracts y URLs de lo que ya existe (4 signos + conceptos).
-3. **Oleada 1**, un signo por semana: cada uno con NotebookLM → refs.py verificado → Ghost → banco.
+1. **Ahora — siguiente bloque:** Colelitiasis → Litiasis nefroureteral / hidronefrosis → Aneurisma aórtico abdominal. Los conceptos físicos necesarios ya están en el banco.
+2. **Preparar los dos signos restantes de la Oleada 1:** escribir y validar Modo M + sliding/lung point antes de Neumotórax; escribir Compresibilidad venosa antes de TVP.
+3. **Cerrar la Oleada 1:** publicar Neumotórax y Trombosis venosa profunda después de incorporar sus conceptos base.
 4. **Conceptos base: regla dura.** Un signo NO se publica sin su concepto base ya en el banco. El "concepto base requerido" de cada signo (ver tabla de Oleada 1) se escribe y valida ANTES que el signo, no en paralelo ni después. Un signo cuyo concepto base falta queda bloqueado hasta que ese concepto exista.
-5. **Oleada 2**, luego **Oleada 3**, luego **Extensiones**.
+5. **Después:** Oleada 2 → Oleada 3 → Extensiones.
 
 ### La regla que no cambia
 Cada cifra, verificada contra PubMed antes de publicar. Cada signo, con su sección de límites ("dónde NO confiar"). El orden por oleada mantiene vivo el mensaje: *empezar es más fácil de lo que te dijeron.*
 
 ### Conteo
-- Publicados: **3** (líneas B, derrame pleural, riñón crónico)
-- En banco sin publicar: **1** (perfil A)
-- Por escribir: **~38 signos/protocolos + ~6 conceptos base**
-- Total proyectado del atlas maduro: **~48 entidades**
+- Banco actual: **19 entidades** (11 conceptos, 7 signos y 1 caso)
+- Signos publicados: **7 de 7**
+- Oleada 1 completada: **3 de 8 signos**
+- Conceptos base pendientes: **~5**
+- Restan **~29 entidades** para llegar a las ~48 proyectadas del atlas maduro
 
 Nota: FAST añade pocas fichas nuevas (Morrison, esplenorrenal, Douglas, hemotórax) porque reutiliza pericardio y neumotórax. El gradiente de FEVI añade 2 (lineales, Simpson) sobre el eyeball ya contado.
 
