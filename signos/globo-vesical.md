@@ -3,7 +3,7 @@ id: signo-globo-vesical
 tipo: signo
 titulo: "Globo vesical"
 titulo_en: "Distended urinary bladder"
-url: ""
+url: "https://www.biosemiotics.net/globo-vesical-en-pocus-confirmar-retencion-antes-de-sondar/"
 doi: null
 version: "1.0"
 
@@ -48,7 +48,7 @@ autores:
     afiliacion: "Universidad Central del Ecuador"
     credit: [conceptualizacion, redaccion]
 
-refs: [fernandezprada2025, jalbani2014, paras2002, cho2017, nunan2024, christiaans2026]
+refs: [fernandezprada2025, jalbani2014, hvarness2002, cho2017, nunan2024, christiaans2026]
 fecha: 2026-07-29
 actualizado: 2026-07-29
 licencia: CC-BY-NC-4.0
@@ -114,9 +114,9 @@ obstrucción alta, tiempo desde la última micción y contexto clínico.
 
 1. Fernández-Prada I, Ballesteros-Peña S. Revisión sistemática sobre ecografía
    vesical y reducción de sondajes innecesarios. PMID: 40032047.
-2. Alnaif B, Drutz HP. Precisión de ecografía tridimensional frente a
+2. Jalbani IK, Ather MH. Precisión de ecografía tridimensional frente a
    cateterización para residuo posmiccional. PMID: 26019951.
-3. Paras L, et al. Comparación de métodos para calcular volumen vesical.
+3. Hvarness H, et al. Comparación de métodos para calcular volumen vesical.
    PMID: 12201931.
 4. Cho MK, et al. Precisión de un escáner portátil para residuo urinario.
    PMID: 27942791.

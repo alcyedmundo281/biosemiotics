@@ -3,7 +3,7 @@ id: signo-derrame-pericardico
 tipo: signo
 titulo: "Derrame pericárdico"
 titulo_en: "Pericardial effusion"
-url: ""
+url: "https://www.biosemiotics.net/derrame-pericardico-en-pocus-reconocer-liquido-sin-confundirlo-con-taponamiento/"
 doi: null
 version: "1.0"
 
@@ -117,7 +117,7 @@ ni la preparación segura del procedimiento.
 3. Stolz L, et al. Rendimiento limitado de historia y examen físico en derrame
    pericárdico. PMID: 28123617.
 4. Blanco P, Volpicelli G. Errores frecuentes en POCUS. PMID: 27783380.
-5. Farsad BF, et al. Concordancia de FoCUS realizado por residentes de
+5. Farsi D, et al. Concordancia de FoCUS realizado por residentes de
    emergencias. PMID: 28593003.
 
 ## Practica esto

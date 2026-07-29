@@ -3,7 +3,7 @@ id: signo-eyeball-ef
 tipo: signo
 titulo: "Función sistólica del VI a ojo (Eyeball EF)"
 titulo_en: "Visual assessment of left ventricular systolic function"
-url: ""
+url: "https://www.biosemiotics.net/funcion-sistolica-del-vi-a-ojo-clasificar-antes-de-cuantificar/"
 doi: null
 version: "1.0"
 
@@ -119,11 +119,11 @@ por alto disfunción diastólica, alteraciones segmentarias o enfermedad valvula
    cuantitativos. PMID: 15882665.
 3. Rich S, et al. Estimación visual en ecocardiografía bidimensional.
    PMID: 7113901.
-4. Jenkins C, et al. Entrenamiento, variabilidad y precisión de la estimación
+4. Thavendiranathan P, et al. Entrenamiento, variabilidad y precisión de la estimación
    visual. PMID: 23993695.
 5. Bahl A, et al. Comparación prospectiva de métodos en POCUS de emergencias.
    PMID: 34654586.
-6. Farsad BF, et al. Concordancia entre FoCUS de emergencias y ecocardiografía
+6. Farsi D, et al. Concordancia entre FoCUS de emergencias y ecocardiografía
    realizada por cardiología. PMID: 28593003.
 
 ## Practica esto

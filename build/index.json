@@ -277,6 +277,7 @@
    "tipo": "signo",
    "titulo": "Derrame pericárdico",
    "titulo_en": "Pericardial effusion",
+   "url": "https://www.biosemiotics.net/derrame-pericardico-en-pocus-reconocer-liquido-sin-confundirlo-con-taponamiento/",
    "version": "1.0",
    "abstract": "Espacio anecoico o hipoecoico entre el corazón y el pericardio, confirmado en más de una vista. Indica líquido pericárdico, pero no equivale por sí solo a taponamiento. Su detección obliga a integrar estabilidad, colapso de cavidades derechas y otros signos hemodinámicos. Grasa epicárdica, líquido pleural, ascitis y una ventana oblicua pueden imitarlo o ubicarlo mal.\n",
    "sistema": "cardiovascular",
@@ -429,6 +430,7 @@
    "tipo": "signo",
    "titulo": "Función sistólica del VI a ojo (Eyeball EF)",
    "titulo_en": "Visual assessment of left ventricular systolic function",
+   "url": "https://www.biosemiotics.net/funcion-sistolica-del-vi-a-ojo-clasificar-antes-de-cuantificar/",
    "version": "1.0",
    "abstract": "Cambio global del tamaño de la cavidad ventricular izquierda acompañado por engrosamiento y desplazamiento endocárdico durante la sístole, valorado en varias vistas y ciclos. Permite clasificar la función como claramente deprimida, no claramente deprimida o hiperdinámica para orientar el shock. No reemplaza una fracción de eyección cuantitativa: mala ventana, acortamiento apical, arritmia y alteraciones segmentarias reducen su fiabilidad.\n",
    "sistema": "cardiovascular",
@@ -503,6 +505,7 @@
    "tipo": "signo",
    "titulo": "Globo vesical",
    "titulo_en": "Distended urinary bladder",
+   "url": "https://www.biosemiotics.net/globo-vesical-en-pocus-confirmar-retencion-antes-de-sondar/",
    "version": "1.0",
    "abstract": "Estructura pélvica media, anecoica y distendida detrás de la sínfisis púbica, confirmada en planos transversal y longitudinal. En un paciente que no puede orinar, apoya retención urinaria y permite estimar volumen antes de sondar. La medición es aproximada y no existe un umbral universal: ascitis, quistes pélvicos, útero, contenido vesical y geometría irregular pueden alterar la lectura.\n",
    "sistema": "genitourinario",
@@ -566,7 +569,7 @@
    "refs": [
     "fernandezprada2025",
     "jalbani2014",
-    "paras2002",
+    "hvarness2002",
     "cho2017",
     "nunan2024",
     "christiaans2026"
