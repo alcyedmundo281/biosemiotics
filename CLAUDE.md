@@ -80,7 +80,7 @@ El texto completo del artículo se escribe/edita en Ghost directamente (Claude C
 2. `python scripts/build.py` (validar)
 3. `python scripts/indice.py .`
 4. `git add -f build/index.json` + los `.md` tocados
-5. `git commit` + `git push`
+5. `git commit` en tu rama, `git push -u origin <rama>`, y abre el PR (`gh pr create --fill`). Fusiona con `gh pr merge --squash` cuando la CI esté verde (ver «Flujo de trabajo: ramas y Pull Requests»).
 6. Recuérdale a Alcy purgar jsDelivr: `https://purge.jsdelivr.net/gh/alcyedmundo281/biosemiotics@main/build/index.json`
 
 **El paso 3 no es opcional, y es el que más se olvida.** `build.py` NO regenera `index.json` — eso lo hace `indice.py`. Si commiteas `.md` y `refs.bib` sin correr `indice.py`, el buscador del sitio queda sirviendo datos viejos: entradas sin su URL, sin su conteo de referencias. Ya pasó dos veces. Regla práctica: **si tocaste un `.md`, corre los dos scripts antes de commitear.**
@@ -111,13 +111,30 @@ Las dos URLs (primaria raw, respaldo jsDelivr) son **constantes fijas en `indice
 
 **Cuándo hay que repegar `atlas-inject.html` en Ghost:** solo si cambia la estructura del buscador (diseño, facetas, lógica de fetch). Para publicar contenido NO hace falta —basta el ciclo de arriba.
 
-## Trabajo en paralelo (dos sesiones)
+## Flujo de trabajo: ramas y Pull Requests
 
-Si hay dos sesiones sobre el mismo repo: auditoría antes de fusionar. Verifica qué versión es superset, rebase o reset según corresponda, y **nunca fusiones contenido con citas sin re-verificar** que sobrevivieron intactas.
+**`main` está protegida: no se le hace push directo.** Todo cambio entra por un Pull Request que la CI debe aprobar antes de fusionar. Esto nació de varias colisiones entre dos sesiones empujando a `main` a la vez; el PR convierte el choque en una revisión ordenada.
+
+El ciclo, para cualquier cambio:
+
+```bash
+git switch -c <rama-descriptiva>        # p. ej. signo-neumotorax, fix-url-ecogenicidad
+# ...editas .md, corres build.py + indice.py, commiteas...
+git push -u origin <rama-descriptiva>
+gh pr create --fill                     # abre el PR
+# espera a que la CI pase (gh pr checks --watch)
+gh pr merge --squash --delete-branch    # fusiona cuando esté verde
+git switch main && git pull             # sincroniza tu local
+```
+
+Reglas:
+- **Una rama por unidad de trabajo** (un signo, un arreglo). PRs chicos se revisan y se fusionan sin fricción.
+- **No fusiones con la CI en rojo.** El job *Integridad* es obligatorio: si falla, algo real está mal (índice sin regenerar, arista rota, caso sin consentimiento).
+- **Trabajo en paralelo:** cada sesión en su rama. Si dos ramas tocan lo mismo, la que fusiona segundo hace `git pull` de `main` y resuelve en su rama —nunca en `main`. Y **nunca fusiones contenido con citas sin re-verificar** que sobrevivieron intactas (`python scripts/verificar_citas.py`).
 
 ## Higiene de Git
 
-Después de cada tarea significativa: `git add`, `git commit` con mensaje claro, `git push`. Es el punto de restauración. Con un agente editando de forma autónoma, commitear seguido no es opcional — es la red de seguridad.
+Después de cada tarea significativa: `git add`, `git commit` con mensaje claro. Es el punto de restauración. Con un agente editando de forma autónoma, commitear seguido no es opcional — es la red de seguridad. El `push` va a **tu rama**, no a `main` (ver arriba).
 
 ## Lo que NO debes hacer
 
