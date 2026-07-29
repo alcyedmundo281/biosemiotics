@@ -3,7 +3,7 @@ id: signo-colelitiasis
 tipo: signo
 titulo: "Colelitiasis: cálculo móvil con sombra posterior"
 titulo_en: "Cholelithiasis: mobile gallstone with posterior shadowing"
-url: ""
+url: "https://www.biosemiotics.net/colelitiasis-calculo-movil-con-sombra-posterior/"
 doi: null
 version: "1.0"
 
@@ -49,7 +49,7 @@ autores:
 
 medios:
   - tipo: imagen
-    id: "wikimedia:PENDIENTE"
+    id: "wikimedia:Ultrasonography_of_sludge_and_gallstones,_annotated.jpg"
     descripcion: "Cálculo vesicular ecogénico con sombra acústica posterior"
 
 refs: [sharif2021, rosen2001, feldman2009]

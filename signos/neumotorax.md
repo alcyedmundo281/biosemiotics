@@ -3,7 +3,7 @@ id: signo-neumotorax
 tipo: signo
 titulo: "Neumotórax en POCUS: la ausencia de sliding no basta"
 titulo_en: "Pneumothorax in POCUS: absent lung sliding is not enough"
-url: ""
+url: "https://www.biosemiotics.net/neumotorax-en-pocus-la-ausencia-de-sliding-no-basta/"
 doi: null
 version: "1.0"
 
@@ -50,7 +50,7 @@ autores:
 
 medios:
   - tipo: imagen
-    id: "wikimedia:PENDIENTE"
+    id: "wikimedia:Barcode-Zeichen.jpg"
     descripcion: "Modo M con patrón de orilla normal y patrón estratosfera"
 
 refs: [lichtenstein2000, staub2018, skulec2021, volpicelli2012]

@@ -3,7 +3,7 @@ id: signo-aneurisma-aortico-abdominal
 tipo: signo
 titulo: "Aneurisma aórtico abdominal en POCUS: medir antes de que el dolor engañe"
 titulo_en: "Abdominal aortic aneurysm in POCUS: measure before pain misleads"
-url: ""
+url: "https://www.biosemiotics.net/aneurisma-aortico-abdominal-en-pocus-medir-antes-de-que-el-dolor-engane/"
 doi: null
 version: "1.0"
 
@@ -49,7 +49,7 @@ autores:
 
 medios:
   - tipo: imagen
-    id: "wikimedia:PENDIENTE"
+    id: "wikimedia:Ultrasonography_of_abdominal_aortic_aneurysm_in_axial_plane,_annotated.jpg"
     descripcion: "Aneurisma aórtico abdominal medido en ecografía"
 
 refs: [isselbacher2022, fernando2022]

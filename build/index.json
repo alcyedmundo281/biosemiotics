@@ -350,6 +350,7 @@
    "tipo": "signo",
    "titulo": "Aneurisma aórtico abdominal en POCUS: medir antes de que el dolor engañe",
    "titulo_en": "Abdominal aortic aneurysm in POCUS: measure before pain misleads",
+   "url": "https://www.biosemiotics.net/aneurisma-aortico-abdominal-en-pocus-medir-antes-de-que-el-dolor-engane/",
    "version": "1.0",
    "abstract": "Una aorta abdominal con diámetro máximo mayor de 3,0 cm, medido de borde externo a borde externo, cumple el criterio ecográfico de aneurisma. En dolor, síncope o shock, reconocerla acelera activación vascular y traslado, pero POCUS demuestra el aneurisma, no la ruptura. Medición oblicua, trombo mural, vena cava, masas paraaórticas y un segmento distal no visualizado pueden producir errores; un examen incompleto nunca descarta la emergencia.\n",
    "sistema": "vascular",
@@ -412,7 +413,7 @@
    "medios": [
     {
      "tipo": "imagen",
-     "id": "wikimedia:PENDIENTE",
+     "id": "wikimedia:Ultrasonography_of_abdominal_aortic_aneurysm_in_axial_plane,_annotated.jpg",
      "descripcion": "Aneurisma aórtico abdominal medido en ecografía"
     }
    ],
@@ -429,6 +430,7 @@
    "tipo": "signo",
    "titulo": "Colelitiasis: cálculo móvil con sombra posterior",
    "titulo_en": "Cholelithiasis: mobile gallstone with posterior shadowing",
+   "url": "https://www.biosemiotics.net/colelitiasis-calculo-movil-con-sombra-posterior/",
    "version": "1.0",
    "abstract": "Un foco ecogénico dentro de la vesícula, móvil con los cambios de posición y acompañado por sombra acústica posterior, identifica un cálculo biliar. El hallazgo orienta el dolor en hipocondrio derecho, pero no demuestra por sí solo colecistitis ni explica todo dolor abdominal. Barro, pólipos, pliegues, gas y sombras de borde pueden imitarlo; una exploración negativa o incompleta no cierra una sospecha clínica persistente.\n",
    "sistema": "digestivo",
@@ -490,7 +492,7 @@
    "medios": [
     {
      "tipo": "imagen",
-     "id": "wikimedia:PENDIENTE",
+     "id": "wikimedia:Ultrasonography_of_sludge_and_gallstones,_annotated.jpg",
      "descripcion": "Cálculo vesicular ecogénico con sombra acústica posterior"
     }
    ],
@@ -812,6 +814,7 @@
    "tipo": "signo",
    "titulo": "Hidronefrosis en POCUS: detectar dilatación, no adivinar la piedra",
    "titulo_en": "Hydronephrosis in POCUS: detect dilation, not guess the stone",
+   "url": "https://www.biosemiotics.net/hidronefrosis-en-pocus-detectar-dilatacion-no-adivinar-la-piedra/",
    "version": "1.0",
    "abstract": "Espacios anecoicos comunicados que dilatan la pelvis y los cálices renales señalan hidronefrosis, un hallazgo indirecto de drenaje urinario alterado. En el cólico renal orienta obstrucción y ayuda a decidir quién necesita imagen adicional o valoración urológica, pero no localiza ni demuestra por sí solo un cálculo. Pelvis extrarrenal, quistes parapélvicos, vasos y vejiga llena pueden imitarla; una ecografía negativa no excluye obstrucción temprana.\n",
    "sistema": "genitourinario",
@@ -876,7 +879,7 @@
    "medios": [
     {
      "tipo": "imagen",
-     "id": "wikimedia:PENDIENTE",
+     "id": "wikimedia:Ultrasonography_of_hydronephrosis_due_to_ureteropelvic_junction_obstruction.jpg",
      "descripcion": "Riñón con dilatación anecoica de pelvis y cálices"
     }
    ],
@@ -990,6 +993,7 @@
    "tipo": "signo",
    "titulo": "Neumotórax en POCUS: la ausencia de sliding no basta",
    "titulo_en": "Pneumothorax in POCUS: absent lung sliding is not enough",
+   "url": "https://www.biosemiotics.net/neumotorax-en-pocus-la-ausencia-de-sliding-no-basta/",
    "version": "1.0",
    "abstract": "La ausencia de sliding pleural, líneas B y pulso pulmonar crea un patrón compatible con neumotórax; encontrar un lung point lo confirma con alta especificidad. POCUS permite una evaluación rápida al lado de la camilla, pero ninguna ausencia aislada basta. Apnea, ventilación selectiva, adherencias, pleurodesis, fibrosis y bullas pueden imitarlo, y un lung point puede faltar cuando el neumotórax es extenso.\n",
    "sistema": "respiratorio",
@@ -1059,7 +1063,7 @@
    "medios": [
     {
      "tipo": "imagen",
-     "id": "wikimedia:PENDIENTE",
+     "id": "wikimedia:Barcode-Zeichen.jpg",
      "descripcion": "Modo M con patrón de orilla normal y patrón estratosfera"
     }
    ],
@@ -1210,6 +1214,7 @@
    "tipo": "signo",
    "titulo": "TVP por compresión: la vena que no desaparece",
    "titulo_en": "DVT by compression: the vein that does not disappear",
+   "url": "https://www.biosemiotics.net/tvp-por-compresion-la-vena-que-no-desaparece/",
    "version": "1.0",
    "abstract": "Una vena profunda que conserva su luz pese a compresión perpendicular adecuada es positiva para trombosis en ese segmento. La ecografía focalizada proximal puede acelerar el diagnóstico de TVP y apoyar la evaluación de tromboembolia pulmonar, pero depende de técnica, entrenamiento y probabilidad clínica. Presión insuficiente, duplicación venosa, trombo crónico, edema y enfermedad limitada a pantorrilla pueden generar errores o exigir un estudio vascular completo.\n",
    "sistema": "vascular",
@@ -1273,7 +1278,7 @@
    "medios": [
     {
      "tipo": "imagen",
-     "id": "wikimedia:PENDIENTE",
+     "id": "wikimedia:DVTInGroinNoCompresibleMark.png",
      "descripcion": "Vena profunda no compresible junto a arteria permeable"
     }
    ],

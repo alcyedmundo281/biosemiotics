@@ -3,7 +3,7 @@ id: signo-trombosis-venosa-profunda
 tipo: signo
 titulo: "TVP por compresión: la vena que no desaparece"
 titulo_en: "DVT by compression: the vein that does not disappear"
-url: ""
+url: "https://www.biosemiotics.net/tvp-por-compresion-la-vena-que-no-desaparece/"
 doi: null
 version: "1.0"
 
@@ -52,7 +52,7 @@ autores:
 
 medios:
   - tipo: imagen
-    id: "wikimedia:PENDIENTE"
+    id: "wikimedia:DVTInGroinNoCompresibleMark.png"
     descripcion: "Vena profunda no compresible junto a arteria permeable"
 
 refs: [pomero2013, lee2019, zaki2024]

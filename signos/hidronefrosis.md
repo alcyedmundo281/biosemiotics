@@ -3,7 +3,7 @@ id: signo-hidronefrosis
 tipo: signo
 titulo: "Hidronefrosis en POCUS: detectar dilatación, no adivinar la piedra"
 titulo_en: "Hydronephrosis in POCUS: detect dilation, not guess the stone"
-url: ""
+url: "https://www.biosemiotics.net/hidronefrosis-en-pocus-detectar-dilatacion-no-adivinar-la-piedra/"
 doi: null
 version: "1.0"
 
@@ -49,7 +49,7 @@ autores:
 
 medios:
   - tipo: imagen
-    id: "wikimedia:PENDIENTE"
+    id: "wikimedia:Ultrasonography_of_hydronephrosis_due_to_ureteropelvic_junction_obstruction.jpg"
     descripcion: "Riñón con dilatación anecoica de pelvis y cálices"
 
 refs: [sibley2020, smithbindman2014, oneill2014, turk2024]
