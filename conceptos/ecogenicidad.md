@@ -22,7 +22,7 @@ prerequisito_de: [signo-lineas-b, signo-derrame-pleural, signo-riñon-cronico]
 medios:
   - tipo: imagen
     id: "wikimedia:Annotated ultrasonography of a normal appendix"
-    descripcion: "Ecografía anotada de un apéndice normal"
+    descripcion: "Ecografía anotada de un apéndice normal, donde las capas de la pared muestran distintos niveles de ecogenicidad"
     credito: "Mikael Häggström"
     fuente: "Wikimedia Commons"
     licencia_img: "CC0 1.0"

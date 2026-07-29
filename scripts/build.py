@@ -129,6 +129,38 @@ def build_sqlite(entidades, build_dir: Path) -> Path:
 
 
 # ─────────────────────── SALIDA 2: LATEX ───────────────────────
+def figura_latex(e: dict, raiz: Path) -> str:
+    """Figura flotante con su imagen y la cita al pie (crédito + licencia).
+
+    La imagen vive en assets/img/<id sin 'signo-', sin ñ>.{jpg,jpeg,png}.
+    libro.tex se compila desde build/, así que la ruta es ../assets/img/...
+    Devuelve '' si no hay imagen declarada o el archivo no existe.
+    """
+    med = next((m for m in (e.get("medios") or [])
+                if m.get("tipo") == "imagen" and m.get("credito")), None)
+    if not med:
+        return ""
+    base = e["id"].replace("signo-", "").replace("ñ", "n")
+    ruta = next((p for ext in (".jpg", ".jpeg", ".png")
+                 if (p := raiz / "assets" / "img" / f"{base}{ext}").exists()), None)
+    if not ruta:
+        return ""
+    partes = [med["credito"]]
+    if med.get("fuente"):
+        partes.append(med["fuente"])
+    if med.get("licencia_img"):
+        partes.append(med["licencia_img"])
+    credito = escape_latex(". ".join(partes) + ".")
+    desc = escape_latex(med.get("descripcion", ""))
+    return "\n".join([
+        r"\begin{figure}[H]",
+        r"  \centering",
+        rf"  \includegraphics[width=0.85\textwidth,height=0.45\textheight,keepaspectratio]{{../assets/img/{base}{ruta.suffix}}}",
+        rf"  \caption{{{desc} \textit{{Fuente: {credito}}}}}",
+        r"\end{figure}",
+    ])
+
+
 def build_latex(entidades, build_dir: Path, autor="Alcy") -> Path:
     conceptos = sorted([e for e in entidades if e["tipo"] == "concepto"],
                        key=lambda e: (e.get("capitulo") or 99, e.get("orden") or 99))
@@ -142,6 +174,8 @@ def build_latex(entidades, build_dir: Path, autor="Alcy") -> Path:
          r"\usepackage{fontspec}",
          r"\setmainfont{FreeSerif}",
          r"\usepackage[spanish]{babel}",
+         r"\usepackage{graphicx}",
+         r"\usepackage{float}",
          r"\usepackage[backend=biber,style=numeric]{biblatex}",
          r"\addbibresource{refs.bib}",
          r"\title{Biosemiótica del Cuerpo Vivo\\\large Manual de POCUS para el clínico}",
@@ -155,12 +189,19 @@ def build_latex(entidades, build_dir: Path, autor="Alcy") -> Path:
             cap = e.get("capitulo")
             L.append(f"\n\\chapter{{Capítulo {cap}}}")
         L += [f"\n\\section{{{escape_latex(e['titulo'])}}}",
-              f"\\label{{sec:{e['id']}}}", escape_latex(e["cuerpo"])]
+              f"\\label{{sec:{e['id']}}}"]
+        fig = figura_latex(e, build_dir.parent)
+        if fig:
+            L.append(fig)
+        L.append(escape_latex(e["cuerpo"]))
         L += [f"\\cite{{{r}}}" for r in (e.get("refs") or [])]
 
     L.append("\n" + r"\part{Atlas de signos}")
     for e in signos:
         L += [f"\n\\chapter{{{escape_latex(e['titulo'])}}}", f"\\label{{sec:{e['id']}}}"]
+        fig = figura_latex(e, build_dir.parent)
+        if fig:
+            L.append(fig)
         for etiqueta, campo in (("Significante", "significante"),
                                 ("Significado", "significado"),
                                 ("Decisión", "decision"),
