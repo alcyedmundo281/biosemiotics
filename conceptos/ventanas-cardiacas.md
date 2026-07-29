@@ -19,6 +19,14 @@ orden: 2
 tags: [corazon, orientacion, focus]
 relacionado_con: [tipos-de-sonda, knobology-profundidad, knobology-ganancia]
 prerequisito_de: [signo-derrame-pericardico, signo-eyeball-ef]
+medios:
+  - tipo: imagen
+    id: "wikimedia:Echocardiogram 4chambers"
+    descripcion: "Vista apical de cuatro cámaras en ecocardiografía"
+    credito: "Kjetil Lenes (Ekko)"
+    fuente: "Wikimedia Commons"
+    licencia_img: "Dominio público"
+
 refs: [via2014, beraud2013, perezcasares2017, blanco2016]
 ---
 

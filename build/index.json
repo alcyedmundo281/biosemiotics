@@ -17,6 +17,18 @@
      "nombre": "Alcy Torres"
     }
    ],
+   "medios": [
+    {
+     "tipo": "imagen",
+     "id": "wikimedia:Simple cyst with posterior enhancement",
+     "descripcion": "Quiste simple con refuerzo acústico posterior",
+     "credito": "Kristoffer Lindskov Hansen, Michael Bachmann Nielsen y Caroline Ewertsen",
+     "fuente": "Wikimedia Commons",
+     "licencia_img": "CC BY 4.0"
+    }
+   ],
+   "n_loops": 0,
+   "n_imagenes": 1,
    "refs": [
     "feldman2009",
     "sato2006",
@@ -42,6 +54,18 @@
      "nombre": "Alcy Torres"
     }
    ],
+   "medios": [
+    {
+     "tipo": "imagen",
+     "id": "wikimedia:Reverberation artefact no harmonics",
+     "descripcion": "Artefacto de reverberación en ultrasonido sin imagen armónica",
+     "credito": "Dv3163",
+     "fuente": "Wikimedia Commons",
+     "licencia_img": "CC BY-SA 4.0"
+    }
+   ],
+   "n_loops": 0,
+   "n_imagenes": 1,
    "refs": [
     "feldman2009",
     "sato2006",
@@ -66,6 +90,18 @@
      "nombre": "Alcy Torres"
     }
    ],
+   "medios": [
+    {
+     "tipo": "imagen",
+     "id": "wikimedia:Ultrasound Scan ND 243",
+     "descripcion": "Sombra acústica posterior producida por un cálculo biliar",
+     "credito": "Nevit Dilmen",
+     "fuente": "Wikimedia Commons",
+     "licencia_img": "CC BY-SA 3.0"
+    }
+   ],
+   "n_loops": 0,
+   "n_imagenes": 1,
    "refs": [
     "feldman2009",
     "sato2006",
@@ -117,7 +153,19 @@
      "orcid": null,
      "afiliacion": "Universidad Central del Ecuador"
     }
-   ]
+   ],
+   "medios": [
+    {
+     "tipo": "imagen",
+     "id": "wikimedia:Annotated ultrasonography of a normal appendix",
+     "descripcion": "Ecografía anotada de un apéndice normal",
+     "credito": "Mikael Häggström",
+     "fuente": "Wikimedia Commons",
+     "licencia_img": "CC0 1.0"
+    }
+   ],
+   "n_loops": 0,
+   "n_imagenes": 1
   },
   {
    "id": "efecto-piezoelectrico",
@@ -136,6 +184,18 @@
      "nombre": "Alcy Torres"
     }
    ],
+   "medios": [
+    {
+     "tipo": "imagen",
+     "id": "wikimedia:Piezoelectricity",
+     "descripcion": "Modelo simplificado del efecto piezoeléctrico en un cristal de cuarzo entre dos electrodos",
+     "credito": "MikeRun",
+     "fuente": "Wikimedia Commons",
+     "licencia_img": "CC BY-SA 4.0"
+    }
+   ],
+   "n_loops": 0,
+   "n_imagenes": 1,
    "refs": [
     "abuzidan2011",
     "hangiandreou2003",
@@ -162,6 +222,18 @@
      "nombre": "Alcy Torres"
     }
    ],
+   "medios": [
+    {
+     "tipo": "imagen",
+     "id": "wikimedia:Ultrasound range diagram",
+     "descripcion": "Rangos de frecuencia del sonido, incluido el ultrasonido",
+     "credito": "Coolth; basado en la obra de LightYear",
+     "fuente": "Wikimedia Commons",
+     "licencia_img": "CC BY-SA 3.0"
+    }
+   ],
+   "n_loops": 0,
+   "n_imagenes": 1,
    "refs": [
     "kossoff2000",
     "hangiandreou2003",
@@ -187,6 +259,18 @@
      "nombre": "Alcy Torres"
     }
    ],
+   "medios": [
+    {
+     "tipo": "imagen",
+     "id": "wikimedia:Digitales-Ultraschallgeraet",
+     "descripcion": "Equipo ultrasónico con controles y visualización de ganancia",
+     "credito": "Karl Deutsch Prüf- und Messgerätebau GmbH + Co KG",
+     "fuente": "Wikimedia Commons",
+     "licencia_img": "CC BY 3.0 DE"
+    }
+   ],
+   "n_loops": 0,
+   "n_imagenes": 1,
    "refs": [
     "zander2020",
     "pye1992",
@@ -213,6 +297,18 @@
      "nombre": "Alcy Torres"
     }
    ],
+   "medios": [
+    {
+     "tipo": "imagen",
+     "id": "wikimedia:Ultrasound (2)",
+     "descripcion": "Pantalla de un equipo de ultrasonido durante la adquisición de imagen",
+     "credito": "Linda Bartlett, National Cancer Institute",
+     "fuente": "Wikimedia Commons",
+     "licencia_img": "Dominio público"
+    }
+   ],
+   "n_loops": 0,
+   "n_imagenes": 1,
    "refs": [
     "zander2020",
     "duggan2022",
@@ -260,6 +356,18 @@
      "nombre": "Alcy Torres"
     }
    ],
+   "medios": [
+    {
+     "tipo": "imagen",
+     "id": "wikimedia:Nonlinear US wave propagation",
+     "descripcion": "Propagación no lineal de una onda ultrasónica a través del tejido",
+     "credito": "David Maresca, Daniel P. Sawyer, Guillaume Renaud, Audrey Lee-Gosselin y Mikhail G. Shapiro",
+     "fuente": "Wikimedia Commons",
+     "licencia_img": "CC BY 4.0"
+    }
+   ],
+   "n_loops": 0,
+   "n_imagenes": 1,
    "refs": [
     "kossoff2000",
     "feldman2009",
@@ -311,6 +419,18 @@
      "nombre": "Alcy Torres"
     }
    ],
+   "medios": [
+    {
+     "tipo": "imagen",
+     "id": "wikimedia:A medical ultrasound linear array probe, scan head, transducer",
+     "descripcion": "Transductor para ultrasonido médico",
+     "credito": "Harrison Keely",
+     "fuente": "Wikimedia Commons",
+     "licencia_img": "CC BY 4.0"
+    }
+   ],
+   "n_loops": 0,
+   "n_imagenes": 1,
    "refs": [
     "turk2024",
     "zander2020",
@@ -337,6 +457,18 @@
      "nombre": "Alcy Torres"
     }
    ],
+   "medios": [
+    {
+     "tipo": "imagen",
+     "id": "wikimedia:Echocardiogram 4chambers",
+     "descripcion": "Vista apical de cuatro cámaras en ecocardiografía",
+     "credito": "Kjetil Lenes (Ekko)",
+     "fuente": "Wikimedia Commons",
+     "licencia_img": "Dominio público"
+    }
+   ],
+   "n_loops": 0,
+   "n_imagenes": 1,
    "refs": [
     "via2014",
     "beraud2013",
@@ -414,7 +546,10 @@
     {
      "tipo": "imagen",
      "id": "wikimedia:Ultrasonography_of_abdominal_aortic_aneurysm_in_axial_plane,_annotated.jpg",
-     "descripcion": "Aneurisma aórtico abdominal medido en ecografía"
+     "descripcion": "Aneurisma aórtico abdominal medido en ecografía",
+     "credito": "Mikael Häggström, M.D.",
+     "fuente": "Wikimedia Commons",
+     "licencia_img": "CC0 1.0"
     }
    ],
    "n_loops": 0,
@@ -493,7 +628,10 @@
     {
      "tipo": "imagen",
      "id": "wikimedia:Ultrasonography_of_sludge_and_gallstones,_annotated.jpg",
-     "descripcion": "Cálculo vesicular ecogénico con sombra acústica posterior"
+     "descripcion": "Cálculo vesicular ecogénico con sombra acústica posterior",
+     "credito": "Mikael Häggström, M.D.",
+     "fuente": "Wikimedia Commons",
+     "licencia_img": "CC0 1.0"
     }
    ],
    "n_loops": 0,
@@ -567,6 +705,18 @@
      ]
     }
    ],
+   "medios": [
+    {
+     "tipo": "imagen",
+     "id": "wikimedia:PericardialeffusionUS.PNG",
+     "descripcion": "Líquido alrededor del corazón observado por ecocardiografía",
+     "credito": "James Heilman, MD",
+     "fuente": "Wikimedia Commons",
+     "licencia_img": "CC BY-SA 3.0"
+    }
+   ],
+   "n_loops": 0,
+   "n_imagenes": 1,
    "refs": [
     "via2014",
     "perezcasares2017",
@@ -646,6 +796,18 @@
      ]
     }
    ],
+   "medios": [
+    {
+     "tipo": "imagen",
+     "id": "wikimedia:Pleural effusion on lung ultrasound",
+     "descripcion": "Ecografía pulmonar que muestra líquido pleural hipoecoico por encima del diafragma",
+     "credito": "Gillman L. y Kirkpatrick A. (fotograma adaptado)",
+     "fuente": "Wikimedia Commons",
+     "licencia_img": "CC BY 2.0"
+    }
+   ],
+   "n_loops": 0,
+   "n_imagenes": 1,
    "refs": [
     "volpicelli2012",
     "soni2015",
@@ -723,6 +885,18 @@
      ]
     }
    ],
+   "medios": [
+    {
+     "tipo": "imagen",
+     "id": "wikimedia:Heart apical 4c anatomy.jpg",
+     "descripcion": "Vista ecocardiográfica apical de cuatro cámaras (anatomía)",
+     "credito": "Patrick J. Lynch, ilustrador médico; C. Carl Jaffe, MD",
+     "fuente": "Wikimedia Commons",
+     "licencia_img": "CC BY 2.5"
+    }
+   ],
+   "n_loops": 0,
+   "n_imagenes": 1,
    "refs": [
     "via2014",
     "gudmundsson2005",
@@ -799,6 +973,18 @@
      ]
     }
    ],
+   "medios": [
+    {
+     "tipo": "imagen",
+     "id": "wikimedia:Ultrasound of trabeculated urinary bladder.jpg",
+     "descripcion": "Ecografía de vejiga urinaria con pared trabeculada",
+     "credito": "Mikael Häggström",
+     "fuente": "Wikimedia Commons",
+     "licencia_img": "CC0 1.0"
+    }
+   ],
+   "n_loops": 0,
+   "n_imagenes": 1,
    "refs": [
     "fernandezprada2025",
     "jalbani2014",
@@ -880,7 +1066,10 @@
     {
      "tipo": "imagen",
      "id": "wikimedia:Ultrasonography_of_hydronephrosis_due_to_ureteropelvic_junction_obstruction.jpg",
-     "descripcion": "Riñón con dilatación anecoica de pelvis y cálices"
+     "descripcion": "Riñón con dilatación anecoica de pelvis y cálices",
+     "credito": "Kristoffer Lindskov Hansen, Michael Bachmann Nielsen y Caroline Ewertsen",
+     "fuente": "Wikimedia Commons",
+     "licencia_img": "CC BY 4.0"
     }
    ],
    "n_loops": 0,
@@ -975,10 +1164,18 @@
      "id": "yt:PENDIENTE",
      "descripcion": "Perfil A normal para contraste",
      "duracion_s": 5
+    },
+    {
+     "tipo": "imagen",
+     "id": "wikimedia:B lines on a lung ultrasound of a patient with fibrosis",
+     "descripcion": "Múltiples líneas B en ecografía pulmonar",
+     "credito": "Benoit Veillette",
+     "fuente": "Wikimedia Commons",
+     "licencia_img": "CC BY-SA 4.0"
     }
    ],
    "n_loops": 2,
-   "n_imagenes": 0,
+   "n_imagenes": 1,
    "refs": [
     "lichtenstein2008",
     "volpicelli2012",
@@ -1064,7 +1261,10 @@
     {
      "tipo": "imagen",
      "id": "wikimedia:Barcode-Zeichen.jpg",
-     "descripcion": "Modo M con patrón de orilla normal y patrón estratosfera"
+     "descripcion": "Modo M con patrón de orilla normal y patrón estratosfera",
+     "credito": "Schomynv",
+     "fuente": "Wikimedia Commons",
+     "licencia_img": "Dominio público"
     }
    ],
    "n_loops": 0,
@@ -1159,10 +1359,18 @@
      "id": "yt:PENDIENTE",
      "descripcion": "Deslizamiento pleural conservado sobre líneas A",
      "duracion_s": 5
+    },
+    {
+     "tipo": "imagen",
+     "id": "wikimedia:Lung ultrasound a new tool for the cardiologist additional file 1",
+     "descripcion": "Patrón pulmonar normal con líneas A (artefactos horizontales repetidos)",
+     "credito": "Luna Gargani",
+     "fuente": "Wikimedia Commons",
+     "licencia_img": "CC BY 2.0"
     }
    ],
    "n_loops": 2,
-   "n_imagenes": 0,
+   "n_imagenes": 1,
    "refs": [
     "lichtenstein2008",
     "volpicelli2012",
@@ -1200,6 +1408,18 @@
      "nombre": "Alcy Torres"
     }
    ],
+   "medios": [
+    {
+     "tipo": "imagen",
+     "id": "wikimedia:Ultrasonography of chronic kidney disease",
+     "descripcion": "Ecografía renal en enfermedad renal crónica, con ecogenicidad aumentada y cortical adelgazada",
+     "credito": "Kristoffer Lindskov Hansen, Michael Bachmann Nielsen y Caroline Ewertsen",
+     "fuente": "Wikimedia Commons",
+     "licencia_img": "CC BY 4.0"
+    }
+   ],
+   "n_loops": 0,
+   "n_imagenes": 1,
    "refs": [
     "oneill2014",
     "moghazi2005",
@@ -1279,7 +1499,10 @@
     {
      "tipo": "imagen",
      "id": "wikimedia:DVTInGroinNoCompresibleMark.png",
-     "descripcion": "Vena profunda no compresible junto a arteria permeable"
+     "descripcion": "Vena profunda no compresible junto a arteria permeable",
+     "credito": "James Heilman, MD",
+     "fuente": "Wikimedia Commons",
+     "licencia_img": "CC BY-SA 4.0"
     }
    ],
    "n_loops": 0,

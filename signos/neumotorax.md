@@ -52,6 +52,9 @@ medios:
   - tipo: imagen
     id: "wikimedia:Barcode-Zeichen.jpg"
     descripcion: "Modo M con patrón de orilla normal y patrón estratosfera"
+    credito: "Schomynv"
+    fuente: "Wikimedia Commons"
+    licencia_img: "Dominio público"
 
 refs: [lichtenstein2000, staub2018, skulec2021, volpicelli2012]
 fecha: 2026-07-29

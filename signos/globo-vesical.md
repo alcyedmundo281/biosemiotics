@@ -48,6 +48,14 @@ autores:
     afiliacion: "Universidad Central del Ecuador"
     credit: [conceptualizacion, redaccion]
 
+medios:
+  - tipo: imagen
+    id: "wikimedia:Ultrasound of trabeculated urinary bladder.jpg"
+    descripcion: "Ecografía de vejiga urinaria con pared trabeculada"
+    credito: "Mikael Häggström"
+    fuente: "Wikimedia Commons"
+    licencia_img: "CC0 1.0"
+
 refs: [fernandezprada2025, jalbani2014, hvarness2002, cho2017, nunan2024, christiaans2026]
 fecha: 2026-07-29
 actualizado: 2026-07-29

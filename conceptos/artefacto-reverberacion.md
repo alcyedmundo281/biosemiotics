@@ -19,6 +19,14 @@ orden: 3
 tags: [artefacto, pulmon, reverberacion]
 relacionado_con: [ecogenicidad, artefacto-sombra-acustica]
 prerequisito_de: [signo-perfil-a, signo-lineas-b]
+medios:
+  - tipo: imagen
+    id: "wikimedia:Reverberation artefact no harmonics"
+    descripcion: "Artefacto de reverberación en ultrasonido sin imagen armónica"
+    credito: "Dv3163"
+    fuente: "Wikimedia Commons"
+    licencia_img: "CC BY-SA 4.0"
+
 refs: [feldman2009, sato2006, lichtenstein2008, abuzidan2011]
 ---
 

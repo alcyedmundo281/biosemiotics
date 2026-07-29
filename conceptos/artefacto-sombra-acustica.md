@@ -18,6 +18,14 @@ orden: 1
 tags: [artefacto, litiasis]
 relacionado_con: [ecogenicidad]
 prerequisito_de: []
+medios:
+  - tipo: imagen
+    id: "wikimedia:Ultrasound Scan ND 243"
+    descripcion: "Sombra acústica posterior producida por un cálculo biliar"
+    credito: "Nevit Dilmen"
+    fuente: "Wikimedia Commons"
+    licencia_img: "CC BY-SA 3.0"
+
 refs: [feldman2009, sato2006, aldrich2007, abuzidan2011]
 ---
 

@@ -51,6 +51,9 @@ medios:
   - tipo: imagen
     id: "wikimedia:Ultrasonography_of_hydronephrosis_due_to_ureteropelvic_junction_obstruction.jpg"
     descripcion: "Riñón con dilatación anecoica de pelvis y cálices"
+    credito: "Kristoffer Lindskov Hansen, Michael Bachmann Nielsen y Caroline Ewertsen"
+    fuente: "Wikimedia Commons"
+    licencia_img: "CC BY 4.0"
 
 refs: [sibley2020, smithbindman2014, oneill2014, turk2024]
 fecha: 2026-07-29

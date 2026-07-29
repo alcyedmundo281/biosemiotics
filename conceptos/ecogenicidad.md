@@ -19,6 +19,14 @@ orden: 1
 tags: [escala-grises, interpretacion, semiotica]
 relacionado_con: [artefacto-sombra-acustica, artefacto-refuerzo-posterior]
 prerequisito_de: [signo-lineas-b, signo-derrame-pleural, signo-riñon-cronico]
+medios:
+  - tipo: imagen
+    id: "wikimedia:Annotated ultrasonography of a normal appendix"
+    descripcion: "Ecografía anotada de un apéndice normal"
+    credito: "Mikael Häggström"
+    fuente: "Wikimedia Commons"
+    licencia_img: "CC0 1.0"
+
 refs: []
 url: "https://www.biosemiotics.net/aprender-a-leer-el-cuerpo-vivo/"
 fecha: 2026-07-14

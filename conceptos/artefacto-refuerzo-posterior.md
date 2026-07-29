@@ -18,6 +18,14 @@ orden: 2
 tags: [artefacto, liquido, vejiga]
 relacionado_con: [ecogenicidad]
 prerequisito_de: []
+medios:
+  - tipo: imagen
+    id: "wikimedia:Simple cyst with posterior enhancement"
+    descripcion: "Quiste simple con refuerzo acústico posterior"
+    credito: "Kristoffer Lindskov Hansen, Michael Bachmann Nielsen y Caroline Ewertsen"
+    fuente: "Wikimedia Commons"
+    licencia_img: "CC BY 4.0"
+
 refs: [feldman2009, sato2006, aldrich2007, abuzidan2011]
 ---
 

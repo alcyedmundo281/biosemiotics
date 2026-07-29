@@ -51,6 +51,9 @@ medios:
   - tipo: imagen
     id: "wikimedia:Ultrasonography_of_sludge_and_gallstones,_annotated.jpg"
     descripcion: "Cálculo vesicular ecogénico con sombra acústica posterior"
+    credito: "Mikael Häggström, M.D."
+    fuente: "Wikimedia Commons"
+    licencia_img: "CC0 1.0"
 
 refs: [sharif2021, rosen2001, feldman2009]
 fecha: 2026-07-29

@@ -48,6 +48,14 @@ autores:
     afiliacion: "Universidad Central del Ecuador"
     credit: [conceptualizacion, redaccion]
 
+medios:
+  - tipo: imagen
+    id: "wikimedia:Heart apical 4c anatomy.jpg"
+    descripcion: "Vista ecocardiográfica apical de cuatro cámaras (anatomía)"
+    credito: "Patrick J. Lynch, ilustrador médico; C. Carl Jaffe, MD"
+    fuente: "Wikimedia Commons"
+    licencia_img: "CC BY 2.5"
+
 refs: [via2014, gudmundsson2005, rich1982, thavendiranathan2013, bahl2021, farsi2017]
 fecha: 2026-07-29
 actualizado: 2026-07-29

@@ -19,6 +19,14 @@ orden: 1
 tags: [sonda, orientacion, regla-de-oro]
 relacionado_con: [frecuencia-profundidad, knobology-ganancia]
 prerequisito_de: [signo-lineas-b, signo-perfil-a]
+medios:
+  - tipo: imagen
+    id: "wikimedia:A medical ultrasound linear array probe, scan head, transducer"
+    descripcion: "Transductor para ultrasonido médico"
+    credito: "Harrison Keely"
+    fuente: "Wikimedia Commons"
+    licencia_img: "CC BY 4.0"
+
 refs: [turk2024, zander2020, abuzidan2011, hangiandreou2003, jensen2007]
 ---
 

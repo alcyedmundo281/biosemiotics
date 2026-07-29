@@ -20,6 +20,14 @@ orden: 1
 tags: [fisica, sonda, transductor]
 relacionado_con: [propagacion-sonido, tipos-de-sonda]
 prerequisito_de: [ecogenicidad]
+medios:
+  - tipo: imagen
+    id: "wikimedia:Piezoelectricity"
+    descripcion: "Modelo simplificado del efecto piezoeléctrico en un cristal de cuarzo entre dos electrodos"
+    credito: "MikeRun"
+    fuente: "Wikimedia Commons"
+    licencia_img: "CC BY-SA 4.0"
+
 refs:
   - abuzidan2011
   - hangiandreou2003

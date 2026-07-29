@@ -55,6 +55,12 @@ medios:
     id: "yt:PENDIENTE"
     descripcion: "Deslizamiento pleural conservado sobre líneas A"
     duracion_s: 5
+  - tipo: imagen
+    id: "wikimedia:Lung ultrasound a new tool for the cardiologist additional file 1"
+    descripcion: "Patrón pulmonar normal con líneas A (artefactos horizontales repetidos)"
+    credito: "Luna Gargani"
+    fuente: "Wikimedia Commons"
+    licencia_img: "CC BY 2.0"
 
 refs: [lichtenstein2008, volpicelli2012, volpicelli2026]
 fecha: 2026-07-25

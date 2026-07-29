@@ -27,6 +27,14 @@ falsos_positivos:
   - variacion-por-edad-talla-sexo-y-habito-corporal
   - hiperecogenicidad-renal-en-enfermedad-aguda
   - comparacion-con-higado-esteatosico
+medios:
+  - tipo: imagen
+    id: "wikimedia:Ultrasonography of chronic kidney disease"
+    descripcion: "Ecografía renal en enfermedad renal crónica, con ecogenicidad aumentada y cortical adelgazada"
+    credito: "Kristoffer Lindskov Hansen, Michael Bachmann Nielsen y Caroline Ewertsen"
+    fuente: "Wikimedia Commons"
+    licencia_img: "CC BY 4.0"
+
 refs:
   - oneill2014
   - moghazi2005

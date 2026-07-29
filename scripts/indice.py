@@ -252,6 +252,14 @@ def jats(e: dict) -> str:
             fig = ET.SubElement(body, "fig")
             ET.SubElement(ET.SubElement(fig, "caption"), "p").text = \
                 m.get("descripcion", "")
+            # Atribución de la imagen: viaja al archivo JATS, no solo a Ghost.
+            if m.get("credito"):
+                partes = [m["credito"]]
+                if m.get("fuente"):
+                    partes.append(m["fuente"])
+                if m.get("licencia_img"):
+                    partes.append(m["licencia_img"])
+                ET.SubElement(fig, "attrib").text = ". ".join(partes) + "."
             ET.SubElement(fig, "media", {
                 "mimetype": "video" if m.get("tipo") == "loop" else "image",
                 "content-type": m.get("tipo", ""),

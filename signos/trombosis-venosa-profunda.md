@@ -54,6 +54,9 @@ medios:
   - tipo: imagen
     id: "wikimedia:DVTInGroinNoCompresibleMark.png"
     descripcion: "Vena profunda no compresible junto a arteria permeable"
+    credito: "James Heilman, MD"
+    fuente: "Wikimedia Commons"
+    licencia_img: "CC BY-SA 4.0"
 
 refs: [pomero2013, lee2019, zaki2024]
 fecha: 2026-07-29

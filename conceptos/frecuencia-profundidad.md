@@ -19,6 +19,14 @@ orden: 2
 tags: [fisica, resolucion, penetracion]
 relacionado_con: [tipos-de-sonda, knobology-profundidad]
 prerequisito_de: [tipos-de-sonda]
+medios:
+  - tipo: imagen
+    id: "wikimedia:Ultrasound range diagram"
+    descripcion: "Rangos de frecuencia del sonido, incluido el ultrasonido"
+    credito: "Coolth; basado en la obra de LightYear"
+    fuente: "Wikimedia Commons"
+    licencia_img: "CC BY-SA 3.0"
+
 refs:
   - kossoff2000
   - hangiandreou2003

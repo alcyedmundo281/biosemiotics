@@ -47,6 +47,12 @@ medios:
     id: "yt:PENDIENTE"
     descripcion: "Perfil A normal para contraste"
     duracion_s: 5
+  - tipo: imagen
+    id: "wikimedia:B lines on a lung ultrasound of a patient with fibrosis"
+    descripcion: "Múltiples líneas B en ecografía pulmonar"
+    credito: "Benoit Veillette"
+    fuente: "Wikimedia Commons"
+    licencia_img: "CC BY-SA 4.0"
 
 refs: [lichtenstein2008, volpicelli2012, volpicelli2026, demi2023, gargani2023]
 fecha: 2026-07-14

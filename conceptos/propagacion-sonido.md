@@ -18,6 +18,14 @@ orden: 3
 tags: [fisica]
 relacionado_con: [efecto-piezoelectrico]
 prerequisito_de: []
+medios:
+  - tipo: imagen
+    id: "wikimedia:Nonlinear US wave propagation"
+    descripcion: "Propagación no lineal de una onda ultrasónica a través del tejido"
+    credito: "David Maresca, Daniel P. Sawyer, Guillaume Renaud, Audrey Lee-Gosselin y Mikhail G. Shapiro"
+    fuente: "Wikimedia Commons"
+    licencia_img: "CC BY 4.0"
+
 refs: [kossoff2000, feldman2009, aldrich2007, hangiandreou2003, jensen2007]
 ---
 

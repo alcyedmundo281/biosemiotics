@@ -51,6 +51,9 @@ medios:
   - tipo: imagen
     id: "wikimedia:Ultrasonography_of_abdominal_aortic_aneurysm_in_axial_plane,_annotated.jpg"
     descripcion: "Aneurisma aórtico abdominal medido en ecografía"
+    credito: "Mikael Häggström, M.D."
+    fuente: "Wikimedia Commons"
+    licencia_img: "CC0 1.0"
 
 refs: [isselbacher2022, fernando2022]
 fecha: 2026-07-29

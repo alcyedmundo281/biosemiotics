@@ -18,6 +18,14 @@ orden: 2
 tags: [knobology, optimizacion]
 relacionado_con: [knobology-ganancia, frecuencia-profundidad]
 prerequisito_de: []
+medios:
+  - tipo: imagen
+    id: "wikimedia:Ultrasound (2)"
+    descripcion: "Pantalla de un equipo de ultrasonido durante la adquisición de imagen"
+    credito: "Linda Bartlett, National Cancer Institute"
+    fuente: "Wikimedia Commons"
+    licencia_img: "Dominio público"
+
 refs: [zander2020, duggan2022, hangiandreou2003, kossoff2000]
 ---
 

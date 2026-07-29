@@ -20,6 +20,14 @@ orden: 1
 tags: [knobology, optimizacion]
 relacionado_con: [knobology-profundidad, ecogenicidad]
 prerequisito_de: []
+medios:
+  - tipo: imagen
+    id: "wikimedia:Digitales-Ultraschallgeraet"
+    descripcion: "Equipo ultrasónico con controles y visualización de ganancia"
+    credito: "Karl Deutsch Prüf- und Messgerätebau GmbH + Co KG"
+    fuente: "Wikimedia Commons"
+    licencia_img: "CC BY 3.0 DE"
+
 refs:
   - zander2020
   - pye1992

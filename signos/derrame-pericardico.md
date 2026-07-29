@@ -46,6 +46,14 @@ autores:
     afiliacion: "Universidad Central del Ecuador"
     credit: [conceptualizacion, redaccion]
 
+medios:
+  - tipo: imagen
+    id: "wikimedia:PericardialeffusionUS.PNG"
+    descripcion: "Líquido alrededor del corazón observado por ecocardiografía"
+    credito: "James Heilman, MD"
+    fuente: "Wikimedia Commons"
+    licencia_img: "CC BY-SA 3.0"
+
 refs: [via2014, perezcasares2017, stolz2017, blanco2016, farsi2017]
 fecha: 2026-07-29
 actualizado: 2026-07-29
