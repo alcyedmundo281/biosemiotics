@@ -75,6 +75,30 @@
    "n_refs": 4
   },
   {
+   "id": "compresibilidad-venosa",
+   "tipo": "concepto",
+   "titulo": "Compresibilidad venosa: una prueba dinámica, no una foto",
+   "abstract": "Una vena normal colapsa por completo cuando la sonda aplica presión suficiente y perpendicular; la arteria vecina conserva su luz. La falta de compresión es el signo central de trombosis venosa, pero exige identificar bien el vaso, seguirlo por segmentos y comprimir sin deslizarse. Dolor, edema, profundidad, duplicación venosa y trombo distal pueden volver incompleto o engañoso un examen focalizado.\n",
+   "nivel": "principiante",
+   "tags": [
+    "vena",
+    "compresion",
+    "tvp",
+    "vascular"
+   ],
+   "autores": [
+    {
+     "nombre": "Alcy Torres"
+    }
+   ],
+   "refs": [
+    "pomero2013",
+    "lee2019",
+    "zaki2024"
+   ],
+   "n_refs": 3
+  },
+  {
    "id": "ecogenicidad",
    "tipo": "concepto",
    "titulo": "El lenguaje de la ecogenicidad",
@@ -198,6 +222,30 @@
    "n_refs": 4
   },
   {
+   "id": "modo-m",
+   "tipo": "concepto",
+   "titulo": "Modo M: convertir movimiento en una línea de tiempo",
+   "abstract": "El modo M registra repetidamente una sola línea del haz y coloca el tiempo en el eje horizontal. Convierte movimientos rápidos —pleura, válvulas, paredes o diafragma— en trazos medibles, pero pierde la anatomía situada fuera de esa línea. Su utilidad depende de orientar primero una buena imagen bidimensional: una línea mal colocada produce un registro preciso del sitio equivocado.\n",
+   "nivel": "principiante",
+   "tags": [
+    "modo-m",
+    "movimiento",
+    "tiempo",
+    "tecnica"
+   ],
+   "autores": [
+    {
+     "nombre": "Alcy Torres"
+    }
+   ],
+   "refs": [
+    "hangiandreou2003",
+    "aldrich2007",
+    "volpicelli2012"
+   ],
+   "n_refs": 3
+  },
+  {
    "id": "propagacion-sonido",
    "tipo": "concepto",
    "titulo": "Velocidad de propagación",
@@ -220,6 +268,31 @@
     "jensen2007"
    ],
    "n_refs": 5
+  },
+  {
+   "id": "sliding-lung-point",
+   "tipo": "concepto",
+   "titulo": "Sliding pleural y lung point: movimiento antes que diagnóstico",
+   "abstract": "El sliding pleural es el movimiento respiratorio de la pleura visceral contra la parietal. Su presencia excluye neumotórax exactamente en el punto examinado; su ausencia es inespecífica. El lung point es la transición respiratoria entre una zona sin sliding y otra con contacto pleural, y apoya con gran especificidad el diagnóstico, aunque puede faltar en neumotórax extenso o ser imitado por bullas e interfaces fisiológicas.\n",
+   "nivel": "principiante",
+   "tags": [
+    "pulmon",
+    "pleura",
+    "sliding",
+    "lung-point",
+    "neumotorax"
+   ],
+   "autores": [
+    {
+     "nombre": "Alcy Torres"
+    }
+   ],
+   "refs": [
+    "lichtenstein2000",
+    "skulec2021",
+    "volpicelli2012"
+   ],
+   "n_refs": 3
   },
   {
    "id": "tipos-de-sonda",
@@ -271,6 +344,164 @@
     "blanco2016"
    ],
    "n_refs": 4
+  },
+  {
+   "id": "signo-aneurisma-aortico-abdominal",
+   "tipo": "signo",
+   "titulo": "Aneurisma aórtico abdominal en POCUS: medir antes de que el dolor engañe",
+   "titulo_en": "Abdominal aortic aneurysm in POCUS: measure before pain misleads",
+   "version": "1.0",
+   "abstract": "Una aorta abdominal con diámetro máximo mayor de 3,0 cm, medido de borde externo a borde externo, cumple el criterio ecográfico de aneurisma. En dolor, síncope o shock, reconocerla acelera activación vascular y traslado, pero POCUS demuestra el aneurisma, no la ruptura. Medición oblicua, trombo mural, vena cava, masas paraaórticas y un segmento distal no visualizado pueden producir errores; un examen incompleto nunca descarta la emergencia.\n",
+   "sistema": "vascular",
+   "organo": "aorta-abdominal",
+   "nivel": "principiante",
+   "ventana": "transabdominal",
+   "pregunta_clinica": "¿La aorta abdominal mide más de 3,0 cm y cambia la prioridad del paciente?",
+   "significante": "Dilatación de la aorta abdominal con diámetro máximo mayor de 3,0 cm, medido perpendicular al eje vascular de borde externo a borde externo.",
+   "significado": "Aneurisma aórtico abdominal.",
+   "umbral": "Diámetro máximo > 3,0 cm de borde externo a borde externo. Recorre aorta proximal, media y distal hasta la bifurcación; mide en un plano perpendicular al vaso e incluye el trombo mural dentro del diámetro total.\n",
+   "licencia": "CC-BY-NC-4.0",
+   "fecha": "2026-07-29",
+   "actualizado": "2026-07-29",
+   "decision": "En un paciente sintomático o inestable, activa de inmediato la ruta de emergencia vascular y la imagen definitiva o traslado sin permitir que POCUS retrase la reanimación.",
+   "sonda": [
+    "convexa",
+    "sectorial"
+   ],
+   "escenario": [
+    "urgencias"
+   ],
+   "descriptores": [
+    "aneurisma-aortico-abdominal",
+    "aorta",
+    "dolor-abdominal",
+    "shock",
+    "pocus"
+   ],
+   "mesh": [
+    "Aortic Aneurysm Abdominal",
+    "Aorta Abdominal",
+    "Ultrasonography",
+    "Point-of-Care Systems"
+   ],
+   "falsos_positivos": [
+    "Medición oblicua de una aorta tortuosa que exagera el diámetro",
+    "Medir solo la luz y excluir el trombo mural, subestimando el aneurisma",
+    "Confundir la vena cava inferior con la aorta",
+    "Masa o ganglio paraaórtico",
+    "No visualizar la aorta distal por gas y declarar un estudio negativo"
+   ],
+   "se_basa_en": [
+    "ecogenicidad",
+    "tipos-de-sonda",
+    "knobology-profundidad",
+    "knobology-ganancia"
+   ],
+   "autores": [
+    {
+     "nombre": "Alcy Edmundo Torres Guerrero",
+     "orcid": "0000-0002-9742-375X",
+     "afiliacion": "Universidad Central del Ecuador",
+     "credit": [
+      "conceptualizacion",
+      "redaccion",
+      "supervision"
+     ]
+    }
+   ],
+   "medios": [
+    {
+     "tipo": "imagen",
+     "id": "wikimedia:PENDIENTE",
+     "descripcion": "Aneurisma aórtico abdominal medido en ecografía"
+    }
+   ],
+   "n_loops": 0,
+   "n_imagenes": 1,
+   "refs": [
+    "isselbacher2022",
+    "fernando2022"
+   ],
+   "n_refs": 2
+  },
+  {
+   "id": "signo-colelitiasis",
+   "tipo": "signo",
+   "titulo": "Colelitiasis: cálculo móvil con sombra posterior",
+   "titulo_en": "Cholelithiasis: mobile gallstone with posterior shadowing",
+   "version": "1.0",
+   "abstract": "Un foco ecogénico dentro de la vesícula, móvil con los cambios de posición y acompañado por sombra acústica posterior, identifica un cálculo biliar. El hallazgo orienta el dolor en hipocondrio derecho, pero no demuestra por sí solo colecistitis ni explica todo dolor abdominal. Barro, pólipos, pliegues, gas y sombras de borde pueden imitarlo; una exploración negativa o incompleta no cierra una sospecha clínica persistente.\n",
+   "sistema": "digestivo",
+   "organo": "vesicula",
+   "nivel": "principiante",
+   "ventana": "subcostal-intercostal-derecha",
+   "pregunta_clinica": "¿Hay un cálculo dentro de la vesícula que pueda explicar el dolor?",
+   "significante": "Foco ecogénico intravesicular, móvil o dependiente, con sombra acústica posterior.",
+   "significado": "Cálculo dentro de la luz de la vesícula biliar.",
+   "umbral": "No hay un diámetro único que defina el signo. La combinación práctica es localización intravesicular, movilidad o dependencia y sombra posterior; los cálculos pequeños pueden no producir una sombra visible.\n",
+   "licencia": "CC-BY-NC-4.0",
+   "fecha": "2026-07-29",
+   "actualizado": "2026-07-29",
+   "decision": "Integra el hallazgo con la clínica; si solo hay cálculo sin signos inflamatorios, no lo llames colecistitis. Solicita evaluación completa si persiste la sospecha o aparecen datos de complicación.",
+   "sonda": [
+    "convexa"
+   ],
+   "escenario": [
+    "urgencias",
+    "consulta"
+   ],
+   "descriptores": [
+    "colelitiasis",
+    "calculo-biliar",
+    "vesicula",
+    "sombra-acustica",
+    "pocus"
+   ],
+   "mesh": [
+    "Cholelithiasis",
+    "Gallbladder",
+    "Ultrasonography",
+    "Point-of-Care Systems"
+   ],
+   "falsos_positivos": [
+    "Pólipo vesicular adherido a la pared: no cambia de posición y habitualmente no produce sombra",
+    "Barro biliar o barro tumefactivo: ecos de bajo nivel, dependientes, sin sombra limpia",
+    "Pliegue del cuello vesicular o válvula de Heister",
+    "Gas duodenal o sombra de borde fuera de la luz vesicular",
+    "Calcificación mural o clip quirúrgico en una anatomía alterada"
+   ],
+   "se_basa_en": [
+    "ecogenicidad",
+    "artefacto-sombra-acustica",
+    "tipos-de-sonda"
+   ],
+   "autores": [
+    {
+     "nombre": "Alcy Edmundo Torres Guerrero",
+     "orcid": "0000-0002-9742-375X",
+     "afiliacion": "Universidad Central del Ecuador",
+     "credit": [
+      "conceptualizacion",
+      "redaccion",
+      "supervision"
+     ]
+    }
+   ],
+   "medios": [
+    {
+     "tipo": "imagen",
+     "id": "wikimedia:PENDIENTE",
+     "descripcion": "Cálculo vesicular ecogénico con sombra acústica posterior"
+    }
+   ],
+   "n_loops": 0,
+   "n_imagenes": 1,
+   "refs": [
+    "sharif2021",
+    "rosen2001",
+    "feldman2009"
+   ],
+   "n_refs": 3
   },
   {
    "id": "signo-derrame-pericardico",
@@ -577,6 +808,89 @@
    "n_refs": 6
   },
   {
+   "id": "signo-hidronefrosis",
+   "tipo": "signo",
+   "titulo": "Hidronefrosis en POCUS: detectar dilatación, no adivinar la piedra",
+   "titulo_en": "Hydronephrosis in POCUS: detect dilation, not guess the stone",
+   "version": "1.0",
+   "abstract": "Espacios anecoicos comunicados que dilatan la pelvis y los cálices renales señalan hidronefrosis, un hallazgo indirecto de drenaje urinario alterado. En el cólico renal orienta obstrucción y ayuda a decidir quién necesita imagen adicional o valoración urológica, pero no localiza ni demuestra por sí solo un cálculo. Pelvis extrarrenal, quistes parapélvicos, vasos y vejiga llena pueden imitarla; una ecografía negativa no excluye obstrucción temprana.\n",
+   "sistema": "genitourinario",
+   "organo": "riñon",
+   "nivel": "principiante",
+   "ventana": "flanco-posterior",
+   "pregunta_clinica": "¿El sistema colector renal está dilatado y sugiere obstrucción?",
+   "significante": "Área anecoica central ramificada y comunicada que separa o dilata pelvis y cálices renales.",
+   "significado": "Dilatación del sistema colector; puede acompañar obstrucción urinaria, pero no identifica por sí sola su causa.",
+   "umbral": "La ficha usa una lectura cualitativa: ausente, leve o marcada. No convierte un diámetro aislado en diagnóstico. Deben revisarse ambos riñones en planos longitudinal y transversal y, cuando sea posible, la vejiga.\n",
+   "licencia": "CC-BY-NC-4.0",
+   "fecha": "2026-07-29",
+   "actualizado": "2026-07-29",
+   "decision": "Integra el grado de dilatación con dolor, función renal, infección y factores de riesgo; deriva o completa imagen cuando el resultado cambia una conducta o la sospecha persiste.",
+   "sonda": [
+    "convexa"
+   ],
+   "escenario": [
+    "urgencias"
+   ],
+   "descriptores": [
+    "hidronefrosis",
+    "litiasis-ureteral",
+    "colico-renal",
+    "obstruccion",
+    "pocus"
+   ],
+   "mesh": [
+    "Hydronephrosis",
+    "Ureterolithiasis",
+    "Kidney",
+    "Ultrasonography",
+    "Point-of-Care Systems"
+   ],
+   "falsos_positivos": [
+    "Pelvis extrarrenal: área anecoica central sin dilatación calicial",
+    "Quistes parapélvicos: espacios redondeados que no se comunican entre sí",
+    "Vasos renales prominentes: confírmarlos con Doppler cuando esté disponible",
+    "Vejiga muy llena o diuresis intensa con dilatación fisiológica transitoria",
+    "Embarazo, especialmente con dilatación fisiológica del lado derecho"
+   ],
+   "se_basa_en": [
+    "ecogenicidad",
+    "artefacto-refuerzo-posterior",
+    "tipos-de-sonda"
+   ],
+   "contrasta_con": [
+    "signo-riñon-cronico"
+   ],
+   "autores": [
+    {
+     "nombre": "Alcy Edmundo Torres Guerrero",
+     "orcid": "0000-0002-9742-375X",
+     "afiliacion": "Universidad Central del Ecuador",
+     "credit": [
+      "conceptualizacion",
+      "redaccion",
+      "supervision"
+     ]
+    }
+   ],
+   "medios": [
+    {
+     "tipo": "imagen",
+     "id": "wikimedia:PENDIENTE",
+     "descripcion": "Riñón con dilatación anecoica de pelvis y cálices"
+    }
+   ],
+   "n_loops": 0,
+   "n_imagenes": 1,
+   "refs": [
+    "sibley2020",
+    "smithbindman2014",
+    "oneill2014",
+    "turk2024"
+   ],
+   "n_refs": 4
+  },
+  {
    "id": "signo-lineas-b",
    "tipo": "signo",
    "titulo": "Líneas B (pulmón húmedo)",
@@ -670,6 +984,94 @@
     "gargani2023"
    ],
    "n_refs": 5
+  },
+  {
+   "id": "signo-neumotorax",
+   "tipo": "signo",
+   "titulo": "Neumotórax en POCUS: la ausencia de sliding no basta",
+   "titulo_en": "Pneumothorax in POCUS: absent lung sliding is not enough",
+   "version": "1.0",
+   "abstract": "La ausencia de sliding pleural, líneas B y pulso pulmonar crea un patrón compatible con neumotórax; encontrar un lung point lo confirma con alta especificidad. POCUS permite una evaluación rápida al lado de la camilla, pero ninguna ausencia aislada basta. Apnea, ventilación selectiva, adherencias, pleurodesis, fibrosis y bullas pueden imitarlo, y un lung point puede faltar cuando el neumotórax es extenso.\n",
+   "sistema": "respiratorio",
+   "organo": "pleura",
+   "nivel": "principiante",
+   "ventana": "intercostal-anterior-lateral",
+   "pregunta_clinica": "¿Hay aire pleural separando ambas pleuras en este punto?",
+   "significante": "Línea pleural sin sliding, sin líneas B y sin pulso pulmonar; el lung point muestra la transición hacia pleura en contacto.",
+   "significado": "Aire en el espacio pleural que separa la pleura visceral de la parietal en la zona examinada.",
+   "umbral": "No usa un conteo. La presencia de sliding o de líneas B excluye neumotórax en el punto examinado. La ausencia de sliding aislada no confirma el diagnóstico; el lung point aporta confirmación cuando puede encontrarse.\n",
+   "licencia": "CC-BY-NC-4.0",
+   "fecha": "2026-07-29",
+   "actualizado": "2026-07-29",
+   "decision": "Integra el patrón con estabilidad y mecanismo; en un paciente inestable compatible, activa tratamiento urgente sin retrasarlo por intentar documentar todos los signos.",
+   "sonda": [
+    "lineal",
+    "convexa",
+    "sectorial"
+   ],
+   "escenario": [
+    "urgencias",
+    "uci"
+   ],
+   "descriptores": [
+    "neumotorax",
+    "sliding",
+    "lung-point",
+    "pleura",
+    "efast",
+    "pocus"
+   ],
+   "mesh": [
+    "Pneumothorax",
+    "Pleura",
+    "Ultrasonography",
+    "Point-of-Care Systems"
+   ],
+   "falsos_positivos": [
+    "Apnea o ventilación muy superficial",
+    "Intubación endobronquial o ventilación selectiva",
+    "Adherencias pleurales, pleurodesis o fibrosis",
+    "Contusión pulmonar, síndrome de dificultad respiratoria o consolidación extensa",
+    "Bullas enfisematosas e interfaces anatómicas que imitan lung point",
+    "Sonda sobre una costilla o línea pleural mal identificada"
+   ],
+   "se_basa_en": [
+    "sliding-lung-point",
+    "modo-m",
+    "artefacto-reverberacion",
+    "tipos-de-sonda"
+   ],
+   "contrasta_con": [
+    "signo-perfil-a"
+   ],
+   "autores": [
+    {
+     "nombre": "Alcy Edmundo Torres Guerrero",
+     "orcid": "0000-0002-9742-375X",
+     "afiliacion": "Universidad Central del Ecuador",
+     "credit": [
+      "conceptualizacion",
+      "redaccion",
+      "supervision"
+     ]
+    }
+   ],
+   "medios": [
+    {
+     "tipo": "imagen",
+     "id": "wikimedia:PENDIENTE",
+     "descripcion": "Modo M con patrón de orilla normal y patrón estratosfera"
+    }
+   ],
+   "n_loops": 0,
+   "n_imagenes": 1,
+   "refs": [
+    "lichtenstein2000",
+    "staub2018",
+    "skulec2021",
+    "volpicelli2012"
+   ],
+   "n_refs": 4
   },
   {
    "id": "signo-perfil-a",
@@ -802,6 +1204,87 @@
     "emamian1993"
    ],
    "n_refs": 5
+  },
+  {
+   "id": "signo-trombosis-venosa-profunda",
+   "tipo": "signo",
+   "titulo": "TVP por compresión: la vena que no desaparece",
+   "titulo_en": "DVT by compression: the vein that does not disappear",
+   "version": "1.0",
+   "abstract": "Una vena profunda que conserva su luz pese a compresión perpendicular adecuada es positiva para trombosis en ese segmento. La ecografía focalizada proximal puede acelerar el diagnóstico de TVP y apoyar la evaluación de tromboembolia pulmonar, pero depende de técnica, entrenamiento y probabilidad clínica. Presión insuficiente, duplicación venosa, trombo crónico, edema y enfermedad limitada a pantorrilla pueden generar errores o exigir un estudio vascular completo.\n",
+   "sistema": "vascular",
+   "organo": "vena-profunda",
+   "nivel": "principiante",
+   "ventana": "femoral-poplitea",
+   "pregunta_clinica": "¿La vena profunda colapsa por completo con compresión?",
+   "significante": "Persistencia de la luz de una vena profunda durante compresión gradual y perpendicular adecuada.",
+   "significado": "Trombo venoso en el segmento no compresible, hasta demostrar otra causa.",
+   "umbral": "El criterio es binario por segmento: compresión completa o incompleta. Revisa al menos región femoral común y poplítea según un protocolo validado; una exploración focalizada proximal no equivale a ecografía dúplex de toda la extremidad.\n",
+   "licencia": "CC-BY-NC-4.0",
+   "fecha": "2026-07-29",
+   "actualizado": "2026-07-29",
+   "decision": "Integra el resultado con probabilidad clínica y protocolo local; confirma extensión o completa estudio cuando el examen sea negativo, incompleto, distal o discordante.",
+   "sonda": [
+    "lineal"
+   ],
+   "escenario": [
+    "urgencias"
+   ],
+   "descriptores": [
+    "trombosis-venosa-profunda",
+    "tvp",
+    "compresion",
+    "vena-femoral",
+    "vena-poplitea",
+    "pocus"
+   ],
+   "mesh": [
+    "Venous Thrombosis",
+    "Femoral Vein",
+    "Popliteal Vein",
+    "Ultrasonography Compression",
+    "Point-of-Care Systems"
+   ],
+   "falsos_positivos": [
+    "Presión insuficiente por dolor, edema o profundidad",
+    "Compresión oblicua que desplaza la vena sin colapsarla",
+    "Confundir arteria, ganglio o quiste de Baker con una vena",
+    "Cambios residuales de una TVP antigua",
+    "Vena duplicada: comprimir la rama sana y omitir la trombosada",
+    "Segmento no visualizado registrado erróneamente como negativo"
+   ],
+   "se_basa_en": [
+    "compresibilidad-venosa",
+    "ecogenicidad",
+    "tipos-de-sonda"
+   ],
+   "autores": [
+    {
+     "nombre": "Alcy Edmundo Torres Guerrero",
+     "orcid": "0000-0002-9742-375X",
+     "afiliacion": "Universidad Central del Ecuador",
+     "credit": [
+      "conceptualizacion",
+      "redaccion",
+      "supervision"
+     ]
+    }
+   ],
+   "medios": [
+    {
+     "tipo": "imagen",
+     "id": "wikimedia:PENDIENTE",
+     "descripcion": "Vena profunda no compresible junto a arteria permeable"
+    }
+   ],
+   "n_loops": 0,
+   "n_imagenes": 1,
+   "refs": [
+    "pomero2013",
+    "lee2019",
+    "zaki2024"
+   ],
+   "n_refs": 3
   },
   {
    "id": "caso-01-disnea",
