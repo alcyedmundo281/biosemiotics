@@ -248,6 +248,101 @@
    "n_refs": 5
   },
   {
+   "id": "ventanas-cardiacas",
+   "tipo": "concepto",
+   "titulo": "Ventanas cardíacas",
+   "url": "https://www.biosemiotics.net/ventanas-cardiacas-en-pocus-orientar-el-corazon-antes-de-interpretar/",
+   "abstract": "Recorrido focalizado por las vistas paraesternal larga, paraesternal corta, apical de cuatro cámaras, subcostal y vena cava inferior. Cada ventana responde una pregunta limitada sobre líquido pericárdico, función global y tamaño relativo de cavidades. La orientación correcta evita acortar el ventrículo o invertir la anatomía; una ventana insuficiente no equivale a un estudio normal ni sustituye la ecocardiografía formal.\n",
+   "nivel": "principiante",
+   "tags": [
+    "corazon",
+    "orientacion",
+    "focus"
+   ],
+   "autores": [
+    {
+     "nombre": "Alcy Torres"
+    }
+   ],
+   "refs": [
+    "via2014",
+    "beraud2013",
+    "perezcasares2017",
+    "blanco2016"
+   ],
+   "n_refs": 4
+  },
+  {
+   "id": "signo-derrame-pericardico",
+   "tipo": "signo",
+   "titulo": "Derrame pericárdico",
+   "titulo_en": "Pericardial effusion",
+   "version": "1.0",
+   "abstract": "Espacio anecoico o hipoecoico entre el corazón y el pericardio, confirmado en más de una vista. Indica líquido pericárdico, pero no equivale por sí solo a taponamiento. Su detección obliga a integrar estabilidad, colapso de cavidades derechas y otros signos hemodinámicos. Grasa epicárdica, líquido pleural, ascitis y una ventana oblicua pueden imitarlo o ubicarlo mal.\n",
+   "sistema": "cardiovascular",
+   "organo": "pericardio",
+   "nivel": "principiante",
+   "ventana": "subcostal-paraesternal-apical",
+   "pregunta_clinica": "¿Hay líquido alrededor del corazón y existen datos de repercusión hemodinámica?",
+   "significante": "Espacio anecoico o hipoecoico entre el miocardio y el pericardio, visible y confirmable en más de una ventana cardíaca.",
+   "significado": "Líquido en el espacio pericárdico; su presencia no demuestra por sí sola fisiología de taponamiento.",
+   "umbral": "No existe una dimensión aislada que diagnostique taponamiento. La velocidad de acumulación, el contexto clínico y los signos hemodinámicos importan más que una cifra única de separación pericárdica.\n",
+   "licencia": "CC-BY-NC-4.0",
+   "fecha": "2026-07-29",
+   "actualizado": "2026-07-29",
+   "decision": "Confirmar en varias vistas, evaluar repercusión hemodinámica e integrar estabilidad; si hay inestabilidad y sospecha de taponamiento, activar manejo urgente y valoración para drenaje.",
+   "sonda": [
+    "sectorial"
+   ],
+   "escenario": [
+    "urgencias",
+    "hospitalizacion",
+    "uci"
+   ],
+   "descriptores": [
+    "derrame-pericardico",
+    "pericardio",
+    "focus",
+    "taponamiento"
+   ],
+   "mesh": [
+    "Pericardial Effusion",
+    "Echocardiography",
+    "Point-of-Care Systems"
+   ],
+   "falsos_positivos": [
+    "Grasa epicárdica o pericárdica",
+    "Derrame pleural visto detrás de la aorta descendente",
+    "Ascitis adyacente a la ventana subcostal",
+    "Quiste o masa mediastínica",
+    "Ganancia excesiva o plano oblicuo que crea un espacio oscuro"
+   ],
+   "se_basa_en": [
+    "ventanas-cardiacas",
+    "ecogenicidad",
+    "tipos-de-sonda"
+   ],
+   "autores": [
+    {
+     "nombre": "Alcy Edmundo Torres Guerrero",
+     "orcid": null,
+     "afiliacion": "Universidad Central del Ecuador",
+     "credit": [
+      "conceptualizacion",
+      "redaccion"
+     ]
+    }
+   ],
+   "refs": [
+    "via2014",
+    "perezcasares2017",
+    "stolz2017",
+    "blanco2016",
+    "farsi2017"
+   ],
+   "n_refs": 5
+  },
+  {
    "id": "signo-derrame-pleural",
    "tipo": "signo",
    "titulo": "Derrame pleural",
@@ -328,6 +423,155 @@
     "rodriguezlima2020"
    ],
    "n_refs": 8
+  },
+  {
+   "id": "signo-eyeball-ef",
+   "tipo": "signo",
+   "titulo": "Función sistólica del VI a ojo (Eyeball EF)",
+   "titulo_en": "Visual assessment of left ventricular systolic function",
+   "version": "1.0",
+   "abstract": "Cambio global del tamaño de la cavidad ventricular izquierda acompañado por engrosamiento y desplazamiento endocárdico durante la sístole, valorado en varias vistas y ciclos. Permite clasificar la función como claramente deprimida, no claramente deprimida o hiperdinámica para orientar el shock. No reemplaza una fracción de eyección cuantitativa: mala ventana, acortamiento apical, arritmia y alteraciones segmentarias reducen su fiabilidad.\n",
+   "sistema": "cardiovascular",
+   "organo": "corazon",
+   "nivel": "principiante",
+   "ventana": "paraesternal-apical",
+   "pregunta_clinica": "¿La función sistólica global del ventrículo izquierdo está claramente deprimida, conservada o hiperdinámica?",
+   "significante": "Cambio global del tamaño de la cavidad del VI, engrosamiento miocárdico y desplazamiento endocárdico durante la sístole, observado en varias vistas y ciclos.",
+   "significado": "Categoría cualitativa de función sistólica global del ventrículo izquierdo.",
+   "umbral": "Eyeball EF es una clasificación cualitativa, no una medición. No debe asignarse un porcentaje exacto ni usarse una sola vista o un solo latido para cruzar umbrales terapéuticos.\n",
+   "licencia": "CC-BY-NC-4.0",
+   "fecha": "2026-07-29",
+   "actualizado": "2026-07-29",
+   "decision": "Reconocer disfunción sistólica global marcada o un patrón hiperdinámico e integrarlo con perfusión, precarga, poscarga, válvulas y ventrículo derecho antes de decidir tratamiento.",
+   "sonda": [
+    "sectorial"
+   ],
+   "escenario": [
+    "urgencias",
+    "hospitalizacion",
+    "uci"
+   ],
+   "descriptores": [
+    "funcion-sistolica",
+    "ventriculo-izquierdo",
+    "fraccion-eyeccion",
+    "focus"
+   ],
+   "mesh": [
+    "Ventricular Function",
+    "Left",
+    "Echocardiography",
+    "Point-of-Care Systems"
+   ],
+   "falsos_positivos": [
+    "Vista apical acortada que exagera la contracción",
+    "Alteración segmentaria que no representa la función global",
+    "Taquicardia, fibrilación auricular o extrasístoles",
+    "Cambios de precarga o poscarga que modifican la apariencia",
+    "Mala definición endocárdica por ventana, ganancia o profundidad",
+    "Sobrecarga del ventrículo derecho con desplazamiento septal"
+   ],
+   "se_basa_en": [
+    "ventanas-cardiacas",
+    "tipos-de-sonda",
+    "knobology-profundidad",
+    "knobology-ganancia"
+   ],
+   "autores": [
+    {
+     "nombre": "Alcy Edmundo Torres Guerrero",
+     "orcid": null,
+     "afiliacion": "Universidad Central del Ecuador",
+     "credit": [
+      "conceptualizacion",
+      "redaccion"
+     ]
+    }
+   ],
+   "refs": [
+    "via2014",
+    "gudmundsson2005",
+    "rich1982",
+    "thavendiranathan2013",
+    "bahl2021",
+    "farsi2017"
+   ],
+   "n_refs": 6
+  },
+  {
+   "id": "signo-globo-vesical",
+   "tipo": "signo",
+   "titulo": "Globo vesical",
+   "titulo_en": "Distended urinary bladder",
+   "version": "1.0",
+   "abstract": "Estructura pélvica media, anecoica y distendida detrás de la sínfisis púbica, confirmada en planos transversal y longitudinal. En un paciente que no puede orinar, apoya retención urinaria y permite estimar volumen antes de sondar. La medición es aproximada y no existe un umbral universal: ascitis, quistes pélvicos, útero, contenido vesical y geometría irregular pueden alterar la lectura.\n",
+   "sistema": "genitourinario",
+   "organo": "vejiga",
+   "nivel": "principiante",
+   "ventana": "suprapubica",
+   "pregunta_clinica": "¿La vejiga está realmente distendida y la retención explica los síntomas o la oliguria?",
+   "significante": "Estructura anecoica distendida en la línea media pélvica, posterior a la sínfisis púbica, confirmada en eje transversal y longitudinal.",
+   "significado": "Vejiga llena; en el contexto de incapacidad para orinar, hallazgo compatible con retención urinaria.",
+   "umbral": "No existe un volumen único que defina toda retención aguda o crónica. La medición ecográfica es aproximada y debe interpretarse con síntomas, tiempo desde la última micción, función renal, anatomía y protocolo local.\n",
+   "licencia": "CC-BY-NC-4.0",
+   "fecha": "2026-07-29",
+   "actualizado": "2026-07-29",
+   "decision": "Si la vejiga está distendida y el contexto confirma retención, descomprimir cuando esté indicado y buscar la causa; si contiene poco volumen, evitar un sondaje reflejo y reevaluar oliguria o anuria.",
+   "sonda": [
+    "convexa"
+   ],
+   "escenario": [
+    "urgencias",
+    "consulta",
+    "hospitalizacion",
+    "preoperatorio"
+   ],
+   "descriptores": [
+    "retencion-urinaria",
+    "vejiga",
+    "volumen-vesical",
+    "sondaje"
+   ],
+   "mesh": [
+    "Urinary Retention",
+    "Urinary Bladder",
+    "Ultrasonography",
+    "Urinary Catheterization"
+   ],
+   "falsos_positivos": [
+    "Ascitis o líquido pélvico libre",
+    "Quiste ovárico o masa quística pélvica",
+    "Útero gestante o aumentado de tamaño",
+    "Asa intestinal con contenido líquido",
+    "Coágulos, sedimento o sonda dentro de la vejiga",
+    "Geometría irregular o compresión por recto, útero o masa"
+   ],
+   "se_basa_en": [
+    "ecogenicidad",
+    "artefacto-refuerzo-posterior",
+    "tipos-de-sonda",
+    "knobology-profundidad"
+   ],
+   "autores": [
+    {
+     "nombre": "Alcy Edmundo Torres Guerrero",
+     "orcid": null,
+     "afiliacion": "Universidad Central del Ecuador",
+     "credit": [
+      "conceptualizacion",
+      "redaccion"
+     ]
+    }
+   ],
+   "refs": [
+    "fernandezprada2025",
+    "jalbani2014",
+    "paras2002",
+    "cho2017",
+    "nunan2024",
+    "christiaans2026"
+   ],
+   "n_refs": 6
   },
   {
    "id": "signo-lineas-b",
