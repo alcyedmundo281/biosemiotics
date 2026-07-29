@@ -129,6 +129,40 @@ def build_sqlite(entidades, build_dir: Path) -> Path:
 
 
 # ─────────────────────── SALIDA 2: LATEX ───────────────────────
+# DPI mínimo para impresión: por debajo de esto una imagen se ve pixelada.
+# Se usa para NO agrandar una imagen más allá de su resolución nativa.
+DPI_IMPRESION = 150
+
+
+def _dims_px(path: Path):
+    """(ancho, alto) en píxeles leyendo solo la cabecera. Sin dependencias
+    (la CI corre build.py sin Pillow). Devuelve None si no la reconoce."""
+    try:
+        with path.open("rb") as f:
+            head = f.read(24)
+            if head[:8] == b"\x89PNG\r\n\x1a\n":
+                import struct
+                return struct.unpack(">II", head[16:24])
+            if head[:2] == b"\xff\xd8":  # JPEG: buscar el marcador SOF
+                import struct
+                f.seek(2)
+                b = f.read(1)
+                while b:
+                    while b == b"\xff":
+                        b = f.read(1)
+                    if b[0] in (0xC0, 0xC1, 0xC2, 0xC3, 0xC5, 0xC6, 0xC7,
+                                0xC9, 0xCA, 0xCB):
+                        f.read(3)
+                        h, w = struct.unpack(">HH", f.read(4))
+                        return w, h
+                    seg = struct.unpack(">H", f.read(2))[0]
+                    f.seek(seg - 2, 1)
+                    b = f.read(1)
+    except Exception:
+        pass
+    return None
+
+
 def figura_latex(e: dict, raiz: Path) -> str:
     """Figura flotante con su imagen y la cita al pie (crédito + licencia).
 
@@ -152,10 +186,22 @@ def figura_latex(e: dict, raiz: Path) -> str:
         partes.append(med["licencia_img"])
     credito = escape_latex(". ".join(partes) + ".")
     desc = escape_latex(med.get("descripcion", ""))
+
+    # Ancho objetivo: el nativo a DPI_IMPRESION (para no pixelar), pero nunca
+    # más que 0.85\textwidth. Una imagen pequeña sale más chica y nítida en vez
+    # de estirada; una grande llena el ancho como antes. 'max width' de
+    # adjustbox impone el tope sin necesitar saber el \textwidth real.
+    dims = _dims_px(ruta)
+    if dims:
+        ancho_in = dims[0] / DPI_IMPRESION
+        spec = (rf"width={ancho_in:.2f}in,max width=0.85\textwidth,"
+                r"max height=0.45\textheight,keepaspectratio")
+    else:
+        spec = r"width=0.85\textwidth,height=0.45\textheight,keepaspectratio"
     return "\n".join([
         r"\begin{figure}[H]",
         r"  \centering",
-        rf"  \includegraphics[width=0.85\textwidth,height=0.45\textheight,keepaspectratio]{{../assets/img/{base}{ruta.suffix}}}",
+        rf"  \includegraphics[{spec}]{{../assets/img/{base}{ruta.suffix}}}",
         rf"  \caption{{{desc} \textit{{Fuente: {credito}}}}}",
         r"\end{figure}",
     ])
@@ -176,6 +222,7 @@ def build_latex(entidades, build_dir: Path, autor="Alcy") -> Path:
          r"\usepackage[spanish]{babel}",
          r"\usepackage{graphicx}",
          r"\usepackage{float}",
+         r"\usepackage[export]{adjustbox}",  # habilita 'max width' en includegraphics
          r"\usepackage[backend=biber,style=numeric]{biblatex}",
          r"\addbibresource{refs.bib}",
          r"\title{Biosemiótica del Cuerpo Vivo\\\large Manual de POCUS para el clínico}",
