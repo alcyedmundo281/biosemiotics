@@ -107,25 +107,23 @@ cambia el drenaje, el pronóstico y a veces la especialidad que maneja el caso.
 
 ## Cuánto líquido hay
 
-Aquí la ecografía deja de ser diagnóstica y se vuelve cuantitativa. Dos fórmulas
-te sirven, según cómo esté colocado el paciente:
+Aquí la ecografía deja de ser diagnóstica y se vuelve cuantitativa. La fórmula
+más práctica al pie de la cama, en el paciente supino con ligera elevación del
+tronco (el escenario típico de UCI):
 
-**Paciente supino con tórax a 30°** (el escenario típico de UCI):
+**Volumen estimado (mL) ≈ 20 × separación pleural máxima (mm)**
 
-**V (ml) = 13,330 × grosor en 6º espacio intercostal (mm)**
+Se mide la separación máxima entre la pleura parietal y el pulmón en una ventana
+definida, al final de la espiración, y se multiplica por 20. Fórmula de Balik en
+81 pacientes con ventilación mecánica, supinos con el tronco elevado 15°: el
+error medio de predicción fue de unos 158 mL, y el estudio excluyó empiema,
+hemotórax y patología diafragmática [balik2006].
 
-Se mide el grosor del creciente anecoico en el sexto espacio intercostal y se
-multiplica por 13,330. Fórmula desarrollada y validada por Teichgräber contra
-volumetría por TC en 22 pacientes de UCI, con la mejor correlación observada
-precisamente en el sexto EIC [teichgraeber2018]. Una fórmula alternativa
-histórica, propuesta por Balik en pacientes con ventilación mecánica, sigue
-siendo útil como cotejo rápido cuando no se dispone de un corte estándar en el
-6º EIC [balik2006].
-
-**Paciente sentado (posición erecta).** Ibitoye comparó cuatro fórmulas contra
-el volumen drenado por tubo de tórax en 32 pacientes. La ganadora fue la
-llamada **Goecke 2 erecta**, con correlación r = 0,81 [ibitoye2018]. Si tu
-paciente puede sentarse, esa es la fórmula a usar.
+Existen alternativas para otros escenarios. Teichgräber validó contra TC una
+fórmula basada en el grosor del creciente en el sexto espacio intercostal
+[teichgraeber2018]; Ibitoye comparó cuatro fórmulas contra el volumen drenado y
+halló mejor correlación con una variante en posición erecta [ibitoye2018]. Todas
+comparten el mismo principio: convertir una distancia en un volumen aproximado.
 
 Ninguna estimación es exacta. Son órdenes de magnitud útiles para decidir si
 puncionar y para anticipar cuánto drenaje esperar —no cifras para reportar con
