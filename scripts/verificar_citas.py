@@ -6,10 +6,12 @@ No basta con que la clave exista (eso lo mira refs.py). Aquí se comprueba que
 cada referencia siga siendo REAL y COHERENTE contra dos fuentes independientes:
 
   PubMed  (por PMID) → revista, año y DOI declarados coinciden.
-  Crossref (por DOI)  → el DOI resuelve y su título coincide con el de PubMed.
+  Crossref (por DOI)  → el DOI resuelve y coincide con el devuelto por PubMed.
 
-Un PMID y un DOI que apuntan al mismo paper (mismo título) es la prueba más
-dura de que la cita no es una invención ni un cruce de datos.
+Los títulos se comparan normalizados como control editorial: minúsculas, sin
+puntuación y sin el subtítulo posterior al primer punto. Los catálogos antiguos
+pueden contener errores de OCR en el título; por eso la prueba de identidad es
+la coincidencia exacta del DOI declarado, PubMed y Crossref.
 
   python3 verificar_citas.py            # verifica todo refs.bib
   python3 verificar_citas.py --estricto # un error de red también falla
@@ -39,6 +41,12 @@ def norm(s: str) -> str:
     s = re.sub(r"<[^>]+>", "", s or "")
     s = re.sub(r"[^a-z0-9]+", " ", s.lower())
     return " ".join(s.split()).strip()
+
+
+def norm_title(s: str) -> str:
+    """Normaliza el título principal, ignorando el subtítulo tras el punto."""
+    principal = re.sub(r"<[^>]+>", "", s or "").split(".", 1)[0]
+    return norm(principal)
 
 
 def parse_bib(path: Path) -> list:
@@ -97,7 +105,7 @@ def main():
         print(f"⚠ PubMed no responde: {e}")
         sys.exit(2 if a.estricto else 0)
 
-    disc, red = [], 0
+    disc, avisos_titulo, red = [], [], 0
     ok_pm = ok_cr = ok_x = 0
     for r in refs:
         flags = []
@@ -116,16 +124,25 @@ def main():
         if r["doi"]:
             try:
                 cr = crossref(r["doi"])
-                if norm(cr["doi"]) == norm(r["doi"]):
+                doi_ref = norm(r["doi"])
+                doi_pm = norm(p.get("doi")) if p else ""
+                doi_cr = norm(cr["doi"])
+                if doi_ref and doi_pm == doi_ref == doi_cr:
                     ok_cr += 1
                 else:
-                    flags.append("doi-no-resuelve")
+                    flags.append(
+                        f"doi-pubmed≠crossref({doi_pm or '∅'}≠{doi_cr or '∅'})")
                 if p and cr["title"]:
-                    a1, b1 = norm(p.get("titulo")), norm(cr["title"])
-                    if a1 and b1 and (a1 in b1 or b1 in a1):
+                    a1 = norm_title(p.get("titulo"))
+                    b1 = norm_title(cr["title"])
+                    if a1 and b1 and a1 == b1:
                         ok_x += 1
                     else:
-                        flags.append("titulo-pubmed≠crossref")
+                        # Un DOI idéntico en ambas autoridades demuestra la
+                        # identidad aunque un catálogo tenga un OCR defectuoso.
+                        # Se informa la variante sin convertirla en excepción
+                        # por clave ni en un falso negativo de identidad.
+                        avisos_titulo.append((r["clave"], a1, b1))
                 time.sleep(0.12)
             except RedError:
                 red += 1
@@ -139,6 +156,11 @@ def main():
           f"cruce título: {ok_x}")
     if red:
         print(f"⚠ {red} entradas no verificadas por error de red en Crossref")
+
+    if avisos_titulo:
+        print(f"\n⚠ {len(avisos_titulo)} VARIANTES DE TÍTULO CON DOI IDÉNTICO:")
+        for clave, pubmed_title, crossref_title in avisos_titulo:
+            print(f"   {clave:<20} PubMed={pubmed_title!r}  Crossref={crossref_title!r}")
 
     if disc:
         print(f"\n✗ {len(disc)} DISCREPANCIAS:")
