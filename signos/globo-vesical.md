@@ -69,6 +69,17 @@ orinar. Palpar el abdomen no siempre distingue una vejiga llena de obesidad,
 ascitis o una masa. La pregunta POCUS es directa: **¿la vejiga está distendida o
 estoy a punto de colocar una sonda sin demostrar retención?**
 
+## Por qué el examen físico no basta
+
+El dolor suprapúbico y una masa palpable pueden sugerir una vejiga llena, pero
+la palpación no permite entrar en la pelvis, distinguir con certeza la vejiga de
+ascitis, obesidad o una masa ni estimar de forma directa el volumen contenido.
+
+La ecografía vuelve visible esa cavidad anatómicamente inaccesible y responde
+antes del sondaje si existe orina acumulada que pueda descomprimirse. Después,
+el hallazgo debe integrarse con la capacidad de orinar, el residuo posmiccional
+y la causa clínica probable.
+
 ## Cómo se obtiene la ventana
 
 Usa una sonda convexa sobre la línea media, inmediatamente por encima de la
