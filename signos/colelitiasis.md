@@ -70,6 +70,17 @@ POCUS puede responder esa pregunta binaria al lado de la camilla. La pregunta
 no es todavía “¿tiene colecistitis?”. Eso exige integrar inflamación, clínica y,
 cuando corresponde, una evaluación formal.
 
+## Por qué el examen físico no basta
+
+El dolor en hipocondrio derecho y la sensibilidad a la palpación pueden orientar
+hacia la región biliar, pero ninguna maniobra física permite entrar en la luz de
+la vesícula, comprobar que existe un cálculo, observar si se mueve ni demostrar
+la sombra acústica posterior.
+
+La ecografía vuelve visible ese hallazgo anatómicamente inaccesible. Después
+corresponde decidir si la piedra explica el episodio o es incidental y si
+existen datos adicionales que obliguen a plantear colecistitis.
+
 ## Cómo se obtiene la ventana
 
 Usa una sonda convexa. Comienza bajo el reborde costal derecho con el marcador
