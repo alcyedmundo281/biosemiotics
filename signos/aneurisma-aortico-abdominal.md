@@ -55,7 +55,7 @@ medios:
     fuente: "Wikimedia Commons"
     licencia_img: "CC0 1.0"
 
-refs: [isselbacher2022, fernando2022]
+refs: [isselbacher2022, fernando2022, fink2000]
 fecha: 2026-07-29
 actualizado: 2026-07-29
 licencia: CC-BY-NC-4.0
@@ -70,6 +70,18 @@ vascular potencial?**
 La ecografía focalizada no necesita demostrar ruptura para cambiar la prioridad.
 Encontrar un aneurisma en un paciente compatible basta para acelerar la ruta
 vascular.
+
+## Por qué el examen físico no basta
+
+La palpación abdominal puede sugerir una masa pulsátil, pero su rendimiento
+depende mucho del hábito corporal. En el estudio de Fink y colaboradores, la
+sensibilidad global del examen físico para detectar un aneurisma aórtico
+abdominal fue de 68 %. Alcanzó 91 % cuando el perímetro abdominal era menor de
+100 cm y descendió a 53 % cuando era igual o mayor de 100 cm [fink2000].
+
+Una palpación negativa, especialmente en un abdomen de mayor perímetro, no
+descarta el aneurisma. POCUS permite ver y medir directamente la aorta allí
+donde las manos solo pueden aumentar o disminuir la sospecha.
 
 ## Cómo se obtiene la ventana
 
