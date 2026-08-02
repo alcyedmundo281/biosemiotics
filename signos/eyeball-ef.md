@@ -79,7 +79,7 @@ describen consecuencias hemodinámicas, pero ninguna maniobra física permite ve
 cuánto disminuye la cavidad ventricular ni cuánto se engrosan sus paredes
 durante la sístole.
 
-FoCUS hace accesible ese movimiento interno y permite una clasificación rápida
+POCUS hace accesible ese movimiento interno y permite una clasificación rápida
 de la función sistólica global. La imagen no sustituye la hemodinámica completa:
 añade una pieza anatómica y dinámica que el examen físico no puede observar.
 
@@ -115,7 +115,7 @@ perfusión y causas reversibles antes de decidir fluidos o vasoactivos.
 **VI hiperdinámico y pequeño** → puede sugerir baja precarga o vasodilatación,
 pero no demuestra respuesta a fluidos. Revisa el contexto y otros signos.
 
-**No claramente deprimida** → no equivale a corazón normal. FoCUS puede pasar
+**No claramente deprimida** → no equivale a corazón normal. POCUS puede pasar
 por alto disfunción diastólica, alteraciones segmentarias o enfermedad valvular.
 
 ## Dónde NO confiar
@@ -138,7 +138,7 @@ por alto disfunción diastólica, alteraciones segmentarias o enfermedad valvula
 
 ## Evidencia
 
-1. Via G, et al. Recomendaciones internacionales para FoCUS. PMID: 24951446.
+1. Via G, et al. Recomendaciones internacionales para POCUS cardíaco focal. PMID: 24951446.
 2. Gudmundsson P, et al. Correlación de la estimación visual con métodos
    cuantitativos. PMID: 15882665.
 3. Rich S, et al. Estimación visual en ecocardiografía bidimensional.
@@ -147,7 +147,7 @@ por alto disfunción diastólica, alteraciones segmentarias o enfermedad valvula
    visual. PMID: 23993695.
 5. Bahl A, et al. Comparación prospectiva de métodos en POCUS de emergencias.
    PMID: 34654586.
-6. Farsi D, et al. Concordancia entre FoCUS de emergencias y ecocardiografía
+6. Farsi D, et al. Concordancia entre POCUS cardíaco de emergencias y ecocardiografía
    realizada por cardiología. PMID: 28593003.
 
 ## Practica esto
