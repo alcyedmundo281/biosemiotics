@@ -58,7 +58,7 @@ medios:
     fuente: "Wikimedia Commons"
     licencia_img: "CC BY-SA 4.0"
 
-refs: [pomero2013, lee2019, zaki2024]
+refs: [pomero2013, lee2019, zaki2024, wells2006]
 fecha: 2026-07-29
 actualizado: 2026-07-29
 licencia: CC-BY-NC-4.0
@@ -71,6 +71,17 @@ pregunta: **¿la vena profunda colapsa por completo cuando la comprimo?**
 
 La ecografía focalizada no “busca un coágulo blanco”. Ejecuta una prueba
 dinámica: una vena permeable desaparece; una vena con trombo conserva su luz.
+
+## Por qué el examen físico no basta
+
+Edema, dolor y diferencia de perímetro aumentan la sospecha, pero no identifican
+por sí solos qué paciente tiene una trombosis. En la revisión de Wells y
+colaboradores, la prevalencia real de TVP fue de 5 % en el grupo de probabilidad
+clínica baja, 17 % en el grupo moderado y 53 % en el grupo alto [wells2006].
+
+Incluso entre los pacientes clasificados con probabilidad clínica alta, casi la
+mitad no tenía TVP. La clínica organiza la probabilidad previa; la compresión
+ecográfica aporta la demostración dinámica de si la vena examinada colapsa o no.
 
 ## Cómo se obtiene la ventana
 
