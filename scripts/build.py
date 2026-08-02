@@ -48,6 +48,8 @@ _LATEX_ESPECIALES = {
     "}": r"\}",
     "~": r"\textasciitilde{}",
     "^": r"\textasciicircum{}",
+    "<": r"\textless{}",
+    ">": r"\textgreater{}",
 }
 
 
@@ -340,6 +342,34 @@ def quitar_bibliografia_manual(cuerpo: str) -> str:
     return "\n".join(salida).strip()
 
 
+def bibliografia_manual(cuerpo: str) -> list:
+    """Entradas numeradas de una lista bibliográfica escrita a mano.
+
+    Esa lista NO se publica: build_ghost la descarta y regenera la sección
+    desde refs.bib. Se cuenta solo para avisar cuando diverge del front matter.
+    """
+    lineas = cuerpo.splitlines()
+    entradas = []
+    i = 0
+    while i < len(lineas):
+        m = BIBLIO_HEADING.match(lineas[i].strip())
+        if not m:
+            i += 1
+            continue
+        nivel = len(m.group(1))
+        i += 1
+        while i < len(lineas):
+            encabezado = re.match(r"^(#{1,6})\s+", lineas[i])
+            if encabezado and len(encabezado.group(1)) <= nivel:
+                break
+            if lineas[i].startswith("**Nota de alcance:**"):
+                break
+            if re.match(r"^\s*\d+\.\s+\S", lineas[i]):
+                entradas.append(lineas[i].strip())
+            i += 1
+    return entradas
+
+
 def autores_ghost(valor: str) -> str:
     autores = [a.strip() for a in valor.split(" and ") if a.strip()]
     if len(autores) > 2:
@@ -458,6 +488,19 @@ def validar(entidades, aristas, raiz: Path):
                     f"consentimiento={e.get('consentimiento')!r}")
         if e["tipo"] in ("signo", "caso") and not e.get("refs"):
             alertas.append(f"[REFS] {e['id']}: sin referencias BibLaTeX")
+
+        # La sección 'Evidencia' escrita a mano es contenido muerto: se publica
+        # la que build_ghost regenera desde refs.bib. Cuando ambas divergen, el
+        # editor que lee el .md ve una bibliografía que no es la real —así se
+        # perdió de vista que fink2000, fuente de las cifras de AAA, no figuraba
+        # en su lista a mano. No se corrige el texto: se avisa de la deriva.
+        manual = bibliografia_manual(e["cuerpo"])
+        declaradas = e.get("refs") or []
+        if manual and len(manual) != len(declaradas):
+            alertas.append(
+                f"[EDITORIAL] {e['id']}: '## Evidencia' a mano lista "
+                f"{len(manual)} entradas y 'refs' declara {len(declaradas)}; "
+                f"se publica la de refs.bib")
 
     bib = raiz / "refs.bib"
     if bib.exists():

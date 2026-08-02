@@ -1,0 +1,20 @@
+# Normaliza los finales de línea en el repositorio a LF.
+#
+# build/index.json lo escribe indice.py, y en Windows el modo texto de Python
+# emite CRLF. Sin esta regla, un colaborador con core.autocrlf=false commitea
+# el índice con CRLF; la CI lo regenera en Linux con LF y el paso «detectar
+# deriva» falla con un diff fantasma de cada línea del archivo, sin que el
+# contenido haya cambiado.
+* text=auto
+
+# El índice y el grafo los consumen el buscador y jsDelivr: LF siempre.
+*.json text eol=lf
+*.md    text
+*.bib   text
+*.py    text
+
+# Binarios: que git no intente convertir nada.
+*.jpg binary
+*.jpeg binary
+*.png binary
+*.ogv binary
