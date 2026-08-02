@@ -196,27 +196,6 @@ imitan al signo sin ser derrame verdadero:
 Si el patrón no calza con la clínica, **la clínica manda**. El signo es una
 entrada de información, no un veredicto.
 
-## Evidencia
-
-1. Volpicelli G, et al. International evidence-based recommendations for
-   point-of-care lung ultrasound. *Intensive Care Med.* 2012.
-2. Soni NJ, et al. Ultrasound in the diagnosis and management of pleural
-   effusions. *J Hosp Med.* 2015.
-3. Balik M, et al. Ultrasound estimation of volume of pleural fluid in
-   mechanically ventilated patients. *Intensive Care Med.* 2006.
-4. Asciak R, et al. British Thoracic Society Clinical Statement on pleural
-   procedures. *Thorax.* 2023.
-5. Roberts ME, et al. British Thoracic Society Guideline for pleural disease.
-   *Thorax.* 2023.
-6. Ibitoye BO, et al. Ultrasonographic quantification of pleural effusion:
-   comparison of four formulae. *Ultrasonography.* 2018.
-7. Teichgräber UK, Hackbarth J. Sonographic bedside quantification of pleural
-   effusion compared to computed tomography volumetry in ICU patients.
-   *Ultrasound Int Open.* 2018.
-8. Rodríguez Lima DR, et al. Real-time ultrasound-guided thoracentesis in the
-   intensive care unit: prevalence of mechanical complications. *Ultrasound J.*
-   2020.
-
 ## Practica esto
 
 Esta semana, en cinco pacientes sin derrame conocido, ve a la base pulmonar y

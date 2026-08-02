@@ -141,16 +141,6 @@ esté sano.**
 Si el patrón no calza con la clínica, **la clínica manda.** El signo es una entrada
 de información, no un veredicto.
 
-## Evidencia
-
-1. Lichtenstein DA, Mezière GA. Relevance of lung ultrasound in the diagnosis of
-   acute respiratory failure: the BLUE protocol. *Chest.* 2008.
-2. Volpicelli G, et al. International evidence-based recommendations for
-   point-of-care lung ultrasound. *Intensive Care Med.* 2012.
-3. Volpicelli G, et al. International evidence-based recommendations for
-   point-of-care lung ultrasound: 2025 focused update of the 2012 recommendations.
-   *Intensive Care Med.* 2025.
-
 ## Practica esto
 
 Esta semana escanea cinco tórax sanos. Encuentra la línea pleural, confirma que

@@ -129,21 +129,6 @@ obstrucción alta, tiempo desde la última micción y contexto clínico.
 - **Retención crónica:** no existe un umbral universal y el paciente puede no
   tener dolor.
 
-## Evidencia
-
-1. Fernández-Prada I, Ballesteros-Peña S. Revisión sistemática sobre ecografía
-   vesical y reducción de sondajes innecesarios. PMID: 40032047.
-2. Jalbani IK, Ather MH. Precisión de ecografía tridimensional frente a
-   cateterización para residuo posmiccional. PMID: 26019951.
-3. Hvarness H, et al. Comparación de métodos para calcular volumen vesical.
-   PMID: 12201931.
-4. Cho MK, et al. Precisión de un escáner portátil para residuo urinario.
-   PMID: 27942791.
-5. Nunan J, et al. Cálculo POCUS de volumen vesical en una unidad médica aguda.
-   PMID: 38619168.
-6. Christiaans CHH, et al. Variabilidad de umbrales para retención urinaria
-   crónica. PMID: 42436676.
-
 ## Practica esto
 
 Escanea vejigas antes y después de la micción. Identifica el borde completo en

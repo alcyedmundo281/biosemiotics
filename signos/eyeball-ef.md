@@ -136,20 +136,6 @@ por alto disfunción diastólica, alteraciones segmentarias o enfermedad valvula
 - **Pregunta compleja:** si la conducta depende de una cifra, solicita
   cuantificación y ecocardiografía formal.
 
-## Evidencia
-
-1. Via G, et al. Recomendaciones internacionales para POCUS cardíaco focal. PMID: 24951446.
-2. Gudmundsson P, et al. Correlación de la estimación visual con métodos
-   cuantitativos. PMID: 15882665.
-3. Rich S, et al. Estimación visual en ecocardiografía bidimensional.
-   PMID: 7113901.
-4. Thavendiranathan P, et al. Entrenamiento, variabilidad y precisión de la estimación
-   visual. PMID: 23993695.
-5. Bahl A, et al. Comparación prospectiva de métodos en POCUS de emergencias.
-   PMID: 34654586.
-6. Farsi D, et al. Concordancia entre POCUS cardíaco de emergencias y ecocardiografía
-   realizada por cardiología. PMID: 28593003.
-
 ## Practica esto
 
 Revisa diez estudios con función conocida. Antes de mirar el informe, clasifica
