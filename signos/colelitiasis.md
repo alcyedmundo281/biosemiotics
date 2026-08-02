@@ -132,15 +132,6 @@ Cambia la ventana y solicita imagen formal si la sospecha continúa.
 - **Una ventana incompleta no descarta enfermedad.** Obesidad, dolor, ayuno
   insuficiente y gas pueden impedir revisar cuello, cuerpo y fondo.
 
-## Evidencia
-
-1. Sharif S, et al. Evaluating the diagnostic accuracy of point-of-care
-   ultrasound for cholelithiasis and cholecystitis in a Canadian emergency
-   department. *CJEM.* 2021.
-2. Rosen CL, et al. Ultrasonography by emergency physicians in patients with
-   suspected cholecystitis. *Am J Emerg Med.* 2001.
-3. Feldman MK, et al. US artifacts. *Radiographics.* 2009.
-
 ## Practica esto
 
 En cinco pacientes, identifica la vesícula en dos planos antes de buscar

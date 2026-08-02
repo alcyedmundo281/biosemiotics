@@ -117,17 +117,6 @@ ni la preparación segura del procedimiento.
 - **Taponamiento:** no se diagnostica solo por ver líquido ni se descarta por una
   presión arterial conservada.
 
-## Evidencia
-
-1. Via G, et al. Recomendaciones internacionales para FoCUS. PMID: 24951446.
-2. Pérez-Casares A, et al. Evaluación ecocardiográfica del derrame pericárdico
-   y taponamiento. PMID: 28484689.
-3. Stolz L, et al. Rendimiento limitado de historia y examen físico en derrame
-   pericárdico. PMID: 28123617.
-4. Blanco P, Volpicelli G. Errores frecuentes en POCUS. PMID: 27783380.
-5. Farsi D, et al. Concordancia de FoCUS realizado por residentes de
-   emergencias. PMID: 28593003.
-
 ## Practica esto
 
 En cada estudio cardíaco, identifica primero el miocardio, el pericardio y la

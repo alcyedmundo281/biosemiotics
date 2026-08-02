@@ -132,14 +132,6 @@ Continúa la ruta diagnóstica que exige la clínica.
   y la bifurcación, el recorrido está incompleto.
 - **Una aorta normal no explica todo shock.** Continúa buscando otras causas.
 
-## Evidencia
-
-1. Isselbacher EM, et al. 2022 ACC/AHA Guideline for the Diagnosis and
-   Management of Aortic Disease. *Circulation.* 2022.
-2. Fernando SM, et al. Accuracy of presenting symptoms, physical examination,
-   and imaging for diagnosis of ruptured abdominal aortic aneurysm: systematic
-   review and meta-analysis. *Acad Emerg Med.* 2022.
-
 ## Practica esto
 
 En cinco adultos, localiza primero la vértebra y después la aorta. Recorre tres

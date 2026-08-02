@@ -131,18 +131,6 @@ ecografía vascular formal.
   alto, aplica la estrategia diagnóstica validada de tu entorno.
 - **No uses solo color.** Flujo aparente no demuestra compresibilidad completa.
 
-## Evidencia
-
-1. Pomero F, et al. Accuracy of emergency physician-performed ultrasonography in
-   the diagnosis of deep-vein thrombosis: a systematic review and meta-analysis.
-   *Thromb Haemost.* 2013.
-2. Lee JH, et al. Comparison of 2-point and 3-point point-of-care ultrasound
-   techniques for deep vein thrombosis at the emergency department: a
-   meta-analysis. *Medicine (Baltimore).* 2019.
-3. Zaki HA, et al. Deep venous thrombosis diagnostics: gleaning insights from
-   point-of-care ultrasound techniques in emergencies: a systematic review and
-   meta-analysis. *Ultrasound J.* 2024.
-
 ## Practica esto
 
 En cinco exploraciones normales, identifica arteria y vena antes de comprimir.

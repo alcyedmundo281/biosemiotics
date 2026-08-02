@@ -131,18 +131,6 @@ retención y reevalúa después de resolverla cuando sea clínicamente apropiado
   deterioro renal, riñón único, dolor refractario o diagnóstico incierto exigen
   una estrategia más amplia.
 
-## Evidencia
-
-1. Sibley S, et al. Point-of-care ultrasound for the detection of hydronephrosis
-   in emergency department patients with suspected renal colic. *Ultrasound J.*
-   2020.
-2. Smith-Bindman R, et al. Ultrasonography versus computed tomography for
-   suspected nephrolithiasis. *N Engl J Med.* 2014.
-3. O'Neill WC. Renal relevant radiology: use of ultrasound in kidney disease and
-   nephrology procedures. *Clin J Am Soc Nephrol.* 2014.
-4. Turk M, et al. Point-of-Care Kidney and Genitourinary Ultrasound in Adults:
-   Image Acquisition. *J Vis Exp.* 2024.
-
 ## Practica esto
 
 Escanea ambos riñones y la vejiga en cinco pacientes. Antes de decir

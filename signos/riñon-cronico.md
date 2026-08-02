@@ -325,25 +325,6 @@ la decisión clínica.
 - Una morfología crónica no excluye lesión renal aguda sobreañadida.
 - El informe debe expresar probabilidad, técnica y limitaciones.
 
-### Referencias
-
-1. O'Neill WC. Renal relevant radiology: use of ultrasound in kidney disease
-   and nephrology procedures. *Clinical Journal of the American Society of
-   Nephrology.* 2014;9:373–381. DOI: 10.2215/CJN.03170313.
-2. Moghazi S, et al. Correlation of renal histopathology with sonographic
-   findings. *Kidney International.* 2005;67:1515–1520.
-   DOI: 10.1111/j.1523-1755.2005.00230.x.
-3. Beland MD, et al. Renal cortical thickness measured at ultrasound: is it
-   better than renal length as an indicator of renal function in chronic
-   kidney disease? *AJR American Journal of Roentgenology.* 2010;195:W146–W149.
-   DOI: 10.2214/AJR.09.4104.
-4. Fiorini F, Barozzi L. The role of ultrasonography in the study of medical
-   nephropathy. *Journal of Ultrasound.* 2007;10:161–167.
-   DOI: 10.1016/j.jus.2007.09.001.
-5. Emamian SA, et al. Kidney dimensions at sonography: correlation with age,
-   sex, and habitus in 665 adult volunteers. *AJR American Journal of
-   Roentgenology.* 1993;160:83–86. DOI: 10.2214/AJR.160.1.8416654.
-
 **Nota de alcance:** material educativo para profesionales en formación. No
 sustituye protocolos locales, entrenamiento acreditado, supervisión clínica
 ni valoración integral del paciente.
