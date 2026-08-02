@@ -77,6 +77,19 @@ El perfil A es la respuesta "seco". No es un hallazgo que se busca: es el estado
 basal contra el cual se lee toda la patología pulmonar. Reconocerlo primero es lo
 que permite que una línea B, cuando aparezca, signifique algo.
 
+## Por qué el examen físico no basta
+
+Los crepitantes son poco sensibles y poco específicos en el paciente con edema
+temprano. El paciente obeso, el que no colabora y el ruido de la sala degradan
+la auscultación. El error tiene precio en las dos direcciones: diuretizar al
+paciente seco lo deshidrata; no diuretizar al húmedo permite que el edema
+progrese.
+
+El perfil A lee la misma bifurcación que las líneas B, pero desde el lado seco.
+La ecografía no depende de oír crepitantes: muestra si predominan artefactos
+horizontales con sliding conservado o si aparecen líneas B que cambian la
+hipótesis clínica.
+
 ## Cómo se obtiene la ventana
 
 Sonda sobre un espacio intercostal, en la línea medioclavicular. Sirve cualquiera
