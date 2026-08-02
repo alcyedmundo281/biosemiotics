@@ -56,7 +56,7 @@ medios:
     fuente: "Wikimedia Commons"
     licencia_img: "CC BY 2.5"
 
-refs: [via2014, gudmundsson2005, rich1982, thavendiranathan2013, bahl2021, farsi2017]
+refs: [via2014, gudmundsson2005, rich1982, thavendiranathan2013, bahl2021, farsi2017, cole2015]
 fecha: 2026-07-29
 actualizado: 2026-07-29
 licencia: CC-BY-NC-4.0
@@ -71,6 +71,17 @@ global claramente débil, no claramente débil o hiperdinámica?**
 Esta lectura rápida no reemplaza la fracción de eyección calculada. Sirve para
 reconocer extremos que cambian la hipótesis hemodinámica y decidir qué evaluación
 necesita el paciente a continuación.
+
+## Por qué el examen físico no basta
+
+La presión arterial, los pulsos, la perfusión periférica y la auscultación
+describen consecuencias hemodinámicas, pero ninguna maniobra física permite ver
+cuánto disminuye la cavidad ventricular ni cuánto se engrosan sus paredes
+durante la sístole.
+
+FoCUS hace accesible ese movimiento interno y permite una clasificación rápida
+de la función sistólica global. La imagen no sustituye la hemodinámica completa:
+añade una pieza anatómica y dinámica que el examen físico no puede observar.
 
 ## Cómo se obtiene la ventana
 
@@ -117,6 +128,11 @@ por alto disfunción diastólica, alteraciones segmentarias o enfermedad valvula
   necesariamente la contractilidad intrínseca.
 - **Operador principiante:** la estimación visual mejora con entrenamiento y
   retroalimentación; no asignes porcentajes exactos.
+- **La reproducibilidad real es limitada:** al clasificar la función del VI en
+  cinco categorías, la probabilidad de que un operador coincidiera con otro fue
+  de 50 % y la de coincidir consigo mismo al revisar nuevamente la misma imagen
+  fue de 68 %. Además, los operadores no reconocieron de forma fiable cuándo la
+  mala calidad de imagen deformaba su estimación [cole2015].
 - **Pregunta compleja:** si la conducta depende de una cifra, solicita
   cuantificación y ecocardiografía formal.
 
