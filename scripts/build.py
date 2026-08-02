@@ -6,6 +6,7 @@ UNA fuente (Markdown + front-matter YAML) → MUCHAS salidas.
   build/atlas.db     SQLite consultable (atlas navegable)
   build/libro.tex    LaTeX/BibLaTeX (libro: DOI, ISBN, sello)
   build/grafo.json   nodos + aristas (exploración tipo aventura)
+  build/ghost/       Markdown con citas numéricas listo para Ghost
 
 Uso:
   python3 build.py                 # todo + validación
@@ -14,6 +15,8 @@ Uso:
 """
 import argparse
 import json
+import re
+import shutil
 import sqlite3
 import sys
 from pathlib import Path
@@ -24,6 +27,12 @@ sys.stdout.reconfigure(encoding="utf-8")
 
 RELS = ("relacionado_con", "prerequisito_de", "se_basa_en",
         "contrasta_con", "signos", "conceptos")
+
+CITA_BIBLATEX = re.compile(r"\[([A-Za-z][A-Za-z0-9_:-]*)\]")
+BIBLIO_HEADING = re.compile(
+    r"^(#{2,6})\s+(?:Evidencia|Referencias|Bibliograf[ií]a)\s*$",
+    re.IGNORECASE,
+)
 
 # Caracteres especiales de LaTeX. El orden de las claves no importa: se
 # recorre el string original una sola vez, así que una sustitución nunca
@@ -281,6 +290,142 @@ def build_grafo(entidades, build_dir: Path):
     return g, aristas
 
 
+# ─────────────────────── SALIDA 4: GHOST ───────────────────────
+def cargar_bibliografia(path: Path) -> dict:
+    """Lee los campos usados por la salida Ghost desde refs.bib.
+
+    refs.py genera entradas planas delimitadas por llaves. Mantener este lector
+    local evita añadir una dependencia que no está disponible en la CI.
+    """
+    txt = path.read_text(encoding="utf-8")
+    refs = {}
+    for tipo, clave, cuerpo in re.findall(
+            r"@(\w+)\{([^,]+),(.*?)\n\}", txt, re.DOTALL):
+        campos = {}
+        for campo, valor in re.findall(
+                r"(\w+)\s*=\s*\{(.*?)\}\s*,?", cuerpo, re.DOTALL):
+            campos[campo.lower()] = " ".join(valor.split())
+        campos["tipo"] = tipo.lower()
+        refs[clave.strip()] = campos
+    return refs
+
+
+def quitar_bibliografia_manual(cuerpo: str) -> str:
+    """Quita listas bibliográficas mantenidas a mano antes de regenerarlas."""
+    lineas = cuerpo.splitlines()
+    salida = []
+    i = 0
+    while i < len(lineas):
+        m = BIBLIO_HEADING.match(lineas[i].strip())
+        if not m:
+            salida.append(lineas[i])
+            i += 1
+            continue
+
+        nivel = len(m.group(1))
+        i += 1
+        while i < len(lineas):
+            encabezado = re.match(r"^(#{1,6})\s+", lineas[i])
+            if encabezado and len(encabezado.group(1)) <= nivel:
+                break
+            # Riñón crónico termina su lista con esta nota editorial, que no es
+            # parte de la bibliografía y debe conservarse antes de Evidencia.
+            if lineas[i].startswith("**Nota de alcance:**"):
+                break
+            i += 1
+        while salida and not salida[-1].strip():
+            salida.pop()
+        if salida:
+            salida.append("")
+    return "\n".join(salida).strip()
+
+
+def autores_ghost(valor: str) -> str:
+    autores = [a.strip() for a in valor.split(" and ") if a.strip()]
+    if len(autores) > 2:
+        return f"{autores[0]}, et al"
+    return ", ".join(autores)
+
+
+def cerrar_frase(valor: str) -> str:
+    valor = valor.strip()
+    return valor if valor.endswith((".", "?", "!")) else valor + "."
+
+
+def referencia_ghost(numero: int, ref: dict) -> str:
+    autores = autores_ghost(ref.get("author", ""))
+    titulo = ref.get("title", "")
+    revista = ref.get("journal", "").rstrip(".")
+    anio = ref.get("year", "")
+    volumen = ref.get("volume", "")
+    paginas = ref.get("pages", "").replace("--", "–")
+    doi = ref.get("doi", "")
+    pmid = ref.get("pmid", "")
+    localizacion = anio
+    if volumen:
+        localizacion += f";{volumen}"
+    if paginas:
+        localizacion += f":{paginas}"
+    return (f"{numero}. {cerrar_frase(autores)} {cerrar_frase(titulo)} "
+            f"*{revista}.* {localizacion}. "
+            f"DOI: {doi}. PMID: {pmid}.")
+
+
+def resolver_citas(cuerpo: str, claves_declaradas: list, bib: dict):
+    """Convierte claves a números y devuelve el orden bibliográfico estable."""
+    orden = []
+    numeros = {}
+
+    def reemplazar(match):
+        clave = match.group(1)
+        if clave not in bib:
+            return match.group(0)
+        if clave not in numeros:
+            numeros[clave] = len(orden) + 1
+            orden.append(clave)
+        return f"[{numeros[clave]}]"
+
+    resuelto = CITA_BIBLATEX.sub(reemplazar, cuerpo)
+    # Algunas fichas antiguas solo declaran las fuentes en `refs` y todavía no
+    # tienen citas en línea. Se conservan después de las citadas, en el orden
+    # editorial del front matter, para no perder su bibliografía publicada.
+    for clave in claves_declaradas:
+        if clave not in numeros:
+            numeros[clave] = len(orden) + 1
+            orden.append(clave)
+    return resuelto, orden
+
+
+def build_ghost(entidades, build_dir: Path, bib_path: Path) -> Path:
+    """Genera Markdown listo para copiar a Ghost sin alterar la fuente."""
+    destino = build_dir / "ghost"
+    if destino.exists():
+        shutil.rmtree(destino)
+    destino.mkdir(parents=True)
+    bib = cargar_bibliografia(bib_path)
+
+    for e in entidades:
+        cuerpo = quitar_bibliografia_manual(e["cuerpo"])
+        cuerpo, orden = resolver_citas(cuerpo, e.get("refs") or [], bib)
+        referencias = [referencia_ghost(i, bib[clave])
+                       for i, clave in enumerate(orden, 1)]
+        if referencias:
+            cuerpo = cuerpo.rstrip() + "\n\n## Evidencia\n\n" + "\n".join(referencias)
+
+        abstract = " ".join(str(e.get("abstract") or "").split())
+        cabecera = "\n".join([
+            "---",
+            f"title: {json.dumps(str(e['titulo']), ensure_ascii=False)}",
+            f"excerpt: {json.dumps(abstract, ensure_ascii=False)}",
+            "---",
+            "",
+        ])
+        archivo = destino / e["_archivo"]
+        archivo.parent.mkdir(parents=True, exist_ok=True)
+        archivo.write_text(cabecera + cuerpo.rstrip() + "\n", encoding="utf-8")
+    return destino
+
+
 # ─────────────────────── VALIDACIÓN ───────────────────────
 def validar(entidades, aristas, raiz: Path):
     """(errores, alertas). Errores rompen el grafo o bloquean publicación."""
@@ -318,7 +463,7 @@ def validar(entidades, aristas, raiz: Path):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--raiz", default=".")
-    ap.add_argument("--solo", choices=["db", "tex", "grafo"])
+    ap.add_argument("--solo", choices=["db", "tex", "grafo", "ghost"])
     ap.add_argument("--autor", default="Alcy")
     a = ap.parse_args()
 
@@ -341,6 +486,9 @@ def main():
         print("  → libro.tex")
     if a.solo in (None, "grafo"):
         print("  → grafo.json")
+    if a.solo in (None, "ghost"):
+        ghost = build_ghost(ent, build_dir, raiz / "refs.bib")
+        print(f"  → ghost/       ({len(ent)} artículos Ghost-ready)")
 
     errores, alertas = validar(ent, aristas, raiz)
     if errores:

@@ -556,9 +556,10 @@
    "n_imagenes": 1,
    "refs": [
     "isselbacher2022",
-    "fernando2022"
+    "fernando2022",
+    "fink2000"
    ],
-   "n_refs": 2
+   "n_refs": 3
   },
   {
    "id": "signo-colelitiasis",
@@ -903,9 +904,10 @@
     "rich1982",
     "thavendiranathan2013",
     "bahl2021",
-    "farsi2017"
+    "farsi2017",
+    "cole2015"
    ],
-   "n_refs": 6
+   "n_refs": 7
   },
   {
    "id": "signo-globo-vesical",
@@ -1270,12 +1272,15 @@
    "n_loops": 0,
    "n_imagenes": 1,
    "refs": [
+    "lichtenstein1995",
     "lichtenstein2000",
+    "lichtenstein2003",
     "staub2018",
     "skulec2021",
-    "volpicelli2012"
+    "volpicelli2012",
+    "chan2020"
    ],
-   "n_refs": 4
+   "n_refs": 7
   },
   {
    "id": "signo-perfil-a",
@@ -1510,9 +1515,10 @@
    "refs": [
     "pomero2013",
     "lee2019",
-    "zaki2024"
+    "zaki2024",
+    "wells2006"
    ],
-   "n_refs": 3
+   "n_refs": 4
   },
   {
    "id": "caso-01-disnea",
