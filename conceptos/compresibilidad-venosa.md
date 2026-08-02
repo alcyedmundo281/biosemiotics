@@ -2,7 +2,7 @@
 id: compresibilidad-venosa
 tipo: concepto
 titulo: "Compresibilidad venosa: una prueba dinámica, no una foto"
-url: ""
+url: "https://www.biosemiotics.net/compresibilidad-venosa-una-prueba-dinamica-no-una-foto/"
 
 abstract: >
   Una vena normal colapsa por completo cuando la sonda aplica presión suficiente

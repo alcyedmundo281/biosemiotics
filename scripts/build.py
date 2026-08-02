@@ -396,6 +396,15 @@ def resolver_citas(cuerpo: str, claves_declaradas: list, bib: dict):
     return resuelto, orden
 
 
+def excerpt_ghost(valor: str, limite: int = 300) -> str:
+    """Normaliza y limita el excerpt al máximo aceptado por Ghost."""
+    texto = " ".join(str(valor or "").split())
+    if len(texto) <= limite:
+        return texto
+    recorte = texto[:limite - 1].rsplit(" ", 1)[0].rstrip(" ,;:")
+    return recorte + "…"
+
+
 def build_ghost(entidades, build_dir: Path, bib_path: Path) -> Path:
     """Genera Markdown listo para copiar a Ghost sin alterar la fuente."""
     destino = build_dir / "ghost"
@@ -412,7 +421,7 @@ def build_ghost(entidades, build_dir: Path, bib_path: Path) -> Path:
         if referencias:
             cuerpo = cuerpo.rstrip() + "\n\n## Evidencia\n\n" + "\n".join(referencias)
 
-        abstract = " ".join(str(e.get("abstract") or "").split())
+        abstract = excerpt_ghost(e.get("abstract"))
         cabecera = "\n".join([
             "---",
             f"title: {json.dumps(str(e['titulo']), ensure_ascii=False)}",

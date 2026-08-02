@@ -2,7 +2,7 @@
 id: modo-m
 tipo: concepto
 titulo: "Modo M: convertir movimiento en una línea de tiempo"
-url: ""
+url: "https://www.biosemiotics.net/modo-m-convertir-movimiento-en-una-linea-de-tiempo/"
 
 abstract: >
   El modo M registra repetidamente una sola línea del haz y coloca el tiempo en
