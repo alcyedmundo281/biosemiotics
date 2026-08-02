@@ -124,8 +124,10 @@ tronco (el escenario típico de UCI):
 Se mide la separación máxima entre la pleura parietal y el pulmón en una ventana
 definida, al final de la espiración, y se multiplica por 20. Fórmula de Balik en
 81 pacientes con ventilación mecánica, supinos con el tronco elevado 15°: el
-error medio de predicción fue de unos 158 mL, y el estudio excluyó empiema,
-hemotórax y patología diafragmática [balik2006].
+error medio de predicción fue de 158,4 ± 160,6 mL —la desviación es tan grande
+como la media, de modo que la fórmula ordena la magnitud pero no fija el
+volumen—, y el estudio excluyó empiema, hemotórax y patología diafragmática
+[balik2006].
 
 Existen alternativas para otros escenarios. Teichgräber validó contra TC una
 fórmula basada en el grosor del creciente en el sexto espacio intercostal
