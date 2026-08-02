@@ -71,6 +71,17 @@ POCUS busca la consecuencia de la obstrucción —hidronefrosis— más que la p
 La mayoría de los cálculos ureterales no se visualizan directamente en una
 exploración focalizada.
 
+## Por qué el examen físico no basta
+
+El dolor tipo cólico, la puñopercusión lumbar y los cambios en la diuresis pueden
+sugerir una obstrucción, pero ninguna maniobra física permite observar la pelvis
+y los cálices ni demostrar que el sistema colector está dilatado.
+
+La ecografía accede a esa anatomía profunda y muestra una consecuencia de la
+obstrucción. El hallazgo todavía debe integrarse con función renal, fiebre,
+riñón único, vejiga y evolución, porque dilatación no equivale automáticamente a
+una piedra obstructiva.
+
 ## Cómo se obtiene la ventana
 
 Usa una sonda convexa. Examina cada riñón desde el flanco o una ventana más
