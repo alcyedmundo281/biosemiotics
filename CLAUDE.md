@@ -35,6 +35,8 @@ La documentación de referencia (esquema completo, instructivo del artículo) vi
 
 El compilador correcto es **LuaLaTeX, no pdflatex**. El banco escribe umbrales y decisiones con símbolos Unicode estructurales (`≥`, `→`, `±`) porque así se leen en la clínica — parchearlos uno por uno no escala. El preámbulo que genera `build_latex()` usa `fontspec` (sin `inputenc`/`fontenc`, que son cosas de pdflatex) y fija `\setmainfont{FreeSerif}`, la única fuente disponible que cubre esos glifos sin fallback silencioso.
 
+**Paquetes LaTeX requeridos** (además de lo básico de `book`): `fontspec`, `babel` (spanish), `biblatex`+`biber`, y para las figuras de los signos con imagen: `graphicx`, `float`, `adjustbox`. En Debian/Ubuntu, `texlive-latex-recommended` + `texlive-latex-extra` + `texlive-lang-spanish` + `texlive-luatex` + `biber` cubren todo. Si falta `adjustbox.sty`, la compilación aborta de inmediato con `File 'adjustbox.sty' not found` — no es un error del banco.
+
 ```bash
 cd build
 lualatex -interaction=nonstopmode libro.tex
