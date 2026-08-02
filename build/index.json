@@ -1196,7 +1196,7 @@
    "titulo": "Neumotórax en POCUS: la ausencia de sliding no basta",
    "titulo_en": "Pneumothorax in POCUS: absent lung sliding is not enough",
    "url": "https://www.biosemiotics.net/neumotorax-en-pocus-la-ausencia-de-sliding-no-basta/",
-   "version": "1.0",
+   "version": "1.1",
    "abstract": "La ausencia de sliding pleural, líneas B y pulso pulmonar crea un patrón compatible con neumotórax; encontrar un lung point lo confirma con alta especificidad. POCUS permite una evaluación rápida al lado de la camilla, pero ninguna ausencia aislada basta. Apnea, ventilación selectiva, adherencias, pleurodesis, fibrosis y bullas pueden imitarlo, y un lung point puede faltar cuando el neumotórax es extenso.\n",
    "sistema": "respiratorio",
    "organo": "pleura",
@@ -1208,7 +1208,7 @@
    "umbral": "No usa un conteo. La presencia de sliding o de líneas B excluye neumotórax en el punto examinado. La ausencia de sliding aislada no confirma el diagnóstico; el lung point aporta confirmación cuando puede encontrarse.\n",
    "licencia": "CC-BY-NC-4.0",
    "fecha": "2026-07-29",
-   "actualizado": "2026-07-29",
+   "actualizado": "2026-08-02",
    "decision": "Integra el patrón con estabilidad y mecanismo; en un paciente inestable compatible, activa tratamiento urgente sin retrasarlo por intentar documentar todos los signos.",
    "sonda": [
     "lineal",
@@ -1265,11 +1265,17 @@
    "medios": [
     {
      "tipo": "imagen",
-     "id": "wikimedia:Barcode-Zeichen.jpg",
-     "descripcion": "Modo M con patrón de orilla normal y patrón estratosfera",
-     "credito": "Schomynv",
+     "id": "wikimedia:Clinician-performed-resuscitative-ultrasonography-for-the-initial-evaluation-and-resuscitation-of-1757-7241-17-34-S7.ogv",
+     "descripcion": "Fotograma de ecografía pulmonar que muestra el lung point, límite lateral del neumotórax; el pulmón entra deslizando desde la derecha con la respiración",
+     "credito": "Gillman LM, Ball CG, Panebianco N, Al-Kadi A y Kirkpatrick AW (fotograma derivado del video original)",
      "fuente": "Wikimedia Commons",
-     "licencia_img": "Dominio público"
+     "fuente_url": "https://commons.wikimedia.org/wiki/File:Clinician-performed-resuscitative-ultrasonography-for-the-initial-evaluation-and-resuscitation-of-1757-7241-17-34-S7.ogv",
+     "licencia_img": "CC BY 2.0",
+     "licencia_url": "https://creativecommons.org/licenses/by/2.0/",
+     "archivo_local": "assets/img/neumotorax.jpg",
+     "original_local": "assets/media/neumotorax-lung-point.ogv",
+     "adaptacion": "Fotograma fijo de la previsualización de Wikimedia Commons, 500 × 375 px",
+     "referencia": "gillman2009"
     }
    ],
    "n_loops": 0,
@@ -1281,9 +1287,10 @@
     "staub2018",
     "skulec2021",
     "volpicelli2012",
-    "chan2020"
+    "chan2020",
+    "gillman2009"
    ],
-   "n_refs": 7
+   "n_refs": 8
   },
   {
    "id": "signo-perfil-a",

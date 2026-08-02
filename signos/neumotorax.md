@@ -5,7 +5,7 @@ titulo: "Neumotórax en POCUS: la ausencia de sliding no basta"
 titulo_en: "Pneumothorax in POCUS: absent lung sliding is not enough"
 url: "https://www.biosemiotics.net/neumotorax-en-pocus-la-ausencia-de-sliding-no-basta/"
 doi: null
-version: "1.0"
+version: "1.1"
 
 abstract: >
   La ausencia de sliding pleural, líneas B y pulso pulmonar crea un patrón
@@ -50,15 +50,21 @@ autores:
 
 medios:
   - tipo: imagen
-    id: "wikimedia:Barcode-Zeichen.jpg"
-    descripcion: "Modo M con patrón de orilla normal y patrón estratosfera"
-    credito: "Schomynv"
+    id: "wikimedia:Clinician-performed-resuscitative-ultrasonography-for-the-initial-evaluation-and-resuscitation-of-1757-7241-17-34-S7.ogv"
+    descripcion: "Fotograma de ecografía pulmonar que muestra el lung point, límite lateral del neumotórax; el pulmón entra deslizando desde la derecha con la respiración"
+    credito: "Gillman LM, Ball CG, Panebianco N, Al-Kadi A y Kirkpatrick AW (fotograma derivado del video original)"
     fuente: "Wikimedia Commons"
-    licencia_img: "Dominio público"
+    fuente_url: "https://commons.wikimedia.org/wiki/File:Clinician-performed-resuscitative-ultrasonography-for-the-initial-evaluation-and-resuscitation-of-1757-7241-17-34-S7.ogv"
+    licencia_img: "CC BY 2.0"
+    licencia_url: "https://creativecommons.org/licenses/by/2.0/"
+    archivo_local: "assets/img/neumotorax.jpg"
+    original_local: "assets/media/neumotorax-lung-point.ogv"
+    adaptacion: "Fotograma fijo de la previsualización de Wikimedia Commons, 500 × 375 px"
+    referencia: "gillman2009"
 
-refs: [lichtenstein1995, lichtenstein2000, lichtenstein2003, staub2018, skulec2021, volpicelli2012, chan2020]
+refs: [lichtenstein1995, lichtenstein2000, lichtenstein2003, staub2018, skulec2021, volpicelli2012, chan2020, gillman2009]
 fecha: 2026-07-29
-actualizado: 2026-07-29
+actualizado: 2026-08-02
 licencia: CC-BY-NC-4.0
 ---
 
@@ -159,6 +165,10 @@ artefactos originados en la pleura visceral. Debe buscarse desplazando la sonda
 lateralmente desde la región anterior sospechosa. Cuando se identifica
 correctamente y concuerda con el contexto clínico, es altamente específico para
 neumotórax [lichtenstein2000].
+
+La imagen destacada procede de un video clínico abierto que documenta precisamente
+ese límite lateral: con la respiración, el pulmón entra deslizando desde la derecha
+hacia la región donde las pleuras estaban separadas [gillman2009].
 
 No toda transición es un lung point verdadero. Bullas, contusiones, adherencias
 e interfaces anatómicas cercanas al mediastino o al diafragma pueden producir
