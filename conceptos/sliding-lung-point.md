@@ -2,7 +2,7 @@
 id: sliding-lung-point
 tipo: concepto
 titulo: "Sliding pleural y lung point: movimiento antes que diagnóstico"
-url: ""
+url: "https://www.biosemiotics.net/sliding-pleural-y-lung-point-movimiento-antes-que-diagnostico/"
 
 abstract: >
   El sliding pleural es el movimiento respiratorio de la pleura visceral contra
