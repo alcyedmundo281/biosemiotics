@@ -19,6 +19,17 @@ orden: 4
 tags: [vena, compresion, tvp, vascular]
 relacionado_con: [ecogenicidad, tipos-de-sonda, knobology-profundidad]
 prerequisito_de: [signo-trombosis-venosa-profunda]
+medios:
+  - tipo: imagen
+    id: "wikimedia:USG_scan_of_thrombus_in_the_left_common_femoral_vein.png"
+    descripcion: "Ecografía transversal de la vena femoral común izquierda antes y durante la compresión; la luz venosa persiste por trombo"
+    credito: "Cerevisae"
+    fuente: "Wikimedia Commons"
+    fuente_url: "https://commons.wikimedia.org/wiki/File:USG_scan_of_thrombus_in_the_left_common_femoral_vein.png"
+    licencia_img: "CC BY-SA 4.0"
+    licencia_url: "https://creativecommons.org/licenses/by-sa/4.0/"
+    archivo_local: "assets/img/compresibilidad-venosa.jpg"
+    adaptacion: "Conversión de PNG a JPEG y reducción proporcional a 1800 × 1048 px; contenido clínico y anotaciones conservados"
 refs: [pomero2013, lee2019, zaki2024]
 ---
 

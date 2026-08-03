@@ -18,6 +18,17 @@ orden: 3
 tags: [modo-m, movimiento, tiempo, tecnica]
 relacionado_con: [knobology-profundidad, knobology-ganancia, tipos-de-sonda]
 prerequisito_de: [signo-neumotorax]
+medios:
+  - tipo: imagen
+    id: "wikimedia:Sea_shore_sign_on_a_lung_ultrasound.jpg"
+    descripcion: "Modo M pulmonar con líneas horizontales superficiales y patrón granular bajo la pleura: signo de la orilla de mar"
+    credito: "Tinss"
+    fuente: "Wikimedia Commons"
+    fuente_url: "https://commons.wikimedia.org/wiki/File:Sea_shore_sign_on_a_lung_ultrasound.jpg"
+    licencia_img: "CC BY-SA 4.0"
+    licencia_url: "https://creativecommons.org/licenses/by-sa/4.0/"
+    archivo_local: "assets/img/modo-m.jpg"
+    adaptacion: "Archivo original de Wikimedia Commons, 1536 × 846 px; sin modificaciones"
 refs: [hangiandreou2003, aldrich2007, volpicelli2012]
 ---
 
