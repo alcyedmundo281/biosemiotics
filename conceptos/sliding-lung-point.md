@@ -19,7 +19,20 @@ orden: 3
 tags: [pulmon, pleura, sliding, lung-point, neumotorax]
 relacionado_con: [modo-m, artefacto-reverberacion, tipos-de-sonda]
 prerequisito_de: [signo-neumotorax]
-refs: [lichtenstein2000, skulec2021, volpicelli2012]
+medios:
+  - tipo: imagen
+    id: "wikimedia:Clinician-performed-resuscitative-ultrasonography-for-the-initial-evaluation-and-resuscitation-of-1757-7241-17-34-S3.ogv"
+    descripcion: "Fotograma de ecografía pulmonar en modo B que muestra la línea pleural entre las sombras costales durante sliding normal"
+    credito: "Gillman LM, Ball CG, Panebianco N, Al-Kadi A y Kirkpatrick AW (fotograma derivado del video original)"
+    fuente: "Wikimedia Commons"
+    fuente_url: "https://commons.wikimedia.org/wiki/File:Clinician-performed-resuscitative-ultrasonography-for-the-initial-evaluation-and-resuscitation-of-1757-7241-17-34-S3.ogv"
+    licencia_img: "CC BY 2.0"
+    licencia_url: "https://creativecommons.org/licenses/by/2.0/"
+    archivo_local: "assets/img/sliding-lung-point.jpg"
+    original_local: "assets/media/sliding-lung-point.ogv"
+    adaptacion: "Fotograma fijo extraído a los 2,5 s del video original, 640 × 480 px"
+    referencia: "gillman2009"
+refs: [lichtenstein2000, skulec2021, volpicelli2012, gillman2009]
 ---
 
 ## El movimiento que debes ver primero
@@ -31,6 +44,10 @@ centelleante: el **sliding**.
 Si hay sliding, las dos hojas pleurales están en contacto en ese punto. El aire
 pleural no puede interponerse allí; por eso el hallazgo excluye neumotórax solo
 en el lugar exacto donde lo observaste.
+
+La imagen destacada es un fotograma de un video clínico abierto que documenta
+el movimiento de ida y vuelta de la pleura visceral sobre la parietal durante
+la respiración [gillman2009].
 
 ## La ausencia no tiene una sola causa
 

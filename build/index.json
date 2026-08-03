@@ -128,6 +128,22 @@
      "nombre": "Alcy Torres"
     }
    ],
+   "medios": [
+    {
+     "tipo": "imagen",
+     "id": "wikimedia:USG_scan_of_thrombus_in_the_left_common_femoral_vein.png",
+     "descripcion": "Ecografía transversal de la vena femoral común izquierda antes y durante la compresión; la luz venosa persiste por trombo",
+     "credito": "Cerevisae",
+     "fuente": "Wikimedia Commons",
+     "fuente_url": "https://commons.wikimedia.org/wiki/File:USG_scan_of_thrombus_in_the_left_common_femoral_vein.png",
+     "licencia_img": "CC BY-SA 4.0",
+     "licencia_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+     "archivo_local": "assets/img/compresibilidad-venosa.jpg",
+     "adaptacion": "Conversión de PNG a JPEG y reducción proporcional a 1800 × 1048 px; contenido clínico y anotaciones conservados"
+    }
+   ],
+   "n_loops": 0,
+   "n_imagenes": 1,
    "refs": [
     "pomero2013",
     "lee2019",
@@ -336,6 +352,22 @@
      "nombre": "Alcy Torres"
     }
    ],
+   "medios": [
+    {
+     "tipo": "imagen",
+     "id": "wikimedia:Sea_shore_sign_on_a_lung_ultrasound.jpg",
+     "descripcion": "Modo M pulmonar con líneas horizontales superficiales y patrón granular bajo la pleura: signo de la orilla de mar",
+     "credito": "Tinss",
+     "fuente": "Wikimedia Commons",
+     "fuente_url": "https://commons.wikimedia.org/wiki/File:Sea_shore_sign_on_a_lung_ultrasound.jpg",
+     "licencia_img": "CC BY-SA 4.0",
+     "licencia_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+     "archivo_local": "assets/img/modo-m.jpg",
+     "adaptacion": "Archivo original de Wikimedia Commons, 1536 × 846 px; sin modificaciones"
+    }
+   ],
+   "n_loops": 0,
+   "n_imagenes": 1,
    "refs": [
     "hangiandreou2003",
     "aldrich2007",
@@ -398,12 +430,31 @@
      "nombre": "Alcy Torres"
     }
    ],
+   "medios": [
+    {
+     "tipo": "imagen",
+     "id": "wikimedia:Clinician-performed-resuscitative-ultrasonography-for-the-initial-evaluation-and-resuscitation-of-1757-7241-17-34-S3.ogv",
+     "descripcion": "Fotograma de ecografía pulmonar en modo B que muestra la línea pleural entre las sombras costales durante sliding normal",
+     "credito": "Gillman LM, Ball CG, Panebianco N, Al-Kadi A y Kirkpatrick AW (fotograma derivado del video original)",
+     "fuente": "Wikimedia Commons",
+     "fuente_url": "https://commons.wikimedia.org/wiki/File:Clinician-performed-resuscitative-ultrasonography-for-the-initial-evaluation-and-resuscitation-of-1757-7241-17-34-S3.ogv",
+     "licencia_img": "CC BY 2.0",
+     "licencia_url": "https://creativecommons.org/licenses/by/2.0/",
+     "archivo_local": "assets/img/sliding-lung-point.jpg",
+     "original_local": "assets/media/sliding-lung-point.ogv",
+     "adaptacion": "Fotograma fijo extraído a los 2,5 s del video original, 640 × 480 px",
+     "referencia": "gillman2009"
+    }
+   ],
+   "n_loops": 0,
+   "n_imagenes": 1,
    "refs": [
     "lichtenstein2000",
     "skulec2021",
-    "volpicelli2012"
+    "volpicelli2012",
+    "gillman2009"
    ],
-   "n_refs": 3
+   "n_refs": 4
   },
   {
    "id": "tipos-de-sonda",
