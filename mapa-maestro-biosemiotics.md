@@ -34,8 +34,8 @@ Plano completo del atlas: los dos cursos (cardiopulmonar y emergencias) más las
 
 ## 2. Estado actual (lo ya publicado)
 
-El índice vigente contiene **27 entidades**: 14 conceptos, 12 signos y 1 caso.
-Los doce signos tienen URL pública en Ghost.
+El índice vigente contiene **29 entidades**: 14 conceptos, 14 signos y 1 caso.
+Los catorce signos tienen URL pública en Ghost.
 
 | signo | sistema | organo | nivel | estado |
 |---|---|---|---|---|
@@ -51,6 +51,8 @@ Los doce signos tienen URL pública en Ghost.
 | [Aneurisma aórtico abdominal](https://www.biosemiotics.net/aneurisma-aortico-abdominal-en-pocus-medir-antes-de-que-el-dolor-engane/) | vascular | aorta-abdominal | principiante | ✅ publicado |
 | [Neumotórax](https://www.biosemiotics.net/neumotorax-en-pocus-la-ausencia-de-sliding-no-basta/) | respiratorio | pleura | principiante | ✅ publicado |
 | [Trombosis venosa profunda](https://www.biosemiotics.net/tvp-por-compresion-la-vena-que-no-desaparece/) | vascular | vena-profunda | principiante | ✅ publicado |
+| [Taponamiento cardíaco](https://www.biosemiotics.net/taponamiento-cardiaco-el-derrame-que-impide-el-llenado/) | cardiovascular | pericardio | intermedio | ✅ publicado |
+| [Ventrículo derecho (sobrecarga/TEP)](https://www.biosemiotics.net/sobrecarga-del-ventriculo-derecho-tep/) | cardiovascular | corazon | intermedio | ✅ publicado |
 
 ---
 
@@ -75,8 +77,8 @@ Los doce signos tienen URL pública en Ghost.
 
 | signo | sistema | organo | nivel | escenario | decisión que cambia |
 |---|---|---|---|---|---|
-| Taponamiento cardíaco | cardiovascular | pericardio | intermedio | urgencias, uci | derrame + colapso cámaras → drenaje urgente |
-| Ventrículo derecho (sobrecarga/TEP) | cardiovascular | corazon | intermedio | urgencias, uci | VD dilatado, septo en D → sospecha TEP |
+| Taponamiento cardíaco | cardiovascular | pericardio | intermedio | urgencias, uci | derrame + colapso cámaras → drenaje urgente ✅ publicado |
+| Ventrículo derecho (sobrecarga/TEP) | cardiovascular | corazon | intermedio | urgencias, uci | VD dilatado, septo en D → sospecha TEP ✅ publicado |
 | Colecistitis aguda | digestivo | vesicula | intermedio | urgencias | pared, Murphy ecográfico → cirugía/antibiótico |
 | Coledocolitiasis | digestivo | via-biliar | intermedio | urgencias | vía biliar dilatada → obstrucción, CPRE |
 | Apendicitis | digestivo | apendice | intermedio | urgencias | apéndice no compresible > 6 mm → cirugía |
@@ -158,7 +160,7 @@ Oleada 1 y las rutas avanzadas que reutilizarán esos conceptos.
 ## 8. Orden de trabajo recomendado
 
 1. **Oleada 1 cerrada:** los ocho signos están publicados, con sus conceptos base incorporados.
-2. **Ahora — Oleada 2:** Taponamiento cardíaco → sobrecarga del ventrículo derecho / TEP → Colecistitis aguda → Coledocolitiasis → Apendicitis → Embarazo ectópico → Colección/absceso y hernia complicada.
+2. **Ahora — Oleada 2:** Colecistitis aguda → Coledocolitiasis → Apendicitis → Embarazo ectópico → Colección/absceso y hernia complicada. Taponamiento cardíaco y sobrecarga del ventrículo derecho / TEP ya están publicados.
 3. **Antes de los signos que lo necesiten:** escribir y validar Doppler y Cuantificación y sus límites.
 4. **Conceptos base: regla dura.** Un signo NO se publica sin su concepto base ya en el banco. El concepto base requerido se escribe y valida ANTES que el signo, no en paralelo ni después.
 5. **Después:** completar FAST/eFAST → Oleada 3 → Extensiones.
@@ -167,11 +169,12 @@ Oleada 1 y las rutas avanzadas que reutilizarán esos conceptos.
 Cada cifra, verificada contra PubMed antes de publicar. Cada signo, con su sección de límites ("dónde NO confiar"). El orden por oleada mantiene vivo el mensaje: *empezar es más fácil de lo que te dijeron.*
 
 ### Conteo
-- Banco actual: **27 entidades** (14 conceptos, 12 signos y 1 caso)
-- Signos publicados: **12 de 12**
+- Banco actual: **29 entidades** (14 conceptos, 14 signos y 1 caso)
+- Signos publicados: **14 de 14**
 - Oleada 1 completada: **8 de 8 signos**
+- Oleada 2 publicada: **2 de 7 signos**
 - Conceptos base pendientes: **~2**
-- Restan **~21 entidades** para llegar a las ~48 proyectadas del atlas maduro
+- Restan **~19 entidades** para llegar a las ~48 proyectadas del atlas maduro
 
 Nota: FAST añade pocas fichas nuevas (Morrison, esplenorrenal, Douglas, hemotórax) porque reutiliza pericardio y neumotórax. El gradiente de FEVI añade 2 (lineales, Simpson) sobre el eyeball ya contado.
 
