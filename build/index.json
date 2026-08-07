@@ -1499,6 +1499,77 @@
    "n_refs": 5
   },
   {
+   "id": "signo-sobrecarga-vd",
+   "tipo": "signo",
+   "titulo": "Sobrecarga del ventrículo derecho (TEP)",
+   "titulo_en": "Right ventricular overload (pulmonary embolism)",
+   "version": "1.0",
+   "abstract": "Ventrículo derecho dilatado, tabique interventricular aplanado hacia el ventrículo izquierdo (signo de la D) y TAPSE reducido en el paciente con disnea aguda o inestabilidad. Señala sobrecarga de presión del VD, típicamente por tromboembolia pulmonar que obstruye el lecho vascular pulmonar. Con clínica compatible, acelera la anticoagulación empírica y, si hay inestabilidad, la activación para trombólisis o embolectomía. Su ausencia no descarta una tromboembolia pulmonar submasiva sin repercusión hemodinámica.\n",
+   "sistema": "cardiovascular",
+   "organo": "corazon",
+   "nivel": "intermedio",
+   "ventana": "paraesternal-apical-subcostal",
+   "pregunta_clinica": "¿Este paciente con disnea o inestabilidad tiene signos de sobrecarga aguda del ventrículo derecho que sugieran tromboembolia pulmonar?",
+   "significante": "Ventrículo derecho dilatado (su diámetro se acerca o supera al del ventrículo izquierdo), tabique interventricular aplanado o desplazado hacia el ventrículo izquierdo en sístole (signo de la D), TAPSE reducido y, en algunos casos, acinesia de la pared libre media del VD con el ápex conservado (signo de McConnell).",
+   "significado": "El ventrículo derecho, de pared delgada y diseñado para bajas presiones, se dilata y falla agudamente ante un aumento súbito de la resistencia vascular pulmonar —típicamente una tromboembolia pulmonar que obstruye una porción significativa del lecho vascular.",
+   "umbral": "No hay un hallazgo aislado suficiente. Para el conjunto de signos de sobrecarga derecha (\"right heart strain\") en el diagnóstico de tromboembolia pulmonar, la sensibilidad reportada es 53 % (IC95% 45–61 %) y la especificidad 83 % (IC95% 74–90 %): útil para orientar la sospecha y adelantar conductas, insuficiente para descartar por su cuenta.\n",
+   "licencia": "CC-BY-NC-4.0",
+   "fecha": "2026-08-07",
+   "actualizado": "2026-08-07",
+   "decision": "Con clínica compatible (disnea aguda, hipoxemia, taquicardia, factores de riesgo trombótico), estos hallazgos aceleran la anticoagulación empírica y, si hay inestabilidad hemodinámica, la activación para trombólisis o embolectomía; la ausencia de sobrecarga del VD no descarta una tromboembolia pulmonar submasiva sin repercusión hemodinámica.",
+   "sonda": [
+    "sectorial"
+   ],
+   "escenario": [
+    "urgencias",
+    "hospitalizacion",
+    "uci"
+   ],
+   "descriptores": [
+    "sobrecarga-vd",
+    "tromboembolia-pulmonar",
+    "dilatacion-vd",
+    "septo-d",
+    "mcconnell",
+    "focus"
+   ],
+   "mesh": [
+    "Pulmonary Embolism",
+    "Echocardiography",
+    "Point-of-Care Systems"
+   ],
+   "falsos_positivos": [
+    "Cor pulmonale crónico (EPOC, hipertensión pulmonar crónica, cardiopatía congénita): dilata el VD de forma crónica; pared libre gruesa (>5 mm) y aurícula derecha mayor que la izquierda orientan a cronicidad, no a un evento agudo",
+    "Signo de McConnell descrito también en infarto del ventrículo derecho: no es exclusivo de tromboembolia pulmonar",
+    "Ventana subóptima o corte oblicuo del ápex que simula una relación VD:VI aumentada sin serlo",
+    "TAPSE reducido por disfunción del ventrículo izquierdo que arrastra secundariamente al derecho",
+    "Ausencia de todos estos hallazgos no descarta tromboembolia pulmonar submasiva o de bajo riesgo hemodinámico"
+   ],
+   "se_basa_en": [
+    "ventanas-cardiacas",
+    "modo-m",
+    "ecogenicidad",
+    "tipos-de-sonda"
+   ],
+   "autores": [
+    {
+     "nombre": "Alcy Edmundo Torres Guerrero",
+     "orcid": null,
+     "afiliacion": "Universidad Central del Ecuador",
+     "credit": [
+      "conceptualizacion",
+      "redaccion"
+     ]
+    }
+   ],
+   "refs": [
+    "via2014",
+    "fields2017",
+    "mandoli2021"
+   ],
+   "n_refs": 3
+  },
+  {
    "id": "signo-taponamiento-cardiaco",
    "tipo": "signo",
    "titulo": "Taponamiento cardíaco (el derrame que impide el llenado)",
