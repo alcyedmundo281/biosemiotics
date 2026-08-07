@@ -17,7 +17,7 @@ capitulo: 6
 orden: 3
 tags: [modo-m, movimiento, tiempo, tecnica]
 relacionado_con: [knobology-profundidad, knobology-ganancia, tipos-de-sonda]
-prerequisito_de: [signo-neumotorax]
+prerequisito_de: [signo-neumotorax, signo-sobrecarga-vd]
 medios:
   - tipo: imagen
     id: "wikimedia:Sea_shore_sign_on_a_lung_ultrasound.jpg"
