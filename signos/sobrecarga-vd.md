@@ -3,8 +3,7 @@ id: signo-sobrecarga-vd
 tipo: signo
 titulo: "Ventrículo derecho dilatado (sobrecarga aguda de presión)"
 titulo_en: "Right ventricular overload (pulmonary embolism)"
-url: ""           # se llena AL PUBLICAR en Ghost: https://www.biosemiotics.net/<slug>/
-                  # vacío → el atlas lo muestra "(sin publicar)"
+url: "https://www.biosemiotics.net/sobrecarga-del-ventriculo-derecho-tep/"
 doi: null
 version: "1.1"
 

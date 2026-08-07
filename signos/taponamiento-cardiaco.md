@@ -3,8 +3,7 @@ id: signo-taponamiento-cardiaco
 tipo: signo
 titulo: "Taponamiento cardíaco (el derrame que impide el llenado)"
 titulo_en: "Cardiac tamponade"
-url: ""           # se llena AL PUBLICAR en Ghost: https://www.biosemiotics.net/<slug>/
-                  # vacío → el atlas lo muestra "(sin publicar)"
+url: "https://www.biosemiotics.net/taponamiento-cardiaco-el-derrame-que-impide-el-llenado/"
 doi: null
 version: "1.1"
 
