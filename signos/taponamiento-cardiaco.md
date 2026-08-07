@@ -39,9 +39,10 @@ umbral: >
   pretest ya es alta —hipotensión, taquicardia, disnea, presión venosa elevada
   y derrame conocido— que como hallazgo aislado de bajo riesgo.
 falsos_positivos:
-  - "Colapso de cavidades derechas por hipovolemia grave, sin taponamiento real"
+  - "Colapso de cavidades derechas por hipovolemia grave —el 'síndrome del corazón vacío'—, sin taponamiento real"
   - "Hipertensión pulmonar o hipertrofia del ventrículo derecho: retrasan o enmascaran el colapso (falso negativo, no una tranquilidad)"
   - "Derrame loculado o coágulo posquirúrgico que comprime una sola cámara: no produce el patrón circunferencial clásico"
+  - "Coágulo o hematoma pericárdico posquirúrgico ecogénico: puede parecer tejido sólido y pasar inadvertido por vía transtorácica —otro falso negativo, distinto al del punto anterior"
   - "Vena cava inferior dilatada por falla derecha o ventilación con presión positiva, sin taponamiento"
   - "Ventana única, mala calidad de imagen o taquicardia extrema que dificulta juzgar el momento del ciclo cardíaco"
 se_basa_en: [ventanas-cardiacas, modo-m, ecogenicidad, tipos-de-sonda]
@@ -53,7 +54,7 @@ autores:
     afiliacion: "Universidad Central del Ecuador"
     credit: [conceptualizacion, redaccion]
 
-refs: [via2014, perezcasares2017, guntheroth2007, alerhand2022]
+refs: [via2014, perezcasares2017, guntheroth2007, alerhand2022, adler2015, floerchinger2013]
 fecha: 2026-08-07
 actualizado: 2026-08-07
 licencia: CC-BY-NC-4.0
@@ -125,20 +126,29 @@ colapso por hipovolemia cumplen el criterio ecográfico sin ser taponamiento
 
 ## Dónde NO confiar
 
-- **Hipovolemia grave:** puede colapsar cavidades derechas sin taponamiento
-  real; correlaciona siempre con el volumen intravascular y la clínica.
+- **Hipovolemia grave (síndrome del corazón vacío):** puede colapsar
+  cavidades derechas sin taponamiento real; correlaciona siempre con el
+  volumen intravascular y la clínica.
 - **Hipertensión pulmonar o hipertrofia del ventrículo derecho:** el VD
   engrosado resiste más y el colapso aparece tarde o no aparece —un falso
   negativo peligroso, no una tranquilidad.
 - **Derrame loculado o coágulo posquirúrgico:** puede comprimir
   selectivamente una sola cámara sin el patrón circunferencial clásico;
   sospéchalo en el posoperatorio cardíaco con inestabilidad y ventana difícil.
+- **Hematoma pericárdico posquirúrgico ecogénico:** un coágulo puede verse
+  isoecoico al tejido vecino y pasar inadvertido por vía transtorácica. En
+  el posoperatorio cardíaco con taponamiento tardío confirmado por cirugía,
+  la ecocardiografía transtorácica detectó el hematoma en solo 33 % de los
+  casos —una falla distinta a la del punto anterior: aquí no es el patrón de
+  colapso el que confunde, es que el coágulo mismo no se ve. Ante alta
+  sospecha con ventana transtorácica negativa, no te detengas ahí.
 - **Vena cava dilatada por otras causas** (falla derecha, ventilación con
   presión positiva, hipertensión pulmonar crónica) sin taponamiento.
 - **Una sola ventana, mala imagen o taquicardia extrema:** dificultan juzgar
   en qué fase del ciclo ocurre el colapso.
 - Ningún signo aislado confirma ni descarta taponamiento: es un diagnóstico
-  clínico-ecográfico integrado, no una casilla que se marca.
+  clínico-ecográfico integrado, no una casilla que se marca —así lo
+  establece también la guía de la Sociedad Europea de Cardiología.
 
 ## Practica esto
 

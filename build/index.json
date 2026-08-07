@@ -1538,9 +1538,10 @@
     "Point-of-Care Systems"
    ],
    "falsos_positivos": [
-    "Colapso de cavidades derechas por hipovolemia grave, sin taponamiento real",
+    "Colapso de cavidades derechas por hipovolemia grave —el 'síndrome del corazón vacío'—, sin taponamiento real",
     "Hipertensión pulmonar o hipertrofia del ventrículo derecho: retrasan o enmascaran el colapso (falso negativo, no una tranquilidad)",
     "Derrame loculado o coágulo posquirúrgico que comprime una sola cámara: no produce el patrón circunferencial clásico",
+    "Coágulo o hematoma pericárdico posquirúrgico ecogénico: puede parecer tejido sólido y pasar inadvertido por vía transtorácica —otro falso negativo, distinto al del punto anterior",
     "Vena cava inferior dilatada por falla derecha o ventilación con presión positiva, sin taponamiento",
     "Ventana única, mala calidad de imagen o taquicardia extrema que dificulta juzgar el momento del ciclo cardíaco"
    ],
@@ -1568,9 +1569,11 @@
     "via2014",
     "perezcasares2017",
     "guntheroth2007",
-    "alerhand2022"
+    "alerhand2022",
+    "adler2015",
+    "floerchinger2013"
    ],
-   "n_refs": 4
+   "n_refs": 6
   },
   {
    "id": "signo-trombosis-venosa-profunda",
