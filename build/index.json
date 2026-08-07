@@ -749,6 +749,9 @@
     "ecogenicidad",
     "tipos-de-sonda"
    ],
+   "contrasta_con": [
+    "signo-taponamiento-cardiaco"
+   ],
    "autores": [
     {
      "nombre": "Alcy Edmundo Torres Guerrero",
@@ -1494,6 +1497,80 @@
     "emamian1993"
    ],
    "n_refs": 5
+  },
+  {
+   "id": "signo-taponamiento-cardiaco",
+   "tipo": "signo",
+   "titulo": "Taponamiento cardíaco",
+   "titulo_en": "Cardiac tamponade",
+   "version": "1.0",
+   "abstract": "Colapso diastólico del ventrículo derecho, colapso sistólico de la aurícula derecha y vena cava inferior dilatada sin colapso inspiratorio en presencia de derrame pericárdico. Señala compromiso del llenado cardíaco por presión pericárdica elevada, no solo líquido presente. Ante hallazgos ecográficos compatibles integrados con inestabilidad hemodinámica, acelera la activación para drenaje urgente —pericardiocentesis o quirúrgico según la causa. Ningún signo aislado confirma ni descarta taponamiento sin integrar la clínica.\n",
+   "sistema": "cardiovascular",
+   "organo": "pericardio",
+   "nivel": "intermedio",
+   "ventana": "subcostal-paraesternal-apical-vci",
+   "pregunta_clinica": "¿Este derrame pericárdico está comprometiendo el llenado del corazón ahora mismo?",
+   "significante": "Derrame pericárdico con colapso diastólico del ventrículo derecho, colapso sistólico de la aurícula derecha, vena cava inferior dilatada (pletórica) sin colapso inspiratorio y, en derrames grandes, corazón oscilante (swinging heart).",
+   "significado": "Presión intrapericárdica elevada que restringe el llenado de las cavidades derechas: fisiología de taponamiento, distinta de solo tener líquido pericárdico.",
+   "umbral": "No existe una cifra única. El colapso del ventrículo derecho reporta sensibilidad entre 48 % y 100 % y especificidad entre 72 % y 100 % según la serie; el de la aurícula derecha, sensibilidad entre 50 % y 100 % y especificidad entre 33 % y 100 %. Son más confiables cuando la probabilidad pretest ya es alta —hipotensión, taquicardia, disnea, presión venosa elevada y derrame conocido— que como hallazgo aislado de bajo riesgo.\n",
+   "licencia": "CC-BY-NC-4.0",
+   "fecha": "2026-08-07",
+   "actualizado": "2026-08-07",
+   "decision": "Confirma en más de una ventana, correlaciona con el estado hemodinámico del paciente y, si hay inestabilidad, activa de inmediato al equipo para drenaje urgente; en derrame traumático, disección aórtica, rotura miocárdica o coágulo posquirúrgico, eso significa evaluación quirúrgica, no pericardiocentesis con aguja como única vía. La ausencia de colapso no descarta taponamiento en el paciente con hipertensión pulmonar o ventrículo derecho hipertrófico.",
+   "sonda": [
+    "sectorial"
+   ],
+   "escenario": [
+    "urgencias",
+    "hospitalizacion",
+    "uci"
+   ],
+   "descriptores": [
+    "taponamiento-cardiaco",
+    "pericardio",
+    "colapso-cavidades",
+    "vena-cava-inferior",
+    "focus"
+   ],
+   "mesh": [
+    "Cardiac Tamponade",
+    "Echocardiography",
+    "Point-of-Care Systems"
+   ],
+   "falsos_positivos": [
+    "Colapso de cavidades derechas por hipovolemia grave, sin taponamiento real",
+    "Hipertensión pulmonar o hipertrofia del ventrículo derecho: retrasan o enmascaran el colapso (falso negativo, no una tranquilidad)",
+    "Derrame loculado o coágulo posquirúrgico que comprime una sola cámara: no produce el patrón circunferencial clásico",
+    "Vena cava inferior dilatada por falla derecha o ventilación con presión positiva, sin taponamiento",
+    "Ventana única, mala calidad de imagen o taquicardia extrema que dificulta juzgar el momento del ciclo cardíaco"
+   ],
+   "se_basa_en": [
+    "ventanas-cardiacas",
+    "modo-m",
+    "ecogenicidad",
+    "tipos-de-sonda"
+   ],
+   "contrasta_con": [
+    "signo-derrame-pericardico"
+   ],
+   "autores": [
+    {
+     "nombre": "Alcy Edmundo Torres Guerrero",
+     "orcid": null,
+     "afiliacion": "Universidad Central del Ecuador",
+     "credit": [
+      "conceptualizacion",
+      "redaccion"
+     ]
+    }
+   ],
+   "refs": [
+    "via2014",
+    "perezcasares2017",
+    "guntheroth2007",
+    "alerhand2022"
+   ],
+   "n_refs": 4
   },
   {
    "id": "signo-trombosis-venosa-profunda",

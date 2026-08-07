@@ -12,10 +12,11 @@ abstract: >
   Colapso diastólico del ventrículo derecho, colapso sistólico de la aurícula
   derecha y vena cava inferior dilatada sin colapso inspiratorio en presencia
   de derrame pericárdico. Señala compromiso del llenado cardíaco por presión
-  pericárdica elevada, no solo líquido presente. Ante inestabilidad
-  hemodinámica, acelera la activación para pericardiocentesis urgente guiada
-  por ultrasonido. Ningún signo aislado confirma ni descarta taponamiento sin
-  integrar la clínica.
+  pericárdica elevada, no solo líquido presente. Ante hallazgos ecográficos
+  compatibles integrados con inestabilidad hemodinámica, acelera la
+  activación para drenaje urgente —pericardiocentesis o quirúrgico según la
+  causa. Ningún signo aislado confirma ni descarta taponamiento sin integrar
+  la clínica.
 
 sistema: cardiovascular
 organo: pericardio
@@ -29,7 +30,7 @@ mesh: [Cardiac Tamponade, Echocardiography, Point-of-Care Systems]
 
 significante: "Derrame pericárdico con colapso diastólico del ventrículo derecho, colapso sistólico de la aurícula derecha, vena cava inferior dilatada (pletórica) sin colapso inspiratorio y, en derrames grandes, corazón oscilante (swinging heart)."
 significado: "Presión intrapericárdica elevada que restringe el llenado de las cavidades derechas: fisiología de taponamiento, distinta de solo tener líquido pericárdico."
-decision: "Confirma en más de una ventana, correlaciona con el estado hemodinámico del paciente y, si hay inestabilidad, activa de inmediato el equipo para pericardiocentesis guiada por ultrasonido; la ausencia de colapso no descarta taponamiento en el paciente con hipertensión pulmonar o ventrículo derecho hipertrófico."
+decision: "Confirma en más de una ventana, correlaciona con el estado hemodinámico del paciente y, si hay inestabilidad, activa de inmediato al equipo para drenaje urgente; en derrame traumático, disección aórtica, rotura miocárdica o coágulo posquirúrgico, eso significa evaluación quirúrgica, no pericardiocentesis con aguja como única vía. La ausencia de colapso no descarta taponamiento en el paciente con hipertensión pulmonar o ventrículo derecho hipertrófico."
 umbral: >
   No existe una cifra única. El colapso del ventrículo derecho reporta
   sensibilidad entre 48 % y 100 % y especificidad entre 72 % y 100 % según la
@@ -112,11 +113,15 @@ frecuencia cardíaca para compensar.
 estable** → documenta, busca la causa probable y sigue de cerca; el
 ultrasonido por sí solo no indica drenaje urgente.
 
-**Derrame con colapso de cavidades derechas, vena cava pletórica o
-inestabilidad hemodinámica** → fisiología de taponamiento: activa al equipo,
-prepara la vía para pericardiocentesis guiada por ultrasonido y no esperes a
-que aparezca hipotensión franca —para entonces el paciente ya lleva rato
-descompensando.
+**Derrame con hallazgos ecográficos compatibles (colapso de cavidades
+derechas, vena cava pletórica) integrados con inestabilidad hemodinámica del
+paciente** → fisiología de taponamiento: activa al equipo, prepara la vía
+para drenaje urgente —pericardiocentesis o quirúrgico según la causa— y no
+esperes a que aparezca hipotensión franca, para entonces el paciente ya lleva
+rato descompensando. Un solo hallazgo aislado, sin repercusión clínica, no
+basta: la vena cava pletórica por ventilación con presión positiva y el
+colapso por hipovolemia cumplen el criterio ecográfico sin ser taponamiento
+—por eso la integración con la clínica no es opcional.
 
 ## Dónde NO confiar
 
