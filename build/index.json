@@ -1501,7 +1501,7 @@
   {
    "id": "signo-taponamiento-cardiaco",
    "tipo": "signo",
-   "titulo": "Taponamiento cardíaco",
+   "titulo": "Taponamiento cardíaco (el derrame que impide el llenado)",
    "titulo_en": "Cardiac tamponade",
    "version": "1.0",
    "abstract": "Colapso diastólico del ventrículo derecho, colapso sistólico de la aurícula derecha y vena cava inferior dilatada sin colapso inspiratorio en presencia de derrame pericárdico. Señala compromiso del llenado cardíaco por presión pericárdica elevada, no solo líquido presente. Ante hallazgos ecográficos compatibles integrados con inestabilidad hemodinámica, acelera la activación para drenaje urgente —pericardiocentesis o quirúrgico según la causa. Ningún signo aislado confirma ni descarta taponamiento sin integrar la clínica.\n",

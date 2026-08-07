@@ -1,7 +1,7 @@
 ---
 id: signo-taponamiento-cardiaco
 tipo: signo
-titulo: "Taponamiento cardíaco"
+titulo: "Taponamiento cardíaco (el derrame que impide el llenado)"
 titulo_en: "Cardiac tamponade"
 url: ""           # se llena AL PUBLICAR en Ghost: https://www.biosemiotics.net/<slug>/
                   # vacío → el atlas lo muestra "(sin publicar)"
@@ -124,11 +124,16 @@ basta: la vena cava pletórica por ventilación con presión positiva y el
 colapso por hipovolemia cumplen el criterio ecográfico sin ser taponamiento
 —por eso la integración con la clínica no es opcional.
 
+Y a la inversa: la ausencia de estos signos en un paciente que se sigue
+deteriorando obliga a buscar otra causa del shock, no a asumir que el derrame
+ya visto es el culpable.
+
 ## Dónde NO confiar
 
 - **Hipovolemia grave (síndrome del corazón vacío):** puede colapsar
-  cavidades derechas sin taponamiento real; correlaciona siempre con el
-  volumen intravascular y la clínica.
+  cavidades derechas sin taponamiento real. La pista que los separa: en la
+  hipovolemia la vena cava está colapsada, no pletórica; correlaciona
+  siempre con el volumen intravascular y la clínica.
 - **Hipertensión pulmonar o hipertrofia del ventrículo derecho:** el VD
   engrosado resiste más y el colapso aparece tarde o no aparece —un falso
   negativo peligroso, no una tranquilidad.
@@ -152,7 +157,14 @@ colapso por hipovolemia cumplen el criterio ecográfico sin ser taponamiento
 
 ## Practica esto
 
-En cada paciente con derrame pericárdico que estudies, agrega
+Antes de buscar el colapso, aprende a reconocer lo que no lo es. En
+pacientes sin sospecha, obtén la subcostal de cuatro cámaras e identifica el
+pericardio normal: una interfaz fina e hiperecogénica, sin separación
+anecoica. Después localiza la vena cava inferior en eje longitudinal y
+observa cómo varía su diámetro con la respiración en alguien euvolémico. Esa
+variabilidad normal es el fondo contra el cual reconoces una cava pletórica.
+
+En cada paciente con derrame pericárdico que estudies después, agrega
 sistemáticamente la vena cava inferior a tu barrido, incluso si el corazón ya
 se ve bien. Practica describir en voz alta si ves o no colapso, y en qué fase
 del ciclo, antes de mirar el monitor.
