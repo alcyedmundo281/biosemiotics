@@ -38,7 +38,7 @@ falsos_positivos:
   - "Quiste o masa mediastínica"
   - "Ganancia excesiva o plano oblicuo que crea un espacio oscuro"
 se_basa_en: [ventanas-cardiacas, ecogenicidad, tipos-de-sonda]
-contrasta_con: []
+contrasta_con: [signo-taponamiento-cardiaco]
 
 autores:
   - nombre: "Alcy Edmundo Torres Guerrero"
