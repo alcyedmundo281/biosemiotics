@@ -37,9 +37,11 @@ umbral: >
   pulmonar, la sensibilidad reportada es 53 % (IC95% 45–61 %) y la
   especificidad 83 % (IC95% 74–90 %): útil para orientar la sospecha y
   adelantar conductas, insuficiente para descartar por su cuenta. La guía ESC
-  de tromboembolia pulmonar usa la relación de diámetros VD:VI > 1 combinada
-  con TAPSE < 16 mm para definir disfunción del VD en el paciente ya
-  diagnosticado —un criterio de severidad, no un umbral de tamizaje aislado.
+  de tromboembolia pulmonar señala la relación de diámetros VD:VI ≥ 1 y el
+  TAPSE < 16 mm como hallazgos de disfunción del VD con valor pronóstico en
+  el paciente ya diagnosticado —no es un criterio combinado obligatorio:
+  cualquiera de los dos, en el contexto correcto, ya aporta información de
+  severidad, no un umbral de tamizaje aislado.
 falsos_positivos:
   - "Cor pulmonale crónico (EPOC, hipertensión pulmonar crónica, cardiopatía congénita): dilata el VD de forma crónica; pared libre gruesa (>5 mm) y aurícula derecha mayor que la izquierda orientan a cronicidad, no a un evento agudo"
   - "Signo de McConnell descrito también en infarto del ventrículo derecho: no es exclusivo de tromboembolia pulmonar"
