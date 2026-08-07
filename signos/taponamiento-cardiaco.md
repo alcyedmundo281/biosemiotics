@@ -46,7 +46,7 @@ falsos_positivos:
   - "Vena cava inferior dilatada por falla derecha o ventilación con presión positiva, sin taponamiento"
   - "Ventana única, mala calidad de imagen o taquicardia extrema que dificulta juzgar el momento del ciclo cardíaco"
 se_basa_en: [ventanas-cardiacas, modo-m, ecogenicidad, tipos-de-sonda]
-contrasta_con: [signo-derrame-pericardico]
+contrasta_con: [signo-derrame-pericardico, signo-sobrecarga-vd]
 
 autores:
   - nombre: "Alcy Edmundo Torres Guerrero"

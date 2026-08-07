@@ -1501,7 +1501,7 @@
   {
    "id": "signo-sobrecarga-vd",
    "tipo": "signo",
-   "titulo": "Sobrecarga del ventrículo derecho (TEP)",
+   "titulo": "Ventrículo derecho dilatado (sobrecarga aguda de presión)",
    "titulo_en": "Right ventricular overload (pulmonary embolism)",
    "version": "1.0",
    "abstract": "Ventrículo derecho dilatado, tabique interventricular aplanado hacia el ventrículo izquierdo (signo de la D) y TAPSE reducido en el paciente con disnea aguda o inestabilidad. Señala sobrecarga de presión del VD, típicamente por tromboembolia pulmonar que obstruye el lecho vascular pulmonar. Con clínica compatible, acelera la anticoagulación empírica y, si hay inestabilidad, la activación para trombólisis o embolectomía. Su ausencia no descarta una tromboembolia pulmonar submasiva sin repercusión hemodinámica.\n",
@@ -1512,7 +1512,7 @@
    "pregunta_clinica": "¿Este paciente con disnea o inestabilidad tiene signos de sobrecarga aguda del ventrículo derecho que sugieran tromboembolia pulmonar?",
    "significante": "Ventrículo derecho dilatado (su diámetro se acerca o supera al del ventrículo izquierdo), tabique interventricular aplanado o desplazado hacia el ventrículo izquierdo en sístole (signo de la D), TAPSE reducido y, en algunos casos, acinesia de la pared libre media del VD con el ápex conservado (signo de McConnell).",
    "significado": "El ventrículo derecho, de pared delgada y diseñado para bajas presiones, se dilata y falla agudamente ante un aumento súbito de la resistencia vascular pulmonar —típicamente una tromboembolia pulmonar que obstruye una porción significativa del lecho vascular.",
-   "umbral": "No hay un hallazgo aislado suficiente. Para el conjunto de signos de sobrecarga derecha (\"right heart strain\") en el diagnóstico de tromboembolia pulmonar, la sensibilidad reportada es 53 % (IC95% 45–61 %) y la especificidad 83 % (IC95% 74–90 %): útil para orientar la sospecha y adelantar conductas, insuficiente para descartar por su cuenta.\n",
+   "umbral": "No hay un hallazgo aislado suficiente. Para el conjunto de signos de sobrecarga derecha (\"right heart strain\") en el diagnóstico de tromboembolia pulmonar, la sensibilidad reportada es 53 % (IC95% 45–61 %) y la especificidad 83 % (IC95% 74–90 %): útil para orientar la sospecha y adelantar conductas, insuficiente para descartar por su cuenta. La guía ESC de tromboembolia pulmonar usa la relación de diámetros VD:VI > 1 combinada con TAPSE < 16 mm para definir disfunción del VD en el paciente ya diagnosticado —un criterio de severidad, no un umbral de tamizaje aislado.\n",
    "licencia": "CC-BY-NC-4.0",
    "fecha": "2026-08-07",
    "actualizado": "2026-08-07",
@@ -1535,6 +1535,7 @@
    ],
    "mesh": [
     "Pulmonary Embolism",
+    "Ventricular Dysfunction, Right",
     "Echocardiography",
     "Point-of-Care Systems"
    ],
@@ -1551,6 +1552,9 @@
     "ecogenicidad",
     "tipos-de-sonda"
    ],
+   "contrasta_con": [
+    "signo-taponamiento-cardiaco"
+   ],
    "autores": [
     {
      "nombre": "Alcy Edmundo Torres Guerrero",
@@ -1565,9 +1569,11 @@
    "refs": [
     "via2014",
     "fields2017",
-    "mandoli2021"
+    "mandoli2021",
+    "konstantinides2019",
+    "sanz2019"
    ],
-   "n_refs": 3
+   "n_refs": 5
   },
   {
    "id": "signo-taponamiento-cardiaco",
@@ -1623,7 +1629,8 @@
     "tipos-de-sonda"
    ],
    "contrasta_con": [
-    "signo-derrame-pericardico"
+    "signo-derrame-pericardico",
+    "signo-sobrecarga-vd"
    ],
    "autores": [
     {
