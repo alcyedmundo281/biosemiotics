@@ -18,7 +18,7 @@ capitulo: 4
 orden: 2
 tags: [corazon, orientacion, focus]
 relacionado_con: [tipos-de-sonda, knobology-profundidad, knobology-ganancia]
-prerequisito_de: [signo-derrame-pericardico, signo-eyeball-ef, signo-sobrecarga-vd]
+prerequisito_de: [signo-derrame-pericardico, signo-eyeball-ef, signo-taponamiento-cardiaco, signo-sobrecarga-vd]
 medios:
   - tipo: imagen
     id: "wikimedia:Echocardiogram 4chambers"
