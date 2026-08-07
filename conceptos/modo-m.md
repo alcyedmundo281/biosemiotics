@@ -28,7 +28,6 @@ medios:
     licencia_img: "CC BY-SA 4.0"
     licencia_url: "https://creativecommons.org/licenses/by-sa/4.0/"
     archivo_local: "assets/img/modo-m.jpg"
-    adaptacion: "Archivo original de Wikimedia Commons, 1536 × 846 px; sin modificaciones"
 refs: [hangiandreou2003, aldrich2007, volpicelli2012]
 ---
 

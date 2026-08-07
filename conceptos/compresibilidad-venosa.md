@@ -29,6 +29,7 @@ medios:
     licencia_img: "CC BY-SA 4.0"
     licencia_url: "https://creativecommons.org/licenses/by-sa/4.0/"
     archivo_local: "assets/img/compresibilidad-venosa.jpg"
+    original_local: "assets/media/compresibilidad-venosa-original.png"
     adaptacion: "Conversión de PNG a JPEG y reducción proporcional a 1800 × 1048 px; contenido clínico y anotaciones conservados"
 refs: [pomero2013, lee2019, zaki2024]
 ---

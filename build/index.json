@@ -139,6 +139,7 @@
      "licencia_img": "CC BY-SA 4.0",
      "licencia_url": "https://creativecommons.org/licenses/by-sa/4.0/",
      "archivo_local": "assets/img/compresibilidad-venosa.jpg",
+     "original_local": "assets/media/compresibilidad-venosa-original.png",
      "adaptacion": "Conversión de PNG a JPEG y reducción proporcional a 1800 × 1048 px; contenido clínico y anotaciones conservados"
     }
    ],
@@ -362,8 +363,7 @@
      "fuente_url": "https://commons.wikimedia.org/wiki/File:Sea_shore_sign_on_a_lung_ultrasound.jpg",
      "licencia_img": "CC BY-SA 4.0",
      "licencia_url": "https://creativecommons.org/licenses/by-sa/4.0/",
-     "archivo_local": "assets/img/modo-m.jpg",
-     "adaptacion": "Archivo original de Wikimedia Commons, 1536 × 846 px; sin modificaciones"
+     "archivo_local": "assets/img/modo-m.jpg"
     }
    ],
    "n_loops": 0,
@@ -1503,7 +1503,7 @@
    "tipo": "signo",
    "titulo": "Sobrecarga del ventrículo derecho (TEP)",
    "titulo_en": "Right ventricular overload (pulmonary embolism)",
-   "version": "1.0",
+   "version": "1.1",
    "abstract": "Ventrículo derecho dilatado, tabique interventricular aplanado hacia el ventrículo izquierdo (signo de la D) y TAPSE reducido en el paciente con disnea aguda o inestabilidad. Señala sobrecarga de presión del VD, típicamente por tromboembolia pulmonar que obstruye el lecho vascular pulmonar. Con clínica compatible, acelera la anticoagulación empírica y, si hay inestabilidad, la activación para trombólisis o embolectomía. Su ausencia no descarta una tromboembolia pulmonar submasiva sin repercusión hemodinámica.\n",
    "sistema": "cardiovascular",
    "organo": "corazon",
@@ -1562,19 +1562,38 @@
      ]
     }
    ],
+   "medios": [
+    {
+     "tipo": "imagen",
+     "id": "wikimedia:McConnell-Sign-in-a-Patient-with-Massive-Acute-Pulmonary-Embolism-201097.f1.ogv",
+     "descripcion": "Fotograma de ecocardiografía apical de cuatro cámaras que muestra el signo de McConnell en una embolia pulmonar masiva antes de la trombólisis",
+     "credito": "Shafiq Q, Assaly R y Kanjwal Y (fotograma derivado del video original)",
+     "fuente": "Wikimedia Commons",
+     "fuente_url": "https://commons.wikimedia.org/wiki/File:McConnell-Sign-in-a-Patient-with-Massive-Acute-Pulmonary-Embolism-201097.f1.ogv",
+     "licencia_img": "CC BY 3.0",
+     "licencia_url": "https://creativecommons.org/licenses/by/3.0/",
+     "archivo_local": "assets/img/sobrecarga-vd.jpg",
+     "original_local": "assets/media/sobrecarga-vd-mcconnell.ogv",
+     "adaptacion": "Fotograma fijo de la previsualización de Wikimedia Commons, 500 × 340 px",
+     "referencia": "shafiq2011"
+    }
+   ],
+   "n_loops": 0,
+   "n_imagenes": 1,
    "refs": [
     "via2014",
     "fields2017",
-    "mandoli2021"
+    "mandoli2021",
+    "shafiq2011"
    ],
-   "n_refs": 3
+   "n_refs": 4
   },
   {
    "id": "signo-taponamiento-cardiaco",
    "tipo": "signo",
    "titulo": "Taponamiento cardíaco (el derrame que impide el llenado)",
    "titulo_en": "Cardiac tamponade",
-   "version": "1.0",
+   "version": "1.1",
    "abstract": "Colapso diastólico del ventrículo derecho, colapso sistólico de la aurícula derecha y vena cava inferior dilatada sin colapso inspiratorio en presencia de derrame pericárdico. Señala compromiso del llenado cardíaco por presión pericárdica elevada, no solo líquido presente. Ante hallazgos ecográficos compatibles integrados con inestabilidad hemodinámica, acelera la activación para drenaje urgente —pericardiocentesis o quirúrgico según la causa. Ningún signo aislado confirma ni descarta taponamiento sin integrar la clínica.\n",
    "sistema": "cardiovascular",
    "organo": "pericardio",
@@ -1636,15 +1655,34 @@
      ]
     }
    ],
+   "medios": [
+    {
+     "tipo": "imagen",
+     "id": "wikimedia:Respiratory-maneuvers-in-echocardiography-a-review-of-clinical-applications-1476-7120-7-42-S10.ogv",
+     "descripcion": "Fotograma de ecocardiografía transtorácica en eje corto basal que muestra colapso diastólico de las paredes libres de la aurícula y el ventrículo derechos por taponamiento cardíaco",
+     "credito": "Ginghina C, Beladan CC, Iancu M, Calin A y Popescu BA (fotograma derivado del video original)",
+     "fuente": "Wikimedia Commons",
+     "fuente_url": "https://commons.wikimedia.org/wiki/File:Respiratory-maneuvers-in-echocardiography-a-review-of-clinical-applications-1476-7120-7-42-S10.ogv",
+     "licencia_img": "CC BY 2.0",
+     "licencia_url": "https://creativecommons.org/licenses/by/2.0/",
+     "archivo_local": "assets/img/taponamiento-cardiaco.jpg",
+     "original_local": "assets/media/taponamiento-cardiaco.ogv",
+     "adaptacion": "Fotograma fijo de la previsualización de Wikimedia Commons, 500 × 384 px",
+     "referencia": "ginghina2009"
+    }
+   ],
+   "n_loops": 0,
+   "n_imagenes": 1,
    "refs": [
     "via2014",
     "perezcasares2017",
     "guntheroth2007",
     "alerhand2022",
     "adler2015",
-    "floerchinger2013"
+    "floerchinger2013",
+    "ginghina2009"
    ],
-   "n_refs": 6
+   "n_refs": 7
   },
   {
    "id": "signo-trombosis-venosa-profunda",

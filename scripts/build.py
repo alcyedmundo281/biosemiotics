@@ -489,6 +489,49 @@ def validar(entidades, aristas, raiz: Path):
         if e["tipo"] in ("signo", "caso") and not e.get("refs"):
             alertas.append(f"[REFS] {e['id']}: sin referencias BibLaTeX")
 
+        # Toda adaptación debe conservar la cadena de trazabilidad completa.
+        # En particular, un fotograma es una obra derivada del video: además
+        # de atribuir y declarar la licencia, el original debe quedar local
+        # para que el cambio sea auditable. Si el original es audiovisual, su
+        # artículo fuente también debe viajar a LuaLaTeX mediante `refs`.
+        for i, medio in enumerate(e.get("medios") or [], 1):
+            if not medio.get("adaptacion"):
+                continue
+            prefijo = f"[IMAGEN] {e['id']} medio {i}"
+            obligatorios = (
+                "archivo_local", "original_local", "credito", "fuente",
+                "fuente_url", "licencia_img", "licencia_url",
+            )
+            for campo in obligatorios:
+                if not medio.get(campo):
+                    errores.append(
+                        f"{prefijo}: adaptación sin '{campo}'")
+
+            for campo in ("archivo_local", "original_local"):
+                declarado = medio.get(campo)
+                if not declarado:
+                    continue
+                ruta = (raiz / declarado).resolve()
+                try:
+                    ruta.relative_to(raiz)
+                except ValueError:
+                    errores.append(
+                        f"{prefijo}: '{campo}' apunta fuera del banco")
+                    continue
+                if not ruta.is_file():
+                    errores.append(
+                        f"{prefijo}: no existe {declarado}")
+
+            original = medio.get("original_local") or ""
+            if Path(original).suffix.lower() in (".ogv", ".webm", ".mp4", ".mov"):
+                referencia = medio.get("referencia")
+                if not referencia:
+                    errores.append(
+                        f"{prefijo}: fotograma de video sin 'referencia'")
+                elif referencia not in (e.get("refs") or []):
+                    errores.append(
+                        f"{prefijo}: referencia '{referencia}' no incluida en refs")
+
         # La sección 'Evidencia' escrita a mano es contenido muerto: se publica
         # la que build_ghost regenera desde refs.bib. Cuando ambas divergen, el
         # editor que lee el .md ve una bibliografía que no es la real —así se

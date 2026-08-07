@@ -6,7 +6,7 @@ titulo_en: "Cardiac tamponade"
 url: ""           # se llena AL PUBLICAR en Ghost: https://www.biosemiotics.net/<slug>/
                   # vacío → el atlas lo muestra "(sin publicar)"
 doi: null
-version: "1.0"
+version: "1.1"
 
 abstract: >
   Colapso diastólico del ventrículo derecho, colapso sistólico de la aurícula
@@ -54,7 +54,21 @@ autores:
     afiliacion: "Universidad Central del Ecuador"
     credit: [conceptualizacion, redaccion]
 
-refs: [via2014, perezcasares2017, guntheroth2007, alerhand2022, adler2015, floerchinger2013]
+medios:
+  - tipo: imagen
+    id: "wikimedia:Respiratory-maneuvers-in-echocardiography-a-review-of-clinical-applications-1476-7120-7-42-S10.ogv"
+    descripcion: "Fotograma de ecocardiografía transtorácica en eje corto basal que muestra colapso diastólico de las paredes libres de la aurícula y el ventrículo derechos por taponamiento cardíaco"
+    credito: "Ginghina C, Beladan CC, Iancu M, Calin A y Popescu BA (fotograma derivado del video original)"
+    fuente: "Wikimedia Commons"
+    fuente_url: "https://commons.wikimedia.org/wiki/File:Respiratory-maneuvers-in-echocardiography-a-review-of-clinical-applications-1476-7120-7-42-S10.ogv"
+    licencia_img: "CC BY 2.0"
+    licencia_url: "https://creativecommons.org/licenses/by/2.0/"
+    archivo_local: "assets/img/taponamiento-cardiaco.jpg"
+    original_local: "assets/media/taponamiento-cardiaco.ogv"
+    adaptacion: "Fotograma fijo de la previsualización de Wikimedia Commons, 500 × 384 px"
+    referencia: "ginghina2009"
+
+refs: [via2014, perezcasares2017, guntheroth2007, alerhand2022, adler2015, floerchinger2013, ginghina2009]
 fecha: 2026-08-07
 actualizado: 2026-08-07
 licencia: CC-BY-NC-4.0

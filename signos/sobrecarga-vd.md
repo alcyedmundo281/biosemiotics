@@ -6,7 +6,7 @@ titulo_en: "Right ventricular overload (pulmonary embolism)"
 url: ""           # se llena AL PUBLICAR en Ghost: https://www.biosemiotics.net/<slug>/
                   # vacío → el atlas lo muestra "(sin publicar)"
 doi: null
-version: "1.0"
+version: "1.1"
 
 abstract: >
   Ventrículo derecho dilatado, tabique interventricular aplanado hacia el
@@ -52,7 +52,21 @@ autores:
     afiliacion: "Universidad Central del Ecuador"
     credit: [conceptualizacion, redaccion]
 
-refs: [via2014, fields2017, mandoli2021]
+medios:
+  - tipo: imagen
+    id: "wikimedia:McConnell-Sign-in-a-Patient-with-Massive-Acute-Pulmonary-Embolism-201097.f1.ogv"
+    descripcion: "Fotograma de ecocardiografía apical de cuatro cámaras que muestra el signo de McConnell en una embolia pulmonar masiva antes de la trombólisis"
+    credito: "Shafiq Q, Assaly R y Kanjwal Y (fotograma derivado del video original)"
+    fuente: "Wikimedia Commons"
+    fuente_url: "https://commons.wikimedia.org/wiki/File:McConnell-Sign-in-a-Patient-with-Massive-Acute-Pulmonary-Embolism-201097.f1.ogv"
+    licencia_img: "CC BY 3.0"
+    licencia_url: "https://creativecommons.org/licenses/by/3.0/"
+    archivo_local: "assets/img/sobrecarga-vd.jpg"
+    original_local: "assets/media/sobrecarga-vd-mcconnell.ogv"
+    adaptacion: "Fotograma fijo de la previsualización de Wikimedia Commons, 500 × 340 px"
+    referencia: "shafiq2011"
+
+refs: [via2014, fields2017, mandoli2021, shafiq2011]
 fecha: 2026-08-07
 actualizado: 2026-08-07
 licencia: CC-BY-NC-4.0
