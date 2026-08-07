@@ -106,11 +106,17 @@ vascular pulmonar.
 tromboembolia pulmonar, pero hace menos probable que sea masiva o submasiva de
 alto riesgo; sigue la ruta diagnóstica estándar según la probabilidad clínica.
 
-**VD dilatado con tabique en D o TAPSE reducido, en un paciente con clínica
-compatible** → sospecha fuerte de sobrecarga aguda por tromboembolia pulmonar:
-acelera la anticoagulación empírica si no hay contraindicación y, si hay
-inestabilidad hemodinámica, activa al equipo para trombólisis o embolectomía
-sin esperar la confirmación por imagen si el paciente no la tolera.
+**VD dilatado con tabique en D o TAPSE reducido, en un paciente inestable o
+con probabilidad clínica alta/intermedia de tromboembolia pulmonar (Wells,
+Ginebra)** → sospecha fuerte de sobrecarga aguda: si el paciente está
+inestable, activa al equipo para trombólisis o embolectomía sin esperar la
+confirmación por imagen si no la tolera. Si está estable, estos hallazgos
+apoyan iniciar anticoagulación empírica mientras se confirma —solo cuando la
+probabilidad pretest ya era alta o intermedia, sin contraindicación y sin
+riesgo de sangrado prohibitivo, nunca solo por el hallazgo ecográfico en un
+paciente de baja probabilidad: la especificidad del conjunto es 83 %, y cor
+pulmonale crónico, infarto de VD u otra causa de disfunción del VD quedan sin
+descartar por la ecografía sola.
 
 ## Dónde NO confiar
 
@@ -132,8 +138,9 @@ sin esperar la confirmación por imagen si el paciente no la tolera.
 
 En cada vista apical de cuatro cámaras que hagas, compara de un vistazo el
 tamaño del VD contra el VI antes de seguir. Acostúmbrate a nombrar en voz alta
-si el tabique se ve curvo hacia la izquierda (normal) o aplanado/curvo hacia
-la derecha (signo de la D).
+si el tabique se ve curvo hacia el VD (normal —la mayor presión del VI lo
+empuja hacia el lado de menor presión) o aplanado/curvo hacia el VI (signo de
+la D —la presión del VD ya alcanza o supera a la del VI).
 
 ## Discusión abierta
 
