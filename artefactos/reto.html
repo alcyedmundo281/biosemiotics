@@ -197,6 +197,18 @@ var $ = function(id){ return document.getElementById(id); };
 var esc = function(s){ return String(s == null ? "" : s)
   .replace(/[&<>]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;"}[c]; }); };
 
+// Dentro de un iframe la altura la fija el contenedor. Avisamos el alto real
+// tras cada cambio para que la página de Ghost lo ajuste y no queden dos scroll.
+function avisarAlto(){
+  if (window.parent === window) return;
+  try {
+    window.parent.postMessage({
+      tipo: "alto-reto",
+      alto: document.documentElement.scrollHeight + 24
+    }, "*");
+  } catch (e) {}
+}
+
 function mezclar(a){
   a = a.slice();
   for (var j = a.length - 1; j > 0; j--){
@@ -336,6 +348,7 @@ function pintarFiltros(){
       };
     });
   $("empezar").onclick = empezar;
+  avisarAlto();
 }
 
 function empezar(){
@@ -385,6 +398,7 @@ function pintar(){
     b.onclick = function(){ responder(o, b); };
     c.appendChild(b);
   });
+  avisarAlto();
 }
 
 function responder(elegida, boton){
@@ -428,6 +442,7 @@ function responder(elegida, boton){
     : esc(f.titulo) + " (aún sin publicar)";
 
   $("feed").style.display = "block";
+  avisarAlto();
 }
 
 $("siguiente").onclick = function(){
@@ -463,6 +478,7 @@ function terminar(){
     $("repaso").innerHTML += '<p style="font-size:14px;margin-top:16px">' +
       '<a href="?" style="color:#2E5A87">Practicar con todo el atlas →</a></p>';
   }
+  avisarAlto();
 }
 
 $("otra").onclick = function(){
