@@ -28,6 +28,19 @@ sys.stdout.reconfigure(encoding="utf-8")
 RELS = ("relacionado_con", "prerequisito_de", "se_basa_en",
         "contrasta_con", "signos", "conceptos")
 
+# Cierre de cada signo publicado en Ghost: el enlace al Reto.
+# El Reto (artefactos/reto.html) lee el MISMO index.json y arma sus preguntas
+# desde la ficha, así que basta el id para enfocar la ronda en ESE signo
+# (parámetro ?signo=). Solo lo llevan los signos: conceptos y casos no generan
+# preguntas. Si cambia el slug de la página en Ghost, se cambia aquí y se
+# recompila; no está incrustado en build_ghost().
+LINEA_RETO = (
+    "---\n"
+    "\n"
+    "**¿Reconoces este signo cuando no te avisan?** "
+    "[Ponte a prueba en el Reto](https://www.biosemiotics.net/reto/?signo={id})"
+)
+
 CITA_BIBLATEX = re.compile(r"\[([A-Za-z][A-Za-z0-9_:-]*)\]")
 BIBLIO_HEADING = re.compile(
     r"^(#{2,6})\s+(?:Evidencia|Referencias|Bibliograf[ií]a)\s*$",
@@ -450,6 +463,10 @@ def build_ghost(entidades, build_dir: Path, bib_path: Path) -> Path:
                        for i, clave in enumerate(orden, 1)]
         if referencias:
             cuerpo = cuerpo.rstrip() + "\n\n## Evidencia\n\n" + "\n".join(referencias)
+
+        # Al final del cuerpo, después de la Evidencia regenerada.
+        if e["tipo"] == "signo":
+            cuerpo = cuerpo.rstrip() + "\n\n" + LINEA_RETO.format(id=e["id"])
 
         abstract = excerpt_ghost(e.get("abstract"))
         cabecera = "\n".join([
