@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Reto — biosemiotics</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600&family=Literata:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#14181B; --mute:#5F676E; --line:#DFE3E6; --paper:#FBFCFC;
+  --doppler:#A8322F; --warn:#8A4B00; --link:#2E5A87; --ok:#2D6A4F;
+  --mono:'IBM Plex Mono',monospace;
+}
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:'Literata',Georgia,serif; line-height:1.65;
+  padding:24px 16px;
+}
+.wrap{max-width:720px;margin:0 auto}
+
+.kicker{
+  font-family:var(--mono); font-size:10px; text-transform:uppercase;
+  letter-spacing:.09em; color:#8A9199; margin-bottom:6px;
+}
+h1{
+  font-family:'Archivo',system-ui,sans-serif; font-weight:600;
+  font-size:26px; letter-spacing:-.015em; margin:0 0 6px;
+}
+.sub{font-size:15px;color:var(--mute);margin:0 0 26px}
+
+/* ── barra de estado ── */
+#estado{
+  display:none; font-family:var(--mono); font-size:11px;
+  text-transform:uppercase; letter-spacing:.07em; color:var(--mute);
+  padding:10px 0; border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line); margin-bottom:26px;
+  gap:18px; flex-wrap:wrap;
+}
+#estado b{color:var(--ink);font-weight:500}
+
+/* ── filtros ── */
+.fg{margin:14px 0}
+.fl{font-family:var(--mono);font-size:10px;text-transform:uppercase;
+letter-spacing:.08em;color:#8A9199;margin-bottom:6px}
+.fb{display:flex;gap:5px;flex-wrap:wrap}
+.fb button{
+  font-family:var(--mono); font-size:11px; text-transform:uppercase;
+  letter-spacing:.05em; padding:5px 11px; border:1px solid var(--line);
+  border-radius:20px; background:none; color:var(--mute); cursor:pointer;
+}
+.fb button:hover{border-color:#8A9199}
+.fb button.on{background:var(--doppler);border-color:var(--doppler);color:#fff}
+
+/* ── botón principal ── */
+.btn{
+  font-family:'Archivo',system-ui,sans-serif; font-weight:600; font-size:15px;
+  background:var(--doppler); color:#fff; border:none; border-radius:6px;
+  padding:13px 26px; cursor:pointer; margin-top:22px;
+}
+.btn:hover{opacity:.9}
+.btn.sec{background:none;color:var(--doppler);border:1px solid var(--doppler)}
+
+/* ── pregunta ── */
+.tipo{
+  font-family:var(--mono); font-size:10px; text-transform:uppercase;
+  letter-spacing:.09em; color:#8A9199; margin-bottom:10px;
+}
+.enunciado{font-size:18px;line-height:1.55;margin:0 0 6px}
+.cita{
+  font-size:16px; line-height:1.6; margin:14px 0 20px; padding-left:16px;
+  border-left:3px solid var(--doppler); color:var(--ink);
+}
+.opts{display:flex;flex-direction:column;gap:9px;margin-top:18px}
+.opt{
+  text-align:left; font-family:'Literata',Georgia,serif; font-size:15px;
+  line-height:1.5; background:#fff; border:1px solid var(--line);
+  border-radius:6px; padding:13px 15px; cursor:pointer; color:var(--ink);
+}
+.opt:hover:not(:disabled){border-color:#8A9199}
+.opt:disabled{cursor:default}
+.opt.bien{border-color:var(--ok);background:#F2F8F4}
+.opt.mal{border-color:var(--doppler);background:#FBF3F2}
+
+/* ── retroalimentación ── */
+#feed{display:none;margin-top:22px;padding-top:18px;border-top:1px solid var(--line)}
+.veredicto{
+  font-family:var(--mono); font-size:11px; text-transform:uppercase;
+  letter-spacing:.08em; margin-bottom:10px;
+}
+.veredicto.bien{color:var(--ok)}
+.veredicto.mal{color:var(--doppler)}
+.explica{font-size:15px;line-height:1.6;margin:0 0 12px}
+.limite{font-size:14px;color:var(--warn);margin:12px 0}
+.fuente{font-family:var(--mono);font-size:11px;margin-top:14px}
+.fuente a{color:var(--link)}
+
+/* ── cierre ── */
+#fin{display:none;text-align:center;padding:20px 0}
+.cifra{font-family:'Archivo',sans-serif;font-weight:600;font-size:42px;
+letter-spacing:-.02em;margin:0}
+.cifra-lbl{font-family:var(--mono);font-size:11px;text-transform:uppercase;
+letter-spacing:.08em;color:var(--mute);margin-bottom:22px}
+.repaso{text-align:left;margin-top:26px;padding-top:18px;border-top:1px solid var(--line)}
+.repaso h2{font-family:'Archivo',sans-serif;font-size:14px;font-weight:600;
+margin:0 0 12px}
+.repaso li{font-size:14px;margin-bottom:7px}
+.repaso a{color:var(--link)}
+
+.aviso{
+  font-family:var(--mono); font-size:11px; color:#8A9199;
+  margin-top:34px; padding-top:16px; border-top:1px solid var(--line);
+  line-height:1.6;
+}
+.aviso a{color:var(--link)}
+.cargando{color:#8A9199;padding:40px 0;text-align:center}
+
+#focoBanner{
+  font-family:var(--mono); font-size:11px; text-transform:uppercase;
+  letter-spacing:.07em; color:var(--mute); margin:-16px 0 24px;
+  padding:10px 14px; border-left:3px solid var(--doppler); background:#fff;
+}
+#focoBanner b{color:var(--ink);font-weight:500;text-transform:none;
+font-family:'Literata',Georgia,serif;font-size:14px;letter-spacing:0}
+#focoBanner a{color:var(--link);text-transform:none;font-size:11px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<p class="kicker">biosemiotics · reto</p>
+<h1>Un signo, un significado, una decisión</h1>
+<p class="sub">Las preguntas se generan desde el atlas. Cada respuesta enlaza al signo completo.</p>
+
+<p id="focoBanner" style="display:none"></p>
+
+<div id="estado">
+  <span>Aciertos <b id="eAciertos">0</b></span>
+  <span>Racha <b id="eRacha">0</b></span>
+  <span>Pregunta <b id="ePreg">0</b></span>
+</div>
+
+<div id="inicio"><p class="cargando">Cargando el atlas…</p></div>
+
+<div id="juego" style="display:none">
+  <p class="tipo" id="tipo"></p>
+  <p class="enunciado" id="enunciado"></p>
+  <p class="cita" id="cita" style="display:none"></p>
+  <div class="opts" id="opts"></div>
+  <div id="feed">
+    <p class="veredicto" id="veredicto"></p>
+    <p class="explica" id="explica"></p>
+    <p class="limite" id="limite" style="display:none"></p>
+    <p class="fuente" id="fuente"></p>
+    <button class="btn" id="siguiente">Siguiente</button>
+  </div>
+</div>
+
+<div id="fin">
+  <p class="cifra" id="finCifra"></p>
+  <p class="cifra-lbl" id="finLbl"></p>
+  <button class="btn" id="otra">Otra ronda</button>
+  <div class="repaso" id="repaso"></div>
+</div>
+
+<p class="aviso">
+  Material educativo. No sustituye la formación supervisada, la valoración
+  presencial ni el juicio clínico del profesional responsable.<br>
+  Las preguntas derivan del banco de
+  <a href="https://www.biosemiotics.net/atlas/">biosemiotics</a> ·
+  <a href="https://doi.org/10.5281/zenodo.21435362">DOI: 10.5281/zenodo.21435362</a>
+</p>
+
+</div>
+
+<script>
+(function(){
+"use strict";
+
+var IDX  = "https://raw.githubusercontent.com/alcyedmundo281/biosemiotics/main/build/index.json";
+var IDX2 = "https://cdn.jsdelivr.net/gh/alcyedmundo281/biosemiotics@main/build/index.json";
+var RONDA = 8;
+
+var signos = [], preguntas = [], i = 0, aciertos = 0, racha = 0, mejorRacha = 0;
+var fallos = [], filtro = null, foco = null;
+
+// ?signo=<id> enfoca el reto en un solo signo. Permite enlazar desde cada
+// artículo a las preguntas de ESE signo, en vez de al reto genérico.
+(function(){
+  var m = /[?&]signo=([^&]+)/.exec(window.location.search);
+  if (m) foco = decodeURIComponent(m[1]);
+})();
+
+var $ = function(id){ return document.getElementById(id); };
+var esc = function(s){ return String(s == null ? "" : s)
+  .replace(/[&<>]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;"}[c]; }); };
+
+function mezclar(a){
+  a = a.slice();
+  for (var j = a.length - 1; j > 0; j--){
+    var k = Math.floor(Math.random() * (j + 1));
+    var t = a[j]; a[j] = a[k]; a[k] = t;
+  }
+  return a;
+}
+
+// Distractores: primero del mismo sistema (más difíciles y clínicamente
+// relevantes), y si no alcanzan, de cualquier otro signo.
+function distractores(campo, correcto, ficha, n){
+  var mismo = [], otros = [];
+  signos.forEach(function(s){
+    if (s.id === ficha.id) return;
+    var v = s[campo];
+    if (!v || v === correcto) return;
+    (s.sistema && s.sistema === ficha.sistema ? mismo : otros).push(v);
+  });
+  var pool = mezclar(mismo).concat(mezclar(otros));
+  var out = [], vistos = {};
+  for (var j = 0; j < pool.length && out.length < n; j++){
+    if (!vistos[pool[j]]){ vistos[pool[j]] = 1; out.push(pool[j]); }
+  }
+  return out;
+}
+
+// Los falsos positivos de OTROS signos son los mejores distractores para la
+// pregunta de límites: son confusiones clínicas reales, no opciones inventadas.
+function distractoresFP(correcto, ficha, n){
+  var pool = [];
+  signos.forEach(function(s){
+    if (s.id === ficha.id || !s.falsos_positivos) return;
+    s.falsos_positivos.forEach(function(fp){
+      if (fp && fp !== correcto && fp.indexOf("TODO") === -1) pool.push(fp);
+    });
+  });
+  return mezclar(pool).slice(0, n);
+}
+
+function armar(ficha, tipo, enunciado, cita, correcto, opciones, explica){
+  if (opciones.length < 3) return null;          // sin distractores no hay pregunta
+  var todas = mezclar([correcto].concat(opciones));
+  return {
+    ficha: ficha, tipo: tipo, enunciado: enunciado, cita: cita,
+    correcto: correcto, opciones: todas, explica: explica
+  };
+}
+
+function generar(ficha){
+  var qs = [];
+
+  // 1. La duda clínica → el signo. El diferenciador del atlas.
+  if (ficha.pregunta_clinica && ficha.titulo){
+    qs.push(armar(ficha, "La duda clínica",
+      "Estás frente a esta pregunta:", ficha.pregunta_clinica,
+      ficha.titulo, distractores("titulo", ficha.titulo, ficha, 3),
+      ficha.significante || ""));
+  }
+
+  // 2. Significante → significado.
+  if (ficha.significante && ficha.significado){
+    qs.push(armar(ficha, "Significante → significado",
+      "Esto es lo que ves en pantalla:", ficha.significante,
+      ficha.significado, distractores("significado", ficha.significado, ficha, 3),
+      "El significante remite a esa realidad. " + (ficha.titulo || "")));
+  }
+
+  // 3. Significado → decisión. Sin decisión no es un signo.
+  if (ficha.decision && ficha.titulo){
+    qs.push(armar(ficha, "La bifurcación",
+      "Confirmas " + ficha.titulo + ". ¿Qué cambia?", null,
+      ficha.decision, distractores("decision", ficha.decision, ficha, 3),
+      "Un hallazgo que no cambia una decisión es una curiosidad, no un signo."));
+  }
+
+  // 4. Límites. La que más protege al paciente del lector.
+  if (ficha.falsos_positivos && ficha.falsos_positivos.length && ficha.titulo){
+    var fps = ficha.falsos_positivos.filter(function(f){
+      return f && f.indexOf("TODO") === -1;
+    });
+    if (fps.length){
+      var fp = fps[Math.floor(Math.random() * fps.length)];
+      qs.push(armar(ficha, "Dónde NO confiar",
+        "Crees ver " + ficha.titulo + ". ¿Cuál de estas situaciones puede engañarte?",
+        null, fp, distractoresFP(fp, ficha, 3),
+        "Todas son confusiones reales de algún signo. Esta lo es de " +
+        ficha.titulo + "."));
+    }
+  }
+
+  return qs.filter(Boolean);
+}
+
+function pintarFiltros(){
+  // Con foco activo no tiene sentido el filtro por sistema: la ronda ya está
+  // acotada a un signo.
+  if (foco){
+    var f = null;
+    for (var j = 0; j < signos.length; j++){
+      if (signos[j].id === foco){ f = signos[j]; break; }
+    }
+    if (f){
+      $("focoBanner").innerHTML = "Reto enfocado en<br><b>" + esc(f.titulo) +
+        '</b><br><a href="?">Practicar con todo el atlas →</a>';
+      $("focoBanner").style.display = "block";
+      $("inicio").innerHTML = '<button class="btn" id="empezar">Empezar</button>';
+      $("empezar").onclick = empezar;
+      return;
+    }
+    foco = null;   // id inexistente: se ignora en silencio
+  }
+
+  var sist = {};
+  signos.forEach(function(s){ if (s.sistema) sist[s.sistema] = 1; });
+  var ks = Object.keys(sist).sort();
+  var html = "";
+  if (ks.length > 1){
+    html += '<div class="fg"><div class="fl">Sistema</div><div class="fb">' +
+      ks.map(function(k){
+        return '<button data-s="' + esc(k) + '">' + esc(k) + '</button>';
+      }).join("") + "</div></div>";
+  }
+  html += '<button class="btn" id="empezar">Empezar</button>';
+  $("inicio").innerHTML = html;
+
+  Array.prototype.forEach.call(document.querySelectorAll("#inicio .fb button"),
+    function(b){
+      b.onclick = function(){
+        if (filtro === b.dataset.s){ filtro = null; b.classList.remove("on"); }
+        else {
+          filtro = b.dataset.s;
+          Array.prototype.forEach.call(document.querySelectorAll("#inicio .fb button"),
+            function(x){ x.classList.remove("on"); });
+          b.classList.add("on");
+        }
+      };
+    });
+  $("empezar").onclick = empezar;
+}
+
+function empezar(){
+  var pool;
+  if (foco){
+    // Solo las preguntas de este signo. Los distractores siguen saliendo de
+    // todo el banco, que es lo que las hace difíciles.
+    pool = signos.filter(function(s){ return s.id === foco; });
+  } else {
+    pool = filtro ? signos.filter(function(s){ return s.sistema === filtro; }) : signos;
+    if (pool.length < 4){ pool = signos; }        // hacen falta distractores
+  }
+
+  var todas = [];
+  pool.forEach(function(f){ todas = todas.concat(generar(f)); });
+  preguntas = mezclar(todas).slice(0, foco ? todas.length : RONDA);
+
+  if (!preguntas.length){
+    $("inicio").innerHTML = '<p class="cargando">El atlas todavía no tiene ' +
+      'signos suficientes para armar preguntas.</p>';
+    return;
+  }
+
+  i = 0; aciertos = 0; racha = 0; mejorRacha = 0; fallos = [];
+  $("inicio").style.display = "none";
+  $("fin").style.display = "none";
+  $("juego").style.display = "block";
+  $("estado").style.display = "flex";
+  pintar();
+}
+
+function pintar(){
+  var q = preguntas[i];
+  $("tipo").textContent = q.tipo;
+  $("enunciado").textContent = q.enunciado;
+  if (q.cita){ $("cita").textContent = q.cita; $("cita").style.display = "block"; }
+  else { $("cita").style.display = "none"; }
+  $("feed").style.display = "none";
+  $("ePreg").textContent = (i + 1) + " de " + preguntas.length;
+
+  var c = $("opts");
+  c.innerHTML = "";
+  q.opciones.forEach(function(o){
+    var b = document.createElement("button");
+    b.className = "opt";
+    b.textContent = o;
+    b.onclick = function(){ responder(o, b); };
+    c.appendChild(b);
+  });
+}
+
+function responder(elegida, boton){
+  var q = preguntas[i];
+  var bien = elegida === q.correcto;
+
+  Array.prototype.forEach.call($("opts").children, function(b){
+    b.disabled = true;
+    if (b.textContent === q.correcto) b.classList.add("bien");
+  });
+  if (!bien) boton.classList.add("mal");
+
+  if (bien){
+    aciertos++; racha++;
+    if (racha > mejorRacha) mejorRacha = racha;
+  } else {
+    racha = 0;
+    if (fallos.indexOf(q.ficha) === -1) fallos.push(q.ficha);
+  }
+  $("eAciertos").textContent = aciertos;
+  $("eRacha").textContent = racha;
+
+  $("veredicto").textContent = bien ? "Correcto" : "Revisa este signo";
+  $("veredicto").className = "veredicto " + (bien ? "bien" : "mal");
+  $("explica").textContent = q.explica || "";
+
+  var f = q.ficha;
+  if (f.falsos_positivos && f.falsos_positivos.length && q.tipo !== "Dónde NO confiar"){
+    var lim = f.falsos_positivos.filter(function(x){
+      return x && x.indexOf("TODO") === -1;
+    });
+    if (lim.length){
+      $("limite").textContent = "No confiar si: " + lim.join(" · ");
+      $("limite").style.display = "block";
+    } else { $("limite").style.display = "none"; }
+  } else { $("limite").style.display = "none"; }
+
+  $("fuente").innerHTML = f.url
+    ? '<a href="' + esc(f.url) + '" target="_blank" rel="noopener">Leer ' +
+      esc(f.titulo) + " en el atlas →</a>"
+    : esc(f.titulo) + " (aún sin publicar)";
+
+  $("feed").style.display = "block";
+}
+
+$("siguiente").onclick = function(){
+  i++;
+  if (i < preguntas.length) pintar();
+  else terminar();
+};
+
+function terminar(){
+  $("juego").style.display = "none";
+  $("estado").style.display = "none";
+  $("fin").style.display = "block";
+
+  var pct = Math.round(aciertos / preguntas.length * 100);
+  $("finCifra").textContent = aciertos + " de " + preguntas.length;
+  $("finLbl").textContent = pct + "% · mejor racha " + mejorRacha;
+
+  if (fallos.length){
+    $("repaso").innerHTML = "<h2>Signos para repasar</h2><ul>" +
+      fallos.map(function(f){
+        return "<li>" + (f.url
+          ? '<a href="' + esc(f.url) + '" target="_blank" rel="noopener">' +
+            esc(f.titulo) + "</a>"
+          : esc(f.titulo)) + "</li>";
+      }).join("") + "</ul>";
+  } else {
+    $("repaso").innerHTML = "<h2>Sin fallos en esta ronda</h2>" +
+      '<p style="font-size:14px;color:#5F676E">Reconocer no es lo mismo que ' +
+      "adquirir. La sonda sigue siendo la prueba.</p>";
+  }
+
+  if (foco){
+    $("repaso").innerHTML += '<p style="font-size:14px;margin-top:16px">' +
+      '<a href="?" style="color:#2E5A87">Practicar con todo el atlas →</a></p>';
+  }
+}
+
+$("otra").onclick = function(){
+  $("fin").style.display = "none";
+  $("inicio").style.display = "block";
+  pintarFiltros();
+};
+
+function cargar(u){
+  return fetch(u, { cache: "no-cache" }).then(function(r){
+    if (!r.ok) throw new Error("HTTP " + r.status);
+    return r.json();
+  });
+}
+
+cargar(IDX).catch(function(){ return cargar(IDX2); }).then(function(j){
+  var fichas = j.fichas || j;
+  signos = fichas.filter(function(f){
+    return f.tipo === "signo" && f.titulo &&
+      (f.significado || f.decision || f.pregunta_clinica);
+  });
+  if (signos.length < 4){
+    $("inicio").innerHTML = '<p class="cargando">El atlas todavía no tiene ' +
+      "signos suficientes para armar preguntas.</p>";
+    return;
+  }
+  pintarFiltros();
+}).catch(function(){
+  $("inicio").innerHTML = '<p class="cargando">No se pudo cargar el atlas.</p>';
+});
+
+})();
+</script>
+</body>
+</html>
