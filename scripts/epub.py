@@ -226,6 +226,17 @@ def manuscrito(entidades: list[dict], bibliografia: dict, version: str) -> str:
         for entidad in casos:
             partes.append(ficha_markdown(entidad, bibliografia))
 
+    claves_bibliografia = []
+    vistas = set()
+    for entidad in entidades:
+        for clave in entidad.get("refs") or []:
+            if clave not in vistas:
+                vistas.add(clave)
+                claves_bibliografia.append(clave)
+    partes += ["# Bibliografía", ""]
+    for numero, clave in enumerate(claves_bibliografia, 1):
+        partes += [banco.referencia_ghost(numero, bibliografia[clave]), ""]
+
     partes += ["# Créditos de imágenes", ""]
     for entidad in entidades:
         for medio in entidad.get("medios") or []:
@@ -323,7 +334,7 @@ def main() -> int:
             f"--output={temporal_epub}",
             "--toc",
             "--toc-depth=3",
-            "--epub-chapter-level=2",
+            "--split-level=2",
             f"--css={css}",
             f"--epub-cover-image={cover}",
             f"--resource-path={raiz}",
