@@ -1213,6 +1213,83 @@
    "n_refs": 8
   },
   {
+   "id": "signo-embarazo-ectopico",
+   "tipo": "signo",
+   "titulo": "Embarazo ectópico: el útero vacío no es el signo",
+   "titulo_en": "Ectopic pregnancy: the empty uterus is not the sign",
+   "version": "1.0",
+   "abstract": "Con prueba de embarazo positiva y dolor o sangrado, la ecografía transabdominal en primer contacto responde bien una sola pregunta: ¿hay embarazo intrauterino confirmado? Verlo tranquiliza —la especificidad llega al 100 %—; no verlo no descarta nada, porque la sensibilidad ronda el 89 %. Un útero sin embarazo confirmado, con líquido libre y paciente inestable, no pide más imagen: pide quirófano.\n",
+   "sistema": "genitourinario",
+   "organo": "utero",
+   "nivel": "intermedio",
+   "ventana": "suprapubica-transabdominal",
+   "pregunta_clinica": "¿Puedo confirmar que este embarazo está dentro del útero?",
+   "significante": "Saco gestacional dentro del útero con saco vitelino o embrión en su interior, rodeado de un manto de miometrio: eso —y solo eso— confirma embarazo intrauterino. Lo que NO es el signo: una imagen anecoica central sin saco vitelino ni embrión, que puede ser un seudosaco. En el ectópico complicado se agrega líquido libre en fondo de saco y, si el sangrado es mayor, en el receso hepatorrenal.",
+   "significado": "Confirmar un embarazo intrauterino significa que el embarazo está donde debe estar, y vuelve muy improbable el ectópico en una mujer que no viene de reproducción asistida. NO confirmarlo no significa que el embarazo sea ectópico: significa que no sabes dónde está. Son dos cosas distintas y el error de manejo nace de confundirlas.",
+   "umbral": "Este signo no mide nada; lo que hay que tener presente es su asimetría. En 143 pacientes sintomáticas del primer trimestre, la ecografía transabdominal realizada por médicos de urgencias tuvo especificidad de 100 % y sensibilidad de 89,0 % para confirmar embarazo intrauterino, con exactitud de 93,0 %. Agregar un transductor lineal de alta frecuencia elevó la sensibilidad a 96,7 % y la exactitud a 97,9 %. Traducido a la cabecera: cuando dice que sí, créele; cuando no lo ve, no has descartado nada.\n",
+   "licencia": "CC-BY-NC-4.0",
+   "fecha": "2026-08-15",
+   "actualizado": "2026-08-15",
+   "decision": "Intrauterino confirmado y paciente estable: el ectópico deja de ser la primera preocupación, sigue la ruta obstétrica habitual. Sin intrauterino confirmado: esto es un embarazo de localización no determinada —deriva, asegura evaluación con ecografía transvaginal y βhCG, y no la mandes a casa sin plan, sin fecha y sin explicarle en voz alta los signos de alarma. Prueba de embarazo positiva más líquido libre más inestabilidad hemodinámica: no busques más imagen ni esperes laboratorio, avisa a quirófano.",
+   "sonda": [
+    "convexa",
+    "lineal"
+   ],
+   "escenario": [
+    "urgencias"
+   ],
+   "descriptores": [
+    "embarazo-ectopico",
+    "embarazo-intrauterino",
+    "saco-gestacional",
+    "seudosaco",
+    "liquido-libre",
+    "pocus"
+   ],
+   "mesh": [
+    "Pregnancy, Ectopic",
+    "Uterus",
+    "Ultrasonography",
+    "Point-of-Care Systems"
+   ],
+   "falsos_positivos": [
+    "Seudosaco: colección de líquido o sangre en la cavidad endometrial, central y sin saco vitelino ni embrión, en una mujer que SÍ tiene un ectópico. Es el falso positivo clásico y el más peligroso",
+    "Embarazo intersticial o cornual: está en el útero pero fuera de la cavidad, con manto miometrial delgado o ausente hacia un lado; parece intrauterino y se comporta como ectópico",
+    "Embarazo en cicatriz de cesárea: se implanta sobre la cicatriz y se ve engañosamente 'dentro'. Su incidencia se estima alrededor de 1,7 por cada 1 000 embarazos y sube con la tasa de cesáreas",
+    "Embarazo heterotópico: hay un intrauterino Y un ectópico a la vez. Confirmar el primero no excluye el segundo",
+    "Quiste o colección anexial tomada por saco gestacional extrauterino, sin serlo",
+    "Líquido libre escaso fisiológico en fondo de saco, sin sangrado",
+    "Vejiga vacía, obesidad, gas intestinal o útero muy retrovertido: ventana mala. Un estudio no concluyente NO es un estudio negativo"
+   ],
+   "se_basa_en": [
+    "ecogenicidad",
+    "tipos-de-sonda",
+    "frecuencia-profundidad",
+    "knobology-profundidad"
+   ],
+   "autores": [
+    {
+     "nombre": "Alcy Edmundo Torres Guerrero",
+     "orcid": "0000-0002-9742-375X",
+     "afiliacion": "Universidad Central del Ecuador",
+     "credit": [
+      "conceptualizacion",
+      "redaccion",
+      "supervision"
+     ]
+    }
+   ],
+   "refs": [
+    "celik2022",
+    "stone2021",
+    "mullany2023",
+    "panaitescu2021",
+    "pan2025",
+    "nasrollahi2024"
+   ],
+   "n_refs": 6
+  },
+  {
    "id": "signo-eyeball-ef",
    "tipo": "signo",
    "titulo": "Función sistólica del VI a ojo (Eyeball EF)",
