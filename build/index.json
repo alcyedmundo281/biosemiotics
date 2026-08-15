@@ -272,6 +272,7 @@
      "descripcion": "Ecografía anotada de un apéndice normal, donde las capas de la pared muestran distintos niveles de ecogenicidad",
      "credito": "Mikael Häggström",
      "fuente": "Wikimedia Commons",
+     "fuente_url": "https://commons.wikimedia.org/wiki/File:Ultrasonography_of_a_normal_appendix,_annotated.jpg",
      "licencia_img": "CC0 1.0",
      "licencia_url": "https://creativecommons.org/publicdomain/zero/1.0/",
      "archivo_local": "assets/img/ecogenicidad.jpg"
@@ -388,6 +389,7 @@
      "descripcion": "Equipo ultrasónico con controles y visualización de ganancia",
      "credito": "Karl Deutsch Prüf- und Messgerätebau GmbH + Co KG",
      "fuente": "Wikimedia Commons",
+     "fuente_url": "https://commons.wikimedia.org/wiki/File:Digitales-Ultraschallger%C3%A4t.jpg",
      "licencia_img": "CC BY 3.0 DE",
      "licencia_url": "https://creativecommons.org/licenses/by/3.0/de/",
      "archivo_local": "assets/img/knobology-ganancia.jpg"
@@ -1434,6 +1436,7 @@
      "descripcion": "Ecografía pulmonar que muestra líquido pleural hipoecoico por encima del diafragma",
      "credito": "Gillman L. y Kirkpatrick A. (fotograma adaptado)",
      "fuente": "Wikimedia Commons",
+     "fuente_url": "https://commons.wikimedia.org/wiki/File:Portable-bedside-ultrasound-the-visual-stethoscope-of-the-21st-century-1757-7241-20-18-S7.ogv",
      "licencia_img": "CC BY 2.0",
      "licencia_url": "https://creativecommons.org/licenses/by/2.0/",
      "archivo_local": "assets/img/derrame-pleural.jpg"
@@ -2495,6 +2498,7 @@
      "descripcion": "Patrón pulmonar normal con líneas A (artefactos horizontales repetidos)",
      "credito": "Luna Gargani",
      "fuente": "Wikimedia Commons",
+     "fuente_url": "https://commons.wikimedia.org/wiki/File:Lung-ultrasound-a-new-tool-for-the-cardiologist-1476-7120-9-6-S1.ogv",
      "licencia_img": "CC BY 2.0",
      "licencia_url": "https://creativecommons.org/licenses/by/2.0/",
      "archivo_local": "assets/img/perfil-a.jpg"
@@ -2548,6 +2552,7 @@
      "descripcion": "Ecografía renal en enfermedad renal crónica, con ecogenicidad aumentada y cortical adelgazada",
      "credito": "Kristoffer Lindskov Hansen, Michael Bachmann Nielsen y Caroline Ewertsen",
      "fuente": "Wikimedia Commons",
+     "fuente_url": "https://commons.wikimedia.org/wiki/File:Ultrasonography_of_end-stage_chronic_kidney_disease.jpg",
      "licencia_img": "CC BY 4.0",
      "licencia_url": "https://creativecommons.org/licenses/by/4.0/",
      "archivo_local": "assets/img/rinon-cronico.jpg"
