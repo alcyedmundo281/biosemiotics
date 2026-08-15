@@ -231,11 +231,44 @@ def figura_latex(e: dict, raiz: Path) -> str:
     ])
 
 
+# Títulos de los capítulos de Fundamentos. El banco numera cada capítulo en el
+# front-matter (`capitulo`) pero no guarda su título, que obligaría a repetir el
+# mismo texto en cada ficha del capítulo. Un número sin mapear se degrada a
+# "Capítulo N" en vez de romper la compilación.
+CAPITULOS = {
+    2: "Física del ultrasonido",
+    3: "El lenguaje de la imagen",
+    4: "Técnica, sondas y ventanas",
+    5: "Artefactos",
+    6: "Instrumentación y medición",
+}
+
+# Partes del atlas, en el orden canónico de la taxonomía `sistema` del mapa
+# maestro —no alfabético—. Un atlas impreso se recorre por aparatos; lo que
+# cruza sistemas va al final. Un `sistema` que no esté aquí no se pierde: cae
+# en "Otros signos".
+SISTEMAS = [
+    ("respiratorio", "Sistema respiratorio"),
+    ("cardiovascular", "Sistema cardiovascular"),
+    ("digestivo", "Sistema digestivo"),
+    ("genitourinario", "Sistema genitourinario"),
+    ("vascular", "Sistema vascular"),
+    ("musculoesqueletico", "Musculoesquelético y pared"),
+    ("endocrino", "Sistema endocrino"),
+    ("nervioso", "Sistema nervioso"),
+    ("multiorgano", "Multiórgano y protocolos"),
+]
+
+
 def build_latex(entidades, build_dir: Path, autor="Alcy") -> Path:
     conceptos = sorted([e for e in entidades if e["tipo"] == "concepto"],
                        key=lambda e: (e.get("capitulo") or 99, e.get("orden") or 99))
-    signos = sorted([e for e in entidades if e["tipo"] == "signo"],
-                    key=lambda e: (e.get("organo") or "", e["titulo"]))
+    signos = [e for e in entidades if e["tipo"] == "signo"]
+    casos = sorted([e for e in entidades if e["tipo"] == "caso"],
+                   key=lambda e: e["titulo"])
+
+    def por_organo(grupo):
+        return sorted(grupo, key=lambda e: (e.get("organo") or "", e["titulo"]))
 
     # Se compila con LuaLaTeX (ver CLAUDE.md), no pdflatex: el banco usa
     # símbolos Unicode estructurales (≥ → ±) en umbrales y decisiones, y
@@ -258,7 +291,7 @@ def build_latex(entidades, build_dir: Path, autor="Alcy") -> Path:
     for e in conceptos:
         if e.get("capitulo") != cap:
             cap = e.get("capitulo")
-            L.append(f"\n\\chapter{{Capítulo {cap}}}")
+            L.append(f"\n\\chapter{{{escape_latex(CAPITULOS.get(cap, f'Capítulo {cap}'))}}}")
         L += [f"\n\\section{{{escape_latex(e['titulo'])}}}",
               f"\\label{{sec:{e['id']}}}"]
         fig = figura_latex(e, build_dir.parent)
@@ -267,24 +300,58 @@ def build_latex(entidades, build_dir: Path, autor="Alcy") -> Path:
         L.append(escape_latex(e["cuerpo"]))
         L += [f"\\cite{{{r}}}" for r in (e.get("refs") or [])]
 
-    L.append("\n" + r"\part{Atlas de signos}")
-    for e in signos:
-        L += [f"\n\\chapter{{{escape_latex(e['titulo'])}}}", f"\\label{{sec:{e['id']}}}"]
+    def capitulo_signo(e):
+        """Un signo como capítulo: figura, campos semióticos, límites y cuerpo."""
+        out = [f"\n\\chapter{{{escape_latex(e['titulo'])}}}",
+               f"\\label{{sec:{e['id']}}}"]
         fig = figura_latex(e, build_dir.parent)
         if fig:
-            L.append(fig)
+            out.append(fig)
         for etiqueta, campo in (("Significante", "significante"),
                                 ("Significado", "significado"),
                                 ("Decisión", "decision"),
                                 ("Umbral", "umbral")):
             if e.get(campo):
-                L.append(f"\\paragraph{{{etiqueta}.}} {escape_latex(e[campo])}")
+                out.append(f"\\paragraph{{{etiqueta}.}} {escape_latex(e[campo])}")
         if e.get("falsos_positivos"):
-            L.append(r"\paragraph{Dónde NO confiar.}\begin{itemize}")
-            L += [f"  \\item {escape_latex(fp)}" for fp in e["falsos_positivos"]]
-            L.append(r"\end{itemize}")
-        L.append(escape_latex(e["cuerpo"]))
-        L += [f"\\cite{{{r}}}" for r in (e.get("refs") or [])]
+            out.append(r"\paragraph{Dónde NO confiar.}\begin{itemize}")
+            out += [f"  \\item {escape_latex(fp)}" for fp in e["falsos_positivos"]]
+            out.append(r"\end{itemize}")
+        out.append(escape_latex(e["cuerpo"]))
+        out += [f"\\cite{{{r}}}" for r in (e.get("refs") or [])]
+        return out
+
+    # Los signos se agrupan en una parte por aparato. Se emiten solo las partes
+    # que tienen contenido, para que el índice no muestre sistemas vacíos.
+    ubicados = set()
+    for clave, titulo_parte in SISTEMAS:
+        grupo = [e for e in signos if e.get("sistema") == clave]
+        if not grupo:
+            continue
+        L.append("\n" + rf"\part{{{escape_latex(titulo_parte)}}}")
+        for e in por_organo(grupo):
+            ubicados.add(e["id"])
+            L += capitulo_signo(e)
+
+    huerfanos = [e for e in signos if e["id"] not in ubicados]
+    if huerfanos:
+        L.append("\n" + r"\part{Otros signos}")
+        for e in por_organo(huerfanos):
+            L += capitulo_signo(e)
+
+    if casos:
+        L.append("\n" + r"\part{Casos}")
+        for e in casos:
+            L += [f"\n\\chapter{{{escape_latex(e['titulo'])}}}",
+                  f"\\label{{sec:{e['id']}}}"]
+            fig = figura_latex(e, build_dir.parent)
+            if fig:
+                L.append(fig)
+            if e.get("decision_semiotica"):
+                L.append(r"\paragraph{Decisión semiótica.} "
+                         + escape_latex(e["decision_semiotica"]))
+            L.append(escape_latex(e["cuerpo"]))
+            L += [f"\\cite{{{r}}}" for r in (e.get("refs") or [])]
 
     L += [r"\printbibliography", r"\end{document}"]
     tex = build_dir / "libro.tex"

@@ -2,6 +2,7 @@
 id: signo-riñon-cronico
 tipo: signo
 titulo: "Riñón crónico"
+sistema: genitourinario
 organo: riñon
 ventana: flanco
 sonda: [convexa]
