@@ -3,7 +3,7 @@ id: signo-absceso-partes-blandas
 tipo: signo
 titulo: "Absceso de partes blandas: la colección que la mano no distingue"
 titulo_en: "Soft tissue abscess: the collection the hand cannot feel"
-url: ""
+url: "https://www.biosemiotics.net/absceso-de-partes-blandas-la-coleccion-que-la-mano-no-distingue/"
 doi: null
 version: "1.0"
 
@@ -53,6 +53,18 @@ autores:
     orcid: "0000-0002-9742-375X"
     afiliacion: "Universidad Central del Ecuador"
     credit: [conceptualizacion, redaccion, supervision]
+
+medios:
+  - tipo: imagen
+    destacada: true
+    id: "wikimedia:Ultrasound_image_of_breast_110321112305_1127550.jpg"
+    descripcion: "Ecografía de una colección compatible con absceso en tejido blando mamario"
+    credito: "Nevit Dilmen"
+    fuente: "Wikimedia Commons"
+    fuente_url: "https://commons.wikimedia.org/wiki/File:Ultrasound_image_of_breast_110321112305_1127550.jpg"
+    licencia_img: "CC BY-SA 3.0"
+    licencia_url: "https://creativecommons.org/licenses/by-sa/3.0/"
+    archivo_local: "assets/img/absceso-partes-blandas.jpg"
 
 refs: [gottlieb2020, barbic2017, wu2022]
 fecha: 2026-08-15
