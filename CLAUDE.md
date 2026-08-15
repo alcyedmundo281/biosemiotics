@@ -75,28 +75,35 @@ Si compilas con pdflatex vas a ver `Missing character` o `Unicode character not 
 - **No edites `build/` a mano.** Regenéralo.
 - **Casos raros → composite.** Un diagnóstico infrecuente en comunidad pequeña re-identifica. Usa caso representativo y decláralo.
 
-## Ciclo cliente de publicación en Ghost
+## Ciclo de publicación en Ghost
 
-Este rol **solo publica en Ghost**. El repositorio y `build/index.json` son el
-proveedor; el publicador es un cliente de sus artefactos. Durante este ciclo no
-se ejecutan generadores, no se editan fuentes o salidas del proveedor y no se
-hacen operaciones Git de escritura.
+Este rol publica en Ghost y es dueño de los artefactos que solo nacen durante
+la publicación: imagen destacada, licencia, URL pública definitiva y su
+integración en el banco de imágenes/LuaLaTeX. El repositorio de contenidos y
+`build/index.json` siguen siendo provistos por la otra sesión.
 
 ### Límite de responsabilidad — obligatorio
 
 Esta sección prevalece sobre las instrucciones generales de creación,
 compilación y Git cuando la tarea solicitada sea publicar un artículo.
 
-El publicador puede leer `build/ghost/`, consultar metadatos y usar la sesión
-autorizada de Ghost. No puede ejecutar `build.py` ni `indice.py`, modificar
-`build/index.json`, los `.md` fuente o el mapa maestro, crear ramas, hacer
-commits, abrir/fusionar PR ni purgar la caché. Esas acciones pertenecen al flujo
+El publicador puede usar la sesión autorizada de Ghost y, sobre una ficha `.md`
+**ya creada y validada por el proveedor**, modificar solamente `url` y
+`medios`; puede añadir el archivo licenciado a `assets/img/`, ejecutar
+`build.py`, verificar `build/libro.tex` con LuaLaTeX y entregar esos cambios en
+una rama/PR de publicación.
+
+No puede crear fichas, modificar el cuerpo editorial, `refs`, PMID, DOI o
+Crossref, ni ejecutar `indice.py` o modificar `build/index.json`. Tampoco
+actualiza el mapa maestro ni purga la caché: esas acciones pertenecen al flujo
 separado del **proveedor del índice**.
 
-Si falta o está desactualizado un artefacto, el publicador se detiene y entrega
-un bloqueo al proveedor; nunca lo reconstruye localmente para continuar.
+Si falta la ficha o el cuerpo canónico, o si fallan sus referencias, el
+publicador se detiene y entrega un bloqueo al proveedor. No crea ni repara ese
+contenido. `build.py` se permite únicamente después de añadir `medios` o la URL
+para validar la imagen y su salida LuaLaTeX; `indice.py` sigue prohibido.
 
-### 0. Preflight cliente — solo lectura
+### 0. Preflight — evitar colisiones
 
 Antes de abrir Ghost:
 
@@ -109,6 +116,9 @@ python scripts/auditar_pegado_ghost.py \
   **detente** y abre el artículo existente; nunca crees un segundo post.
 - Confirma que el artefacto canónico existe y que su huella es válida. Esta
   auditoría es de lectura; no genera ni reescribe archivos.
+- Confirma que la ficha fuente ya existe y no tiene cambios editoriales
+  pendientes. Crea una rama de publicación; en ella solo podrán cambiar
+  `url`, `medios`, `assets/img/` y las salidas LuaLaTeX correspondientes.
 
 ### 1. Preparar y revisar Ghost
 
@@ -125,10 +135,12 @@ python scripts/auditar_pegado_ghost.py \
    Si hay que restaurarlo: enfoca el cuerpo, `Ctrl/Cmd+A`, `Backspace`, confirma
    longitud cero, pega una sola vez y vuelve a leer el texto visible. Si el
    cuerpo ya coincide con el canónico, no lo toques.
-2. Si el artefacto del proveedor ya declara una imagen destacada, úsala con su
-   atribución. Si no la declara, el publicador puede seleccionar una imagen
-   libre para Ghost, pero solo registra sus datos en el informe de entrega; no
-   modifica `medios` ni guarda archivos dentro del repositorio.
+2. Selecciona una imagen de licencia libre, guarda una copia auditable en
+   `assets/img/` y declárala en `medios` con `destacada: true`, descripción,
+   crédito, fuente y URL, licencia y URL de licencia, y `archivo_local`. Esta
+   es responsabilidad exclusiva del publicador porque debe ser exactamente la
+   misma imagen subida a Ghost. Ejecuta `build.py` y confirma que aparece en
+   `build/libro.tex`; compila con LuaLaTeX cuando el entorno lo permita.
 3. En Ghost configura: título, cuerpo, imagen, pie y texto alternativo, tags,
    excerpt, autor y acceso. Meta title/description y tarjetas sociales pueden
    quedar vacíos solo cuando se quiere heredar título, excerpt e imagen, como
@@ -157,22 +169,30 @@ python scripts/auditar_pegado_ghost.py \
    `Published and sent`) y copia la URL pública definitiva. Nunca uses la URL
    del editor (`/ghost/#/...`) ni una vista previa (`/p/...`).
 
-### 2. Entregar el resultado al proveedor — sin mutar el repositorio
+### 2. Registrar los artefactos de publicación y entregar al proveedor
 
-Después de publicar, devuelve un informe estructurado con: `id`, título, URL
-pública definitiva, id del post de Ghost, estado (`Published` o
-`Published and sent`), fecha/hora, audiencia y número de destinatarios, tags,
-excerpt, autor, acceso, URL de la imagen, texto alternativo, crédito, fuente y
-licencia. Verifica únicamente que la URL pública responda HTTP 200.
+1. Copia la URL pública definitiva al campo `url` de la ficha existente. No
+   cambies ningún otro campo salvo `medios`.
+2. Ejecuta `build.py`, valida la inclusión de la figura y su atribución en
+   `build/libro.tex`, y compila LuaLaTeX si está disponible. **No ejecutes
+   `indice.py` ni agregues `build/index.json`.**
+3. Abre un PR de publicación limitado a la ficha existente, `assets/img/` y
+   las salidas LuaLaTeX que correspondan. La sesión proveedora consume la URL
+   definitiva desde ese PR y se ocupa del índice, mapa y metadatos globales.
+4. Devuelve un informe con: `id`, título, URL pública, id de Ghost, estado,
+   fecha/hora, audiencia y destinatarios, tags, excerpt, autor, acceso, imagen,
+   alt, crédito, fuente, licencia, archivos cambiados y PR.
 
-Ese informe es la entrada del flujo del proveedor. El proveedor decide cuándo
-actualizar fuente, mapa, índice, caché y GitHub. El publicador no anticipa ni
-duplica ese trabajo.
+Esta división evita choques: la sesión proveedora crea contenido y verifica
+PMID/Crossref; el publicador nunca toca esos campos. El publicador aporta la
+información que el proveedor no puede conocer antes de Ghost: URL e imagen
+finales.
 
 ## Mantenimiento del proveedor — fuera del rol de publicación
 
 Lo que sigue documenta al proveedor del índice y no autoriza al publicador de
-Ghost a ejecutar estas acciones. En el flujo proveedor, `build.py` NO regenera
+Ghost a ejecutar `indice.py` ni a tocar `build/index.json`. En el flujo
+proveedor, `build.py` NO regenera
 `index.json` — eso lo hace `indice.py`. Si el proveedor modifica un `.md`, debe
 correr ambos scripts antes de commitear para no servir entradas obsoletas.
 
