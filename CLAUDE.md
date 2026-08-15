@@ -176,10 +176,14 @@ python scripts/auditar_pegado_ghost.py \
 2. Ejecuta `build.py`, valida la inclusión de la figura y su atribución en
    `build/libro.tex`, y compila LuaLaTeX si está disponible. **No ejecutes
    `indice.py` ni agregues `build/index.json`.**
-3. Abre un PR de publicación limitado a la ficha existente, `assets/img/` y
-   las salidas LuaLaTeX que correspondan. La sesión proveedora consume la URL
-   definitiva desde ese PR y se ocupa del índice, mapa y metadatos globales.
-4. Devuelve un informe con: `id`, título, URL pública, id de Ghost, estado,
+3. Abre un **PR borrador de publicación** limitado a la ficha existente,
+   `assets/img/` y las salidas LuaLaTeX que correspondan. Es normal que el
+   check de deriva del índice señale que aún falta la regeneración; no la
+   resuelvas desde el rol publicador.
+4. Señala inmediatamente ese PR al editor/proveedor con el `id`, la URL
+   definitiva y el nombre de la rama. El traspaso no termina con un mensaje:
+   debe existir un PR de regeneración creado por el proveedor.
+5. Devuelve un informe con: `id`, título, URL pública, id de Ghost, estado,
    fecha/hora, audiencia y destinatarios, tags, excerpt, autor, acceso, imagen,
    alt, crédito, fuente, licencia, archivos cambiados y PR.
 
@@ -188,6 +192,27 @@ PMID/Crossref; el publicador nunca toca esos campos. El publicador aporta la
 información que el proveedor no puede conocer antes de Ghost: URL e imagen
 finales.
 
+### 3. Traspaso atómico del índice — obligatorio
+
+Para que el buscador nunca quede mostrando «(sin publicar)» después de que el
+artículo ya está vivo, los dos PR se apilan:
+
+1. El PR padre del publicador contiene URL, `medios`, imagen y LuaLaTeX, pero
+   no `build/index.json`; permanece en borrador.
+2. El editor/proveedor crea una rama desde la rama del publicador, ejecuta
+   `indice.py`, actualiza índice, mapa y metadatos globales, y abre un **PR hijo
+   de regeneración cuya base es la rama del publicador**, no `main`.
+3. Cuando la CI del PR hijo pasa, el proveedor lo fusiona en la rama del
+   publicador. El PR padre incorpora así el índice regenerado sin que el
+   publicador se convierta en dueño del derivado.
+4. Se vuelve a ejecutar la CI del PR padre. Solo entonces se marca listo y se
+   fusiona a `main`.
+
+Esta secuencia mantiene un único dueño de `build/index.json`, evita conflictos
+entre sesiones y reduce a **cero** la ventana visible de desincronización en
+`main`. El publicador debe vigilar el traspaso hasta que exista el PR hijo; no
+puede declarar completo el flujo únicamente porque Ghost ya publicó.
+
 ## Mantenimiento del proveedor — fuera del rol de publicación
 
 Lo que sigue documenta al proveedor del índice y no autoriza al publicador de
@@ -195,6 +220,9 @@ Ghost a ejecutar `indice.py` ni a tocar `build/index.json`. En el flujo
 proveedor, `build.py` NO regenera
 `index.json` — eso lo hace `indice.py`. Si el proveedor modifica un `.md`, debe
 correr ambos scripts antes de commitear para no servir entradas obsoletas.
+Cuando recibe un PR de publicación, el proveedor crea el PR hijo de
+regeneración descrito arriba y lo fusiona sobre la rama del publicador antes de
+que el PR padre llegue a `main`.
 
 **Verifica antes de commitear.** Después de `indice.py`, confirma que la ficha quedó como esperas:
 ```bash
