@@ -61,6 +61,8 @@ medios:
     credito: "Luna Gargani"
     fuente: "Wikimedia Commons"
     licencia_img: "CC BY 2.0"
+    licencia_url: "https://creativecommons.org/licenses/by/2.0/"
+    archivo_local: "assets/img/perfil-a.jpg"
 
 refs: [lichtenstein2008, volpicelli2012, volpicelli2026]
 fecha: 2026-07-25

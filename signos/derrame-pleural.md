@@ -54,6 +54,8 @@ medios:
     credito: "Gillman L. y Kirkpatrick A. (fotograma adaptado)"
     fuente: "Wikimedia Commons"
     licencia_img: "CC BY 2.0"
+    licencia_url: "https://creativecommons.org/licenses/by/2.0/"
+    archivo_local: "assets/img/derrame-pleural.jpg"
 
 refs: [volpicelli2012, soni2015, balik2006, asciak2023, roberts2023, ibitoye2018, teichgraeber2018, rodriguezlima2020]
 fecha: 2026-07-17

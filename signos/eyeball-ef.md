@@ -55,6 +55,9 @@ medios:
     credito: "Patrick J. Lynch, ilustrador médico; C. Carl Jaffe, MD"
     fuente: "Wikimedia Commons"
     licencia_img: "CC BY 2.5"
+    fuente_url: "https://commons.wikimedia.org/wiki/File:Heart_apical_4c_anatomy.jpg"
+    licencia_url: "https://creativecommons.org/licenses/by/2.5/"
+    archivo_local: "assets/img/eyeball-ef.jpg"
 
 refs: [via2014, gudmundsson2005, rich1982, thavendiranathan2013, bahl2021, farsi2017, cole2015]
 fecha: 2026-07-29

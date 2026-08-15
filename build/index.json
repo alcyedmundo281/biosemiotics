@@ -25,7 +25,10 @@
      "descripcion": "Quiste simple con refuerzo acústico posterior",
      "credito": "Kristoffer Lindskov Hansen, Michael Bachmann Nielsen y Caroline Ewertsen",
      "fuente": "Wikimedia Commons",
-     "licencia_img": "CC BY 4.0"
+     "licencia_img": "CC BY 4.0",
+     "fuente_url": "https://commons.wikimedia.org/wiki/File:Simple_cyst_with_posterior_enhancement.jpg",
+     "licencia_url": "https://creativecommons.org/licenses/by/4.0/",
+     "archivo_local": "assets/img/artefacto-refuerzo-posterior.jpg"
     }
    ],
    "n_loops": 0,
@@ -63,7 +66,10 @@
      "descripcion": "Artefacto de reverberación en ultrasonido sin imagen armónica",
      "credito": "Dv3163",
      "fuente": "Wikimedia Commons",
-     "licencia_img": "CC BY-SA 4.0"
+     "licencia_img": "CC BY-SA 4.0",
+     "fuente_url": "https://commons.wikimedia.org/wiki/File:Reverberation_artefact_no_harmonics.jpg",
+     "licencia_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+     "archivo_local": "assets/img/artefacto-reverberacion.jpg"
     }
    ],
    "n_loops": 0,
@@ -100,7 +106,10 @@
      "descripcion": "Sombra acústica posterior producida por un cálculo biliar",
      "credito": "Nevit Dilmen",
      "fuente": "Wikimedia Commons",
-     "licencia_img": "CC BY-SA 3.0"
+     "licencia_img": "CC BY-SA 3.0",
+     "fuente_url": "https://commons.wikimedia.org/wiki/File:Ultrasound_Scan_ND_243.jpg",
+     "licencia_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+     "archivo_local": "assets/img/artefacto-sombra-acustica.jpg"
     }
    ],
    "n_loops": 0,
@@ -263,7 +272,9 @@
      "descripcion": "Ecografía anotada de un apéndice normal, donde las capas de la pared muestran distintos niveles de ecogenicidad",
      "credito": "Mikael Häggström",
      "fuente": "Wikimedia Commons",
-     "licencia_img": "CC0 1.0"
+     "licencia_img": "CC0 1.0",
+     "licencia_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+     "archivo_local": "assets/img/ecogenicidad.jpg"
     }
    ],
    "n_loops": 0,
@@ -294,7 +305,10 @@
      "descripcion": "Modelo simplificado del efecto piezoeléctrico en un cristal de cuarzo entre dos electrodos",
      "credito": "MikeRun",
      "fuente": "Wikimedia Commons",
-     "licencia_img": "CC BY-SA 4.0"
+     "licencia_img": "CC BY-SA 4.0",
+     "fuente_url": "https://commons.wikimedia.org/wiki/File:Piezoelectricity.svg",
+     "licencia_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+     "archivo_local": "assets/img/efecto-piezoelectrico.png"
     }
    ],
    "n_loops": 0,
@@ -333,7 +347,10 @@
      "descripcion": "Rangos de frecuencia del sonido, incluido el ultrasonido",
      "credito": "Coolth; basado en la obra de LightYear",
      "fuente": "Wikimedia Commons",
-     "licencia_img": "CC BY-SA 3.0"
+     "licencia_img": "CC BY-SA 3.0",
+     "fuente_url": "https://commons.wikimedia.org/wiki/File:Ultrasound_range_diagram.png",
+     "licencia_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+     "archivo_local": "assets/img/frecuencia-profundidad.png"
     }
    ],
    "n_loops": 0,
@@ -371,7 +388,9 @@
      "descripcion": "Equipo ultrasónico con controles y visualización de ganancia",
      "credito": "Karl Deutsch Prüf- und Messgerätebau GmbH + Co KG",
      "fuente": "Wikimedia Commons",
-     "licencia_img": "CC BY 3.0 DE"
+     "licencia_img": "CC BY 3.0 DE",
+     "licencia_url": "https://creativecommons.org/licenses/by/3.0/de/",
+     "archivo_local": "assets/img/knobology-ganancia.jpg"
     }
    ],
    "n_loops": 0,
@@ -410,7 +429,10 @@
      "descripcion": "Pantalla de un equipo de ultrasonido durante la adquisición de imagen",
      "credito": "Linda Bartlett, National Cancer Institute",
      "fuente": "Wikimedia Commons",
-     "licencia_img": "Dominio público"
+     "licencia_img": "Dominio público",
+     "fuente_url": "https://commons.wikimedia.org/wiki/File:Ultrasound_(2).jpg",
+     "licencia_url": "https://commons.wikimedia.org/wiki/Commons:Licensing",
+     "archivo_local": "assets/img/knobology-profundidad.jpg"
     }
    ],
    "n_loops": 0,
@@ -487,7 +509,10 @@
      "descripcion": "Propagación no lineal de una onda ultrasónica a través del tejido",
      "credito": "David Maresca, Daniel P. Sawyer, Guillaume Renaud, Audrey Lee-Gosselin y Mikhail G. Shapiro",
      "fuente": "Wikimedia Commons",
-     "licencia_img": "CC BY 4.0"
+     "licencia_img": "CC BY 4.0",
+     "fuente_url": "https://commons.wikimedia.org/wiki/File:Nonlinear_US_wave_propagation.svg",
+     "licencia_url": "https://creativecommons.org/licenses/by/4.0/",
+     "archivo_local": "assets/img/propagacion-sonido.png"
     }
    ],
    "n_loops": 0,
@@ -611,7 +636,10 @@
      "descripcion": "Transductor para ultrasonido médico",
      "credito": "Harrison Keely",
      "fuente": "Wikimedia Commons",
-     "licencia_img": "CC BY 4.0"
+     "licencia_img": "CC BY 4.0",
+     "fuente_url": "https://commons.wikimedia.org/wiki/File:A_medical_ultrasound_linear_array_probe,_scan_head,_transducer.jpg",
+     "licencia_url": "https://creativecommons.org/licenses/by/4.0/",
+     "archivo_local": "assets/img/tipos-de-sonda.jpg"
     }
    ],
    "n_loops": 0,
@@ -650,7 +678,10 @@
      "descripcion": "Vista apical de cuatro cámaras en ecocardiografía",
      "credito": "Kjetil Lenes (Ekko)",
      "fuente": "Wikimedia Commons",
-     "licencia_img": "Dominio público"
+     "licencia_img": "Dominio público",
+     "fuente_url": "https://commons.wikimedia.org/wiki/File:Echocardiogram_4chambers.jpg",
+     "licencia_url": "https://commons.wikimedia.org/wiki/Commons:Licensing",
+     "archivo_local": "assets/img/ventanas-cardiacas.jpg"
     }
    ],
    "n_loops": 0,
@@ -831,7 +862,10 @@
      "descripcion": "Aneurisma aórtico abdominal medido en ecografía",
      "credito": "Mikael Häggström, M.D.",
      "fuente": "Wikimedia Commons",
-     "licencia_img": "CC0 1.0"
+     "licencia_img": "CC0 1.0",
+     "fuente_url": "https://commons.wikimedia.org/wiki/File:Ultrasonography_of_abdominal_aortic_aneurysm_in_axial_plane,_annotated.jpg",
+     "licencia_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+     "archivo_local": "assets/img/aneurisma-aortico-abdominal.jpg"
     }
    ],
    "n_loops": 0,
@@ -1219,7 +1253,10 @@
      "descripcion": "Cálculo vesicular ecogénico con sombra acústica posterior",
      "credito": "Mikael Häggström, M.D.",
      "fuente": "Wikimedia Commons",
-     "licencia_img": "CC0 1.0"
+     "licencia_img": "CC0 1.0",
+     "fuente_url": "https://commons.wikimedia.org/wiki/File:Ultrasonography_of_sludge_and_gallstones,_annotated.jpg",
+     "licencia_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+     "archivo_local": "assets/img/colelitiasis.jpg"
     }
    ],
    "n_loops": 0,
@@ -1303,7 +1340,10 @@
      "descripcion": "Líquido alrededor del corazón observado por ecocardiografía",
      "credito": "James Heilman, MD",
      "fuente": "Wikimedia Commons",
-     "licencia_img": "CC BY-SA 3.0"
+     "licencia_img": "CC BY-SA 3.0",
+     "fuente_url": "https://commons.wikimedia.org/wiki/File:PericardialeffusionUS.PNG",
+     "licencia_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+     "archivo_local": "assets/img/derrame-pericardico.png"
     }
    ],
    "n_loops": 0,
@@ -1394,7 +1434,9 @@
      "descripcion": "Ecografía pulmonar que muestra líquido pleural hipoecoico por encima del diafragma",
      "credito": "Gillman L. y Kirkpatrick A. (fotograma adaptado)",
      "fuente": "Wikimedia Commons",
-     "licencia_img": "CC BY 2.0"
+     "licencia_img": "CC BY 2.0",
+     "licencia_url": "https://creativecommons.org/licenses/by/2.0/",
+     "archivo_local": "assets/img/derrame-pleural.jpg"
     }
    ],
    "n_loops": 0,
@@ -1560,7 +1602,10 @@
      "descripcion": "Vista ecocardiográfica apical de cuatro cámaras (anatomía)",
      "credito": "Patrick J. Lynch, ilustrador médico; C. Carl Jaffe, MD",
      "fuente": "Wikimedia Commons",
-     "licencia_img": "CC BY 2.5"
+     "licencia_img": "CC BY 2.5",
+     "fuente_url": "https://commons.wikimedia.org/wiki/File:Heart_apical_4c_anatomy.jpg",
+     "licencia_url": "https://creativecommons.org/licenses/by/2.5/",
+     "archivo_local": "assets/img/eyeball-ef.jpg"
     }
    ],
    "n_loops": 0,
@@ -1889,7 +1934,10 @@
      "descripcion": "Ecografía de vejiga urinaria con pared trabeculada",
      "credito": "Mikael Häggström",
      "fuente": "Wikimedia Commons",
-     "licencia_img": "CC0 1.0"
+     "licencia_img": "CC0 1.0",
+     "fuente_url": "https://commons.wikimedia.org/wiki/File:Ultrasound_of_trabeculated_urinary_bladder.jpg",
+     "licencia_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+     "archivo_local": "assets/img/globo-vesical.jpg"
     }
    ],
    "n_loops": 0,
@@ -2134,7 +2182,10 @@
      "descripcion": "Riñón con dilatación anecoica de pelvis y cálices",
      "credito": "Kristoffer Lindskov Hansen, Michael Bachmann Nielsen y Caroline Ewertsen",
      "fuente": "Wikimedia Commons",
-     "licencia_img": "CC BY 4.0"
+     "licencia_img": "CC BY 4.0",
+     "fuente_url": "https://commons.wikimedia.org/wiki/File:Ultrasonography_of_hydronephrosis_due_to_ureteropelvic_junction_obstruction.jpg",
+     "licencia_url": "https://creativecommons.org/licenses/by/4.0/",
+     "archivo_local": "assets/img/hidronefrosis.jpg"
     }
    ],
    "n_loops": 0,
@@ -2236,7 +2287,10 @@
      "descripcion": "Múltiples líneas B en ecografía pulmonar",
      "credito": "Benoit Veillette",
      "fuente": "Wikimedia Commons",
-     "licencia_img": "CC BY-SA 4.0"
+     "licencia_img": "CC BY-SA 4.0",
+     "fuente_url": "https://commons.wikimedia.org/wiki/File:B_lines_on_a_lung_ultrasound_of_a_patient_with_fibrosis.jpg",
+     "licencia_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+     "archivo_local": "assets/img/lineas-b.jpg"
     }
    ],
    "n_loops": 2,
@@ -2441,7 +2495,9 @@
      "descripcion": "Patrón pulmonar normal con líneas A (artefactos horizontales repetidos)",
      "credito": "Luna Gargani",
      "fuente": "Wikimedia Commons",
-     "licencia_img": "CC BY 2.0"
+     "licencia_img": "CC BY 2.0",
+     "licencia_url": "https://creativecommons.org/licenses/by/2.0/",
+     "archivo_local": "assets/img/perfil-a.jpg"
     }
    ],
    "n_loops": 2,
@@ -2492,7 +2548,9 @@
      "descripcion": "Ecografía renal en enfermedad renal crónica, con ecogenicidad aumentada y cortical adelgazada",
      "credito": "Kristoffer Lindskov Hansen, Michael Bachmann Nielsen y Caroline Ewertsen",
      "fuente": "Wikimedia Commons",
-     "licencia_img": "CC BY 4.0"
+     "licencia_img": "CC BY 4.0",
+     "licencia_url": "https://creativecommons.org/licenses/by/4.0/",
+     "archivo_local": "assets/img/rinon-cronico.jpg"
     }
    ],
    "n_loops": 0,
@@ -2774,7 +2832,10 @@
      "descripcion": "Vena profunda no compresible junto a arteria permeable",
      "credito": "James Heilman, MD",
      "fuente": "Wikimedia Commons",
-     "licencia_img": "CC BY-SA 4.0"
+     "licencia_img": "CC BY-SA 4.0",
+     "fuente_url": "https://commons.wikimedia.org/wiki/File:DVTInGroinNoCompresibleMark.png",
+     "licencia_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+     "archivo_local": "assets/img/trombosis-venosa-profunda.png"
     }
    ],
    "n_loops": 0,

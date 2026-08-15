@@ -588,6 +588,20 @@ def validar(entidades, aristas, raiz: Path):
         if e["tipo"] in ("signo", "caso") and not e.get("refs"):
             alertas.append(f"[REFS] {e['id']}: sin referencias BibLaTeX")
 
+        # Una imagen sin trazabilidad completa no se puede redistribuir: el
+        # generador de ePub debe FALLAR antes que incrustarla sin atribución
+        # auditable. Hasta ahora solo se validaban los medios marcados
+        # `destacada`, y por eso 22 fichas publicadas llegaron sin estos campos.
+        for m in (e.get("medios") or []):
+            if m.get("tipo") != "imagen":
+                continue
+            faltan = [c for c in ("archivo_local", "fuente_url", "licencia_url")
+                      if not m.get(c)]
+            if faltan:
+                alertas.append(
+                    f"[MEDIOS] {e['id']}: imagen sin {', '.join(faltan)} "
+                    f"({m.get('id')})")
+
         # Toda adaptación debe conservar la cadena de trazabilidad completa.
         # En particular, un fotograma es una obra derivada del video: además
         # de atribuir y declarar la licencia, el original debe quedar local

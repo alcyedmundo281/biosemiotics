@@ -25,6 +25,9 @@ medios:
     credito: "Nevit Dilmen"
     fuente: "Wikimedia Commons"
     licencia_img: "CC BY-SA 3.0"
+    fuente_url: "https://commons.wikimedia.org/wiki/File:Ultrasound_Scan_ND_243.jpg"
+    licencia_url: "https://creativecommons.org/licenses/by-sa/3.0/"
+    archivo_local: "assets/img/artefacto-sombra-acustica.jpg"
 
 refs: [feldman2009, sato2006, aldrich2007, abuzidan2011]
 licencia: CC-BY-4.0

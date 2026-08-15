@@ -54,6 +54,9 @@ medios:
     credito: "Mikael Häggström, M.D."
     fuente: "Wikimedia Commons"
     licencia_img: "CC0 1.0"
+    fuente_url: "https://commons.wikimedia.org/wiki/File:Ultrasonography_of_abdominal_aortic_aneurysm_in_axial_plane,_annotated.jpg"
+    licencia_url: "https://creativecommons.org/publicdomain/zero/1.0/"
+    archivo_local: "assets/img/aneurisma-aortico-abdominal.jpg"
 
 refs: [isselbacher2022, fernando2022, fink2000]
 fecha: 2026-07-29
