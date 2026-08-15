@@ -17,7 +17,7 @@ abstract: >
   combinación informa más que cada hallazgo aislado: un riñón hiperecoico no
   equivale a enfermedad crónica y un tamaño conservado no la excluye.
 
-nivel: principiante-intermedio
+nivel: intermedio
 significante: "Patrón bilateral de reducción del tamaño renal, adelgazamiento cortical, aumento de ecogenicidad y pérdida de diferenciación corticomedular."
 significado: "Morfología que apoya enfermedad parenquimatosa crónica; la imagen sugiere tiempo, pero no demuestra por sí sola irreversibilidad."
 decision: "Integra el patrón con función renal y evolución, busca obstrucción y no descartes lesión renal aguda sobreañadida."

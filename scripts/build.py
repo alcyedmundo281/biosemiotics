@@ -231,6 +231,9 @@ def figura_latex(e: dict, raiz: Path) -> str:
     ])
 
 
+# Taxonomía cerrada de `nivel`, según el mapa maestro.
+NIVELES = {"principiante", "intermedio", "avanzado"}
+
 # Títulos de los capítulos de Fundamentos. El banco numera cada capítulo en el
 # front-matter (`capitulo`) pero no guarda su título, que obligaría a repetir el
 # mismo texto en cada ficha del capítulo. Un número sin mapear se degrada a
@@ -558,7 +561,19 @@ def validar(entidades, aristas, raiz: Path):
     alertas = []
 
     for e in entidades:
+        # La taxonomía del mapa maestro es cerrada. Un valor inventado no rompe
+        # la compilación, y por eso es peligroso: corrompe en silencio las
+        # facetas del buscador y saca al signo de su parte en el libro.
+        if e.get("nivel") and e["nivel"] not in NIVELES:
+            alertas.append(f"[TAXONOMÍA] {e['id']}: nivel={e['nivel']!r} "
+                           f"no está en la taxonomía {sorted(NIVELES)}")
         if e["tipo"] == "signo":
+            if not e.get("sistema"):
+                alertas.append(f"[TAXONOMÍA] {e['id']}: sin 'sistema' "
+                               f"(queda fuera de su parte en el libro)")
+            elif e["sistema"] not in {c for c, _ in SISTEMAS}:
+                alertas.append(f"[TAXONOMÍA] {e['id']}: sistema={e['sistema']!r} "
+                               f"no está en la taxonomía")
             # Un signo sin límites enseña a reconocer sin enseñar a dudar.
             if not e.get("falsos_positivos"):
                 alertas.append(f"[CLÍNICO] {e['id']}: sin 'falsos_positivos'")
