@@ -34,8 +34,8 @@ Plano completo del atlas: los dos cursos (cardiopulmonar y emergencias) más las
 
 ## 2. Estado actual (lo ya publicado)
 
-El índice vigente contiene **35 entidades**: 14 conceptos, 20 signos y 1 caso.
-Dieciséis signos tienen URL pública en Ghost; los otros cuatro están escritos
+El índice vigente contiene **39 entidades**: 14 conceptos, 24 signos y 1 caso.
+Diecisiete signos tienen URL pública en Ghost; los otros siete están escritos
 y validados, esperando publicación.
 
 | signo | sistema | organo | nivel | estado |
@@ -95,14 +95,16 @@ y validados, esperando publicación.
 | ventana | sistema | organo | nivel | qué busca |
 |---|---|---|---|---|
 | **Protocolo FAST/eFAST** (nodo integrador) | multiorgano | multiorgano | intermedio | secuencia de trauma; enlaza las ventanas de abajo |
-| Cuadrante sup. derecho (Morrison) | multiorgano | higado | principiante | líquido en receso hepatorrenal |
-| Cuadrante sup. izquierdo (esplenorrenal) | multiorgano | intestino | principiante | líquido periesplénico |
-| Pelvis (Douglas / retrovesical) | multiorgano | vejiga | principiante | líquido pélvico |
+| Cuadrante sup. derecho (Morrison) | multiorgano | higado | principiante | líquido en receso hepatorrenal ✍ escrito, falta URL de Ghost |
+| Cuadrante sup. izquierdo (esplenorrenal) | multiorgano | intestino | principiante | líquido periesplénico ✍ escrito, falta URL de Ghost |
+| Pelvis (Douglas / retrovesical) | multiorgano | vejiga | principiante | líquido pélvico ✍ escrito, falta URL de Ghost |
 | Subxifoides pericárdico | cardiovascular | pericardio | principiante | *= signo Derrame pericárdico (Oleada 1)* |
 | eFAST — neumotórax | respiratorio | pleura | principiante | *= signo Neumotórax (Oleada 1)* |
-| eFAST — hemotórax | respiratorio | pleura | principiante | líquido supradiafragmático en trauma |
+| eFAST — hemotórax | respiratorio | pleura | principiante | líquido supradiafragmático en trauma ✍ escrito, falta URL de Ghost |
 
-**Modelado:** el nodo "Protocolo FAST" usa `signos: [morrison, esplenorrenal, douglas, derrame-pericardico, neumotorax, hemotorax]`. Así el atlas muestra el protocolo como un caso que recorre signos ya existentes. Enseña la *secuencia*, no repite el contenido.
+**Modelado:** el nodo "Protocolo FAST" usa `signos: [signo-fast-morrison, signo-fast-esplenorrenal, signo-fast-douglas, signo-derrame-pericardico, signo-neumotorax, signo-hemotorax]`. Así el atlas muestra el protocolo como un caso que recorre signos ya existentes. Enseña la *secuencia*, no repite el contenido.
+
+> **Pendiente de decisión de Alcy (2026-08-15).** Las cuatro ventanas nuevas ya están escritas como signos. El nodo integrador NO se ha creado porque el tipo `caso` del esquema está construido alrededor de un paciente real con consentimiento (`consentimiento`, `publicado`, `video_lure`, de-identificación), y el protocolo FAST no es un paciente. Las dos salidas posibles: (a) crearlo igual como `caso` con `consentimiento: pendiente` y `publicado: false`, siguiendo la letra de este mapa; (b) modelarlo como `concepto` con `dominio: tecnica`, que encaja con el esquema y enlaza los signos por `relacionado_con`. Sin decisión, el nodo queda sin escribir.
 
 ---
 
@@ -173,12 +175,13 @@ Oleada 1 y las rutas avanzadas que reutilizarán esos conceptos.
 Cada cifra, verificada contra PubMed antes de publicar. Cada signo, con su sección de límites ("dónde NO confiar"). El orden por oleada mantiene vivo el mensaje: *empezar es más fácil de lo que te dijeron.*
 
 ### Conteo
-- Banco actual: **35 entidades** (14 conceptos, 20 signos y 1 caso)
-- Signos publicados: **17 de 20** (absceso de partes blandas, hernia complicada y embarazo ectópico escritos, esperando URL de Ghost)
+- Banco actual: **39 entidades** (14 conceptos, 24 signos y 1 caso)
+- Signos publicados: **17 de 24** (esperando URL de Ghost: absceso de partes blandas, hernia complicada, embarazo ectópico y las cuatro ventanas de FAST/eFAST)
 - Oleada 1 completada: **8 de 8 signos**
 - Oleada 2 **escrita completa: 8 de 8 signos** (5 publicados, 3 esperando URL). La fila «colección/absceso, hernia complicada» se desdobló en dos: son dos significantes y dos decisiones distintas
 - Conceptos base pendientes: **~2**
-- Restan **~13 entidades** para llegar a las ~48 proyectadas del atlas maduro
+- FAST/eFAST: **4 ventanas nuevas escritas** (Morrison, esplenorrenal, Douglas, hemotórax); pericardio y neumotórax se reutilizan de la Oleada 1; falta decidir el nodo integrador
+- Restan **~9 entidades** para llegar a las ~48 proyectadas del atlas maduro
 
 Nota: FAST añade pocas fichas nuevas (Morrison, esplenorrenal, Douglas, hemotórax) porque reutiliza pericardio y neumotórax. El gradiente de FEVI añade 2 (lineales, Simpson) sobre el eyeball ya contado.
 

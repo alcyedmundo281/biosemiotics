@@ -1428,6 +1428,246 @@
    "n_refs": 7
   },
   {
+   "id": "signo-fast-douglas",
+   "tipo": "signo",
+   "titulo": "Pelvis: el punto más bajo, y la vejiga que lo decide",
+   "titulo_en": "Pelvic view: the lowest point, and the bladder that governs it",
+   "version": "1.0",
+   "abstract": "Líquido libre detrás de la vejiga —en el fondo de saco rectovesical o de Douglas—, la ventana pélvica del FAST. Es el punto más declive del peritoneo en decúbito, así que puede ser la primera en positivizarse. Depende por completo de la vejiga: llena es la ventana, vacía o sondada la borra. Un poco de líquido fisiológico en mujeres en edad fértil obliga a leerla con la clínica.\n",
+   "sistema": "multiorgano",
+   "organo": "vejiga",
+   "nivel": "principiante",
+   "ventana": "suprapubica-transversal-y-longitudinal",
+   "pregunta_clinica": "¿Hay líquido libre detrás de la vejiga?",
+   "significante": "Colección anecoica por detrás de la vejiga, de bordes angulados que se adaptan a las estructuras vecinas en vez de tener forma propia. En el hombre, en el fondo de saco rectovesical; en la mujer, en el fondo de saco de Douglas, detrás del útero.",
+   "significado": "Líquido libre en el punto más declive de la cavidad peritoneal. En trauma, sangre; fuera del trauma, ascitis, líquido fisiológico o rotura de un quiste.",
+   "umbral": "No hay corte numérico. En trauma se lee como binaria: hay o no hay líquido. Aplica el techo de volumen del protocolo (promedio de 619 mL en el receso hepatorrenal, 97 % de sensibilidad recién con un litro) y su rendimiento global: exactitud 91 %, sensibilidad 75 %, especificidad 96 % en 601 pacientes. En mujeres en edad fértil, una lámina fina puede ser fisiológica y no se interpreta sola.\n",
+   "licencia": "CC-BY-NC-4.0",
+   "fecha": "2026-08-15",
+   "actualizado": "2026-08-15",
+   "decision": "La conducta del protocolo no cambia: inestable con líquido libre va a quirófano; estable con líquido libre va a tomografía. Lo propio de esta ventana es que su calidad depende de la vejiga: si está vacía, no la anotes como negativa —anótala como no valorable.",
+   "sonda": [
+    "convexa",
+    "sectorial"
+   ],
+   "escenario": [
+    "urgencias"
+   ],
+   "descriptores": [
+    "fast",
+    "douglas",
+    "rectovesical",
+    "pelvis",
+    "liquido-libre",
+    "hemoperitoneo",
+    "trauma",
+    "pocus"
+   ],
+   "mesh": [
+    "Focused Assessment with Sonography for Trauma",
+    "Urinary Bladder",
+    "Ultrasonography",
+    "Abdominal Injuries"
+   ],
+   "falsos_positivos": [
+    "Líquido fisiológico en fondo de saco en mujeres en edad fértil: una lámina fina, sin clínica, no es hemoperitoneo",
+    "Quiste ovárico o folículo tomado por líquido libre: tiene forma propia y redondeada; el líquido libre se adapta a lo que lo rodea",
+    "Asa intestinal llena de líquido: tiene pared, contenido en movimiento y peristalsis",
+    "Vesículas seminales o próstata leídas como colección en el hombre",
+    "Rotura vesical intraperitoneal: hay líquido libre real, pero es orina y no sangre; la conducta cambia",
+    "Ascitis previa o diálisis peritoneal",
+    "El falso negativo dominante: vejiga vacía o paciente ya sondado. Sin ventana acústica, esta vista no vale y no debe anotarse como negativa"
+   ],
+   "se_basa_en": [
+    "ecogenicidad",
+    "tipos-de-sonda",
+    "artefacto-refuerzo-posterior",
+    "knobology-profundidad"
+   ],
+   "contrasta_con": [
+    "signo-fast-morrison",
+    "signo-fast-esplenorrenal"
+   ],
+   "autores": [
+    {
+     "nombre": "Alcy Edmundo Torres Guerrero",
+     "orcid": "0000-0002-9742-375X",
+     "afiliacion": "Universidad Central del Ecuador",
+     "credit": [
+      "conceptualizacion",
+      "redaccion",
+      "supervision"
+     ]
+    }
+   ],
+   "refs": [
+    "branney1995",
+    "savoia2023",
+    "zanobetti2018",
+    "holmes2017"
+   ],
+   "n_refs": 4
+  },
+  {
+   "id": "signo-fast-esplenorrenal",
+   "tipo": "signo",
+   "titulo": "Esplenorrenal: la ventana que se escapa por arriba",
+   "titulo_en": "Splenorenal view: the window that hides above the spleen",
+   "version": "1.0",
+   "abstract": "Líquido libre en el cuadrante superior izquierdo, buscado entre el bazo y el riñón y sobre todo por encima del bazo, en el espacio subfrénico. A diferencia del lado derecho, aquí el líquido se acumula primero arriba, así que la ventana clásica entre los dos órganos puede estar limpia con sangre presente. Se obtiene más posterior y más cefálica de lo que uno cree, y el estómago con gas la arruina.\n",
+   "sistema": "multiorgano",
+   "organo": "intestino",
+   "nivel": "principiante",
+   "ventana": "intercostal-flanco-izquierdo-posterior",
+   "pregunta_clinica": "¿Hay líquido libre en el cuadrante superior izquierdo?",
+   "significante": "Banda anecoica en el espacio subfrénico izquierdo —entre el bazo y el diafragma—, y/o entre el bazo y el riñón izquierdo. En el lado izquierdo el hallazgo suele aparecer primero por encima del bazo, no en el receso interórganos.",
+   "significado": "Líquido libre peritoneal en el cuadrante superior izquierdo; en trauma, sangre, con frecuencia de origen esplénico.",
+   "umbral": "Sin umbral numérico propio. Vale la restricción de volumen del protocolo —promedio de 619 mL para ver líquido en el receso hepatorrenal, y 97 % de sensibilidad recién con un litro— y el rendimiento global del FAST de cuatro ventanas: exactitud 91 %, sensibilidad 75 %, especificidad 96 % y valor predictivo negativo 94 % en una serie de 601 pacientes.\n",
+   "licencia": "CC-BY-NC-4.0",
+   "fecha": "2026-08-15",
+   "actualizado": "2026-08-15",
+   "decision": "La misma que en el resto del FAST: inestable con líquido libre va a quirófano, estable con líquido libre va a tomografía. Lo específico de esta ventana es técnico: si no exploraste el espacio subfrénico, no la diste por negativa.",
+   "sonda": [
+    "convexa",
+    "sectorial"
+   ],
+   "escenario": [
+    "urgencias"
+   ],
+   "descriptores": [
+    "fast",
+    "esplenorrenal",
+    "subfrenico",
+    "liquido-libre",
+    "hemoperitoneo",
+    "trauma",
+    "pocus"
+   ],
+   "mesh": [
+    "Focused Assessment with Sonography for Trauma",
+    "Spleen",
+    "Ultrasonography",
+    "Abdominal Injuries"
+   ],
+   "falsos_positivos": [
+    "Estómago lleno de líquido tomado por colección subfrénica: tiene pared y contenido en movimiento, el líquido libre no",
+    "Ascitis preexistente o diálisis peritoneal",
+    "Grasa perirrenal o del hilio esplénico, hipoecoica",
+    "Quiste esplénico o renal periférico",
+    "Sombra costal y aire del ángulo esplénico del colon leídos como bandas oscuras",
+    "El falso negativo propio de esta ventana: explorar solo el espacio entre bazo y riñón. En el lado izquierdo el líquido se acumula primero por encima del bazo, y quedarse en el receso interórganos hace perder el hallazgo"
+   ],
+   "se_basa_en": [
+    "ecogenicidad",
+    "tipos-de-sonda",
+    "knobology-profundidad",
+    "knobology-ganancia"
+   ],
+   "contrasta_con": [
+    "signo-fast-morrison",
+    "signo-fast-douglas"
+   ],
+   "autores": [
+    {
+     "nombre": "Alcy Edmundo Torres Guerrero",
+     "orcid": "0000-0002-9742-375X",
+     "afiliacion": "Universidad Central del Ecuador",
+     "credit": [
+      "conceptualizacion",
+      "redaccion",
+      "supervision"
+     ]
+    }
+   ],
+   "refs": [
+    "branney1995",
+    "savoia2023",
+    "zanobetti2018",
+    "sutarjono2023"
+   ],
+   "n_refs": 4
+  },
+  {
+   "id": "signo-fast-morrison",
+   "tipo": "signo",
+   "titulo": "Morrison: la primera ventana del FAST",
+   "titulo_en": "Morison's pouch: the first FAST window",
+   "version": "1.0",
+   "abstract": "Una banda anecoica entre el hígado y el riñón derecho, en el receso hepatorrenal, indica líquido libre intraperitoneal —sangre, en el contexto de trauma—. En el paciente inestable, encontrarla acorta la ruta al quirófano. Pero la ventana necesita volumen: el promedio detectado fue de 619 mL, y solo uno de cada diez examinadores vio menos de 400 mL. Una ventana limpia no descarta sangrado.\n",
+   "sistema": "multiorgano",
+   "organo": "higado",
+   "nivel": "principiante",
+   "ventana": "intercostal-flanco-derecho",
+   "pregunta_clinica": "¿Hay líquido libre entre el hígado y el riñón derecho?",
+   "significante": "Banda anecoica que separa la cápsula hepática de la corteza del riñón derecho, en el espacio hepatorrenal. Normalmente hígado y riñón se tocan sin nada oscuro entre ellos; el líquido aparece como una cuña o una línea negra que sigue el contorno de ambos.",
+   "significado": "Líquido libre en el espacio peritoneal. En un traumatizado, eso significa sangre hasta que se demuestre lo contrario; fuera del trauma puede ser ascitis, diálisis peritoneal o líquido de otra causa.",
+   "umbral": "No es un número que midas, es un volumen que necesitas. En un estudio prospectivo y ciego con 100 pacientes que usó el lavado peritoneal como modelo de hemorragia, el volumen medio al que se detectó líquido en el receso hepatorrenal fue de 619 mL; solo el 10 % de los examinadores lo detectó con menos de 400 mL, y la sensibilidad llegó al 97 % recién con un litro. Traduce eso a la cabecera: la ventana es específica y tardía, no precoz.\n",
+   "licencia": "CC-BY-NC-4.0",
+   "fecha": "2026-08-15",
+   "actualizado": "2026-08-15",
+   "decision": "Paciente inestable con líquido libre: no busques más imagen, es quirófano. Paciente estable con líquido libre: tomografía. Ventana limpia: NO has descartado nada —repite el barrido si el estado cambia, porque el volumen que hace visible el signo es alto.",
+   "sonda": [
+    "convexa",
+    "sectorial"
+   ],
+   "escenario": [
+    "urgencias"
+   ],
+   "descriptores": [
+    "fast",
+    "morrison",
+    "receso-hepatorrenal",
+    "liquido-libre",
+    "hemoperitoneo",
+    "trauma",
+    "pocus"
+   ],
+   "mesh": [
+    "Focused Assessment with Sonography for Trauma",
+    "Liver",
+    "Ultrasonography",
+    "Abdominal Injuries"
+   ],
+   "falsos_positivos": [
+    "Ascitis preexistente por cirrosis, insuficiencia cardíaca o carcinomatosis: líquido real que no es sangre de hoy",
+    "Diálisis peritoneal en curso",
+    "Grasa perirrenal hipoecoica confundida con una lámina de líquido",
+    "Vesícula biliar o vena cava vistas en corte oblicuo y leídas como colección",
+    "Sombra costal que oscurece un segmento y simula una banda negra",
+    "Quiste renal o hepático periférico tomado por líquido libre",
+    "El error grave es el inverso: ventana limpia con sangrado activo por debajo del umbral de volumen, o sangre retroperitoneal, que este espacio no ve"
+   ],
+   "se_basa_en": [
+    "ecogenicidad",
+    "tipos-de-sonda",
+    "knobology-profundidad",
+    "knobology-ganancia"
+   ],
+   "contrasta_con": [
+    "signo-fast-esplenorrenal",
+    "signo-fast-douglas"
+   ],
+   "autores": [
+    {
+     "nombre": "Alcy Edmundo Torres Guerrero",
+     "orcid": "0000-0002-9742-375X",
+     "afiliacion": "Universidad Central del Ecuador",
+     "credit": [
+      "conceptualizacion",
+      "redaccion",
+      "supervision"
+     ]
+    }
+   ],
+   "refs": [
+    "branney1995",
+    "savoia2023",
+    "zanobetti2018",
+    "sutarjono2023"
+   ],
+   "n_refs": 4
+  },
+  {
    "id": "signo-globo-vesical",
    "tipo": "signo",
    "titulo": "Globo vesical",
@@ -1514,6 +1754,84 @@
     "christiaans2026"
    ],
    "n_refs": 6
+  },
+  {
+   "id": "signo-hemotorax",
+   "tipo": "signo",
+   "titulo": "Hemotórax en eFAST: líquido por encima del diafragma",
+   "titulo_en": "Hemothorax on eFAST: fluid above the diaphragm",
+   "version": "1.0",
+   "abstract": "Una zona anecoica por encima del diafragma, en el mismo barrido con que buscas líquido abdominal, señala hemotórax en el traumatizado. La pista que lo confirma es la pérdida del espejo: si ves parénquima pulmonar por encima del diafragma, no hay líquido; si ves una cámara oscura y la columna vertebral se prolonga hacia arriba, sí. Rinde bien —sensibilidad 82 %, especificidad 97 %— pero no distingue sangre de otro derrame.\n",
+   "sistema": "respiratorio",
+   "organo": "pleura",
+   "nivel": "principiante",
+   "ventana": "intercostal-supradiafragmatica-bilateral",
+   "pregunta_clinica": "¿Hay líquido en el espacio pleural de este traumatizado?",
+   "significante": "Espacio anecoico por encima del diafragma, con el pulmón colapsado flotando dentro en los derrames grandes. Dos claves de lectura: desaparece el artefacto en espejo (ya no se proyecta hígado o bazo por encima del diafragma) y aparece el signo de la columna, la prolongación de los cuerpos vertebrales hacia la región torácica.",
+   "significado": "Líquido en el espacio pleural. En trauma, sangre; el ultrasonido no distingue el hemotórax de otro derrame por su aspecto.",
+   "umbral": "No hay corte numérico en el contexto del eFAST. Lo que hay es rendimiento: en una serie prospectiva de 601 traumatizados, la ecografía torácica para hemotórax tuvo sensibilidad de 82 %, especificidad de 97 %, valor predictivo positivo de 87 %, valor predictivo negativo de 95 % y exactitud de 94 %; el protocolo completo se ejecutó en 7 ± 3 minutos.\n",
+   "licencia": "CC-BY-NC-4.0",
+   "fecha": "2026-08-15",
+   "actualizado": "2026-08-15",
+   "decision": "En el traumatizado inestable con hemotórax, el hallazgo acelera el drenaje torácico y evita perder tiempo buscando otra causa del shock. Con estabilidad, complementa con radiografía o tomografía. No intentes cuantificar el volumen con la sonda: el protocolo está hecho para responder sí o no, no cuánto.",
+   "sonda": [
+    "convexa",
+    "sectorial"
+   ],
+   "escenario": [
+    "urgencias"
+   ],
+   "descriptores": [
+    "hemotorax",
+    "efast",
+    "diafragma",
+    "signo-columna",
+    "derrame-pleural",
+    "trauma",
+    "pocus"
+   ],
+   "mesh": [
+    "Hemothorax",
+    "Focused Assessment with Sonography for Trauma",
+    "Ultrasonography",
+    "Thoracic Injuries"
+   ],
+   "falsos_positivos": [
+    "Derrame pleural previo de otra causa —insuficiencia cardíaca, hepatopatía, neoplasia—: es líquido real pero no es sangre de hoy",
+    "Ascitis leída como derrame por confusión del lado del diafragma: identifica el diafragma antes de decidir arriba o abajo",
+    "Quiste o colección subfrénica tomada por líquido supradiafragmático",
+    "Atelectasia o consolidación con broncograma, que puede verse hipoecoica sin ser líquido",
+    "Artefacto en espejo mal interpretado: el hígado proyectado por encima del diafragma es NORMAL, no una colección",
+    "El falso negativo: hemotórax pequeño, coágulo ecogénico que se ve casi como tejido, o paciente que no se puede movilizar para explorar la zona más declive"
+   ],
+   "se_basa_en": [
+    "ecogenicidad",
+    "artefacto-reverberacion",
+    "tipos-de-sonda",
+    "knobology-profundidad"
+   ],
+   "contrasta_con": [
+    "signo-derrame-pleural",
+    "signo-neumotorax"
+   ],
+   "autores": [
+    {
+     "nombre": "Alcy Edmundo Torres Guerrero",
+     "orcid": "0000-0002-9742-375X",
+     "afiliacion": "Universidad Central del Ecuador",
+     "credit": [
+      "conceptualizacion",
+      "redaccion",
+      "supervision"
+     ]
+    }
+   ],
+   "refs": [
+    "zanobetti2018",
+    "savoia2023",
+    "vanderweide2019"
+   ],
+   "n_refs": 3
   },
   {
    "id": "signo-hernia-complicada",
