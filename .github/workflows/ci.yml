@@ -19,7 +19,7 @@ permissions:
 
 jobs:
   integridad:
-    name: Integridad del banco e índice (Python ${{ matrix.python-version }})
+    name: Integridad Python ${{ matrix.python-version }}
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -61,6 +61,15 @@ jobs:
 
       - name: Probar salvaguardas del pegado en Ghost
         run: python -m unittest discover -s tests
+
+  integridad-requerida:
+    # Conserva el nombre histórico exigido por la protección de `main`. Este
+    # agregador solo queda verde cuando terminaron bien ambas versiones.
+    name: Integridad del banco e índice
+    needs: integridad
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Integridad verificada en Python 3.9 y 3.13."
 
   citas:
     name: Verificación de citas (PubMed + Crossref)
