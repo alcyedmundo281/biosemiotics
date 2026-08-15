@@ -312,9 +312,9 @@ git switch -c <rama-descriptiva>        # p. ej. signo-neumotorax, fix-url-ecoge
 git push -u origin <rama-descriptiva>
 gh pr create --fill                     # abre el PR
 # espera a que la CI pase (gh pr checks --watch)
-gh pr merge --squash --delete-branch    # fusiona cuando esté verde
+gh pr merge --merge --delete-branch     # merge real; nunca squash
 git switch main                          # abandona la rama ya fusionada
-git pull --ff-only                       # trae el SHA nuevo creado por el squash
+git pull --ff-only                       # trae el merge commit de GitHub
 git fetch --prune                        # elimina referencias origin/* ya borradas
 gh pr list --state open                  # confirma que no quedan PR pendientes
 git branch -vv                           # detecta ramas locales cuyo remoto está gone
@@ -322,7 +322,14 @@ git worktree list                        # no borres ramas ocupadas por un workt
 git status -sb                           # main debe coincidir con origin/main
 ```
 
-**El cierre post-squash no es opcional.** GitHub crea un commit nuevo al fusionar con squash; por eso el commit de la rama no aparece como ancestro de `main` y puede parecer pendiente aunque el PR ya esté fusionado. No termines el flujo desde la rama de trabajo: vuelve siempre a `main`, actualiza, poda y verifica. Una rama todavía asociada a un worktree no se borra a ciegas; primero identifica ese worktree y conserva cualquier cambio que no pertenezca al PR.
+**Los PR hacia `main` se fusionan con merge real, nunca con squash.** Así los
+commits revisados de la rama quedan como ancestros de `main`; después de
+actualizar el repositorio, Git no los presenta como trabajo pendiente ni obliga
+a reconciliar una historia equivalente con SHA distintos. La misma regla rige
+los PR hijo apilados. No termines el flujo desde la rama de trabajo: vuelve
+siempre a `main`, actualiza, poda y verifica. Una rama todavía asociada a un
+worktree no se borra a ciegas; primero identifica ese worktree y conserva
+cualquier cambio que no pertenezca al PR.
 
 Reglas:
 - **Una rama por unidad de trabajo** (un signo, un arreglo). PRs chicos se revisan y se fusionan sin fricción.
