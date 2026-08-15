@@ -26,6 +26,9 @@ medios:
     credito: "Dv3163"
     fuente: "Wikimedia Commons"
     licencia_img: "CC BY-SA 4.0"
+    fuente_url: "https://commons.wikimedia.org/wiki/File:Reverberation_artefact_no_harmonics.jpg"
+    licencia_url: "https://creativecommons.org/licenses/by-sa/4.0/"
+    archivo_local: "assets/img/artefacto-reverberacion.jpg"
 
 refs: [feldman2009, sato2006, lichtenstein2008, abuzidan2011]
 licencia: CC-BY-4.0

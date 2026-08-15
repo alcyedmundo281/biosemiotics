@@ -53,6 +53,9 @@ medios:
     credito: "Benoit Veillette"
     fuente: "Wikimedia Commons"
     licencia_img: "CC BY-SA 4.0"
+    fuente_url: "https://commons.wikimedia.org/wiki/File:B_lines_on_a_lung_ultrasound_of_a_patient_with_fibrosis.jpg"
+    licencia_url: "https://creativecommons.org/licenses/by-sa/4.0/"
+    archivo_local: "assets/img/lineas-b.jpg"
 
 refs: [lichtenstein2008, volpicelli2012, volpicelli2026, demi2023, gargani2023]
 fecha: 2026-07-14

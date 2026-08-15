@@ -27,6 +27,9 @@ medios:
     credito: "MikeRun"
     fuente: "Wikimedia Commons"
     licencia_img: "CC BY-SA 4.0"
+    fuente_url: "https://commons.wikimedia.org/wiki/File:Piezoelectricity.svg"
+    licencia_url: "https://creativecommons.org/licenses/by-sa/4.0/"
+    archivo_local: "assets/img/efecto-piezoelectrico.png"
 
 refs:
   - abuzidan2011

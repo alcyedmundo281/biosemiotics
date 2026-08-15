@@ -26,6 +26,9 @@ medios:
     credito: "Harrison Keely"
     fuente: "Wikimedia Commons"
     licencia_img: "CC BY 4.0"
+    fuente_url: "https://commons.wikimedia.org/wiki/File:A_medical_ultrasound_linear_array_probe,_scan_head,_transducer.jpg"
+    licencia_url: "https://creativecommons.org/licenses/by/4.0/"
+    archivo_local: "assets/img/tipos-de-sonda.jpg"
 
 refs: [turk2024, zander2020, abuzidan2011, hangiandreou2003, jensen2007]
 licencia: CC-BY-4.0

@@ -35,6 +35,8 @@ medios:
     credito: "Kristoffer Lindskov Hansen, Michael Bachmann Nielsen y Caroline Ewertsen"
     fuente: "Wikimedia Commons"
     licencia_img: "CC BY 4.0"
+    licencia_url: "https://creativecommons.org/licenses/by/4.0/"
+    archivo_local: "assets/img/rinon-cronico.jpg"
 
 refs:
   - oneill2014

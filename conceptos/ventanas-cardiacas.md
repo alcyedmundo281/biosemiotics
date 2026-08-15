@@ -26,6 +26,9 @@ medios:
     credito: "Kjetil Lenes (Ekko)"
     fuente: "Wikimedia Commons"
     licencia_img: "Dominio público"
+    fuente_url: "https://commons.wikimedia.org/wiki/File:Echocardiogram_4chambers.jpg"
+    licencia_url: "https://commons.wikimedia.org/wiki/Commons:Licensing"
+    archivo_local: "assets/img/ventanas-cardiacas.jpg"
 
 refs: [via2014, beraud2013, perezcasares2017, blanco2016]
 licencia: CC-BY-4.0
