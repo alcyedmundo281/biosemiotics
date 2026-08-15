@@ -7,6 +7,7 @@
    "url": "https://www.biosemiotics.net/refuerzo-acustico-posterior-ultrasonido/",
    "abstract": "Aumento relativo del brillo detrás de una estructura que atenúa menos el haz que los tejidos vecinos, con frecuencia un quiste, vaso o vejiga con líquido. Apoya la caracterización de contenido de baja atenuación, pero no confirma por sí solo que una lesión sea líquida, simple o benigna. Ganancia, TGC, armónicos y el trayecto comparado pueden intensificarlo o esconderlo.\n",
    "nivel": "principiante",
+   "licencia": "CC-BY-4.0",
    "tags": [
     "artefacto",
     "liquido",
@@ -44,6 +45,7 @@
    "url": "https://www.biosemiotics.net/reverberacion-ultrasonido/",
    "abstract": "Ecos repetidos producidos cuando el pulso rebota varias veces entre interfaces reflectantes. El equipo interpreta el tiempo adicional como mayor profundidad y crea copias que no son anatomía. En pulmón, las líneas A son reverberaciones útiles del patrón aireado; otros ecos pueden ocultar o imitar estructuras. Su significado depende de origen, separación, movimiento, distribución y ajustes del equipo.\n",
    "nivel": "principiante",
+   "licencia": "CC-BY-4.0",
    "tags": [
     "artefacto",
     "pulmon",
@@ -81,6 +83,7 @@
    "url": "https://www.biosemiotics.net/sombra-acustica-ultrasonido/",
    "abstract": "Región de señal reducida que aparece distal a una estructura que atenúa, refleja, dispersa o desvía gran parte del haz. Puede apoyar la identificación de cálculo, hueso, gas o una sombra de borde, pero no distingue por sí sola el material. Su límite es inherente: lo oculto detrás no puede evaluarse desde esa ventana y exige otro plano o trayecto acústico.\n",
    "nivel": "principiante",
+   "licencia": "CC-BY-4.0",
    "tags": [
     "artefacto",
     "litiasis"
@@ -117,6 +120,7 @@
    "url": "https://www.biosemiotics.net/compresibilidad-venosa-una-prueba-dinamica-no-una-foto/",
    "abstract": "Una vena normal colapsa por completo cuando la sonda aplica presión suficiente y perpendicular; la arteria vecina conserva su luz. La falta de compresión es el signo central de trombosis venosa, pero exige identificar bien el vaso, seguirlo por segmentos y comprimir sin deslizarse. Dolor, edema, profundidad, duplicación venosa y trombo distal pueden volver incompleto o engañoso un examen focalizado.\n",
    "nivel": "principiante",
+   "licencia": "CC-BY-4.0",
    "tags": [
     "vena",
     "compresion",
@@ -153,12 +157,92 @@
    "n_refs": 3
   },
   {
+   "id": "cuantificacion-limites",
+   "tipo": "concepto",
+   "titulo": "Cuantificación y sus límites: de dónde salen los números",
+   "abstract": "Todo umbral ecográfico es una convención construida sobre una población, no una propiedad del paciente que tienes delante. Un número tiene tres fuentes de error acumuladas: la medición, el corte elegido y la población de donde se derivó. Este concepto reúne los ejemplos que el atlas ya usó —los 6 mm del apéndice, el colédoco, la fracción de eyección a ojo— para enseñar a leer cualquier cifra con la desconfianza correcta.\n",
+   "nivel": "intermedio",
+   "licencia": "CC-BY-4.0",
+   "fecha": "2026-08-15",
+   "actualizado": "2026-08-15",
+   "tags": [
+    "cuantificacion",
+    "umbral",
+    "medicion",
+    "variabilidad",
+    "poblacion",
+    "incertidumbre"
+   ],
+   "autores": [
+    {
+     "nombre": "Alcy Edmundo Torres Guerrero",
+     "orcid": "0000-0002-9742-375X",
+     "afiliacion": "Universidad Central del Ecuador",
+     "credit": [
+      "conceptualizacion",
+      "redaccion",
+      "supervision"
+     ]
+    }
+   ],
+   "refs": [
+    "prendergast2014",
+    "worku2020",
+    "jendresen2002",
+    "adams2015",
+    "arruzza2022",
+    "thavendiranathan2013",
+    "gudmundsson2005",
+    "rich1982"
+   ],
+   "n_refs": 8
+  },
+  {
+   "id": "doppler",
+   "tipo": "concepto",
+   "titulo": "Doppler: el color no mide, el ángulo decide",
+   "abstract": "El Doppler detecta movimiento midiendo el cambio de frecuencia del eco que vuelve. Lo que informa no es la velocidad real sino su componente hacia la sonda, así que el ángulo de insonación gobierna todo: a 90° el flujo real se vuelve invisible, y por encima de 60° el error de medición crece de forma exponencial. El color responde \"¿hay flujo y hacia dónde?\"; cuantificar exige espectral, ángulo corregido y saber leer el aliasing.\n",
+   "nivel": "intermedio",
+   "licencia": "CC-BY-4.0",
+   "fecha": "2026-08-15",
+   "actualizado": "2026-08-15",
+   "tags": [
+    "doppler",
+    "color",
+    "espectral",
+    "pulsado",
+    "angulo",
+    "aliasing",
+    "seguridad"
+   ],
+   "autores": [
+    {
+     "nombre": "Alcy Edmundo Torres Guerrero",
+     "orcid": "0000-0002-9742-375X",
+     "afiliacion": "Universidad Central del Ecuador",
+     "credit": [
+      "conceptualizacion",
+      "redaccion",
+      "supervision"
+     ]
+    }
+   ],
+   "refs": [
+    "boote2003",
+    "elwertowski2014",
+    "vandenhof2018",
+    "hangiandreou2003"
+   ],
+   "n_refs": 4
+  },
+  {
    "id": "ecogenicidad",
    "tipo": "concepto",
    "titulo": "El lenguaje de la ecogenicidad",
    "url": "https://www.biosemiotics.net/aprender-a-leer-el-cuerpo-vivo/",
    "abstract": "Escala de grises que ordena la imagen según cuánto sonido refleja cada estructura: anecoico y negro para los líquidos, hiperecoico y blanco para hueso, calcio y grasa, hipoecoico para lo que refleja menos que el tejido vecino, isoecoico para lo que iguala su brillo. Es el nivel semiótico primario del atlas, el significante que remite a una realidad física. Su límite es relacional: hipo e isoecoico solo existen por comparación con el tejido circundante.\n",
    "nivel": "principiante",
+   "licencia": "CC-BY-4.0",
    "fecha": "2026-07-14",
    "tags": [
     "escala-grises",
@@ -192,6 +276,7 @@
    "url": "https://www.biosemiotics.net/efecto-piezoelectrico-ultrasonido/",
    "abstract": "El transductor convierte energía en dos direcciones: un campo eléctrico alternante deforma el material y genera la onda mecánica (efecto inverso); la presión de los ecos deforma el material y produce señal eléctrica (efecto directo). La misma matriz emite y recibe en un ciclo pulso-eco, del que la electrónica extrae profundidad y brillo. Frecuencia, ancho de banda, amortiguamiento y capas de adaptación determinan qué pulso entra y qué señal se recupera.\n",
    "nivel": "principiante",
+   "licencia": "CC-BY-4.0",
    "tags": [
     "fisica",
     "sonda",
@@ -230,6 +315,7 @@
    "url": "https://www.biosemiotics.net/frecuencia-profundidad-ultrasonido/",
    "abstract": "Subir la frecuencia acorta la longitud de onda y mejora el detalle potencial, pero aumenta la atenuación: queda menos señal útil de objetivos profundos. La regla práctica es usar la frecuencia más alta que aún permita evaluar todo el objetivo. La frecuencia no determina sola la resolución —axial, lateral y elevacional dependen de factores distintos—, y ni el control de profundidad ni la ganancia recuperan información perdida por atenuación.\n",
    "nivel": "principiante",
+   "licencia": "CC-BY-4.0",
    "tags": [
     "fisica",
     "resolucion",
@@ -268,6 +354,7 @@
    "url": "https://www.biosemiotics.net/ganancia-ultrasonido/",
    "abstract": "La ganancia amplifica los ecos recibidos y cambia el brillo: actúa en recepción, sin aumentar energía transmitida, penetración ni resolución. Poca ganancia oculta ecos débiles; demasiada amplifica ruido y satura los grises. La TGC ajusta la amplificación según la profundidad para compensar la atenuación, y debe formar una transición suave para no crear bandas. Optimiza primero sonda, preset, frecuencia y profundidad; la ganancia se ajusta al final y no recupera lo perdido.\n",
    "nivel": "principiante",
+   "licencia": "CC-BY-4.0",
    "tags": [
     "knobology",
     "optimizacion"
@@ -306,6 +393,7 @@
    "url": "https://www.biosemiotics.net/profundidad-ultrasonido/",
    "abstract": "Control que define cuánto campo se muestra y durante cuánto tiempo espera ecos el equipo. Debe incluir el objetivo completo con un margen posterior útil: demasiada profundidad lo hace pequeño y puede reducir la tasa de cuadros; muy poca recorta anatomía y artefactos. No aumenta la penetración acústica ni recupera señal perdida, y obliga a revisar foco, ganancia y TGC.\n",
    "nivel": "principiante",
+   "licencia": "CC-BY-4.0",
    "tags": [
     "knobology",
     "optimizacion"
@@ -342,6 +430,7 @@
    "url": "https://www.biosemiotics.net/modo-m-convertir-movimiento-en-una-linea-de-tiempo/",
    "abstract": "El modo M registra repetidamente una sola línea del haz y coloca el tiempo en el eje horizontal. Convierte movimientos rápidos —pleura, válvulas, paredes o diafragma— en trazos medibles, pero pierde la anatomía situada fuera de esa línea. Su utilidad depende de orientar primero una buena imagen bidimensional: una línea mal colocada produce un registro preciso del sitio equivocado.\n",
    "nivel": "principiante",
+   "licencia": "CC-BY-4.0",
    "tags": [
     "modo-m",
     "movimiento",
@@ -382,6 +471,7 @@
    "url": "https://www.biosemiotics.net/velocidad-propagacion-ultrasonido/",
    "abstract": "El equipo convierte el tiempo de retorno de cada eco en profundidad suponiendo una velocidad cercana a 1540 m/s en tejido blando y dividiendo el trayecto entre ida y vuelta. La cifra es una calibración, no la velocidad exacta de todos los tejidos. Cuando el medio o el trayecto rompen el supuesto, una interfaz puede desplazarse, deformarse o medirse de forma incorrecta.\n",
    "nivel": "principiante",
+   "licencia": "CC-BY-4.0",
    "tags": [
     "fisica"
    ],
@@ -417,7 +507,7 @@
    "titulo": "Protocolo FAST/eFAST: la secuencia, no el catálogo",
    "abstract": "El FAST no es un signo: es un recorrido de ventanas que se ejecuta en orden y responde una sola pregunta binaria —¿hay líquido libre?—. Cada ventana ya tiene su ficha propia; este nodo enseña la secuencia, el orden y la decisión que las une. Su valor está en el paciente inestable, donde un hallazgo positivo manda al quirófano sin escala; no está pensado para cuantificar sangrado ni para evaluar lesión de órgano.\n",
    "nivel": "intermedio",
-   "licencia": "CC-BY-NC-4.0",
+   "licencia": "CC-BY-4.0",
    "fecha": "2026-08-15",
    "actualizado": "2026-08-15",
    "tags": [
@@ -457,6 +547,7 @@
    "url": "https://www.biosemiotics.net/sliding-pleural-y-lung-point-movimiento-antes-que-diagnostico/",
    "abstract": "El sliding pleural es el movimiento respiratorio de la pleura visceral contra la parietal. Su presencia excluye neumotórax exactamente en el punto examinado; su ausencia es inespecífica. El lung point es la transición respiratoria entre una zona sin sliding y otra con contacto pleural, y apoya con gran especificidad el diagnóstico, aunque puede faltar en neumotórax extenso o ser imitado por bullas e interfaces fisiológicas.\n",
    "nivel": "principiante",
+   "licencia": "CC-BY-4.0",
    "tags": [
     "pulmon",
     "pleura",
@@ -502,6 +593,7 @@
    "url": "https://www.biosemiotics.net/sondas-orientacion-ultrasonido/",
    "abstract": "La lineal prioriza detalle superficial; la convexa ofrece un campo abdominal amplio; la sectorial combina huella pequeña y acceso intercostal. La elección integra frecuencia, profundidad, geometría y ventana. El marcador vincula un lado de la sonda con la pantalla, pero la convención cambia entre presets, especialmente en ecocardiografía. Verificar el indicador evita invertir la anatomía o documentar un plano oblicuo como estándar.\n",
    "nivel": "principiante",
+   "licencia": "CC-BY-4.0",
    "tags": [
     "sonda",
     "orientacion",
@@ -540,6 +632,7 @@
    "url": "https://www.biosemiotics.net/ventanas-cardiacas-en-pocus-orientar-el-corazon-antes-de-interpretar/",
    "abstract": "Recorrido focalizado por las vistas paraesternal larga, paraesternal corta, apical de cuatro cámaras, subcostal y vena cava inferior. Cada ventana responde una pregunta limitada sobre líquido pericárdico, función global y tamaño relativo de cavidades. La orientación correcta evita acortar el ventrículo o invertir la anatomía; una ventana insuficiente no equivale a un estudio normal ni sustituye la ecocardiografía formal.\n",
    "nivel": "principiante",
+   "licencia": "CC-BY-4.0",
    "tags": [
     "corazon",
     "orientacion",
@@ -575,6 +668,7 @@
    "tipo": "signo",
    "titulo": "Absceso de partes blandas: la colección que la mano no distingue",
    "titulo_en": "Soft tissue abscess: the collection the hand cannot feel",
+   "url": "https://www.biosemiotics.net/absceso-de-partes-blandas-la-coleccion-que-la-mano-no-distingue/",
    "version": "1.0",
    "abstract": "Una colección anecoica o heterogénea, con refuerzo acústico posterior y contenido que se arremolina al comprimir, distingue un absceso de una celulitis. Esa diferencia decide entre drenar y no drenar, y la mano sola se equivoca: el ultrasonido cambió correctamente el manejo en cerca del 10 % de los casos. Falla cuando la colección es profunda o muy ecogénica, y cuando un ganglio, un quiste o un vaso ocupan su lugar.\n",
    "sistema": "musculoesqueletico",
@@ -585,7 +679,7 @@
    "significante": "Colección de bordes irregulares dentro del tejido blando, anecoica o con ecos internos en suspensión, con refuerzo acústico posterior, que deforma sus bordes al comprimir con la sonda y cuyo contenido se arremolina. Alrededor, la celulitis da el patrón en empedrado: tabiques hipoecoicos entre lobulillos de grasa.",
    "significado": "Pus colectado: un espacio ocupado por material líquido y detritos que no se resuelve con antibiótico solo. El refuerzo posterior aparece porque el contenido atenúa menos que el tejido vecino —ese artefacto es la prueba de que hay líquido, no tejido.",
    "umbral": "No hay un tamaño de corte que defina el signo; lo definen la morfología, el refuerzo posterior y la movilidad del contenido. Lo que sí está cuantificado es su rendimiento: en 14 estudios prospectivos con 2 656 pacientes, el POCUS tuvo sensibilidad de 94,6 % y especificidad de 85,4 %, con razón de verosimilitud positiva de 6,5 y negativa de 0,06. En los casos clínicamente claros rinde mejor (especificidad 89,1 %) que en los dudosos (76,9 %) — justamente donde más se necesita.\n",
-   "licencia": "CC-BY-NC-4.0",
+   "licencia": "CC-BY-4.0",
    "fecha": "2026-08-15",
    "actualizado": "2026-08-15",
    "decision": "Colección confirmada: drena o deriva para drenaje. Sin colección, solo empedrado: antibiótico y control, no incisión a ciegas. Y antes de cortar, pasa Doppler color: un seudoaneurisma o un vaso pueden verse como una colección y una incisión sobre ellos es una complicación evitable.",
@@ -642,6 +736,22 @@
      ]
     }
    ],
+   "medios": [
+    {
+     "tipo": "imagen",
+     "destacada": true,
+     "id": "wikimedia:Ultrasound_image_of_breast_110321112305_1127550.jpg",
+     "descripcion": "Ecografía de una colección compatible con absceso en tejido blando mamario",
+     "credito": "Nevit Dilmen",
+     "fuente": "Wikimedia Commons",
+     "fuente_url": "https://commons.wikimedia.org/wiki/File:Ultrasound_image_of_breast_110321112305_1127550.jpg",
+     "licencia_img": "CC BY-SA 3.0",
+     "licencia_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+     "archivo_local": "assets/img/absceso-partes-blandas.jpg"
+    }
+   ],
+   "n_loops": 0,
+   "n_imagenes": 1,
    "refs": [
     "gottlieb2020",
     "barbic2017",
@@ -665,7 +775,7 @@
    "significante": "Dilatación de la aorta abdominal con diámetro máximo mayor de 3,0 cm, medido perpendicular al eje vascular de borde externo a borde externo.",
    "significado": "Aneurisma aórtico abdominal.",
    "umbral": "Diámetro máximo > 3,0 cm de borde externo a borde externo. Recorre aorta proximal, media y distal hasta la bifurcación; mide en un plano perpendicular al vaso e incluye el trombo mural dentro del diámetro total.\n",
-   "licencia": "CC-BY-NC-4.0",
+   "licencia": "CC-BY-4.0",
    "fecha": "2026-07-29",
    "actualizado": "2026-07-29",
    "decision": "En un paciente sintomático o inestable, activa de inmediato la ruta de emergencia vascular y la imagen definitiva o traslado sin permitir que POCUS retrase la reanimación.",
@@ -749,7 +859,7 @@
    "significante": "Estructura tubular de extremo ciego en fosa ilíaca derecha, que no se colapsa al comprimir con la sonda, con diámetro externo mayor de 6 mm, pared en capas (signo de la diana en corte transversal) y dolor máximo justo sobre ella. Como acompañantes: apendicolito con sombra, líquido periapendicular y grasa vecina hiperecogénica.",
    "significado": "Obstrucción de la luz apendicular con distensión e inflamación de la pared. La estructura no se aplasta porque está a presión, no porque el operador no apriete.",
    "umbral": "El corte habitual es diámetro externo mayor de 6 mm con apéndice no compresible, pero conviene saber de dónde sale: es consenso, no un valor derivado de datos. En una serie pediátrica de 398 apéndices efectivamente visualizados, el punto de corte con mayor área bajo la curva ROC fue 7,0 mm; la mediana del diámetro fue 9,4 mm en los operados y 5,5 mm en los no operados. Mover el corte de 6 a 7 mm cambia el balance —menos cirugías innecesarias a cambio de más casos perdidos—, y esa es una decisión clínica, no una medición.\n",
-   "licencia": "CC-BY-NC-4.0",
+   "licencia": "CC-BY-4.0",
    "fecha": "2026-08-15",
    "actualizado": "2026-08-15",
    "decision": "Un apéndice inflamado bien visto en el punto de dolor, con clínica compatible, es argumento para llamar a cirugía sin más imagen. Un estudio en el que NO viste el apéndice no es un estudio negativo: dilo así, y decide con clínica, laboratorio y —si la sospecha se mantiene— tomografía. Nunca des de alta apoyándote en un apéndice que no encontraste.",
@@ -848,7 +958,7 @@
    "significante": "Vesícula con cálculos —a menudo uno impactado en el cuello— más pared engrosada por encima de 3 mm, líquido perivesicular y dolor máximo al apoyar la sonda sobre la vesícula que se está viendo en pantalla (Murphy ecográfico). En cuadros avanzados la pared se ve estriada, en capas alternas claras y oscuras.",
    "significado": "Obstrucción del conducto cístico con inflamación aguda de la pared vesicular. En el 90-95 % de los casos hay un cálculo detrás; entre el 5 % y el 10 % es alitiásica y aparece típicamente en el paciente críticamente enfermo.",
    "umbral": "El corte de pared que usan los estudios es 3 mm; el signo no es un número aislado sino la combinación de cálculo, pared engrosada, líquido perivesicular y Murphy ecográfico. El rendimiento es asimétrico: el POCUS de urgencias reporta sensibilidad de 70,9 % (IC 95 % 62,3-78,2) y especificidad de 94,4 % (IC 95 % 88,2-97,5), con razón de verosimilitud positiva de 12,7 y negativa de 0,31. Sirve mucho más para confirmar que para descartar.\n",
-   "licencia": "CC-BY-NC-4.0",
+   "licencia": "CC-BY-4.0",
    "fecha": "2026-08-15",
    "actualizado": "2026-08-15",
    "decision": "Con clínica compatible y estos hallazgos, deja de llamarlo cólico biliar: avisa a cirugía y decide manejo con la vía quirúrgica temprana en mente. Un estudio negativo o dudoso NO descarta: si la sospecha persiste, completa con imagen formal y laboratorio en lugar de dar de alta.",
@@ -948,7 +1058,7 @@
    "significante": "Conducto biliar común dilatado, visto en el hilio hepático como el canal anterior a la vena porta —el par de estructuras paralelas del signo del cañón de escopeta—. Rara vez se ve dentro de él el foco ecogénico con sombra que sería el cálculo; lo habitual es ver solo el conducto ancho.",
    "significado": "Obstrucción al flujo de bilis distal al punto medido. El cálculo es la causa más frecuente en el paciente con litiasis, pero la dilatación por sí sola solo dice que algo obstruye —o que algo obstruyó.",
    "umbral": "El corte no es único. En 206 adultos sanos el diámetro medio del colédoco fue 3,64 mm (IC 95 % 3,52-3,77), con un rango de 1,8 a 5,9 mm y el 65 % por debajo de 4 mm; los estudios clínicos usan indistintamente 6 o 7 mm como límite de lo dilatado. El valor gana potencia cuando se combina: con pruebas hepáticas alteradas y colédoco mayor de 7 mm, la probabilidad de cálculo en el conducto llegó al 82 %.\n",
-   "licencia": "CC-BY-NC-4.0",
+   "licencia": "CC-BY-4.0",
    "fecha": "2026-08-15",
    "actualizado": "2026-08-15",
    "decision": "No mandes a CPRE con un conducto dilatado como único argumento: la CPRE es tratamiento, no examen de rastreo, y tiene eventos adversos en el 6 % a 15 % de los casos. Integra el diámetro con pruebas hepáticas y clínica; si la sospecha se mantiene, la ruta es colangioRM o ecoendoscopia. Y en el paciente con fiebre, ictericia y dolor —colangitis—, la urgencia manda: eso no espera imagen adicional.",
@@ -1050,7 +1160,7 @@
    "significante": "Foco ecogénico intravesicular, móvil o dependiente, con sombra acústica posterior.",
    "significado": "Cálculo dentro de la luz de la vesícula biliar.",
    "umbral": "No hay un diámetro único que defina el signo. La combinación práctica es localización intravesicular, movilidad o dependencia y sombra posterior; los cálculos pequeños pueden no producir una sombra visible.\n",
-   "licencia": "CC-BY-NC-4.0",
+   "licencia": "CC-BY-4.0",
    "fecha": "2026-07-29",
    "actualizado": "2026-07-29",
    "decision": "Integra el hallazgo con la clínica; si solo hay cálculo sin signos inflamatorios, no lo llames colecistitis. Solicita evaluación completa si persiste la sospecha o aparecen datos de complicación.",
@@ -1137,7 +1247,7 @@
    "significante": "Espacio anecoico o hipoecoico entre el miocardio y el pericardio, visible y confirmable en más de una ventana cardíaca.",
    "significado": "Líquido en el espacio pericárdico; su presencia no demuestra por sí sola fisiología de taponamiento.",
    "umbral": "No existe una dimensión aislada que diagnostique taponamiento. La velocidad de acumulación, el contexto clínico y los signos hemodinámicos importan más que una cifra única de separación pericárdica.\n",
-   "licencia": "CC-BY-NC-4.0",
+   "licencia": "CC-BY-4.0",
    "fecha": "2026-07-29",
    "actualizado": "2026-07-29",
    "decision": "Confirmar en varias vistas, evaluar repercusión hemodinámica e integrar estabilidad; si hay inestabilidad y sospecha de taponamiento, activar manejo urgente y valoración para drenaje.",
@@ -1217,13 +1327,13 @@
    "abstract": "Colección líquida entre las pleuras parietal y visceral, habitualmente visible como un espacio anecoico o hipoecoico sobre el diafragma. El ultrasonido confirma su presencia, extensión, movilidad y complejidad, además de mostrar el pulmón atelectásico y guiar un sitio seguro para toracocentesis. La ecogenicidad orienta, pero no establece por sí sola la etiología ni distingue de forma definitiva transudado de exudado.\n",
    "sistema": "respiratorio",
    "organo": "pulmon",
-   "nivel": "principiante-intermedio",
+   "nivel": "principiante",
    "ventana": "base-pulmonar",
    "pregunta_clinica": "¿Hay líquido pleural, cuánto parece haber y existe una ventana segura para intervenir?",
    "significante": "Espacio anecoico entre la pared torácica y el pulmón, sobre el diafragma.",
    "significado": "Líquido en el espacio pleural.",
    "umbral": "No existe un único volumen que obligue a drenar. La decisión depende de síntomas, etiología probable, infección, accesibilidad y seguridad.\n",
-   "licencia": "CC-BY-NC-4.0",
+   "licencia": "CC-BY-4.0",
    "fecha": "2026-07-17",
    "actualizado": "2026-07-17",
    "decision": "Cuantificar. Considerar toracocentesis diagnóstica/terapéutica guiada por ultrasonido.",
@@ -1316,7 +1426,7 @@
    "significante": "Saco gestacional dentro del útero con saco vitelino o embrión en su interior, rodeado de un manto de miometrio: eso —y solo eso— confirma embarazo intrauterino. Lo que NO es el signo: una imagen anecoica central sin saco vitelino ni embrión, que puede ser un seudosaco. En el ectópico complicado se agrega líquido libre en fondo de saco y, si el sangrado es mayor, en el receso hepatorrenal.",
    "significado": "Confirmar un embarazo intrauterino significa que el embarazo está donde debe estar, y vuelve muy improbable el ectópico en una mujer que no viene de reproducción asistida. NO confirmarlo no significa que el embarazo sea ectópico: significa que no sabes dónde está. Son dos cosas distintas y el error de manejo nace de confundirlas.",
    "umbral": "Este signo no mide nada; lo que hay que tener presente es su asimetría. En 143 pacientes sintomáticas del primer trimestre, la ecografía transabdominal realizada por médicos de urgencias tuvo especificidad de 100 % y sensibilidad de 89,0 % para confirmar embarazo intrauterino, con exactitud de 93,0 %. Agregar un transductor lineal de alta frecuencia elevó la sensibilidad a 96,7 % y la exactitud a 97,9 %. Traducido a la cabecera: cuando dice que sí, créele; cuando no lo ve, no has descartado nada.\n",
-   "licencia": "CC-BY-NC-4.0",
+   "licencia": "CC-BY-4.0",
    "fecha": "2026-08-15",
    "actualizado": "2026-08-15",
    "decision": "Intrauterino confirmado y paciente estable: el ectópico deja de ser la primera preocupación, sigue la ruta obstétrica habitual. Sin intrauterino confirmado: esto es un embarazo de localización no determinada —deriva, asegura evaluación con ecografía transvaginal y βhCG, y no la mandes a casa sin plan, sin fecha y sin explicarle en voz alta los signos de alarma. Prueba de embarazo positiva más líquido libre más inestabilidad hemodinámica: no busques más imagen ni esperes laboratorio, avisa a quirófano.",
@@ -1394,7 +1504,7 @@
    "significante": "Cambio global del tamaño de la cavidad del VI, engrosamiento miocárdico y desplazamiento endocárdico durante la sístole, observado en varias vistas y ciclos.",
    "significado": "Categoría cualitativa de función sistólica global del ventrículo izquierdo.",
    "umbral": "Eyeball EF es una clasificación cualitativa, no una medición. No debe asignarse un porcentaje exacto ni usarse una sola vista o un solo latido para cruzar umbrales terapéuticos.\n",
-   "licencia": "CC-BY-NC-4.0",
+   "licencia": "CC-BY-4.0",
    "fecha": "2026-07-29",
    "actualizado": "2026-07-29",
    "decision": "Reconocer disfunción sistólica global marcada o un patrón hiperdinámico e integrarlo con perfusión, precarga, poscarga, válvulas y ventrículo derecho antes de decidir tratamiento.",
@@ -1481,7 +1591,7 @@
    "significante": "Colección anecoica por detrás de la vejiga, de bordes angulados que se adaptan a las estructuras vecinas en vez de tener forma propia. En el hombre, en el fondo de saco rectovesical; en la mujer, en el fondo de saco de Douglas, detrás del útero.",
    "significado": "Líquido libre en el punto más declive de la cavidad peritoneal. En trauma, sangre; fuera del trauma, ascitis, líquido fisiológico o rotura de un quiste.",
    "umbral": "No hay corte numérico. En trauma se lee como binaria: hay o no hay líquido. Aplica el techo de volumen del protocolo (promedio de 619 mL en el receso hepatorrenal, 97 % de sensibilidad recién con un litro) y su rendimiento global: exactitud 91 %, sensibilidad 75 %, especificidad 96 % en 601 pacientes. En mujeres en edad fértil, una lámina fina puede ser fisiológica y no se interpreta sola.\n",
-   "licencia": "CC-BY-NC-4.0",
+   "licencia": "CC-BY-4.0",
    "fecha": "2026-08-15",
    "actualizado": "2026-08-15",
    "decision": "La conducta del protocolo no cambia: inestable con líquido libre va a quirófano; estable con líquido libre va a tomografía. Lo propio de esta ventana es que su calidad depende de la vejiga: si está vacía, no la anotes como negativa —anótala como no valorable.",
@@ -1562,7 +1672,7 @@
    "significante": "Banda anecoica en el espacio subfrénico izquierdo —entre el bazo y el diafragma—, y/o entre el bazo y el riñón izquierdo. En el lado izquierdo el hallazgo suele aparecer primero por encima del bazo, no en el receso interórganos.",
    "significado": "Líquido libre peritoneal en el cuadrante superior izquierdo; en trauma, sangre, con frecuencia de origen esplénico.",
    "umbral": "Sin umbral numérico propio. Vale la restricción de volumen del protocolo —promedio de 619 mL para ver líquido en el receso hepatorrenal, y 97 % de sensibilidad recién con un litro— y el rendimiento global del FAST de cuatro ventanas: exactitud 91 %, sensibilidad 75 %, especificidad 96 % y valor predictivo negativo 94 % en una serie de 601 pacientes.\n",
-   "licencia": "CC-BY-NC-4.0",
+   "licencia": "CC-BY-4.0",
    "fecha": "2026-08-15",
    "actualizado": "2026-08-15",
    "decision": "La misma que en el resto del FAST: inestable con líquido libre va a quirófano, estable con líquido libre va a tomografía. Lo específico de esta ventana es técnico: si no exploraste el espacio subfrénico, no la diste por negativa.",
@@ -1641,7 +1751,7 @@
    "significante": "Banda anecoica que separa la cápsula hepática de la corteza del riñón derecho, en el espacio hepatorrenal. Normalmente hígado y riñón se tocan sin nada oscuro entre ellos; el líquido aparece como una cuña o una línea negra que sigue el contorno de ambos.",
    "significado": "Líquido libre en el espacio peritoneal. En un traumatizado, eso significa sangre hasta que se demuestre lo contrario; fuera del trauma puede ser ascitis, diálisis peritoneal o líquido de otra causa.",
    "umbral": "No es un número que midas, es un volumen que necesitas. En un estudio prospectivo y ciego con 100 pacientes que usó el lavado peritoneal como modelo de hemorragia, el volumen medio al que se detectó líquido en el receso hepatorrenal fue de 619 mL; solo el 10 % de los examinadores lo detectó con menos de 400 mL, y la sensibilidad llegó al 97 % recién con un litro. Traduce eso a la cabecera: la ventana es específica y tardía, no precoz.\n",
-   "licencia": "CC-BY-NC-4.0",
+   "licencia": "CC-BY-4.0",
    "fecha": "2026-08-15",
    "actualizado": "2026-08-15",
    "decision": "Paciente inestable con líquido libre: no busques más imagen, es quirófano. Paciente estable con líquido libre: tomografía. Ventana limpia: NO has descartado nada —repite el barrido si el estado cambia, porque el volumen que hace visible el signo es alto.",
@@ -1722,7 +1832,7 @@
    "significante": "Estructura anecoica distendida en la línea media pélvica, posterior a la sínfisis púbica, confirmada en eje transversal y longitudinal.",
    "significado": "Vejiga llena; en el contexto de incapacidad para orinar, hallazgo compatible con retención urinaria.",
    "umbral": "No existe un volumen único que defina toda retención aguda o crónica. La medición ecográfica es aproximada y debe interpretarse con síntomas, tiempo desde la última micción, función renal, anatomía y protocolo local.\n",
-   "licencia": "CC-BY-NC-4.0",
+   "licencia": "CC-BY-4.0",
    "fecha": "2026-07-29",
    "actualizado": "2026-07-29",
    "decision": "Si la vejiga está distendida y el contexto confirma retención, descomprimir cuando esté indicado y buscar la causa; si contiene poco volumen, evitar un sondaje reflejo y reevaluar oliguria o anuria.",
@@ -1809,7 +1919,7 @@
    "significante": "Espacio anecoico por encima del diafragma, con el pulmón colapsado flotando dentro en los derrames grandes. Dos claves de lectura: desaparece el artefacto en espejo (ya no se proyecta hígado o bazo por encima del diafragma) y aparece el signo de la columna, la prolongación de los cuerpos vertebrales hacia la región torácica.",
    "significado": "Líquido en el espacio pleural. En trauma, sangre; el ultrasonido no distingue el hemotórax de otro derrame por su aspecto.",
    "umbral": "No hay corte numérico en el contexto del eFAST. Lo que hay es rendimiento: en una serie prospectiva de 601 traumatizados, la ecografía torácica para hemotórax tuvo sensibilidad de 82 %, especificidad de 97 %, valor predictivo positivo de 87 %, valor predictivo negativo de 95 % y exactitud de 94 %; el protocolo completo se ejecutó en 7 ± 3 minutos.\n",
-   "licencia": "CC-BY-NC-4.0",
+   "licencia": "CC-BY-4.0",
    "fecha": "2026-08-15",
    "actualizado": "2026-08-15",
    "decision": "En el traumatizado inestable con hemotórax, el hallazgo acelera el drenaje torácico y evita perder tiempo buscando otra causa del shock. Con estabilidad, complementa con radiografía o tomografía. No intentes cuantificar el volumen con la sonda: el protocolo está hecho para responder sí o no, no cuánto.",
@@ -1887,7 +1997,7 @@
    "significante": "Solución de continuidad en la pared por la que protruye contenido —grasa preperitoneal, epiplón o asa intestinal— que aumenta con Valsalva o bipedestación. Cuando se complica: el asa queda dentro del saco sin peristalsis, con pared engrosada y líquido a su alrededor, y por dentro del abdomen aparecen asas dilatadas con contenido que va y viene sin progresar.",
    "significado": "Un defecto de la pared dejó pasar contenido abdominal. Si ese contenido vuelve, la hernia es reductible y el problema es electivo. Si no vuelve y además hay obstrucción, el asa está atrapada; la pared engrosada, el líquido en el saco y la peristalsis ausente sugieren que el compromiso ya no es solo mecánico sino vascular.",
    "umbral": "No hay un diámetro que defina la complicación; la definen la irreductibilidad y los signos de obstrucción. Para esa segunda parte sí hay cifras: en un metaanálisis con datos individuales de 433 pacientes de cinco estudios prospectivos, el POCUS para obstrucción de intestino delgado tuvo sensibilidad de 83,0 % y especificidad de 93,0 %, con razón de verosimilitud positiva de 11,9 y negativa de 0,2. El rendimiento baja con el operador menos experimentado (sensibilidad 73,0 % en residentes frente a 87,7 % en adscritos) y con el índice de masa corporal de 30 o más (de 88,6 % a 72,0 %).\n",
-   "licencia": "CC-BY-NC-4.0",
+   "licencia": "CC-BY-4.0",
    "fecha": "2026-08-15",
    "actualizado": "2026-08-15",
    "decision": "Hernia reductible sin datos de obstrucción: ruta electiva, explica los signos de alarma. Hernia irreductible con obstrucción o con datos de sufrimiento de asa: cirugía urgente, y NO intentes reducirla —una reducción forzada puede devolver al abdomen un asa ya necrótica. Ante duda con paciente sintomático, la imagen de elección en urgencias es la tomografía, no insistir con la sonda.",
@@ -1966,7 +2076,7 @@
    "significante": "Área anecoica central ramificada y comunicada que separa o dilata pelvis y cálices renales.",
    "significado": "Dilatación del sistema colector; puede acompañar obstrucción urinaria, pero no identifica por sí sola su causa.",
    "umbral": "La ficha usa una lectura cualitativa: ausente, leve o marcada. No convierte un diámetro aislado en diagnóstico. Deben revisarse ambos riñones en planos longitudinal y transversal y, cuando sea posible, la vejiga.\n",
-   "licencia": "CC-BY-NC-4.0",
+   "licencia": "CC-BY-4.0",
    "fecha": "2026-07-29",
    "actualizado": "2026-07-29",
    "decision": "Integra el grado de dilatación con dolor, función renal, infección y factores de riesgo; deriva o completa imagen cuando el resultado cambia una conducta o la sospecha persiste.",
@@ -2053,7 +2163,7 @@
    "significante": "Artefactos verticales hiperecoicos, en cola de cometa, que nacen en la línea pleural, borran las líneas A y se mueven con la respiración.",
    "significado": "Engrosamiento del intersticio por líquido. Síndrome intersticial.",
    "umbral": "≥3 líneas B por espacio intercostal = espacio positivo.",
-   "licencia": "CC-BY-NC-4.0",
+   "licencia": "CC-BY-4.0",
    "fecha": "2026-07-14",
    "actualizado": "2026-07-14",
    "decision": "Difusas y bilaterales → edema cardiogénico → diurético.",
@@ -2156,7 +2266,7 @@
    "significante": "Línea pleural sin sliding, sin líneas B y sin pulso pulmonar; el lung point muestra la transición hacia pleura en contacto.",
    "significado": "Aire en el espacio pleural que separa la pleura visceral de la parietal en la zona examinada.",
    "umbral": "No usa un conteo. La presencia de sliding o de líneas B excluye neumotórax en el punto examinado. La ausencia de sliding aislada no confirma el diagnóstico; el lung point aporta confirmación cuando puede encontrarse.\n",
-   "licencia": "CC-BY-NC-4.0",
+   "licencia": "CC-BY-4.0",
    "fecha": "2026-07-29",
    "actualizado": "2026-08-02",
    "decision": "Integra el patrón con estabilidad y mecanismo; en un paciente inestable compatible, activa tratamiento urgente sin retrasarlo por intentar documentar todos los signos.",
@@ -2258,7 +2368,7 @@
    "significante": "Líneas horizontales paralelas, repetidas a intervalos regulares bajo la línea pleural, con deslizamiento pleural conservado.",
    "significado": "Relación aire-tejido normal. Pulmón aireado, sin edema intersticial.",
    "umbral": "No es un conteo. El patrón exige líneas A en los campos anteriores, bilaterales, con deslizamiento pleural conservado. Un solo espacio no basta, y la ausencia de deslizamiento cambia por completo el significado.\n",
-   "licencia": "CC-BY-NC-4.0",
+   "licencia": "CC-BY-4.0",
    "fecha": "2026-07-25",
    "actualizado": "2026-07-25",
    "decision": "NO diuretizar. Buscar otra causa de la disnea (broncoespasmo, EPOC, TEP).",
@@ -2349,11 +2459,13 @@
    "titulo": "Riñón crónico",
    "url": "https://www.biosemiotics.net/rinon-cronico-ultrasonido/",
    "abstract": "Patrón bilateral de riñones reducidos, con cortical adelgazada, ecogenicidad aumentada y pérdida de diferenciación corticomedular. Apoya enfermedad parenquimatosa crónica: la imagen sugiere tiempo, pero no demuestra por sí sola irreversibilidad. Obliga a integrar el patrón con función renal y evolución, buscar obstrucción y no descartar lesión aguda sobreañadida. La combinación informa más que cada hallazgo aislado: un riñón hiperecoico no equivale a enfermedad crónica y un tamaño conservado no la excluye.\n",
+   "sistema": "genitourinario",
    "organo": "riñon",
-   "nivel": "principiante-intermedio",
+   "nivel": "intermedio",
    "ventana": "flanco",
    "significante": "Patrón bilateral de reducción del tamaño renal, adelgazamiento cortical, aumento de ecogenicidad y pérdida de diferenciación corticomedular.",
    "significado": "Morfología que apoya enfermedad parenquimatosa crónica; la imagen sugiere tiempo, pero no demuestra por sí sola irreversibilidad.",
+   "licencia": "CC-BY-4.0",
    "decision": "Integra el patrón con función renal y evolución, busca obstrucción y no descartes lesión renal aguda sobreañadida.",
    "sonda": [
     "convexa"
@@ -2410,7 +2522,7 @@
    "significante": "Ventrículo derecho dilatado (su diámetro se acerca o supera al del ventrículo izquierdo), tabique interventricular aplanado o desplazado hacia el ventrículo izquierdo en sístole (signo de la D), TAPSE reducido y, en algunos casos, acinesia de la pared libre media del VD con el ápex conservado (signo de McConnell).",
    "significado": "El ventrículo derecho, de pared delgada y diseñado para bajas presiones, se dilata y falla agudamente ante un aumento súbito de la resistencia vascular pulmonar —típicamente una tromboembolia pulmonar que obstruye una porción significativa del lecho vascular.",
    "umbral": "No hay un hallazgo aislado suficiente. Para el conjunto de signos de sobrecarga derecha (\"right heart strain\") en el diagnóstico de tromboembolia pulmonar, la sensibilidad reportada es 53 % (IC95% 45–61 %) y la especificidad 83 % (IC95% 74–90 %): útil para orientar la sospecha y adelantar conductas, insuficiente para descartar por su cuenta. La guía ESC de tromboembolia pulmonar señala la relación de diámetros VD:VI ≥ 1 y el TAPSE < 16 mm como hallazgos de disfunción del VD con valor pronóstico en el paciente ya diagnosticado —no es un criterio combinado obligatorio: cualquiera de los dos, en el contexto correcto, ya aporta información de severidad, no un umbral de tamizaje aislado.\n",
-   "licencia": "CC-BY-NC-4.0",
+   "licencia": "CC-BY-4.0",
    "fecha": "2026-08-07",
    "actualizado": "2026-08-07",
    "decision": "Con clínica compatible (disnea aguda, hipoxemia, taquicardia, factores de riesgo trombótico), estos hallazgos aceleran la anticoagulación empírica y, si hay inestabilidad hemodinámica, la activación para trombólisis o embolectomía; la ausencia de sobrecarga del VD no descarta una tromboembolia pulmonar submasiva sin repercusión hemodinámica.",
@@ -2507,7 +2619,7 @@
    "significante": "Derrame pericárdico con colapso diastólico del ventrículo derecho, colapso sistólico de la aurícula derecha, vena cava inferior dilatada (pletórica) sin colapso inspiratorio y, en derrames grandes, corazón oscilante (swinging heart).",
    "significado": "Presión intrapericárdica elevada que restringe el llenado de las cavidades derechas: fisiología de taponamiento, distinta de solo tener líquido pericárdico.",
    "umbral": "No existe una cifra única. El colapso del ventrículo derecho reporta sensibilidad entre 48 % y 100 % y especificidad entre 72 % y 100 % según la serie; el de la aurícula derecha, sensibilidad entre 50 % y 100 % y especificidad entre 33 % y 100 %. Son más confiables cuando la probabilidad pretest ya es alta —hipotensión, taquicardia, disnea, presión venosa elevada y derrame conocido— que como hallazgo aislado de bajo riesgo.\n",
-   "licencia": "CC-BY-NC-4.0",
+   "licencia": "CC-BY-4.0",
    "fecha": "2026-08-07",
    "actualizado": "2026-08-07",
    "decision": "Confirma en más de una ventana, correlaciona con el estado hemodinámico del paciente y, si hay inestabilidad, activa de inmediato al equipo para drenaje urgente; en derrame traumático, disección aórtica, rotura miocárdica o coágulo posquirúrgico, eso significa evaluación quirúrgica, no pericardiocentesis con aguja como única vía. La ausencia de colapso no descarta taponamiento en el paciente con hipertensión pulmonar o ventrículo derecho hipertrófico.",
@@ -2605,7 +2717,7 @@
    "significante": "Persistencia de la luz de una vena profunda durante compresión gradual y perpendicular adecuada.",
    "significado": "Trombo venoso en el segmento no compresible, hasta demostrar otra causa.",
    "umbral": "El criterio es binario por segmento: compresión completa o incompleta. Revisa al menos región femoral común y poplítea según un protocolo validado; una exploración focalizada proximal no equivale a ecografía dúplex de toda la extremidad.\n",
-   "licencia": "CC-BY-NC-4.0",
+   "licencia": "CC-BY-4.0",
    "fecha": "2026-07-29",
    "actualizado": "2026-07-29",
    "decision": "Integra el resultado con probabilidad clínica y protocolo local; confirma extensión o completa estudio cuando el examen sea negativo, incompleto, distal o discordante.",
@@ -2682,6 +2794,7 @@
    "abstract": "Caso de disnea indiferenciada: el examen físico no distingue con fiabilidad al paciente húmedo del seco. Con la sonda sobre un espacio intercostal se busca primero la línea pleural y se lee la bifurcación: líneas B difusas bilaterales indican diuretizar; un perfil A, no hacerlo, porque ese paciente empeora si se le diuretiza. Los límites se heredan de las líneas B: fibrosis, neumonía, SDRA. Viñeta pendiente de captura prospectiva.\n",
    "organo": "pulmon",
    "nivel": "principiante",
+   "licencia": "CC-BY-4.0",
    "fecha": "2026-08-01",
    "decision": "Líneas B difusas bilaterales → diurético. Perfil A → NO diurético.",
    "signos": [

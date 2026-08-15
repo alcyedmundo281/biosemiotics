@@ -65,7 +65,7 @@ medios:
 refs: [lichtenstein2008, volpicelli2012, volpicelli2026]
 fecha: 2026-07-25
 actualizado: 2026-07-25
-licencia: CC-BY-NC-4.0
+licencia: CC-BY-4.0
 ---
 
 ## La pregunta clínica

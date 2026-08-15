@@ -17,7 +17,7 @@ abstract: >
 
 sistema: respiratorio
 organo: pulmon
-nivel: principiante-intermedio
+nivel: principiante
 ventana: base-pulmonar
 sonda: [convexa, sectorial]
 pregunta_clinica: "¿Hay líquido pleural, cuánto parece haber y existe una ventana segura para intervenir?"
@@ -58,7 +58,7 @@ medios:
 refs: [volpicelli2012, soni2015, balik2006, asciak2023, roberts2023, ibitoye2018, teichgraeber2018, rodriguezlima2020]
 fecha: 2026-07-17
 actualizado: 2026-07-17
-licencia: CC-BY-NC-4.0
+licencia: CC-BY-4.0
 ---
 
 ## La pregunta clínica

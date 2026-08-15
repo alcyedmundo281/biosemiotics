@@ -115,7 +115,7 @@ def jsonld(e: dict) -> dict:
     if e.get("actualizado"):
         ld["dateModified"] = str(e["actualizado"])
     if e.get("licencia"):
-        ld["license"] = "https://creativecommons.org/licenses/by-nc/4.0/"
+        ld["license"] = "https://creativecommons.org/licenses/by/4.0/"
     if e.get("version"):
         ld["version"] = e["version"]
 

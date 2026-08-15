@@ -28,6 +28,7 @@ medios:
     licencia_img: "Dominio público"
 
 refs: [via2014, beraud2013, perezcasares2017, blanco2016]
+licencia: CC-BY-4.0
 ---
 
 ## Las cinco vistas que forman el recorrido

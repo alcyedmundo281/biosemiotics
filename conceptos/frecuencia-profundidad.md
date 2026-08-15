@@ -33,6 +33,7 @@ refs:
   - aldrich2007
   - abuzidan2011
   - jensen2007
+licencia: CC-BY-4.0
 ---
 
 Al aumentar la frecuencia disminuye la longitud de onda, lo que mejora el detalle

@@ -1,0 +1,115 @@
+name: ePub del atlas
+
+# Publica la edición en ePub como asset del release, para que el artefacto no
+# viva en git —es un binario derivado que cambia en cada compilación— pero sí
+# tenga una URL estable y descargable.
+#
+# CONTRATO CON scripts/epub.py
+# Este workflow define la interfaz que debe cumplir el generador:
+#   · se invoca como `python scripts/epub.py --salida <ruta>`
+#   · deja el archivo exactamente en esa ruta
+#   · sale con código != 0 si algo falló, incluida su propia validación
+# Si el generador cambia de toolchain (pandoc → tex4ebook, etc.), hay que
+# actualizar el paso «Instalar dependencias del sistema» de aquí abajo. Esa
+# actualización es parte del trabajo de quien cambie el generador.
+#
+# AVISO SOBRE ZENODO
+# La integración de Zenodo con GitHub archiva el SNAPSHOT DEL REPOSITORIO al
+# crear el release, no los assets. El .epub adjunto aquí NO entra solo en el
+# registro de Zenodo: para que el ePub quede dentro del DOI hay que subirlo al
+# registro (a mano o vía API). Lo que sí queda archivado y citable es la fuente
+# que lo genera, que es reproducible por diseño.
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      solo_publicados:
+        description: 'Incluir solo fichas con URL de Ghost'
+        type: boolean
+        default: false
+
+permissions:
+  contents: write   # necesario para adjuntar el asset al release
+
+jobs:
+  epub:
+    name: Construir y adjuntar el ePub
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: Instalar dependencias de Python
+        run: pip install pyyaml
+
+      - name: Comprobar que el generador existe
+        # Falla con un mensaje accionable en vez de un ModuleNotFound críptico.
+        run: |
+          if [ ! -f scripts/epub.py ]; then
+            echo "::error::Falta scripts/epub.py."
+            echo "El generador de ePub todavía no está en el repositorio."
+            echo "Interfaz esperada: python scripts/epub.py --salida build/atlas.epub"
+            exit 1
+          fi
+
+      - name: Instalar dependencias del sistema
+        # pandoc para la conversión y epubcheck para validar. Las fuentes cubren
+        # los símbolos Unicode estructurales del banco (≥ → ±): sin ellas el
+        # ePub se genera pero se lee mal en algunos lectores.
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends \
+            pandoc fonts-freefont-ttf default-jre-headless
+          echo "pandoc: $(pandoc --version | head -1)"
+
+      - name: Instalar epubcheck
+        run: |
+          VER=5.1.0
+          curl -fsSL -o /tmp/epubcheck.zip \
+            "https://github.com/w3c/epubcheck/releases/download/v${VER}/epubcheck-${VER}.zip"
+          unzip -q /tmp/epubcheck.zip -d /opt
+          echo "EPUBCHECK_JAR=/opt/epubcheck-${VER}/epubcheck.jar" >> "$GITHUB_ENV"
+
+      - name: Compilar el banco
+        # build.py produce libro.tex y las salidas derivadas de las que parte el
+        # ePub. NO se ejecuta indice.py: index.json tiene un solo dueño y no es
+        # este workflow.
+        run: python scripts/build.py
+
+      - name: Generar el ePub
+        run: |
+          python scripts/epub.py --salida build/atlas.epub \
+            ${{ inputs.solo_publicados && '--solo-publicados' || '' }}
+
+      - name: Comprobar que el artefacto es real
+        # Un ePub de pocos KB casi siempre significa "se generó vacío".
+        run: |
+          test -f build/atlas.epub || { echo "::error::No se generó build/atlas.epub"; exit 1; }
+          BYTES=$(stat -c%s build/atlas.epub)
+          echo "Tamaño: $((BYTES / 1024)) KB"
+          if [ "$BYTES" -lt 51200 ]; then
+            echo "::error::build/atlas.epub pesa $((BYTES / 1024)) KB: sospechosamente vacío."
+            exit 1
+          fi
+
+      - name: Validar con epubcheck
+        run: java -jar "$EPUBCHECK_JAR" build/atlas.epub
+
+      - name: Adjuntar al release
+        if: github.event_name == 'release'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release upload "${{ github.event.release.tag_name }}" build/atlas.epub --clobber
+
+      - name: Publicar como artifact (ejecución manual)
+        if: github.event_name == 'workflow_dispatch'
+        uses: actions/upload-artifact@v4
+        with:
+          name: atlas-epub
+          path: build/atlas.epub
+          retention-days: 14
