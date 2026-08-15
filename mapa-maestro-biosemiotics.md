@@ -34,8 +34,8 @@ Plano completo del atlas: los dos cursos (cardiopulmonar y emergencias) más las
 
 ## 2. Estado actual (lo ya publicado)
 
-El índice vigente contiene **34 entidades**: 14 conceptos, 19 signos y 1 caso.
-Quince signos tienen URL pública en Ghost; los otros cuatro están escritos y
+El índice vigente contiene **35 entidades**: 14 conceptos, 20 signos y 1 caso.
+Quince signos tienen URL pública en Ghost; los otros cinco están escritos y
 validados, esperando publicación.
 
 | signo | sistema | organo | nivel | estado |
@@ -84,7 +84,7 @@ validados, esperando publicación.
 | [Colecistitis aguda](https://www.biosemiotics.net/colecistitis-aguda-cuando-la-piedra-ya-no-es-el-hallazgo/) | digestivo | vesicula | intermedio | urgencias | pared, Murphy ecográfico → cirugía/antibiótico ✅ publicado |
 | Coledocolitiasis | digestivo | via-biliar | intermedio | urgencias | vía biliar dilatada → obstrucción, CPRE ✍ escrito, falta URL de Ghost |
 | Apendicitis | digestivo | apendice | intermedio | urgencias | apéndice no compresible > 6 mm → cirugía ✍ escrito, falta URL de Ghost |
-| Embarazo ectópico | genitourinario | utero | intermedio | urgencias | útero vacío + βhCG+ → emergencia |
+| Embarazo ectópico | genitourinario | utero | intermedio | urgencias | intrauterino confirmado o no → derivar / quirófano ✍ escrito, falta URL de Ghost |
 | Absceso de partes blandas | musculoesqueletico | pared | intermedio | urgencias | colección con refuerzo posterior → drenar vs antibiótico ✍ escrito, falta URL de Ghost |
 | Hernia complicada | musculoesqueletico | pared | intermedio | urgencias | contenido, reductibilidad → cirugía ✍ escrito, falta URL de Ghost |
 
@@ -163,7 +163,7 @@ Oleada 1 y las rutas avanzadas que reutilizarán esos conceptos.
 ## 8. Orden de trabajo recomendado
 
 1. **Oleada 1 cerrada:** los ocho signos están publicados, con sus conceptos base incorporados.
-2. **Ahora — Oleada 2:** publicados taponamiento cardíaco, sobrecarga del ventrículo derecho / TEP y colecistitis aguda. Escritos y esperando URL de Ghost: Coledocolitiasis, Apendicitis, Absceso de partes blandas y Hernia complicada. Queda **Embarazo ectópico**, el último de la oleada.
+2. **Oleada 2 escrita completa (8 de 8).** Publicados: taponamiento cardíaco, sobrecarga del ventrículo derecho / TEP y colecistitis aguda. Escritos, validados y esperando URL de Ghost: Coledocolitiasis, Apendicitis, Absceso de partes blandas, Hernia complicada y Embarazo ectópico. **El cuello de botella ya no es escribir: es publicar en Ghost.**
 3. **Antes de los signos que lo necesiten:** escribir y validar Doppler y Cuantificación y sus límites.
 4. **Conceptos base: regla dura.** Un signo NO se publica sin su concepto base ya en el banco. El concepto base requerido se escribe y valida ANTES que el signo, no en paralelo ni después.
 5. **Después:** completar FAST/eFAST → Oleada 3 → Extensiones.
@@ -172,12 +172,12 @@ Oleada 1 y las rutas avanzadas que reutilizarán esos conceptos.
 Cada cifra, verificada contra PubMed antes de publicar. Cada signo, con su sección de límites ("dónde NO confiar"). El orden por oleada mantiene vivo el mensaje: *empezar es más fácil de lo que te dijeron.*
 
 ### Conteo
-- Banco actual: **34 entidades** (14 conceptos, 19 signos y 1 caso)
-- Signos publicados: **15 de 19** (coledocolitiasis, apendicitis, absceso de partes blandas y hernia complicada escritos, esperando URL de Ghost)
+- Banco actual: **35 entidades** (14 conceptos, 20 signos y 1 caso)
+- Signos publicados: **15 de 20** (coledocolitiasis, apendicitis, absceso de partes blandas, hernia complicada y embarazo ectópico escritos, esperando URL de Ghost)
 - Oleada 1 completada: **8 de 8 signos**
-- Oleada 2: **3 publicados, 4 escritos, 1 pendiente de 8 signos** (la fila «colección/absceso, hernia complicada» se desdobló en dos: son dos significantes y dos decisiones distintas)
+- Oleada 2 **escrita completa: 8 de 8 signos** (3 publicados, 5 esperando URL). La fila «colección/absceso, hernia complicada» se desdobló en dos: son dos significantes y dos decisiones distintas
 - Conceptos base pendientes: **~2**
-- Restan **~14 entidades** para llegar a las ~48 proyectadas del atlas maduro
+- Restan **~13 entidades** para llegar a las ~48 proyectadas del atlas maduro
 
 Nota: FAST añade pocas fichas nuevas (Morrison, esplenorrenal, Douglas, hemotórax) porque reutiliza pericardio y neumotórax. El gradiente de FEVI añade 2 (lineales, Simpson) sobre el eyeball ya contado.
 
