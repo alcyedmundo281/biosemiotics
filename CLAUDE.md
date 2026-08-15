@@ -240,11 +240,21 @@ artículo ya está vivo, los dos PR se apilan:
    datos vigentes del banco y solo entonces ejecuta `indice.py`. Antes de
    commitear el hijo debe pasar `python scripts/verificar_publicacion.py` para
    la entidad publicada.
+   La regeneración se hace después de congelar **todos** los campos del padre:
+   tanto `url` como `medios` alimentan `build/index.json`. Si el publicador
+   corrige una atribución, licencia o `fuente_url` después de crear o fusionar
+   el hijo, ese hijo queda obsoleto y debe regenerarse otra vez antes de cerrar
+   el padre.
 3. Cuando la CI del PR hijo pasa, el proveedor lo fusiona en la rama del
    publicador. El PR padre incorpora así el índice regenerado sin que el
    publicador se convierta en dueño del derivado.
 4. Se vuelve a ejecutar la CI del PR padre. Solo entonces se marca listo y se
    fusiona a `main`.
+
+Antes de fusionar el padre, su CI debe mostrar en verde **todas** las variantes
+del job de integridad (Python 3.9 y 3.13) y el job de citas. El piso 3.9 no es
+solo documentación: evita fusionar sintaxis que funcione en CI moderna pero no
+en el runtime local compartido.
 
 Esta secuencia mantiene un único dueño de `build/index.json`, evita conflictos
 entre sesiones y reduce a **cero** la ventana visible de desincronización en

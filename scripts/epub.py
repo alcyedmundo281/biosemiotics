@@ -289,8 +289,21 @@ def validar_epub(path: Path, entidades: int, figuras: int) -> str:
             if requerido not in nombres:
                 raise RuntimeError(f"falta {requerido}")
         textos = b"".join(zf.read(n) for n in nombres if n.endswith((".xhtml", ".html")))
-        if b"[?]" in textos:
-            raise RuntimeError("se encontraron citas sin resolver ([?])")
+        comprobaciones = {
+            "citas sin resolver ([?])": b"[?]" not in textos,
+            "marcadores TODO": b"TODO" not in textos,
+            "DOI": DOI.encode() in textos,
+            "ISBN pendiente": b"ISBN EPUB: pendiente" in textos,
+            "aviso educativo": b"material educativo" in textos.lower(),
+            "bibliografía final": "Bibliografía".encode() in textos,
+            "créditos de imágenes": "Créditos de imágenes".encode() in textos,
+        }
+        fallos = [nombre for nombre, correcto in comprobaciones.items() if not correcto]
+        if fallos:
+            raise RuntimeError("validación editorial EPUB fallida: " + ", ".join(fallos))
+        for simbolo in ("≥", "→", "±"):
+            if simbolo.encode() not in textos:
+                raise RuntimeError(f"el símbolo Unicode {simbolo!r} no quedó incrustado")
         imagenes = [n for n in nombres if n.lower().endswith((".png", ".jpg", ".jpeg", ".svg", ".webp"))]
         if len(imagenes) < figuras + 1:  # figuras del banco + portada
             raise RuntimeError(

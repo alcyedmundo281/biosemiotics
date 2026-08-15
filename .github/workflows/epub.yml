@@ -81,6 +81,11 @@ jobs:
         # este workflow.
         run: python scripts/build.py
 
+      - name: Verificar coherencia de publicación
+        # Un release no puede empaquetar URLs o medios más nuevos que el índice.
+        # Este guardián también valida el mapa y las imágenes destacadas.
+        run: python scripts/verificar_publicacion.py
+
       - name: Generar el ePub
         run: |
           ARGS=()
