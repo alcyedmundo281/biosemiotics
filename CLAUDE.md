@@ -83,8 +83,9 @@ El texto completo del artículo se escribe/edita en Ghost directamente (Claude C
 2. `python scripts/build.py` (validar)
 3. `python scripts/indice.py .`
 4. `git add -f build/index.json` + los `.md` tocados
-5. `git commit` en tu rama, `git push -u origin <rama>`, y abre el PR (`gh pr create --fill`). Fusiona con `gh pr merge --squash` cuando la CI esté verde (ver «Flujo de trabajo: ramas y Pull Requests»).
-6. Recuérdale a Alcy purgar jsDelivr: `https://purge.jsdelivr.net/gh/alcyedmundo281/biosemiotics@main/build/index.json`
+5. `git commit` en tu rama, `git push -u origin <rama>`, y abre el PR (`gh pr create --fill`). Fusiona con `gh pr merge --squash --delete-branch` cuando la CI esté verde (ver «Flujo de trabajo: ramas y Pull Requests»).
+6. **Cierre local obligatorio después del squash:** cambia a `main`, actualiza con avance rápido, poda las referencias remotas borradas y confirma que no quedan PR abiertos ni divergencia local (`git switch main`, `git pull --ff-only`, `git fetch --prune`, `gh pr list --state open`, `git status -sb`).
+7. Recuérdale a Alcy purgar jsDelivr: `https://purge.jsdelivr.net/gh/alcyedmundo281/biosemiotics@main/build/index.json`
 
 **El paso 3 no es opcional, y es el que más se olvida.** `build.py` NO regenera `index.json` — eso lo hace `indice.py`. Si commiteas `.md` y `refs.bib` sin correr `indice.py`, el buscador del sitio queda sirviendo datos viejos: entradas sin su URL, sin su conteo de referencias. Ya pasó dos veces. Regla práctica: **si tocaste un `.md`, corre los dos scripts antes de commitear.**
 
@@ -127,8 +128,14 @@ git push -u origin <rama-descriptiva>
 gh pr create --fill                     # abre el PR
 # espera a que la CI pase (gh pr checks --watch)
 gh pr merge --squash --delete-branch    # fusiona cuando esté verde
-git switch main && git pull             # sincroniza tu local
+git switch main                          # abandona la rama ya fusionada
+git pull --ff-only                       # trae el SHA nuevo creado por el squash
+git fetch --prune                        # elimina referencias origin/* ya borradas
+gh pr list --state open                  # confirma que no quedan PR pendientes
+git status -sb                           # main debe coincidir con origin/main
 ```
+
+**El cierre post-squash no es opcional.** GitHub crea un commit nuevo al fusionar con squash; por eso el commit de la rama no aparece como ancestro de `main` y puede parecer pendiente aunque el PR ya esté fusionado. No termines el flujo desde la rama de trabajo: vuelve siempre a `main`, actualiza, poda y verifica. Una rama todavía asociada a un worktree no se borra a ciegas; primero identifica ese worktree y conserva cualquier cambio que no pertenezca al PR.
 
 Reglas:
 - **Una rama por unidad de trabajo** (un signo, un arreglo). PRs chicos se revisan y se fusionan sin fricción.
