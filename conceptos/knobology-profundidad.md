@@ -25,6 +25,9 @@ medios:
     credito: "Linda Bartlett, National Cancer Institute"
     fuente: "Wikimedia Commons"
     licencia_img: "Dominio público"
+    fuente_url: "https://commons.wikimedia.org/wiki/File:Ultrasound_(2).jpg"
+    licencia_url: "https://commons.wikimedia.org/wiki/Commons:Licensing"
+    archivo_local: "assets/img/knobology-profundidad.jpg"
 
 refs: [zander2020, duggan2022, hangiandreou2003, kossoff2000]
 licencia: CC-BY-4.0

@@ -26,6 +26,9 @@ medios:
     credito: "Coolth; basado en la obra de LightYear"
     fuente: "Wikimedia Commons"
     licencia_img: "CC BY-SA 3.0"
+    fuente_url: "https://commons.wikimedia.org/wiki/File:Ultrasound_range_diagram.png"
+    licencia_url: "https://creativecommons.org/licenses/by-sa/3.0/"
+    archivo_local: "assets/img/frecuencia-profundidad.png"
 
 refs:
   - kossoff2000

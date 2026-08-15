@@ -25,6 +25,9 @@ medios:
     credito: "Kristoffer Lindskov Hansen, Michael Bachmann Nielsen y Caroline Ewertsen"
     fuente: "Wikimedia Commons"
     licencia_img: "CC BY 4.0"
+    fuente_url: "https://commons.wikimedia.org/wiki/File:Simple_cyst_with_posterior_enhancement.jpg"
+    licencia_url: "https://creativecommons.org/licenses/by/4.0/"
+    archivo_local: "assets/img/artefacto-refuerzo-posterior.jpg"
 
 refs: [feldman2009, sato2006, aldrich2007, abuzidan2011]
 licencia: CC-BY-4.0

@@ -54,6 +54,9 @@ medios:
     credito: "Mikael Häggström, M.D."
     fuente: "Wikimedia Commons"
     licencia_img: "CC0 1.0"
+    fuente_url: "https://commons.wikimedia.org/wiki/File:Ultrasonography_of_sludge_and_gallstones,_annotated.jpg"
+    licencia_url: "https://creativecommons.org/publicdomain/zero/1.0/"
+    archivo_local: "assets/img/colelitiasis.jpg"
 
 refs: [sharif2021, rosen2001, feldman2009]
 fecha: 2026-07-29

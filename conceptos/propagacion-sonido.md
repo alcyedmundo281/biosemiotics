@@ -25,6 +25,9 @@ medios:
     credito: "David Maresca, Daniel P. Sawyer, Guillaume Renaud, Audrey Lee-Gosselin y Mikhail G. Shapiro"
     fuente: "Wikimedia Commons"
     licencia_img: "CC BY 4.0"
+    fuente_url: "https://commons.wikimedia.org/wiki/File:Nonlinear_US_wave_propagation.svg"
+    licencia_url: "https://creativecommons.org/licenses/by/4.0/"
+    archivo_local: "assets/img/propagacion-sonido.png"
 
 refs: [kossoff2000, feldman2009, aldrich2007, hangiandreou2003, jensen2007]
 licencia: CC-BY-4.0

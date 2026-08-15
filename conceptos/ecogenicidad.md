@@ -26,6 +26,8 @@ medios:
     credito: "Mikael Häggström"
     fuente: "Wikimedia Commons"
     licencia_img: "CC0 1.0"
+    licencia_url: "https://creativecommons.org/publicdomain/zero/1.0/"
+    archivo_local: "assets/img/ecogenicidad.jpg"
 
 refs: []
 url: "https://www.biosemiotics.net/aprender-a-leer-el-cuerpo-vivo/"

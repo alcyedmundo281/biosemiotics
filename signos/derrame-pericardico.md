@@ -53,6 +53,9 @@ medios:
     credito: "James Heilman, MD"
     fuente: "Wikimedia Commons"
     licencia_img: "CC BY-SA 3.0"
+    fuente_url: "https://commons.wikimedia.org/wiki/File:PericardialeffusionUS.PNG"
+    licencia_url: "https://creativecommons.org/licenses/by-sa/3.0/"
+    archivo_local: "assets/img/derrame-pericardico.png"
 
 refs: [via2014, perezcasares2017, stolz2017, blanco2016, farsi2017]
 fecha: 2026-07-29

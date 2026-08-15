@@ -27,6 +27,8 @@ medios:
     credito: "Karl Deutsch Prüf- und Messgerätebau GmbH + Co KG"
     fuente: "Wikimedia Commons"
     licencia_img: "CC BY 3.0 DE"
+    licencia_url: "https://creativecommons.org/licenses/by/3.0/de/"
+    archivo_local: "assets/img/knobology-ganancia.jpg"
 
 refs:
   - zander2020

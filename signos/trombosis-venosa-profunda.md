@@ -57,6 +57,9 @@ medios:
     credito: "James Heilman, MD"
     fuente: "Wikimedia Commons"
     licencia_img: "CC BY-SA 4.0"
+    fuente_url: "https://commons.wikimedia.org/wiki/File:DVTInGroinNoCompresibleMark.png"
+    licencia_url: "https://creativecommons.org/licenses/by-sa/4.0/"
+    archivo_local: "assets/img/trombosis-venosa-profunda.png"
 
 refs: [pomero2013, lee2019, zaki2024, wells2006]
 fecha: 2026-07-29

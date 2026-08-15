@@ -55,6 +55,9 @@ medios:
     credito: "Mikael Häggström"
     fuente: "Wikimedia Commons"
     licencia_img: "CC0 1.0"
+    fuente_url: "https://commons.wikimedia.org/wiki/File:Ultrasound_of_trabeculated_urinary_bladder.jpg"
+    licencia_url: "https://creativecommons.org/publicdomain/zero/1.0/"
+    archivo_local: "assets/img/globo-vesical.jpg"
 
 refs: [fernandezprada2025, jalbani2014, hvarness2002, cho2017, nunan2024, christiaans2026]
 fecha: 2026-07-29
