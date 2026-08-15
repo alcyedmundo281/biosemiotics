@@ -616,6 +616,88 @@
    "n_refs": 3
   },
   {
+   "id": "signo-colecistitis-aguda",
+   "tipo": "signo",
+   "titulo": "Colecistitis aguda: cuando la piedra ya no es el hallazgo",
+   "titulo_en": "Acute cholecystitis: beyond the stone",
+   "version": "1.0",
+   "abstract": "Pared vesicular engrosada, líquido perivesicular y dolor máximo al apoyar la sonda sobre la vesícula visualizada, en un paciente con cálculos, sugieren inflamación aguda y no solo litiasis. El hallazgo adelanta la consulta quirúrgica y el antibiótico. Es específico pero solo moderadamente sensible: la pared también engruesa en insuficiencia cardíaca, hepatopatía, ascitis e hipoalbuminemia, y un estudio negativo no cierra la sospecha clínica.\n",
+   "sistema": "digestivo",
+   "organo": "vesicula",
+   "nivel": "intermedio",
+   "ventana": "subcostal-intercostal-derecha",
+   "pregunta_clinica": "¿Esta vesícula está inflamada ahora mismo, o solo tiene piedras?",
+   "significante": "Vesícula con cálculos —a menudo uno impactado en el cuello— más pared engrosada por encima de 3 mm, líquido perivesicular y dolor máximo al apoyar la sonda sobre la vesícula que se está viendo en pantalla (Murphy ecográfico). En cuadros avanzados la pared se ve estriada, en capas alternas claras y oscuras.",
+   "significado": "Obstrucción del conducto cístico con inflamación aguda de la pared vesicular. En el 90-95 % de los casos hay un cálculo detrás; entre el 5 % y el 10 % es alitiásica y aparece típicamente en el paciente críticamente enfermo.",
+   "umbral": "El corte de pared que usan los estudios es 3 mm; el signo no es un número aislado sino la combinación de cálculo, pared engrosada, líquido perivesicular y Murphy ecográfico. El rendimiento es asimétrico: el POCUS de urgencias reporta sensibilidad de 70,9 % (IC 95 % 62,3-78,2) y especificidad de 94,4 % (IC 95 % 88,2-97,5), con razón de verosimilitud positiva de 12,7 y negativa de 0,31. Sirve mucho más para confirmar que para descartar.\n",
+   "licencia": "CC-BY-NC-4.0",
+   "fecha": "2026-08-15",
+   "actualizado": "2026-08-15",
+   "decision": "Con clínica compatible y estos hallazgos, deja de llamarlo cólico biliar: avisa a cirugía y decide manejo con la vía quirúrgica temprana en mente. Un estudio negativo o dudoso NO descarta: si la sospecha persiste, completa con imagen formal y laboratorio en lugar de dar de alta.",
+   "sonda": [
+    "convexa"
+   ],
+   "escenario": [
+    "urgencias"
+   ],
+   "descriptores": [
+    "colecistitis-aguda",
+    "vesicula",
+    "murphy-ecografico",
+    "pared-vesicular",
+    "liquido-perivesicular",
+    "pocus"
+   ],
+   "mesh": [
+    "Cholecystitis, Acute",
+    "Gallbladder",
+    "Ultrasonography",
+    "Point-of-Care Systems"
+   ],
+   "falsos_positivos": [
+    "Engrosamiento parietal de causa no biliar: insuficiencia cardíaca, insuficiencia renal, hepatitis o falla hepática, ascitis, hipoalbuminemia y pancreatitis engruesan la pared —incluso con el patrón estriado— sin enfermedad de la vesícula",
+    "Vesícula contraída posprandial: la pared de una vesícula vacía parece engrosada; el ayuno insuficiente fabrica el hallazgo",
+    "Colecistitis crónica o adenomiomatosis: pared engrosada estable, sin cuadro agudo",
+    "Cálculo incidental en un abdomen agudo de otra causa: la piedra estaba antes del dolor",
+    "Ascitis generalizada leída como líquido perivesicular",
+    "Murphy ecográfico falsamente negativo por analgesia, alteración de la conciencia o paciente que no colabora —ausencia de respuesta, no ausencia de inflamación",
+    "Colecistitis alitiásica: si exiges ver el cálculo para nombrar el cuadro, se te escapa el 5-10 % que ocurre sin él, y suele ser el paciente más grave"
+   ],
+   "se_basa_en": [
+    "ecogenicidad",
+    "artefacto-sombra-acustica",
+    "tipos-de-sonda",
+    "knobology-ganancia"
+   ],
+   "contrasta_con": [
+    "signo-colelitiasis"
+   ],
+   "autores": [
+    {
+     "nombre": "Alcy Edmundo Torres Guerrero",
+     "orcid": "0000-0002-9742-375X",
+     "afiliacion": "Universidad Central del Ecuador",
+     "credit": [
+      "conceptualizacion",
+      "redaccion",
+      "supervision"
+     ]
+    }
+   ],
+   "refs": [
+    "wilson2024",
+    "huang2023",
+    "wu2024",
+    "summers2010",
+    "gallaher2022",
+    "yokoe2018",
+    "teefey1991",
+    "nipitkul2026",
+    "wehrle2022"
+   ],
+   "n_refs": 9
+  },
+  {
    "id": "signo-colelitiasis",
    "tipo": "signo",
    "titulo": "Colelitiasis: cálculo móvil con sombra posterior",
@@ -666,6 +748,9 @@
     "ecogenicidad",
     "artefacto-sombra-acustica",
     "tipos-de-sonda"
+   ],
+   "contrasta_con": [
+    "signo-colecistitis-aguda"
    ],
    "autores": [
     {
