@@ -4,7 +4,7 @@
 verificada contra la literatura y cada signo acompañado de sus límites.
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21435362.svg)](https://doi.org/10.5281/zenodo.21435362)
-[![Licencia: CC BY-NC 4.0](https://img.shields.io/badge/Licencia-CC%20BY--NC%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc/4.0/deed.es)
+[![Licencia: CC BY 4.0](https://img.shields.io/badge/Licencia-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/deed.es)
 
 🔗 **[www.biosemiotics.net](https://www.biosemiotics.net/)**
 
@@ -102,11 +102,16 @@ esa versión, que aparece en su página de Zenodo.
 
 ## Licencia
 
-[Creative Commons Atribución-NoComercial 4.0 Internacional (CC BY-NC 4.0)](https://creativecommons.org/licenses/by-nc/4.0/deed.es).
+[Creative Commons Atribución 4.0 Internacional (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/deed.es).
 Texto legal completo en [`LICENSE`](LICENSE).
 
-Puedes compartir y adaptar el material citando la autoría, con fines no
-comerciales.
+Puedes compartir y adaptar el material —incluso con fines comerciales— siempre
+que cites la autoría e indiques si hiciste cambios.
+
+**Las imágenes tienen su propia licencia**, declarada en el bloque `medios` de
+cada ficha: hay archivos en CC0, dominio público, CC BY y CC BY-SA. Las CC BY-SA
+imponen *share-alike* a las obras derivadas de esa imagen concreta. Al reutilizar
+una figura, respeta la licencia de esa figura, no la del atlas.
 
 ## Aviso
 

@@ -29,7 +29,7 @@ autores:
 refs: [boote2003, elwertowski2014, vandenhof2018, hangiandreou2003]
 fecha: 2026-08-15
 actualizado: 2026-08-15
-licencia: CC-BY-NC-4.0
+licencia: CC-BY-4.0
 ---
 
 ## Qué mide realmente el Doppler

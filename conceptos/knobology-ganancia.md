@@ -35,6 +35,7 @@ refs:
   - abuzidan2011
   - hangiandreou2003
   - aldrich2007
+licencia: CC-BY-4.0
 ---
 
 La **ganancia** amplifica electrónicamente los ecos recibidos y modifica el brillo

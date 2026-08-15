@@ -34,6 +34,7 @@ refs:
   - aldrich2007
   - jensen2007
   - he2022
+licencia: CC-BY-4.0
 ---
 
 El transductor convierte energía en dos direcciones. Durante la transmisión, un

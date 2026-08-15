@@ -27,6 +27,7 @@ medios:
     licencia_img: "CC BY-SA 3.0"
 
 refs: [feldman2009, sato2006, aldrich2007, abuzidan2011]
+licencia: CC-BY-4.0
 ---
 
 La **sombra acústica** es una zona hipoecoica o anecoica que comienza detrás de

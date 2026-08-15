@@ -27,6 +27,7 @@ medios:
     licencia_img: "CC BY 4.0"
 
 refs: [kossoff2000, feldman2009, aldrich2007, hangiandreou2003, jensen2007]
+licencia: CC-BY-4.0
 ---
 
 El sistema calcula:

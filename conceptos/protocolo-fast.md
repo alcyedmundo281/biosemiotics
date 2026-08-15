@@ -29,7 +29,7 @@ autores:
 refs: [savoia2023, zanobetti2018, branney1995, holmes2017, sutarjono2023, vanderweide2019]
 fecha: 2026-08-15
 actualizado: 2026-08-15
-licencia: CC-BY-NC-4.0
+licencia: CC-BY-4.0
 ---
 
 ## Qué es el FAST, y qué pregunta responde
