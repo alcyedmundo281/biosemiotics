@@ -34,8 +34,9 @@ Plano completo del atlas: los dos cursos (cardiopulmonar y emergencias) más las
 
 ## 2. Estado actual (lo ya publicado)
 
-El índice vigente contiene **29 entidades**: 14 conceptos, 14 signos y 1 caso.
-Los catorce signos tienen URL pública en Ghost.
+El índice vigente contiene **34 entidades**: 14 conceptos, 19 signos y 1 caso.
+Quince signos tienen URL pública en Ghost; los otros cuatro están escritos y
+validados, esperando publicación.
 
 | signo | sistema | organo | nivel | estado |
 |---|---|---|---|---|
@@ -53,6 +54,7 @@ Los catorce signos tienen URL pública en Ghost.
 | [Trombosis venosa profunda](https://www.biosemiotics.net/tvp-por-compresion-la-vena-que-no-desaparece/) | vascular | vena-profunda | principiante | ✅ publicado |
 | [Taponamiento cardíaco](https://www.biosemiotics.net/taponamiento-cardiaco-el-derrame-que-impide-el-llenado/) | cardiovascular | pericardio | intermedio | ✅ publicado |
 | [Ventrículo derecho (sobrecarga/TEP)](https://www.biosemiotics.net/sobrecarga-del-ventriculo-derecho-tep/) | cardiovascular | corazon | intermedio | ✅ publicado |
+| [Colecistitis aguda](https://www.biosemiotics.net/colecistitis-aguda-cuando-la-piedra-ya-no-es-el-hallazgo/) | digestivo | vesicula | intermedio | ✅ publicado |
 
 ---
 
@@ -79,7 +81,7 @@ Los catorce signos tienen URL pública en Ghost.
 |---|---|---|---|---|---|
 | Taponamiento cardíaco | cardiovascular | pericardio | intermedio | urgencias, uci | derrame + colapso cámaras → drenaje urgente ✅ publicado |
 | Ventrículo derecho (sobrecarga/TEP) | cardiovascular | corazon | intermedio | urgencias, uci | VD dilatado, septo en D → sospecha TEP ✅ publicado |
-| Colecistitis aguda | digestivo | vesicula | intermedio | urgencias | pared, Murphy ecográfico → cirugía/antibiótico ✍ escrito, falta URL de Ghost |
+| [Colecistitis aguda](https://www.biosemiotics.net/colecistitis-aguda-cuando-la-piedra-ya-no-es-el-hallazgo/) | digestivo | vesicula | intermedio | urgencias | pared, Murphy ecográfico → cirugía/antibiótico ✅ publicado |
 | Coledocolitiasis | digestivo | via-biliar | intermedio | urgencias | vía biliar dilatada → obstrucción, CPRE ✍ escrito, falta URL de Ghost |
 | Apendicitis | digestivo | apendice | intermedio | urgencias | apéndice no compresible > 6 mm → cirugía ✍ escrito, falta URL de Ghost |
 | Embarazo ectópico | genitourinario | utero | intermedio | urgencias | útero vacío + βhCG+ → emergencia |
@@ -161,7 +163,7 @@ Oleada 1 y las rutas avanzadas que reutilizarán esos conceptos.
 ## 8. Orden de trabajo recomendado
 
 1. **Oleada 1 cerrada:** los ocho signos están publicados, con sus conceptos base incorporados.
-2. **Ahora — Oleada 2:** Colecistitis aguda, Coledocolitiasis, Apendicitis, Absceso de partes blandas y Hernia complicada (escritos, falta publicarlos en Ghost) → queda **Embarazo ectópico**, el último de la oleada. Taponamiento cardíaco y sobrecarga del ventrículo derecho / TEP ya están publicados.
+2. **Ahora — Oleada 2:** publicados taponamiento cardíaco, sobrecarga del ventrículo derecho / TEP y colecistitis aguda. Escritos y esperando URL de Ghost: Coledocolitiasis, Apendicitis, Absceso de partes blandas y Hernia complicada. Queda **Embarazo ectópico**, el último de la oleada.
 3. **Antes de los signos que lo necesiten:** escribir y validar Doppler y Cuantificación y sus límites.
 4. **Conceptos base: regla dura.** Un signo NO se publica sin su concepto base ya en el banco. El concepto base requerido se escribe y valida ANTES que el signo, no en paralelo ni después.
 5. **Después:** completar FAST/eFAST → Oleada 3 → Extensiones.
@@ -171,9 +173,9 @@ Cada cifra, verificada contra PubMed antes de publicar. Cada signo, con su secci
 
 ### Conteo
 - Banco actual: **34 entidades** (14 conceptos, 19 signos y 1 caso)
-- Signos publicados: **14 de 19** (colecistitis aguda, coledocolitiasis, apendicitis, absceso de partes blandas y hernia complicada escritos, esperando URL de Ghost)
+- Signos publicados: **15 de 19** (coledocolitiasis, apendicitis, absceso de partes blandas y hernia complicada escritos, esperando URL de Ghost)
 - Oleada 1 completada: **8 de 8 signos**
-- Oleada 2: **2 publicados, 5 escritos, 1 pendiente de 8 signos** (la fila «colección/absceso, hernia complicada» se desdobló en dos: son dos significantes y dos decisiones distintas)
+- Oleada 2: **3 publicados, 4 escritos, 1 pendiente de 8 signos** (la fila «colección/absceso, hernia complicada» se desdobló en dos: son dos significantes y dos decisiones distintas)
 - Conceptos base pendientes: **~2**
 - Restan **~14 entidades** para llegar a las ~48 proyectadas del atlas maduro
 
