@@ -57,7 +57,10 @@ python scripts/build.py
 python scripts/epub.py --salida build/atlas.epub --solo-publicados
 ```
 
-El generador requiere Python 3.11 o posterior, PyYAML y Pandoc. Lee el banco de
+El piso soportado del repositorio es Python 3.9. El generador requiere Python
+3.9 o posterior, PyYAML y Pandoc. El job de integridad debe probar tanto 3.9
+como la versión moderna fijada en CI; el job de citas no se duplica para evitar
+repetir llamadas a PubMed. El generador lee el banco de
 forma dinámica y hereda de `build.py` el orden de capítulos y sistemas; no usa
 listas manuales. El archivo resultante vive en `build/`, no se versiona y el
 workflow `.github/workflows/epub.yml` lo valida con EPUBCheck antes de
