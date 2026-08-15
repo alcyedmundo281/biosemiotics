@@ -75,37 +75,45 @@ Si compilas con pdflatex vas a ver `Missing character` o `Unicode character not 
 - **No edites `build/` a mano.** Regenéralo.
 - **Casos raros → composite.** Un diagnóstico infrecuente en comunidad pequeña re-identifica. Usa caso representativo y decláralo.
 
-## Ciclo de publicación (cuando un artículo ya está en Ghost)
+## Ciclo cliente de publicación en Ghost
 
-El artículo se publica en Ghost directamente, de forma manual o mediante una
-sesión de navegador autorizada. Este ciclo es una transacción: Ghost, fuente,
-índice, mapa, GitHub y caché deben terminar describiendo el mismo estado.
+Este rol **solo publica en Ghost**. El repositorio y `build/index.json` son el
+proveedor; el publicador es un cliente de sus artefactos. Durante este ciclo no
+se ejecutan generadores, no se editan fuentes o salidas del proveedor y no se
+hacen operaciones Git de escritura.
 
-### 0. Preflight — sincronizar y evitar trabajo duplicado
+### Límite de responsabilidad — obligatorio
 
-Antes de abrir Ghost o crear una rama:
+Esta sección prevalece sobre las instrucciones generales de creación,
+compilación y Git cuando la tarea solicitada sea publicar un artículo.
+
+El publicador puede leer `build/ghost/`, consultar metadatos y usar la sesión
+autorizada de Ghost. No puede ejecutar `build.py` ni `indice.py`, modificar
+`build/index.json`, los `.md` fuente o el mapa maestro, crear ramas, hacer
+commits, abrir/fusionar PR ni purgar la caché. Esas acciones pertenecen al flujo
+separado del **proveedor del índice**.
+
+Si falta o está desactualizado un artefacto, el publicador se detiene y entrega
+un bloqueo al proveedor; nunca lo reconstruye localmente para continuar.
+
+### 0. Preflight cliente — solo lectura
+
+Antes de abrir Ghost:
 
 ```bash
-git status -sb
-git switch main
-git pull --ff-only
-git fetch --prune
-gh pr list --state all --search "<id o título>"
-rg '^url:' signos/<archivo>.md
-git worktree list
+python scripts/auditar_pegado_ghost.py \
+  --canon build/ghost/<carpeta>/<archivo>.md
 ```
 
-- Si la URL ya existe o hay un PR equivalente abierto/fusionado, **detente**:
-  no abras una segunda rama. Así se evita repetir el incidente de los PR #25 y
-  #26 para la misma publicación.
-- Reporta todo cambio ajeno. Crea la rama de publicación antes de editar y usa
-  staging por lista blanca; nunca `git add -A` en un árbol mixto.
+- Busca el título en Ghost entre borradores y publicados. Si ya existe,
+  **detente** y abre el artículo existente; nunca crees un segundo post.
+- Confirma que el artefacto canónico existe y que su huella es válida. Esta
+  auditoría es de lectura; no genera ni reescribe archivos.
 
 ### 1. Preparar y revisar Ghost
 
-1. Corre `python scripts/build.py` y usa exclusivamente
-   `build/ghost/<carpeta>/<archivo>.md` como cuerpo.
-   Antes de tocar Ghost, guarda su huella esperada:
+1. Usa exclusivamente `build/ghost/<carpeta>/<archivo>.md` como cuerpo. No lo
+   regeneres. Antes de tocar Ghost, guarda su huella esperada:
 
    ```bash
    python scripts/auditar_pegado_ghost.py --canon build/ghost/<carpeta>/<archivo>.md
@@ -117,9 +125,10 @@ git worktree list
    Si hay que restaurarlo: enfoca el cuerpo, `Ctrl/Cmd+A`, `Backspace`, confirma
    longitud cero, pega una sola vez y vuelve a leer el texto visible. Si el
    cuerpo ya coincide con el canónico, no lo toques.
-2. Si habrá imagen destacada, declárala primero en `medios` con
-   `destacada: true`, `archivo_local`, crédito, fuente y URL, licencia y URL de
-   licencia. Guarda una copia auditable en `assets/img/`.
+2. Si el artefacto del proveedor ya declara una imagen destacada, úsala con su
+   atribución. Si no la declara, el publicador puede seleccionar una imagen
+   libre para Ghost, pero solo registra sus datos en el informe de entrega; no
+   modifica `medios` ni guarda archivos dentro del repositorio.
 3. En Ghost configura: título, cuerpo, imagen, pie y texto alternativo, tags,
    excerpt, autor y acceso. Meta title/description y tarjetas sociales pueden
    quedar vacíos solo cuando se quiere heredar título, excerpt e imagen, como
@@ -148,41 +157,24 @@ git worktree list
    `Published and sent`) y copia la URL pública definitiva. Nunca uses la URL
    del editor (`/ghost/#/...`) ni una vista previa (`/p/...`).
 
-### 2. Registrar la publicación en el banco
+### 2. Entregar el resultado al proveedor — sin mutar el repositorio
 
-1. Pon la URL pública (`https://www.biosemiotics.net/<slug>/`) en `url` del
-   `.md` y actualiza el estado/conteos del mapa maestro.
-2. Corre `python scripts/build.py` y después `python scripts/indice.py .`.
-3. Verifica la ficha concreta —no el contador global— y la URL pública:
+Después de publicar, devuelve un informe estructurado con: `id`, título, URL
+pública definitiva, id del post de Ghost, estado (`Published` o
+`Published and sent`), fecha/hora, audiencia y número de destinatarios, tags,
+excerpt, autor, acceso, URL de la imagen, texto alternativo, crédito, fuente y
+licencia. Verifica únicamente que la URL pública responda HTTP 200.
 
-```bash
-python scripts/verificar_publicacion.py \
-  --id <id> \
-  --url https://www.biosemiotics.net/<slug>/ \
-  --comprobar-web
-```
+Ese informe es la entrada del flujo del proveedor. El proveedor decide cuándo
+actualizar fuente, mapa, índice, caché y GitHub. El publicador no anticipa ni
+duplica ese trabajo.
 
-4. Revisa `git diff --check` y agrega solo los archivos de la unidad de
-   trabajo: fuente, medios, mapa y `git add -f build/index.json`.
-5. Commit. Antes del push, vuelve a sincronizar la base y repite las salidas:
+## Mantenimiento del proveedor — fuera del rol de publicación
 
-```bash
-git fetch origin
-git rebase origin/main
-python scripts/build.py
-python scripts/indice.py .
-python scripts/verificar_publicacion.py --id <id> --url <url>
-gh pr list --state all --search "<id o título>"
-```
-
-   Si cambió una salida generada, inclúyela en el commit antes de empujar.
-6. Push, PR borrador, CI, revisión y squash. No fusiones con checks pendientes
-   o rojos.
-7. Ejecuta el cierre local obligatorio descrito abajo.
-8. Purga jsDelivr y verifica HTTP 200 y `status: finished`:
-   `https://purge.jsdelivr.net/gh/alcyedmundo281/biosemiotics@main/build/index.json`.
-
-**El paso 3 no es opcional, y es el que más se olvida.** `build.py` NO regenera `index.json` — eso lo hace `indice.py`. Si commiteas `.md` y `refs.bib` sin correr `indice.py`, el buscador del sitio queda sirviendo datos viejos: entradas sin su URL, sin su conteo de referencias. Ya pasó dos veces. Regla práctica: **si tocaste un `.md`, corre los dos scripts antes de commitear.**
+Lo que sigue documenta al proveedor del índice y no autoriza al publicador de
+Ghost a ejecutar estas acciones. En el flujo proveedor, `build.py` NO regenera
+`index.json` — eso lo hace `indice.py`. Si el proveedor modifica un `.md`, debe
+correr ambos scripts antes de commitear para no servir entradas obsoletas.
 
 **Verifica antes de commitear.** Después de `indice.py`, confirma que la ficha quedó como esperas:
 ```bash
@@ -212,7 +204,7 @@ Las dos URLs (primaria raw, respaldo jsDelivr) son **constantes fijas en `indice
 
 **Cuándo hay que repegar `atlas-inject.html` en Ghost:** solo si cambia la estructura del buscador (diseño, facetas, lógica de fetch). Para publicar contenido NO hace falta —basta el ciclo de arriba.
 
-## Flujo de trabajo: ramas y Pull Requests
+## Flujo del proveedor: ramas y Pull Requests
 
 **`main` está protegida: no se le hace push directo.** Todo cambio entra por un Pull Request que la CI debe aprobar antes de fusionar. Esto nació de varias colisiones entre dos sesiones empujando a `main` a la vez; el PR convierte el choque en una revisión ordenada.
 
