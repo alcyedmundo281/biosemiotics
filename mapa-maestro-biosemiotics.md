@@ -34,7 +34,7 @@ Plano completo del atlas: los dos cursos (cardiopulmonar y emergencias) más las
 
 ## 2. Estado actual (lo ya publicado)
 
-El índice vigente contiene **40 entidades**: 15 conceptos, 24 signos y 1 caso.
+El índice vigente contiene **42 entidades**: 17 conceptos, 24 signos y 1 caso.
 Diecisiete signos tienen URL pública en Ghost; los otros siete están escritos
 y validados, esperando publicación.
 
@@ -154,8 +154,8 @@ El lector entra por el eyeball y el mismo nodo lo lleva, cuando madura, hasta Si
 ## 7. Conceptos base que faltan (el "por qué")
 *Sustentan los signos de arriba. Sin ellos, el grafo tiene nodos huérfanos. Escríbelos en paralelo — son cortos.*
 
-- **Doppler** (color, espectral, pulsado) → sustenta E/e', VTI, VExUS, carótidas, vascular
-- **Cuantificación y sus límites** → concepto transversal: toda fórmula es poblacional
+- **Doppler** (color, espectral, pulsado) → sustenta E/e', VTI, VExUS, carótidas, vascular ✍ escrito, falta URL de Ghost
+- **Cuantificación y sus límites** → concepto transversal: toda fórmula es poblacional ✍ escrito, falta URL de Ghost
 
 **Completados:** Ventanas cardíacas, Modo M, sliding / lung point y
 compresibilidad venosa ya están en el banco. Sustentan los ocho signos de la
@@ -167,7 +167,7 @@ Oleada 1 y las rutas avanzadas que reutilizarán esos conceptos.
 
 1. **Oleada 1 cerrada:** los ocho signos están publicados, con sus conceptos base incorporados.
 2. **Oleada 2 escrita completa (8 de 8).** Publicados: taponamiento cardíaco, sobrecarga del ventrículo derecho / TEP, colecistitis aguda, coledocolitiasis y apendicitis. Escritos, validados y esperando URL de Ghost: Absceso de partes blandas, Hernia complicada y Embarazo ectópico. **El cuello de botella ya no es escribir: es publicar en Ghost.**
-3. **Antes de los signos que lo necesiten:** escribir y validar Doppler y Cuantificación y sus límites.
+3. ~~Antes de los signos que lo necesiten: escribir y validar Doppler y Cuantificación y sus límites.~~ **Hecho (2026-08-15):** ambos conceptos base están escritos y validados.
 4. **Conceptos base: regla dura.** Un signo NO se publica sin su concepto base ya en el banco. El concepto base requerido se escribe y valida ANTES que el signo, no en paralelo ni después.
 5. **Después:** completar FAST/eFAST → Oleada 3 → Extensiones.
 
@@ -175,13 +175,13 @@ Oleada 1 y las rutas avanzadas que reutilizarán esos conceptos.
 Cada cifra, verificada contra PubMed antes de publicar. Cada signo, con su sección de límites ("dónde NO confiar"). El orden por oleada mantiene vivo el mensaje: *empezar es más fácil de lo que te dijeron.*
 
 ### Conteo
-- Banco actual: **40 entidades** (15 conceptos, 24 signos y 1 caso)
+- Banco actual: **42 entidades** (17 conceptos, 24 signos y 1 caso)
 - Signos publicados: **17 de 24** (esperando URL de Ghost: absceso de partes blandas, hernia complicada, embarazo ectópico y las cuatro ventanas de FAST/eFAST)
 - Oleada 1 completada: **8 de 8 signos**
 - Oleada 2 **escrita completa: 8 de 8 signos** (5 publicados, 3 esperando URL). La fila «colección/absceso, hernia complicada» se desdobló en dos: son dos significantes y dos decisiones distintas
-- Conceptos base pendientes: **~2**
+- Conceptos base pendientes: **0** — Doppler y «Cuantificación y sus límites» escritos y validados. **La Oleada 3 queda desbloqueada**
 - FAST/eFAST **completo**: 4 ventanas nuevas (Morrison, esplenorrenal, Douglas, hemotórax) + el nodo integrador `protocolo-fast` como concepto de técnica; pericardio y neumotórax se reutilizan de la Oleada 1
-- Restan **~8 entidades** para llegar a las ~48 proyectadas del atlas maduro
+- Restan **~6 entidades** para llegar a las ~48 proyectadas del atlas maduro
 
 Nota: FAST añade pocas fichas nuevas (Morrison, esplenorrenal, Douglas, hemotórax) porque reutiliza pericardio y neumotórax. El gradiente de FEVI añade 2 (lineales, Simpson) sobre el eyeball ya contado.
 

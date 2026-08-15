@@ -153,6 +153,85 @@
    "n_refs": 3
   },
   {
+   "id": "cuantificacion-limites",
+   "tipo": "concepto",
+   "titulo": "Cuantificación y sus límites: de dónde salen los números",
+   "abstract": "Todo umbral ecográfico es una convención construida sobre una población, no una propiedad del paciente que tienes delante. Un número tiene tres fuentes de error acumuladas: la medición, el corte elegido y la población de donde se derivó. Este concepto reúne los ejemplos que el atlas ya usó —los 6 mm del apéndice, el colédoco, la fracción de eyección a ojo— para enseñar a leer cualquier cifra con la desconfianza correcta.\n",
+   "nivel": "intermedio",
+   "licencia": "CC-BY-NC-4.0",
+   "fecha": "2026-08-15",
+   "actualizado": "2026-08-15",
+   "tags": [
+    "cuantificacion",
+    "umbral",
+    "medicion",
+    "variabilidad",
+    "poblacion",
+    "incertidumbre"
+   ],
+   "autores": [
+    {
+     "nombre": "Alcy Edmundo Torres Guerrero",
+     "orcid": "0000-0002-9742-375X",
+     "afiliacion": "Universidad Central del Ecuador",
+     "credit": [
+      "conceptualizacion",
+      "redaccion",
+      "supervision"
+     ]
+    }
+   ],
+   "refs": [
+    "prendergast2014",
+    "worku2020",
+    "jendresen2002",
+    "adams2015",
+    "arruzza2022",
+    "thavendiranathan2013",
+    "gudmundsson2005",
+    "rich1982"
+   ],
+   "n_refs": 8
+  },
+  {
+   "id": "doppler",
+   "tipo": "concepto",
+   "titulo": "Doppler: el color no mide, el ángulo decide",
+   "abstract": "El Doppler detecta movimiento midiendo el cambio de frecuencia del eco que vuelve. Lo que informa no es la velocidad real sino su componente hacia la sonda, así que el ángulo de insonación gobierna todo: a 90° el flujo real se vuelve invisible, y por encima de 60° el error de medición crece de forma exponencial. El color responde \"¿hay flujo y hacia dónde?\"; cuantificar exige espectral, ángulo corregido y saber leer el aliasing.\n",
+   "nivel": "intermedio",
+   "licencia": "CC-BY-NC-4.0",
+   "fecha": "2026-08-15",
+   "actualizado": "2026-08-15",
+   "tags": [
+    "doppler",
+    "color",
+    "espectral",
+    "pulsado",
+    "angulo",
+    "aliasing",
+    "seguridad"
+   ],
+   "autores": [
+    {
+     "nombre": "Alcy Edmundo Torres Guerrero",
+     "orcid": "0000-0002-9742-375X",
+     "afiliacion": "Universidad Central del Ecuador",
+     "credit": [
+      "conceptualizacion",
+      "redaccion",
+      "supervision"
+     ]
+    }
+   ],
+   "refs": [
+    "boote2003",
+    "elwertowski2014",
+    "vandenhof2018",
+    "hangiandreou2003"
+   ],
+   "n_refs": 4
+  },
+  {
    "id": "ecogenicidad",
    "tipo": "concepto",
    "titulo": "El lenguaje de la ecogenicidad",
