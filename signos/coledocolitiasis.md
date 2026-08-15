@@ -3,7 +3,7 @@ id: signo-coledocolitiasis
 tipo: signo
 titulo: "Coledocolitiasis: cuando el signo es el conducto, no la piedra"
 titulo_en: "Choledocholithiasis: the duct is the sign, not the stone"
-url: ""
+url: "https://www.biosemiotics.net/coledocolitiasis-cuando-el-signo-es-el-conducto-no-la-piedra/"
 doi: null
 version: "1.0"
 
