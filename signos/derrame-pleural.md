@@ -53,6 +53,7 @@ medios:
     descripcion: "Ecografía pulmonar que muestra líquido pleural hipoecoico por encima del diafragma"
     credito: "Gillman L. y Kirkpatrick A. (fotograma adaptado)"
     fuente: "Wikimedia Commons"
+    fuente_url: "https://commons.wikimedia.org/wiki/File:Portable-bedside-ultrasound-the-visual-stethoscope-of-the-21st-century-1757-7241-20-18-S7.ogv"
     licencia_img: "CC BY 2.0"
     licencia_url: "https://creativecommons.org/licenses/by/2.0/"
     archivo_local: "assets/img/derrame-pleural.jpg"

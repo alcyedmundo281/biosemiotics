@@ -26,6 +26,7 @@ medios:
     descripcion: "Equipo ultrasónico con controles y visualización de ganancia"
     credito: "Karl Deutsch Prüf- und Messgerätebau GmbH + Co KG"
     fuente: "Wikimedia Commons"
+    fuente_url: "https://commons.wikimedia.org/wiki/File:Digitales-Ultraschallger%C3%A4t.jpg"
     licencia_img: "CC BY 3.0 DE"
     licencia_url: "https://creativecommons.org/licenses/by/3.0/de/"
     archivo_local: "assets/img/knobology-ganancia.jpg"

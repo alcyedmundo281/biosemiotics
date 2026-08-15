@@ -60,6 +60,7 @@ medios:
     descripcion: "Patrón pulmonar normal con líneas A (artefactos horizontales repetidos)"
     credito: "Luna Gargani"
     fuente: "Wikimedia Commons"
+    fuente_url: "https://commons.wikimedia.org/wiki/File:Lung-ultrasound-a-new-tool-for-the-cardiologist-1476-7120-9-6-S1.ogv"
     licencia_img: "CC BY 2.0"
     licencia_url: "https://creativecommons.org/licenses/by/2.0/"
     archivo_local: "assets/img/perfil-a.jpg"

@@ -34,6 +34,7 @@ medios:
     descripcion: "Ecografía renal en enfermedad renal crónica, con ecogenicidad aumentada y cortical adelgazada"
     credito: "Kristoffer Lindskov Hansen, Michael Bachmann Nielsen y Caroline Ewertsen"
     fuente: "Wikimedia Commons"
+    fuente_url: "https://commons.wikimedia.org/wiki/File:Ultrasonography_of_end-stage_chronic_kidney_disease.jpg"
     licencia_img: "CC BY 4.0"
     licencia_url: "https://creativecommons.org/licenses/by/4.0/"
     archivo_local: "assets/img/rinon-cronico.jpg"

@@ -25,6 +25,7 @@ medios:
     descripcion: "Ecografía anotada de un apéndice normal, donde las capas de la pared muestran distintos niveles de ecogenicidad"
     credito: "Mikael Häggström"
     fuente: "Wikimedia Commons"
+    fuente_url: "https://commons.wikimedia.org/wiki/File:Ultrasonography_of_a_normal_appendix,_annotated.jpg"
     licencia_img: "CC0 1.0"
     licencia_url: "https://creativecommons.org/publicdomain/zero/1.0/"
     archivo_local: "assets/img/ecogenicidad.jpg"
