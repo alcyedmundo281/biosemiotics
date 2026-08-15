@@ -16,6 +16,8 @@ umbral: ""        # el punto de corte, si existe
 se_basa_en: []    # conceptos que lo sustentan → el grafo semiótico
 contrasta_con: [] # el signo opuesto → LA BIFURCACIÓN QUE SE ENSEÑA
 falsos_positivos: []   # OBLIGATORIO. Ver abajo.
+medios: []         # imagen destacada publicada → declarar destacada: true,
+                   # credito, fuente_url, licencia_img, licencia_url y archivo_local
 refs: []
 ---
 

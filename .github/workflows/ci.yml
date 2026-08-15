@@ -50,6 +50,11 @@ jobs:
           fi
           echo "build/index.json está sincronizado con el banco."
 
+      - name: Verificar estado de publicación y mapa maestro
+        # Comprueba URLs fuente↔índice, conteos del mapa y trazabilidad de toda
+        # imagen marcada como destacada. No depende de la red.
+        run: python scripts/verificar_publicacion.py
+
   citas:
     name: Verificación de citas (PubMed + Crossref)
     runs-on: ubuntu-latest

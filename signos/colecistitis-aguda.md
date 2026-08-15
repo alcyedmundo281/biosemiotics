@@ -52,6 +52,18 @@ autores:
     afiliacion: "Universidad Central del Ecuador"
     credit: [conceptualizacion, redaccion, supervision]
 
+medios:
+  - tipo: imagen
+    destacada: true
+    id: "wikimedia:Ultrasonography_of_cholecystitis.jpg"
+    descripcion: "Cálculos, pared vesicular engrosada y líquido pericolecístico"
+    credito: "Mikael Häggström, M.D."
+    fuente: "Wikimedia Commons"
+    fuente_url: "https://commons.wikimedia.org/wiki/File:Ultrasonography_of_cholecystitis.jpg"
+    licencia_img: "CC0 1.0"
+    licencia_url: "https://creativecommons.org/publicdomain/zero/1.0/"
+    archivo_local: "assets/img/colecistitis-aguda.jpg"
+
 refs: [wilson2024, huang2023, wu2024, summers2010, gallaher2022, yokoe2018, teefey1991, nipitkul2026, wehrle2022]
 fecha: 2026-08-15
 actualizado: 2026-08-15
