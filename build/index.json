@@ -532,6 +532,85 @@
    "n_refs": 4
   },
   {
+   "id": "signo-absceso-partes-blandas",
+   "tipo": "signo",
+   "titulo": "Absceso de partes blandas: la colección que la mano no distingue",
+   "titulo_en": "Soft tissue abscess: the collection the hand cannot feel",
+   "version": "1.0",
+   "abstract": "Una colección anecoica o heterogénea, con refuerzo acústico posterior y contenido que se arremolina al comprimir, distingue un absceso de una celulitis. Esa diferencia decide entre drenar y no drenar, y la mano sola se equivoca: el ultrasonido cambió correctamente el manejo en cerca del 10 % de los casos. Falla cuando la colección es profunda o muy ecogénica, y cuando un ganglio, un quiste o un vaso ocupan su lugar.\n",
+   "sistema": "musculoesqueletico",
+   "organo": "pared",
+   "nivel": "intermedio",
+   "ventana": "superficial-sobre-la-lesion",
+   "pregunta_clinica": "¿Hay pus que drenar, o es solo celulitis?",
+   "significante": "Colección de bordes irregulares dentro del tejido blando, anecoica o con ecos internos en suspensión, con refuerzo acústico posterior, que deforma sus bordes al comprimir con la sonda y cuyo contenido se arremolina. Alrededor, la celulitis da el patrón en empedrado: tabiques hipoecoicos entre lobulillos de grasa.",
+   "significado": "Pus colectado: un espacio ocupado por material líquido y detritos que no se resuelve con antibiótico solo. El refuerzo posterior aparece porque el contenido atenúa menos que el tejido vecino —ese artefacto es la prueba de que hay líquido, no tejido.",
+   "umbral": "No hay un tamaño de corte que defina el signo; lo definen la morfología, el refuerzo posterior y la movilidad del contenido. Lo que sí está cuantificado es su rendimiento: en 14 estudios prospectivos con 2 656 pacientes, el POCUS tuvo sensibilidad de 94,6 % y especificidad de 85,4 %, con razón de verosimilitud positiva de 6,5 y negativa de 0,06. En los casos clínicamente claros rinde mejor (especificidad 89,1 %) que en los dudosos (76,9 %) — justamente donde más se necesita.\n",
+   "licencia": "CC-BY-NC-4.0",
+   "fecha": "2026-08-15",
+   "actualizado": "2026-08-15",
+   "decision": "Colección confirmada: drena o deriva para drenaje. Sin colección, solo empedrado: antibiótico y control, no incisión a ciegas. Y antes de cortar, pasa Doppler color: un seudoaneurisma o un vaso pueden verse como una colección y una incisión sobre ellos es una complicación evitable.",
+   "sonda": [
+    "lineal"
+   ],
+   "escenario": [
+    "urgencias",
+    "consulta"
+   ],
+   "descriptores": [
+    "absceso",
+    "celulitis",
+    "partes-blandas",
+    "drenaje",
+    "refuerzo-posterior",
+    "pocus"
+   ],
+   "mesh": [
+    "Abscess",
+    "Cellulitis",
+    "Soft Tissue Infections",
+    "Ultrasonography",
+    "Point-of-Care Systems"
+   ],
+   "falsos_positivos": [
+    "Ganglio linfático reactivo: ovalado, con hilio ecogénico central y vascularización hiliar al Doppler",
+    "Quiste epidérmico o sebáceo no infectado: bordes definidos, sin hiperemia perilesional",
+    "Vaso, seudoaneurisma o malformación vascular: el Doppler color los separa en un segundo, y aquí el error se paga caro",
+    "Hematoma o seroma: colección sin infección; el contexto y la clínica los distinguen, la imagen sola no",
+    "Celulitis con edema marcado que crea espacios hipoecoicos entre lobulillos, sin pus colectada",
+    "Bursitis o derrame articular vecino tomado por colección de partes blandas",
+    "Absceso muy ecogénico o con gas: puede verse casi isoecoico al tejido y pasar por celulitis —el falso negativo, no el positivo",
+    "Colección profunda fuera del alcance de la sonda lineal: un absceso que no se ve no es un absceso ausente"
+   ],
+   "se_basa_en": [
+    "ecogenicidad",
+    "artefacto-refuerzo-posterior",
+    "tipos-de-sonda",
+    "frecuencia-profundidad"
+   ],
+   "contrasta_con": [
+    "signo-hernia-complicada"
+   ],
+   "autores": [
+    {
+     "nombre": "Alcy Edmundo Torres Guerrero",
+     "orcid": "0000-0002-9742-375X",
+     "afiliacion": "Universidad Central del Ecuador",
+     "credit": [
+      "conceptualizacion",
+      "redaccion",
+      "supervision"
+     ]
+    }
+   ],
+   "refs": [
+    "gottlieb2020",
+    "barbic2017",
+    "wu2022"
+   ],
+   "n_refs": 3
+  },
+  {
    "id": "signo-aneurisma-aortico-abdominal",
    "tipo": "signo",
    "titulo": "Aneurisma aórtico abdominal en POCUS: medir antes de que el dolor engañe",
@@ -1307,6 +1386,84 @@
     "christiaans2026"
    ],
    "n_refs": 6
+  },
+  {
+   "id": "signo-hernia-complicada",
+   "tipo": "signo",
+   "titulo": "Hernia complicada: distinguir el bulto que espera del que no",
+   "titulo_en": "Complicated hernia: telling the lump that can wait from the one that cannot",
+   "version": "1.0",
+   "abstract": "Un defecto de la pared con contenido que protruye al esfuerzo define la hernia; lo que decide la urgencia es si ese contenido vuelve. Un asa atrapada, sin peristalsis, con pared engrosada y líquido en el saco, junto a asas proximales dilatadas, señala incarceración con obstrucción y contraindica intentar reducirla. La evidencia ecográfica específica de hernia es escasa, y el ultrasonido no descarta estrangulación.\n",
+   "sistema": "musculoesqueletico",
+   "organo": "pared",
+   "nivel": "intermedio",
+   "ventana": "pared-abdominal-region-inguinal",
+   "pregunta_clinica": "¿Este bulto es una hernia, y su contenido está comprometido?",
+   "significante": "Solución de continuidad en la pared por la que protruye contenido —grasa preperitoneal, epiplón o asa intestinal— que aumenta con Valsalva o bipedestación. Cuando se complica: el asa queda dentro del saco sin peristalsis, con pared engrosada y líquido a su alrededor, y por dentro del abdomen aparecen asas dilatadas con contenido que va y viene sin progresar.",
+   "significado": "Un defecto de la pared dejó pasar contenido abdominal. Si ese contenido vuelve, la hernia es reductible y el problema es electivo. Si no vuelve y además hay obstrucción, el asa está atrapada; la pared engrosada, el líquido en el saco y la peristalsis ausente sugieren que el compromiso ya no es solo mecánico sino vascular.",
+   "umbral": "No hay un diámetro que defina la complicación; la definen la irreductibilidad y los signos de obstrucción. Para esa segunda parte sí hay cifras: en un metaanálisis con datos individuales de 433 pacientes de cinco estudios prospectivos, el POCUS para obstrucción de intestino delgado tuvo sensibilidad de 83,0 % y especificidad de 93,0 %, con razón de verosimilitud positiva de 11,9 y negativa de 0,2. El rendimiento baja con el operador menos experimentado (sensibilidad 73,0 % en residentes frente a 87,7 % en adscritos) y con el índice de masa corporal de 30 o más (de 88,6 % a 72,0 %).\n",
+   "licencia": "CC-BY-NC-4.0",
+   "fecha": "2026-08-15",
+   "actualizado": "2026-08-15",
+   "decision": "Hernia reductible sin datos de obstrucción: ruta electiva, explica los signos de alarma. Hernia irreductible con obstrucción o con datos de sufrimiento de asa: cirugía urgente, y NO intentes reducirla —una reducción forzada puede devolver al abdomen un asa ya necrótica. Ante duda con paciente sintomático, la imagen de elección en urgencias es la tomografía, no insistir con la sonda.",
+   "sonda": [
+    "lineal",
+    "convexa"
+   ],
+   "escenario": [
+    "urgencias"
+   ],
+   "descriptores": [
+    "hernia",
+    "pared-abdominal",
+    "incarceracion",
+    "estrangulacion",
+    "obstruccion-intestinal",
+    "pocus"
+   ],
+   "mesh": [
+    "Hernia, Abdominal",
+    "Hernia, Inguinal",
+    "Intestinal Obstruction",
+    "Ultrasonography",
+    "Point-of-Care Systems"
+   ],
+   "falsos_positivos": [
+    "Lipoma del cordón espermático: protruye y se palpa como hernia, pero no comunica con la cavidad ni cambia con Valsalva",
+    "Adenopatía inguinal, absceso o quiste del canal de Nuck ocupando el mismo lugar que el saco",
+    "Vena safena dilatada o varicocele: el Doppler los delata; sin él, un paquete venoso puede parecer contenido herniario",
+    "Hidrocele o patología testicular que se presenta como masa inguinoescrotal",
+    "Diástasis de rectos tomada por hernia epigástrica: hay separación, no defecto con saco",
+    "Grasa preperitoneal protruyendo sin saco: hallazgo frecuente y habitualmente irrelevante",
+    "El error inverso, que es el peligroso: hernia irreductible SIN obstrucción visible. La ausencia de asas dilatadas no descarta sufrimiento del contenido, sobre todo si lo atrapado es epiplón"
+   ],
+   "se_basa_en": [
+    "ecogenicidad",
+    "tipos-de-sonda",
+    "frecuencia-profundidad",
+    "knobology-profundidad"
+   ],
+   "contrasta_con": [
+    "signo-absceso-partes-blandas"
+   ],
+   "autores": [
+    {
+     "nombre": "Alcy Edmundo Torres Guerrero",
+     "orcid": "0000-0002-9742-375X",
+     "afiliacion": "Universidad Central del Ecuador",
+     "credit": [
+      "conceptualizacion",
+      "redaccion",
+      "supervision"
+     ]
+    }
+   ],
+   "refs": [
+    "shokoohi2023",
+    "thaker2021",
+    "fonseca2018"
+   ],
+   "n_refs": 3
   },
   {
    "id": "signo-hidronefrosis",
