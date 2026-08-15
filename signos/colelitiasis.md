@@ -39,7 +39,7 @@ falsos_positivos:
   - "Gas duodenal o sombra de borde fuera de la luz vesicular"
   - "Calcificación mural o clip quirúrgico en una anatomía alterada"
 se_basa_en: [ecogenicidad, artefacto-sombra-acustica, tipos-de-sonda]
-contrasta_con: []
+contrasta_con: [signo-colecistitis-aguda]
 
 autores:
   - nombre: "Alcy Edmundo Torres Guerrero"
