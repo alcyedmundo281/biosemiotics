@@ -3,7 +3,7 @@ id: signo-apendicitis
 tipo: signo
 titulo: "Apendicitis: el apéndice que no se aplasta"
 titulo_en: "Appendicitis: the appendix that will not compress"
-url: ""
+url: "https://www.biosemiotics.net/apendicitis-el-apendice-que-no-se-aplasta/"
 doi: null
 version: "1.0"
 
@@ -54,6 +54,18 @@ autores:
     orcid: "0000-0002-9742-375X"
     afiliacion: "Universidad Central del Ecuador"
     credit: [conceptualizacion, redaccion, supervision]
+
+medios:
+  - tipo: imagen
+    destacada: true
+    id: "wikimedia:Appendicitis_ultrasound.png"
+    descripcion: "Ecografía de apendicitis aguda con apéndice aumentado de calibre y no compresible"
+    credito: "Borbély Márton"
+    fuente: "Wikimedia Commons"
+    fuente_url: "https://commons.wikimedia.org/wiki/File:Appendicitis_ultrasound.png"
+    licencia_img: "CC BY-SA 4.0"
+    licencia_url: "https://creativecommons.org/licenses/by-sa/4.0/"
+    archivo_local: "assets/img/apendicitis-aguda.png"
 
 refs: [puylaert1986, puylaert1986b, prendergast2014, arruzza2022, becker2022, harel2022, held2018, mangona2017, rud2019, bom2021]
 fecha: 2026-08-15
