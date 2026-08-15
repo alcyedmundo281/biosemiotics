@@ -34,7 +34,7 @@ Plano completo del atlas: los dos cursos (cardiopulmonar y emergencias) más las
 
 ## 2. Estado actual (lo ya publicado)
 
-El índice vigente contiene **39 entidades**: 14 conceptos, 24 signos y 1 caso.
+El índice vigente contiene **40 entidades**: 15 conceptos, 24 signos y 1 caso.
 Diecisiete signos tienen URL pública en Ghost; los otros siete están escritos
 y validados, esperando publicación.
 
@@ -94,7 +94,7 @@ y validados, esperando publicación.
 
 | ventana | sistema | organo | nivel | qué busca |
 |---|---|---|---|---|
-| **Protocolo FAST/eFAST** (nodo integrador) | multiorgano | multiorgano | intermedio | secuencia de trauma; enlaza las ventanas de abajo |
+| **Protocolo FAST/eFAST** (nodo integrador) | concepto `tecnica` | — | intermedio | secuencia de trauma; enlaza las ventanas de abajo ✍ escrito, falta URL de Ghost |
 | Cuadrante sup. derecho (Morrison) | multiorgano | higado | principiante | líquido en receso hepatorrenal ✍ escrito, falta URL de Ghost |
 | Cuadrante sup. izquierdo (esplenorrenal) | multiorgano | intestino | principiante | líquido periesplénico ✍ escrito, falta URL de Ghost |
 | Pelvis (Douglas / retrovesical) | multiorgano | vejiga | principiante | líquido pélvico ✍ escrito, falta URL de Ghost |
@@ -104,7 +104,7 @@ y validados, esperando publicación.
 
 **Modelado:** el nodo "Protocolo FAST" usa `signos: [signo-fast-morrison, signo-fast-esplenorrenal, signo-fast-douglas, signo-derrame-pericardico, signo-neumotorax, signo-hemotorax]`. Así el atlas muestra el protocolo como un caso que recorre signos ya existentes. Enseña la *secuencia*, no repite el contenido.
 
-> **Pendiente de decisión de Alcy (2026-08-15).** Las cuatro ventanas nuevas ya están escritas como signos. El nodo integrador NO se ha creado porque el tipo `caso` del esquema está construido alrededor de un paciente real con consentimiento (`consentimiento`, `publicado`, `video_lure`, de-identificación), y el protocolo FAST no es un paciente. Las dos salidas posibles: (a) crearlo igual como `caso` con `consentimiento: pendiente` y `publicado: false`, siguiendo la letra de este mapa; (b) modelarlo como `concepto` con `dominio: tecnica`, que encaja con el esquema y enlaza los signos por `relacionado_con`. Sin decisión, el nodo queda sin escribir.
+**Decidido por Alcy (2026-08-15):** el nodo integrador se modela como **`concepto` con `dominio: tecnica`** (`protocolo-fast`), NO como caso. Razón: el tipo `caso` está construido alrededor de un paciente real con consentimiento y de-identificación, y un protocolo no es un paciente. El nodo enlaza las seis ventanas por `relacionado_con` y enseña la secuencia; cada ventana conserva su propia ficha de signo.
 
 ---
 
@@ -175,13 +175,13 @@ Oleada 1 y las rutas avanzadas que reutilizarán esos conceptos.
 Cada cifra, verificada contra PubMed antes de publicar. Cada signo, con su sección de límites ("dónde NO confiar"). El orden por oleada mantiene vivo el mensaje: *empezar es más fácil de lo que te dijeron.*
 
 ### Conteo
-- Banco actual: **39 entidades** (14 conceptos, 24 signos y 1 caso)
+- Banco actual: **40 entidades** (15 conceptos, 24 signos y 1 caso)
 - Signos publicados: **17 de 24** (esperando URL de Ghost: absceso de partes blandas, hernia complicada, embarazo ectópico y las cuatro ventanas de FAST/eFAST)
 - Oleada 1 completada: **8 de 8 signos**
 - Oleada 2 **escrita completa: 8 de 8 signos** (5 publicados, 3 esperando URL). La fila «colección/absceso, hernia complicada» se desdobló en dos: son dos significantes y dos decisiones distintas
 - Conceptos base pendientes: **~2**
-- FAST/eFAST: **4 ventanas nuevas escritas** (Morrison, esplenorrenal, Douglas, hemotórax); pericardio y neumotórax se reutilizan de la Oleada 1; falta decidir el nodo integrador
-- Restan **~9 entidades** para llegar a las ~48 proyectadas del atlas maduro
+- FAST/eFAST **completo**: 4 ventanas nuevas (Morrison, esplenorrenal, Douglas, hemotórax) + el nodo integrador `protocolo-fast` como concepto de técnica; pericardio y neumotórax se reutilizan de la Oleada 1
+- Restan **~8 entidades** para llegar a las ~48 proyectadas del atlas maduro
 
 Nota: FAST añade pocas fichas nuevas (Morrison, esplenorrenal, Douglas, hemotórax) porque reutiliza pericardio y neumotórax. El gradiente de FEVI añade 2 (lineales, Simpson) sobre el eyeball ya contado.
 
