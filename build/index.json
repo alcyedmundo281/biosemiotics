@@ -412,6 +412,45 @@
    "n_refs": 5
   },
   {
+   "id": "protocolo-fast",
+   "tipo": "concepto",
+   "titulo": "Protocolo FAST/eFAST: la secuencia, no el catálogo",
+   "abstract": "El FAST no es un signo: es un recorrido de ventanas que se ejecuta en orden y responde una sola pregunta binaria —¿hay líquido libre?—. Cada ventana ya tiene su ficha propia; este nodo enseña la secuencia, el orden y la decisión que las une. Su valor está en el paciente inestable, donde un hallazgo positivo manda al quirófano sin escala; no está pensado para cuantificar sangrado ni para evaluar lesión de órgano.\n",
+   "nivel": "intermedio",
+   "licencia": "CC-BY-NC-4.0",
+   "fecha": "2026-08-15",
+   "actualizado": "2026-08-15",
+   "tags": [
+    "fast",
+    "efast",
+    "trauma",
+    "liquido-libre",
+    "protocolo",
+    "secuencia"
+   ],
+   "autores": [
+    {
+     "nombre": "Alcy Edmundo Torres Guerrero",
+     "orcid": "0000-0002-9742-375X",
+     "afiliacion": "Universidad Central del Ecuador",
+     "credit": [
+      "conceptualizacion",
+      "redaccion",
+      "supervision"
+     ]
+    }
+   ],
+   "refs": [
+    "savoia2023",
+    "zanobetti2018",
+    "branney1995",
+    "holmes2017",
+    "sutarjono2023",
+    "vanderweide2019"
+   ],
+   "n_refs": 6
+  },
+  {
    "id": "sliding-lung-point",
    "tipo": "concepto",
    "titulo": "Sliding pleural y lung point: movimiento antes que diagnóstico",
