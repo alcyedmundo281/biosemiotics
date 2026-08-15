@@ -55,6 +55,9 @@ jobs:
         # imagen marcada como destacada. No depende de la red.
         run: python scripts/verificar_publicacion.py
 
+      - name: Probar salvaguardas del pegado en Ghost
+        run: python -m unittest discover -s tests
+
   citas:
     name: Verificación de citas (PubMed + Crossref)
     runs-on: ubuntu-latest

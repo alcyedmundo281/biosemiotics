@@ -105,6 +105,18 @@ git worktree list
 
 1. Corre `python scripts/build.py` y usa exclusivamente
    `build/ghost/<carpeta>/<archivo>.md` como cuerpo.
+   Antes de tocar Ghost, guarda su huella esperada:
+
+   ```bash
+   python scripts/auditar_pegado_ghost.py --canon build/ghost/<carpeta>/<archivo>.md
+   ```
+
+   **Pegado idempotente (obligatorio).** El cuerpo de Ghost usa Lexical y
+   `fill()` sobre un editor no vacío puede **anexar** en lugar de reemplazar.
+   Nunca repitas `fill`, `type` o pegar sobre un cuerpo que ya contiene texto.
+   Si hay que restaurarlo: enfoca el cuerpo, `Ctrl/Cmd+A`, `Backspace`, confirma
+   longitud cero, pega una sola vez y vuelve a leer el texto visible. Si el
+   cuerpo ya coincide con el canónico, no lo toques.
 2. Si habrá imagen destacada, declárala primero en `medios` con
    `destacada: true`, `archivo_local`, crédito, fuente y URL, licencia y URL de
    licencia. Guarda una copia auditable en `assets/img/`.
@@ -112,8 +124,24 @@ git worktree list
    excerpt, autor y acceso. Meta title/description y tarjetas sociales pueden
    quedar vacíos solo cuando se quiere heredar título, excerpt e imagen, como
    en los artículos anteriores.
+   El pie también se reemplaza de forma idempotente: selecciona todo su valor,
+   bórralo, confirma que quedó vacío e insértalo **una vez**. No encadenes
+   `fill()` y `type()`. Si el control colapsado de Ghost mide 0 px, ábrelo desde
+   la interfaz antes de escribir; nunca hagas clic por coordenadas porque puede
+   insertar el crédito dentro del primer encabezado del cuerpo.
 4. Revisa las vistas previas web y email: título, excerpt, imagen, atribución,
    evidencia y enlace al Reto.
+   La revisión debe confirmar además que el contador de palabras no aumentó
+   aproximadamente al doble y que cada encabezado canónico aparece una vez.
+   Ante cualquier edición posterior, repite esta comprobación antes de abrir
+   el diálogo de publicación. Para auditar una captura textual del editor:
+
+   ```bash
+   python scripts/auditar_pegado_ghost.py \
+     --canon build/ghost/<carpeta>/<archivo>.md \
+     --captura <texto-visible-del-editor.txt> \
+     --pie "<pie observado>" --pie-esperado "<atribución canónica>"
+   ```
 5. Justo antes del último botón, confirma explícitamente si se publicará solo
    en web o también se enviará por email, con el número exacto de suscriptores.
 6. Después de publicar, exige evidencia de Ghost (`Published` o
