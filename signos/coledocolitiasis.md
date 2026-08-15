@@ -53,6 +53,18 @@ autores:
     afiliacion: "Universidad Central del Ecuador"
     credit: [conceptualizacion, redaccion, supervision]
 
+medios:
+  - tipo: imagen
+    destacada: true
+    id: "wikimedia:Ultrasonography_of_common_bile_duct_stone,_with_arrow.jpg"
+    descripcion: "Colédoco ligeramente dilatado con posible cálculo señalado por una flecha y Doppler vascular"
+    credito: "Mikael Häggström, M.D."
+    fuente: "Wikimedia Commons"
+    fuente_url: "https://commons.wikimedia.org/wiki/File:Ultrasonography_of_common_bile_duct_stone,_with_arrow.jpg"
+    licencia_img: "CC0 1.0"
+    licencia_url: "https://creativecommons.org/publicdomain/zero/1.0/"
+    archivo_local: "assets/img/coledocolitiasis.jpg"
+
 refs: [worku2020, jendresen2002, buxbaum2019, giljaca2015, adams2015, sotoudehmanesh2016, jafari2013, dewaele2007, moharamzad2018]
 fecha: 2026-08-15
 actualizado: 2026-08-15

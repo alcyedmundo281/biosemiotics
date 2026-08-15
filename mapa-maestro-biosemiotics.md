@@ -80,8 +80,8 @@ y validados, esperando publicación.
 
 | signo | sistema | organo | nivel | escenario | decisión que cambia |
 |---|---|---|---|---|---|
-| Taponamiento cardíaco | cardiovascular | pericardio | intermedio | urgencias, uci | derrame + colapso cámaras → drenaje urgente ✅ publicado |
-| Ventrículo derecho (sobrecarga/TEP) | cardiovascular | corazon | intermedio | urgencias, uci | VD dilatado, septo en D → sospecha TEP ✅ publicado |
+| [Taponamiento cardíaco](https://www.biosemiotics.net/taponamiento-cardiaco-el-derrame-que-impide-el-llenado/) | cardiovascular | pericardio | intermedio | urgencias, uci | derrame + colapso cámaras → drenaje urgente ✅ publicado |
+| [Ventrículo derecho (sobrecarga/TEP)](https://www.biosemiotics.net/sobrecarga-del-ventriculo-derecho-tep/) | cardiovascular | corazon | intermedio | urgencias, uci | VD dilatado, septo en D → sospecha TEP ✅ publicado |
 | [Colecistitis aguda](https://www.biosemiotics.net/colecistitis-aguda-cuando-la-piedra-ya-no-es-el-hallazgo/) | digestivo | vesicula | intermedio | urgencias | pared, Murphy ecográfico → cirugía/antibiótico ✅ publicado |
 | [Coledocolitiasis](https://www.biosemiotics.net/coledocolitiasis-cuando-el-signo-es-el-conducto-no-la-piedra/) | digestivo | via-biliar | intermedio | urgencias | vía biliar dilatada → obstrucción, CPRE ✅ publicado |
 | Apendicitis | digestivo | apendice | intermedio | urgencias | apéndice no compresible > 6 mm → cirugía ✍ escrito, falta URL de Ghost |

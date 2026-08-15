@@ -77,15 +77,82 @@ Si compilas con pdflatex vas a ver `Missing character` o `Unicode character not 
 
 ## Ciclo de publicación (cuando un artículo ya está en Ghost)
 
-El texto completo del artículo se escribe/edita en Ghost directamente (Claude Code NO tiene acceso a Ghost). Cuando Alcy publique y dé la URL:
+El artículo se publica en Ghost directamente, de forma manual o mediante una
+sesión de navegador autorizada. Este ciclo es una transacción: Ghost, fuente,
+índice, mapa, GitHub y caché deben terminar describiendo el mismo estado.
 
-1. Pon la URL pública (`https://www.biosemiotics.net/<slug>/`) en el campo `url` del `.md`. Nunca la URL del editor (`/ghost/#/...`).
-2. `python scripts/build.py` (validar)
-3. `python scripts/indice.py .`
-4. `git add -f build/index.json` + los `.md` tocados
-5. `git commit` en tu rama, `git push -u origin <rama>`, y abre el PR (`gh pr create --fill`). Fusiona con `gh pr merge --squash --delete-branch` cuando la CI esté verde (ver «Flujo de trabajo: ramas y Pull Requests»).
-6. **Cierre local obligatorio después del squash:** cambia a `main`, actualiza con avance rápido, poda las referencias remotas borradas y confirma que no quedan PR abiertos ni divergencia local (`git switch main`, `git pull --ff-only`, `git fetch --prune`, `gh pr list --state open`, `git status -sb`).
-7. Recuérdale a Alcy purgar jsDelivr: `https://purge.jsdelivr.net/gh/alcyedmundo281/biosemiotics@main/build/index.json`
+### 0. Preflight — sincronizar y evitar trabajo duplicado
+
+Antes de abrir Ghost o crear una rama:
+
+```bash
+git status -sb
+git switch main
+git pull --ff-only
+git fetch --prune
+gh pr list --state all --search "<id o título>"
+rg '^url:' signos/<archivo>.md
+git worktree list
+```
+
+- Si la URL ya existe o hay un PR equivalente abierto/fusionado, **detente**:
+  no abras una segunda rama. Así se evita repetir el incidente de los PR #25 y
+  #26 para la misma publicación.
+- Reporta todo cambio ajeno. Crea la rama de publicación antes de editar y usa
+  staging por lista blanca; nunca `git add -A` en un árbol mixto.
+
+### 1. Preparar y revisar Ghost
+
+1. Corre `python scripts/build.py` y usa exclusivamente
+   `build/ghost/<carpeta>/<archivo>.md` como cuerpo.
+2. Si habrá imagen destacada, declárala primero en `medios` con
+   `destacada: true`, `archivo_local`, crédito, fuente y URL, licencia y URL de
+   licencia. Guarda una copia auditable en `assets/img/`.
+3. En Ghost configura: título, cuerpo, imagen, pie y texto alternativo, tags,
+   excerpt, autor y acceso. Meta title/description y tarjetas sociales pueden
+   quedar vacíos solo cuando se quiere heredar título, excerpt e imagen, como
+   en los artículos anteriores.
+4. Revisa las vistas previas web y email: título, excerpt, imagen, atribución,
+   evidencia y enlace al Reto.
+5. Justo antes del último botón, confirma explícitamente si se publicará solo
+   en web o también se enviará por email, con el número exacto de suscriptores.
+6. Después de publicar, exige evidencia de Ghost (`Published` o
+   `Published and sent`) y copia la URL pública definitiva. Nunca uses la URL
+   del editor (`/ghost/#/...`) ni una vista previa (`/p/...`).
+
+### 2. Registrar la publicación en el banco
+
+1. Pon la URL pública (`https://www.biosemiotics.net/<slug>/`) en `url` del
+   `.md` y actualiza el estado/conteos del mapa maestro.
+2. Corre `python scripts/build.py` y después `python scripts/indice.py .`.
+3. Verifica la ficha concreta —no el contador global— y la URL pública:
+
+```bash
+python scripts/verificar_publicacion.py \
+  --id <id> \
+  --url https://www.biosemiotics.net/<slug>/ \
+  --comprobar-web
+```
+
+4. Revisa `git diff --check` y agrega solo los archivos de la unidad de
+   trabajo: fuente, medios, mapa y `git add -f build/index.json`.
+5. Commit. Antes del push, vuelve a sincronizar la base y repite las salidas:
+
+```bash
+git fetch origin
+git rebase origin/main
+python scripts/build.py
+python scripts/indice.py .
+python scripts/verificar_publicacion.py --id <id> --url <url>
+gh pr list --state all --search "<id o título>"
+```
+
+   Si cambió una salida generada, inclúyela en el commit antes de empujar.
+6. Push, PR borrador, CI, revisión y squash. No fusiones con checks pendientes
+   o rojos.
+7. Ejecuta el cierre local obligatorio descrito abajo.
+8. Purga jsDelivr y verifica HTTP 200 y `status: finished`:
+   `https://purge.jsdelivr.net/gh/alcyedmundo281/biosemiotics@main/build/index.json`.
 
 **El paso 3 no es opcional, y es el que más se olvida.** `build.py` NO regenera `index.json` — eso lo hace `indice.py`. Si commiteas `.md` y `refs.bib` sin correr `indice.py`, el buscador del sitio queda sirviendo datos viejos: entradas sin su URL, sin su conteo de referencias. Ya pasó dos veces. Regla práctica: **si tocaste un `.md`, corre los dos scripts antes de commitear.**
 
@@ -93,7 +160,9 @@ El texto completo del artículo se escribe/edita en Ghost directamente (Claude C
 ```bash
 python -c "import json; d=json.load(open('build/index.json',encoding='utf-8'))['fichas']; print([f['url'] for f in d if f['id']=='<id>'])"
 ```
-El contador `⚠ N sin url` que imprime `indice.py` debe BAJAR cuando publicas algo. Si no baja, la URL no entró.
+El contador `⚠ N sin url` es solo informativo: puede quedarse igual si otra
+rama añade simultáneamente una ficha sin publicar. La autoridad es
+`verificar_publicacion.py`, que compara la entidad concreta con el índice.
 
 **Distinción crítica de URLs.** Hay dos clases y NO son lo mismo:
 
@@ -132,6 +201,8 @@ git switch main                          # abandona la rama ya fusionada
 git pull --ff-only                       # trae el SHA nuevo creado por el squash
 git fetch --prune                        # elimina referencias origin/* ya borradas
 gh pr list --state open                  # confirma que no quedan PR pendientes
+git branch -vv                           # detecta ramas locales cuyo remoto está gone
+git worktree list                        # no borres ramas ocupadas por un worktree
 git status -sb                           # main debe coincidir con origin/main
 ```
 
