@@ -699,6 +699,7 @@
    "tipo": "signo",
    "titulo": "Apendicitis: el apéndice que no se aplasta",
    "titulo_en": "Appendicitis: the appendix that will not compress",
+   "url": "https://www.biosemiotics.net/apendicitis-el-apendice-que-no-se-aplasta/",
    "version": "1.0",
    "abstract": "Una estructura tubular ciega en fosa ilíaca derecha que no se aplasta bajo la sonda, mide más de 6 mm y duele exactamente donde se comprime, es un apéndice inflamado. El hallazgo positivo acelera la vía quirúrgica. Pero en la mayoría de las exploraciones el apéndice no se ve, y no verlo no lo descarta: en población general de urgencias el rendimiento es modesto, y el umbral de 6 mm es consenso, no evidencia.\n",
    "sistema": "digestivo",
@@ -762,6 +763,22 @@
      ]
     }
    ],
+   "medios": [
+    {
+     "tipo": "imagen",
+     "destacada": true,
+     "id": "wikimedia:Appendicitis_ultrasound.png",
+     "descripcion": "Ecografía de apendicitis aguda con apéndice aumentado de calibre y no compresible",
+     "credito": "Borbély Márton",
+     "fuente": "Wikimedia Commons",
+     "fuente_url": "https://commons.wikimedia.org/wiki/File:Appendicitis_ultrasound.png",
+     "licencia_img": "CC BY-SA 4.0",
+     "licencia_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+     "archivo_local": "assets/img/apendicitis-aguda.png"
+    }
+   ],
+   "n_loops": 0,
+   "n_imagenes": 1,
    "refs": [
     "puylaert1986",
     "puylaert1986b",
