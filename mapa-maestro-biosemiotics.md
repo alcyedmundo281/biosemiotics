@@ -83,7 +83,8 @@ Los catorce signos tienen URL pública en Ghost.
 | Coledocolitiasis | digestivo | via-biliar | intermedio | urgencias | vía biliar dilatada → obstrucción, CPRE ✍ escrito, falta URL de Ghost |
 | Apendicitis | digestivo | apendice | intermedio | urgencias | apéndice no compresible > 6 mm → cirugía ✍ escrito, falta URL de Ghost |
 | Embarazo ectópico | genitourinario | utero | intermedio | urgencias | útero vacío + βhCG+ → emergencia |
-| Colección/absceso, hernia complicada | musculoesqueletico | pared | intermedio | urgencias | contenido, reductibilidad → cirugía |
+| Absceso de partes blandas | musculoesqueletico | pared | intermedio | urgencias | colección con refuerzo posterior → drenar vs antibiótico ✍ escrito, falta URL de Ghost |
+| Hernia complicada | musculoesqueletico | pared | intermedio | urgencias | contenido, reductibilidad → cirugía ✍ escrito, falta URL de Ghost |
 
 ### FAST / eFAST — protocolo, no signo único
 *FAST es un recorrido de ventanas; cada una es un signo con su propia ficha. El nodo "protocolo FAST" las enlaza. Varias ya existen en otras oleadas — el protocolo las teje, no las duplica.*
@@ -160,7 +161,7 @@ Oleada 1 y las rutas avanzadas que reutilizarán esos conceptos.
 ## 8. Orden de trabajo recomendado
 
 1. **Oleada 1 cerrada:** los ocho signos están publicados, con sus conceptos base incorporados.
-2. **Ahora — Oleada 2:** Colecistitis aguda, Coledocolitiasis y Apendicitis (escritas, falta publicarlas en Ghost) → **Embarazo ectópico** → Colección/absceso y hernia complicada. Taponamiento cardíaco y sobrecarga del ventrículo derecho / TEP ya están publicados.
+2. **Ahora — Oleada 2:** Colecistitis aguda, Coledocolitiasis, Apendicitis, Absceso de partes blandas y Hernia complicada (escritos, falta publicarlos en Ghost) → queda **Embarazo ectópico**, el último de la oleada. Taponamiento cardíaco y sobrecarga del ventrículo derecho / TEP ya están publicados.
 3. **Antes de los signos que lo necesiten:** escribir y validar Doppler y Cuantificación y sus límites.
 4. **Conceptos base: regla dura.** Un signo NO se publica sin su concepto base ya en el banco. El concepto base requerido se escribe y valida ANTES que el signo, no en paralelo ni después.
 5. **Después:** completar FAST/eFAST → Oleada 3 → Extensiones.
@@ -169,12 +170,12 @@ Oleada 1 y las rutas avanzadas que reutilizarán esos conceptos.
 Cada cifra, verificada contra PubMed antes de publicar. Cada signo, con su sección de límites ("dónde NO confiar"). El orden por oleada mantiene vivo el mensaje: *empezar es más fácil de lo que te dijeron.*
 
 ### Conteo
-- Banco actual: **32 entidades** (14 conceptos, 17 signos y 1 caso)
-- Signos publicados: **14 de 17** (colecistitis aguda, coledocolitiasis y apendicitis escritas, esperando URL de Ghost)
+- Banco actual: **34 entidades** (14 conceptos, 19 signos y 1 caso)
+- Signos publicados: **14 de 19** (colecistitis aguda, coledocolitiasis, apendicitis, absceso de partes blandas y hernia complicada escritos, esperando URL de Ghost)
 - Oleada 1 completada: **8 de 8 signos**
-- Oleada 2: **2 publicados, 3 escritos, 2 pendientes de 7 signos**
+- Oleada 2: **2 publicados, 5 escritos, 1 pendiente de 8 signos** (la fila «colección/absceso, hernia complicada» se desdobló en dos: son dos significantes y dos decisiones distintas)
 - Conceptos base pendientes: **~2**
-- Restan **~16 entidades** para llegar a las ~48 proyectadas del atlas maduro
+- Restan **~14 entidades** para llegar a las ~48 proyectadas del atlas maduro
 
 Nota: FAST añade pocas fichas nuevas (Morrison, esplenorrenal, Douglas, hemotórax) porque reutiliza pericardio y neumotórax. El gradiente de FEVI añade 2 (lineales, Simpson) sobre el eyeball ya contado.
 
