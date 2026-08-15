@@ -670,7 +670,8 @@
     "knobology-ganancia"
    ],
    "contrasta_con": [
-    "signo-colelitiasis"
+    "signo-colelitiasis",
+    "signo-coledocolitiasis"
    ],
    "autores": [
     {
@@ -694,6 +695,91 @@
     "teefey1991",
     "nipitkul2026",
     "wehrle2022"
+   ],
+   "n_refs": 9
+  },
+  {
+   "id": "signo-coledocolitiasis",
+   "tipo": "signo",
+   "titulo": "Coledocolitiasis: cuando el signo es el conducto, no la piedra",
+   "titulo_en": "Choledocholithiasis: the duct is the sign, not the stone",
+   "version": "1.0",
+   "abstract": "Un colédoco dilatado en un paciente con dolor biliar, ictericia o pruebas hepáticas alteradas señala obstrucción distal, casi nunca el cálculo mismo: el ultrasonido ve la consecuencia, no la causa. El hallazgo cambia la ruta hacia colangioRM o ecoendoscopia antes que a CPRE. El conducto también se ensancha con la edad, tras colecistectomía y por tumores, y puede normalizarse en horas si la piedra ya pasó.\n",
+   "sistema": "digestivo",
+   "organo": "via-biliar",
+   "nivel": "intermedio",
+   "ventana": "subcostal-oblicua-derecha-porta-hepatis",
+   "pregunta_clinica": "¿La vía biliar de este paciente está obstruida?",
+   "significante": "Conducto biliar común dilatado, visto en el hilio hepático como el canal anterior a la vena porta —el par de estructuras paralelas del signo del cañón de escopeta—. Rara vez se ve dentro de él el foco ecogénico con sombra que sería el cálculo; lo habitual es ver solo el conducto ancho.",
+   "significado": "Obstrucción al flujo de bilis distal al punto medido. El cálculo es la causa más frecuente en el paciente con litiasis, pero la dilatación por sí sola solo dice que algo obstruye —o que algo obstruyó.",
+   "umbral": "El corte no es único. En 206 adultos sanos el diámetro medio del colédoco fue 3,64 mm (IC 95 % 3,52-3,77), con un rango de 1,8 a 5,9 mm y el 65 % por debajo de 4 mm; los estudios clínicos usan indistintamente 6 o 7 mm como límite de lo dilatado. El valor gana potencia cuando se combina: con pruebas hepáticas alteradas y colédoco mayor de 7 mm, la probabilidad de cálculo en el conducto llegó al 82 %.\n",
+   "licencia": "CC-BY-NC-4.0",
+   "fecha": "2026-08-15",
+   "actualizado": "2026-08-15",
+   "decision": "No mandes a CPRE con un conducto dilatado como único argumento: la CPRE es tratamiento, no examen de rastreo, y tiene eventos adversos en el 6 % a 15 % de los casos. Integra el diámetro con pruebas hepáticas y clínica; si la sospecha se mantiene, la ruta es colangioRM o ecoendoscopia. Y en el paciente con fiebre, ictericia y dolor —colangitis—, la urgencia manda: eso no espera imagen adicional.",
+   "sonda": [
+    "convexa"
+   ],
+   "escenario": [
+    "urgencias"
+   ],
+   "descriptores": [
+    "coledocolitiasis",
+    "via-biliar",
+    "coledoco",
+    "colestasis",
+    "ictericia",
+    "cpre",
+    "pocus"
+   ],
+   "mesh": [
+    "Choledocholithiasis",
+    "Common Bile Duct",
+    "Ultrasonography",
+    "Point-of-Care Systems"
+   ],
+   "falsos_positivos": [
+    "Arteria hepática tomada por colédoco: sin Doppler color, el tercer elemento de la tríada portal se mide como si fuera vía biliar",
+    "Edad avanzada: el diámetro del colédoco aumenta con la edad de forma sostenida, en persona sana y sin obstrucción",
+    "Poscolecistectomía: el conducto puede quedar ancho de forma permanente sin que nada obstruya —fue el 13,1 % de las vías dilatadas de origen indeterminado en una serie de 152 pacientes",
+    "Tumor periampular, cáncer de cabeza de páncreas o colangiocarcinoma: dilatan igual y no son piedra; en esa misma serie sumaron 38 de los 152 pacientes",
+    "Cálculo que ya pasó: la vía queda ancha con el conducto vacío (23 % de esa serie)",
+    "Consumo de opiáceos, por espasmo del esfínter de Oddi (9,2 % de esa serie)",
+    "Medición mal tomada: incluir las paredes en el calibrador, medir en oblicuo o confundir el conducto con la vía porta agranda el número",
+    "El complemento del error: colédoco fino con cálculo dentro. La porción distal queda oculta por gas duodenal, y un conducto normal NO descarta coledocolitiasis"
+   ],
+   "se_basa_en": [
+    "ecogenicidad",
+    "artefacto-sombra-acustica",
+    "tipos-de-sonda",
+    "knobology-profundidad"
+   ],
+   "contrasta_con": [
+    "signo-colelitiasis",
+    "signo-colecistitis-aguda"
+   ],
+   "autores": [
+    {
+     "nombre": "Alcy Edmundo Torres Guerrero",
+     "orcid": "0000-0002-9742-375X",
+     "afiliacion": "Universidad Central del Ecuador",
+     "credit": [
+      "conceptualizacion",
+      "redaccion",
+      "supervision"
+     ]
+    }
+   ],
+   "refs": [
+    "worku2020",
+    "jendresen2002",
+    "buxbaum2019",
+    "giljaca2015",
+    "adams2015",
+    "sotoudehmanesh2016",
+    "jafari2013",
+    "dewaele2007",
+    "moharamzad2018"
    ],
    "n_refs": 9
   },
@@ -750,7 +836,8 @@
     "tipos-de-sonda"
    ],
    "contrasta_con": [
-    "signo-colecistitis-aguda"
+    "signo-colecistitis-aguda",
+    "signo-coledocolitiasis"
    ],
    "autores": [
     {
