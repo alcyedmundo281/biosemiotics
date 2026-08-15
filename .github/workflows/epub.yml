@@ -28,7 +28,7 @@ on:
       solo_publicados:
         description: 'Incluir solo fichas con URL de Ghost'
         type: boolean
-        default: false
+        default: true
 
 permissions:
   contents: write   # necesario para adjuntar el asset al release
@@ -83,8 +83,14 @@ jobs:
 
       - name: Generar el ePub
         run: |
-          python scripts/epub.py --salida build/atlas.epub \
-            ${{ inputs.solo_publicados && '--solo-publicados' || '' }}
+          ARGS=()
+          # Los releases son ediciones citables: solo incluyen fichas que ya
+          # pasaron por la revisión editorial de Ghost. En una ejecución manual
+          # se puede desactivar la bandera para probar una edición futura.
+          if [ "${{ github.event_name }}" = "release" ] || [ "${{ inputs.solo_publicados }}" = "true" ]; then
+            ARGS+=(--solo-publicados)
+          fi
+          python scripts/epub.py --salida build/atlas.epub "${ARGS[@]}"
 
       - name: Comprobar que el artefacto es real
         # Un ePub de pocos KB casi siempre significa "se generó vacío".

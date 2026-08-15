@@ -47,6 +47,35 @@ lualatex -interaction=nonstopmode libro.tex   # segunda pasada: referencias cruz
 
 Si compilas con pdflatex vas a ver `Missing character` o `Unicode character not set up for use with LaTeX` en cuanto el texto traiga `≥`/`→`/`±` — no es un error del banco, es el compilador equivocado.
 
+## Compilar el EPUB (`build/atlas.epub`)
+
+La primera edición citable incluye solo fichas que ya pasaron por la revisión
+editorial en Ghost:
+
+```bash
+python scripts/build.py
+python scripts/epub.py --salida build/atlas.epub --solo-publicados
+```
+
+El generador requiere Python 3.11 o posterior, PyYAML y Pandoc. Lee el banco de
+forma dinámica y hereda de `build.py` el orden de capítulos y sistemas; no usa
+listas manuales. El archivo resultante vive en `build/`, no se versiona y el
+workflow `.github/workflows/epub.yml` lo valida con EPUBCheck antes de
+adjuntarlo al release.
+
+Cada figura debe declarar en `medios`: descripción, crédito, fuente y URL,
+licencia y URL, y `archivo_local`. La ausencia de cualquiera de esos datos o
+del archivo local aborta la compilación: no se omiten imágenes ni se infiere su
+atribución. Para una edición futura con todo el banco se omite
+`--solo-publicados`, únicamente después de la revisión editorial pendiente.
+
+Metadatos actuales: DOI `10.5281/zenodo.21435362`; ISBN EPUB pendiente. La
+portada tipográfica es original, CC BY 4.0, sin logos ni identidad visual del
+HECAM/IESS. El EPUB incluye el aviso de uso exclusivamente educativo y una
+página final de créditos de imágenes. Zenodo archiva el snapshot del
+repositorio, no el asset del release; incorporar el binario al registro DOI
+requiere una carga separada.
+
 ## Lo primero al arrancar una sesión
 
 1. Corre `git status` y reporta el estado. Si hay cambios sin commitear, avísalo antes de empezar.
@@ -202,6 +231,12 @@ artículo ya está vivo, los dos PR se apilan:
 2. El editor/proveedor crea una rama desde la rama del publicador, ejecuta
    `indice.py`, actualiza índice, mapa y metadatos globales, y abre un **PR hijo
    de regeneración cuya base es la rama del publicador**, no `main`.
+   Antes de regenerar, compara la rama padre con `origin/main`. Si el padre se
+   quedó atrás, fusiona `origin/main` en la rama hija con un **merge real, no
+   squash**; verifica que sobrevivan tanto la URL/imagen del padre como los
+   datos vigentes del banco y solo entonces ejecuta `indice.py`. Antes de
+   commitear el hijo debe pasar `python scripts/verificar_publicacion.py` para
+   la entidad publicada.
 3. Cuando la CI del PR hijo pasa, el proveedor lo fusiona en la rama del
    publicador. El PR padre incorpora así el índice regenerado sin que el
    publicador se convierta en dueño del derivado.
@@ -284,6 +319,16 @@ Reglas:
 ## Higiene de Git
 
 Después de cada tarea significativa: `git add`, `git commit` con mensaje claro. Es el punto de restauración. Con un agente editando de forma autónoma, commitear seguido no es opcional — es la red de seguridad. El `push` va a **tu rama**, no a `main` (ver arriba).
+
+### Propiedad de worktrees y ramas locales
+
+Cada sesión es dueña de su propio worktree y de sus propias ramas locales.
+Retirar un worktree o borrar una rama local solo lo hace la sesión que la creó.
+Si otra sesión dejó residuos, se reportan; no se limpian por cuenta propia.
+`git worktree prune` puede usarse para eliminar registros cuyo directorio ya no
+existe, pero no autoriza `git worktree remove` sobre un espacio ajeno. Nunca se
+usa `--force` ni se borra manualmente el directorio de un worktree ajeno. Las
+ramas remotas ya fusionadas sí puede eliminarlas quien fusiona el PR.
 
 ## Lo que NO debes hacer
 
