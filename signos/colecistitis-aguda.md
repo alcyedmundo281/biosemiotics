@@ -44,7 +44,7 @@ falsos_positivos:
   - "Murphy ecográfico falsamente negativo por analgesia, alteración de la conciencia o paciente que no colabora —ausencia de respuesta, no ausencia de inflamación"
   - "Colecistitis alitiásica: si exiges ver el cálculo para nombrar el cuadro, se te escapa el 5-10 % que ocurre sin él, y suele ser el paciente más grave"
 se_basa_en: [ecogenicidad, artefacto-sombra-acustica, tipos-de-sonda, knobology-ganancia]
-contrasta_con: [signo-colelitiasis]
+contrasta_con: [signo-colelitiasis, signo-coledocolitiasis]
 
 autores:
   - nombre: "Alcy Edmundo Torres Guerrero"
