@@ -1,0 +1,22 @@
+# Entradas exentas de resolver en Crossref
+#
+# Crossref no es el único registrador de DOI. Hay revistas reales, indexadas en
+# PubMed, cuyos DOI nunca van a resolver en api.crossref.org y devuelven 404.
+# Para esas —y SOLO para esas— existe este archivo.
+#
+# Un DOI que devuelve 404 y NO está declarado aquí hace fallar
+# verificar_citas.py con código 1. Esa es la conducta correcta: un 404 no es un
+# problema de red, es una referencia que nadie comprobó. Antes de agregar una
+# línea aquí, confirma a mano que la revista existe, que el artículo es el que
+# dices y que el PMID es correcto — la exención renuncia a la segunda autoridad,
+# así que la primera tiene que ser sólida.
+#
+# Formato: un token por línea, razón después de '#'.
+#   - clave BibLaTeX exacta        → exime esa entrada
+#   - prefijo de DOI (p. ej. 10.22037/) → exime a todo ese registrador
+#
+# Ejemplo (comentado; no está activo):
+# 10.22037/   # Arch Acad Emerg Med y otras del registrador: no depositan en Crossref
+#
+# Hoy no hay ninguna exención activa: refs.bib resuelve completo en ambas
+# autoridades. Mantenlo así mientras se pueda.

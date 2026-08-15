@@ -13,12 +13,20 @@ puntuación y sin el subtítulo posterior al primer punto. Los catálogos antigu
 pueden contener errores de OCR en el título; por eso la prueba de identidad es
 la coincidencia exacta del DOI declarado, PubMed y Crossref.
 
+Un DOI que Crossref dice NO CONOCER (404) no es un problema de red: es una
+verificación fallida y cuenta como discrepancia. Confundir las dos cosas dejaba
+pasar el control a una referencia que nadie había comprobado. Existen revistas
+legítimas cuyos DOI no se depositan en Crossref; para esas —y solo para esas—
+hay una lista de exención explícita en `refs-sin-crossref.txt`, que obliga a
+declarar el caso por escrito en vez de resolverlo con silencio.
+
   python3 verificar_citas.py            # verifica todo refs.bib
   python3 verificar_citas.py --estricto # un error de red también falla
 
 Códigos de salida:
   0  todo verificado (o error de red en modo NO estricto)
-  1  al menos una discrepancia real (revista/año/DOI/título) o PMID inexistente
+  1  al menos una discrepancia real: revista/año/DOI/título, PMID inexistente,
+     o un DOI que Crossref no resuelve y no está exento
   2  error de red en modo --estricto
 """
 import argparse
@@ -26,6 +34,7 @@ import re
 import sys
 import time
 import json
+import urllib.error
 import urllib.parse
 import urllib.request
 from pathlib import Path
@@ -62,7 +71,48 @@ def parse_bib(path: Path) -> list:
 
 
 class RedError(Exception):
-    pass
+    """Fallo TRANSITORIO: timeout, conexión caída, 429 o 5xx. Se reintenta."""
+
+
+class DoiNoResuelve(Exception):
+    """Crossref responde que ese DOI no existe (404) o es inválido (otro 4xx).
+
+    NO es un problema de red: es una verificación que falló. Tratarlo como
+    error de red hacía que una referencia sin comprobar pasara el control.
+    """
+
+    def __init__(self, codigo: int):
+        self.codigo = codigo
+        super().__init__(f"HTTP {codigo}")
+
+
+def cargar_exenciones(raiz: Path) -> dict:
+    """Lee refs-sin-crossref.txt: claves o prefijos de DOI exentos, con razón.
+
+    Formato: un token por línea (clave BibLaTeX o prefijo de DOI), razón
+    opcional tras '#'. Sirve para revistas reales cuyos DOI no se depositan
+    en Crossref; obliga a dejar constancia escrita en vez de silenciar.
+    """
+    f = raiz / "refs-sin-crossref.txt"
+    if not f.exists():
+        return {}
+    out = {}
+    for linea in f.read_text(encoding="utf-8").splitlines():
+        cuerpo, _, razon = linea.partition("#")
+        token = cuerpo.strip()
+        if token:
+            out[token.lower()] = razon.strip() or "sin razón declarada"
+    return out
+
+
+def exento(clave: str, doi: str, exenciones: dict) -> "str | None":
+    """Devuelve la razón si la entrada está exenta de resolver en Crossref."""
+    if clave.lower() in exenciones:
+        return exenciones[clave.lower()]
+    for token, razon in exenciones.items():
+        if doi.lower().startswith(token):
+            return razon
+    return None
 
 
 def crossref(doi: str) -> dict:
@@ -70,8 +120,14 @@ def crossref(doi: str) -> dict:
     try:
         req = urllib.request.Request(url, headers=UA)
         m = json.loads(urllib.request.urlopen(req, timeout=25).read())["message"]
+    except urllib.error.HTTPError as e:
+        # 429 y 5xx son del servidor y pasan; el resto de 4xx es un veredicto
+        # sobre el DOI, no sobre la red.
+        if e.code == 429 or e.code >= 500:
+            raise RedError(f"HTTP {e.code}") from e
+        raise DoiNoResuelve(e.code) from e
     except Exception as e:
-        raise RedError(str(e))
+        raise RedError(str(e)) from e
     yr = ""
     for k in ("published-print", "published-online", "issued", "created"):
         dp = m.get(k, {}).get("date-parts", [[None]])[0]
@@ -89,8 +145,10 @@ def main():
                     help="un error de red cuenta como fallo (exit 2)")
     a = ap.parse_args()
 
-    bib = Path(a.raiz).resolve() / "refs.bib"
+    raiz = Path(a.raiz).resolve()
+    bib = raiz / "refs.bib"
     refs = parse_bib(bib)
+    exenciones = cargar_exenciones(raiz)
     print(f"refs.bib: {len(refs)} entradas\n")
 
     dup = {c for c in (r["clave"] for r in refs)
@@ -105,7 +163,7 @@ def main():
         print(f"⚠ PubMed no responde: {e}")
         sys.exit(2 if a.estricto else 0)
 
-    disc, avisos_titulo, red = [], [], 0
+    disc, avisos_titulo, exentas, red = [], [], [], 0
     ok_pm = ok_cr = ok_x = 0
     for r in refs:
         flags = []
@@ -146,6 +204,12 @@ def main():
                 time.sleep(0.12)
             except RedError:
                 red += 1
+            except DoiNoResuelve as e:
+                razon = exento(r["clave"], r["doi"], exenciones)
+                if razon:
+                    exentas.append((r["clave"], r["doi"], e.codigo, razon))
+                else:
+                    flags.append(f"crossref-no-resuelve(HTTP {e.codigo})")
         else:
             flags.append("sin-doi")
 
@@ -155,7 +219,16 @@ def main():
     print(f"PubMed OK: {ok_pm}/{len(refs)}   Crossref OK: {ok_cr}/{len(refs)}   "
           f"cruce título: {ok_x}")
     if red:
-        print(f"⚠ {red} entradas no verificadas por error de red en Crossref")
+        print(f"⚠ {red} entradas sin comprobar: error de RED en Crossref "
+              f"(transitorio, reintenta)")
+
+    if exentas:
+        print(f"\n⚠ {len(exentas)} ENTRADAS EXENTAS DE CROSSREF "
+              f"(declaradas en refs-sin-crossref.txt):")
+        for clave, doi, codigo, razon in exentas:
+            print(f"   {clave:<20} {doi}  HTTP {codigo} — {razon}")
+        print("   Verificadas solo contra PubMed. Revisa que la exención siga "
+              "siendo válida.")
 
     if avisos_titulo:
         print(f"\n⚠ {len(avisos_titulo)} VARIANTES DE TÍTULO CON DOI IDÉNTICO:")
@@ -166,11 +239,23 @@ def main():
         print(f"\n✗ {len(disc)} DISCREPANCIAS:")
         for clave, flags in disc:
             print(f"   {clave:<20} {', '.join(flags)}")
+        if any("crossref-no-resuelve" in f for _, fl in disc for f in fl):
+            print("\n   Un DOI que Crossref no resuelve no se publica. Si la "
+                  "revista es real y\n   simplemente no deposita ahí, decláralo "
+                  "en refs-sin-crossref.txt con su razón.")
         sys.exit(1)
 
     if red and a.estricto:
         sys.exit(2)
-    print("\n✓ Todas las referencias verificadas en ambas autoridades.")
+
+    if red:
+        print(f"\n✓ Sin discrepancias, pero {red} entradas quedaron SIN "
+              f"comprobar en Crossref por error de red.")
+    elif exentas:
+        print(f"\n✓ Sin discrepancias. {len(exentas)} entradas verificadas solo "
+              f"contra PubMed por exención declarada.")
+    else:
+        print("\n✓ Todas las referencias verificadas en ambas autoridades.")
 
 
 if __name__ == "__main__":
