@@ -3,7 +3,7 @@ id: signo-colecistitis-aguda
 tipo: signo
 titulo: "Colecistitis aguda: cuando la piedra ya no es el hallazgo"
 titulo_en: "Acute cholecystitis: beyond the stone"
-url: ""
+url: "https://www.biosemiotics.net/colecistitis-aguda-cuando-la-piedra-ya-no-es-el-hallazgo/"
 doi: null
 version: "1.0"
 
