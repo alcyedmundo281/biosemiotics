@@ -70,7 +70,7 @@ medios:
 refs: [via2014, perezcasares2017, guntheroth2007, alerhand2022, adler2015, floerchinger2013, ginghina2009]
 fecha: 2026-08-07
 actualizado: 2026-08-07
-licencia: CC-BY-NC-4.0
+licencia: CC-BY-4.0
 ---
 
 ## La pregunta clínica

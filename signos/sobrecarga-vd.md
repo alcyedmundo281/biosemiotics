@@ -73,7 +73,7 @@ medios:
 refs: [via2014, fields2017, mandoli2021, konstantinides2019, sanz2019, shafiq2011]
 fecha: 2026-08-07
 actualizado: 2026-08-07
-licencia: CC-BY-NC-4.0
+licencia: CC-BY-4.0
 ---
 
 ## La pregunta clínica

@@ -20,7 +20,7 @@ Plano completo del atlas: los dos cursos (cardiopulmonar y emergencias) más las
 - **musculoesqueletico:** pared, ganglio
 - **endocrino:** tiroides
 - **nervioso:** nervio-optico
-- **multiorgano:** (protocolos que cruzan sistemas: VExUS, FAST)
+- **multiorgano:** ventanas que no pertenecen a un solo sistema (las tres abdominales del FAST). Los **protocolos** en sí no son signos y no llevan `sistema`/`organo`: son conceptos con `dominio: tecnica` —así está `protocolo-fast`, y así irá VExUS—
 
 ### `nivel`
 - **principiante** — reconocimiento binario, poca dependencia de operador, decide una conducta simple
@@ -30,11 +30,33 @@ Plano completo del atlas: los dos cursos (cardiopulmonar y emergencias) más las
 ### `escenario`
 `urgencias` · `consulta` · `hospitalizacion` · `uci` · `preoperatorio`
 
+### Alcance del atlas — decisión de Alcy (2026-08-15)
+
+El atlas se escribe para el **médico de primer contacto con equipo
+transabdominal**: sin sonda endovaginal, y sin dar por sentado que haya
+laboratorio cuantitativo especializado disponible.
+
+Esto no es un detalle de estilo, **cambia qué pregunta puede responder cada
+signo**. En embarazo ectópico obligó a construir el artículo alrededor de
+«¿puedo confirmar un embarazo intrauterino?» en vez de «¿tiene un ectópico?», y
+a declarar la zona discriminatoria de βhCG **fuera de alcance** —esos umbrales
+se validaron con βhCG cuantitativa más ecografía transvaginal, y aplicarlos con
+prueba cualitativa y sonda transabdominal es usar una regla fuera del contexto
+en que se validó—.
+
+**Cómo aplicarlo:** antes de escribir un signo que normalmente se enseña con
+técnica especializada (endovaginal, Doppler cuantitativo, laboratorio seriado),
+reformula la pregunta clínica a lo que el primer contacto puede responder de
+verdad, y di explícitamente en «Dónde NO confiar» qué queda fuera de alcance a
+ese nivel. Si un signo no se sostiene con transabdominal, **decláralo** en vez
+de escribirlo como si sí. Aplica de lleno a quiste ovárico, ONSD y a los signos
+cuantitativos de la Oleada 3.
+
 ---
 
 ## 2. Estado actual (lo ya publicado)
 
-El índice vigente contiene **40 entidades**: 15 conceptos, 24 signos y 1 caso.
+El índice vigente contiene **42 entidades**: 17 conceptos, 24 signos y 1 caso.
 Diecisiete signos tienen URL pública en Ghost; los otros siete están escritos
 y validados, esperando publicación.
 
@@ -85,7 +107,7 @@ y validados, esperando publicación.
 | [Colecistitis aguda](https://www.biosemiotics.net/colecistitis-aguda-cuando-la-piedra-ya-no-es-el-hallazgo/) | digestivo | vesicula | intermedio | urgencias | pared, Murphy ecográfico → cirugía/antibiótico ✅ publicado |
 | [Coledocolitiasis](https://www.biosemiotics.net/coledocolitiasis-cuando-el-signo-es-el-conducto-no-la-piedra/) | digestivo | via-biliar | intermedio | urgencias | vía biliar dilatada → obstrucción, CPRE ✅ publicado |
 | [Apendicitis](https://www.biosemiotics.net/apendicitis-el-apendice-que-no-se-aplasta/) | digestivo | apendice | intermedio | urgencias | apéndice no compresible > 6 mm → cirugía ✅ publicado |
-| Embarazo ectópico | genitourinario | utero | intermedio | urgencias | intrauterino confirmado o no → derivar / quirófano ✍ escrito, falta URL de Ghost |
+| Embarazo ectópico | genitourinario | utero | intermedio | urgencias | intrauterino confirmado o no → derivar / quirófano · **alcance: transabdominal, primer contacto** ✍ escrito, falta URL de Ghost |
 | Absceso de partes blandas | musculoesqueletico | pared | intermedio | urgencias | colección con refuerzo posterior → drenar vs antibiótico ✍ escrito, falta URL de Ghost |
 | Hernia complicada | musculoesqueletico | pared | intermedio | urgencias | contenido, reductibilidad → cirugía ✍ escrito, falta URL de Ghost |
 
@@ -94,7 +116,7 @@ y validados, esperando publicación.
 
 | ventana | sistema | organo | nivel | qué busca |
 |---|---|---|---|---|
-| **Protocolo FAST/eFAST** (nodo integrador) | concepto `tecnica` | — | intermedio | secuencia de trauma; enlaza las ventanas de abajo ✍ escrito, falta URL de Ghost |
+| **`protocolo-fast`** (nodo integrador) | *concepto* `dominio: tecnica` | — | intermedio | secuencia de trauma; enlaza las ventanas de abajo ✍ escrito, falta URL de Ghost |
 | Cuadrante sup. derecho (Morrison) | multiorgano | higado | principiante | líquido en receso hepatorrenal ✍ escrito, falta URL de Ghost |
 | Cuadrante sup. izquierdo (esplenorrenal) | multiorgano | intestino | principiante | líquido periesplénico ✍ escrito, falta URL de Ghost |
 | Pelvis (Douglas / retrovesical) | multiorgano | vejiga | principiante | líquido pélvico ✍ escrito, falta URL de Ghost |
@@ -102,7 +124,7 @@ y validados, esperando publicación.
 | eFAST — neumotórax | respiratorio | pleura | principiante | *= signo Neumotórax (Oleada 1)* |
 | eFAST — hemotórax | respiratorio | pleura | principiante | líquido supradiafragmático en trauma ✍ escrito, falta URL de Ghost |
 
-**Modelado:** el nodo "Protocolo FAST" usa `signos: [signo-fast-morrison, signo-fast-esplenorrenal, signo-fast-douglas, signo-derrame-pericardico, signo-neumotorax, signo-hemotorax]`. Así el atlas muestra el protocolo como un caso que recorre signos ya existentes. Enseña la *secuencia*, no repite el contenido.
+**Modelado:** el nodo `protocolo-fast` es un **concepto** (`dominio: tecnica`) y enlaza las seis ventanas por `relacionado_con: [signo-fast-morrison, signo-fast-esplenorrenal, signo-fast-douglas, signo-derrame-pericardico, signo-neumotorax, signo-hemotorax]`. Así el atlas muestra el protocolo como un recorrido sobre signos ya existentes. Enseña la *secuencia*, no repite el contenido.
 
 **Decidido por Alcy (2026-08-15):** el nodo integrador se modela como **`concepto` con `dominio: tecnica`** (`protocolo-fast`), NO como caso. Razón: el tipo `caso` está construido alrededor de un paciente real con consentimiento y de-identificación, y un protocolo no es un paciente. El nodo enlaza las seis ventanas por `relacionado_con` y enseña la secuencia; cada ventana conserva su propia ficha de signo.
 
@@ -154,8 +176,8 @@ El lector entra por el eyeball y el mismo nodo lo lleva, cuando madura, hasta Si
 ## 7. Conceptos base que faltan (el "por qué")
 *Sustentan los signos de arriba. Sin ellos, el grafo tiene nodos huérfanos. Escríbelos en paralelo — son cortos.*
 
-- **Doppler** (color, espectral, pulsado) → sustenta E/e', VTI, VExUS, carótidas, vascular
-- **Cuantificación y sus límites** → concepto transversal: toda fórmula es poblacional
+- **Doppler** (color, espectral, pulsado) → sustenta E/e', VTI, VExUS, carótidas, vascular ✍ escrito, falta URL de Ghost
+- **Cuantificación y sus límites** → concepto transversal: toda fórmula es poblacional ✍ escrito, falta URL de Ghost
 
 **Completados:** Ventanas cardíacas, Modo M, sliding / lung point y
 compresibilidad venosa ya están en el banco. Sustentan los ocho signos de la
@@ -167,7 +189,7 @@ Oleada 1 y las rutas avanzadas que reutilizarán esos conceptos.
 
 1. **Oleada 1 cerrada:** los ocho signos están publicados, con sus conceptos base incorporados.
 2. **Oleada 2 escrita completa (8 de 8).** Publicados: taponamiento cardíaco, sobrecarga del ventrículo derecho / TEP, colecistitis aguda, coledocolitiasis y apendicitis. Escritos, validados y esperando URL de Ghost: Absceso de partes blandas, Hernia complicada y Embarazo ectópico. **El cuello de botella ya no es escribir: es publicar en Ghost.**
-3. **Antes de los signos que lo necesiten:** escribir y validar Doppler y Cuantificación y sus límites.
+3. ~~Antes de los signos que lo necesiten: escribir y validar Doppler y Cuantificación y sus límites.~~ **Hecho (2026-08-15):** ambos conceptos base están escritos y validados.
 4. **Conceptos base: regla dura.** Un signo NO se publica sin su concepto base ya en el banco. El concepto base requerido se escribe y valida ANTES que el signo, no en paralelo ni después.
 5. **Después:** completar FAST/eFAST → Oleada 3 → Extensiones.
 
@@ -175,13 +197,14 @@ Oleada 1 y las rutas avanzadas que reutilizarán esos conceptos.
 Cada cifra, verificada contra PubMed antes de publicar. Cada signo, con su sección de límites ("dónde NO confiar"). El orden por oleada mantiene vivo el mensaje: *empezar es más fácil de lo que te dijeron.*
 
 ### Conteo
-- Banco actual: **40 entidades** (15 conceptos, 24 signos y 1 caso)
+- Banco actual: **42 entidades** (17 conceptos, 24 signos y 1 caso)
 - Signos publicados: **17 de 24** (esperando URL de Ghost: absceso de partes blandas, hernia complicada, embarazo ectópico y las cuatro ventanas de FAST/eFAST)
+- Conceptos esperando URL de Ghost: **3** (`protocolo-fast`, `doppler`, `cuantificacion-limites`)
 - Oleada 1 completada: **8 de 8 signos**
 - Oleada 2 **escrita completa: 8 de 8 signos** (5 publicados, 3 esperando URL). La fila «colección/absceso, hernia complicada» se desdobló en dos: son dos significantes y dos decisiones distintas
-- Conceptos base pendientes: **~2**
+- Conceptos base pendientes: **0** — Doppler y «Cuantificación y sus límites» escritos y validados. **La Oleada 3 queda desbloqueada**
 - FAST/eFAST **completo**: 4 ventanas nuevas (Morrison, esplenorrenal, Douglas, hemotórax) + el nodo integrador `protocolo-fast` como concepto de técnica; pericardio y neumotórax se reutilizan de la Oleada 1
-- Restan **~8 entidades** para llegar a las ~48 proyectadas del atlas maduro
+- Restan **~6 entidades** para llegar a las ~48 proyectadas del atlas maduro
 
 Nota: FAST añade pocas fichas nuevas (Morrison, esplenorrenal, Douglas, hemotórax) porque reutiliza pericardio y neumotórax. El gradiente de FEVI añade 2 (lineales, Simpson) sobre el eyeball ya contado.
 

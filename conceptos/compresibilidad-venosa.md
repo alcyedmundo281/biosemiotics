@@ -32,6 +32,7 @@ medios:
     original_local: "assets/media/compresibilidad-venosa-original.png"
     adaptacion: "Conversión de PNG a JPEG y reducción proporcional a 1800 × 1048 px; contenido clínico y anotaciones conservados"
 refs: [pomero2013, lee2019, zaki2024]
+licencia: CC-BY-4.0
 ---
 
 ## La maniobra es el signo

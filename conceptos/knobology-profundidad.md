@@ -27,6 +27,7 @@ medios:
     licencia_img: "Dominio público"
 
 refs: [zander2020, duggan2022, hangiandreou2003, kossoff2000]
+licencia: CC-BY-4.0
 ---
 
 La **profundidad** ajusta la extensión y la escala vertical de la imagen. Al
