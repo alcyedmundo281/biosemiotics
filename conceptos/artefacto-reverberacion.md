@@ -28,6 +28,7 @@ medios:
     licencia_img: "CC BY-SA 4.0"
 
 refs: [feldman2009, sato2006, lichtenstein2008, abuzidan2011]
+licencia: CC-BY-4.0
 ---
 
 La **reverberación** aparece cuando la energía recorre caminos adicionales antes

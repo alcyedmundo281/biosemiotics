@@ -68,7 +68,7 @@ medios:
 refs: [worku2020, jendresen2002, buxbaum2019, giljaca2015, adams2015, sotoudehmanesh2016, jafari2013, dewaele2007, moharamzad2018]
 fecha: 2026-08-15
 actualizado: 2026-08-15
-licencia: CC-BY-NC-4.0
+licencia: CC-BY-4.0
 ---
 
 ## La pregunta clínica

@@ -24,6 +24,7 @@ consentimiento: pendiente
 publicado: false
 doi: null
 refs: [lichtenstein2008, volpicelli2012]
+licencia: CC-BY-4.0
 ---
 
 ## Viñeta clínica

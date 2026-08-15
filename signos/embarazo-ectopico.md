@@ -56,7 +56,7 @@ autores:
 refs: [celik2022, stone2021, mullany2023, panaitescu2021, pan2025, nasrollahi2024]
 fecha: 2026-08-15
 actualizado: 2026-08-15
-licencia: CC-BY-NC-4.0
+licencia: CC-BY-4.0
 ---
 
 ## La pregunta clínica

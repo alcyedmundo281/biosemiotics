@@ -27,6 +27,7 @@ medios:
     licencia_img: "CC BY 4.0"
 
 refs: [feldman2009, sato2006, aldrich2007, abuzidan2011]
+licencia: CC-BY-4.0
 ---
 
 El **refuerzo acústico posterior** es una banda de ecos relativamente más

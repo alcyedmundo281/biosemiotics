@@ -33,6 +33,7 @@ medios:
     adaptacion: "Fotograma fijo extraído a los 2,5 s del video original, 640 × 480 px"
     referencia: "gillman2009"
 refs: [lichtenstein2000, skulec2021, volpicelli2012, gillman2009]
+licencia: CC-BY-4.0
 ---
 
 ## El movimiento que debes ver primero

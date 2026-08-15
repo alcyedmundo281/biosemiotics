@@ -29,7 +29,7 @@ autores:
 refs: [prendergast2014, worku2020, jendresen2002, adams2015, arruzza2022, thavendiranathan2013, gudmundsson2005, rich1982]
 fecha: 2026-08-15
 actualizado: 2026-08-15
-licencia: CC-BY-NC-4.0
+licencia: CC-BY-4.0
 ---
 
 ## El número no es del paciente

@@ -29,6 +29,7 @@ medios:
     licencia_url: "https://creativecommons.org/licenses/by-sa/4.0/"
     archivo_local: "assets/img/modo-m.jpg"
 refs: [hangiandreou2003, aldrich2007, volpicelli2012]
+licencia: CC-BY-4.0
 ---
 
 ## Qué cambia al activar modo M

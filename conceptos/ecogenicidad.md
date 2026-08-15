@@ -34,6 +34,7 @@ autores:
   - nombre: "Alcy Edmundo Torres Guerrero"
     orcid: null
     afiliacion: "Universidad Central del Ecuador"
+licencia: CC-BY-4.0
 ---
 
 Escala de grises según cuánto sonido refleja cada estructura. **Este es el nivel

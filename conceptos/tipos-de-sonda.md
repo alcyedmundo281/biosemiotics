@@ -28,6 +28,7 @@ medios:
     licencia_img: "CC BY 4.0"
 
 refs: [turk2024, zander2020, abuzidan2011, hangiandreou2003, jensen2007]
+licencia: CC-BY-4.0
 ---
 
 ## Tres familias

@@ -42,6 +42,7 @@ refs:
   - beland2010
   - fiorini2007
   - emamian1993
+licencia: CC-BY-4.0
 ---
 
 ## La pregunta clínica
