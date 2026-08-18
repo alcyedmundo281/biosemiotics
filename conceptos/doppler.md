@@ -2,7 +2,7 @@
 id: doppler
 tipo: concepto
 titulo: "Doppler: el color no mide, el ángulo decide"
-url: ""
+url: "https://www.biosemiotics.net/doppler-el-color-no-mide-el-angulo-decide/"
 
 abstract: >
   El Doppler detecta movimiento midiendo el cambio de frecuencia del eco que
@@ -25,6 +25,18 @@ autores:
     orcid: "0000-0002-9742-375X"
     afiliacion: "Universidad Central del Ecuador"
     credit: [conceptualizacion, redaccion, supervision]
+
+medios:
+  - tipo: imagen
+    destacada: true
+    id: "wikimedia:Color_Doppler_ultrasound_noise_artifact_abdomen.jpg"
+    descripcion: "Ecografía Doppler color con ruido y artefacto flash por ganancia excesiva o movimiento de la sonda"
+    credito: "Goleisureintl"
+    fuente: "Wikimedia Commons"
+    fuente_url: "https://commons.wikimedia.org/wiki/File:Color_Doppler_ultrasound_noise_artifact_abdomen.jpg"
+    licencia_img: "CC BY 4.0"
+    licencia_url: "https://creativecommons.org/licenses/by/4.0/"
+    archivo_local: "assets/img/doppler.jpg"
 
 refs: [boote2003, elwertowski2014, vandenhof2018, hangiandreou2003]
 fecha: 2026-08-15
