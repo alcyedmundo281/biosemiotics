@@ -177,7 +177,7 @@ El lector entra por el eyeball y el mismo nodo lo lleva, cuando madura, hasta Si
 ## 7. Conceptos base que faltan (el "por qué")
 *Sustentan los signos de arriba. Sin ellos, el grafo tiene nodos huérfanos. Escríbelos en paralelo — son cortos.*
 
-- **Doppler** (color, espectral, pulsado) → sustenta E/e', VTI, VExUS, carótidas, vascular ✍ escrito, falta URL de Ghost
+- **Doppler** (color, espectral, pulsado) → sustenta E/e', VTI, VExUS, carótidas, vascular ✓ publicado
 - **Cuantificación y sus límites** → concepto transversal: toda fórmula es poblacional ✍ escrito, falta URL de Ghost
 
 **Completados:** Ventanas cardíacas, Modo M, sliding / lung point y
@@ -200,7 +200,7 @@ Cada cifra, verificada contra PubMed antes de publicar. Cada signo, con su secci
 ### Conteo
 - Banco actual: **42 entidades** (17 conceptos, 24 signos y 1 caso)
 - Signos publicados: **18 de 24** (esperando URL de Ghost: hernia complicada, embarazo ectópico y las cuatro ventanas de FAST/eFAST)
-- Conceptos esperando URL de Ghost: **3** (`protocolo-fast`, `doppler`, `cuantificacion-limites`)
+- Conceptos esperando URL de Ghost: **2** (`protocolo-fast`, `cuantificacion-limites`)
 - Oleada 1 completada: **8 de 8 signos**
 - Oleada 2 **escrita completa: 8 de 8 signos** (6 publicados, 2 esperando URL). La fila «colección/absceso, hernia complicada» se desdobló en dos: son dos significantes y dos decisiones distintas
 - Conceptos base pendientes: **0** — Doppler y «Cuantificación y sus límites» escritos y validados. **La Oleada 3 queda desbloqueada**

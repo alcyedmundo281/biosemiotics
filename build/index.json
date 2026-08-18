@@ -210,6 +210,7 @@
    "id": "doppler",
    "tipo": "concepto",
    "titulo": "Doppler: el color no mide, el ángulo decide",
+   "url": "https://www.biosemiotics.net/doppler-el-color-no-mide-el-angulo-decide/",
    "abstract": "El Doppler detecta movimiento midiendo el cambio de frecuencia del eco que vuelve. Lo que informa no es la velocidad real sino su componente hacia la sonda, así que el ángulo de insonación gobierna todo: a 90° el flujo real se vuelve invisible, y por encima de 60° el error de medición crece de forma exponencial. El color responde \"¿hay flujo y hacia dónde?\"; cuantificar exige espectral, ángulo corregido y saber leer el aliasing.\n",
    "nivel": "intermedio",
    "licencia": "CC-BY-4.0",
@@ -236,6 +237,22 @@
      ]
     }
    ],
+   "medios": [
+    {
+     "tipo": "imagen",
+     "destacada": true,
+     "id": "wikimedia:Color_Doppler_ultrasound_noise_artifact_abdomen.jpg",
+     "descripcion": "Ecografía Doppler color con ruido y artefacto flash por ganancia excesiva o movimiento de la sonda",
+     "credito": "Goleisureintl",
+     "fuente": "Wikimedia Commons",
+     "fuente_url": "https://commons.wikimedia.org/wiki/File:Color_Doppler_ultrasound_noise_artifact_abdomen.jpg",
+     "licencia_img": "CC BY 4.0",
+     "licencia_url": "https://creativecommons.org/licenses/by/4.0/",
+     "archivo_local": "assets/img/doppler.jpg"
+    }
+   ],
+   "n_loops": 0,
+   "n_imagenes": 1,
    "refs": [
     "boote2003",
     "elwertowski2014",
