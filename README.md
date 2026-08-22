@@ -55,6 +55,7 @@ De esa fuente única salen:
 - **`atlas-inject.html`** — buscador para la página Atlas de Ghost
 - **`atlas.epub`** — edición EPUB3 con las imágenes y licencias del banco publicado
 - **`libro.pdf`** — libro compilado desde `libro.tex` con LuaLaTeX
+- **`biosemiotics-latex.zip`** — fuente compilable con bibliografía y `assets/`
 
 ### Uso
 
@@ -67,6 +68,7 @@ python scripts/refs.py                           # auditar qué referencias falt
 python scripts/refs.py --buscar                  # buscarlas en PubMed
 python scripts/indice.py .                       # generar índice y derivados
 python scripts/epub.py --salida build/atlas.epub --solo-publicados
+python scripts/paquete_latex.py --salida build/biosemiotics-latex.zip
 python scripts/verificar_publicacion.py --verificar-derivados --epub build/atlas.epub
 python scripts/consultas.py                      # explorar el atlas en SQL
 ```

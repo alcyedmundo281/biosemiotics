@@ -77,6 +77,183 @@ def escape_latex(s) -> str:
     return "".join(_LATEX_ESPECIALES.get(c, c) for c in str(s))
 
 
+def inline_markdown_latex(texto: str) -> str:
+    """Convierte el Markdown inline del banco sin imprimir sus marcadores."""
+    tokens = {}
+
+    def proteger(valor: str) -> str:
+        token = f"@@MD{len(tokens)}@@"
+        tokens[token] = valor
+        return token
+
+    texto = re.sub(
+        r"`([^`]+)`",
+        lambda m: proteger(r"\texttt{" + escape_latex(m.group(1)) + "}"),
+        texto,
+    )
+    texto = re.sub(
+        r"\[([^]]+)\]\((https?://[^)]+)\)",
+        lambda m: proteger(
+            r"\href{" + escape_latex(m.group(2)) + "}{"
+            + inline_markdown_latex(m.group(1)) + "}"
+        ),
+        texto,
+    )
+    texto = CITA_BIBLATEX.sub(
+        lambda m: proteger(r"\cite{" + m.group(1) + "}"), texto
+    )
+    texto = re.sub(
+        r"\*\*(.+?)\*\*",
+        lambda m: proteger(r"\textbf{" + inline_markdown_latex(m.group(1)) + "}"),
+        texto,
+    )
+    texto = re.sub(
+        r"(?<!\*)\*([^*]+?)\*(?!\*)",
+        lambda m: proteger(r"\emph{" + inline_markdown_latex(m.group(1)) + "}"),
+        texto,
+    )
+    salida = escape_latex(texto)
+    for token, valor in reversed(list(tokens.items())):
+        salida = salida.replace(token, valor)
+    return salida
+
+
+def markdown_a_latex(cuerpo: str) -> str:
+    """Renderiza el subconjunto de Markdown editorial como LaTeX natural."""
+    lineas = cuerpo.splitlines()
+    salida = []
+    i = 0
+
+    def inicia_bloque(linea: str, siguiente: str = "") -> bool:
+        limpia = linea.strip()
+        return bool(
+            not limpia
+            or re.match(r"^#{1,6}\s+", limpia)
+            or re.match(r"^(?:[-*+] |\d+\. )", limpia)
+            or limpia.startswith(">")
+            or limpia.startswith("```")
+            or limpia == "---"
+            or (limpia.startswith("|") and siguiente.strip().startswith("|"))
+        )
+
+    while i < len(lineas):
+        linea = lineas[i]
+        limpia = linea.strip()
+        if not limpia:
+            i += 1
+            continue
+
+        if limpia.startswith("```"):
+            codigo = []
+            i += 1
+            while i < len(lineas) and not lineas[i].strip().startswith("```"):
+                codigo.append(lineas[i])
+                i += 1
+            i += 1 if i < len(lineas) else 0
+            salida += [r"\begin{verbatim}", "\n".join(codigo), r"\end{verbatim}"]
+            continue
+
+        encabezado = re.match(r"^(#{1,6})\s+(.+)$", limpia)
+        if encabezado:
+            comando = "subsection*" if len(encabezado.group(1)) <= 2 else "subsubsection*"
+            salida.append(
+                rf"\{comando}{{{inline_markdown_latex(encabezado.group(2))}}}"
+            )
+            i += 1
+            continue
+
+        if limpia == "---":
+            salida.append(r"\medskip\hrule\medskip")
+            i += 1
+            continue
+
+        if limpia.startswith(">"):
+            cita = []
+            while i < len(lineas) and lineas[i].strip().startswith(">"):
+                cita.append(re.sub(r"^\s*>\s?", "", lineas[i]))
+                i += 1
+            salida += [
+                r"\begin{quote}",
+                inline_markdown_latex(" ".join(x.strip() for x in cita)),
+                r"\end{quote}",
+            ]
+            continue
+
+        if limpia.startswith("|") and i + 1 < len(lineas) and re.match(
+            r"^\s*\|?\s*:?-{3,}", lineas[i + 1]
+        ):
+            filas = []
+            while i < len(lineas) and lineas[i].strip().startswith("|"):
+                celdas = [c.strip() for c in lineas[i].strip().strip("|").split("|")]
+                if not all(re.match(r"^:?-{3,}:?$", c) for c in celdas):
+                    filas.append(celdas)
+                i += 1
+            columnas = max(len(f) for f in filas)
+            especificacion = " ".join(
+                [r">{\raggedright\arraybackslash}X"] * columnas
+            )
+            salida += [
+                r"\begin{table}[H]",
+                r"\centering\small",
+                rf"\begin{{tabularx}}{{0.95\textwidth}}{{{especificacion}}}",
+                r"\hline",
+            ]
+            for numero, fila in enumerate(filas):
+                fila += [""] * (columnas - len(fila))
+                celdas = [inline_markdown_latex(c) for c in fila]
+                if numero == 0:
+                    celdas = [rf"\textbf{{{c}}}" for c in celdas]
+                salida.append(" & ".join(celdas) + r" \\")
+                if numero == 0:
+                    salida.append(r"\hline")
+            salida += [r"\hline", r"\end{tabularx}", r"\end{table}"]
+            continue
+
+        item = re.match(r"^\s*([-*+]|\d+\.)\s+(.+)$", linea)
+        if item:
+            ordenada = item.group(1)[0].isdigit()
+            entorno = "enumerate" if ordenada else "itemize"
+            salida.append(rf"\begin{{{entorno}}}")
+            while i < len(lineas):
+                actual = re.match(r"^\s*([-*+]|\d+\.)\s+(.+)$", lineas[i])
+                if not actual or actual.group(1)[0].isdigit() != ordenada:
+                    break
+                partes = [actual.group(2).strip()]
+                i += 1
+                while i < len(lineas) and lineas[i].strip() and not re.match(
+                    r"^\s*([-*+]|\d+\.)\s+", lineas[i]
+                ):
+                    if not lineas[i][:1].isspace():
+                        break
+                    partes.append(lineas[i].strip())
+                    i += 1
+                salida.append(r"\item " + inline_markdown_latex(" ".join(partes)))
+                while i < len(lineas) and not lineas[i].strip():
+                    i += 1
+            salida.append(rf"\end{{{entorno}}}")
+            continue
+
+        parrafo = [limpia]
+        i += 1
+        while i < len(lineas):
+            siguiente = lineas[i + 1] if i + 1 < len(lineas) else ""
+            if inicia_bloque(lineas[i], siguiente):
+                break
+            parrafo.append(lineas[i].strip())
+            i += 1
+        salida.append(inline_markdown_latex(" ".join(parrafo)))
+
+    return "\n\n".join(salida)
+
+
+def cuerpo_latex(e: dict) -> str:
+    cuerpo = markdown_a_latex(quitar_bibliografia_manual(e["cuerpo"]))
+    refs = e.get("refs") or []
+    if refs:
+        cuerpo += "\n" + rf"\nocite{{{','.join(refs)}}}"
+    return cuerpo
+
+
 # ─────────────────────────── PARSER ───────────────────────────
 def parse(path: Path, raiz: Path) -> dict:
     raw = path.read_text(encoding="utf-8")
@@ -286,6 +463,9 @@ def build_latex(entidades, build_dir: Path, autor="Alcy") -> Path:
          r"\usepackage[spanish]{babel}",
          r"\usepackage{graphicx}",
          r"\usepackage{float}",
+         r"\usepackage{array}",
+         r"\usepackage{tabularx}",
+         r"\usepackage[hidelinks]{hyperref}",
          r"\usepackage[export]{adjustbox}",  # habilita 'max width' en includegraphics
          r"\usepackage[backend=biber,style=numeric]{biblatex}",
          # libro.tex vive y se compila dentro de build/; la bibliografía es
@@ -306,8 +486,7 @@ def build_latex(entidades, build_dir: Path, autor="Alcy") -> Path:
         fig = figura_latex(e, build_dir.parent)
         if fig:
             L.append(fig)
-        L.append(escape_latex(e["cuerpo"]))
-        L += [f"\\cite{{{r}}}" for r in (e.get("refs") or [])]
+        L.append(cuerpo_latex(e))
 
     def capitulo_signo(e):
         """Un signo como capítulo: figura, campos semióticos, límites y cuerpo."""
@@ -326,8 +505,7 @@ def build_latex(entidades, build_dir: Path, autor="Alcy") -> Path:
             out.append(r"\paragraph{Dónde NO confiar.}\begin{itemize}")
             out += [f"  \\item {escape_latex(fp)}" for fp in e["falsos_positivos"]]
             out.append(r"\end{itemize}")
-        out.append(escape_latex(e["cuerpo"]))
-        out += [f"\\cite{{{r}}}" for r in (e.get("refs") or [])]
+        out.append(cuerpo_latex(e))
         return out
 
     # Los signos se agrupan en una parte por aparato. Se emiten solo las partes
@@ -359,8 +537,7 @@ def build_latex(entidades, build_dir: Path, autor="Alcy") -> Path:
             if e.get("decision_semiotica"):
                 L.append(r"\paragraph{Decisión semiótica.} "
                          + escape_latex(e["decision_semiotica"]))
-            L.append(escape_latex(e["cuerpo"]))
-            L += [f"\\cite{{{r}}}" for r in (e.get("refs") or [])]
+            L.append(cuerpo_latex(e))
 
     L += [r"\printbibliography", r"\end{document}"]
     tex = build_dir / "libro.tex"

@@ -30,6 +30,7 @@ on:
       - 'scripts/build.py'
       - 'scripts/epub.py'
       - 'scripts/indice.py'
+      - 'scripts/paquete_latex.py'
       - 'scripts/verificar_publicacion.py'
       - 'build/index.json'
       - 'refs.bib'
@@ -114,6 +115,11 @@ jobs:
           lualatex -halt-on-error -interaction=nonstopmode libro.tex
           test -s libro.pdf || { echo "::error::No se generó build/libro.pdf"; exit 1; }
 
+      - name: Empaquetar fuente LuaLaTeX con todos los assets
+        run: |
+          python scripts/paquete_latex.py --salida build/biosemiotics-latex.zip
+          test -s build/biosemiotics-latex.zip || { echo "::error::No se generó el ZIP LaTeX"; exit 1; }
+
       - name: Generar el ePub
         run: |
           ARGS=()
@@ -148,7 +154,8 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: >-
           gh release upload "${{ github.event.release.tag_name }}"
-          build/atlas.epub build/libro.tex build/libro.pdf --clobber
+          build/atlas.epub build/libro.tex build/libro.pdf
+          build/biosemiotics-latex.zip --clobber
 
       - name: Publicar derivados como artifact
         if: github.event_name != 'release'
@@ -159,4 +166,5 @@ jobs:
             build/atlas.epub
             build/libro.tex
             build/libro.pdf
+            build/biosemiotics-latex.zip
           retention-days: 14
