@@ -2,7 +2,7 @@
 id: cuantificacion-limites
 tipo: concepto
 titulo: "Cuantificación y sus límites: de dónde salen los números"
-url: ""
+url: "https://www.biosemiotics.net/cuantificacion-y-sus-limites-de-donde-salen-los-numeros/"
 
 abstract: >
   Todo umbral ecográfico es una convención construida sobre una población, no
