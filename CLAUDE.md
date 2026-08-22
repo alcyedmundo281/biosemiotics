@@ -109,10 +109,17 @@ requiere una carga separada.
 
 ## Ciclo de publicación en Ghost
 
-Este rol publica en Ghost y es dueño de los artefactos que solo nacen durante
-la publicación: imagen destacada, licencia, URL pública definitiva y su
-integración en el banco de imágenes/LuaLaTeX. El repositorio de contenidos y
-`build/index.json` siguen siendo provistos por la otra sesión.
+Una misma sesión conserva los dos roles del ciclo, pero nunca los mezcla en un
+mismo paso ni en un mismo commit:
+
+- **Publicador:** opera Ghost y registra imagen, licencia, URL definitiva y
+  salidas editoriales.
+- **Proveedor:** valida la fuente, regenera índice, mapa y metadatos derivados.
+
+La separación es operativa, no personal: cada rol usa su propia rama y su PR
+apilado. El cambio de rol ocurre solo después de crear y congelar el PR padre
+del publicador. Se trabaja de forma secuencial en el único worktree principal;
+no se crea un segundo worktree para simular otra sesión.
 
 ### Límite de responsabilidad — obligatorio
 
@@ -120,7 +127,7 @@ Esta sección prevalece sobre las instrucciones generales de creación,
 compilación y Git cuando la tarea solicitada sea publicar un artículo.
 
 El publicador puede usar la sesión autorizada de Ghost y, sobre una ficha `.md`
-**ya creada y validada por el proveedor**, modificar solamente `url` y
+**ya creada y validada durante la fase proveedora**, modificar solamente `url` y
 `medios`; puede añadir el archivo licenciado a `assets/img/`, ejecutar
 `build.py`, verificar `build/libro.tex` con LuaLaTeX y entregar esos cambios en
 una rama/PR de publicación.
@@ -130,10 +137,12 @@ Crossref, ni ejecutar `indice.py` o modificar `build/index.json`. Tampoco
 actualiza el mapa maestro ni purga la caché: esas acciones pertenecen al flujo
 separado del **proveedor del índice**.
 
-Si falta la ficha o el cuerpo canónico, o si fallan sus referencias, el
-publicador se detiene y entrega un bloqueo al proveedor. No crea ni repara ese
-contenido. `build.py` se permite únicamente después de añadir `medios` o la URL
-para validar la imagen y su salida LuaLaTeX; `indice.py` sigue prohibido.
+Si falta la ficha o el cuerpo canónico, o si fallan sus referencias, la fase
+publicadora se detiene. La misma sesión vuelve explícitamente a una rama de
+proveedor para crear o reparar ese contenido, lo integra y solo después inicia
+de nuevo la publicación. `build.py` se permite en la fase publicadora únicamente
+después de añadir `medios` o la URL para validar la imagen y su salida
+LuaLaTeX; `indice.py` sigue prohibido hasta el cambio de rol.
 
 ### 0. Preflight — evitar colisiones
 
@@ -201,7 +210,7 @@ python scripts/auditar_pegado_ghost.py \
    `Published and sent`) y copia la URL pública definitiva. Nunca uses la URL
    del editor (`/ghost/#/...`) ni una vista previa (`/p/...`).
 
-### 2. Registrar los artefactos de publicación y entregar al proveedor
+### 2. Registrar los artefactos y cerrar la fase publicadora
 
 1. Copia la URL pública definitiva al campo `url` de la ficha existente. No
    cambies ningún otro campo salvo `medios`.
@@ -213,17 +222,17 @@ python scripts/auditar_pegado_ghost.py \
    `assets/img/` y las salidas LuaLaTeX que correspondan. Es normal que el
    check de deriva del índice señale que aún falta la regeneración; no la
    resuelvas desde el rol publicador.
-4. Señala inmediatamente ese PR al editor/proveedor con el `id`, la URL
-   definitiva y el nombre de la rama. El traspaso no termina con un mensaje:
-   debe existir un PR de regeneración creado por el proveedor.
+4. Registra en el PR el `id`, la URL definitiva y el nombre de la rama. Cambia
+   explícitamente al rol proveedor y crea desde esa rama el PR hijo de
+   regeneración. El traspaso no termina con una nota: debe existir ese PR hijo.
 5. Devuelve un informe con: `id`, título, URL pública, id de Ghost, estado,
    fecha/hora, audiencia y destinatarios, tags, excerpt, autor, acceso, imagen,
    alt, crédito, fuente, licencia, archivos cambiados y PR.
 
-Esta división evita choques: la sesión proveedora crea contenido y verifica
-PMID/Crossref; el publicador nunca toca esos campos. El publicador aporta la
-información que el proveedor no puede conocer antes de Ghost: URL e imagen
-finales.
+Esta división evita mezclar autoridades: la fase proveedora crea contenido y
+verifica PMID/Crossref; la fase publicadora nunca toca esos campos. El rol
+publicador aporta lo que no existe antes de Ghost —URL e imagen finales— y el
+rol proveedor lo propaga después a los derivados.
 
 ### 3. Traspaso atómico del índice — obligatorio
 
@@ -232,7 +241,8 @@ artículo ya está vivo, los dos PR se apilan:
 
 1. El PR padre del publicador contiene URL, `medios`, imagen y LuaLaTeX, pero
    no `build/index.json`; permanece en borrador.
-2. El editor/proveedor crea una rama desde la rama del publicador, ejecuta
+2. La misma sesión, ahora declarada en rol proveedor, crea una rama desde la
+   rama del publicador, ejecuta
    `indice.py`, actualiza índice, mapa y metadatos globales, y abre un **PR hijo
    de regeneración cuya base es la rama del publicador**, no `main`.
    Antes de regenerar, compara la rama padre con `origin/main`. Si el padre se
@@ -246,9 +256,9 @@ artículo ya está vivo, los dos PR se apilan:
    corrige una atribución, licencia o `fuente_url` después de crear o fusionar
    el hijo, ese hijo queda obsoleto y debe regenerarse otra vez antes de cerrar
    el padre.
-3. Cuando la CI del PR hijo pasa, el proveedor lo fusiona en la rama del
-   publicador. El PR padre incorpora así el índice regenerado sin que el
-   publicador se convierta en dueño del derivado.
+3. Cuando la CI del PR hijo pasa, el rol proveedor lo fusiona en la rama del
+   publicador. El PR padre incorpora así el índice regenerado sin mezclar los
+   commits ni los límites de cada fase.
 4. Se vuelve a ejecutar la CI del PR padre. Solo entonces se marca listo y se
    fusiona a `main`.
 
@@ -283,16 +293,17 @@ del job de integridad (Python 3.9 y 3.13) y el job de citas. El piso 3.9 no es
 solo documentación: evita fusionar sintaxis que funcione en CI moderna pero no
 en el runtime local compartido.
 
-Esta secuencia mantiene un único dueño de `build/index.json`, evita conflictos
-entre sesiones y reduce a **cero** la ventana visible de desincronización en
-`main`. El publicador debe vigilar el traspaso hasta que exista el PR hijo; no
-puede declarar completo el flujo únicamente porque Ghost ya publicó.
+Esta secuencia mantiene un único dueño de `build/index.json` en cada fase,
+evita conflictos de responsabilidad y reduce a **cero** la ventana visible de
+desincronización en `main`. La misma sesión debe completar ambos PR; no puede
+declarar terminado el flujo únicamente porque Ghost ya publicó.
 
-## Mantenimiento del proveedor — fuera del rol de publicación
+## Fase proveedora — separada de la fase publicadora
 
-Lo que sigue documenta al proveedor del índice y no autoriza al publicador de
-Ghost a ejecutar `indice.py` ni a tocar `build/index.json`. En el flujo
-proveedor, `build.py` NO regenera
+Lo que sigue documenta el rol proveedor del índice. La misma sesión solo queda
+autorizada a ejercerlo después de congelar el PR padre y crear una rama hija;
+no autoriza al rol publicador activo a ejecutar `indice.py` ni a tocar
+`build/index.json`. En la fase proveedora, `build.py` NO regenera
 `index.json` — eso lo hace `indice.py`. Si el proveedor modifica un `.md`, debe
 correr ambos scripts antes de commitear para no servir entradas obsoletas.
 Cuando recibe un PR de publicación, el proveedor crea el PR hijo de
@@ -329,7 +340,7 @@ Las dos URLs (primaria raw, respaldo jsDelivr) son **constantes fijas en `indice
 
 ## Flujo del proveedor: ramas y Pull Requests
 
-**`main` está protegida: no se le hace push directo.** Todo cambio entra por un Pull Request que la CI debe aprobar antes de fusionar. Esto nació de varias colisiones entre dos sesiones empujando a `main` a la vez; el PR convierte el choque en una revisión ordenada.
+**`main` está protegida: no se le hace push directo.** Todo cambio entra por un Pull Request que la CI debe aprobar antes de fusionar. Los dos roles se representan con ramas y PR distintos, aunque los ejecute la misma sesión.
 
 El ciclo, para cualquier cambio:
 
@@ -361,20 +372,20 @@ cualquier cambio que no pertenezca al PR.
 Reglas:
 - **Una rama por unidad de trabajo** (un signo, un arreglo). PRs chicos se revisan y se fusionan sin fricción.
 - **No fusiones con la CI en rojo.** El job *Integridad* es obligatorio: si falla, algo real está mal (índice sin regenerar, arista rota, caso sin consentimiento).
-- **Trabajo en paralelo:** cada sesión en su rama. Si dos ramas tocan lo mismo, la que fusiona segundo hace `git pull` de `main` y resuelve en su rama —nunca en `main`. Y **nunca fusiones contenido con citas sin re-verificar** que sobrevivieron intactas (`python scripts/verificar_citas.py`).
+- **Trabajo concurrente excepcional:** cada unidad permanece en su rama. Si dos ramas tocan lo mismo, la que fusiona segundo actualiza desde `main` y resuelve en su rama —nunca en `main`. Y **nunca fusiones contenido con citas sin re-verificar** que sobrevivieron intactas (`python scripts/verificar_citas.py`).
 
 ## Higiene de Git
 
 Después de cada tarea significativa: `git add`, `git commit` con mensaje claro. Es el punto de restauración. Con un agente editando de forma autónoma, commitear seguido no es opcional — es la red de seguridad. El `push` va a **tu rama**, no a `main` (ver arriba).
 
-### Propiedad de worktrees y ramas locales
+### Worktree único y ramas por rol
 
-Cada sesión es dueña de su propio worktree y de sus propias ramas locales.
-Retirar un worktree o borrar una rama local solo lo hace la sesión que la creó.
-Si otra sesión dejó residuos, se reportan; no se limpian por cuenta propia.
-`git worktree prune` puede usarse para eliminar registros cuyo directorio ya no
-existe, pero no autoriza `git worktree remove` sobre un espacio ajeno. Nunca se
-usa `--force` ni se borra manualmente el directorio de un worktree ajeno. Las
+El flujo normal usa exclusivamente el worktree principal. Publicador y
+proveedor se separan mediante ramas/PR apilados y cambios secuenciales de rama,
+no mediante worktrees adicionales. Antes y después de cada tarea se ejecuta
+`git worktree list`: cualquier worktree extra debe identificarse y retirarse
+solo con autorización explícita, después de comprobar que no contiene cambios
+sin guardar. Nunca se usa `--force` ni se borra manualmente su directorio. Las
 ramas remotas ya fusionadas sí puede eliminarlas quien fusiona el PR.
 
 ## Lo que NO debes hacer
