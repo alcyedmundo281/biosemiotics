@@ -169,6 +169,7 @@
    "id": "cuantificacion-limites",
    "tipo": "concepto",
    "titulo": "Cuantificación y sus límites: de dónde salen los números",
+   "url": "https://www.biosemiotics.net/cuantificacion-y-sus-limites-de-donde-salen-los-numeros/",
    "abstract": "Todo umbral ecográfico es una convención construida sobre una población, no una propiedad del paciente que tienes delante. Un número tiene tres fuentes de error acumuladas: la medición, el corte elegido y la población de donde se derivó. Este concepto reúne los ejemplos que el atlas ya usó —los 6 mm del apéndice, el colédoco, la fracción de eyección a ojo— para enseñar a leer cualquier cifra con la desconfianza correcta.\n",
    "nivel": "intermedio",
    "licencia": "CC-BY-4.0",
@@ -194,6 +195,22 @@
      ]
     }
    ],
+   "medios": [
+    {
+     "tipo": "imagen",
+     "destacada": true,
+     "id": "wikimedia:Standard Normal Distribution-en.svg",
+     "descripcion": "Distribución normal estándar con regiones sombreadas que muestran qué proporción de una población cae dentro de una, dos y tres desviaciones estándar",
+     "credito": "Д.Ильин (vectorización), basado en D Wells",
+     "fuente": "Wikimedia Commons",
+     "fuente_url": "https://commons.wikimedia.org/wiki/File:Standard_Normal_Distribution-en.svg",
+     "licencia_img": "CC0 1.0",
+     "licencia_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+     "archivo_local": "assets/img/cuantificacion-limites.png"
+    }
+   ],
+   "n_loops": 0,
+   "n_imagenes": 1,
    "refs": [
     "prendergast2014",
     "worku2020",
