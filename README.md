@@ -57,6 +57,11 @@ De esa fuente única salen:
 - **`libro.pdf`** — libro compilado desde `libro.tex` con LuaLaTeX
 - **`biosemiotics-latex.zip`** — fuente compilable con bibliografía y `assets/`
 
+GitHub Actions regenera automáticamente EPUB, PDF, TEX y el ZIP LaTeX
+autocontenido después de cada cambio relevante fusionado a `main`. Los
+artefactos quedan disponibles durante 90 días; no hace falta ejecutar el
+workflow manualmente.
+
 ### Uso
 
 ```bash
