@@ -52,6 +52,9 @@ De esa fuente única salen:
 - **`jsonld/`** — fichas schema.org (`MedicalScholarlyArticle`, `MedicalSignOrSymptom`)
 - **`jats/`** — XML JATS para depósito y archivo
 - **`index.json`** — índice tipo PubMed que alimenta el buscador facetado del sitio
+- **`atlas-inject.html`** — buscador para la página Atlas de Ghost
+- **`atlas.epub`** — edición EPUB3 con las imágenes y licencias del banco publicado
+- **`libro.pdf`** — libro compilado desde `libro.tex` con LuaLaTeX
 
 ### Uso
 
@@ -62,7 +65,9 @@ python scripts/nuevo.py signo <id> "<título>"   # crear una entrada
 python scripts/build.py                          # compilar y validar
 python scripts/refs.py                           # auditar qué referencias faltan
 python scripts/refs.py --buscar                  # buscarlas en PubMed
-python scripts/indice.py . <URL_DEL_INDICE>      # generar índice y derivados
+python scripts/indice.py .                       # generar índice y derivados
+python scripts/epub.py --salida build/atlas.epub --solo-publicados
+python scripts/verificar_publicacion.py --verificar-derivados --epub build/atlas.epub
 python scripts/consultas.py                      # explorar el atlas en SQL
 ```
 

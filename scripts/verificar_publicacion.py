@@ -14,13 +14,18 @@ de red no convierta la integridad local en una prueba inestable.
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import re
 import sys
 import urllib.request
+import xml.etree.ElementTree as ET
+import zipfile
 from pathlib import Path
+from typing import Optional
 
 from build import cargar
+from indice import URL_PRIMARIA, URL_RESPALDO, XLINK_NS
 
 
 DOMINIO_PUBLICO = "https://www.biosemiotics.net/"
@@ -136,6 +141,93 @@ def validar_destacadas(raiz: Path, entidades: list[dict], errores: list[str]) ->
                         error(errores, f"{entidad['id']}: no existe {archivo}")
 
 
+def validar_derivados(
+    raiz: Path,
+    entidades: list[dict],
+    errores: list[str],
+    epub: Optional[Path] = None,
+) -> None:
+    """Comprueba URL e imágenes en cada salida posterior a Ghost.
+
+    Los binarios EPUB/PDF no se versionan. El EPUB se inspecciona cuando el
+    llamador entrega `--epub`; LuaLaTeX se valida compilando `libro.tex` en CI.
+    Aquí se comprueba antes que el .tex apunte exactamente a `archivo_local`.
+    """
+    build = raiz / "build"
+    atlas = build / "atlas-inject.html"
+    tex = build / "libro.tex"
+    for ruta in (atlas, tex):
+        if not ruta.is_file():
+            error(errores, f"falta derivado {ruta.relative_to(raiz)}")
+    atlas_txt = atlas.read_text(encoding="utf-8") if atlas.is_file() else ""
+    for url_indice in (URL_PRIMARIA, URL_RESPALDO):
+        if url_indice not in atlas_txt:
+            error(errores, f"atlas-inject.html no contiene {url_indice}")
+    tex_txt = tex.read_text(encoding="utf-8") if tex.is_file() else ""
+
+    huellas_epub: Optional[set[bytes]] = None
+    if epub is not None:
+        if not epub.is_file():
+            error(errores, f"no existe el EPUB {epub}")
+        else:
+            try:
+                with zipfile.ZipFile(epub) as zf:
+                    huellas_epub = {
+                        hashlib.sha256(zf.read(nombre)).digest()
+                        for nombre in zf.namelist()
+                        if Path(nombre).suffix.lower()
+                        in (".png", ".jpg", ".jpeg", ".svg", ".webp")
+                    }
+            except (OSError, zipfile.BadZipFile) as exc:
+                error(errores, f"EPUB inválido {epub}: {exc}")
+
+    for entidad in entidades:
+        url = entidad.get("url") or ""
+        if not url:
+            continue
+        jsonld_path = build / "jsonld" / f"{entidad['id']}.json"
+        jats_path = build / "jats" / f"{entidad['id']}.xml"
+        if not jsonld_path.is_file():
+            error(errores, f"{entidad['id']}: falta JSON-LD")
+        else:
+            datos = json.loads(jsonld_path.read_text(encoding="utf-8"))
+            if datos.get("url") != url or datos.get("mainEntityOfPage") != url:
+                error(errores, f"{entidad['id']}: URL ausente o distinta en JSON-LD")
+        if not jats_path.is_file():
+            error(errores, f"{entidad['id']}: falta JATS")
+        else:
+            try:
+                raiz_xml = ET.fromstring(jats_path.read_text(encoding="utf-8"))
+                self_uri = raiz_xml.find("./front/article-meta/self-uri")
+                href = None if self_uri is None else self_uri.get(
+                    f"{{{XLINK_NS}}}href"
+                )
+                if href != url:
+                    error(errores, f"{entidad['id']}: URL ausente o distinta en JATS")
+            except ET.ParseError as exc:
+                error(errores, f"{entidad['id']}: JATS inválido: {exc}")
+
+        for medio in entidad.get("medios") or []:
+            if medio.get("tipo") != "imagen" or not medio.get("archivo_local"):
+                continue
+            relativa = Path(medio["archivo_local"])
+            token_tex = "../" + relativa.as_posix()
+            if token_tex not in tex_txt:
+                error(
+                    errores,
+                    f"{entidad['id']}: {relativa.as_posix()} no está en libro.tex",
+                )
+            if huellas_epub is not None:
+                original = raiz / relativa
+                if original.is_file():
+                    huella = hashlib.sha256(original.read_bytes()).digest()
+                    if huella not in huellas_epub:
+                        error(
+                            errores,
+                            f"{entidad['id']}: {relativa.as_posix()} no está incrustada en EPUB",
+                        )
+
+
 def comprobar_web(url: str) -> str | None:
     solicitud = urllib.request.Request(url, headers={"User-Agent": "biosemiotics-ci/1.0"})
     try:
@@ -155,6 +247,16 @@ def main() -> int:
     ap.add_argument("--id", dest="entidad_id")
     ap.add_argument("--url")
     ap.add_argument("--comprobar-web", action="store_true")
+    ap.add_argument(
+        "--verificar-derivados",
+        action="store_true",
+        help="valida atlas, JSON-LD, JATS y referencias de imagen en LaTeX",
+    )
+    ap.add_argument(
+        "--epub",
+        type=Path,
+        help="además verifica que las imágenes publicadas estén incrustadas en el EPUB",
+    )
     args = ap.parse_args()
 
     raiz = args.raiz.resolve()
@@ -180,6 +282,11 @@ def main() -> int:
         entidades,
         errores,
     )
+    if args.verificar_derivados or args.epub:
+        epub = args.epub
+        if epub is not None and not epub.is_absolute():
+            epub = raiz / epub
+        validar_derivados(raiz, entidades, errores, epub)
 
     if args.entidad_id:
         entidad = por_id.get(args.entidad_id)
