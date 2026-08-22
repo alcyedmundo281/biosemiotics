@@ -62,9 +62,12 @@ El piso soportado del repositorio es Python 3.9. El generador requiere Python
 como la versión moderna fijada en CI; el job de citas no se duplica para evitar
 repetir llamadas a PubMed. El generador lee el banco de
 forma dinámica y hereda de `build.py` el orden de capítulos y sistemas; no usa
-listas manuales. El archivo resultante vive en `build/`, no se versiona y el
-workflow `.github/workflows/epub.yml` lo valida con EPUBCheck antes de
-adjuntarlo al release.
+listas manuales. El archivo resultante vive en `build/` y no se versiona. El
+workflow `.github/workflows/epub.yml` se ejecuta automáticamente en cada cambio
+relevante fusionado a `main`: valida con EPUBCheck, compila el PDF con
+LuaLaTeX/Biber y publica EPUB, PDF, TEX y ZIP LaTeX como artifacts durante 90
+días. En un release, además los adjunta al release. `workflow_dispatch` queda
+solo como recuperación o para generar una edición de prueba.
 
 Cada figura debe declarar en `medios`: descripción, crédito, fuente y URL,
 licencia y URL, y `archivo_local`. La ausencia de cualquiera de esos datos o
@@ -290,7 +293,8 @@ artículo ya está vivo, los dos PR se apilan:
    dentro del contenedor EPUB. El ZIP debe conservar `build/libro.tex`,
    `refs.bib` y el árbol completo `assets/` para recompilar sin depender del
    checkout original. El workflow `epub.yml` reproduce este contrato en cada PR
-   que toca contenido, imágenes o generadores.
+   que toca contenido, imágenes o generadores y vuelve a generarlo
+   automáticamente al fusionarse en `main`; no requiere una ejecución manual.
 
 Antes de fusionar el padre, su CI debe mostrar en verde **todas** las variantes
 del job de integridad (Python 3.9 y 3.13) y el job de citas. El piso 3.9 no es

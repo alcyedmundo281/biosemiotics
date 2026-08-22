@@ -1,8 +1,8 @@
 name: EPUB y LuaLaTeX del atlas
 
-# Publica la edición en ePub como asset del release, para que el artefacto no
-# viva en git —es un binario derivado que cambia en cada compilación— pero sí
-# tenga una URL estable y descargable.
+# Genera automáticamente EPUB, PDF y fuente LuaLaTeX autocontenida cuando
+# cambia main. Los binarios no viven en git: cada ejecución los publica como
+# artifact descargable, y los releases además los reciben como assets.
 #
 # CONTRATO CON scripts/epub.py
 # Este workflow define la interfaz que debe cumplir el generador:
@@ -21,6 +21,21 @@ name: EPUB y LuaLaTeX del atlas
 # que lo genera, que es reproducible por diseño.
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - 'conceptos/**'
+      - 'signos/**'
+      - 'casos/**'
+      - 'assets/img/**'
+      - 'scripts/build.py'
+      - 'scripts/epub.py'
+      - 'scripts/indice.py'
+      - 'scripts/paquete_latex.py'
+      - 'scripts/verificar_publicacion.py'
+      - 'build/index.json'
+      - 'refs.bib'
+      - '.github/workflows/epub.yml'
   pull_request:
     paths:
       - 'conceptos/**'
@@ -34,6 +49,7 @@ on:
       - 'scripts/verificar_publicacion.py'
       - 'build/index.json'
       - 'refs.bib'
+      - '.github/workflows/epub.yml'
   release:
     types: [published]
   workflow_dispatch:
@@ -46,9 +62,13 @@ on:
 permissions:
   contents: write   # necesario para adjuntar el asset al release
 
+concurrency:
+  group: editorial-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   epub:
-    name: Construir y adjuntar el ePub
+    name: Generar EPUB, PDF y fuente LuaLaTeX
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -167,4 +187,4 @@ jobs:
             build/libro.tex
             build/libro.pdf
             build/biosemiotics-latex.zip
-          retention-days: 14
+          retention-days: 90
