@@ -26,6 +26,18 @@ autores:
     afiliacion: "Universidad Central del Ecuador"
     credit: [conceptualizacion, redaccion, supervision]
 
+medios:
+  - tipo: imagen
+    destacada: true
+    id: "wikimedia:Standard Normal Distribution-en.svg"
+    descripcion: "Distribución normal estándar con regiones sombreadas que muestran qué proporción de una población cae dentro de una, dos y tres desviaciones estándar"
+    credito: "Д.Ильин (vectorización), basado en D Wells"
+    fuente: "Wikimedia Commons"
+    fuente_url: "https://commons.wikimedia.org/wiki/File:Standard_Normal_Distribution-en.svg"
+    licencia_img: "CC0 1.0"
+    licencia_url: "https://creativecommons.org/publicdomain/zero/1.0/"
+    archivo_local: "assets/img/cuantificacion-limites.png"
+
 refs: [prendergast2014, worku2020, jendresen2002, adams2015, arruzza2022, thavendiranathan2013, gudmundsson2005, rich1982]
 fecha: 2026-08-15
 actualizado: 2026-08-15
