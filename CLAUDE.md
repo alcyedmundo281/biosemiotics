@@ -263,7 +263,7 @@ artículo ya está vivo, los dos PR se apilan:
    fusiona a `main`.
 
 5. El flujo de publicación no está completo hasta regenerar y verificar las
-   **siete salidas** posteriores a Ghost:
+   **ocho salidas** posteriores a Ghost:
 
    ```bash
    python scripts/build.py
@@ -273,6 +273,7 @@ artículo ya está vivo, los dos PR se apilan:
    python scripts/epub.py --salida build/atlas.epub --solo-publicados
    python scripts/verificar_publicacion.py --id <id> --url <url> \
      --verificar-derivados --epub build/atlas.epub
+   python scripts/paquete_latex.py --salida build/biosemiotics-latex.zip
    cd build
    lualatex -halt-on-error -interaction=nonstopmode libro.tex
    biber libro
@@ -281,12 +282,15 @@ artículo ya está vivo, los dos PR se apilan:
    ```
 
    Las salidas son `index.json`, `atlas-inject.html`, `jsonld/`, `jats/`,
-   `libro.tex`, `libro.pdf` (LuaLaTeX) y `atlas.epub`. Solo
+   `libro.tex`, `libro.pdf` (LuaLaTeX), `atlas.epub` y el paquete
+   `biosemiotics-latex.zip`. Solo
    `build/index.json` se versiona; las otras se regeneran. La verificación
    compara la URL en los cuatro derivados web/metadatos y exige que cada
    imagen publicada sea la declarada en `archivo_local`, tanto en LaTeX como
-   dentro del contenedor EPUB. El workflow `epub.yml` reproduce este contrato
-   en cada PR que toca contenido, imágenes o generadores.
+   dentro del contenedor EPUB. El ZIP debe conservar `build/libro.tex`,
+   `refs.bib` y el árbol completo `assets/` para recompilar sin depender del
+   checkout original. El workflow `epub.yml` reproduce este contrato en cada PR
+   que toca contenido, imágenes o generadores.
 
 Antes de fusionar el padre, su CI debe mostrar en verde **todas** las variantes
 del job de integridad (Python 3.9 y 3.13) y el job de citas. El piso 3.9 no es
