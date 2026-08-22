@@ -39,6 +39,8 @@ DOI_OBRA = "10.5281/zenodo.21435362"
 # El buscador pide la primaria con no-cache y solo cae a la respaldo si falla.
 URL_PRIMARIA = "https://raw.githubusercontent.com/alcyedmundo281/biosemiotics/main/build/index.json"
 URL_RESPALDO = "https://cdn.jsdelivr.net/gh/alcyedmundo281/biosemiotics@main/build/index.json"
+XLINK_NS = "http://www.w3.org/1999/xlink"
+ET.register_namespace("xlink", XLINK_NS)
 
 
 # ══════════════════ 1. LA FICHA (el registro tipo PubMed) ══════════════════
@@ -192,6 +194,11 @@ def jats(e: dict) -> str:
         ET.SubElement(meta, "article-id", {"pub-id-type": "doi"}).text = e["doi"]
     ET.SubElement(meta, "article-id",
                   {"pub-id-type": "publisher-id"}).text = e["id"]
+    if e.get("url"):
+        ET.SubElement(meta, "self-uri", {
+            "content-type": "web",
+            f"{{{XLINK_NS}}}href": e["url"],
+        })
 
     tg = ET.SubElement(meta, "title-group")
     ET.SubElement(tg, "article-title").text = e["titulo"]
