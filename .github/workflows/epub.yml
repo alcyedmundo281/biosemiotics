@@ -1,4 +1,4 @@
-name: ePub del atlas
+name: EPUB y LuaLaTeX del atlas
 
 # Publica la edición en ePub como asset del release, para que el artefacto no
 # viva en git —es un binario derivado que cambia en cada compilación— pero sí
@@ -21,6 +21,18 @@ name: ePub del atlas
 # que lo genera, que es reproducible por diseño.
 
 on:
+  pull_request:
+    paths:
+      - 'conceptos/**'
+      - 'signos/**'
+      - 'casos/**'
+      - 'assets/img/**'
+      - 'scripts/build.py'
+      - 'scripts/epub.py'
+      - 'scripts/indice.py'
+      - 'scripts/verificar_publicacion.py'
+      - 'build/index.json'
+      - 'refs.bib'
   release:
     types: [published]
   workflow_dispatch:
@@ -58,14 +70,16 @@ jobs:
           fi
 
       - name: Instalar dependencias del sistema
-        # pandoc para la conversión y epubcheck para validar. Las fuentes cubren
-        # los símbolos Unicode estructurales del banco (≥ → ±): sin ellas el
-        # ePub se genera pero se lee mal en algunos lectores.
+        # Pandoc genera el EPUB y LuaLaTeX compila el libro con las mismas
+        # imágenes declaradas en `archivo_local`.
         run: |
           sudo apt-get update -qq
           sudo apt-get install -y --no-install-recommends \
-            pandoc fonts-freefont-ttf default-jre-headless
+            pandoc fonts-freefont-ttf default-jre-headless biber \
+            texlive-latex-recommended texlive-latex-extra \
+            texlive-lang-spanish texlive-luatex
           echo "pandoc: $(pandoc --version | head -1)"
+          echo "lualatex: $(lualatex --version | head -1)"
 
       - name: Instalar epubcheck
         run: |
@@ -76,15 +90,29 @@ jobs:
           echo "EPUBCHECK_JAR=/opt/epubcheck-${VER}/epubcheck.jar" >> "$GITHUB_ENV"
 
       - name: Compilar el banco
-        # build.py produce libro.tex y las salidas derivadas de las que parte el
-        # ePub. NO se ejecuta indice.py: index.json tiene un solo dueño y no es
-        # este workflow.
-        run: python scripts/build.py
+        # indice.py se ejecuta aquí solo como comprobación reproducible: el PR
+        # proveedor sigue siendo el único que versiona build/index.json.
+        run: |
+          python scripts/build.py
+          python scripts/indice.py .
+          if ! git diff --quiet -- build/index.json; then
+            echo "::error::build/index.json está desactualizado."
+            exit 1
+          fi
 
       - name: Verificar coherencia de publicación
         # Un release no puede empaquetar URLs o medios más nuevos que el índice.
         # Este guardián también valida el mapa y las imágenes destacadas.
-        run: python scripts/verificar_publicacion.py
+        run: python scripts/verificar_publicacion.py --verificar-derivados
+
+      - name: Compilar el libro con LuaLaTeX
+        working-directory: build
+        run: |
+          lualatex -halt-on-error -interaction=nonstopmode libro.tex
+          biber libro
+          lualatex -halt-on-error -interaction=nonstopmode libro.tex
+          lualatex -halt-on-error -interaction=nonstopmode libro.tex
+          test -s libro.pdf || { echo "::error::No se generó build/libro.pdf"; exit 1; }
 
       - name: Generar el ePub
         run: |
@@ -92,10 +120,13 @@ jobs:
           # Los releases son ediciones citables: solo incluyen fichas que ya
           # pasaron por la revisión editorial de Ghost. En una ejecución manual
           # se puede desactivar la bandera para probar una edición futura.
-          if [ "${{ github.event_name }}" = "release" ] || [ "${{ inputs.solo_publicados }}" = "true" ]; then
+          if [ "${{ github.event_name }}" != "workflow_dispatch" ] || [ "${{ inputs.solo_publicados }}" = "true" ]; then
             ARGS+=(--solo-publicados)
           fi
           python scripts/epub.py --salida build/atlas.epub "${ARGS[@]}"
+
+      - name: Verificar imágenes dentro del EPUB
+        run: python scripts/verificar_publicacion.py --verificar-derivados --epub build/atlas.epub
 
       - name: Comprobar que el artefacto es real
         # Un ePub de pocos KB casi siempre significa "se generó vacío".
@@ -115,12 +146,17 @@ jobs:
         if: github.event_name == 'release'
         env:
           GH_TOKEN: ${{ github.token }}
-        run: gh release upload "${{ github.event.release.tag_name }}" build/atlas.epub --clobber
+        run: >-
+          gh release upload "${{ github.event.release.tag_name }}"
+          build/atlas.epub build/libro.tex build/libro.pdf --clobber
 
-      - name: Publicar como artifact (ejecución manual)
-        if: github.event_name == 'workflow_dispatch'
+      - name: Publicar derivados como artifact
+        if: github.event_name != 'release'
         uses: actions/upload-artifact@v4
         with:
-          name: atlas-epub
-          path: build/atlas.epub
+          name: atlas-epub-latex
+          path: |
+            build/atlas.epub
+            build/libro.tex
+            build/libro.pdf
           retention-days: 14

@@ -190,18 +190,22 @@ def _dims_px(path: Path):
 def figura_latex(e: dict, raiz: Path) -> str:
     """Figura flotante con su imagen y la cita al pie (crédito + licencia).
 
-    La imagen vive en assets/img/<id sin 'signo-', sin ñ>.{jpg,jpeg,png}.
-    libro.tex se compila desde build/, así que la ruta es ../assets/img/...
-    Devuelve '' si no hay imagen declarada o el archivo no existe.
+    `archivo_local` es la única autoridad para la ruta: es el mismo campo que
+    consume EPUB y evita que LaTeX adivine un nombre distinto al archivo que se
+    subió a Ghost. libro.tex se compila desde build/, por eso la ruta lleva
+    `../`. Devuelve '' si no hay imagen declarada o el archivo no existe.
     """
     med = next((m for m in (e.get("medios") or [])
-                if m.get("tipo") == "imagen" and m.get("credito")), None)
+                if m.get("tipo") == "imagen" and m.get("credito")
+                and m.get("archivo_local")), None)
     if not med:
         return ""
-    base = e["id"].replace("signo-", "").replace("ñ", "n")
-    ruta = next((p for ext in (".jpg", ".jpeg", ".png")
-                 if (p := raiz / "assets" / "img" / f"{base}{ext}").exists()), None)
-    if not ruta:
+    ruta = (raiz / med["archivo_local"]).resolve()
+    try:
+        relativa = ruta.relative_to(raiz.resolve())
+    except ValueError:
+        return ""
+    if not ruta.is_file():
         return ""
     partes = [med["credito"]]
     if med.get("fuente"):
@@ -225,7 +229,7 @@ def figura_latex(e: dict, raiz: Path) -> str:
     return "\n".join([
         r"\begin{figure}[H]",
         r"  \centering",
-        rf"  \includegraphics[{spec}]{{../assets/img/{base}{ruta.suffix}}}",
+        rf"  \includegraphics[{spec}]{{../{relativa.as_posix()}}}",
         rf"  \caption{{{desc} \textit{{Fuente: {credito}}}}}",
         r"\end{figure}",
     ])
@@ -284,7 +288,9 @@ def build_latex(entidades, build_dir: Path, autor="Alcy") -> Path:
          r"\usepackage{float}",
          r"\usepackage[export]{adjustbox}",  # habilita 'max width' en includegraphics
          r"\usepackage[backend=biber,style=numeric]{biblatex}",
-         r"\addbibresource{refs.bib}",
+         # libro.tex vive y se compila dentro de build/; la bibliografía es
+         # fuente versionada en la raíz, no un derivado que deba copiarse.
+         r"\addbibresource{../refs.bib}",
          r"\title{Biosemiótica del Cuerpo Vivo\\\large Manual de POCUS para el clínico}",
          rf"\author{{{escape_latex(autor)}}}",
          r"\begin{document}", r"\maketitle", r"\tableofcontents",

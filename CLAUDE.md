@@ -205,9 +205,10 @@ python scripts/auditar_pegado_ghost.py \
 
 1. Copia la URL pública definitiva al campo `url` de la ficha existente. No
    cambies ningún otro campo salvo `medios`.
-2. Ejecuta `build.py`, valida la inclusión de la figura y su atribución en
-   `build/libro.tex`, y compila LuaLaTeX si está disponible. **No ejecutes
-   `indice.py` ni agregues `build/index.json`.**
+2. Ejecuta `build.py`, valida que `build/libro.tex` use exactamente el
+   `archivo_local` subido a Ghost y compila LuaLaTeX si está disponible. La
+   misma imagen debe poder entrar en el EPUB. **No ejecutes `indice.py` ni
+   agregues `build/index.json`: esa regeneración sigue en el PR hijo.**
 3. Abre un **PR borrador de publicación** limitado a la ficha existente,
    `assets/img/` y las salidas LuaLaTeX que correspondan. Es normal que el
    check de deriva del índice señale que aún falta la regeneración; no la
@@ -250,6 +251,32 @@ artículo ya está vivo, los dos PR se apilan:
    publicador se convierta en dueño del derivado.
 4. Se vuelve a ejecutar la CI del PR padre. Solo entonces se marca listo y se
    fusiona a `main`.
+
+5. El flujo de publicación no está completo hasta regenerar y verificar las
+   **siete salidas** posteriores a Ghost:
+
+   ```bash
+   python scripts/build.py
+   python scripts/indice.py .
+   python scripts/verificar_publicacion.py --id <id> --url <url> \
+     --verificar-derivados
+   python scripts/epub.py --salida build/atlas.epub --solo-publicados
+   python scripts/verificar_publicacion.py --id <id> --url <url> \
+     --verificar-derivados --epub build/atlas.epub
+   cd build
+   lualatex -halt-on-error -interaction=nonstopmode libro.tex
+   biber libro
+   lualatex -halt-on-error -interaction=nonstopmode libro.tex
+   lualatex -halt-on-error -interaction=nonstopmode libro.tex
+   ```
+
+   Las salidas son `index.json`, `atlas-inject.html`, `jsonld/`, `jats/`,
+   `libro.tex`, `libro.pdf` (LuaLaTeX) y `atlas.epub`. Solo
+   `build/index.json` se versiona; las otras se regeneran. La verificación
+   compara la URL en los cuatro derivados web/metadatos y exige que cada
+   imagen publicada sea la declarada en `archivo_local`, tanto en LaTeX como
+   dentro del contenedor EPUB. El workflow `epub.yml` reproduce este contrato
+   en cada PR que toca contenido, imágenes o generadores.
 
 Antes de fusionar el padre, su CI debe mostrar en verde **todas** las variantes
 del job de integridad (Python 3.9 y 3.13) y el job de citas. El piso 3.9 no es
