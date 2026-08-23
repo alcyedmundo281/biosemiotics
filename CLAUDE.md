@@ -82,16 +82,22 @@ página final de créditos de imágenes. Zenodo archiva el snapshot del
 repositorio, no el asset del release; incorporar el binario al registro DOI
 requiere una carga separada.
 
-**Cicatriz de licencia (23/08/2026).** El depósito de v0.1.0 quedó publicado
-en Zenodo con **CC BY-NC 4.0** por un error al rellenar el formulario, pese a
-que `.zenodo.json` y este archivo siempre declararon CC BY 4.0. Zenodo no deja
-editar los metadatos de una versión ya publicada, así que v0.1.0 conserva la
-licencia errónea para siempre —verificable en
-`https://api.datacite.org/dois/10.5281/zenodo.21435363`—. Se corrigió creando
-v0.2.0, que hereda `.zenodo.json` correctamente y es lo que resuelve hoy el
-DOI de concepto. **Lección:** antes de publicar un release, comprueba en la
-página de depósito de Zenodo que el campo de licencia coincide con
-`.zenodo.json` — el formulario no siempre lo hereda solo.
+**Cicatriz de licencia (23/08/2026).** El atlas nació CC BY-NC 4.0 y pasó a
+**CC BY 4.0** el 15/08/2026 por decisión explícita de Alcy (#41: "El atlas
+pasa a CC BY 4.0"), que tocó los seis lugares donde vivía la licencia —fichas,
+`indice.py`, `.zenodo.json`, README y el texto legal de `LICENSE`—. El
+depósito de Zenodo de v0.1.0 (19/07/2026) es **anterior** a esa decisión y
+quedó correctamente archivado con la licencia de su momento, CC BY-NC 4.0; lo
+que pasó es que ningún release posterior volvió a depositar hasta ahora, así
+que el DOI de concepto siguió resolviendo a esa versión desactualizada durante
+más de una semana. v0.2.0 (23/08/2026) cierra esa brecha: hereda
+`.zenodo.json` con CC BY 4.0 y es lo que resuelve hoy el DOI de concepto.
+Zenodo no permite editar los metadatos de una versión ya publicada, así que
+v0.1.0 conserva la licencia de su momento para siempre —verificable en
+`https://api.datacite.org/dois/10.5281/zenodo.21435363`—, y eso es correcto,
+no un error a corregir. **Lección:** un cambio de licencia en el repositorio
+no se propaga solo al DOI ya acuñado; exige un release nuevo el mismo día,
+o el registro citable queda diciendo algo que el repositorio ya no dice.
 
 ## Lo primero al arrancar una sesión
 
