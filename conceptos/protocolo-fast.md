@@ -2,7 +2,7 @@
 id: protocolo-fast
 tipo: concepto
 titulo: "Protocolo FAST/eFAST: la secuencia, no el catálogo"
-url: ""
+url: "https://www.biosemiotics.net/protocolo-fast-efast-la-secuencia-no-el-catalogo/"
 
 abstract: >
   El FAST no es un signo: es un recorrido de ventanas que se ejecuta en orden y
@@ -25,6 +25,18 @@ autores:
     orcid: "0000-0002-9742-375X"
     afiliacion: "Universidad Central del Ecuador"
     credit: [conceptualizacion, redaccion, supervision]
+
+medios:
+  - tipo: imagen
+    destacada: true
+    id: "wikimedia:SPMAGTF-CR-AF_medical_personnel_use_FRSS-STP_to_conduct_FAST_exams_160721-M-QM580-012.jpg"
+    descripcion: "Personal sanitario revisa una imagen ecográfica durante entrenamiento del protocolo FAST"
+    credito: "Sgt. Kassie McDole, U.S. Marine Corps"
+    fuente: "Wikimedia Commons"
+    fuente_url: "https://commons.wikimedia.org/wiki/File:SPMAGTF-CR-AF_medical_personnel_use_FRSS-STP_to_conduct_FAST_exams_160721-M-QM580-012.jpg"
+    licencia_img: "Dominio público (obra del Gobierno federal de Estados Unidos)"
+    licencia_url: "https://commons.wikimedia.org/wiki/Commons:Copyright_rules_by_territory/United_States#Works_by_the_US_Federal_Government"
+    archivo_local: "assets/img/protocolo-fast.jpg"
 
 refs: [savoia2023, zanobetti2018, branney1995, holmes2017, sutarjono2023, vanderweide2019]
 fecha: 2026-08-15

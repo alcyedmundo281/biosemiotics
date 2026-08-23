@@ -3,7 +3,7 @@ id: signo-hernia-complicada
 tipo: signo
 titulo: "Hernia complicada: distinguir el bulto que espera del que no"
 titulo_en: "Complicated hernia: telling the lump that can wait from the one that cannot"
-url: ""
+url: "https://www.biosemiotics.net/hernia-complicada-distinguir-el-bulto-que-espera-del-que-no/"
 doi: null
 version: "1.0"
 
@@ -53,6 +53,18 @@ autores:
     orcid: "0000-0002-9742-375X"
     afiliacion: "Universidad Central del Ecuador"
     credit: [conceptualizacion, redaccion, supervision]
+
+medios:
+  - tipo: imagen
+    destacada: true
+    id: "wikimedia:Ultrasonography_of_inguinal_hernia_(annotated).jpg"
+    descripcion: "Ecografía longitudinal anotada de una hernia inguinal indirecta con contenido graso"
+    credito: "Mikael Häggström, M.D."
+    fuente: "Wikimedia Commons"
+    fuente_url: "https://commons.wikimedia.org/wiki/File:Ultrasonography_of_inguinal_hernia_(annotated).jpg"
+    licencia_img: "CC0 1.0"
+    licencia_url: "https://creativecommons.org/publicdomain/zero/1.0/"
+    archivo_local: "assets/img/hernia-complicada.jpg"
 
 refs: [shokoohi2023, thaker2021, fonseca2018]
 fecha: 2026-08-15

@@ -3,7 +3,7 @@ id: signo-fast-morrison
 tipo: signo
 titulo: "Morrison: la primera ventana del FAST"
 titulo_en: "Morison's pouch: the first FAST window"
-url: ""
+url: "https://www.biosemiotics.net/morrison-la-primera-ventana-del-fast/"
 doi: null
 version: "1.0"
 
@@ -51,6 +51,18 @@ autores:
     orcid: "0000-0002-9742-375X"
     afiliacion: "Universidad Central del Ecuador"
     credit: [conceptualizacion, redaccion, supervision]
+
+medios:
+  - tipo: imagen
+    destacada: true
+    id: "wikimedia:Ultrasound_Scan_ND_0110145312_1505060.png"
+    descripcion: "Ecografía del espacio de Morrison con líquido libre intraperitoneal tras trauma abdominal cerrado"
+    credito: "Nevit Dilmen"
+    fuente: "Wikimedia Commons"
+    fuente_url: "https://commons.wikimedia.org/wiki/File:Ultrasound_Scan_ND_0110145312_1505060.png"
+    licencia_img: "CC BY-SA 3.0"
+    licencia_url: "https://creativecommons.org/licenses/by-sa/3.0/"
+    archivo_local: "assets/img/fast-morrison.png"
 
 refs: [branney1995, savoia2023, zanobetti2018, sutarjono2023]
 fecha: 2026-08-15

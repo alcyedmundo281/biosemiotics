@@ -3,7 +3,7 @@ id: signo-hemotorax
 tipo: signo
 titulo: "Hemotórax en eFAST: líquido por encima del diafragma"
 titulo_en: "Hemothorax on eFAST: fluid above the diaphragm"
-url: ""
+url: "https://www.biosemiotics.net/hemotorax-en-efast-liquido-por-encima-del-diafragma/"
 doi: null
 version: "1.0"
 
@@ -49,6 +49,18 @@ autores:
     orcid: "0000-0002-9742-375X"
     afiliacion: "Universidad Central del Ecuador"
     credit: [conceptualizacion, redaccion, supervision]
+
+medios:
+  - tipo: imagen
+    destacada: true
+    id: "wikimedia:Clinician-performed-resuscitative-ultrasonography-for-the-initial-evaluation-and-resuscitation-of-1757-7241-17-34-S2.ogv#frame-5s"
+    descripcion: "Fotograma de una ecografía de reanimación con una gran colección pleural"
+    credito: "Gillman L, Ball C, Panebianco N, Al-Kadi A y Kirkpatrick A; fotograma extraído del video original"
+    fuente: "Wikimedia Commons"
+    fuente_url: "https://commons.wikimedia.org/wiki/File:Clinician-performed-resuscitative-ultrasonography-for-the-initial-evaluation-and-resuscitation-of-1757-7241-17-34-S2.ogv"
+    licencia_img: "CC BY 2.0"
+    licencia_url: "https://creativecommons.org/licenses/by/2.0/"
+    archivo_local: "assets/img/hemotorax-efast.png"
 
 refs: [zanobetti2018, savoia2023, vanderweide2019]
 fecha: 2026-08-15

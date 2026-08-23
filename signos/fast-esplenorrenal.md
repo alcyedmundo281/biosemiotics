@@ -3,7 +3,7 @@ id: signo-fast-esplenorrenal
 tipo: signo
 titulo: "Esplenorrenal: la ventana que se escapa por arriba"
 titulo_en: "Splenorenal view: the window that hides above the spleen"
-url: ""
+url: "https://www.biosemiotics.net/esplenorrenal-la-ventana-que-se-escapa-por-arriba/"
 doi: null
 version: "1.0"
 
@@ -49,6 +49,18 @@ autores:
     orcid: "0000-0002-9742-375X"
     afiliacion: "Universidad Central del Ecuador"
     credit: [conceptualizacion, redaccion, supervision]
+
+medios:
+  - tipo: imagen
+    destacada: true
+    id: "wikimedia:Ultrasound_Scan_ND_110222095049_0956280.jpg"
+    descripcion: "Ecografía con una colección líquida periesplénica en el cuadrante superior izquierdo"
+    credito: "Nevit Dilmen"
+    fuente: "Wikimedia Commons"
+    fuente_url: "https://commons.wikimedia.org/wiki/File:Ultrasound_Scan_ND_110222095049_0956280.jpg"
+    licencia_img: "CC BY-SA 3.0"
+    licencia_url: "https://creativecommons.org/licenses/by-sa/3.0/"
+    archivo_local: "assets/img/fast-esplenorrenal.jpg"
 
 refs: [branney1995, savoia2023, zanobetti2018, sutarjono2023]
 fecha: 2026-08-15

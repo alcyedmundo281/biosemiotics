@@ -3,7 +3,7 @@ id: signo-embarazo-ectopico
 tipo: signo
 titulo: "Embarazo ectópico: el útero vacío no es el signo"
 titulo_en: "Ectopic pregnancy: the empty uterus is not the sign"
-url: ""
+url: "https://www.biosemiotics.net/embarazo-ectopico-el-utero-vacio-no-es-el-signo/"
 doi: null
 version: "1.0"
 
@@ -52,6 +52,18 @@ autores:
     orcid: "0000-0002-9742-375X"
     afiliacion: "Universidad Central del Ecuador"
     credit: [conceptualizacion, redaccion, supervision]
+
+medios:
+  - tipo: imagen
+    destacada: true
+    id: "wikimedia:4_mm_gestational_sac.png"
+    descripcion: "Ecografía transvaginal de referencia de un saco gestacional intrauterino de 4 mm con saco vitelino visible"
+    credito: "Luis Goncalves"
+    fuente: "Wikimedia Commons"
+    fuente_url: "https://commons.wikimedia.org/wiki/File:4_mm_gestational_sac.png"
+    licencia_img: "CC BY-SA 3.0"
+    licencia_url: "https://creativecommons.org/licenses/by-sa/3.0/"
+    archivo_local: "assets/img/embarazo-ectopico.png"
 
 refs: [celik2022, stone2021, mullany2023, panaitescu2021, pan2025, nasrollahi2024]
 fecha: 2026-08-15
