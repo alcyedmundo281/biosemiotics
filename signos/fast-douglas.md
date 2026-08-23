@@ -3,7 +3,7 @@ id: signo-fast-douglas
 tipo: signo
 titulo: "Pelvis: el punto más bajo, y la vejiga que lo decide"
 titulo_en: "Pelvic view: the lowest point, and the bladder that governs it"
-url: ""
+url: "https://www.biosemiotics.net/pelvis-el-punto-mas-bajo-y-la-vejiga-que-lo-decide/"
 doi: null
 version: "1.0"
 
@@ -51,6 +51,18 @@ autores:
     orcid: "0000-0002-9742-375X"
     afiliacion: "Universidad Central del Ecuador"
     credit: [conceptualizacion, redaccion, supervision]
+
+medios:
+  - tipo: imagen
+    destacada: true
+    id: "wikimedia:Vagina_US.png"
+    descripcion: "Ecografía pélvica de referencia con vejiga, útero y vagina identificados"
+    credito: "Schomynv"
+    fuente: "Wikimedia Commons"
+    fuente_url: "https://commons.wikimedia.org/wiki/File:Vagina_US.png"
+    licencia_img: "CC0 1.0"
+    licencia_url: "https://creativecommons.org/publicdomain/zero/1.0/"
+    archivo_local: "assets/img/fast-douglas.png"
 
 refs: [branney1995, savoia2023, zanobetti2018, holmes2017]
 fecha: 2026-08-15
