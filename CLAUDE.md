@@ -82,6 +82,17 @@ página final de créditos de imágenes. Zenodo archiva el snapshot del
 repositorio, no el asset del release; incorporar el binario al registro DOI
 requiere una carga separada.
 
+**Cicatriz de licencia (23/08/2026).** El depósito de v0.1.0 quedó publicado
+en Zenodo con **CC BY-NC 4.0** por un error al rellenar el formulario, pese a
+que `.zenodo.json` y este archivo siempre declararon CC BY 4.0. Zenodo no deja
+editar los metadatos de una versión ya publicada, así que v0.1.0 conserva la
+licencia errónea para siempre —verificable en
+`https://api.datacite.org/dois/10.5281/zenodo.21435363`—. Se corrigió creando
+v0.2.0, que hereda `.zenodo.json` correctamente y es lo que resuelve hoy el
+DOI de concepto. **Lección:** antes de publicar un release, comprueba en la
+página de depósito de Zenodo que el campo de licencia coincide con
+`.zenodo.json` — el formulario no siempre lo hereda solo.
+
 ## Lo primero al arrancar una sesión
 
 1. Corre `git status` y reporta el estado. Si hay cambios sin commitear, avísalo antes de empezar.
