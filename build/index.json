@@ -566,6 +566,7 @@
    "id": "protocolo-fast",
    "tipo": "concepto",
    "titulo": "Protocolo FAST/eFAST: la secuencia, no el catálogo",
+   "url": "https://www.biosemiotics.net/protocolo-fast-efast-la-secuencia-no-el-catalogo/",
    "abstract": "El FAST no es un signo: es un recorrido de ventanas que se ejecuta en orden y responde una sola pregunta binaria —¿hay líquido libre?—. Cada ventana ya tiene su ficha propia; este nodo enseña la secuencia, el orden y la decisión que las une. Su valor está en el paciente inestable, donde un hallazgo positivo manda al quirófano sin escala; no está pensado para cuantificar sangrado ni para evaluar lesión de órgano.\n",
    "nivel": "intermedio",
    "licencia": "CC-BY-4.0",
@@ -591,6 +592,22 @@
      ]
     }
    ],
+   "medios": [
+    {
+     "tipo": "imagen",
+     "destacada": true,
+     "id": "wikimedia:SPMAGTF-CR-AF_medical_personnel_use_FRSS-STP_to_conduct_FAST_exams_160721-M-QM580-012.jpg",
+     "descripcion": "Personal sanitario revisa una imagen ecográfica durante entrenamiento del protocolo FAST",
+     "credito": "Sgt. Kassie McDole, U.S. Marine Corps",
+     "fuente": "Wikimedia Commons",
+     "fuente_url": "https://commons.wikimedia.org/wiki/File:SPMAGTF-CR-AF_medical_personnel_use_FRSS-STP_to_conduct_FAST_exams_160721-M-QM580-012.jpg",
+     "licencia_img": "Dominio público (obra del Gobierno federal de Estados Unidos)",
+     "licencia_url": "https://commons.wikimedia.org/wiki/Commons:Copyright_rules_by_territory/United_States#Works_by_the_US_Federal_Government",
+     "archivo_local": "assets/img/protocolo-fast.jpg"
+    }
+   ],
+   "n_loops": 0,
+   "n_imagenes": 1,
    "refs": [
     "savoia2023",
     "zanobetti2018",
@@ -1495,6 +1512,7 @@
    "tipo": "signo",
    "titulo": "Embarazo ectópico: el útero vacío no es el signo",
    "titulo_en": "Ectopic pregnancy: the empty uterus is not the sign",
+   "url": "https://www.biosemiotics.net/embarazo-ectopico-el-utero-vacio-no-es-el-signo/",
    "version": "1.0",
    "abstract": "Con prueba de embarazo positiva y dolor o sangrado, la ecografía transabdominal en primer contacto responde bien una sola pregunta: ¿hay embarazo intrauterino confirmado? Verlo tranquiliza —la especificidad llega al 100 %—; no verlo no descarta nada, porque la sensibilidad ronda el 89 %. Un útero sin embarazo confirmado, con líquido libre y paciente inestable, no pide más imagen: pide quirófano.\n",
    "sistema": "genitourinario",
@@ -1557,6 +1575,22 @@
      ]
     }
    ],
+   "medios": [
+    {
+     "tipo": "imagen",
+     "destacada": true,
+     "id": "wikimedia:4_mm_gestational_sac.png",
+     "descripcion": "Ecografía transvaginal de referencia de un saco gestacional intrauterino de 4 mm con saco vitelino visible",
+     "credito": "Luis Goncalves",
+     "fuente": "Wikimedia Commons",
+     "fuente_url": "https://commons.wikimedia.org/wiki/File:4_mm_gestational_sac.png",
+     "licencia_img": "CC BY-SA 3.0",
+     "licencia_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+     "archivo_local": "assets/img/embarazo-ectopico.png"
+    }
+   ],
+   "n_loops": 0,
+   "n_imagenes": 1,
    "refs": [
     "celik2022",
     "stone2021",
@@ -1663,6 +1697,7 @@
    "tipo": "signo",
    "titulo": "Pelvis: el punto más bajo, y la vejiga que lo decide",
    "titulo_en": "Pelvic view: the lowest point, and the bladder that governs it",
+   "url": "https://www.biosemiotics.net/pelvis-el-punto-mas-bajo-y-la-vejiga-que-lo-decide/",
    "version": "1.0",
    "abstract": "Líquido libre detrás de la vejiga —en el fondo de saco rectovesical o de Douglas—, la ventana pélvica del FAST. Es el punto más declive del peritoneo en decúbito, así que puede ser la primera en positivizarse. Depende por completo de la vejiga: llena es la ventana, vacía o sondada la borra. Un poco de líquido fisiológico en mujeres en edad fértil obliga a leerla con la clínica.\n",
    "sistema": "multiorgano",
@@ -1731,6 +1766,22 @@
      ]
     }
    ],
+   "medios": [
+    {
+     "tipo": "imagen",
+     "destacada": true,
+     "id": "wikimedia:Vagina_US.png",
+     "descripcion": "Ecografía pélvica de referencia con vejiga, útero y vagina identificados",
+     "credito": "Schomynv",
+     "fuente": "Wikimedia Commons",
+     "fuente_url": "https://commons.wikimedia.org/wiki/File:Vagina_US.png",
+     "licencia_img": "CC0 1.0",
+     "licencia_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+     "archivo_local": "assets/img/fast-douglas.png"
+    }
+   ],
+   "n_loops": 0,
+   "n_imagenes": 1,
    "refs": [
     "branney1995",
     "savoia2023",
@@ -1744,6 +1795,7 @@
    "tipo": "signo",
    "titulo": "Esplenorrenal: la ventana que se escapa por arriba",
    "titulo_en": "Splenorenal view: the window that hides above the spleen",
+   "url": "https://www.biosemiotics.net/esplenorrenal-la-ventana-que-se-escapa-por-arriba/",
    "version": "1.0",
    "abstract": "Líquido libre en el cuadrante superior izquierdo, buscado entre el bazo y el riñón y sobre todo por encima del bazo, en el espacio subfrénico. A diferencia del lado derecho, aquí el líquido se acumula primero arriba, así que la ventana clásica entre los dos órganos puede estar limpia con sangre presente. Se obtiene más posterior y más cefálica de lo que uno cree, y el estómago con gas la arruina.\n",
    "sistema": "multiorgano",
@@ -1810,6 +1862,22 @@
      ]
     }
    ],
+   "medios": [
+    {
+     "tipo": "imagen",
+     "destacada": true,
+     "id": "wikimedia:Ultrasound_Scan_ND_110222095049_0956280.jpg",
+     "descripcion": "Ecografía con una colección líquida periesplénica en el cuadrante superior izquierdo",
+     "credito": "Nevit Dilmen",
+     "fuente": "Wikimedia Commons",
+     "fuente_url": "https://commons.wikimedia.org/wiki/File:Ultrasound_Scan_ND_110222095049_0956280.jpg",
+     "licencia_img": "CC BY-SA 3.0",
+     "licencia_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+     "archivo_local": "assets/img/fast-esplenorrenal.jpg"
+    }
+   ],
+   "n_loops": 0,
+   "n_imagenes": 1,
    "refs": [
     "branney1995",
     "savoia2023",
@@ -1823,6 +1891,7 @@
    "tipo": "signo",
    "titulo": "Morrison: la primera ventana del FAST",
    "titulo_en": "Morison's pouch: the first FAST window",
+   "url": "https://www.biosemiotics.net/morrison-la-primera-ventana-del-fast/",
    "version": "1.0",
    "abstract": "Una banda anecoica entre el hígado y el riñón derecho, en el receso hepatorrenal, indica líquido libre intraperitoneal —sangre, en el contexto de trauma—. En el paciente inestable, encontrarla acorta la ruta al quirófano. Pero la ventana necesita volumen: el promedio detectado fue de 619 mL, y solo uno de cada diez examinadores vio menos de 400 mL. Una ventana limpia no descarta sangrado.\n",
    "sistema": "multiorgano",
@@ -1890,6 +1959,22 @@
      ]
     }
    ],
+   "medios": [
+    {
+     "tipo": "imagen",
+     "destacada": true,
+     "id": "wikimedia:Ultrasound_Scan_ND_0110145312_1505060.png",
+     "descripcion": "Ecografía del espacio de Morrison con líquido libre intraperitoneal tras trauma abdominal cerrado",
+     "credito": "Nevit Dilmen",
+     "fuente": "Wikimedia Commons",
+     "fuente_url": "https://commons.wikimedia.org/wiki/File:Ultrasound_Scan_ND_0110145312_1505060.png",
+     "licencia_img": "CC BY-SA 3.0",
+     "licencia_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+     "archivo_local": "assets/img/fast-morrison.png"
+    }
+   ],
+   "n_loops": 0,
+   "n_imagenes": 1,
    "refs": [
     "branney1995",
     "savoia2023",
@@ -1994,6 +2079,7 @@
    "tipo": "signo",
    "titulo": "Hemotórax en eFAST: líquido por encima del diafragma",
    "titulo_en": "Hemothorax on eFAST: fluid above the diaphragm",
+   "url": "https://www.biosemiotics.net/hemotorax-en-efast-liquido-por-encima-del-diafragma/",
    "version": "1.0",
    "abstract": "Una zona anecoica por encima del diafragma, en el mismo barrido con que buscas líquido abdominal, señala hemotórax en el traumatizado. La pista que lo confirma es la pérdida del espejo: si ves parénquima pulmonar por encima del diafragma, no hay líquido; si ves una cámara oscura y la columna vertebral se prolonga hacia arriba, sí. Rinde bien —sensibilidad 82 %, especificidad 97 %— pero no distingue sangre de otro derrame.\n",
    "sistema": "respiratorio",
@@ -2060,6 +2146,22 @@
      ]
     }
    ],
+   "medios": [
+    {
+     "tipo": "imagen",
+     "destacada": true,
+     "id": "wikimedia:Clinician-performed-resuscitative-ultrasonography-for-the-initial-evaluation-and-resuscitation-of-1757-7241-17-34-S2.ogv#frame-5s",
+     "descripcion": "Fotograma de una ecografía de reanimación con una gran colección pleural",
+     "credito": "Gillman L, Ball C, Panebianco N, Al-Kadi A y Kirkpatrick A; fotograma extraído del video original",
+     "fuente": "Wikimedia Commons",
+     "fuente_url": "https://commons.wikimedia.org/wiki/File:Clinician-performed-resuscitative-ultrasonography-for-the-initial-evaluation-and-resuscitation-of-1757-7241-17-34-S2.ogv",
+     "licencia_img": "CC BY 2.0",
+     "licencia_url": "https://creativecommons.org/licenses/by/2.0/",
+     "archivo_local": "assets/img/hemotorax-efast.png"
+    }
+   ],
+   "n_loops": 0,
+   "n_imagenes": 1,
    "refs": [
     "zanobetti2018",
     "savoia2023",
@@ -2072,6 +2174,7 @@
    "tipo": "signo",
    "titulo": "Hernia complicada: distinguir el bulto que espera del que no",
    "titulo_en": "Complicated hernia: telling the lump that can wait from the one that cannot",
+   "url": "https://www.biosemiotics.net/hernia-complicada-distinguir-el-bulto-que-espera-del-que-no/",
    "version": "1.0",
    "abstract": "Un defecto de la pared con contenido que protruye al esfuerzo define la hernia; lo que decide la urgencia es si ese contenido vuelve. Un asa atrapada, sin peristalsis, con pared engrosada y líquido en el saco, junto a asas proximales dilatadas, señala incarceración con obstrucción y contraindica intentar reducirla. La evidencia ecográfica específica de hernia es escasa, y el ultrasonido no descarta estrangulación.\n",
    "sistema": "musculoesqueletico",
@@ -2138,6 +2241,22 @@
      ]
     }
    ],
+   "medios": [
+    {
+     "tipo": "imagen",
+     "destacada": true,
+     "id": "wikimedia:Ultrasonography_of_inguinal_hernia_(annotated).jpg",
+     "descripcion": "Ecografía longitudinal anotada de una hernia inguinal indirecta con contenido graso",
+     "credito": "Mikael Häggström, M.D.",
+     "fuente": "Wikimedia Commons",
+     "fuente_url": "https://commons.wikimedia.org/wiki/File:Ultrasonography_of_inguinal_hernia_(annotated).jpg",
+     "licencia_img": "CC0 1.0",
+     "licencia_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+     "archivo_local": "assets/img/hernia-complicada.jpg"
+    }
+   ],
+   "n_loops": 0,
+   "n_imagenes": 1,
    "refs": [
     "shokoohi2023",
     "thaker2021",
