@@ -322,6 +322,29 @@ def escapar_xml(valor: str) -> str:
             .replace(">", "&gt;").replace('"', "&quot;"))
 
 
+def rasterizar_portada(svg: Path, png: Path) -> bool:
+    """Convierte la portada a PNG. Devuelve False si no hay con qué.
+
+    La portada es SVG por diseño —es tipográfica y se versiona en texto—, pero
+    como portada del contenedor es frágil: Kindle no admite portadas SVG y
+    Calibre necesita un motor de navegador para rasterizarla, de modo que en
+    varios lectores la portada sale en blanco. Se declara el PNG cuando hay
+    rasterizador; si no lo hay, se cae al SVG con aviso en vez de abortar.
+    """
+    herramienta = shutil.which("rsvg-convert")
+    if not herramienta:
+        return False
+    try:
+        subprocess.run(
+            [herramienta, "--width=1600", "--keep-aspect-ratio",
+             "--format=png", "--output", str(png), str(svg)],
+            check=True, capture_output=True,
+        )
+    except (OSError, subprocess.CalledProcessError):
+        return False
+    return png.is_file() and png.stat().st_size > 0
+
+
 def metadatos_epub(entidades: list, version: str) -> str:
     """Dublin Core del contenedor, para `pandoc --epub-metadata`.
 
@@ -340,6 +363,10 @@ def metadatos_epub(entidades: list, version: str) -> str:
     lineas = [
         f"<dc:identifier opf:scheme=\"DOI\">{escapar_xml(DOI_URL)}</dc:identifier>",
         f"<dc:contributor opf:role=\"aut\">ORCID {escapar_xml(ORCID)}</dc:contributor>",
+        # La editorial se declara AQUÍ y no por `--metadata`: Quarto no lleva
+        # `book: publisher:` al OPF, así que por la ruta Quarto el contenedor
+        # salía sin `dc:publisher`.
+        f"<dc:publisher>{escapar_xml(EDITORIAL)}</dc:publisher>",
         f"<dc:rights>{escapar_xml(LICENCIA)} — {escapar_xml(LICENCIA_URL)}. "
         "Las figuras conservan sus licencias propias, declaradas en cada pie y "
         "en los créditos finales.</dc:rights>",
@@ -452,7 +479,7 @@ def yaml_texto(valor: str) -> str:
     return '"' + str(valor).replace("\\", "\\\\").replace('"', '\\"') + '"'
 
 
-def quarto_yml(partes: list, archivos: dict, version: str) -> str:
+def quarto_yml(partes: list, archivos: dict, version: str, portada: str) -> str:
     lineas = [
         "# GENERADO por scripts/qmd.py — no editar a mano.",
         "# La fuente de verdad es el banco .qmd de conceptos/, signos/ y casos/.",
@@ -469,7 +496,7 @@ def quarto_yml(partes: list, archivos: dict, version: str) -> str:
         f"  date: {yaml_texto(date.today().isoformat())}",
         f"  publisher: {yaml_texto(EDITORIAL)}",
         "  language: es",
-        "  cover-image: portada.svg",
+        f"  cover-image: {portada}",
         "  chapters:",
         "    - index.qmd",
     ]
@@ -500,7 +527,7 @@ def quarto_yml(partes: list, archivos: dict, version: str) -> str:
         # cada "La pregunta clínica" de cada signo.
         "    toc-depth: 2",
         "    css: epub.css",
-        "    epub-cover-image: portada.svg",
+        f"    epub-cover-image: {portada}",
         # El mismo Dublin Core que usa la ruta pandoc: DOI con esquema,
         # licencia con URL, descripción y materias MeSH.
         "    epub-metadata: epub-metadata.xml",
@@ -577,14 +604,17 @@ def generar(entidades: list, raiz: Path, destino: Path) -> dict:
     (destino / "creditos-imagenes.qmd").write_text(
         creditos_imagenes(figuras), encoding="utf-8"
     )
+    svg = destino / "portada.svg"
+    svg.write_text(portada_svg(version), encoding="utf-8")
+    portada = "portada.png" if rasterizar_portada(svg, destino / "portada.png") else "portada.svg"
+
     (destino / "_quarto.yml").write_text(
-        quarto_yml(partes, archivos, version), encoding="utf-8"
+        quarto_yml(partes, archivos, version, portada), encoding="utf-8"
     )
     (destino / "epub.css").write_text(ESTILO, encoding="utf-8")
     (destino / "epub-metadata.xml").write_text(
         metadatos_epub(entidades, version), encoding="utf-8"
     )
-    (destino / "portada.svg").write_text(portada_svg(version), encoding="utf-8")
     shutil.copy2(raiz / "refs.bib", destino / "refs.bib")
 
     # Las imágenes viajan dentro del proyecto para que sea autocontenido, pero
@@ -603,6 +633,7 @@ def generar(entidades: list, raiz: Path, destino: Path) -> dict:
         "figuras": len(figuras),
         "imagenes_copiadas": len(copiadas),
         "capitulos": len(usados),
+        "portada": portada,
         "referencias": len(orden_global),
         "partes": [parte for parte, _ in partes],
         "version": version,

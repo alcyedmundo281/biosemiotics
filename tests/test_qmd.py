@@ -136,6 +136,11 @@ class MetadatosTest(unittest.TestCase):
         self.assertEqual(xml.count("<dc:subject>"), 2)
         self.assertIn("<dc:subject>Ultrasonography</dc:subject>", xml)
 
+    def test_declara_la_editorial(self):
+        # Quarto no lleva `book: publisher:` al OPF: si no está aquí, por la
+        # ruta Quarto el contenedor sale sin `dc:publisher`.
+        self.assertIn("<dc:publisher>", qmd.metadatos_epub([], "v1"))
+
     def test_escapa_los_caracteres_que_romperian_el_xml(self):
         xml = qmd.metadatos_epub([{"mesh": ["A & B <x>"]}], "v1")
         self.assertIn("A &amp; B &lt;x&gt;", xml)

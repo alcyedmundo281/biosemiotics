@@ -102,7 +102,7 @@ def render_quarto(ejecutable: str, proyecto: Path) -> Path:
     return salidas[0]
 
 
-def render_pandoc(ejecutable: str, proyecto: Path, destino: Path) -> Path:
+def render_pandoc(ejecutable: str, proyecto: Path, destino: Path, informe: dict) -> Path:
     comando = [
         ejecutable,
         "libro-plano.md",
@@ -122,7 +122,7 @@ def render_pandoc(ejecutable: str, proyecto: Path, destino: Path) -> Path:
         # varios MB— en un solo XHTML, y los lectores lo pagan al paginar.
         "--split-level=2",
         "--css=epub.css",
-        "--epub-cover-image=portada.svg",
+        f"--epub-cover-image={informe['portada']}",
         # Dublin Core completo: DOI dereferenciable, licencia con URL,
         # descripción y materias MeSH. Sin esto el DOI queda como cadena
         # suelta y la licencia como un nombre sin referencia.
@@ -132,7 +132,6 @@ def render_pandoc(ejecutable: str, proyecto: Path, destino: Path) -> Path:
         f"--metadata=author:{qmd.AUTOR}",
         "--metadata=lang:es",
         f"--metadata=date:{date.today().isoformat()}",
-        f"--metadata=publisher:{qmd.EDITORIAL}",
     ]
     subprocess.run(comando, cwd=proyecto, check=True)
     return destino
@@ -197,6 +196,7 @@ def validar_epub(path: Path, entidades: int, figuras: int, enlaces_ghost: int) -
             "DOI en dc:identifier": qmd.DOI_URL in paquete,
             "licencia con URL en dc:rights": qmd.LICENCIA_URL in paquete,
             "portada declarada": 'properties="cover-image"' in paquete,
+            "editorial": "<dc:publisher" in paquete,
             "identificador único": paquete.count("<dc:identifier") == 1,
             "descripción": "<dc:description" in paquete,
         }
@@ -240,7 +240,7 @@ def main() -> int:
     if nombre_motor == "quarto":
         producido = render_quarto(ejecutable, proyecto)
     else:
-        producido = render_pandoc(ejecutable, proyecto, temporal)
+        producido = render_pandoc(ejecutable, proyecto, temporal, informe)
 
     enlaces_ghost = sum(1 for e in entidades if e.get("url"))
     validacion = validar_epub(
@@ -254,6 +254,7 @@ def main() -> int:
     print(f"✓ Entidades incluidas: {informe['entidades']}")
     print(f"✓ Figuras incrustadas: {informe['figuras']} (con pie y enlaces)")
     print(f"✓ Enlaces al artículo en Ghost: {enlaces_ghost}")
+    print(f"✓ Portada: {informe['portada']}")
     print(f"✓ Referencias: {informe['referencias']}")
     print(f"✓ Versión: {informe['version']} · fecha: {date.today().isoformat()}")
     print(f"✓ Tamaño: {salida.stat().st_size:,} bytes")
