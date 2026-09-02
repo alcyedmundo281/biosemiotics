@@ -58,6 +58,9 @@ ORCID = "0000-0002-9742-375X"
 EDITORIAL = "BioSemiotics"
 DOI = "10.5281/zenodo.21435362"
 LICENCIA = "CC BY 4.0"
+LICENCIA_URL = "https://creativecommons.org/licenses/by/4.0/"
+DOI_URL = f"https://doi.org/{DOI}"
+LICENCIA_LARGA = f"{LICENCIA} — {LICENCIA_URL}"
 AVISO = (
     "Material exclusivamente educativo. No sustituye el juicio clínico, "
     "la evaluación integral del paciente ni los protocolos locales."
@@ -160,6 +163,27 @@ def degradar(cuerpo: str, niveles: int = 1) -> str:
     )
 
 
+def bibliografia_para_libro(bib: dict) -> dict:
+    """Escapa los asteriscos literales de los campos bibliográficos.
+
+    Hay títulos que traen un `*` de verdad —`...evaluation of proficiency*` es
+    el título tal como lo publicó Crit Care Med—. `referencia_ghost()` envuelve
+    el nombre de la revista en `*...*`, así que ese asterisco suelto se empareja
+    con el de la emfasis y el renglón sale en cursiva a partir del lugar
+    equivocado. Se escapa aquí, en la ruta del libro, y no en
+    `referencia_ghost()`: esa función alimenta los cuerpos canónicos de Ghost,
+    cuya huella se audita.
+    """
+    limpia = {}
+    for clave, campos in bib.items():
+        copia = dict(campos)
+        for campo in ("title", "journal", "author"):
+            if copia.get(campo):
+                copia[campo] = str(copia[campo]).replace("*", r"\*")
+        limpia[clave] = copia
+    return limpia
+
+
 def figura_markdown(medio: dict) -> str:
     """Figura con su pie completo de atribución, en ruta interna al proyecto."""
     pie = (
@@ -179,6 +203,12 @@ def ficha_markdown(entidad: dict, bibliografia: dict, orden_global: list,
     """
     marca = "#" * (2 + nivel)
     lineas = [f"{marca} {entidad['titulo']} {{#sec-{slug(entidad['id'])}}}", ""]
+
+    # El libro y el sitio son la misma obra en dos soportes: la ficha impresa
+    # apunta a su artículo vivo en Ghost, que es donde están los loops, las
+    # imágenes en movimiento y las correcciones posteriores a esta edición.
+    if entidad.get("url"):
+        lineas += [f"*Edición en línea:* <{entidad['url']}>", ""]
 
     for medio in entidad.get("medios") or []:
         if medio.get("tipo") == "imagen":
@@ -242,9 +272,9 @@ def portadilla(version: str) -> str:
             f"Identificador DOI: [{DOI}](https://doi.org/{DOI}). "
             "ISBN EPUB: pendiente.",
             "",
-            f"El conjunto se distribuye bajo {LICENCIA}. Las figuras conservan "
-            "sus licencias propias, declaradas en cada pie y en los créditos "
-            "finales.",
+            f"El conjunto se distribuye bajo [{LICENCIA}]({LICENCIA_URL}). "
+            "Las figuras conservan sus licencias propias, declaradas en cada "
+            "pie y en los créditos finales.",
             "",
             f"**Aviso:** {AVISO}",
             "",
@@ -274,6 +304,42 @@ def creditos_imagenes(figuras: list) -> str:
     return "\n".join(partes)
 
 
+def escapar_xml(valor: str) -> str:
+    return (str(valor).replace("&", "&amp;").replace("<", "&lt;")
+            .replace(">", "&gt;").replace('"', "&quot;"))
+
+
+def metadatos_epub(entidades: list, version: str) -> str:
+    """Dublin Core del contenedor, para `pandoc --epub-metadata`.
+
+    Aporta SOLO lo que pandoc no genera por su cuenta: el DOI con su esquema,
+    la licencia con URL, la descripción, la fuente y las materias MeSH. Título,
+    autor, fecha, idioma y editorial siguen llegando por `--metadata` para que
+    pandoc arme su portadilla; duplicarlos aquí produce dos `dc:title` y dos
+    `dc:identifier` en el OPF.
+    """
+    materias = []
+    for entidad in entidades:
+        for termino in (entidad.get("mesh") or []):
+            if termino not in materias:
+                materias.append(termino)
+
+    lineas = [
+        f"<dc:identifier opf:scheme=\"DOI\">{escapar_xml(DOI_URL)}</dc:identifier>",
+        f"<dc:contributor opf:role=\"aut\">ORCID {escapar_xml(ORCID)}</dc:contributor>",
+        f"<dc:rights>{escapar_xml(LICENCIA)} — {escapar_xml(LICENCIA_URL)}. "
+        "Las figuras conservan sus licencias propias, declaradas en cada pie y "
+        "en los créditos finales.</dc:rights>",
+        f"<dc:description>{escapar_xml(SUBTITULO)}. {escapar_xml(AVISO)} "
+        f"Compilación {date.today().isoformat()}, versión {escapar_xml(version)}."
+        "</dc:description>",
+        f"<dc:source>{escapar_xml(DOI_URL)}</dc:source>",
+        "<dc:type>Text</dc:type>",
+    ]
+    lineas += [f"<dc:subject>{escapar_xml(m)}</dc:subject>" for m in materias]
+    return "\n".join(lineas) + "\n"
+
+
 def portada_svg(version: str) -> str:
     seguro = version.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
     return f'''<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="2560" viewBox="0 0 1600 2560">
@@ -289,15 +355,21 @@ def portada_svg(version: str) -> str:
 '''
 
 
+# Sin unidades `vh`: los lectores basados en Adobe Digital Editions no las
+# soportan y las resuelven como 0, de modo que la imagen queda embebida en el
+# contenedor pero invisible en pantalla. `max-width` en porcentaje más
+# `height:auto` funciona en todos.
 ESTILO = (
     "body{font-family:FreeSerif,serif;line-height:1.45;color:#17212b}"
     "h1{color:#075f69;page-break-before:always}h2{color:#16485a}"
     "h3{color:#071b2b}"
-    "img{max-width:92%;max-height:70vh;display:block;margin:1.2em auto}"
-    ".figure,figure{text-align:center}"
-    ".caption,figcaption{font-size:.85em;color:#46535d}"
+    "img{max-width:100%;height:auto;display:block;margin:1.2em auto}"
+    "figure{text-align:center;margin:1.4em 0;page-break-inside:avoid}"
+    "figcaption{font-size:.85em;color:#46535d;text-align:left;margin-top:.4em}"
     "a{color:#075f69}blockquote{border-left:.3em solid #69d3c5;padding-left:1em}"
     "code{font-family:monospace}ul,ol{padding-left:1.5em}"
+    "table{border-collapse:collapse;width:100%}"
+    "th,td{border:1px solid #c8d3d8;padding:.35em .5em;text-align:left}"
 )
 
 
@@ -383,8 +455,8 @@ def quarto_yml(partes: list, archivos: dict, version: str) -> str:
         f"      orcid: {yaml_texto(ORCID)}",
         f"  date: {yaml_texto(date.today().isoformat())}",
         f"  publisher: {yaml_texto(EDITORIAL)}",
-        f"  identifier: {yaml_texto(DOI)}",
-        f"  rights: {yaml_texto(LICENCIA)}",
+        f"  identifier: {yaml_texto(DOI_URL)}",
+        f"  rights: {yaml_texto(LICENCIA_LARGA)}",
         "  language: es",
         "  cover-image: portada.svg",
         "  chapters:",
@@ -452,7 +524,7 @@ def manuscrito_plano(partes: list, bibliografia: dict, orden_global: list,
 
 def generar(entidades: list, raiz: Path, destino: Path) -> dict:
     figuras = figuras_validadas(entidades, raiz)
-    bibliografia = banco.cargar_bibliografia(raiz / "refs.bib")
+    bibliografia = bibliografia_para_libro(banco.cargar_bibliografia(raiz / "refs.bib"))
     version = version_git(raiz)
 
     if destino.exists():
@@ -494,6 +566,9 @@ def generar(entidades: list, raiz: Path, destino: Path) -> dict:
         quarto_yml(partes, archivos, version), encoding="utf-8"
     )
     (destino / "epub.css").write_text(ESTILO, encoding="utf-8")
+    (destino / "epub-metadata.xml").write_text(
+        metadatos_epub(entidades, version), encoding="utf-8"
+    )
     (destino / "portada.svg").write_text(portada_svg(version), encoding="utf-8")
     shutil.copy2(raiz / "refs.bib", destino / "refs.bib")
 

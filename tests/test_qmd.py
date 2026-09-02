@@ -92,6 +92,64 @@ class FichaTest(unittest.TestCase):
         self.assertNotIn("\n## La pregunta clínica", salida)
 
 
+class EnlacesTest(unittest.TestCase):
+    def test_la_ficha_publicada_enlaza_a_su_articulo_en_ghost(self):
+        entidad = {
+            "id": "signo-demo", "tipo": "signo", "titulo": "Demo",
+            "cuerpo": "## Sección\n\nTexto.", "refs": [],
+            "url": "https://www.biosemiotics.net/demo/",
+        }
+        self.assertIn("<https://www.biosemiotics.net/demo/>",
+                      qmd.ficha_markdown(entidad, {}, []))
+
+    def test_la_ficha_sin_publicar_no_inventa_enlace(self):
+        entidad = {"id": "signo-demo", "tipo": "signo", "titulo": "Demo",
+                   "cuerpo": "Texto.", "refs": [], "url": ""}
+        self.assertNotIn("biosemiotics.net", qmd.ficha_markdown(entidad, {}, []))
+
+    def test_el_pie_de_figura_conserva_fuente_y_licencia_como_enlaces(self):
+        medio = {
+            "descripcion": "Una vista", "credito": "Alguien",
+            "fuente": "Wikimedia Commons", "fuente_url": "https://commons.example/x",
+            "licencia_img": "CC BY 4.0",
+            "licencia_url": "https://creativecommons.org/licenses/by/4.0/",
+            "archivo_local": "assets/img/x.jpg",
+        }
+        pie = qmd.figura_markdown(medio)
+        self.assertIn("[Wikimedia Commons](https://commons.example/x)", pie)
+        self.assertIn("[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)", pie)
+
+
+class MetadatosTest(unittest.TestCase):
+    def test_declara_doi_dereferenciable_y_licencia_con_url(self):
+        xml = qmd.metadatos_epub([], "v1")
+        self.assertIn("https://doi.org/" + qmd.DOI, xml)
+        self.assertIn(qmd.LICENCIA_URL, xml)
+        self.assertIn("<dc:rights>", xml)
+        # El título y el autor los aporta pandoc: duplicarlos deja dos
+        # `dc:title` y dos `dc:identifier` en el OPF.
+        self.assertNotIn("<dc:title>", xml)
+
+    def test_arrastra_los_terminos_mesh_del_banco_como_materias(self):
+        entidades = [{"mesh": ["Ultrasonography", "Lung"]}, {"mesh": ["Lung"]}]
+        xml = qmd.metadatos_epub(entidades, "v1")
+        self.assertEqual(xml.count("<dc:subject>"), 2)
+        self.assertIn("<dc:subject>Ultrasonography</dc:subject>", xml)
+
+    def test_escapa_los_caracteres_que_romperian_el_xml(self):
+        xml = qmd.metadatos_epub([{"mesh": ["A & B <x>"]}], "v1")
+        self.assertIn("A &amp; B &lt;x&gt;", xml)
+
+
+class BibliografiaTest(unittest.TestCase):
+    def test_escapa_el_asterisco_literal_de_un_titulo_publicado(self):
+        bib = {"x": {"title": "evaluation of proficiency*", "journal": "Crit Care Med"}}
+        self.assertEqual(
+            qmd.bibliografia_para_libro(bib)["x"]["title"],
+            r"evaluation of proficiency\*",
+        )
+
+
 class FigurasTest(unittest.TestCase):
     def entidad_con_medio(self, medio):
         return {

@@ -92,6 +92,26 @@ LuaLaTeX/Biber y publica EPUB, PDF, TEX y ZIP LaTeX como artifacts durante 90
 días. En un release, además los adjunta al release. `workflow_dispatch` queda
 solo como recuperación o para generar una edición de prueba.
 
+**El EPUB es el puente con Ghost, no una copia muerta.** Cada ficha publicada
+abre con `*Edición en línea:* <url>`, de modo que el lector salta del libro al
+artículo vivo —donde están los loops y las correcciones posteriores—. Las
+figuras salen como `<figure>` con `<figcaption>`, y el pie conserva fuente y
+licencia **como enlaces**. Esto obliga a usar el lector `markdown` de pandoc:
+`gfm` acepta `implicit_figures` pero la ignora, y aplana el pie a un `alt=` de
+texto plano, con lo que los enlaces de crédito y licencia desaparecen sin que
+falle nada.
+
+El CSS del EPUB **no usa unidades `vh`**: los lectores basados en Adobe Digital
+Editions las resuelven como 0 y la imagen queda embebida pero invisible.
+
+El OPF declara el DOI dereferenciable (`https://doi.org/…`, con
+`identifier-type` ONIX 06), la licencia con su URL en `dc:rights`, descripción,
+fuente y los términos MeSH del banco como `dc:subject`. Título, autor, fecha,
+idioma y editorial los aporta pandoc por `--metadata`; **no los dupliques** en
+`epub-metadata.xml` o el OPF sale con dos `dc:title` y dos `dc:identifier`.
+`validar_epub()` verifica todo esto —incluidos el recuento de `figcaption`, los
+enlaces a Ghost y la portada declarada— y aborta si algo se perdió.
+
 Cada figura debe declarar en `medios`: descripción, crédito, fuente y URL,
 licencia y URL, y `archivo_local`. La ausencia de cualquiera de esos datos o
 del archivo local aborta la compilación: no se omiten imágenes ni se infiere su
