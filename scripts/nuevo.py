@@ -29,12 +29,12 @@ def main():
     if tipo == "signo" and not ident.startswith("signo-"):
         ident = f"signo-{ident}"
 
-    plantilla = BASE / "assets" / f"plantilla-{tipo}.md"
+    plantilla = BASE / "assets" / f"plantilla-{tipo}.qmd"
     if not plantilla.exists():
         sys.exit(f"No encuentro {plantilla}")
 
     raiz = Path.cwd()
-    destino = raiz / CARPETA[tipo] / f"{ident.removeprefix('signo-')}.md"
+    destino = raiz / CARPETA[tipo] / f"{ident.removeprefix('signo-')}.qmd"
     if destino.exists():
         sys.exit(f"Ya existe: {destino}")
     destino.parent.mkdir(parents=True, exist_ok=True)

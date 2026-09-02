@@ -10,6 +10,8 @@
 # El índice y el grafo los consumen el buscador y jsDelivr: LF siempre.
 *.json text eol=lf
 *.md    text
+# El banco de fichas vive en .qmd desde la migración a Quarto.
+*.qmd   text
 *.bib   text
 *.py    text
 

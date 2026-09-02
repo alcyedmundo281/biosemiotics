@@ -1,51 +1,43 @@
 #!/usr/bin/env python3
 """Genera la edición EPUB3 reproducible del atlas biosemiotics.
 
-Interfaz contractual:
+Interfaz contractual (la que espera `.github/workflows/epub.yml`):
     python scripts/epub.py --salida build/atlas.epub [--solo-publicados]
+
+Este script ya NO ensambla el manuscrito. Esa responsabilidad vive en
+`scripts/qmd.py`, que proyecta el banco a un proyecto Quarto book en
+`build/quarto/`. Aquí solo se elige el motor, se renderiza y se valida.
+
+Dos motores, un solo manuscrito:
+
+  · `quarto` — el camino previsto. Renderiza el proyecto book completo y da
+    además PDF y HTML del mismo árbol con `--to pdf` / `--to html`.
+  · `pandoc` — el respaldo. Renderiza `build/quarto/libro-plano.md`, que
+    `qmd.py` deriva de las MISMAS funciones que los capítulos. No es una
+    edición distinta: es el mismo libro aplanado.
+
+El respaldo existe porque Quarto no está disponible en todos los entornos. Si
+las dos salidas difieren en contenido, es un fallo de `qmd.py`, no una variante
+editorial aceptable.
 """
 
 from __future__ import annotations
 
 import argparse
-import html
 import os
 import shutil
 import subprocess
 import sys
-import tempfile
 import zipfile
-from collections import defaultdict
 from datetime import date
 from pathlib import Path
 
 import build as banco
+import qmd
 
 if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8")
     sys.stderr.reconfigure(encoding="utf-8")
-
-
-TITULO = "Biosemiótica del Cuerpo Vivo"
-SUBTITULO = "Atlas de POCUS para el clínico"
-AUTOR = "Dr. Alcy Edmundo Torres Guerrero"
-ORCID = "0000-0002-9742-375X"
-EDITORIAL = "BioSemiotics"
-DOI = "10.5281/zenodo.21435362"
-LICENCIA = "CC BY 4.0"
-AVISO = (
-    "Material exclusivamente educativo. No sustituye el juicio clínico, "
-    "la evaluación integral del paciente ni los protocolos locales."
-)
-REQUERIDOS_IMAGEN = (
-    "descripcion",
-    "credito",
-    "fuente",
-    "fuente_url",
-    "licencia_img",
-    "licencia_url",
-    "archivo_local",
-)
 
 
 def argumentos() -> argparse.Namespace:
@@ -56,225 +48,92 @@ def argumentos() -> argparse.Namespace:
         action="store_true",
         help="incluye únicamente fichas con URL pública de Ghost",
     )
+    parser.add_argument(
+        "--motor",
+        choices=("auto", "quarto", "pandoc"),
+        default="auto",
+        help="auto usa quarto si está en PATH y cae a pandoc si no",
+    )
+    parser.add_argument(
+        "--proyecto",
+        type=Path,
+        default=Path("build/quarto"),
+        help="dónde se deja el proyecto Quarto generado",
+    )
     return parser.parse_args()
 
 
-def version_git(raiz: Path) -> str:
-    try:
-        return subprocess.run(
-            ["git", "describe", "--always", "--dirty"],
-            cwd=raiz,
-            check=True,
-            capture_output=True,
-            text=True,
-        ).stdout.strip()
-    except (OSError, subprocess.CalledProcessError):
-        return "sin-versión-git"
+def elegir_motor(preferido: str) -> tuple:
+    """(nombre, ejecutable). Falla con un mensaje accionable si no hay ninguno."""
+    quarto = shutil.which("quarto")
+    pandoc = shutil.which("pandoc")
+    if preferido == "quarto":
+        if not quarto:
+            raise RuntimeError(
+                "se pidió --motor quarto pero quarto no está en PATH. "
+                "Instálalo desde https://quarto.org/docs/get-started/ o usa "
+                "--motor pandoc."
+            )
+        return "quarto", quarto
+    if preferido == "pandoc":
+        if not pandoc:
+            raise RuntimeError("se pidió --motor pandoc pero pandoc no está en PATH")
+        return "pandoc", pandoc
+    if quarto:
+        return "quarto", quarto
+    if pandoc:
+        return "pandoc", pandoc
+    raise RuntimeError(
+        "no hay motor de render: instala quarto (preferido) o pandoc"
+    )
 
 
-def imagenes(entidades: list[dict], raiz: Path) -> list[tuple[dict, dict, Path]]:
-    resultado = []
-    errores = []
-    for entidad in entidades:
-        for numero, medio in enumerate(entidad.get("medios") or [], 1):
-            if medio.get("tipo") != "imagen":
-                continue
-            faltantes = [campo for campo in REQUERIDOS_IMAGEN if not medio.get(campo)]
-            prefijo = f"{entidad['_archivo']} medio {numero}"
-            if faltantes:
-                errores.append(f"{prefijo}: faltan {', '.join(faltantes)}")
-                continue
-            ruta = (raiz / medio["archivo_local"]).resolve()
-            try:
-                ruta.relative_to(raiz.resolve())
-            except ValueError:
-                errores.append(f"{prefijo}: archivo_local apunta fuera del repositorio")
-                continue
-            if not ruta.is_file():
-                errores.append(f"{prefijo}: no existe {medio['archivo_local']}")
-                continue
-            resultado.append((entidad, medio, ruta))
-    if errores:
-        detalle = "\n  - ".join(errores)
+def render_quarto(ejecutable: str, proyecto: Path) -> Path:
+    subprocess.run(
+        [ejecutable, "render", str(proyecto), "--to", "epub"],
+        cwd=proyecto,
+        check=True,
+    )
+    salidas = sorted((proyecto / "_salida").glob("*.epub"))
+    if not salidas:
         raise RuntimeError(
-            "Metadatos de imágenes incompletos; el EPUB no puede omitir ni "
-            f"atribuir figuras por inferencia:\n  - {detalle}"
+            f"quarto no dejó ningún .epub en {proyecto / '_salida'}"
         )
-    return resultado
+    return salidas[0]
 
 
-def entidades_ordenadas(entidades: list[dict]):
-    conceptos = sorted(
-        (e for e in entidades if e["tipo"] == "concepto"),
-        key=lambda e: (e.get("capitulo") or 99, e.get("orden") or 99),
-    )
-    signos = [e for e in entidades if e["tipo"] == "signo"]
-    casos = sorted(
-        (e for e in entidades if e["tipo"] == "caso"),
-        key=lambda e: e["titulo"],
-    )
-    return conceptos, signos, casos
-
-
-def figura_markdown(medio: dict) -> str:
-    descripcion = medio["descripcion"]
-    credito = medio["credito"]
-    fuente = medio["fuente"]
-    licencia = medio["licencia_img"]
-    pie = (
-        f"{descripcion}. {credito}. "
-        f"[{fuente}]({medio['fuente_url']}). "
-        f"[{licencia}]({medio['licencia_url']})."
-    )
-    return f"![{pie}]({medio['archivo_local']})"
-
-
-def cuerpo_con_evidencia(entidad: dict, bibliografia: dict) -> str:
-    cuerpo = banco.quitar_bibliografia_manual(entidad["cuerpo"])
-    cuerpo, orden = banco.resolver_citas(cuerpo, entidad.get("refs") or [], bibliografia)
-    refs = [
-        banco.referencia_ghost(i, bibliografia[clave])
-        for i, clave in enumerate(orden, 1)
+def render_pandoc(ejecutable: str, proyecto: Path, destino: Path) -> Path:
+    comando = [
+        ejecutable,
+        "libro-plano.md",
+        # Quarto usa markdown de pandoc; `gfm` a secas no parsea los atributos
+        # `{#sec-...}` / `{.unnumbered}` y los filtraba como texto en el índice.
+        "--from=gfm+attributes",
+        "--to=epub3",
+        f"--output={destino}",
+        "--toc",
+        "--toc-depth=3",
+        "--split-level=1",
+        "--css=epub.css",
+        "--epub-cover-image=portada.svg",
+        f"--metadata=title:{qmd.TITULO}",
+        f"--metadata=subtitle:{qmd.SUBTITULO}",
+        f"--metadata=author:{qmd.AUTOR}",
+        "--metadata=lang:es",
+        f"--metadata=date:{date.today().isoformat()}",
+        f"--metadata=identifier:{qmd.DOI}",
+        f"--metadata=publisher:{qmd.EDITORIAL}",
+        f"--metadata=rights:{qmd.LICENCIA}",
     ]
-    if refs:
-        cuerpo = cuerpo.rstrip() + "\n\n#### Evidencia\n\n" + "\n".join(refs)
-    return cuerpo.strip()
-
-
-def ficha_markdown(entidad: dict, bibliografia: dict) -> str:
-    lineas = [f"### {entidad['titulo']}", ""]
-    for medio in entidad.get("medios") or []:
-        if medio.get("tipo") == "imagen":
-            lineas += [figura_markdown(medio), ""]
-    if entidad["tipo"] == "signo":
-        for etiqueta, campo in (
-            ("Significante", "significante"),
-            ("Significado", "significado"),
-            ("Decisión", "decision"),
-            ("Umbral", "umbral"),
-        ):
-            if entidad.get(campo):
-                lineas += [f"**{etiqueta}.** {entidad[campo]}", ""]
-    elif entidad["tipo"] == "caso" and entidad.get("decision_semiotica"):
-        lineas += [f"**Decisión semiótica.** {entidad['decision_semiotica']}", ""]
-    lineas += [cuerpo_con_evidencia(entidad, bibliografia), ""]
-    return "\n".join(lineas)
-
-
-def manuscrito(entidades: list[dict], bibliografia: dict, version: str) -> str:
-    conceptos, signos, casos = entidades_ordenadas(entidades)
-    partes = [
-        "# Portadilla",
-        "",
-        f"## {TITULO}",
-        "",
-        f"**{SUBTITULO}**",
-        "",
-        f"{AUTOR} · ORCID [{ORCID}](https://orcid.org/{ORCID})",
-        "",
-        f"{EDITORIAL} · Compilación {date.today().isoformat()} · versión `{version}`",
-        "",
-        "# Créditos, licencia y uso",
-        "",
-        f"Autor: {AUTOR}. Editorial: {EDITORIAL}. Idioma: español.",
-        "",
-        f"Identificador DOI: [{DOI}](https://doi.org/{DOI}). ISBN EPUB: pendiente.",
-        "",
-        f"El conjunto se distribuye bajo {LICENCIA}. Las figuras conservan sus licencias propias, declaradas en cada pie y en los créditos finales.",
-        "",
-        f"**Aviso:** {AVISO}",
-        "",
-        "No existe afiliación, aval ni patrocinio del HECAM o del IESS.",
-        "",
-        "# Parte I — Fundamentos",
-        "",
-    ]
-    por_capitulo: dict[int, list[dict]] = defaultdict(list)
-    for entidad in conceptos:
-        por_capitulo[entidad.get("capitulo") or 99].append(entidad)
-    for capitulo in sorted(por_capitulo):
-        partes += [f"## {banco.CAPITULOS.get(capitulo, f'Capítulo {capitulo}')}", ""]
-        for entidad in por_capitulo[capitulo]:
-            partes.append(ficha_markdown(entidad, bibliografia))
-
-    ubicados = set()
-    numero_parte = 2
-    for clave, titulo in banco.SISTEMAS:
-        grupo = [e for e in signos if e.get("sistema") == clave]
-        if not grupo:
-            continue
-        partes += [f"# Parte {numero_parte} — {titulo}", ""]
-        numero_parte += 1
-        por_organo: dict[str, list[dict]] = defaultdict(list)
-        for entidad in grupo:
-            por_organo[entidad.get("organo") or "Otros"].append(entidad)
-            ubicados.add(entidad["id"])
-        for organo in sorted(por_organo):
-            partes += [f"## {organo.replace('-', ' ').title()}", ""]
-            for entidad in sorted(por_organo[organo], key=lambda e: e["titulo"]):
-                partes.append(ficha_markdown(entidad, bibliografia))
-
-    huerfanos = [e for e in signos if e["id"] not in ubicados]
-    if huerfanos:
-        partes += [f"# Parte {numero_parte} — Otros signos", ""]
-        numero_parte += 1
-        for entidad in sorted(huerfanos, key=lambda e: (e.get("organo") or "", e["titulo"])):
-            partes.append(ficha_markdown(entidad, bibliografia))
-
-    if casos:
-        partes += [f"# Parte {numero_parte} — Casos", ""]
-        for entidad in casos:
-            partes.append(ficha_markdown(entidad, bibliografia))
-
-    claves_bibliografia = []
-    vistas = set()
-    for entidad in entidades:
-        for clave in entidad.get("refs") or []:
-            if clave not in vistas:
-                vistas.add(clave)
-                claves_bibliografia.append(clave)
-    partes += ["# Bibliografía", ""]
-    for numero, clave in enumerate(claves_bibliografia, 1):
-        partes += [banco.referencia_ghost(numero, bibliografia[clave]), ""]
-
-    partes += ["# Créditos de imágenes", ""]
-    for entidad in entidades:
-        for medio in entidad.get("medios") or []:
-            if medio.get("tipo") != "imagen":
-                continue
-            partes += [
-                f"- **{entidad['titulo']}:** {medio['descripcion']}. "
-                f"{medio['credito']}. [{medio['fuente']}]({medio['fuente_url']}). "
-                f"[{medio['licencia_img']}]({medio['licencia_url']}).",
-                "",
-            ]
-    return "\n".join(partes).rstrip() + "\n"
-
-
-def portada(path: Path, version: str) -> None:
-    path.write_text(
-        f'''<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="2560" viewBox="0 0 1600 2560">
-<rect width="1600" height="2560" fill="#071b2b"/>
-<path d="M0 1840 C420 1640 720 2050 1110 1830 C1320 1710 1450 1680 1600 1750 L1600 2560 L0 2560 Z" fill="#0b7480"/>
-<circle cx="1260" cy="360" r="170" fill="none" stroke="#69d3c5" stroke-width="20"/>
-<text x="120" y="650" fill="#f4f0df" font-family="FreeSerif,serif" font-size="150">Biosemiótica</text>
-<text x="120" y="825" fill="#f4f0df" font-family="FreeSerif,serif" font-size="150">del Cuerpo Vivo</text>
-<text x="125" y="1020" fill="#69d3c5" font-family="FreeSerif,serif" font-size="72">Atlas de POCUS para el clínico</text>
-<text x="125" y="2170" fill="#f4f0df" font-family="FreeSerif,serif" font-size="58">Dr. Alcy Edmundo Torres Guerrero</text>
-<text x="125" y="2270" fill="#b9ddd8" font-family="FreeSerif,serif" font-size="40">BioSemiotics · {html.escape(version)}</text>
-</svg>''',
-        encoding="utf-8",
-    )
-
-
-def estilo(path: Path) -> None:
-    path.write_text(
-        """body{font-family:FreeSerif,serif;line-height:1.45;color:#17212b}h1{color:#075f69;page-break-before:always}h2{color:#16485a}h3{color:#071b2b}img{max-width:92%;max-height:70vh;display:block;margin:1.2em auto}.figure,figure{text-align:center}.caption,figcaption{font-size:.85em;color:#46535d}a{color:#075f69}blockquote{border-left:.3em solid #69d3c5;padding-left:1em}code{font-family:monospace}ul,ol{padding-left:1.5em}""",
-        encoding="utf-8",
-    )
+    subprocess.run(comando, cwd=proyecto, check=True)
+    return destino
 
 
 def validar_epub(path: Path, entidades: int, figuras: int) -> str:
+    """Las garantías editoriales del atlas, verificadas sobre el contenedor.
+
+    No dependen del motor: son las mismas para quarto y para pandoc.
+    """
     if not path.is_file() or path.stat().st_size < 50 * 1024:
         raise RuntimeError("el EPUB no existe o es sospechosamente pequeño")
     with zipfile.ZipFile(path) as zf:
@@ -292,7 +151,7 @@ def validar_epub(path: Path, entidades: int, figuras: int) -> str:
         comprobaciones = {
             "citas sin resolver ([?])": b"[?]" not in textos,
             "marcadores TODO": b"TODO" not in textos,
-            "DOI": DOI.encode() in textos,
+            "DOI": qmd.DOI.encode() in textos,
             "ISBN pendiente": b"ISBN EPUB: pendiente" in textos,
             "aviso educativo": b"material educativo" in textos.lower(),
             "bibliografía final": "Bibliografía".encode() in textos,
@@ -304,10 +163,14 @@ def validar_epub(path: Path, entidades: int, figuras: int) -> str:
         for simbolo in ("≥", "→", "±"):
             if simbolo.encode() not in textos:
                 raise RuntimeError(f"el símbolo Unicode {simbolo!r} no quedó incrustado")
-        imagenes = [n for n in nombres if n.lower().endswith((".png", ".jpg", ".jpeg", ".svg", ".webp"))]
+        imagenes = [
+            n for n in nombres
+            if n.lower().endswith((".png", ".jpg", ".jpeg", ".svg", ".webp"))
+        ]
         if len(imagenes) < figuras + 1:  # figuras del banco + portada
             raise RuntimeError(
-                f"faltan imágenes incrustadas: esperadas al menos {figuras + 1}, halladas {len(imagenes)}"
+                f"faltan imágenes incrustadas: esperadas al menos {figuras + 1}, "
+                f"halladas {len(imagenes)}"
             )
     return f"contenedor EPUB3 válido ({entidades} entidades, {figuras} figuras)"
 
@@ -316,57 +179,34 @@ def main() -> int:
     args = argumentos()
     raiz = Path(__file__).resolve().parents[1]
     salida = args.salida if args.salida.is_absolute() else raiz / args.salida
+    proyecto = args.proyecto if args.proyecto.is_absolute() else raiz / args.proyecto
+
     entidades = banco.cargar(raiz)
     if args.solo_publicados:
         entidades = [e for e in entidades if e.get("url")]
     if not entidades:
         raise RuntimeError("ninguna entidad cumple el alcance solicitado")
 
-    figuras = imagenes(entidades, raiz)
-    pandoc = shutil.which("pandoc")
-    if not pandoc:
-        raise RuntimeError("pandoc no está instalado o no está disponible en PATH")
+    nombre_motor, ejecutable = elegir_motor(args.motor)
+    informe = qmd.generar(entidades, raiz, proyecto)
 
-    bibliografia = banco.cargar_bibliografia(raiz / "refs.bib")
-    version = version_git(raiz)
     salida.parent.mkdir(parents=True, exist_ok=True)
-    with tempfile.TemporaryDirectory(prefix="epub-", dir=salida.parent) as temporal:
-        trabajo = Path(temporal)
-        md = trabajo / "atlas.md"
-        css = trabajo / "epub.css"
-        cover = trabajo / "portada.svg"
-        md.write_text(manuscrito(entidades, bibliografia, version), encoding="utf-8")
-        estilo(css)
-        portada(cover, version)
-        temporal_epub = trabajo / "atlas.epub"
-        comando = [
-            pandoc,
-            str(md),
-            "--from=gfm",
-            "--to=epub3",
-            f"--output={temporal_epub}",
-            "--toc",
-            "--toc-depth=3",
-            "--split-level=2",
-            f"--css={css}",
-            f"--epub-cover-image={cover}",
-            f"--resource-path={raiz}",
-            f"--metadata=title:{TITULO}",
-            f"--metadata=subtitle:{SUBTITULO}",
-            f"--metadata=author:{AUTOR}",
-            "--metadata=lang:es",
-            f"--metadata=date:{date.today().isoformat()}",
-            f"--metadata=identifier:{DOI}",
-            f"--metadata=publisher:{EDITORIAL}",
-            f"--metadata=rights:{LICENCIA}",
-        ]
-        subprocess.run(comando, cwd=raiz, check=True)
-        validacion = validar_epub(temporal_epub, len(entidades), len(figuras))
-        os.replace(temporal_epub, salida)
+    temporal = proyecto / "atlas-temporal.epub"
+    if nombre_motor == "quarto":
+        producido = render_quarto(ejecutable, proyecto)
+    else:
+        producido = render_pandoc(ejecutable, proyecto, temporal)
 
-    print(f"✓ Entidades incluidas: {len(entidades)}")
-    print(f"✓ Figuras incrustadas: {len(figuras)}")
-    print(f"✓ Versión: {version} · fecha: {date.today().isoformat()}")
+    validacion = validar_epub(producido, informe["entidades"], informe["figuras"])
+    os.replace(producido, salida)
+
+    print(f"✓ Motor: {nombre_motor} ({ejecutable})")
+    print(f"✓ Proyecto: {proyecto.relative_to(raiz)} "
+          f"({informe['capitulos']} capítulos, {len(informe['partes'])} partes)")
+    print(f"✓ Entidades incluidas: {informe['entidades']}")
+    print(f"✓ Figuras incrustadas: {informe['figuras']}")
+    print(f"✓ Referencias: {informe['referencias']}")
+    print(f"✓ Versión: {informe['version']} · fecha: {date.today().isoformat()}")
     print(f"✓ Tamaño: {salida.stat().st_size:,} bytes")
     print(f"✓ Validación interna: {validacion}")
     print(f"✓ Salida: {salida}")

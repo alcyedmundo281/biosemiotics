@@ -274,7 +274,7 @@ def cargar(raiz: Path) -> list:
     for carpeta in ("conceptos", "signos", "casos"):
         d = raiz / carpeta
         if d.exists():
-            ent += [parse(f, raiz) for f in sorted(d.glob("*.md"))]
+            ent += [parse(f, raiz) for f in sorted(d.glob("*.qmd"))]
     if not ent:
         sys.exit(f"Banco vacío en {raiz}. ¿Faltan conceptos/ signos/ casos/?")
     return ent

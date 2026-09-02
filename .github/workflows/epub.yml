@@ -9,9 +9,16 @@ name: EPUB y LuaLaTeX del atlas
 #   · se invoca como `python scripts/epub.py --salida <ruta>`
 #   · deja el archivo exactamente en esa ruta
 #   · sale con código != 0 si algo falló, incluida su propia validación
-# Si el generador cambia de toolchain (pandoc → tex4ebook, etc.), hay que
-# actualizar el paso «Instalar dependencias del sistema» de aquí abajo. Esa
-# actualización es parte del trabajo de quien cambie el generador.
+# Si el generador cambia de toolchain, hay que actualizar el paso «Instalar
+# dependencias del sistema» de aquí abajo. Esa actualización es parte del
+# trabajo de quien cambie el generador.
+#
+# MOTOR DE RENDER
+# El manuscrito lo proyecta `scripts/qmd.py` a un proyecto Quarto book en
+# build/quarto/. `epub.py` prefiere `quarto` y cae a `pandoc` sobre el
+# manuscrito plano equivalente si no lo encuentra. Aquí se instalan los dos a
+# propósito: si la instalación de Quarto falla, el EPUB igual se produce y la
+# validación editorial sigue siendo la misma.
 #
 # AVISO SOBRE ZENODO
 # La integración de Zenodo con GitHub archiva el SNAPSHOT DEL REPOSITORIO al
@@ -30,6 +37,7 @@ on:
       - 'assets/img/**'
       - 'scripts/build.py'
       - 'scripts/epub.py'
+      - 'scripts/qmd.py'
       - 'scripts/indice.py'
       - 'scripts/paquete_latex.py'
       - 'scripts/verificar_publicacion.py'
@@ -44,6 +52,7 @@ on:
       - 'assets/img/**'
       - 'scripts/build.py'
       - 'scripts/epub.py'
+      - 'scripts/qmd.py'
       - 'scripts/indice.py'
       - 'scripts/paquete_latex.py'
       - 'scripts/verificar_publicacion.py'
@@ -102,6 +111,11 @@ jobs:
           echo "pandoc: $(pandoc --version | head -1)"
           echo "lualatex: $(lualatex --version | head -1)"
 
+      - name: Instalar Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+        with:
+          version: 1.5.57
+
       - name: Instalar epubcheck
         run: |
           VER=5.1.0
@@ -142,6 +156,7 @@ jobs:
 
       - name: Generar el ePub
         run: |
+          echo "quarto: $(quarto --version 2>/dev/null || echo 'ausente, se usará pandoc')"
           ARGS=()
           # Los releases son ediciones citables: solo incluyen fichas que ya
           # pasaron por la revisión editorial de Ghost. En una ejecución manual

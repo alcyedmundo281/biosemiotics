@@ -12,7 +12,7 @@ Autor y responsable clínico: Dr. Alcy Torres. Toda decisión clínica final es 
 
 ## Regla de oro del sistema
 
-**Una fuente, muchas salidas.** El banco de archivos `.md` es la ÚNICA fuente de verdad. Todo lo demás (`build/`, el índice, el HTML, el JATS) es **derivado** y se regenera. NUNCA edites archivos en `build/` a mano: el siguiente `indice.py` los sobrescribe. Si algo está mal en una salida, se arregla en el `.md` de origen y se recompila.
+**Una fuente, muchas salidas.** El banco de archivos `.qmd` es la ÚNICA fuente de verdad. Todo lo demás (`build/`, el índice, el HTML, el JATS, el proyecto Quarto de `build/quarto/`) es **derivado** y se regenera. NUNCA edites archivos en `build/` a mano: el siguiente `indice.py` o `qmd.py` los sobrescribe. Si algo está mal en una salida, se arregla en el `.qmd` de origen y se recompila.
 
 ## Mapa del repositorio
 
@@ -20,10 +20,10 @@ Autor y responsable clínico: Dr. Alcy Torres. Toda decisión clínica final es 
 proyecto-biosemiotics/
 ├── CLAUDE.md                    ← este archivo
 ├── mapa-maestro-biosemiotics.md ← QUÉ escribir y en qué orden (léelo siempre)
-├── conceptos/*.md               ← el "por qué" (física, artefactos, técnica)
-├── signos/*.md                  ← el "qué hago" (significante→significado→decisión)
-├── casos/*.md                   ← el paciente real
-├── scripts/                     ← build.py, indice.py, refs.py, nuevo.py, senuelo.py
+├── conceptos/*.qmd              ← el "por qué" (física, artefactos, técnica)
+├── signos/*.qmd                 ← el "qué hago" (significante→significado→decisión)
+├── casos/*.qmd                  ← el paciente real
+├── scripts/                     ← build.py, qmd.py, epub.py, indice.py, refs.py, nuevo.py
 ├── refs.bib                     ← bibliografía (SOLO desde PubMed vía refs.py)
 ├── assets/                      ← plantillas para nuevo.py
 └── build/                       ← GENERADO, no versionar salvo index.json
@@ -57,14 +57,37 @@ python scripts/build.py
 python scripts/epub.py --salida build/atlas.epub --solo-publicados
 ```
 
+**El manuscrito ya no se ensambla a mano.** `scripts/qmd.py` proyecta el banco a
+un proyecto **Quarto book** en `build/quarto/` (`_quarto.yml` + un capítulo por
+capítulo temático u órgano) y `epub.py` solo elige motor, renderiza y valida.
+De ese mismo árbol salen EPUB, PDF y HTML con `quarto render build/quarto --to
+<formato>`; ya no hay tres renderizadores del mismo contenido.
+
+`epub.py` prefiere `quarto` y cae a `pandoc` sobre `build/quarto/libro-plano.md`
+—el mismo libro aplanado, derivado de las mismas funciones— cuando Quarto no
+está instalado. Fuerza uno u otro con `--motor quarto|pandoc`. Si las dos
+salidas difieren en contenido, es un fallo de `qmd.py`, no una variante
+editorial aceptable.
+
+La jerarquía es **parte → capítulo/órgano → ficha (`##`) → cuerpo (`###`)**. El
+ensamblado anterior ponía la ficha en `###` dejando el cuerpo en `##`, así que
+"La pregunta clínica" quedaba por encima del título de su propia ficha y
+`--split-level=2` partía el EPUB dentro de cada signo. No lo reintroduzcas.
+
+Las citas **no** pasan a citeproc: el banco cita poco en línea y su evidencia
+vive en `refs`, así que se sigue usando `build.resolver_citas()` +
+`build.referencia_ghost()`, que numeran por ficha y emiten el estilo de la casa
+con DOI y PMID. Cada ficha conserva su sección «Evidencia» y el libro cierra
+con la bibliografía en orden de aparición.
+
 El piso soportado del repositorio es Python 3.9. El generador requiere Python
-3.9 o posterior, PyYAML y Pandoc. El job de integridad debe probar tanto 3.9
-como la versión moderna fijada en CI; el job de citas no se duplica para evitar
-repetir llamadas a PubMed. El generador lee el banco de
+3.9 o posterior, PyYAML y Quarto o Pandoc. El job de integridad debe probar
+tanto 3.9 como la versión moderna fijada en CI; el job de citas no se duplica
+para evitar repetir llamadas a PubMed. El generador lee el banco de
 forma dinámica y hereda de `build.py` el orden de capítulos y sistemas; no usa
 listas manuales. El archivo resultante vive en `build/` y no se versiona. El
 workflow `.github/workflows/epub.yml` se ejecuta automáticamente en cada cambio
-relevante fusionado a `main`: valida con EPUBCheck, compila el PDF con
+relevante fusionado a `main`: instala Quarto, valida con EPUBCheck, compila el PDF con
 LuaLaTeX/Biber y publica EPUB, PDF, TEX y ZIP LaTeX como artifacts durante 90
 días. En un release, además los adjunta al release. `workflow_dispatch` queda
 solo como recuperación o para generar una edición de prueba.
@@ -146,7 +169,7 @@ no se crea un segundo worktree para simular otra sesión.
 Esta sección prevalece sobre las instrucciones generales de creación,
 compilación y Git cuando la tarea solicitada sea publicar un artículo.
 
-El publicador puede usar la sesión autorizada de Ghost y, sobre una ficha `.md`
+El publicador puede usar la sesión autorizada de Ghost y, sobre una ficha `.qmd`
 **ya creada y validada durante la fase proveedora**, modificar solamente `url` y
 `medios`; puede añadir el archivo licenciado a `assets/img/`, ejecutar
 `build.py`, verificar `build/libro.tex` con LuaLaTeX y entregar esos cambios en
@@ -302,8 +325,8 @@ artículo ya está vivo, los dos PR se apilan:
    ```
 
    Las salidas son `index.json`, `atlas-inject.html`, `jsonld/`, `jats/`,
-   `libro.tex`, `libro.pdf` (LuaLaTeX), `atlas.epub` y el paquete
-   `biosemiotics-latex.zip`. Solo
+   `libro.tex`, `libro.pdf` (LuaLaTeX), el proyecto Quarto `build/quarto/`,
+   `atlas.epub` y el paquete `biosemiotics-latex.zip`. Solo
    `build/index.json` se versiona; las otras se regeneran. La verificación
    compara la URL en los cuatro derivados web/metadatos y exige que cada
    imagen publicada sea la declarada en `archivo_local`, tanto en LaTeX como
@@ -329,7 +352,7 @@ Lo que sigue documenta el rol proveedor del índice. La misma sesión solo queda
 autorizada a ejercerlo después de congelar el PR padre y crear una rama hija;
 no autoriza al rol publicador activo a ejecutar `indice.py` ni a tocar
 `build/index.json`. En la fase proveedora, `build.py` NO regenera
-`index.json` — eso lo hace `indice.py`. Si el proveedor modifica un `.md`, debe
+`index.json` — eso lo hace `indice.py`. Si el proveedor modifica un `.qmd`, debe
 correr ambos scripts antes de commitear para no servir entradas obsoletas.
 Cuando recibe un PR de publicación, el proveedor crea el PR hijo de
 regeneración descrito arriba y lo fusiona sobre la rama del publicador antes de
