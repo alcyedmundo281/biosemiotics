@@ -159,7 +159,7 @@ def main():
 
     resueltos, pendientes = [], []
     for carpeta in ("conceptos", "signos", "casos"):
-        for f in sorted((raiz / carpeta).glob("*.md")):
+        for f in sorted((raiz / carpeta).glob("*.qmd")):
             texto = f.read_text(encoding="utf-8")
             eid = re.search(r"^id:\s*(\S+)", texto, re.M)
             if not eid:
