@@ -245,12 +245,25 @@ def ficha_markdown(entidad: dict, bibliografia: dict, orden_global: list,
     return "\n".join(lineas)
 
 
-def capitulo(titulo: str, entidades: list, bibliografia: dict, orden_global: list,
-             nivel: int = 0) -> str:
-    partes = [f"{'#' * (1 + nivel)} {titulo}", ""]
-    for entidad in entidades:
-        partes.append(ficha_markdown(entidad, bibliografia, orden_global, nivel))
-    return "\n".join(partes).rstrip() + "\n"
+def parte_markdown(parte: str, capitulos: list, bibliografia: dict,
+                   orden_global: list) -> str:
+    """Una parte entera del atlas como un capítulo del libro.
+
+    NO se usa la clave `part:` de Quarto: su escritor de EPUB no emite páginas
+    divisorias de parte, así que "Sistema respiratorio" y sus hermanas
+    desaparecían del contenedor y del índice —solo sobrevivían en la barra
+    lateral del HTML—. Con la parte convertida en capítulo, los dos motores
+    producen exactamente la misma estructura.
+
+    Jerarquía: `#` parte · `##` capítulo temático u órgano · `###` ficha ·
+    `####` cuerpo.
+    """
+    bloques = [f"# {parte}", ""]
+    for titulo, grupo in capitulos:
+        bloques += [f"## {titulo}", ""]
+        for entidad in grupo:
+            bloques.append(ficha_markdown(entidad, bibliografia, orden_global, nivel=1))
+    return "\n".join(bloques).rstrip() + "\n"
 
 
 def portadilla(version: str) -> str:
@@ -455,18 +468,16 @@ def quarto_yml(partes: list, archivos: dict, version: str) -> str:
         f"      orcid: {yaml_texto(ORCID)}",
         f"  date: {yaml_texto(date.today().isoformat())}",
         f"  publisher: {yaml_texto(EDITORIAL)}",
-        f"  identifier: {yaml_texto(DOI_URL)}",
-        f"  rights: {yaml_texto(LICENCIA_LARGA)}",
         "  language: es",
         "  cover-image: portada.svg",
         "  chapters:",
         "    - index.qmd",
     ]
-    for parte, capitulos in partes:
-        lineas.append(f"    - part: {yaml_texto(parte)}")
-        lineas.append("      chapters:")
-        for titulo, _ in capitulos:
-            lineas.append(f"        - {archivos[(parte, titulo)]}")
+    # Lista plana de capítulos, sin `part:`: el escritor de EPUB de Quarto no
+    # emite páginas divisorias de parte, así que declararlas ahí borraba
+    # "Fundamentos" y las ocho partes de sistema del contenedor y del índice.
+    for parte, _ in partes:
+        lineas.append(f"    - {archivos[parte]}")
     lineas += [
         "  appendices:",
         # La bibliografía se emite ya resuelta por `build.referencia_ghost()`,
@@ -474,6 +485,10 @@ def quarto_yml(partes: list, archivos: dict, version: str) -> str:
         "    - bibliografia.qmd",
         "    - creditos-imagenes.qmd",
         "",
+        # `identifier` y `rights` no se declaran aquí: no son propiedades
+        # válidas de `book:` en el esquema de Quarto, y al nivel superior
+        # Quarto las pasa a pandoc ADEMÁS del `epub-metadata.xml`, con lo que
+        # el OPF sale con dos `dc:identifier`. El XML es la única autoridad.
         "lang: es",
         f"date-meta: {yaml_texto(date.today().isoformat())}",
         f"version: {yaml_texto(version)}",
@@ -486,6 +501,9 @@ def quarto_yml(partes: list, archivos: dict, version: str) -> str:
         "    toc-depth: 2",
         "    css: epub.css",
         "    epub-cover-image: portada.svg",
+        # El mismo Dublin Core que usa la ruta pandoc: DOI con esquema,
+        # licencia con URL, descripción y materias MeSH.
+        "    epub-metadata: epub-metadata.xml",
         "  pdf:",
         "    documentclass: book",
         "    pdf-engine: lualatex",
@@ -507,17 +525,14 @@ def manuscrito_plano(partes: list, bibliografia: dict, orden_global: list,
                      version: str) -> str:
     """El mismo libro en un solo Markdown, para pandoc sin Quarto.
 
-    No es una segunda versión del ensamblado: reutiliza `estructura()` y
-    `capitulo()` con un nivel de desplazamiento, de modo que la parte pasa a
-    `#`, el capítulo a `##` y la ficha a `###`. Existe porque Quarto no siempre
-    está disponible (y porque conviene poder validar la salida sin él); si
-    diverge del proyecto Quarto, es un fallo, no una variante editorial.
+    No es una segunda versión del ensamblado: es la concatenación literal de
+    los mismos capítulos que consume Quarto, producidos por `parte_markdown()`.
+    Existe porque Quarto no siempre está disponible y porque conviene poder
+    validar la salida sin él; si diverge del proyecto Quarto, es un fallo.
     """
     bloques = [portadilla(version)]
     for parte, capitulos in partes:
-        bloques.append(f"# {parte}\n")
-        for titulo, grupo in capitulos:
-            bloques.append(capitulo(titulo, grupo, bibliografia, orden_global, nivel=1))
+        bloques.append(parte_markdown(parte, capitulos, bibliografia, orden_global))
     bloques.append(bibliografia_capitulo(orden_global, bibliografia))
     return "\n".join(bloques)
 
@@ -536,17 +551,17 @@ def generar(entidades: list, raiz: Path, destino: Path) -> dict:
     usados: set = set()
     orden_global: list = []
     for parte, capitulos in partes:
-        for titulo, grupo in capitulos:
-            nombre = f"{slug(parte)}-{slug(titulo)}.qmd"
-            sufijo = 2
-            while nombre in usados:
-                nombre = f"{slug(parte)}-{slug(titulo)}-{sufijo}.qmd"
-                sufijo += 1
-            usados.add(nombre)
-            archivos[(parte, titulo)] = nombre
-            (destino / nombre).write_text(
-                capitulo(titulo, grupo, bibliografia, orden_global), encoding="utf-8"
-            )
+        nombre = f"{slug(parte)}.qmd"
+        sufijo = 2
+        while nombre in usados:
+            nombre = f"{slug(parte)}-{sufijo}.qmd"
+            sufijo += 1
+        usados.add(nombre)
+        archivos[parte] = nombre
+        (destino / nombre).write_text(
+            parte_markdown(parte, capitulos, bibliografia, orden_global),
+            encoding="utf-8",
+        )
 
     (destino / "index.qmd").write_text(portadilla(version), encoding="utf-8")
     # El manuscrito plano se arma DESPUÉS de los capítulos para heredar el

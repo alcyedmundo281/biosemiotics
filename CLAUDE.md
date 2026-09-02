@@ -69,10 +69,20 @@ está instalado. Fuerza uno u otro con `--motor quarto|pandoc`. Si las dos
 salidas difieren en contenido, es un fallo de `qmd.py`, no una variante
 editorial aceptable.
 
-La jerarquía es **parte → capítulo/órgano → ficha (`##`) → cuerpo (`###`)**. El
-ensamblado anterior ponía la ficha en `###` dejando el cuerpo en `##`, así que
-"La pregunta clínica" quedaba por encima del título de su propia ficha y
-`--split-level=2` partía el EPUB dentro de cada signo. No lo reintroduzcas.
+La jerarquía es **parte (`#`) → capítulo temático u órgano (`##`) → ficha
+(`###`) → cuerpo (`####`)**. El ensamblado anterior ponía la ficha en `###`
+dejando el cuerpo en `##`, así que "La pregunta clínica" quedaba por encima del
+título de su propia ficha y `--split-level=2` partía el EPUB dentro de cada
+signo. No lo reintroduzcas.
+
+**No uses la clave `part:` de Quarto.** Su escritor de EPUB no emite páginas
+divisorias de parte: "Fundamentos" y las ocho partes de sistema desaparecían
+del contenedor y del índice, y solo sobrevivían en la barra lateral del HTML.
+Por eso `_quarto.yml` lleva una lista plana de capítulos y la parte se convierte
+en el capítulo del libro. Tampoco declares `identifier` ni `rights` bajo
+`book:`: no son propiedades válidas de ese esquema, y al nivel superior Quarto
+las pasa a pandoc *además* del `epub-metadata.xml`, dejando dos
+`dc:identifier` en el OPF.
 
 Las citas **no** pasan a citeproc: el banco cita poco en línea y su evidencia
 vive en `refs`, así que se sigue usando `build.resolver_citas()` +
