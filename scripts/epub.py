@@ -88,20 +88,6 @@ def elegir_motor(preferido: str) -> tuple:
     )
 
 
-def render_quarto(ejecutable: str, proyecto: Path) -> Path:
-    subprocess.run(
-        [ejecutable, "render", str(proyecto), "--to", "epub"],
-        cwd=proyecto,
-        check=True,
-    )
-    salidas = sorted((proyecto / "_salida").glob("*.epub"))
-    if not salidas:
-        raise RuntimeError(
-            f"quarto no dejó ningún .epub en {proyecto / '_salida'}"
-        )
-    return salidas[0]
-
-
 def render_pandoc(ejecutable: str, proyecto: Path, destino: Path, informe: dict) -> Path:
     comando = [
         ejecutable,
@@ -238,7 +224,7 @@ def main() -> int:
     salida.parent.mkdir(parents=True, exist_ok=True)
     temporal = proyecto / "atlas-temporal.epub"
     if nombre_motor == "quarto":
-        producido = render_quarto(ejecutable, proyecto)
+        producido = qmd.render(ejecutable, proyecto, "epub", ".epub")
     else:
         producido = render_pandoc(ejecutable, proyecto, temporal, informe)
 

@@ -4,9 +4,13 @@ biosemiotics — compilador del banco.
 UNA fuente (Markdown + front-matter YAML) → MUCHAS salidas.
 
   build/atlas.db     SQLite consultable (atlas navegable)
-  build/libro.tex    LaTeX/BibLaTeX (libro: DOI, ISBN, sello)
   build/grafo.json   nodos + aristas (exploración tipo aventura)
   build/ghost/       Markdown con citas numéricas listo para Ghost
+
+El libro (EPUB, PDF y su fuente LaTeX) ya no sale de aquí: lo proyecta
+scripts/qmd.py a un proyecto Quarto, y lo renderizan scripts/epub.py y
+scripts/libro.py. Este módulo aporta el orden canónico (CAPITULOS, SISTEMAS,
+ORGANOS) y el motor de citas que aquellos reutilizan.
 
 Uso:
   python3 build.py                 # todo + validación
@@ -46,213 +50,6 @@ BIBLIO_HEADING = re.compile(
     r"^(#{2,6})\s+(?:Evidencia|Referencias|Bibliograf[ií]a)\s*$",
     re.IGNORECASE,
 )
-
-# Caracteres especiales de LaTeX. El orden de las claves no importa: se
-# recorre el string original una sola vez, así que una sustitución nunca
-# vuelve a procesarse (evita el doble escape de p.ej. '\' → '\textbackslash{}').
-_LATEX_ESPECIALES = {
-    "\\": r"\textbackslash{}",
-    "&": r"\&",
-    "%": r"\%",
-    "$": r"\$",
-    "#": r"\#",
-    "_": r"\_",
-    "{": r"\{",
-    "}": r"\}",
-    "~": r"\textasciitilde{}",
-    "^": r"\textasciicircum{}",
-    "<": r"\textless{}",
-    ">": r"\textgreater{}",
-}
-
-
-def escape_latex(s) -> str:
-    """Escapa caracteres especiales de LaTeX en texto libre (títulos, cuerpo).
-
-    Sin esto, un '%' suelto (p.ej. "1,2 % de complicaciones") comenta el
-    resto de la línea en silencio y el texto que sigue desaparece del PDF.
-    """
-    if s is None:
-        return ""
-    return "".join(_LATEX_ESPECIALES.get(c, c) for c in str(s))
-
-
-def inline_markdown_latex(texto: str) -> str:
-    """Convierte el Markdown inline del banco sin imprimir sus marcadores."""
-    tokens = {}
-
-    def proteger(valor: str) -> str:
-        token = f"@@MD{len(tokens)}@@"
-        tokens[token] = valor
-        return token
-
-    texto = re.sub(
-        r"`([^`]+)`",
-        lambda m: proteger(r"\texttt{" + escape_latex(m.group(1)) + "}"),
-        texto,
-    )
-    texto = re.sub(
-        r"\[([^]]+)\]\((https?://[^)]+)\)",
-        lambda m: proteger(
-            r"\href{" + escape_latex(m.group(2)) + "}{"
-            + inline_markdown_latex(m.group(1)) + "}"
-        ),
-        texto,
-    )
-    texto = CITA_BIBLATEX.sub(
-        lambda m: proteger(r"\cite{" + m.group(1) + "}"), texto
-    )
-    texto = re.sub(
-        r"\*\*(.+?)\*\*",
-        lambda m: proteger(r"\textbf{" + inline_markdown_latex(m.group(1)) + "}"),
-        texto,
-    )
-    texto = re.sub(
-        r"(?<!\*)\*([^*]+?)\*(?!\*)",
-        lambda m: proteger(r"\emph{" + inline_markdown_latex(m.group(1)) + "}"),
-        texto,
-    )
-    salida = escape_latex(texto)
-    for token, valor in reversed(list(tokens.items())):
-        salida = salida.replace(token, valor)
-    return salida
-
-
-def markdown_a_latex(cuerpo: str) -> str:
-    """Renderiza el subconjunto de Markdown editorial como LaTeX natural."""
-    lineas = cuerpo.splitlines()
-    salida = []
-    i = 0
-
-    def inicia_bloque(linea: str, siguiente: str = "") -> bool:
-        limpia = linea.strip()
-        return bool(
-            not limpia
-            or re.match(r"^#{1,6}\s+", limpia)
-            or re.match(r"^(?:[-*+] |\d+\. )", limpia)
-            or limpia.startswith(">")
-            or limpia.startswith("```")
-            or limpia == "---"
-            or (limpia.startswith("|") and siguiente.strip().startswith("|"))
-        )
-
-    while i < len(lineas):
-        linea = lineas[i]
-        limpia = linea.strip()
-        if not limpia:
-            i += 1
-            continue
-
-        if limpia.startswith("```"):
-            codigo = []
-            i += 1
-            while i < len(lineas) and not lineas[i].strip().startswith("```"):
-                codigo.append(lineas[i])
-                i += 1
-            i += 1 if i < len(lineas) else 0
-            salida += [r"\begin{verbatim}", "\n".join(codigo), r"\end{verbatim}"]
-            continue
-
-        encabezado = re.match(r"^(#{1,6})\s+(.+)$", limpia)
-        if encabezado:
-            comando = "subsection*" if len(encabezado.group(1)) <= 2 else "subsubsection*"
-            salida.append(
-                rf"\{comando}{{{inline_markdown_latex(encabezado.group(2))}}}"
-            )
-            i += 1
-            continue
-
-        if limpia == "---":
-            salida.append(r"\medskip\hrule\medskip")
-            i += 1
-            continue
-
-        if limpia.startswith(">"):
-            cita = []
-            while i < len(lineas) and lineas[i].strip().startswith(">"):
-                cita.append(re.sub(r"^\s*>\s?", "", lineas[i]))
-                i += 1
-            salida += [
-                r"\begin{quote}",
-                inline_markdown_latex(" ".join(x.strip() for x in cita)),
-                r"\end{quote}",
-            ]
-            continue
-
-        if limpia.startswith("|") and i + 1 < len(lineas) and re.match(
-            r"^\s*\|?\s*:?-{3,}", lineas[i + 1]
-        ):
-            filas = []
-            while i < len(lineas) and lineas[i].strip().startswith("|"):
-                celdas = [c.strip() for c in lineas[i].strip().strip("|").split("|")]
-                if not all(re.match(r"^:?-{3,}:?$", c) for c in celdas):
-                    filas.append(celdas)
-                i += 1
-            columnas = max(len(f) for f in filas)
-            especificacion = " ".join(
-                [r">{\raggedright\arraybackslash}X"] * columnas
-            )
-            salida += [
-                r"\begin{table}[H]",
-                r"\centering\small",
-                rf"\begin{{tabularx}}{{0.95\textwidth}}{{{especificacion}}}",
-                r"\hline",
-            ]
-            for numero, fila in enumerate(filas):
-                fila += [""] * (columnas - len(fila))
-                celdas = [inline_markdown_latex(c) for c in fila]
-                if numero == 0:
-                    celdas = [rf"\textbf{{{c}}}" for c in celdas]
-                salida.append(" & ".join(celdas) + r" \\")
-                if numero == 0:
-                    salida.append(r"\hline")
-            salida += [r"\hline", r"\end{tabularx}", r"\end{table}"]
-            continue
-
-        item = re.match(r"^\s*([-*+]|\d+\.)\s+(.+)$", linea)
-        if item:
-            ordenada = item.group(1)[0].isdigit()
-            entorno = "enumerate" if ordenada else "itemize"
-            salida.append(rf"\begin{{{entorno}}}")
-            while i < len(lineas):
-                actual = re.match(r"^\s*([-*+]|\d+\.)\s+(.+)$", lineas[i])
-                if not actual or actual.group(1)[0].isdigit() != ordenada:
-                    break
-                partes = [actual.group(2).strip()]
-                i += 1
-                while i < len(lineas) and lineas[i].strip() and not re.match(
-                    r"^\s*([-*+]|\d+\.)\s+", lineas[i]
-                ):
-                    if not lineas[i][:1].isspace():
-                        break
-                    partes.append(lineas[i].strip())
-                    i += 1
-                salida.append(r"\item " + inline_markdown_latex(" ".join(partes)))
-                while i < len(lineas) and not lineas[i].strip():
-                    i += 1
-            salida.append(rf"\end{{{entorno}}}")
-            continue
-
-        parrafo = [limpia]
-        i += 1
-        while i < len(lineas):
-            siguiente = lineas[i + 1] if i + 1 < len(lineas) else ""
-            if inicia_bloque(lineas[i], siguiente):
-                break
-            parrafo.append(lineas[i].strip())
-            i += 1
-        salida.append(inline_markdown_latex(" ".join(parrafo)))
-
-    return "\n\n".join(salida)
-
-
-def cuerpo_latex(e: dict) -> str:
-    cuerpo = markdown_a_latex(quitar_bibliografia_manual(e["cuerpo"]))
-    refs = e.get("refs") or []
-    if refs:
-        cuerpo += "\n" + rf"\nocite{{{','.join(refs)}}}"
-    return cuerpo
-
 
 # ─────────────────────────── PARSER ───────────────────────────
 def parse(path: Path, raiz: Path) -> dict:
@@ -329,89 +126,6 @@ def build_sqlite(entidades, build_dir: Path) -> Path:
     return db
 
 
-# ─────────────────────── SALIDA 2: LATEX ───────────────────────
-# DPI mínimo para impresión: por debajo de esto una imagen se ve pixelada.
-# Se usa para NO agrandar una imagen más allá de su resolución nativa.
-DPI_IMPRESION = 150
-
-
-def _dims_px(path: Path):
-    """(ancho, alto) en píxeles leyendo solo la cabecera. Sin dependencias
-    (la CI corre build.py sin Pillow). Devuelve None si no la reconoce."""
-    try:
-        with path.open("rb") as f:
-            head = f.read(24)
-            if head[:8] == b"\x89PNG\r\n\x1a\n":
-                import struct
-                return struct.unpack(">II", head[16:24])
-            if head[:2] == b"\xff\xd8":  # JPEG: buscar el marcador SOF
-                import struct
-                f.seek(2)
-                b = f.read(1)
-                while b:
-                    while b == b"\xff":
-                        b = f.read(1)
-                    if b[0] in (0xC0, 0xC1, 0xC2, 0xC3, 0xC5, 0xC6, 0xC7,
-                                0xC9, 0xCA, 0xCB):
-                        f.read(3)
-                        h, w = struct.unpack(">HH", f.read(4))
-                        return w, h
-                    seg = struct.unpack(">H", f.read(2))[0]
-                    f.seek(seg - 2, 1)
-                    b = f.read(1)
-    except Exception:
-        pass
-    return None
-
-
-def figura_latex(e: dict, raiz: Path) -> str:
-    """Figura flotante con su imagen y la cita al pie (crédito + licencia).
-
-    `archivo_local` es la única autoridad para la ruta: es el mismo campo que
-    consume EPUB y evita que LaTeX adivine un nombre distinto al archivo que se
-    subió a Ghost. libro.tex se compila desde build/, por eso la ruta lleva
-    `../`. Devuelve '' si no hay imagen declarada o el archivo no existe.
-    """
-    med = next((m for m in (e.get("medios") or [])
-                if m.get("tipo") == "imagen" and m.get("credito")
-                and m.get("archivo_local")), None)
-    if not med:
-        return ""
-    ruta = (raiz / med["archivo_local"]).resolve()
-    try:
-        relativa = ruta.relative_to(raiz.resolve())
-    except ValueError:
-        return ""
-    if not ruta.is_file():
-        return ""
-    partes = [med["credito"]]
-    if med.get("fuente"):
-        partes.append(med["fuente"])
-    if med.get("licencia_img"):
-        partes.append(med["licencia_img"])
-    credito = escape_latex(". ".join(partes) + ".")
-    desc = escape_latex(med.get("descripcion", ""))
-
-    # Ancho objetivo: el nativo a DPI_IMPRESION (para no pixelar), pero nunca
-    # más que 0.85\textwidth. Una imagen pequeña sale más chica y nítida en vez
-    # de estirada; una grande llena el ancho como antes. 'max width' de
-    # adjustbox impone el tope sin necesitar saber el \textwidth real.
-    dims = _dims_px(ruta)
-    if dims:
-        ancho_in = dims[0] / DPI_IMPRESION
-        spec = (rf"width={ancho_in:.2f}in,max width=0.85\textwidth,"
-                r"max height=0.45\textheight,keepaspectratio")
-    else:
-        spec = r"width=0.85\textwidth,height=0.45\textheight,keepaspectratio"
-    return "\n".join([
-        r"\begin{figure}[H]",
-        r"  \centering",
-        rf"  \includegraphics[{spec}]{{../{relativa.as_posix()}}}",
-        rf"  \caption{{{desc} \textit{{Fuente: {credito}}}}}",
-        r"\end{figure}",
-    ])
-
-
 # Taxonomía cerrada de `nivel`, según el mapa maestro.
 NIVELES = {"principiante", "intermedio", "avanzado"}
 
@@ -426,6 +140,42 @@ CAPITULOS = {
     5: "Artefactos",
     6: "Instrumentación y medición",
 }
+
+# Nombre de presentación de cada `organo`. La taxonomía del mapa maestro usa
+# slugs ASCII (`riñon`, `pulmon`, `via-biliar`) porque son claves de datos; el
+# libro necesita el nombre escrito como se lee en español. Derivarlo con
+# `.title()` daba "Pulmon", "Riñon" y "Aorta Abdominal" —sin tilde y con
+# mayúscula intercalada, que en español no lleva—. Las formas de aquí son las
+# que el propio mapa maestro usa en prosa.
+ORGANOS = {
+    "aorta-abdominal": "Aorta abdominal",
+    "apendice": "Apéndice",
+    "corazon": "Corazón",
+    "higado": "Hígado",
+    "intestino": "Intestino",
+    "pared": "Pared",
+    "pericardio": "Pericardio",
+    "pleura": "Pleura",
+    "pulmon": "Pulmón",
+    "riñon": "Riñón",
+    "utero": "Útero",
+    "vejiga": "Vejiga",
+    "vena-profunda": "Vena profunda",
+    "vesicula": "Vesícula",
+    "via-biliar": "Vía biliar",
+}
+
+
+def nombre_organo(clave: str) -> str:
+    """Nombre legible de un órgano; un slug sin mapear no rompe la compilación.
+
+    El respaldo usa `capitalize()`, no `title()`: en español solo va en
+    mayúscula la primera palabra.
+    """
+    if not clave:
+        return "Otros"
+    return ORGANOS.get(clave) or clave.replace("-", " ").capitalize()
+
 
 # Partes del atlas, en el orden canónico de la taxonomía `sistema` del mapa
 # maestro —no alfabético—. Un atlas impreso se recorre por aparatos; lo que
@@ -444,108 +194,7 @@ SISTEMAS = [
 ]
 
 
-def build_latex(entidades, build_dir: Path, autor="Alcy") -> Path:
-    conceptos = sorted([e for e in entidades if e["tipo"] == "concepto"],
-                       key=lambda e: (e.get("capitulo") or 99, e.get("orden") or 99))
-    signos = [e for e in entidades if e["tipo"] == "signo"]
-    casos = sorted([e for e in entidades if e["tipo"] == "caso"],
-                   key=lambda e: e["titulo"])
-
-    def por_organo(grupo):
-        return sorted(grupo, key=lambda e: (e.get("organo") or "", e["titulo"]))
-
-    # Se compila con LuaLaTeX (ver CLAUDE.md), no pdflatex: el banco usa
-    # símbolos Unicode estructurales (≥ → ±) en umbrales y decisiones, y
-    # fontspec los renderiza directo sin parchear cada uno a mano.
-    L = [r"\documentclass[11pt]{book}",
-         r"\usepackage{fontspec}",
-         r"\setmainfont{FreeSerif}",
-         r"\usepackage[spanish]{babel}",
-         r"\usepackage{graphicx}",
-         r"\usepackage{float}",
-         r"\usepackage{array}",
-         r"\usepackage{tabularx}",
-         r"\usepackage[hidelinks]{hyperref}",
-         r"\usepackage[export]{adjustbox}",  # habilita 'max width' en includegraphics
-         r"\usepackage[backend=biber,style=numeric]{biblatex}",
-         # libro.tex vive y se compila dentro de build/; la bibliografía es
-         # fuente versionada en la raíz, no un derivado que deba copiarse.
-         r"\addbibresource{../refs.bib}",
-         r"\title{Biosemiótica del Cuerpo Vivo\\\large Manual de POCUS para el clínico}",
-         rf"\author{{{escape_latex(autor)}}}",
-         r"\begin{document}", r"\maketitle", r"\tableofcontents",
-         "", r"\part{Fundamentos}"]
-
-    cap = None
-    for e in conceptos:
-        if e.get("capitulo") != cap:
-            cap = e.get("capitulo")
-            L.append(f"\n\\chapter{{{escape_latex(CAPITULOS.get(cap, f'Capítulo {cap}'))}}}")
-        L += [f"\n\\section{{{escape_latex(e['titulo'])}}}",
-              f"\\label{{sec:{e['id']}}}"]
-        fig = figura_latex(e, build_dir.parent)
-        if fig:
-            L.append(fig)
-        L.append(cuerpo_latex(e))
-
-    def capitulo_signo(e):
-        """Un signo como capítulo: figura, campos semióticos, límites y cuerpo."""
-        out = [f"\n\\chapter{{{escape_latex(e['titulo'])}}}",
-               f"\\label{{sec:{e['id']}}}"]
-        fig = figura_latex(e, build_dir.parent)
-        if fig:
-            out.append(fig)
-        for etiqueta, campo in (("Significante", "significante"),
-                                ("Significado", "significado"),
-                                ("Decisión", "decision"),
-                                ("Umbral", "umbral")):
-            if e.get(campo):
-                out.append(f"\\paragraph{{{etiqueta}.}} {escape_latex(e[campo])}")
-        if e.get("falsos_positivos"):
-            out.append(r"\paragraph{Dónde NO confiar.}\begin{itemize}")
-            out += [f"  \\item {escape_latex(fp)}" for fp in e["falsos_positivos"]]
-            out.append(r"\end{itemize}")
-        out.append(cuerpo_latex(e))
-        return out
-
-    # Los signos se agrupan en una parte por aparato. Se emiten solo las partes
-    # que tienen contenido, para que el índice no muestre sistemas vacíos.
-    ubicados = set()
-    for clave, titulo_parte in SISTEMAS:
-        grupo = [e for e in signos if e.get("sistema") == clave]
-        if not grupo:
-            continue
-        L.append("\n" + rf"\part{{{escape_latex(titulo_parte)}}}")
-        for e in por_organo(grupo):
-            ubicados.add(e["id"])
-            L += capitulo_signo(e)
-
-    huerfanos = [e for e in signos if e["id"] not in ubicados]
-    if huerfanos:
-        L.append("\n" + r"\part{Otros signos}")
-        for e in por_organo(huerfanos):
-            L += capitulo_signo(e)
-
-    if casos:
-        L.append("\n" + r"\part{Casos}")
-        for e in casos:
-            L += [f"\n\\chapter{{{escape_latex(e['titulo'])}}}",
-                  f"\\label{{sec:{e['id']}}}"]
-            fig = figura_latex(e, build_dir.parent)
-            if fig:
-                L.append(fig)
-            if e.get("decision_semiotica"):
-                L.append(r"\paragraph{Decisión semiótica.} "
-                         + escape_latex(e["decision_semiotica"]))
-            L.append(cuerpo_latex(e))
-
-    L += [r"\printbibliography", r"\end{document}"]
-    tex = build_dir / "libro.tex"
-    tex.write_text("\n".join(L), encoding="utf-8")
-    return tex
-
-
-# ─────────────────────── SALIDA 3: GRAFO ───────────────────────
+# ─────────────────────── SALIDA 2: GRAFO ───────────────────────
 def build_grafo(entidades, build_dir: Path):
     nodos = [{"id": e["id"], "tipo": e["tipo"], "titulo": e["titulo"],
               "organo": e.get("organo"), "dominio": e.get("dominio"),
@@ -558,7 +207,7 @@ def build_grafo(entidades, build_dir: Path):
     return g, aristas
 
 
-# ─────────────────────── SALIDA 4: GHOST ───────────────────────
+# ─────────────────────── SALIDA 3: GHOST ───────────────────────
 def cargar_bibliografia(path: Path) -> dict:
     """Lee los campos usados por la salida Ghost desde refs.bib.
 
@@ -854,8 +503,7 @@ def validar(entidades, aristas, raiz: Path):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--raiz", default=".")
-    ap.add_argument("--solo", choices=["db", "tex", "grafo", "ghost"])
-    ap.add_argument("--autor", default="Alcy")
+    ap.add_argument("--solo", choices=["db", "grafo", "ghost"])
     a = ap.parse_args()
 
     raiz = Path(a.raiz).resolve()
@@ -872,9 +520,6 @@ def main():
     if a.solo in (None, "db"):
         print(f"  → atlas.db     ({len(aristas)} relaciones)")
         build_sqlite(ent, build_dir)
-    if a.solo in (None, "tex"):
-        build_latex(ent, build_dir, a.autor)
-        print("  → libro.tex")
     if a.solo in (None, "grafo"):
         print("  → grafo.json")
     if a.solo in (None, "ghost"):
