@@ -23,7 +23,7 @@ proyecto-biosemiotics/
 ├── conceptos/*.qmd              ← el "por qué" (física, artefactos, técnica)
 ├── signos/*.qmd                 ← el "qué hago" (significante→significado→decisión)
 ├── casos/*.qmd                  ← el paciente real
-├── scripts/                     ← build.py, qmd.py, epub.py, indice.py, refs.py, nuevo.py
+├── scripts/                     ← build.py, qmd.py, epub.py, libro.py, indice.py, refs.py
 ├── refs.bib                     ← bibliografía (SOLO desde PubMed vía refs.py)
 ├── assets/                      ← plantillas para nuevo.py
 └── build/                       ← GENERADO, no versionar salvo index.json
@@ -31,21 +31,45 @@ proyecto-biosemiotics/
 
 La documentación de referencia (esquema completo, instructivo del artículo) vive en la skill `biosemiotics-atlas`. Consúltala si necesitas el detalle de un campo.
 
-## Compilar el libro (`build/libro.tex`)
-
-El compilador correcto es **LuaLaTeX, no pdflatex**. El banco escribe umbrales y decisiones con símbolos Unicode estructurales (`≥`, `→`, `±`) porque así se leen en la clínica — parchearlos uno por uno no escala. El preámbulo que genera `build_latex()` usa `fontspec` (sin `inputenc`/`fontenc`, que son cosas de pdflatex) y fija `\setmainfont{FreeSerif}`, la única fuente disponible que cubre esos glifos sin fallback silencioso.
-
-**Paquetes LaTeX requeridos** (además de lo básico de `book`): `fontspec`, `babel` (spanish), `biblatex`+`biber`, y para las figuras de los signos con imagen: `graphicx`, `float`, `adjustbox`. En Debian/Ubuntu, `texlive-latex-recommended` + `texlive-latex-extra` + `texlive-lang-spanish` + `texlive-luatex` + `biber` cubren todo. Si falta `adjustbox.sty`, la compilación aborta de inmediato con `File 'adjustbox.sty' not found` — no es un error del banco.
+## Compilar el libro en PDF (`build/libro.pdf`)
 
 ```bash
-cd build
-lualatex -interaction=nonstopmode libro.tex
-biber libro
-lualatex -interaction=nonstopmode libro.tex
-lualatex -interaction=nonstopmode libro.tex   # segunda pasada: referencias cruzadas
+python scripts/libro.py --salida build/libro.pdf --solo-publicados
 ```
 
-Si compilas con pdflatex vas a ver `Missing character` o `Unicode character not set up for use with LaTeX` en cuanto el texto traiga `≥`/`→`/`±` — no es un error del banco, es el compilador equivocado.
+**El LaTeX ya no se escribe a mano.** `build_latex()` y sus auxiliares
+—`markdown_a_latex()`, `escape_latex()`, `figura_latex()`— se jubilaron: eran
+~350 líneas que reimplementaban la conversión y el escape en paralelo al
+ensamblado del EPUB, con el riesgo permanente de que las dos ediciones
+divergieran. Ahora el PDF sale del **mismo proyecto Quarto** que el EPUB, y
+`libro.py` solo renderiza y valida.
+
+El compilador sigue siendo **LuaLaTeX, no pdflatex**. El banco escribe umbrales
+y decisiones con símbolos Unicode estructurales (`≥`, `→`, `±`) porque así se
+leen en la clínica. `_quarto.yml` fija `pdf-engine: lualatex` y
+`mainfont: FreeSerif`, la única fuente disponible que cubre esos glifos sin
+fallback silencioso. Con pdflatex verías `Missing character` en cuanto el texto
+traiga `≥`/`→`/`±`: no es un error del banco, es el compilador equivocado.
+
+**La fuente LaTeX es un entregable, no un intermedio.** `keep-tex` la deja en
+**`build/quarto/libro.tex`** —no en `build/libro.tex`, que ya no existe— junto
+a las imágenes que `qmd.py` copió al proyecto. Ese directorio compila tal cual,
+sin depender del checkout:
+
+```bash
+cd build/quarto
+lualatex -halt-on-error -interaction=nonstopmode libro.tex
+```
+
+Eso es lo que empaqueta `paquete_latex.py`: el proyecto entero menos `_salida/`.
+El ZIP anterior mezclaba `build/libro.tex` con el árbol `assets/` del
+repositorio y traía rutas `../assets/...` que solo resolvían desde `build/`.
+
+**Dependencias de sistema:** `texlive-latex-recommended`,
+`texlive-latex-extra`, `texlive-lang-spanish`, `texlive-luatex` y
+`fonts-freefont-ttf`. **`biber` ya no hace falta**: el `.tex` de Quarto no usa
+biblatex porque la bibliografía se emite ya resuelta por
+`build.referencia_ghost()`.
 
 ## Compilar el EPUB (`build/atlas.epub`)
 
@@ -97,9 +121,9 @@ para evitar repetir llamadas a PubMed. El generador lee el banco de
 forma dinámica y hereda de `build.py` el orden de capítulos y sistemas; no usa
 listas manuales. El archivo resultante vive en `build/` y no se versiona. El
 workflow `.github/workflows/epub.yml` se ejecuta automáticamente en cada cambio
-relevante fusionado a `main`: instala Quarto, valida con EPUBCheck, compila el PDF con
-LuaLaTeX/Biber y publica EPUB, PDF, TEX y ZIP LaTeX como artifacts durante 90
-días. En un release, además los adjunta al release. `workflow_dispatch` queda
+relevante fusionado a `main`: instala Quarto, valida con EPUBCheck, compila el PDF
+con LuaLaTeX desde el mismo proyecto y publica EPUB, PDF, TEX y ZIP LaTeX como
+artifacts durante 90 días. En un release, además los adjunta al release. `workflow_dispatch` queda
 solo como recuperación o para generar una edición de prueba.
 
 **El EPUB es el puente con Ghost, no una copia muerta.** Cada ficha publicada
@@ -202,7 +226,7 @@ compilación y Git cuando la tarea solicitada sea publicar un artículo.
 El publicador puede usar la sesión autorizada de Ghost y, sobre una ficha `.qmd`
 **ya creada y validada durante la fase proveedora**, modificar solamente `url` y
 `medios`; puede añadir el archivo licenciado a `assets/img/`, ejecutar
-`build.py`, verificar `build/libro.tex` con LuaLaTeX y entregar esos cambios en
+`build.py`, verificar el libro con `libro.py` y entregar esos cambios en
 una rama/PR de publicación.
 
 No puede crear fichas, modificar el cuerpo editorial, `refs`, PMID, DOI o
@@ -254,7 +278,7 @@ python scripts/auditar_pegado_ghost.py \
    crédito, fuente y URL, licencia y URL de licencia, y `archivo_local`. Esta
    es responsabilidad exclusiva del publicador porque debe ser exactamente la
    misma imagen subida a Ghost. Ejecuta `build.py` y confirma que aparece en
-   `build/libro.tex`; compila con LuaLaTeX cuando el entorno lo permita.
+   `build/quarto/libro.tex`; compílalo con `libro.py` cuando el entorno lo permita.
 3. En Ghost configura: título, cuerpo, imagen, pie y texto alternativo, tags,
    excerpt, autor y acceso. Meta title/description y tarjetas sociales pueden
    quedar vacíos solo cuando se quiere heredar título, excerpt e imagen, como
@@ -287,7 +311,7 @@ python scripts/auditar_pegado_ghost.py \
 
 1. Copia la URL pública definitiva al campo `url` de la ficha existente. No
    cambies ningún otro campo salvo `medios`.
-2. Ejecuta `build.py`, valida que `build/libro.tex` use exactamente el
+2. Ejecuta `build.py` y `libro.py`, y valida que `build/quarto/libro.tex` use exactamente el
    `archivo_local` subido a Ghost y compila LuaLaTeX si está disponible. La
    misma imagen debe poder entrar en el EPUB. **No ejecutes `indice.py` ni
    agregues `build/index.json`: esa regeneración sigue en el PR hijo.**
@@ -341,27 +365,24 @@ artículo ya está vivo, los dos PR se apilan:
    ```bash
    python scripts/build.py
    python scripts/indice.py .
-   python scripts/verificar_publicacion.py --id <id> --url <url> \
-     --verificar-derivados
    python scripts/epub.py --salida build/atlas.epub --solo-publicados
+   python scripts/libro.py --salida build/libro.pdf --solo-publicados
+   python scripts/paquete_latex.py --salida build/biosemiotics-latex.zip
    python scripts/verificar_publicacion.py --id <id> --url <url> \
      --verificar-derivados --epub build/atlas.epub
-   python scripts/paquete_latex.py --salida build/biosemiotics-latex.zip
-   cd build
-   lualatex -halt-on-error -interaction=nonstopmode libro.tex
-   biber libro
-   lualatex -halt-on-error -interaction=nonstopmode libro.tex
-   lualatex -halt-on-error -interaction=nonstopmode libro.tex
    ```
 
+   La verificación de derivados va **al final**: comprueba
+   `build/quarto/libro.tex`, que solo existe una vez renderizado el PDF.
+
    Las salidas son `index.json`, `atlas-inject.html`, `jsonld/`, `jats/`,
-   `libro.tex`, `libro.pdf` (LuaLaTeX), el proyecto Quarto `build/quarto/`,
+   el proyecto Quarto `build/quarto/` (con `libro.tex` dentro), `libro.pdf`,
    `atlas.epub` y el paquete `biosemiotics-latex.zip`. Solo
    `build/index.json` se versiona; las otras se regeneran. La verificación
    compara la URL en los cuatro derivados web/metadatos y exige que cada
    imagen publicada sea la declarada en `archivo_local`, tanto en LaTeX como
-   dentro del contenedor EPUB. El ZIP debe conservar `build/libro.tex`,
-   `refs.bib` y el árbol completo `assets/` para recompilar sin depender del
+   dentro del contenedor EPUB. El ZIP debe conservar `libro.tex`,
+   `refs.bib` y las imágenes del proyecto para recompilar sin depender del
    checkout original. El workflow `epub.yml` reproduce este contrato en cada PR
    que toca contenido, imágenes o generadores y vuelve a generarlo
    automáticamente al fusionarse en `main`; no requiere una ejecución manual.

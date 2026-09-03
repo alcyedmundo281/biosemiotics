@@ -447,7 +447,7 @@ def estructura(entidades: list) -> list:
             ubicados.add(entidad["id"])
         capitulos = [
             (
-                organo.replace("-", " ").title(),
+                banco.nombre_organo(organo),
                 sorted(por_organo[organo], key=lambda e: e["titulo"]),
             )
             for organo in sorted(por_organo)
@@ -496,6 +496,10 @@ def quarto_yml(partes: list, archivos: dict, version: str, portada: str) -> str:
         f"  date: {yaml_texto(date.today().isoformat())}",
         f"  publisher: {yaml_texto(EDITORIAL)}",
         "  language: es",
+        # En un libro Quarto el nombre de salida se declara aquí, no bajo el
+        # formato: `libro.pdf` / `libro.tex` / `atlas.epub`, los nombres que el
+        # repositorio usa desde siempre, en vez del título con acentos.
+        "  output-file: libro",
         f"  cover-image: {portada}",
         "  chapters:",
         "    - index.qmd",
@@ -533,6 +537,9 @@ def quarto_yml(partes: list, archivos: dict, version: str, portada: str) -> str:
         "    epub-metadata: epub-metadata.xml",
         "  pdf:",
         "    documentclass: book",
+        # La fuente LaTeX es un entregable, no un intermedio: alimenta el ZIP
+        # autocontenido y la verificación de imágenes.
+        "    keep-tex: true",
         "    pdf-engine: lualatex",
         # FreeSerif es la única fuente disponible que cubre ≥ → ± sin fallback
         # silencioso. Es la misma decisión del preámbulo LuaLaTeX histórico.
@@ -562,6 +569,25 @@ def manuscrito_plano(partes: list, bibliografia: dict, orden_global: list,
         bloques.append(parte_markdown(parte, capitulos, bibliografia, orden_global))
     bloques.append(bibliografia_capitulo(orden_global, bibliografia))
     return "\n".join(bloques)
+
+
+def render(ejecutable: str, proyecto: Path, formato: str, sufijo: str) -> Path:
+    """Renderiza el proyecto a un formato y devuelve el archivo producido.
+
+    Compartida por `epub.py` y `libro.py` para que las dos ediciones salgan
+    del mismo árbol con la misma invocación.
+    """
+    subprocess.run(
+        [ejecutable, "render", str(proyecto), "--to", formato],
+        cwd=proyecto,
+        check=True,
+    )
+    salidas = sorted((proyecto / "_salida").glob(f"*{sufijo}"))
+    if not salidas:
+        raise RuntimeError(
+            f"quarto no dejó ningún {sufijo} en {proyecto / '_salida'}"
+        )
+    return salidas[0]
 
 
 def generar(entidades: list, raiz: Path, destino: Path) -> dict:
@@ -631,6 +657,7 @@ def generar(entidades: list, raiz: Path, destino: Path) -> dict:
         "destino": destino,
         "entidades": len(entidades),
         "figuras": len(figuras),
+        "figuras_detalle": figuras,
         "imagenes_copiadas": len(copiadas),
         "capitulos": len(usados),
         "portada": portada,

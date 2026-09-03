@@ -1,5 +1,13 @@
 #!/usr/bin/env python3
-"""Empaqueta una fuente LuaLaTeX autocontenida con todos sus assets."""
+"""Empaqueta la fuente LuaLaTeX autocontenida del libro.
+
+Empaqueta el proyecto Quarto entero (`build/quarto/`), que es donde `qmd.py`
+deja `libro.tex` junto a las imágenes ya copiadas y a `refs.bib`. Antes se
+armaba a mano con el `build/libro.tex` del generador propio más el árbol
+`assets/` del repositorio, y el .tex traía rutas `../assets/...` que solo
+resolvían compilando desde `build/`. Ahora el ZIP es autocontenido por
+construcción: se descomprime y compila donde sea.
+"""
 
 from __future__ import annotations
 
@@ -17,31 +25,30 @@ if hasattr(sys.stdout, "reconfigure"):
 
 INSTRUCCIONES = """# Fuente LuaLaTeX de BioSemiotics
 
-Este paquete conserva la estructura de rutas esperada por `build/libro.tex`.
+El paquete es autocontenido: `libro.tex` referencia las imágenes por su ruta
+relativa (`assets/img/...`) dentro de este mismo directorio.
 
 ```bash
-cd build
-lualatex -halt-on-error -interaction=nonstopmode libro.tex
-biber libro
 lualatex -halt-on-error -interaction=nonstopmode libro.tex
 lualatex -halt-on-error -interaction=nonstopmode libro.tex
 ```
 
-Requiere LuaLaTeX, Biber, FreeSerif, biblatex, babel-spanish, graphicx,
-adjustbox, tabularx, array, hyperref y los paquetes LaTeX recomendados.
+Requiere LuaLaTeX y FreeSerif. El banco escribe símbolos Unicode estructurales
+(≥ → ±) y el preámbulo los compone con fontspec: **no compila con pdflatex**.
+
+`libro.tex` lo genera Quarto desde el proyecto de `build/quarto/`; no se edita
+a mano. Para regenerarlo: `python scripts/libro.py --salida build/libro.pdf`.
 """
 
 
 def crear_paquete(raiz: Path, salida: Path) -> tuple[int, int]:
     raiz = raiz.resolve()
-    tex = raiz / "build" / "libro.tex"
-    bib = raiz / "refs.bib"
-    assets = raiz / "assets"
-    faltantes = [p for p in (tex, bib, assets) if not p.exists()]
-    if faltantes:
+    proyecto = raiz / "build" / "quarto"
+    tex = proyecto / "libro.tex"
+    if not tex.is_file():
         raise RuntimeError(
-            "faltan componentes del paquete: "
-            + ", ".join(str(p.relative_to(raiz)) for p in faltantes)
+            f"falta {tex.relative_to(raiz)}: genera el libro con "
+            "`python scripts/libro.py --salida build/libro.pdf` antes de empaquetar"
         )
 
     salida.parent.mkdir(parents=True, exist_ok=True)
@@ -50,13 +57,18 @@ def crear_paquete(raiz: Path, salida: Path) -> tuple[int, int]:
     ) as temporal:
         temporal_path = Path(temporal.name)
     try:
-        archivos = [tex, bib] + sorted(p for p in assets.rglob("*") if p.is_file())
+        # Todo el proyecto salvo lo que Quarto deja como salida: el PDF pesa
+        # y se publica aparte, y `_salida/` no forma parte de la fuente.
+        archivos = sorted(
+            p for p in proyecto.rglob("*")
+            if p.is_file() and "_salida" not in p.relative_to(proyecto).parts
+        )
         with zipfile.ZipFile(
             temporal_path, "w", compression=zipfile.ZIP_DEFLATED, compresslevel=9
         ) as zf:
             prefijo = Path("biosemiotics-latex")
             for archivo in archivos:
-                zf.write(archivo, (prefijo / archivo.relative_to(raiz)).as_posix())
+                zf.write(archivo, (prefijo / archivo.relative_to(proyecto)).as_posix())
             zf.writestr((prefijo / "COMPILAR.md").as_posix(), INSTRUCCIONES)
 
         with zipfile.ZipFile(temporal_path) as zf:
@@ -65,7 +77,7 @@ def crear_paquete(raiz: Path, salida: Path) -> tuple[int, int]:
                 raise RuntimeError(f"entrada ZIP corrupta: {error}")
             nombres = set(zf.namelist())
             esperados = {
-                "biosemiotics-latex/build/libro.tex",
+                "biosemiotics-latex/libro.tex",
                 "biosemiotics-latex/refs.bib",
                 "biosemiotics-latex/COMPILAR.md",
             }

@@ -152,10 +152,14 @@ def validar_derivados(
     Los binarios EPUB/PDF no se versionan. El EPUB se inspecciona cuando el
     llamador entrega `--epub`; LuaLaTeX se valida compilando `libro.tex` en CI.
     Aquí se comprueba antes que el .tex apunte exactamente a `archivo_local`.
+
+    La fuente LaTeX la genera Quarto dentro del proyecto (`build/quarto/`),
+    junto a las imágenes que `qmd.py` copia ahí, así que la ruta va sin el
+    `../` que necesitaba el generador propio para salir de `build/`.
     """
     build = raiz / "build"
     atlas = build / "atlas-inject.html"
-    tex = build / "libro.tex"
+    tex = build / "quarto" / "libro.tex"
     for ruta in (atlas, tex):
         if not ruta.is_file():
             error(errores, f"falta derivado {ruta.relative_to(raiz)}")
@@ -211,8 +215,7 @@ def validar_derivados(
             if medio.get("tipo") != "imagen" or not medio.get("archivo_local"):
                 continue
             relativa = Path(medio["archivo_local"])
-            token_tex = "../" + relativa.as_posix()
-            if token_tex not in tex_txt:
+            if relativa.as_posix() not in tex_txt:
                 error(
                     errores,
                     f"{entidad['id']}: {relativa.as_posix()} no está en libro.tex",

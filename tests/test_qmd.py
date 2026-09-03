@@ -71,7 +71,9 @@ class EstructuraTest(unittest.TestCase):
             self.entidad(id="b", titulo="B", sistema="respiratorio", organo="pleura"),
         ]
         _, capitulos = qmd.estructura(entidades)[0]
-        self.assertEqual([titulo for titulo, _ in capitulos], ["Pleura", "Pulmon"])
+        # El nombre del capítulo es el del órgano escrito en español, no el
+        # slug de la taxonomía: antes salía "Pulmon", sin tilde.
+        self.assertEqual([titulo for titulo, _ in capitulos], ["Pleura", "Pulmón"])
 
 
 class FichaTest(unittest.TestCase):

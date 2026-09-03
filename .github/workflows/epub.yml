@@ -38,6 +38,7 @@ on:
       - 'scripts/build.py'
       - 'scripts/epub.py'
       - 'scripts/qmd.py'
+      - 'scripts/libro.py'
       - 'scripts/indice.py'
       - 'scripts/paquete_latex.py'
       - 'scripts/verificar_publicacion.py'
@@ -53,6 +54,7 @@ on:
       - 'scripts/build.py'
       - 'scripts/epub.py'
       - 'scripts/qmd.py'
+      - 'scripts/libro.py'
       - 'scripts/indice.py'
       - 'scripts/paquete_latex.py'
       - 'scripts/verificar_publicacion.py'
@@ -105,7 +107,7 @@ jobs:
         run: |
           sudo apt-get update -qq
           sudo apt-get install -y --no-install-recommends \
-            pandoc fonts-freefont-ttf default-jre-headless biber librsvg2-bin \
+            pandoc fonts-freefont-ttf default-jre-headless librsvg2-bin \
             texlive-latex-recommended texlive-latex-extra \
             texlive-bibtex-extra texlive-lang-spanish texlive-luatex
           echo "pandoc: $(pandoc --version | head -1)"
@@ -138,38 +140,41 @@ jobs:
             exit 1
           fi
 
-      - name: Verificar coherencia de publicación
-        # Un release no puede empaquetar URLs o medios más nuevos que el índice.
-        # Este guardián también valida el mapa y las imágenes destacadas.
-        run: python scripts/verificar_publicacion.py --verificar-derivados
-
-      - name: Compilar el libro con LuaLaTeX
-        working-directory: build
+      - name: Determinar el alcance de la edición
+        # Se decide UNA vez y lo comparten el ePub y el PDF: las dos ediciones
+        # del mismo release tienen que incluir exactamente las mismas fichas.
+        # Los releases son citables y solo llevan lo ya revisado en Ghost; una
+        # ejecución manual puede pedir la edición completa.
+        id: alcance
         run: |
-          lualatex -halt-on-error -interaction=nonstopmode libro.tex
-          biber libro
-          lualatex -halt-on-error -interaction=nonstopmode libro.tex
-          lualatex -halt-on-error -interaction=nonstopmode libro.tex
-          test -s libro.pdf || { echo "::error::No se generó build/libro.pdf"; exit 1; }
-
-      - name: Empaquetar fuente LuaLaTeX con todos los assets
-        run: |
-          python scripts/paquete_latex.py --salida build/biosemiotics-latex.zip
-          test -s build/biosemiotics-latex.zip || { echo "::error::No se generó el ZIP LaTeX"; exit 1; }
+          if [ "${{ github.event_name }}" != "workflow_dispatch" ] || [ "${{ inputs.solo_publicados }}" = "true" ]; then
+            echo "args=--solo-publicados" >> "$GITHUB_OUTPUT"
+          else
+            echo "args=" >> "$GITHUB_OUTPUT"
+          fi
 
       - name: Generar el ePub
         run: |
           echo "quarto: $(quarto --version 2>/dev/null || echo 'ausente, se usará pandoc')"
-          ARGS=()
-          # Los releases son ediciones citables: solo incluyen fichas que ya
-          # pasaron por la revisión editorial de Ghost. En una ejecución manual
-          # se puede desactivar la bandera para probar una edición futura.
-          if [ "${{ github.event_name }}" != "workflow_dispatch" ] || [ "${{ inputs.solo_publicados }}" = "true" ]; then
-            ARGS+=(--solo-publicados)
-          fi
-          python scripts/epub.py --salida build/atlas.epub "${ARGS[@]}"
+          python scripts/epub.py --salida build/atlas.epub ${{ steps.alcance.outputs.args }}
 
-      - name: Verificar imágenes dentro del EPUB
+      - name: Compilar el libro en PDF
+        # Mismo proyecto Quarto que el ePub y mismo alcance: el libro impreso y
+        # el electrónico no pueden divergir. `keep-tex` deja build/quarto/libro.tex
+        # junto a las imágenes ya copiadas, que es lo que empaqueta el ZIP.
+        run: |
+          python scripts/libro.py --salida build/libro.pdf ${{ steps.alcance.outputs.args }}
+          test -s build/libro.pdf || { echo "::error::No se generó build/libro.pdf"; exit 1; }
+
+      - name: Empaquetar la fuente LuaLaTeX autocontenida
+        run: |
+          python scripts/paquete_latex.py --salida build/biosemiotics-latex.zip
+          test -s build/biosemiotics-latex.zip || { echo "::error::No se generó el ZIP LaTeX"; exit 1; }
+
+      - name: Verificar coherencia de publicación
+        # Va después del libro: comprueba build/quarto/libro.tex, que solo
+        # existe una vez renderizado el PDF. Valida además el mapa, las URLs y
+        # que cada imagen publicada sea la declarada en `archivo_local`.
         run: python scripts/verificar_publicacion.py --verificar-derivados --epub build/atlas.epub
 
       - name: Comprobar que el artefacto es real
@@ -192,7 +197,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: >-
           gh release upload "${{ github.event.release.tag_name }}"
-          build/atlas.epub build/libro.tex build/libro.pdf
+          build/atlas.epub build/quarto/libro.tex build/libro.pdf
           build/biosemiotics-latex.zip --clobber
 
       - name: Publicar derivados como artifact
@@ -202,7 +207,7 @@ jobs:
           name: atlas-epub-latex
           path: |
             build/atlas.epub
-            build/libro.tex
+            build/quarto/libro.tex
             build/libro.pdf
             build/biosemiotics-latex.zip
           retention-days: 90
