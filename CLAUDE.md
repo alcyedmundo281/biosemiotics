@@ -93,6 +93,16 @@ está instalado. Fuerza uno u otro con `--motor quarto|pandoc`. Si las dos
 salidas difieren en contenido, es un fallo de `qmd.py`, no una variante
 editorial aceptable.
 
+**Destinos de generación:** `qmd.py --destino` y las opciones `--proyecto`
+de EPUB/PDF solo aceptan subdirectorios del `build/` real del repositorio;
+no aceptan `build/` entero, enlaces ni junctions. Un directorio no vacío debe
+ser un proyecto reconocido por `.biosemiotics-quarto`. Los proyectos anteriores
+en `build/quarto/` se reconocen por sus archivos generados característicos.
+El ensamblado se prepara en un temporal antes de reemplazar el proyecto previo.
+Si falla también la restauración, el error indica la copia conservada para
+recuperarla; no la borres. Esto no protege de ejecuciones concurrentes ni
+convierte el render posterior de Quarto en una transacción.
+
 La jerarquía es **parte (`#`) → capítulo temático u órgano (`##`) → ficha
 (`###`) → cuerpo (`####`)**. El ensamblado anterior ponía la ficha en `###`
 dejando el cuerpo en `##`, así que "La pregunta clínica" quedaba por encima del
