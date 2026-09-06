@@ -24,7 +24,9 @@ mantiene su flujo separado de proveedor/publicador en `CLAUDE.md`.
 
 ## Ciclo 1 — Proteger la generación Quarto
 
-**Estado:** en ejecución.
+**Estado:** implementado y validado localmente. CI e integración registradas
+en el [PR #67](https://github.com/alcyedmundo281/biosemiotics/pull/67).
+El ciclo se considera cerrado cuando ese PR esté fusionado con todos sus checks correctos.
 
 - **Problema:** `qmd.generar()` elimina el destino sin delimitar su alcance.
   Un destino erróneo puede ser la raíz o una carpeta de fuentes.
@@ -122,7 +124,7 @@ mantiene su flujo separado de proveedor/publicador en `CLAUDE.md`.
 
 | Ciclo | Rama / PR | Evidencia | Estado |
 |---|---|---|---|
-| 1 | `codex/renovacion-ciclo-1` | 44 pruebas locales correctas; integridad e índice sin deriva; proyecto Quarto real de 41 entidades generado | Pendiente de CI e integración |
+| 1 | [PR #67](https://github.com/alcyedmundo281/biosemiotics/pull/67), `codex/renovacion-ciclo-1` | 44 pruebas locales correctas; integridad e índice sin deriva; proyecto Quarto real de 41 entidades generado | Implementado; cierre por merge del PR con CI correcta |
 
 ## Trabajo editorial conservado
 
