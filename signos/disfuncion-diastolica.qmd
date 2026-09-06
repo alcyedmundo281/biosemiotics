@@ -1,0 +1,124 @@
+---
+id: signo-disfuncion-diastolica
+tipo: signo
+titulo: "Disfunción diastólica: E/e’ orienta, no sentencia"
+titulo_en: "Diastolic function and the E/e’ ratio"
+url: ""
+doi: null
+version: "1.0"
+abstract: >
+  La relación entre la velocidad del llenado mitral temprano y la del anillo
+  mitral en diástole aporta una pista sobre las presiones de llenado izquierdas.
+  Su lectura exige Doppler pulsado y tisular, trazados adecuados e integración
+  ecocardiográfica. En primer contacto orienta la necesidad de evaluación
+  formal; un resultado aislado no confirma insuficiencia cardíaca ni permite
+  descartarla, especialmente con fracción de eyección preservada.
+sistema: cardiovascular
+organo: corazon
+nivel: avanzado
+ventana: apical-cuatro-camaras
+sonda: [sectorial]
+pregunta_clinica: "¿Hay indicios de presiones de llenado izquierdas elevadas que requieran evaluación integrada?"
+escenario: [consulta, uci]
+descriptores: [disfuncion-diastolica, doppler-tisular, presiones-llenado, ee-prima]
+mesh: ["Ventricular Dysfunction, Left", "Echocardiography, Doppler", "Diastole"]
+significante: "Cociente entre el pico E transmitral y el promedio de las velocidades e’ septal y lateral."
+significado: "Estimador indirecto de presiones de llenado izquierdas, con limitaciones diagnósticas."
+decision: "Integrar el hallazgo y solicitar ecocardiografía formal; evitar decisiones terapéuticas basadas solo en E/e’."
+umbral: "E/e’ promedio >14 apoya presiones elevadas; entre 8 y 14 es indeterminado. No es un umbral terapéutico ni un diagnóstico aislado."
+falsos_positivos:
+  - "e’ subestimada por desalineación o muestreo incorrecto"
+  - "Calcificación del anillo o cirugía mitral que reduce su movimiento"
+  - "Disfunción regional del segmento muestreado"
+se_basa_en: [doppler, cuantificacion-limites, ventanas-cardiacas]
+contrasta_con: []
+autores:
+  - nombre: "Alcy Edmundo Torres Guerrero"
+    orcid: "0000-0002-9742-375X"
+    afiliacion: "Universidad Central del Ecuador"
+    credit: [conceptualizacion, redaccion, supervision]
+medios: []
+refs: [nagueh2025, robinson2024, sharifov2016]
+fecha: 2026-09-06
+actualizado: 2026-09-06
+licencia: CC-BY-4.0
+---
+
+## La pregunta clínica
+
+**¿El llenado del ventrículo izquierdo ocurre a presión elevada?** Esa pregunta
+es distinta de «¿se relaja mal?» y de «¿tiene insuficiencia cardíaca?». E/e’
+participa en una evaluación multiparamétrica; no sustituye esas tres preguntas
+por un número [nagueh2025].
+
+## Por qué el examen físico no basta
+
+Ante disnea, escribe primero qué necesitas resolver. Si tu pregunta es
+diastólica, no cierres el estudio con «el VI se contrae bien». Tampoco conviertas
+una sospecha clínica en una indicación automática de medir E/e’: debes poder
+obtener e interpretar ambos trazados. Esta ficha es una ruta de aprendizaje
+avanzada, para trabajar con supervisión.
+
+## Cómo se obtiene la ventana
+
+Desde la apical de cuatro cámaras, con sonda sectorial:
+
+1. **E:** Doppler pulsado del flujo, muestra de 1–3 mm en las puntas de las
+   valvas mitrales; identifica el pico temprano, no la onda A.
+2. **e’:** activa Doppler tisular pulsado. Muestrea las inserciones septal y
+   lateral del anillo con volumen de 5–10 mm, alineando el haz con su movimiento.
+3. Usa trazados definidos, al final de la espiración y con ciclos comparables;
+   en ritmo sinusal promedia tres ciclos. Guarda las mediciones originales
+   [robinson2024].
+
+Si el equipo carece de Doppler tisular, registra **«E/e’ no evaluable»**. Tener
+Doppler color no resuelve ese requisito. No completes una medición ausente.
+
+## El signo
+
+**E mide flujo; e’ mide movimiento del tejido.** Calcula el cociente usando
+las mismas unidades: E dividido por [(e’ septal + e’ lateral) / 2]. Si solo
+obtienes un sitio, identifícalo; no lo rotules «promedio» [robinson2024].
+
+Ejemplo aritmético ficticio, sin inferencia clínica: E = 90 cm/s, e’ septal =
+5 cm/s y lateral = 7 cm/s; e’ promedio = 6 cm/s y E/e’ = 15. Guarda también
+los trazados: la calculadora no verifica dónde pusiste la muestra.
+
+## La bifurcación
+
+En la lectura del cociente promedio en reposo, **>14 apoya presión elevada**;
+**8–14 deja incertidumbre**. La tabla de la ASE describe <8 como habitualmente
+asociado a presiones normales. Integra otros parámetros y el contexto antes de
+concluir; estos intervalos no gradúan por sí solos la disfunción [nagueh2025].
+
+Un metaanálisis de 24 estudios con FEVI preservada encontró sensibilidad limitada
+de E/e’ para detectar presiones elevadas. Por eso, un resultado no elevado no
+permite cerrar la investigación de una disnea persistente [sharifov2016].
+
+La salida práctica de esta ficha es documentar calidad, sitio y resultado, y
+plantear la pregunta al estudio formal. No usar el cociente como orden aislada
+de administrar fluidos o diuréticos.
+
+## Dónde NO confiar
+
+- **Enfermedad o intervención mitral y calcificación anular:** pueden alterar
+  el flujo o el movimiento medido [robinson2024].
+- **Arritmias, enfermedad pericárdica o disfunción regional:** requieren
+  interpretación específica; no trasladar automáticamente el esquema general
+  [nagueh2025].
+- **FEVI preservada:** el rendimiento aislado es insuficiente para confirmar
+  o excluir presiones elevadas o insuficiencia cardíaca [sharifov2016].
+- **Datos incompletos o trazados dudosos:** conserva la incertidumbre en el
+  informe; no la escondas detrás de decimales.
+
+## Practica esto
+
+Con un tutor, identifica E y e’ antes de calcular. Conserva un registro con
+sitio, unidades, calidad y cociente; compáralo con la evaluación formal.
+Incluye estudios no evaluables: reconocer cuándo detenerte también es una
+competencia.
+
+## Discusión abierta
+
+¿Qué dato te falta para interpretar el cociente? ¿Tu informe permite que otro
+operador revise la medición y comprenda por qué mantuviste la incertidumbre?

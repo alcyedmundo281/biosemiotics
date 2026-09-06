@@ -1508,6 +1508,72 @@
    "n_refs": 8
   },
   {
+   "id": "signo-disfuncion-diastolica",
+   "tipo": "signo",
+   "titulo": "Disfunción diastólica: E/e’ orienta, no sentencia",
+   "titulo_en": "Diastolic function and the E/e’ ratio",
+   "version": "1.0",
+   "abstract": "La relación entre la velocidad del llenado mitral temprano y la del anillo mitral en diástole aporta una pista sobre las presiones de llenado izquierdas. Su lectura exige Doppler pulsado y tisular, trazados adecuados e integración ecocardiográfica. En primer contacto orienta la necesidad de evaluación formal; un resultado aislado no confirma insuficiencia cardíaca ni permite descartarla, especialmente con fracción de eyección preservada.\n",
+   "sistema": "cardiovascular",
+   "organo": "corazon",
+   "nivel": "avanzado",
+   "ventana": "apical-cuatro-camaras",
+   "pregunta_clinica": "¿Hay indicios de presiones de llenado izquierdas elevadas que requieran evaluación integrada?",
+   "significante": "Cociente entre el pico E transmitral y el promedio de las velocidades e’ septal y lateral.",
+   "significado": "Estimador indirecto de presiones de llenado izquierdas, con limitaciones diagnósticas.",
+   "umbral": "E/e’ promedio >14 apoya presiones elevadas; entre 8 y 14 es indeterminado. No es un umbral terapéutico ni un diagnóstico aislado.",
+   "licencia": "CC-BY-4.0",
+   "fecha": "2026-09-06",
+   "actualizado": "2026-09-06",
+   "decision": "Integrar el hallazgo y solicitar ecocardiografía formal; evitar decisiones terapéuticas basadas solo en E/e’.",
+   "sonda": [
+    "sectorial"
+   ],
+   "escenario": [
+    "consulta",
+    "uci"
+   ],
+   "descriptores": [
+    "disfuncion-diastolica",
+    "doppler-tisular",
+    "presiones-llenado",
+    "ee-prima"
+   ],
+   "mesh": [
+    "Ventricular Dysfunction, Left",
+    "Echocardiography, Doppler",
+    "Diastole"
+   ],
+   "falsos_positivos": [
+    "e’ subestimada por desalineación o muestreo incorrecto",
+    "Calcificación del anillo o cirugía mitral que reduce su movimiento",
+    "Disfunción regional del segmento muestreado"
+   ],
+   "se_basa_en": [
+    "doppler",
+    "cuantificacion-limites",
+    "ventanas-cardiacas"
+   ],
+   "autores": [
+    {
+     "nombre": "Alcy Edmundo Torres Guerrero",
+     "orcid": "0000-0002-9742-375X",
+     "afiliacion": "Universidad Central del Ecuador",
+     "credit": [
+      "conceptualizacion",
+      "redaccion",
+      "supervision"
+     ]
+    }
+   ],
+   "refs": [
+    "nagueh2025",
+    "robinson2024",
+    "sharifov2016"
+   ],
+   "n_refs": 3
+  },
+  {
    "id": "signo-embarazo-ectopico",
    "tipo": "signo",
    "titulo": "Embarazo ectópico: el útero vacío no es el signo",
