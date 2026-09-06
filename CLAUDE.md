@@ -269,6 +269,22 @@ archivada. La operación de Ghost requiere su propio flujo editorial.
 - **CITAS: solo desde PubMed, verificadas.** Usa `scripts/refs.py`. NUNCA escribas una referencia de memoria ni aceptes una que produjo un LLM sin verificar el PMID. Cualquier cifra clínica (umbral, tasa, fórmula) debe tener una fuente que la diga *exactamente*. Si un LLM "recuerda" una cita, trátala como falsa hasta probar lo contrario en PubMed. Este proyecto ya fue salvado de tres referencias inventadas — no repitas el episodio.
 - **Verifica que la fuente diga la cifra.** No basta con que el paper trate el tema. Abre el abstract; si dice 1.2%, tu texto dice 1.2%, no "1-4%". Ajusta el texto a la fuente, nunca al revés.
 - **Un DOI que Crossref no resuelve no se publica.** `verificar_citas.py` distingue un 404 (Crossref no conoce ese DOI: verificación fallida, sale con código 1) de un error de red transitorio (timeout, 429, 5xx: reintenta). Si la revista es real y simplemente no deposita en Crossref, decláralo en `refs-sin-crossref.txt` con su razón por escrito; esa exención renuncia a la segunda autoridad, así que confirma el PMID a mano antes de usarla. Lo que no se hace es dejar pasar un 404 en silencio.
+- **Verificación incompleta bloquea la integración.** `verificar_citas.py` es
+  siempre estricto; `--estricto` se conserva como alias compatible. Código 0
+  significa verificación completa o exención declarada de Crossref con PubMed
+  correcto; 1 indica entrada inválida o discrepancia; 2, servicio no disponible
+  o respuesta inválida. Nunca se acepta 2 como éxito ni se añade una exención
+  para resolver un timeout. Hay hasta tres intentos por consulta, con esperas
+  de 1 y 2 segundos. Agotados los intentos de Crossref se detiene el banco y se
+  informa qué quedó sin consultar; volver a ejecutar cuando se recupere el servicio.
+  El job obligatorio de integridad exige también citas correctas en PR, ejecución
+  manual y semanal. En push a `main` no repite la red; exige la integridad local.
+  El job de citas tiene un límite total de diez minutos.
+- **Exenciones acotadas y revisadas.** Requieren una razón no vacía y una clave
+  existente o prefijo de registrador DOI (`10.NNNN/`). Solo pueden justificar un
+  404 de Crossref, nunca un 400/422, un fallo de red ni un PMID/DOI inconsistente.
+  La identidad DOI se compara conservando puntuación; las variantes de título
+  son informativas únicamente cuando el DOI coincide en ambas autoridades.
 - **Sección de límites obligatoria** ("Dónde NO confiar"). Sin ella, el signo no se publica. Es el firewall clínico.
 - **Consentimiento antes de publicar un caso.** El consentimiento clínico para escanear NO es consentimiento para publicar: son dos "sí" distintos. Sin `consentimiento: obtenido`, el caso no se publica. Verifica de-identificación: sin DICOM metadata, sin rostro, sin identificadores, sin señalética institucional.
 - **Nada que implique aval del HECAM/IESS.** La plataforma es independiente.

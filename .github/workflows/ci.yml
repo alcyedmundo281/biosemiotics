@@ -64,16 +64,25 @@ jobs:
 
   integridad-requerida:
     # Conserva el nombre histórico exigido por la protección de `main`. Este
-    # agregador solo queda verde cuando terminaron bien ambas versiones.
+    # agregador solo queda verde cuando pasan ambas versiones y las citas.
+    # always() convierte también cancelación/omisión inesperada en fallo.
     name: Integridad del banco e índice
-    needs: integridad
+    needs: [integridad, citas]
+    if: always()
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Integridad verificada en Python 3.9 y 3.13."
+      - name: Exigir integridad y verificación completa
+        run: |
+          test '${{ needs.integridad.result }}' = 'success'
+          if [ '${{ github.event_name }}' != 'push' ]; then
+            test '${{ needs.citas.result }}' = 'success'
+          fi
+          echo "Todos los controles requeridos para este evento pasaron."
 
   citas:
     name: Verificación de citas (PubMed + Crossref)
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     # En cada push a main no: evita martillar PubMed. Sí en PR, semanal y a mano.
     if: github.event_name != 'push'
     steps:
@@ -88,7 +97,6 @@ jobs:
         run: pip install pyyaml
 
       - name: Verificar doble autoridad de refs.bib
-        # Falla (exit 1) solo ante una discrepancia REAL: PMID inexistente,
-        # DOI que no coincide con PubMed, o título PubMed != Crossref.
-        # Un error de red NO tumba el check (modo no estricto).
-        run: python scripts/verificar_citas.py
+        # Exit 1: discrepancia/entrada inválida. Exit 2: servicio no disponible.
+        # Ambos bloquean el check; nunca aprobar una verificación incompleta.
+        run: python scripts/verificar_citas.py --estricto
