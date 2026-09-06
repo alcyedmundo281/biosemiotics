@@ -45,7 +45,9 @@ fusionado con CI correcta; merge `9164198`.
 
 ## Ciclo 2 — Hacer obligatorias las reglas editoriales
 
-**Estado:** implementado; integración pendiente de CI y merge del PR de este ciclo.
+**Estado:** implementado. CI e integración registradas en el
+[PR #68](https://github.com/alcyedmundo281/biosemiotics/pull/68).
+El ciclo queda cerrado cuando ese PR se fusione con todos sus checks correctos.
 
 - **Problema:** faltas clínicas/semióticas solo generan alertas; no se exige
   consistentemente abstract ni secciones obligatorias.
@@ -136,7 +138,7 @@ fusionado con CI correcta; merge `9164198`.
 | Ciclo | Rama / PR | Evidencia | Estado |
 |---|---|---|---|
 | 1 | [PR #67](https://github.com/alcyedmundo281/biosemiotics/pull/67), `codex/renovacion-ciclo-1` | 44 pruebas; CI correcta | Cerrado, merge `9164198` |
-| 2 | `codex/renovacion-ciclo-2` | 52 pruebas; 43 fichas válidas; 137 referencias verificadas en modo estricto | Implementado; cierre por merge del PR con CI correcta |
+| 2 | [PR #68](https://github.com/alcyedmundo281/biosemiotics/pull/68), `codex/renovacion-ciclo-2` | 52 pruebas; 43 fichas válidas; 137 referencias verificadas en modo estricto | Implementado; cierre por merge del PR con CI correcta |
 
 ## Trabajo editorial conservado
 
