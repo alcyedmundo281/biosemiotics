@@ -40,7 +40,17 @@ autores:
     orcid: "0000-0002-9742-375X"
     afiliacion: "Universidad Central del Ecuador"
     credit: [conceptualizacion, redaccion, supervision]
-medios: []
+medios:
+  - tipo: imagen
+    destacada: true
+    id: "wikimedia:Diastolic_function.png"
+    descripcion: "Trazados de flujo mitral E/A y Doppler tisular del anillo e’/a’ en tres patrones de llenado; imagen ilustrativa, no algoritmo diagnóstico."
+    credito: "Astoylen, vía Wikimedia Commons; sin modificaciones"
+    fuente: "Wikimedia Commons"
+    fuente_url: "https://commons.wikimedia.org/wiki/File:Diastolic_function.png"
+    licencia_img: "CC BY-SA 3.0"
+    licencia_url: "https://creativecommons.org/licenses/by-sa/3.0/"
+    archivo_local: "assets/img/disfuncion-diastolica.png"
 refs: [nagueh2025, robinson2024, sharifov2016]
 fecha: 2026-09-06
 actualizado: 2026-09-06
