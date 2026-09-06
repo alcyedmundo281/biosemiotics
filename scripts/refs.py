@@ -57,7 +57,13 @@ def resumen(pmids: list[str]) -> list[dict]:
     q = urllib.parse.urlencode({
         "db": "pubmed", "id": ",".join(pmids), "retmode": "json",
     })
-    data = json.loads(_get(f"{EUTILS}/esummary.fcgi?{q}")).get("result", {})
+    respuesta = json.loads(_get(f"{EUTILS}/esummary.fcgi?{q}"))
+    if (not isinstance(respuesta, dict) or respuesta.get("error") or
+            not isinstance(respuesta.get("result"), dict)):
+        raise ValueError("respuesta PubMed inválida o sin result")
+    data = respuesta["result"]
+    if data.get("error"):
+        raise ValueError(f"PubMed: {data['error']}")
     out = []
     for p in pmids:
         r = data.get(p)

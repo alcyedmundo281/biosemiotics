@@ -5,7 +5,7 @@ verificar_citas.py — verificación de DOBLE autoridad de refs.bib.
 No basta con que la clave exista (eso lo mira refs.py). Aquí se comprueba que
 cada referencia siga siendo REAL y COHERENTE contra dos fuentes independientes:
 
-  PubMed  (por PMID) → revista, año y DOI declarados coinciden.
+  PubMed  (por PMID) → la entrada existe y su DOI coincide con el declarado.
   Crossref (por DOI)  → el DOI resuelve y coincide con el devuelto por PubMed.
 
 Los títulos se comparan normalizados como control editorial: minúsculas, sin
@@ -21,19 +21,20 @@ hay una lista de exención explícita en `refs-sin-crossref.txt`, que obliga a
 declarar el caso por escrito en vez de resolverlo con silencio.
 
   python3 verificar_citas.py            # verifica todo refs.bib
-  python3 verificar_citas.py --estricto # un error de red también falla
+  python3 verificar_citas.py --estricto # alias compatible; siempre estricto
 
 Códigos de salida:
-  0  todo verificado (o error de red en modo NO estricto)
-  1  al menos una discrepancia real: revista/año/DOI/título, PMID inexistente,
+  0  todo verificado (o exención explícita de Crossref con PubMed verificado)
+  1  entrada inválida, duplicada, PMID inexistente, DOI distinto,
      o un DOI que Crossref no resuelve y no está exento
-  2  error de red en modo --estricto
+  2  verificación incompleta por servicio no disponible o respuesta inválida
 """
 import argparse
 import re
 import sys
 import time
 import json
+import http.client
 import urllib.error
 import urllib.parse
 import urllib.request
@@ -73,9 +74,30 @@ def parse_bib(path: Path) -> list:
 class RedError(Exception):
     """Fallo TRANSITORIO: timeout, conexión caída, 429 o 5xx. Se reintenta."""
 
+    def __init__(self, mensaje, reintentable=True):
+        self.reintentable = reintentable
+        super().__init__(mensaje)
+
+
+def reintentar(operacion, *args):
+    """Tres intentos como máximo, esperas de 1 y 2 segundos; nunca reintenta DOI inválido."""
+    for intento in range(3):
+        try:
+            return operacion(*args)
+        except urllib.error.HTTPError as exc:
+            fallo = RedError(f"HTTP {exc.code}", exc.code == 429 or exc.code >= 500)
+        except (urllib.error.URLError, TimeoutError, OSError, http.client.HTTPException,
+                ValueError, KeyError, TypeError, IndexError) as exc:
+            fallo = RedError(str(exc))
+        except RedError as exc:
+            fallo = exc
+        if not fallo.reintentable or intento == 2:
+            raise fallo
+        time.sleep(2 ** intento)
+
 
 class DoiNoResuelve(Exception):
-    """Crossref responde que ese DOI no existe (404) o es inválido (otro 4xx).
+    """Crossref responde que ese DOI no existe (404) o es inválido (400/422).
 
     NO es un problema de red: es una verificación que falló. Tratarlo como
     error de red hacía que una referencia sin comprobar pasara el control.
@@ -90,18 +112,24 @@ def cargar_exenciones(raiz: Path) -> dict:
     """Lee refs-sin-crossref.txt: claves o prefijos de DOI exentos, con razón.
 
     Formato: un token por línea (clave BibLaTeX o prefijo de DOI), razón
-    opcional tras '#'. Sirve para revistas reales cuyos DOI no se depositan
+    obligatoria tras '#'. Sirve para revistas reales cuyos DOI no se depositan
     en Crossref; obliga a dejar constancia escrita en vez de silenciar.
     """
     f = raiz / "refs-sin-crossref.txt"
     if not f.exists():
         return {}
     out = {}
-    for linea in f.read_text(encoding="utf-8").splitlines():
+    for numero, linea in enumerate(f.read_text(encoding="utf-8").splitlines(), 1):
         cuerpo, _, razon = linea.partition("#")
         token = cuerpo.strip()
         if token:
-            out[token.lower()] = razon.strip() or "sin razón declarada"
+            if not razon.strip():
+                raise ValueError(f"{f.name}:{numero}: exención sin razón declarada")
+            if token.lower() in out:
+                raise ValueError(f"{f.name}:{numero}: exención duplicada: {token}")
+            if token.startswith("10.") and not re.fullmatch(r"10\.\d{4,9}/", token):
+                raise ValueError(f"{f.name}:{numero}: prefijo DOI debe identificar un registrador")
+            out[token.lower()] = razon.strip()
     return out
 
 
@@ -110,7 +138,7 @@ def exento(clave: str, doi: str, exenciones: dict) -> "str | None":
     if clave.lower() in exenciones:
         return exenciones[clave.lower()]
     for token, razon in exenciones.items():
-        if doi.lower().startswith(token):
+        if token.startswith("10.") and doi.lower().startswith(token):
             return razon
     return None
 
@@ -119,14 +147,19 @@ def crossref(doi: str) -> dict:
     url = "https://api.crossref.org/works/" + urllib.parse.quote(doi)
     try:
         req = urllib.request.Request(url, headers=UA)
-        m = json.loads(urllib.request.urlopen(req, timeout=25).read())["message"]
+        with urllib.request.urlopen(req, timeout=25) as respuesta:
+            datos = json.loads(respuesta.read())
+        m = datos["message"]
+        if not isinstance(m, dict) or not isinstance(m.get("DOI"), str) or not m["DOI"]:
+            raise ValueError("respuesta Crossref sin DOI")
     except urllib.error.HTTPError as e:
-        # 429 y 5xx son del servidor y pasan; el resto de 4xx es un veredicto
-        # sobre el DOI, no sobre la red.
+        # Los problemas de autenticación o servicio no demuestran que el DOI no exista.
         if e.code == 429 or e.code >= 500:
             raise RedError(f"HTTP {e.code}") from e
-        raise DoiNoResuelve(e.code) from e
-    except Exception as e:
+        if e.code in (400, 404, 422):
+            raise DoiNoResuelve(e.code) from e
+        raise RedError(f"HTTP {e.code}", reintentable=False) from e
+    except (OSError, http.client.HTTPException, ValueError, KeyError, TypeError) as e:
         raise RedError(str(e)) from e
     yr = ""
     for k in ("published-print", "published-online", "issued", "created"):
@@ -138,34 +171,48 @@ def crossref(doi: str) -> dict:
             "year": yr, "doi": m.get("DOI", "")}
 
 
-def main():
+def main(argv=None):
     ap = argparse.ArgumentParser()
     ap.add_argument("--raiz", default=".")
     ap.add_argument("--estricto", action="store_true",
-                    help="un error de red cuenta como fallo (exit 2)")
-    a = ap.parse_args()
+                    help="compatibilidad: la verificación siempre es estricta (red: exit 2)")
+    a = ap.parse_args(argv)
 
     raiz = Path(a.raiz).resolve()
     bib = raiz / "refs.bib"
-    refs = parse_bib(bib)
-    exenciones = cargar_exenciones(raiz)
+    try:
+        refs = parse_bib(bib)
+        exenciones = cargar_exenciones(raiz)
+    except (OSError, ValueError) as exc:
+        print(f"✗ Entrada inválida: {exc}")
+        return 1
     print(f"refs.bib: {len(refs)} entradas\n")
 
     dup = {c for c in (r["clave"] for r in refs)
            if [x["clave"] for x in refs].count(c) > 1}
     if dup:
         print(f"✗ claves duplicadas: {sorted(dup)}")
+        return 1
+    entradas = re.findall(r"@\w+\s*\{", bib.read_text(encoding="utf-8"))
+    incompletas = [r["clave"] for r in refs if not r["pmid"] or not r["doi"]]
+    if not refs or len(entradas) != len(refs) or incompletas:
+        print(f"✗ Bibliografía vacía, formato no admitido o entradas sin PMID/DOI: {incompletas}")
+        return 1
+    desconocidas = set(exenciones) - {r["clave"].lower() for r in refs}
+    if any(not token.startswith("10.") for token in desconocidas):
+        print(f"✗ Exenciones con claves inexistentes: {sorted(desconocidas)}")
+        return 1
 
     pmids = [r["pmid"] for r in refs if r["pmid"]]
     try:
-        pm = {x["pmid"]: x for x in resumen(pmids)}
-    except Exception as e:
-        print(f"⚠ PubMed no responde: {e}")
-        sys.exit(2 if a.estricto else 0)
+        pm = {x["pmid"]: x for x in reintentar(resumen, pmids)}
+    except RedError as e:
+        print(f"✗ Verificación INCOMPLETA: PubMed no disponible: {e}")
+        return 2
 
-    disc, avisos_titulo, exentas, red = [], [], [], 0
+    disc, avisos_titulo, exentas, red = [], [], [], []
     ok_pm = ok_cr = ok_x = 0
-    for r in refs:
+    for numero, r in enumerate(refs, 1):
         flags = []
         p = pm.get(r["pmid"])
         if not r["pmid"]:
@@ -174,23 +221,23 @@ def main():
             flags.append("pmid-inexistente")
         else:
             dpm = (p.get("doi") or "").lower()
-            if dpm and r["doi"] and dpm != r["doi"].lower():
+            if dpm != r["doi"].lower():
                 flags.append(f"doi≠pubmed({dpm})")
             else:
                 ok_pm += 1
 
         if r["doi"]:
             try:
-                cr = crossref(r["doi"])
-                doi_ref = norm(r["doi"])
-                doi_pm = norm(p.get("doi")) if p else ""
-                doi_cr = norm(cr["doi"])
+                cr = reintentar(crossref, r["doi"])
+                doi_ref = r["doi"].strip().lower()
+                doi_pm = (p.get("doi") or "").strip().lower() if p else ""
+                doi_cr = cr["doi"].strip().lower()
                 if doi_ref and doi_pm == doi_ref == doi_cr:
                     ok_cr += 1
                 else:
                     flags.append(
                         f"doi-pubmed≠crossref({doi_pm or '∅'}≠{doi_cr or '∅'})")
-                if p and cr["title"]:
+                if p and cr["title"] and doi_pm == doi_ref == doi_cr:
                     a1 = norm_title(p.get("titulo"))
                     b1 = norm_title(cr["title"])
                     if a1 and b1 and a1 == b1:
@@ -202,11 +249,11 @@ def main():
                         # por clave ni en un falso negativo de identidad.
                         avisos_titulo.append((r["clave"], a1, b1))
                 time.sleep(0.12)
-            except RedError:
-                red += 1
+            except RedError as e:
+                red.append(f"{r['clave']}: {e}; {len(refs) - numero} entradas posteriores sin consultar")
             except DoiNoResuelve as e:
                 razon = exento(r["clave"], r["doi"], exenciones)
-                if razon:
+                if razon and e.codigo == 404 and p and not flags:
                     exentas.append((r["clave"], r["doi"], e.codigo, razon))
                 else:
                     flags.append(f"crossref-no-resuelve(HTTP {e.codigo})")
@@ -215,12 +262,14 @@ def main():
 
         if flags and not (set(flags) <= {"sin-doi"}):
             disc.append((r["clave"], flags))
+        if red:
+            # Agotados los intentos, no martillar un servicio caído con el resto del banco.
+            break
 
     print(f"PubMed OK: {ok_pm}/{len(refs)}   Crossref OK: {ok_cr}/{len(refs)}   "
           f"cruce título: {ok_x}")
     if red:
-        print(f"⚠ {red} entradas sin comprobar: error de RED en Crossref "
-              f"(transitorio, reintenta)")
+        print("✗ Verificación INCOMPLETA en Crossref: " + "; ".join(red))
 
     if exentas:
         print(f"\n⚠ {len(exentas)} ENTRADAS EXENTAS DE CROSSREF "
@@ -243,20 +292,17 @@ def main():
             print("\n   Un DOI que Crossref no resuelve no se publica. Si la "
                   "revista es real y\n   simplemente no deposita ahí, decláralo "
                   "en refs-sin-crossref.txt con su razón.")
-        sys.exit(1)
-
-    if red and a.estricto:
-        sys.exit(2)
+        return 1
 
     if red:
-        print(f"\n✓ Sin discrepancias, pero {red} entradas quedaron SIN "
-              f"comprobar en Crossref por error de red.")
+        return 2
     elif exentas:
         print(f"\n✓ Sin discrepancias. {len(exentas)} entradas verificadas solo "
               f"contra PubMed por exención declarada.")
     else:
         print("\n✓ Todas las referencias verificadas en ambas autoridades.")
+    return 0
 
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())

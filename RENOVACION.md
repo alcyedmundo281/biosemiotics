@@ -72,9 +72,8 @@ fusionado con CI correcta; merge `913e09e`.
 
 ## Ciclo 3 — Unificar publicación y consentimiento
 
-**Estado:** implementado. CI e integración registradas en el
-[PR #69](https://github.com/alcyedmundo281/biosemiotics/pull/69).
-El ciclo queda cerrado cuando ese PR se fusione con todos sus checks correctos.
+**Estado:** cerrado. [PR #69](https://github.com/alcyedmundo281/biosemiotics/pull/69)
+fusionado con CI correcta; merge `3e9af32`.
 
 - **Problema:** el libro selecciona por `url`; SQLite y consentimiento usan
   `publicado`. El mismo caso puede tener estados contradictorios.
@@ -106,7 +105,9 @@ El ciclo queda cerrado cuando ese PR se fusione con todos sus checks correctos.
 
 ## Ciclo 4 — No aprobar citas sin verificar
 
-**Estado:** pendiente.
+**Estado:** implementado. CI e integración registradas en el
+[PR #70](https://github.com/alcyedmundo281/biosemiotics/pull/70).
+El ciclo queda cerrado cuando ese PR se fusione con todos sus checks correctos.
 
 - **Problema:** un fallo de red puede producir una CI verde sin verificación.
 - **Cambio:** usar verificación estricta como requisito de integración;
@@ -117,6 +118,19 @@ El ciclo queda cerrado cuando ese PR se fusione con todos sus checks correctos.
   revisada; un servicio caído deja el PR pendiente/fallido, nunca aprobado.
 - **Nota:** la identidad PMID/DOI no demuestra que una cifra esté en el artículo;
   se mantiene la revisión humana de la evidencia clínica.
+- **Implementación:** modo estricto por defecto, alias `--estricto` compatible;
+  máximo de tres intentos por consulta, esperas de 1 y 2 segundos y parada al
+  agotarse Crossref. Código 1 para datos/discrepancias y 2 para servicio no
+  disponible; ninguno se presenta como éxito. Bibliografía vacía, incompleta o
+  con claves duplicadas se rechaza antes de consultar la red.
+- **Exenciones:** razón obligatoria, claves existentes o prefijo de registrador
+  acotado; solo 404 y solo con PubMed coherente. No se añaden exenciones al banco.
+- **Integración:** el control obligatorio existente depende también de citas en
+  PR/manual/semanal y falla si se cancela u omite un requisito. Push a `main`
+  conserva la comprobación local sin repetir la red. Citas tiene timeout de 10 min.
+- **Evidencia:** 73 pruebas, incluidas simulaciones sin red de timeout, 429, 503,
+  recuperación, 403, 404, JSON inválido, claves duplicadas y exenciones.
+  Verificación real: 137/137 referencias correctas en PubMed y Crossref, sin exenciones.
 
 ## Ciclo 5 — Corregir rutas y comandos de uso diario
 
@@ -159,7 +173,8 @@ El ciclo queda cerrado cuando ese PR se fusione con todos sus checks correctos.
 |---|---|---|---|
 | 1 | [PR #67](https://github.com/alcyedmundo281/biosemiotics/pull/67), `codex/renovacion-ciclo-1` | 44 pruebas; CI correcta | Cerrado, merge `9164198` |
 | 2 | [PR #68](https://github.com/alcyedmundo281/biosemiotics/pull/68), `codex/renovacion-ciclo-2` | 52 pruebas; CI correcta | Cerrado, merge `913e09e` |
-| 3 | [PR #69](https://github.com/alcyedmundo281/biosemiotics/pull/69), `codex/renovacion-ciclo-3` | 59 pruebas; 43 fichas locales, 42 elegibles, 41 publicadas | Implementado; cierre por merge del PR con CI correcta |
+| 3 | [PR #69](https://github.com/alcyedmundo281/biosemiotics/pull/69), `codex/renovacion-ciclo-3` | 59 pruebas; CI correcta | Cerrado, merge `3e9af32` |
+| 4 | [PR #70](https://github.com/alcyedmundo281/biosemiotics/pull/70), `codex/renovacion-ciclo-4` | 73 pruebas; simulaciones de red y exenciones | Implementado; cierre por merge del PR con CI correcta |
 
 ## Trabajo editorial conservado
 
