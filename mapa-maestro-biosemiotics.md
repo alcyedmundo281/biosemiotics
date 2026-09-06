@@ -56,8 +56,9 @@ cuantitativos de la Oleada 3.
 
 ## 2. Estado actual (lo ya publicado)
 
-El índice vigente contiene **42 entidades**: 17 conceptos, 24 signos y 1 caso.
-Los 24 signos tienen URL pública en Ghost.
+El índice vigente contiene **43 entidades**: 17 conceptos, 25 signos y 1 caso.
+Hay 24 signos con URL pública en Ghost; disfunción diastólica (E/e’) está
+escrita y validada, pendiente de revisión clínica, imagen y publicación.
 
 | signo | sistema | organo | nivel | estado |
 |---|---|---|---|---|
@@ -142,7 +143,7 @@ Los 24 signos tienen URL pública en Ghost.
 
 | signo | sistema | organo | nivel | escenario | decisión que cambia |
 |---|---|---|---|---|---|
-| Disfunción diastólica (E/e') | cardiovascular | corazon | avanzado | consulta, uci | presiones de llenado → manejo de fluidos/IC |
+| Disfunción diastólica (E/e') | cardiovascular | corazon | avanzado | consulta, uci | estimación integrada de presiones de llenado → evaluación formal; escrita, pendiente de revisión clínica y publicación |
 | VTI (integral velocidad-tiempo) | cardiovascular | corazon | avanzado | uci | volumen sistólico, respuesta a fluidos |
 | Gasto cardíaco | cardiovascular | corazon | avanzado | uci | estado hemodinámico → vasoactivos |
 | FEVI por Simpson biplano | cardiovascular | corazon | avanzado | consulta, uci | método de referencia; trazado de bordes en 2 planos |
@@ -198,20 +199,22 @@ Oleada 1 y las rutas avanzadas que reutilizarán esos conceptos.
 2. **Oleada 2 publicada completa (8 de 8).** Taponamiento cardíaco, sobrecarga del ventrículo derecho / TEP, colecistitis aguda, coledocolitiasis, apendicitis, absceso de partes blandas, hernia complicada y embarazo ectópico tienen URL pública en Ghost.
 3. ~~Antes de los signos que lo necesiten: escribir y validar Doppler y Cuantificación y sus límites.~~ **Hecho (2026-08-15):** ambos conceptos base están escritos y validados.
 4. **Conceptos base: regla dura.** Un signo NO se publica sin su concepto base ya en el banco. El concepto base requerido se escribe y valida ANTES que el signo, no en paralelo ni después.
-5. **Después:** Oleada 3 → Extensiones.
+5. **Oleada 3 en curso:** disfunción diastólica (E/e’) escrita y validada,
+   pendiente de revisión clínica, imagen y publicación. Siguiente ficha: VTI.
+   Después: Extensiones.
 
 ### La regla que no cambia
 Cada cifra, verificada contra PubMed antes de publicar. Cada signo, con su sección de límites ("dónde NO confiar"). El orden por oleada mantiene vivo el mensaje: *empezar es más fácil de lo que te dijeron.*
 
 ### Conteo
-- Banco actual: **42 entidades** (17 conceptos, 24 signos y 1 caso)
-- Signos publicados: **24 de 24**
+- Banco actual: **43 entidades** (17 conceptos, 25 signos y 1 caso)
+- Signos publicados: **24 de 25**
 - Conceptos esperando URL de Ghost: **0**
 - Oleada 1 completada: **8 de 8 signos**
 - Oleada 2 **escrita completa: 8 de 8 signos** (8 publicados, 0 esperando URL). La fila «colección/absceso, hernia complicada» se desdobló en dos: son dos significantes y dos decisiones distintas
 - Conceptos base pendientes: **0** — Doppler y «Cuantificación y sus límites» escritos y validados. **La Oleada 3 queda desbloqueada**
 - FAST/eFAST **completo**: 4 ventanas nuevas (Morrison, esplenorrenal, Douglas, hemotórax) + el nodo integrador `protocolo-fast` como concepto de técnica; pericardio y neumotórax se reutilizan de la Oleada 1
-- Restan **~6 entidades** para llegar a las ~48 proyectadas del atlas maduro
+- Restan **~5 entidades** para llegar a las ~48 proyectadas del atlas maduro
 
 Nota: FAST añade pocas fichas nuevas (Morrison, esplenorrenal, Douglas, hemotórax) porque reutiliza pericardio y neumotórax. El gradiente de FEVI añade 2 (lineales, Simpson) sobre el eyeball ya contado.
 
