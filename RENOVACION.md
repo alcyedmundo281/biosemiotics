@@ -72,7 +72,9 @@ fusionado con CI correcta; merge `913e09e`.
 
 ## Ciclo 3 — Unificar publicación y consentimiento
 
-**Estado:** implementado; pendiente de CI e integración del PR de este ciclo.
+**Estado:** implementado. CI e integración registradas en el
+[PR #69](https://github.com/alcyedmundo281/biosemiotics/pull/69).
+El ciclo queda cerrado cuando ese PR se fusione con todos sus checks correctos.
 
 - **Problema:** el libro selecciona por `url`; SQLite y consentimiento usan
   `publicado`. El mismo caso puede tener estados contradictorios.
@@ -157,7 +159,7 @@ fusionado con CI correcta; merge `913e09e`.
 |---|---|---|---|
 | 1 | [PR #67](https://github.com/alcyedmundo281/biosemiotics/pull/67), `codex/renovacion-ciclo-1` | 44 pruebas; CI correcta | Cerrado, merge `9164198` |
 | 2 | [PR #68](https://github.com/alcyedmundo281/biosemiotics/pull/68), `codex/renovacion-ciclo-2` | 52 pruebas; CI correcta | Cerrado, merge `913e09e` |
-| 3 | `codex/renovacion-ciclo-3` | 59 pruebas; 43 fichas locales, 42 elegibles, 41 publicadas | Implementado; cierre por merge del PR con CI correcta |
+| 3 | [PR #69](https://github.com/alcyedmundo281/biosemiotics/pull/69), `codex/renovacion-ciclo-3` | 59 pruebas; 43 fichas locales, 42 elegibles, 41 publicadas | Implementado; cierre por merge del PR con CI correcta |
 
 ## Trabajo editorial conservado
 
