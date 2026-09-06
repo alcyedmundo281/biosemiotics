@@ -105,7 +105,9 @@ fusionado con CI correcta; merge `3e9af32`.
 
 ## Ciclo 4 — No aprobar citas sin verificar
 
-**Estado:** implementado; pendiente de CI e integración del PR de este ciclo.
+**Estado:** implementado. CI e integración registradas en el
+[PR #70](https://github.com/alcyedmundo281/biosemiotics/pull/70).
+El ciclo queda cerrado cuando ese PR se fusione con todos sus checks correctos.
 
 - **Problema:** un fallo de red puede producir una CI verde sin verificación.
 - **Cambio:** usar verificación estricta como requisito de integración;
@@ -172,7 +174,7 @@ fusionado con CI correcta; merge `3e9af32`.
 | 1 | [PR #67](https://github.com/alcyedmundo281/biosemiotics/pull/67), `codex/renovacion-ciclo-1` | 44 pruebas; CI correcta | Cerrado, merge `9164198` |
 | 2 | [PR #68](https://github.com/alcyedmundo281/biosemiotics/pull/68), `codex/renovacion-ciclo-2` | 52 pruebas; CI correcta | Cerrado, merge `913e09e` |
 | 3 | [PR #69](https://github.com/alcyedmundo281/biosemiotics/pull/69), `codex/renovacion-ciclo-3` | 59 pruebas; CI correcta | Cerrado, merge `3e9af32` |
-| 4 | `codex/renovacion-ciclo-4` | 73 pruebas; simulaciones de red y exenciones | Implementado; cierre por merge del PR con CI correcta |
+| 4 | [PR #70](https://github.com/alcyedmundo281/biosemiotics/pull/70), `codex/renovacion-ciclo-4` | 73 pruebas; simulaciones de red y exenciones | Implementado; cierre por merge del PR con CI correcta |
 
 ## Trabajo editorial conservado
 
