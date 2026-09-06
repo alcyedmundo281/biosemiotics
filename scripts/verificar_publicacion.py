@@ -24,7 +24,7 @@ import zipfile
 from pathlib import Path
 from typing import Optional
 
-from build import cargar
+from build import cargar, seleccionar_publicables, estado_publicacion
 from indice import URL_PRIMARIA, URL_RESPALDO, XLINK_NS
 
 
@@ -55,7 +55,7 @@ def validar_url(url: str) -> str | None:
 
 def validar_mapa(mapa: str, entidades: list[dict], errores: list[str]) -> None:
     signos = [e for e in entidades if e["tipo"] == "signo"]
-    publicados = [e for e in signos if e.get("url")]
+    publicados = seleccionar_publicables(signos, solo_publicados=True)
 
     banco = re.search(
         r"Banco actual:\s*\*\*(\d+) entidades\*\*\s*"
@@ -264,10 +264,22 @@ def main() -> int:
 
     raiz = args.raiz.resolve()
     entidades = cargar(raiz)
+    publicables = seleccionar_publicables(entidades)
     por_id = {e["id"]: e for e in entidades}
     indice = json.loads((raiz / "build" / "index.json").read_text(encoding="utf-8"))
     fichas = {f["id"]: f for f in indice["fichas"]}
     errores: list[str] = []
+    esperados = {e["id"] for e in publicables}
+    if set(fichas) != esperados:
+        error(errores, f"índice: faltan {sorted(esperados - set(fichas))}; "
+                      f"sobran {sorted(set(fichas) - esperados)}")
+    for e in publicables:
+        f = fichas.get(e["id"], {})
+        for campo, valor in (("estado", estado_publicacion(e)),
+                             ("fecha_revision", str(e["fecha_revision"]) if e.get("fecha_revision") else None),
+                             ("ghost_id", e.get("ghost_id"))):
+            if f.get(campo) != valor:
+                error(errores, f"{e['id']}: {campo} distinto entre fuente e índice")
     objetivo_verificado: str | None = None
 
     for entidad in entidades:
@@ -289,7 +301,7 @@ def main() -> int:
         epub = args.epub
         if epub is not None and not epub.is_absolute():
             epub = raiz / epub
-        validar_derivados(raiz, entidades, errores, epub)
+        validar_derivados(raiz, publicables, errores, epub)
 
     if args.entidad_id:
         entidad = por_id.get(args.entidad_id)
@@ -324,4 +336,7 @@ def main() -> int:
 
 
 if __name__ == "__main__":
-    raise SystemExit(main())
+    try:
+        raise SystemExit(main())
+    except RuntimeError as exc:
+        sys.exit(str(exc))

@@ -1,4 +1,7 @@
 ---
+estado: publicado
+fecha_revision: null
+ghost_id: null
 id: artefacto-refuerzo-posterior
 tipo: concepto
 titulo: "Refuerzo acústico posterior"

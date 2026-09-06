@@ -1,4 +1,7 @@
 ---
+estado: borrador
+fecha_revision: null
+ghost_id: null
 id: {{ID}}
 tipo: caso
 titulo: "{{TITULO}}"
@@ -16,7 +19,6 @@ video_lure: ""    # yt:<ID>  (No listado, NO Privado)
 video_archivo: "" # yt:<ID>
 consentimiento: pendiente   # pendiente | obtenido — BLOQUEA la publicación
 composite: false  # true si es caso representativo, no un paciente único
-publicado: false
 doi: null
 refs: []
 ---

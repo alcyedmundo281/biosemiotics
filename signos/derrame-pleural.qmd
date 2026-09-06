@@ -1,4 +1,7 @@
 ---
+estado: publicado
+fecha_revision: null
+ghost_id: null
 id: signo-derrame-pleural
 tipo: signo
 titulo: "Derrame pleural"

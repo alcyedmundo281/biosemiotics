@@ -1,4 +1,7 @@
 ---
+estado: borrador
+fecha_revision: null
+ghost_id: null
 id: caso-01-disnea
 tipo: caso
 titulo: "El disneico: ¿húmedo o seco?"
@@ -21,7 +24,6 @@ taller: taller-01-pulmon
 video_lure: "yt:UNLISTED_ID_1"
 video_archivo: "yt:UNLISTED_ID_2"
 consentimiento: pendiente
-publicado: false
 doi: null
 refs: [lichtenstein2008, volpicelli2012]
 licencia: CC-BY-4.0

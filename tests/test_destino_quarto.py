@@ -19,6 +19,7 @@ class DestinoQuartoTest(unittest.TestCase):
         (self.raiz / "refs.bib").write_text(self.bib, encoding="utf-8")
         self.destino = self.raiz / "build" / "quarto"
         self.entidades = [{"id": "signo-demo", "tipo": "signo", "titulo": "Demo",
+                           "estado": "revisado",
                            "_archivo": "signos/demo.qmd",
                            "cuerpo": "\n\n".join("## " + s + "\nTexto." for s in SECCIONES["signo"]),
                            "abstract": "palabra " * 40, "refs": ["demo"],

@@ -45,9 +45,8 @@ fusionado con CI correcta; merge `9164198`.
 
 ## Ciclo 2 — Hacer obligatorias las reglas editoriales
 
-**Estado:** implementado. CI e integración registradas en el
-[PR #68](https://github.com/alcyedmundo281/biosemiotics/pull/68).
-El ciclo queda cerrado cuando ese PR se fusione con todos sus checks correctos.
+**Estado:** cerrado. [PR #68](https://github.com/alcyedmundo281/biosemiotics/pull/68)
+fusionado con CI correcta; merge `913e09e`.
 
 - **Problema:** faltas clínicas/semióticas solo generan alertas; no se exige
   consistentemente abstract ni secciones obligatorias.
@@ -73,7 +72,7 @@ El ciclo queda cerrado cuando ese PR se fusione con todos sus checks correctos.
 
 ## Ciclo 3 — Unificar publicación y consentimiento
 
-**Estado:** pendiente.
+**Estado:** implementado; pendiente de CI e integración del PR de este ciclo.
 
 - **Problema:** el libro selecciona por `url`; SQLite y consentimiento usan
   `publicado`. El mismo caso puede tener estados contradictorios.
@@ -83,6 +82,25 @@ El ciclo queda cerrado cuando ese PR se fusione con todos sus checks correctos.
   comprobar SQLite, índice, libro y casos con consentimiento pendiente.
 - **Cierre:** selección coherente en todas las salidas; ningún caso público
   sin consentimiento obtenido. Fecha de revisión y Ghost ID quedan trazables.
+- **Migración:** 41 fichas con URL → `publicado`; disfunción diastólica →
+  `revisado`, por la aprobación editorial previa de Alcy; caso de disnea →
+  `borrador`, con consentimiento pendiente. No se modifican cuerpos ni citas.
+- **Contrato:** `estado_publicacion()` valida estado, URL, booleano legado,
+  consentimiento y formato de trazabilidad. `seleccionar_publicables()` decide
+  el alcance de Ghost, índice, atlas y Quarto (incluidos EPUB/PDF). Un caso
+  revisado/publicado sin consentimiento falla antes de escribir, incluso cuando
+  el filtro de edición podría excluirlo.
+- **Trazabilidad:** se añaden `fecha_revision` y `ghost_id` a fuente, SQLite e
+  índice. En la migración quedan `null`: no constan en las fuentes históricas.
+  Completar con evidencia en futuras revisiones/publicaciones; no inventar fechas
+  ni mezclar aquí el cierre pendiente de Ghost de disfunción diastólica.
+- **Evidencia:** 59 pruebas; SQLite conserva 43 fichas y deriva 41 publicadas;
+  índice/Ghost contienen 42; Quarto publicado contiene 41. El caso pendiente
+  queda fuera del índice, Ghost-ready, atlas y libro. JSON-LD/JATS anteriores
+  se retiran al devolver una ficha a borrador.
+- **Límites:** SQLite y grafo son salidas locales de trabajo y conservan borradores.
+  Regenerar no retira artículos de Ghost ni ediciones ya archivadas. La aprobación
+  clínica y el consentimiento real siguen siendo responsabilidad editorial.
 
 ## Ciclo 4 — No aprobar citas sin verificar
 
@@ -138,7 +156,8 @@ El ciclo queda cerrado cuando ese PR se fusione con todos sus checks correctos.
 | Ciclo | Rama / PR | Evidencia | Estado |
 |---|---|---|---|
 | 1 | [PR #67](https://github.com/alcyedmundo281/biosemiotics/pull/67), `codex/renovacion-ciclo-1` | 44 pruebas; CI correcta | Cerrado, merge `9164198` |
-| 2 | [PR #68](https://github.com/alcyedmundo281/biosemiotics/pull/68), `codex/renovacion-ciclo-2` | 52 pruebas; 43 fichas válidas; 137 referencias verificadas en modo estricto | Implementado; cierre por merge del PR con CI correcta |
+| 2 | [PR #68](https://github.com/alcyedmundo281/biosemiotics/pull/68), `codex/renovacion-ciclo-2` | 52 pruebas; CI correcta | Cerrado, merge `913e09e` |
+| 3 | `codex/renovacion-ciclo-3` | 59 pruebas; 43 fichas locales, 42 elegibles, 41 publicadas | Implementado; cierre por merge del PR con CI correcta |
 
 ## Trabajo editorial conservado
 

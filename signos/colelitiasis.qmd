@@ -1,4 +1,7 @@
 ---
+estado: publicado
+fecha_revision: null
+ghost_id: null
 id: signo-colelitiasis
 tipo: signo
 titulo: "Colelitiasis: cálculo móvil con sombra posterior"

@@ -1,4 +1,7 @@
 ---
+estado: publicado
+fecha_revision: null
+ghost_id: null
 id: propagacion-sonido
 tipo: concepto
 titulo: "Velocidad de propagación"

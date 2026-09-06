@@ -18,7 +18,7 @@ from pathlib import Path
 sys.stdout.reconfigure(encoding="utf-8")
 
 sys.path.insert(0, str(Path(__file__).parent))
-from build import cargar, RELS, exigir_editorial  # noqa: E402
+from build import cargar, RELS, exigir_editorial, seleccionar_publicables  # noqa: E402
 
 CSS = """
 :root{--ink:#14181B;--mute:#5F676E;--line:#E3E7EA;--paper:#FBFCFC;
@@ -153,6 +153,7 @@ render();
 def main():
     raiz = Path(sys.argv[1] if len(sys.argv) > 1 else ".").resolve()
     ent = cargar(raiz)
+    ent = seleccionar_publicables(ent)
     exigir_editorial(ent, raiz / "refs.bib")
 
     nodos = []
@@ -168,8 +169,9 @@ def main():
             "fp": e.get("falsos_positivos") or [],
             "cuerpo": e["cuerpo"],
         })
+    ids = {e["id"] for e in ent}
     aristas = [{"origen": e["id"], "destino": d, "clase": c}
-               for e in ent for c in RELS for d in (e.get(c) or [])]
+               for e in ent for c in RELS for d in (e.get(c) or []) if d in ids]
 
     data = json.dumps({"nodos": nodos, "aristas": aristas}, ensure_ascii=False)
 

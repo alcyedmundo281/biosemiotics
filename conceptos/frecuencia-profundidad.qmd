@@ -1,4 +1,7 @@
 ---
+estado: publicado
+fecha_revision: null
+ghost_id: null
 id: frecuencia-profundidad
 tipo: concepto
 titulo: "Frecuencia vs. profundidad"

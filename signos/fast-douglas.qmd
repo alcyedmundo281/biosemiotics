@@ -1,4 +1,7 @@
 ---
+estado: publicado
+fecha_revision: null
+ghost_id: null
 id: signo-fast-douglas
 tipo: signo
 titulo: "Pelvis: el punto más bajo, y la vejiga que lo decide"

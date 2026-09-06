@@ -1,4 +1,7 @@
 ---
+estado: publicado
+fecha_revision: null
+ghost_id: null
 id: signo-perfil-a
 tipo: signo
 titulo: "Perfil A (pulmón seco)"

@@ -1,4 +1,7 @@
 ---
+estado: publicado
+fecha_revision: null
+ghost_id: null
 id: signo-aneurisma-aortico-abdominal
 tipo: signo
 titulo: "Aneurisma aórtico abdominal en POCUS: medir antes de que el dolor engañe"

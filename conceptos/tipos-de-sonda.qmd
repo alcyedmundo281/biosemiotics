@@ -1,4 +1,7 @@
 ---
+estado: publicado
+fecha_revision: null
+ghost_id: null
 id: tipos-de-sonda
 tipo: concepto
 titulo: "Sondas y orientación"

@@ -1,4 +1,7 @@
 ---
+estado: publicado
+fecha_revision: null
+ghost_id: null
 id: signo-absceso-partes-blandas
 tipo: signo
 titulo: "Absceso de partes blandas: la colección que la mano no distingue"

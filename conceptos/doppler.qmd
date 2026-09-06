@@ -1,4 +1,7 @@
 ---
+estado: publicado
+fecha_revision: null
+ghost_id: null
 id: doppler
 tipo: concepto
 titulo: "Doppler: el color no mide, el ángulo decide"

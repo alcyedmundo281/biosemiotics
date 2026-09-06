@@ -1,4 +1,7 @@
 ---
+estado: publicado
+fecha_revision: null
+ghost_id: null
 id: signo-embarazo-ectopico
 tipo: signo
 titulo: "Embarazo ectópico: el útero vacío no es el signo"

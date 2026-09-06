@@ -1,4 +1,7 @@
 ---
+estado: publicado
+fecha_revision: null
+ghost_id: null
 id: knobology-ganancia
 tipo: concepto
 titulo: "Ganancia"
