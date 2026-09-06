@@ -39,6 +39,7 @@ import re
 import shutil
 import subprocess
 import sys
+import tempfile
 import unicodedata
 from collections import defaultdict
 from datetime import date
@@ -87,7 +88,7 @@ def argumentos() -> argparse.Namespace:
         "--destino",
         type=Path,
         default=Path("build/quarto"),
-        help="directorio del proyecto Quarto generado (se reescribe entero)",
+        help="subdirectorio de build/ para el proyecto generado (se reemplaza al terminar)",
     )
     parser.add_argument(
         "--solo-publicados",
@@ -590,13 +591,87 @@ def render(ejecutable: str, proyecto: Path, formato: str, sufijo: str) -> Path:
     return salidas[0]
 
 
+MARCADOR_PROYECTO = ".biosemiotics-quarto"
+MARCA_PROYECTO = "biosemiotics-quarto-v1\n"
+
+
+def validar_destino(raiz: Path, destino: Path) -> Path:
+    """Solo reemplaza proyectos derivados dentro del build real del banco."""
+    raiz = raiz.resolve()
+    destino = destino if destino.is_absolute() else raiz / destino
+    # Rechaza enlaces y junctions también antes de normalizar '..'.
+    for tramo in (destino, *destino.parents):
+        if tramo.is_symlink() or getattr(tramo, "is_junction", lambda: False)():
+            raise RuntimeError(f"Destino inseguro: enlace o junction en {tramo}")
+    base = raiz / "build"
+    destino = destino.resolve()
+    try:
+        relativo = destino.relative_to(base)
+    except ValueError:
+        raise RuntimeError("El proyecto Quarto debe estar dentro de build/")
+    if not relativo.parts:
+        raise RuntimeError("No se puede reemplazar build/ entero; usa build/quarto")
+    if destino.exists():
+        if not destino.is_dir():
+            raise RuntimeError(f"El destino no es un directorio: {destino}")
+        if any(destino.iterdir()):
+            marcador = destino / MARCADOR_PROYECTO
+            propio = (marcador.is_file() and not marcador.is_symlink()
+                      and marcador.read_text(encoding="utf-8") == MARCA_PROYECTO)
+            # Compatibilidad con proyectos anteriores al marcador, únicamente
+            # en la ruta histórica y con los archivos característicos.
+            anterior = destino == base / "quarto" and all(
+                (destino / nombre).is_file() and not (destino / nombre).is_symlink()
+                for nombre in ("_quarto.yml", "index.qmd", "libro-plano.md", "refs.bib")
+            )
+            if not (propio or anterior):
+                raise RuntimeError(f"No se reemplaza un directorio ajeno: {destino}")
+    return destino
+
+
 def generar(entidades: list, raiz: Path, destino: Path) -> dict:
+    """Ensambla primero; conserva el proyecto previo si falla la generación.
+
+    El intercambio usa renombres en el mismo filesystem. No garantiza una
+    transacción frente a corte eléctrico o procesos concurrentes.
+    """
+    raiz = raiz.resolve()
+    destino = validar_destino(raiz, destino)
+    destino.parent.mkdir(parents=True, exist_ok=True)
+    temporal = Path(tempfile.mkdtemp(prefix=".quarto-", dir=destino.parent))
+    nuevo, anterior = temporal / "nuevo", temporal / "anterior"
+    try:
+        informe = _generar_en(entidades, raiz, nuevo)
+        (nuevo / MARCADOR_PROYECTO).write_text(MARCA_PROYECTO, encoding="utf-8")
+        validar_destino(raiz, destino)
+        if destino.exists():
+            destino.rename(anterior)
+        try:
+            nuevo.rename(destino)
+        except OSError:
+            if anterior.exists():
+                try:
+                    anterior.rename(destino)
+                except OSError as exc:
+                    raise RuntimeError(
+                        f"No se pudo restaurar {destino}; copia conservada en {anterior}"
+                    ) from exc
+            raise
+        if anterior.exists():
+            shutil.rmtree(anterior)
+        informe["destino"] = destino
+        return informe
+    finally:
+        # Si restaurar el anterior también falla, conserva la copia recuperable.
+        if not anterior.exists():
+            shutil.rmtree(temporal)
+
+
+def _generar_en(entidades: list, raiz: Path, destino: Path) -> dict:
     figuras = figuras_validadas(entidades, raiz)
     bibliografia = bibliografia_para_libro(banco.cargar_bibliografia(raiz / "refs.bib"))
     version = version_git(raiz)
 
-    if destino.exists():
-        shutil.rmtree(destino)
     destino.mkdir(parents=True)
 
     partes = estructura(entidades)
