@@ -205,6 +205,35 @@ o el registro citable queda diciendo algo que el repositorio ya no dice.
 
 ## Reglas duras (no se rompen nunca)
 
+### Contrato editorial antes de generar
+
+`build.py`, `indice.py`, `atlas.py` y `qmd.generar()` bloquean la generación
+antes de escribir si alguna ficha seleccionada incumple el contrato. Los errores
+identifican archivo, entidad y campo o encabezado. EPUB/PDF heredan este control
+mediante `qmd.generar()`; `--solo-publicados` valida las fichas seleccionadas.
+
+Todos los tipos requieren título, cuerpo, nivel válido, abstract de 40–80 palabras
+y una lista no vacía de claves existentes en `refs.bib`. Los conceptos requieren
+dominio; conservan su estructura libre. Los signos requieren sistema válido,
+órgano, ventana, sondas, significante, significado, decisión y falsos positivos,
+además de las ocho secciones literales del instructivo. Los casos requieren
+órgano, decisión semiótica, signos y sus siete secciones. Las secciones obligatorias
+deben aparecer una sola vez y contener texto; los campos obligatorios no admiten
+`TODO`. Las listas deben contener textos no vacíos.
+
+Para trabajar un borrador incompleto sin URL ni `publicado: true`, usa
+`python scripts/build.py --solo db` o `--solo grafo`: esas salidas locales
+informan sus faltas como alertas. El comando sin `--solo` y `--solo ghost`
+exigen completar todas las fichas antes de generar. No distribuyas la base o
+el grafo de trabajo como una edición revisada.
+
+Este control comprueba estructura, no calidad clínica, veracidad de citas ni
+autorización para publicar. La unificación de estados y consentimiento queda
+en el ciclo 3 de `RENOVACION.md`; una ficha estructuralmente válida aún necesita
+revisión clínica y editorial.
+
+### Reglas clínicas y de publicación
+
 - **CITAS: solo desde PubMed, verificadas.** Usa `scripts/refs.py`. NUNCA escribas una referencia de memoria ni aceptes una que produjo un LLM sin verificar el PMID. Cualquier cifra clínica (umbral, tasa, fórmula) debe tener una fuente que la diga *exactamente*. Si un LLM "recuerda" una cita, trátala como falsa hasta probar lo contrario en PubMed. Este proyecto ya fue salvado de tres referencias inventadas — no repitas el episodio.
 - **Verifica que la fuente diga la cifra.** No basta con que el paper trate el tema. Abre el abstract; si dice 1.2%, tu texto dice 1.2%, no "1-4%". Ajusta el texto a la fuente, nunca al revés.
 - **Un DOI que Crossref no resuelve no se publica.** `verificar_citas.py` distingue un 404 (Crossref no conoce ese DOI: verificación fallida, sale con código 1) de un error de red transitorio (timeout, 429, 5xx: reintenta). Si la revista es real y simplemente no deposita en Crossref, decláralo en `refs-sin-crossref.txt` con su razón por escrito; esa exención renuncia a la segunda autoridad, así que confirma el PMID a mano antes de usarla. Lo que no se hace es dejar pasar un 404 en silencio.

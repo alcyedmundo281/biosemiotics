@@ -7,6 +7,7 @@ from unittest.mock import patch
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
 import qmd
+from build import SECCIONES
 
 
 class DestinoQuartoTest(unittest.TestCase):
@@ -14,10 +15,17 @@ class DestinoQuartoTest(unittest.TestCase):
         self.temporal = tempfile.TemporaryDirectory()
         self.addCleanup(self.temporal.cleanup)
         self.raiz = Path(self.temporal.name).resolve()
-        (self.raiz / "refs.bib").write_text("", encoding="utf-8")
+        self.bib = "@article{demo,\n title={Demo},\n}\n"
+        (self.raiz / "refs.bib").write_text(self.bib, encoding="utf-8")
         self.destino = self.raiz / "build" / "quarto"
         self.entidades = [{"id": "signo-demo", "tipo": "signo", "titulo": "Demo",
-                           "_archivo": "signos/demo.qmd", "cuerpo": "## El signo\nTexto.",
+                           "_archivo": "signos/demo.qmd",
+                           "cuerpo": "\n\n".join("## " + s + "\nTexto." for s in SECCIONES["signo"]),
+                           "abstract": "palabra " * 40, "refs": ["demo"],
+                           "nivel": "principiante", "ventana": "Ventana",
+                           "sonda": ["sectorial"], "falsos_positivos": ["Imitador"],
+                           "significante": "Imagen", "significado": "Interpretación",
+                           "decision": "Decisión",
                            "sistema": "cardiovascular", "organo": "corazon"}]
         self.raster = patch.object(qmd, "rasterizar_portada", return_value=False)
         self.raster.start()
@@ -34,7 +42,7 @@ class DestinoQuartoTest(unittest.TestCase):
                 with self.assertRaises(RuntimeError):
                     self.generar(ruta)
                 generar.assert_not_called()
-        self.assertEqual((self.raiz / "refs.bib").read_text(), "")
+        self.assertEqual((self.raiz / "refs.bib").read_text(), self.bib)
 
     def test_no_reemplaza_directorio_ajeno_ni_archivo(self):
         self.destino.mkdir(parents=True)

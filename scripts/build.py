@@ -28,6 +28,7 @@ from pathlib import Path
 import yaml
 
 sys.stdout.reconfigure(encoding="utf-8")
+sys.stderr.reconfigure(encoding="utf-8")
 
 RELS = ("relacionado_con", "prerequisito_de", "se_basa_en",
         "contrasta_con", "signos", "conceptos")
@@ -352,6 +353,7 @@ def excerpt_ghost(valor: str, limite: int = 300) -> str:
 
 def build_ghost(entidades, build_dir: Path, bib_path: Path) -> Path:
     """Genera Markdown listo para copiar a Ghost sin alterar la fuente."""
+    exigir_editorial(entidades, bib_path)
     destino = build_dir / "ghost"
     if destino.exists():
         shutil.rmtree(destino)
@@ -385,40 +387,109 @@ def build_ghost(entidades, build_dir: Path, bib_path: Path) -> Path:
 
 
 # ─────────────────────── VALIDACIÓN ───────────────────────
-def validar(entidades, aristas, raiz: Path):
+SECCIONES = {
+    "signo": ("La pregunta clínica", "Por qué el examen físico no basta",
+              "Cómo se obtiene la ventana", "El signo", "La bifurcación",
+              "Dónde NO confiar", "Practica esto", "Discusión abierta"),
+    "caso": ("Viñeta clínica", "El problema antes de la sonda", "La adquisición",
+             "El signo", "La bifurcación", "Los límites", "Pregunta al parlamento"),
+}
+
+
+def errores_editoriales(entidades, bib_path: Path):
+    """Contrato estructural; no sustituye la revisión clínica ni el consentimiento."""
+    bib = cargar_bibliografia(bib_path) if bib_path.is_file() else {}
+    errores = []
+    for e in entidades:
+        prefijo = f"[EDITORIAL] {e.get('_archivo', '?')} ({e.get('id', '?')})"
+
+        def error(campo, mensaje):
+            errores.append(f"{prefijo}: {campo}: {mensaje}")
+
+        def texto(valor):
+            return isinstance(valor, str) and bool(valor.strip()) and not re.search(
+                r"\bTODO\b", valor)
+
+        tipo = e.get("tipo")
+        if tipo not in ("concepto", "signo", "caso"):
+            error("tipo", "debe ser concepto, signo o caso")
+        campos = ["id", "titulo", "abstract", "cuerpo"]
+        if tipo == "signo":
+            campos += ["organo", "ventana", "significante", "significado", "decision"]
+        elif tipo == "caso":
+            campos += ["organo", "decision_semiotica"]
+        elif tipo == "concepto":
+            campos += ["dominio"]
+        for campo in campos:
+            if not texto(e.get(campo)):
+                error(campo, "requiere texto no vacío, sin TODO")
+        resumen = e.get("abstract")
+        if isinstance(resumen, str) and not 40 <= len(resumen.split()) <= 80:
+            error("abstract", "debe contener entre 40 y 80 palabras")
+        if not isinstance(e.get("nivel"), str) or e["nivel"] not in NIVELES:
+            error("nivel", f"debe pertenecer a {sorted(NIVELES)}")
+        if tipo == "signo" and e.get("sistema") not in [c for c, _ in SISTEMAS]:
+            error("sistema", "valor obligatorio de la taxonomía del mapa maestro")
+        listas = ["refs"]
+        if tipo == "signo":
+            listas += ["falsos_positivos", "sonda"]
+        if tipo == "caso":
+            listas += ["signos"]
+        for campo in listas:
+            valores = e.get(campo)
+            if not isinstance(valores, list) or not valores or not all(map(texto, valores)):
+                error(campo, "requiere una lista no vacía de textos, sin TODO")
+        refs = e.get("refs")
+        if isinstance(refs, list):
+            for clave in refs:
+                if isinstance(clave, str) and clave not in bib:
+                    error("refs", f"'{clave}' no está en refs.bib")
+        cuerpo = e.get("cuerpo")
+        if isinstance(cuerpo, str):
+            # Los ejemplos en bloques de código no cumplen secciones editoriales.
+            sin_codigo = re.sub(r"(?ms)^(`{3,}|~{3,}).*?^\1\s*$", "", cuerpo)
+            sin_codigo = re.sub(r"(?s)<!--.*?-->", "", sin_codigo)
+            encabezados = list(re.finditer(r"(?m)^##\s+(.+?)\s*$", sin_codigo))
+            for seccion in SECCIONES.get(tipo if isinstance(tipo, str) else "", ()):
+                encontrados = [i for i, h in enumerate(encabezados) if h[1] == seccion]
+                if len(encontrados) != 1:
+                    error(f"## {seccion}", "debe aparecer exactamente una vez")
+                else:
+                    i = encontrados[0]
+                    fin = encabezados[i + 1].start() if i + 1 < len(encabezados) else len(sin_codigo)
+                    contenido = sin_codigo[encabezados[i].end():fin]
+                    contenido = re.sub(r"(?m)^#{1,6}\s+.*$", "", contenido)
+                    contenido = re.sub(r"(?s)<!--.*?-->", "", contenido)
+                    if not contenido.strip():
+                        error(f"## {seccion}", "sección vacía")
+    return errores
+
+
+def exigir_editorial(entidades, bib_path: Path):
+    errores = errores_editoriales(entidades, bib_path)
+    if errores:
+        raise RuntimeError("Contrato editorial incumplido:\n" + "\n".join(errores))
+
+
+def validar(entidades, aristas, raiz: Path, permitir_borradores=False):
     """(errores, alertas). Errores rompen el grafo o bloquean publicación."""
     ids = {e["id"] for e in entidades}
     errores = [f"{a['origen']} --{a['clase']}--> {a['destino']} (NO EXISTE)"
                for a in aristas if a["destino"] not in ids]
     alertas = []
+    borradores = [e for e in entidades if permitir_borradores and not (
+        e.get("url") or e.get("publicado"))]
+    exigidas = [e for e in entidades if not permitir_borradores or (
+        e.get("url") or e.get("publicado"))]
+    errores.extend(errores_editoriales(exigidas, raiz / "refs.bib"))
+    alertas.extend(errores_editoriales(borradores, raiz / "refs.bib"))
 
     for e in entidades:
-        # La taxonomía del mapa maestro es cerrada. Un valor inventado no rompe
-        # la compilación, y por eso es peligroso: corrompe en silencio las
-        # facetas del buscador y saca al signo de su parte en el libro.
-        if e.get("nivel") and e["nivel"] not in NIVELES:
-            alertas.append(f"[TAXONOMÍA] {e['id']}: nivel={e['nivel']!r} "
-                           f"no está en la taxonomía {sorted(NIVELES)}")
-        if e["tipo"] == "signo":
-            if not e.get("sistema"):
-                alertas.append(f"[TAXONOMÍA] {e['id']}: sin 'sistema' "
-                               f"(queda fuera de su parte en el libro)")
-            elif e["sistema"] not in {c for c, _ in SISTEMAS}:
-                alertas.append(f"[TAXONOMÍA] {e['id']}: sistema={e['sistema']!r} "
-                               f"no está en la taxonomía")
-            # Un signo sin límites enseña a reconocer sin enseñar a dudar.
-            if not e.get("falsos_positivos"):
-                alertas.append(f"[CLÍNICO] {e['id']}: sin 'falsos_positivos'")
-            for campo in ("significante", "significado", "decision"):
-                if not e.get(campo):
-                    alertas.append(f"[SEMIÓTICA] {e['id']}: falta '{campo}'")
         if e["tipo"] == "caso" and e.get("publicado"):
             if e.get("consentimiento") != "obtenido":
                 errores.append(
                     f"[BLOQUEO] {e['id']}: publicado=true pero "
                     f"consentimiento={e.get('consentimiento')!r}")
-        if e["tipo"] in ("signo", "caso") and not e.get("refs"):
-            alertas.append(f"[REFS] {e['id']}: sin referencias BibLaTeX")
 
         # Una imagen sin trazabilidad completa no se puede redistribuir: el
         # generador de ePub debe FALLAR antes que incrustarla sin atribución
@@ -490,13 +561,6 @@ def validar(entidades, aristas, raiz: Path):
                 f"{len(manual)} entradas y 'refs' declara {len(declaradas)}; "
                 f"se publica la de refs.bib")
 
-    bib = raiz / "refs.bib"
-    if bib.exists():
-        txt = bib.read_text(encoding="utf-8")
-        for e in entidades:
-            for r in (e.get("refs") or []):
-                if f"{{{r}," not in txt:
-                    alertas.append(f"[REFS] {e['id']}: '{r}' no está en refs.bib")
     return errores, alertas
 
 
@@ -508,14 +572,20 @@ def main():
 
     raiz = Path(a.raiz).resolve()
     build_dir = raiz / "build"
-    build_dir.mkdir(exist_ok=True)
 
     ent = cargar(raiz)
     n = {t: sum(e["tipo"] == t for e in ent) for t in ("concepto", "signo", "caso")}
     print(f"Banco: {len(ent)} entidades  "
           f"({n['concepto']} conceptos, {n['signo']} signos, {n['caso']} casos)")
 
-    _, aristas = build_grafo(ent, build_dir)
+    # Solo las salidas locales de trabajo admiten borradores incompletos.
+    aristas = [{"origen": e["id"], "destino": d, "clase": clase}
+               for e in ent for clase in RELS for d in (e.get(clase) or [])]
+    errores, alertas = validar(ent, aristas, raiz, permitir_borradores=a.solo in ("db", "grafo"))
+    if errores:
+        raise RuntimeError("Validación fallida:\n" + "\n".join(errores))
+    build_dir.mkdir(exist_ok=True)
+    build_grafo(ent, build_dir)
 
     if a.solo in (None, "db"):
         print(f"  → atlas.db     ({len(aristas)} relaciones)")
@@ -526,22 +596,19 @@ def main():
         ghost = build_ghost(ent, build_dir, raiz / "refs.bib")
         print(f"  → ghost/       ({len(ent)} artículos Ghost-ready)")
 
-    errores, alertas = validar(ent, aristas, raiz)
-    if errores:
-        print(f"\n✗ {len(errores)} ERRORES:")
-        for x in errores:
-            print(f"   {x}")
     if alertas:
         print(f"\n⚠ {len(alertas)} alertas de calidad:")
         for x in alertas:
             print(f"   {x}")
-    if not errores and not alertas:
+    if not alertas:
         print("\n✓ Integridad referencial y calidad OK")
-    elif not errores:
+    else:
         print("\n✓ Integridad referencial OK")
 
-    sys.exit(1 if errores else 0)
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except RuntimeError as exc:
+        sys.exit(str(exc))

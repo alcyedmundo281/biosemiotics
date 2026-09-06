@@ -637,6 +637,7 @@ def generar(entidades: list, raiz: Path, destino: Path) -> dict:
     """
     raiz = raiz.resolve()
     destino = validar_destino(raiz, destino)
+    banco.exigir_editorial(entidades, raiz / "refs.bib")
     destino.parent.mkdir(parents=True, exist_ok=True)
     temporal = Path(tempfile.mkdtemp(prefix=".quarto-", dir=destino.parent))
     nuevo, anterior = temporal / "nuevo", temporal / "anterior"
