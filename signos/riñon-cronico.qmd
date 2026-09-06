@@ -330,6 +330,11 @@ la decisión clínica.
 - Una morfología crónica no excluye lesión renal aguda sobreañadida.
 - El informe debe expresar probabilidad, técnica y limitaciones.
 
+## Discusión abierta
+
+¿Cómo describirías en el informe la incertidumbre y las limitaciones técnicas
+de tu exploración?
+
 **Nota de alcance:** material educativo para profesionales en formación. No
 sustituye protocolos locales, entrenamiento acreditado, supervisión clínica
 ni valoración integral del paciente.

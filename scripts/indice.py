@@ -26,7 +26,7 @@ from pathlib import Path
 sys.stdout.reconfigure(encoding="utf-8")
 
 sys.path.insert(0, str(Path(__file__).parent))
-from build import cargar  # noqa: E402
+from build import cargar, exigir_editorial  # noqa: E402
 
 # DOI de la obra completa (Zenodo). Se muestra bajo el buscador del atlas.
 DOI_OBRA = "10.5281/zenodo.21435362"
@@ -473,6 +473,7 @@ def main():
     url_primaria = URL_PRIMARIA
     url = URL_RESPALDO
     ent = cargar(raiz)
+    exigir_editorial(ent, raiz / "refs.bib")
     b = raiz / "build"
     b.mkdir(exist_ok=True)
 
@@ -518,4 +519,7 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except RuntimeError as exc:
+        sys.exit(str(exc))

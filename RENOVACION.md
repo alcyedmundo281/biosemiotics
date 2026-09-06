@@ -24,9 +24,8 @@ mantiene su flujo separado de proveedor/publicador en `CLAUDE.md`.
 
 ## Ciclo 1 — Proteger la generación Quarto
 
-**Estado:** implementado y validado localmente. CI e integración registradas
-en el [PR #67](https://github.com/alcyedmundo281/biosemiotics/pull/67).
-El ciclo se considera cerrado cuando ese PR esté fusionado con todos sus checks correctos.
+**Estado:** cerrado. [PR #67](https://github.com/alcyedmundo281/biosemiotics/pull/67)
+fusionado con CI correcta; merge `9164198`.
 
 - **Problema:** `qmd.generar()` elimina el destino sin delimitar su alcance.
   Un destino erróneo puede ser la raíz o una carpeta de fuentes.
@@ -46,7 +45,7 @@ El ciclo se considera cerrado cuando ese PR esté fusionado con todos sus checks
 
 ## Ciclo 2 — Hacer obligatorias las reglas editoriales
 
-**Estado:** pendiente.
+**Estado:** implementado; integración pendiente de CI y merge del PR de este ciclo.
 
 - **Problema:** faltas clínicas/semióticas solo generan alertas; no se exige
   consistentemente abstract ni secciones obligatorias.
@@ -57,6 +56,18 @@ El ciclo se considera cerrado cuando ese PR esté fusionado con todos sus checks
 - **Cierre:** ninguna ficha publicable sin referencias, abstract, límites y
   campos obligatorios; errores accionables con archivo y campo.
 - **Reversión:** revertir el cambio de código; nunca relajar reglas silenciosamente.
+- **Implementación:** contrato común en `build.py`, aplicado también a Ghost,
+  índice/JSON-LD/JATS, atlas HTML y Quarto antes de escribir. `--solo db|grafo`
+  permite trabajar fichas incompletas sin URL ni marca de publicación, con alertas.
+- **Inventario:** 43 fichas. Se añade a ecogenicidad una referencia ya existente
+  (`hangiandreou2003`), se separa un párrafo existente bajo el encabezado faltante
+  en derrame pericárdico y se añaden preguntas de discusión en neumotórax y riñón
+  crónico. No cambian umbrales ni decisiones clínicas; índice regenerado.
+- **Evidencia:** 52 pruebas; generación Quarto de las 41 fichas con URL;
+  137/137 referencias verificadas en PubMed y Crossref con `--estricto`.
+- **Límite:** validación estructural, no revisión clínica automatizada. El caso
+  pendiente conserva su estado; la elegibilidad y consentimiento se unifican
+  en el ciclo 3. Los conceptos conservan estructura libre de encabezados.
 
 ## Ciclo 3 — Unificar publicación y consentimiento
 
@@ -124,7 +135,8 @@ El ciclo se considera cerrado cuando ese PR esté fusionado con todos sus checks
 
 | Ciclo | Rama / PR | Evidencia | Estado |
 |---|---|---|---|
-| 1 | [PR #67](https://github.com/alcyedmundo281/biosemiotics/pull/67), `codex/renovacion-ciclo-1` | 44 pruebas locales correctas; integridad e índice sin deriva; proyecto Quarto real de 41 entidades generado | Implementado; cierre por merge del PR con CI correcta |
+| 1 | [PR #67](https://github.com/alcyedmundo281/biosemiotics/pull/67), `codex/renovacion-ciclo-1` | 44 pruebas; CI correcta | Cerrado, merge `9164198` |
+| 2 | `codex/renovacion-ciclo-2` | 52 pruebas; 43 fichas válidas; 137 referencias verificadas en modo estricto | Implementado; cierre por merge del PR con CI correcta |
 
 ## Trabajo editorial conservado
 

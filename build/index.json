@@ -313,7 +313,11 @@
     }
    ],
    "n_loops": 0,
-   "n_imagenes": 1
+   "n_imagenes": 1,
+   "refs": [
+    "hangiandreou2003"
+   ],
+   "n_refs": 1
   },
   {
    "id": "efecto-piezoelectrico",

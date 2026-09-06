@@ -30,7 +30,7 @@ medios:
     licencia_url: "https://creativecommons.org/publicdomain/zero/1.0/"
     archivo_local: "assets/img/ecogenicidad.jpg"
 
-refs: []
+refs: [hangiandreou2003]
 url: "https://www.biosemiotics.net/aprender-a-leer-el-cuerpo-vivo/"
 fecha: 2026-07-14
 autores:
@@ -40,7 +40,7 @@ autores:
 licencia: CC-BY-4.0
 ---
 
-Escala de grises según cuánto sonido refleja cada estructura. **Este es el nivel
+Escala de grises según cuánto sonido refleja cada estructura [hangiandreou2003]. **Este es el nivel
 semiótico primario: el significante gris que remite a una realidad física.**
 
 - **Anecoico (negro):** el haz atraviesa sin reflejar → líquidos (orina, bilis, sangre fresca).

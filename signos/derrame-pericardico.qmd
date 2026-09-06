@@ -69,6 +69,8 @@ En el paciente con disnea, dolor torácico, hipotensión, enfermedad renal,
 neoplasia, inflamación pericárdica o trauma, la pregunta inicial es concreta:
 **¿hay líquido alrededor del corazón?**
 
+## Por qué el examen físico no basta
+
 La siguiente pregunta es distinta y más importante: **¿ese líquido está
 comprometiendo el llenado cardíaco?** El ultrasonido muestra anatomía y signos
 de interacción hemodinámica; el taponamiento sigue siendo un diagnóstico

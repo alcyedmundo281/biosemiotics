@@ -255,5 +255,10 @@ pleuras continúan en contacto en ese punto. Considera atelectasia, intubación
 endobronquial u otra causa de inmovilidad antes de atribuir el deterioro a aire
 pleural.
 
+## Discusión abierta
+
+¿Qué limitación de la adquisición dejarías escrita cuando no consigues valorar
+el sliding con confianza?
+
 La seguridad comienza reconociendo la normalidad antes de intentar diagnosticar
 su ausencia.
