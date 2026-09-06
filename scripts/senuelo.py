@@ -13,6 +13,7 @@ archivo completa. Si el clip satisface, nadie hace clic.
 import sqlite3
 import sys
 from pathlib import Path
+from build import seleccionar_publicables
 
 sys.stdout.reconfigure(encoding="utf-8")
 
@@ -34,6 +35,11 @@ def main():
     ).fetchone()
     if not caso:
         sys.exit(f"No existe el caso '{caso_id}'")
+    entidad = dict(caso)
+    # SQLite conserva el booleano como columna derivada por compatibilidad.
+    entidad.pop("publicado", None)
+    if not seleccionar_publicables([entidad]):
+        sys.exit("Caso en borrador: requiere revisión y consentimiento antes de generar señuelos")
 
     signos = con.execute("""
         SELECT e.* FROM relacion r JOIN entidad e ON e.id = r.destino

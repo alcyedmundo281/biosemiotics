@@ -134,8 +134,7 @@ def main() -> int:
         )
 
     entidades = banco.cargar(raiz)
-    if args.solo_publicados:
-        entidades = [e for e in entidades if e.get("url")]
+    entidades = banco.seleccionar_publicables(entidades, args.solo_publicados)
     if not entidades:
         raise RuntimeError("ninguna entidad cumple el alcance solicitado")
 

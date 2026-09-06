@@ -22,6 +22,7 @@ class ContratoEditorialTest(unittest.TestCase):
         self.bib.write_text("@article{demo,\n title={Demo},\n}\n", encoding="utf-8")
         self.ficha = dict(
             id="demo", tipo="signo", titulo="Demo", _archivo="signos/demo.qmd",
+            estado="revisado",
             abstract="palabra " * 40, refs=["demo"], nivel="principiante",
             sistema="cardiovascular", organo="corazon", ventana="Ventana",
             sonda=["sectorial"], significante="Imagen", significado="Lectura",
@@ -85,7 +86,7 @@ class ContratoEditorialTest(unittest.TestCase):
         ficha = dict(self.ficha, decision="")
         errores, _ = build.validar([ficha], [], self.raiz)
         self.assertTrue(any("decision" in e for e in errores))
-        errores, alertas = build.validar([ficha], [], self.raiz, permitir_borradores=True)
+        errores, alertas = build.validar([dict(ficha, estado="borrador")], [], self.raiz, permitir_borradores=True)
         self.assertEqual(errores, [])
         self.assertTrue(any("decision" in a for a in alertas))
 
@@ -123,13 +124,14 @@ class ContratoEditorialTest(unittest.TestCase):
                     self.assertEqual(archivo.read_text(), "Conservar")
 
     def test_borrador_local_admitido_publicado_incompleto_bloqueado(self):
-        ficha = dict(self.ficha, abstract="")
+        ficha = dict(self.ficha, abstract="", estado="borrador")
         self.guardar(ficha)
         for modo in ("db", "grafo"):
             resultado = self.ejecutar("build.py", "--solo", modo)
             self.assertEqual(resultado.returncode, 0, resultado.stderr)
             self.assertIn("abstract", resultado.stdout)
-        for estado in ({"url": "https://example.org/demo/"}, {"publicado": True}):
+        for estado in ({"estado": "publicado", "url": "https://example.org/demo/"},
+                       {"estado": "publicado", "publicado": True, "url": "https://example.org/demo/"}):
             self.guardar(dict(ficha, **estado))
             resultado = self.ejecutar("build.py", "--solo", "db")
             self.assertNotEqual(resultado.returncode, 0)

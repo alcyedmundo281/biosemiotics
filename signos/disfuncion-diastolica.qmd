@@ -1,4 +1,7 @@
 ---
+estado: revisado
+fecha_revision: null
+ghost_id: null
 id: signo-disfuncion-diastolica
 tipo: signo
 titulo: "Disfunción diastólica: E/e’ orienta, no sentencia"

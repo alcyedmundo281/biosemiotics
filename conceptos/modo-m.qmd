@@ -1,4 +1,7 @@
 ---
+estado: publicado
+fecha_revision: null
+ghost_id: null
 id: modo-m
 tipo: concepto
 titulo: "Modo M: convertir movimiento en una línea de tiempo"

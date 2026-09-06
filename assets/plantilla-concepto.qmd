@@ -1,4 +1,7 @@
 ---
+estado: borrador
+fecha_revision: null
+ghost_id: null
 id: {{ID}}
 tipo: concepto
 titulo: "{{TITULO}}"

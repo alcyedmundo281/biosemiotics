@@ -26,7 +26,7 @@ from pathlib import Path
 sys.stdout.reconfigure(encoding="utf-8")
 
 sys.path.insert(0, str(Path(__file__).parent))
-from build import cargar, exigir_editorial  # noqa: E402
+from build import cargar, exigir_editorial, seleccionar_publicables, estado_publicacion  # noqa: E402
 
 # DOI de la obra completa (Zenodo). Se muestra bajo el buscador del atlas.
 DOI_OBRA = "10.5281/zenodo.21435362"
@@ -46,6 +46,9 @@ ET.register_namespace("xlink", XLINK_NS)
 # ══════════════════ 1. LA FICHA (el registro tipo PubMed) ══════════════════
 def ficha(e: dict) -> dict:
     f = {"id": e["id"], "tipo": e["tipo"], "titulo": e["titulo"]}
+    f["estado"] = estado_publicacion(e)
+    f["fecha_revision"] = str(e["fecha_revision"]) if e.get("fecha_revision") else None
+    f["ghost_id"] = e.get("ghost_id")
 
     for k in ("titulo_en", "url", "doi", "version", "abstract",
               "sistema", "organo", "nivel", "ventana", "pregunta_clinica",
@@ -473,8 +476,14 @@ def main():
     url_primaria = URL_PRIMARIA
     url = URL_RESPALDO
     ent = cargar(raiz)
+    todas = ent
+    ent = seleccionar_publicables(ent)
     exigir_editorial(ent, raiz / "refs.bib")
     b = raiz / "build"
+    # Comprobar también los directorios antes de retirar derivados obsoletos.
+    for directorio in (b, b / "jsonld", b / "jats"):
+        if directorio.resolve() != directorio:
+            raise RuntimeError(f"directorio de derivados enlazado: {directorio}")
     b.mkdir(exist_ok=True)
 
     fichas = [ficha(e) for e in ent]
@@ -484,6 +493,15 @@ def main():
 
     (b / "jsonld").mkdir(exist_ok=True)
     (b / "jats").mkdir(exist_ok=True)
+    # Retirar derivados de fichas que volvieron a borrador (sin borrar carpetas).
+    incluidos = {e["id"] for e in ent}
+    for e in todas:
+        if e["id"] not in incluidos:
+            for carpeta, extension in (("jsonld", ".json"), ("jats", ".xml")):
+                archivo = b / carpeta / f"{e['id']}{extension}"
+                if archivo.parent.resolve() != (b / carpeta).resolve():
+                    raise RuntimeError(f"id no seguro para un derivado: {e['id']}")
+                archivo.unlink(missing_ok=True)
     for e in ent:
         (b / "jsonld" / f"{e['id']}.json").write_text(
             json.dumps(jsonld(e), ensure_ascii=False, indent=2), encoding="utf-8")
@@ -511,7 +529,8 @@ def main():
     print(f"   respaldo  {url}")
     print(f"→ jsonld/           {len(ent)} · schema.org (Google + IA)")
     print(f"→ jats/             {len(ent)} · XML para DEPÓSITO (no para Ghost)")
-    print(f"\n   proyección: 1.000 fichas ≈ {kb / len(fichas) * 1000:.0f} KB")
+    if fichas:
+        print(f"\n   proyección: 1.000 fichas ≈ {kb / len(fichas) * 1000:.0f} KB")
     if sin_ab:
         print(f"\n⚠ {len(sin_ab)} sin abstract — no se pueden evaluar desde el índice")
     if sin_url:

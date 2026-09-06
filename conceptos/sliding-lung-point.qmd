@@ -1,4 +1,7 @@
 ---
+estado: publicado
+fecha_revision: null
+ghost_id: null
 id: sliding-lung-point
 tipo: concepto
 titulo: "Sliding pleural y lung point: movimiento antes que diagnóstico"

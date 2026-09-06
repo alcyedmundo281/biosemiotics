@@ -1,4 +1,7 @@
 ---
+estado: publicado
+fecha_revision: null
+ghost_id: null
 id: protocolo-fast
 tipo: concepto
 titulo: "Protocolo FAST/eFAST: la secuencia, no el catálogo"

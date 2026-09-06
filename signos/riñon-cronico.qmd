@@ -1,4 +1,7 @@
 ---
+estado: publicado
+fecha_revision: null
+ghost_id: null
 id: signo-riñon-cronico
 tipo: signo
 titulo: "Riñón crónico"

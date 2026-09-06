@@ -1,4 +1,7 @@
 ---
+estado: publicado
+fecha_revision: null
+ghost_id: null
 id: signo-hernia-complicada
 tipo: signo
 titulo: "Hernia complicada: distinguir el bulto que espera del que no"

@@ -1,4 +1,7 @@
 ---
+estado: publicado
+fecha_revision: null
+ghost_id: null
 id: compresibilidad-venosa
 tipo: concepto
 titulo: "Compresibilidad venosa: una prueba dinámica, no una foto"

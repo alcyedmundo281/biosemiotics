@@ -221,16 +221,48 @@ además de las ocho secciones literales del instructivo. Los casos requieren
 deben aparecer una sola vez y contener texto; los campos obligatorios no admiten
 `TODO`. Las listas deben contener textos no vacíos.
 
-Para trabajar un borrador incompleto sin URL ni `publicado: true`, usa
-`python scripts/build.py --solo db` o `--solo grafo`: esas salidas locales
-informan sus faltas como alertas. El comando sin `--solo` y `--solo ghost`
-exigen completar todas las fichas antes de generar. No distribuyas la base o
-el grafo de trabajo como una edición revisada.
+Las fichas con `estado: borrador` pueden estar incompletas y quedan fuera de
+Ghost, índice, atlas HTML y Quarto. `build.py` las conserva en SQLite y el grafo
+de trabajo con alertas, también con `--solo db|grafo`. No distribuyas la base o
+el grafo de trabajo como una edición revisada. Toda ficha seleccionada para un
+derivado público debe cumplir el contrato editorial.
 
 Este control comprueba estructura, no calidad clínica, veracidad de citas ni
-autorización para publicar. La unificación de estados y consentimiento queda
-en el ciclo 3 de `RENOVACION.md`; una ficha estructuralmente válida aún necesita
+autorización para publicar; una ficha estructuralmente válida aún necesita
 revisión clínica y editorial.
+
+### Estado de publicación y trazabilidad
+
+`estado` es la autoridad común; la URL debe concordar con él:
+
+| Estado | URL | Salidas públicas |
+|---|---|---|
+| `borrador` | Vacía | Excluido; solo trabajo local |
+| `revisado` | Vacía | Ghost, índice y edición completa |
+| `publicado` | URL pública real | Lo anterior y edición `--solo-publicados` |
+
+Solo se pasa a `revisado` después de la aprobación editorial. Para un caso,
+`consentimiento: obtenido` es obligatorio tanto en `revisado` como en `publicado`;
+un estado público sin consentimiento hace fallar el comando antes de escribir.
+Tener consentimiento no convierte por sí solo un borrador en revisado. Esto no
+sustituye comprobar de-identificación y autorización real para publicar.
+
+Registra `fecha_revision` (YYYY-MM-DD) cuando se aprueba la ficha y `ghost_id`
+(ID real del post, 24 caracteres hexadecimales) cuando se crea en Ghost.
+La migración histórica deja ambos en `null` cuando no constan en la fuente;
+no usa la fecha del commit ni deduce un ID del slug. Estos campos se conservan
+en SQLite e índice para completarlos con evidencia durante el flujo editorial.
+Una fecha o ID sintácticamente válido no demuestra por sí solo una revisión.
+
+Compatibilidad: si falta `estado`, una URL implica `publicado`; sin URL se
+interpreta `borrador`. El booleano antiguo `publicado` solo se acepta si coincide
+con estado y URL, y debe retirarse al migrar. SQLite conserva esa columna como
+valor derivado para consultas existentes. Nunca hay dos autoridades de estado.
+
+Para retirar una ficha, cambia a `borrador`, vacía la URL y regenera: Ghost-ready,
+índice, atlas y libro la excluyen; el índice retira sus JSON-LD/JATS anteriores.
+Esto no retira automáticamente un artículo ya publicado en Ghost ni una edición
+archivada. La operación de Ghost requiere su propio flujo editorial.
 
 ### Reglas clínicas y de publicación
 
@@ -263,8 +295,9 @@ Esta sección prevalece sobre las instrucciones generales de creación,
 compilación y Git cuando la tarea solicitada sea publicar un artículo.
 
 El publicador puede usar la sesión autorizada de Ghost y, sobre una ficha `.qmd`
-**ya creada y validada durante la fase proveedora**, modificar solamente `url` y
-`medios`; puede añadir el archivo licenciado a `assets/img/`, ejecutar
+**ya creada, revisada y validada durante la fase proveedora**, modificar `url`,
+`estado` y `ghost_id` para registrar la publicación real, además de `medios`;
+puede añadir el archivo licenciado a `assets/img/`, ejecutar
 `build.py`, verificar el libro con `libro.py` y entregar esos cambios en
 una rama/PR de publicación.
 
@@ -295,7 +328,7 @@ python scripts/auditar_pegado_ghost.py \
   auditoría es de lectura; no genera ni reescribe archivos.
 - Confirma que la ficha fuente ya existe y no tiene cambios editoriales
   pendientes. Crea una rama de publicación; en ella solo podrán cambiar
-  `url`, `medios`, `assets/img/` y las salidas LuaLaTeX correspondientes.
+  `url`, `estado`, `ghost_id`, `medios`, `assets/img/` y las salidas LuaLaTeX correspondientes.
 
 ### 1. Preparar y revisar Ghost
 
@@ -348,7 +381,8 @@ python scripts/auditar_pegado_ghost.py \
 
 ### 2. Registrar los artefactos y cerrar la fase publicadora
 
-1. Copia la URL pública definitiva al campo `url` de la ficha existente. No
+1. Registra `estado: publicado`, el `ghost_id` real y la URL pública definitiva
+   en `url` de la ficha existente. No
    cambies ningún otro campo salvo `medios`.
 2. Ejecuta `build.py` y `libro.py`, y valida que `build/quarto/libro.tex` use exactamente el
    `archivo_local` subido a Ghost y compila LuaLaTeX si está disponible. La

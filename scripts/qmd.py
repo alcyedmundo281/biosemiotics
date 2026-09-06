@@ -637,6 +637,9 @@ def generar(entidades: list, raiz: Path, destino: Path) -> dict:
     """
     raiz = raiz.resolve()
     destino = validar_destino(raiz, destino)
+    entidades = banco.seleccionar_publicables(entidades)
+    if not entidades:
+        raise RuntimeError("ninguna entidad cumple el alcance solicitado")
     banco.exigir_editorial(entidades, raiz / "refs.bib")
     destino.parent.mkdir(parents=True, exist_ok=True)
     temporal = Path(tempfile.mkdtemp(prefix=".quarto-", dir=destino.parent))
@@ -749,8 +752,7 @@ def main() -> int:
     destino = args.destino if args.destino.is_absolute() else raiz / args.destino
 
     entidades = banco.cargar(raiz)
-    if args.solo_publicados:
-        entidades = [e for e in entidades if e.get("url")]
+    entidades = banco.seleccionar_publicables(entidades, args.solo_publicados)
     if not entidades:
         raise RuntimeError("ninguna entidad cumple el alcance solicitado")
 

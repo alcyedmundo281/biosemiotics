@@ -1,4 +1,7 @@
 ---
+estado: publicado
+fecha_revision: null
+ghost_id: null
 id: signo-eyeball-ef
 tipo: signo
 titulo: "Función sistólica del VI a ojo (Eyeball EF)"

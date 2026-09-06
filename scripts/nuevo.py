@@ -46,6 +46,8 @@ def main():
 
     print(f"✓ {destino.relative_to(raiz)}")
     print("\nLlena los TODO: y corre  python3 scripts/build.py  para validar.")
+    print("Queda en estado: borrador y fuera de los derivados públicos.")
+    print("Tras aprobación editorial, registra estado: revisado y fecha_revision.")
     if tipo == "signo":
         print("\nRecuerda: 'falsos_positivos' NO es opcional. Un signo sin límites")
         print("enseña a reconocer sin enseñar a dudar.")

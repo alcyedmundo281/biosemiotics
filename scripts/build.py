@@ -23,7 +23,9 @@ import re
 import shutil
 import sqlite3
 import sys
+from datetime import date
 from pathlib import Path
+from urllib.parse import urlsplit
 
 import yaml
 
@@ -79,7 +81,55 @@ def cargar(raiz: Path) -> list:
 
 
 # ─────────────────────── SALIDA 1: SQLITE ───────────────────────
+def estado_publicacion(e):
+    """Compatibilidad: URL histórica implica publicado; sin URL, borrador."""
+    estado = e.get("estado", "publicado" if e.get("url") else "borrador")
+    prefijo = f"[PUBLICACIÓN] {e.get('_archivo', '?')} ({e.get('id', '?')})"
+
+    def fallo(mensaje):
+        raise RuntimeError(f"{prefijo}: {mensaje}")
+
+    if estado not in ("borrador", "revisado", "publicado"):
+        fallo("estado debe ser borrador, revisado o publicado")
+    url = e.get("url")
+    if url is not None and not isinstance(url, str):
+        fallo("url debe ser texto")
+    if url:
+        partes = urlsplit(url)
+        if (url != url.strip() or partes.scheme != "https" or not partes.netloc or
+                "/ghost/" in partes.path or partes.path.startswith("/p/")):
+            fallo("url debe ser HTTPS pública, no el editor ni una vista previa")
+    if bool(e.get("url")) != (estado == "publicado"):
+        fallo("estado publicado requiere URL; borrador/revisado no admiten URL")
+    if "publicado" in e and (not isinstance(e["publicado"], bool) or
+                            e["publicado"] != (estado == "publicado")):
+        fallo("publicado legado contradice estado/URL; elimina el booleano tras migrar")
+    if e.get("tipo") == "caso" and estado != "borrador" and e.get("consentimiento") != "obtenido":
+        fallo("consentimiento: obtenido es obligatorio para un caso revisado o publicado")
+    revision = e.get("fecha_revision")
+    if revision is not None:
+        try:
+            if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", str(revision)):
+                raise ValueError
+            date.fromisoformat(str(revision))
+        except ValueError:
+            fallo("fecha_revision debe ser una fecha ISO YYYY-MM-DD o null si no consta")
+    ghost_id = e.get("ghost_id")
+    if ghost_id is not None and (not isinstance(ghost_id, str) or
+                               not re.fullmatch(r"[0-9a-f]{24}", ghost_id)):
+        fallo("ghost_id debe ser el identificador real de 24 caracteres hexadecimales o null")
+    return estado
+
+
+def seleccionar_publicables(entidades, solo_publicados=False):
+    """Valida contradicciones antes de filtrar; nunca oculta un caso público inválido."""
+    estados = [(e, estado_publicacion(e)) for e in entidades]
+    permitidos = ("publicado",) if solo_publicados else ("revisado", "publicado")
+    return [e for e, estado in estados if estado in permitidos]
+
+
 def build_sqlite(entidades, build_dir: Path) -> Path:
+    estados = [estado_publicacion(e) for e in entidades]
     db = build_dir / "atlas.db"
     db.unlink(missing_ok=True)
     con = sqlite3.connect(db)
@@ -90,7 +140,8 @@ def build_sqlite(entidades, build_dir: Path) -> Path:
             nivel TEXT, organo TEXT, dominio TEXT, capitulo INTEGER, orden INTEGER,
             significante TEXT, significado TEXT, decision TEXT, umbral TEXT,
             consentimiento TEXT, publicado INTEGER, doi TEXT,
-            cuerpo TEXT, archivo TEXT
+            cuerpo TEXT, archivo TEXT, estado TEXT, url TEXT,
+            fecha_revision TEXT, ghost_id TEXT
         );
         CREATE TABLE relacion (origen TEXT, destino TEXT, clase TEXT);
         CREATE TABLE tag (entidad TEXT, tag TEXT);
@@ -100,16 +151,18 @@ def build_sqlite(entidades, build_dir: Path) -> Path:
             id, titulo, cuerpo, tokenize="unicode61 remove_diacritics 2"
         );
     """)
-    for e in entidades:
-        c.execute("INSERT INTO entidad VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", (
+    for e, estado in zip(entidades, estados):
+        c.execute("INSERT INTO entidad VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", (
             e["id"], e["tipo"], e["titulo"], e.get("nivel"), e.get("organo"),
             e.get("dominio"), e.get("capitulo"), e.get("orden"),
             e.get("significante"), e.get("significado"),
             # los casos guardan su bifurcación en 'decision_semiotica'
             e.get("decision") or e.get("decision_semiotica"),
             e.get("umbral"), e.get("consentimiento"),
-            int(bool(e.get("publicado"))), e.get("doi"),
+            int(estado == "publicado"), e.get("doi"),
             e["cuerpo"], e["_archivo"],
+            estado, e.get("url"),
+            str(e["fecha_revision"]) if e.get("fecha_revision") else None, e.get("ghost_id"),
         ))
         c.execute("INSERT INTO busqueda VALUES (?,?,?)",
                   (e["id"], e["titulo"], e["cuerpo"]))
@@ -353,6 +406,7 @@ def excerpt_ghost(valor: str, limite: int = 300) -> str:
 
 def build_ghost(entidades, build_dir: Path, bib_path: Path) -> Path:
     """Genera Markdown listo para copiar a Ghost sin alterar la fuente."""
+    entidades = seleccionar_publicables(entidades)
     exigir_editorial(entidades, bib_path)
     destino = build_dir / "ghost"
     if destino.exists():
@@ -477,19 +531,13 @@ def validar(entidades, aristas, raiz: Path, permitir_borradores=False):
     errores = [f"{a['origen']} --{a['clase']}--> {a['destino']} (NO EXISTE)"
                for a in aristas if a["destino"] not in ids]
     alertas = []
-    borradores = [e for e in entidades if permitir_borradores and not (
-        e.get("url") or e.get("publicado"))]
-    exigidas = [e for e in entidades if not permitir_borradores or (
-        e.get("url") or e.get("publicado"))]
+    estados = [(e, estado_publicacion(e)) for e in entidades]
+    borradores = [e for e, estado in estados if permitir_borradores and estado == "borrador"]
+    exigidas = [e for e, estado in estados if not permitir_borradores or estado != "borrador"]
     errores.extend(errores_editoriales(exigidas, raiz / "refs.bib"))
     alertas.extend(errores_editoriales(borradores, raiz / "refs.bib"))
 
     for e in entidades:
-        if e["tipo"] == "caso" and e.get("publicado"):
-            if e.get("consentimiento") != "obtenido":
-                errores.append(
-                    f"[BLOQUEO] {e['id']}: publicado=true pero "
-                    f"consentimiento={e.get('consentimiento')!r}")
 
         # Una imagen sin trazabilidad completa no se puede redistribuir: el
         # generador de ePub debe FALLAR antes que incrustarla sin atribución
@@ -581,7 +629,7 @@ def main():
     # Solo las salidas locales de trabajo admiten borradores incompletos.
     aristas = [{"origen": e["id"], "destino": d, "clase": clase}
                for e in ent for clase in RELS for d in (e.get(clase) or [])]
-    errores, alertas = validar(ent, aristas, raiz, permitir_borradores=a.solo in ("db", "grafo"))
+    errores, alertas = validar(ent, aristas, raiz, permitir_borradores=True)
     if errores:
         raise RuntimeError("Validación fallida:\n" + "\n".join(errores))
     build_dir.mkdir(exist_ok=True)
@@ -594,7 +642,7 @@ def main():
         print("  → grafo.json")
     if a.solo in (None, "ghost"):
         ghost = build_ghost(ent, build_dir, raiz / "refs.bib")
-        print(f"  → ghost/       ({len(ent)} artículos Ghost-ready)")
+        print(f"  → ghost/       ({len(seleccionar_publicables(ent))} artículos Ghost-ready)")
 
     if alertas:
         print(f"\n⚠ {len(alertas)} alertas de calidad:")
