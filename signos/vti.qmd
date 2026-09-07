@@ -1,0 +1,157 @@
+---
+estado: borrador
+fecha_revision: null
+ghost_id: null
+id: signo-vti
+tipo: signo
+titulo: "VTI: comprobar el flujo antes de decidir sobre líquidos"
+titulo_en: "Left ventricular outflow tract velocity-time integral"
+url: ""
+doi: null
+version: "1.0"
+abstract: >
+  El trazado Doppler pulsado del tracto de salida ventricular izquierdo permite
+  medir la integral velocidad-tiempo, una distancia relacionada con el volumen
+  expulsado por latido. Comparar registros reproducibles ayuda a evaluar cambios
+  de flujo. En primer contacto exige sonda sectorial, Doppler espectral y
+  entrenamiento supervisado; orienta reevaluación o derivación, sin ordenar
+  líquidos por sí solo. Mala alineación, arritmias y enfermedad valvular limitan
+  su interpretación.
+sistema: cardiovascular
+organo: corazon
+nivel: avanzado
+ventana: apical-cinco-camaras
+sonda: [sectorial]
+escenario: [uci]
+pregunta_clinica: "¿Puedo obtener un VTI reproducible y reconocer un cambio de flujo interpretable?"
+descriptores: [vti, tracto-salida-vi, doppler-pulsado, respuesta-precarga]
+mesh: ["Echocardiography, Doppler", "Stroke Volume", "Hemodynamics"]
+significante: "Área bajo la envolvente sistólica de velocidad-tiempo del Doppler pulsado subaórtico, expresada en centímetros."
+significado: "Distancia sistólica de flujo; relacionada con volumen sistólico si se conoce el área del tracto de salida."
+decision: "Comprobar calidad, integrar perfusión y congestión y pedir apoyo si la medición no es interpretable; no indicar líquidos por un VTI aislado."
+umbral: "Sin punto de corte terapéutico universal para primer contacto."
+falsos_positivos:
+  - "VTI aparentemente bajo por desalineación del haz o envolvente incompleta"
+  - "VTI aparentemente alto por muestreo en flujo acelerado o trazado del ruido"
+  - "Cambio aparente entre registros por mover la muestra o cambiar el ángulo"
+se_basa_en: [doppler, cuantificacion-limites, ventanas-cardiacas]
+contrasta_con: []
+autores:
+  - nombre: "Alcy Edmundo Torres Guerrero"
+    orcid: "0000-0002-9742-375X"
+    afiliacion: "Universidad Central del Ecuador"
+    credit: [conceptualizacion, redaccion, supervision]
+medios:
+  - tipo: imagen
+    destacada: true
+    id: "orde2017-fig1"
+    descripcion: "Panel A: adquisición correcta del diámetro y VTI subaórtico; panel B: errores de adquisición que alteran el volumen sistólico calculado. Los valores son ejemplos del artículo, no umbrales terapéuticos."
+    credito: "Sam Orde, Michel Slama, Andrew Hilton, Konstantin Yastrebov y Anthony McLean (2017), figura 1. Conversión de GIF a PNG, sin recorte ni modificación del contenido."
+    fuente: "Critical Care / Springer Nature"
+    fuente_url: "https://link.springer.com/article/10.1186/s13054-017-1866-z/figures/1"
+    licencia_img: "CC BY 4.0"
+    licencia_url: "https://creativecommons.org/licenses/by/4.0/"
+    archivo_local: "assets/img/vti.png"
+refs: [mercadal2022, orde2017, jozwiak2019, monnet2015]
+fecha: 2026-09-06
+actualizado: 2026-09-06
+licencia: CC-BY-4.0
+---
+
+## La pregunta clínica
+
+**¿La medición permite comparar el flujo de este paciente consigo mismo?**
+VTI significa integral velocidad-tiempo. Aquí hablamos exclusivamente del
+tracto de salida del ventrículo izquierdo (TSVI), no de un VTI carotídeo ni
+del chorro aórtico [mercadal2022].
+
+Esta primera ficha del recorrido de la Oleada 3 conserva el escenario UCI del
+mapa, pero adapta la tarea al primer contacto: reconocer requisitos, documentar
+calidad y solicitar apoyo. No presupone competencias de ecocardiografía avanzada.
+
+## Por qué el examen físico no basta
+
+La presión arterial no sustituye la medición de flujo al evaluar una maniobra
+de precarga [monnet2015]. Pero añadir un número tampoco resuelve por sí solo
+el shock. El algoritmo de Mercadal integra perfusión y congestión; presenta
+cuatro casos, no una validación universal en atención primaria [mercadal2022].
+
+## Cómo se obtiene la ventana
+
+Necesitas sonda sectorial, Doppler espectral pulsado y entrenamiento supervisado.
+Una sonda convexa transabdominal o el Doppler color por sí solos no bastan para
+seguir esta ficha. Si faltan, registra **«VTI no evaluable»** y solicita apoyo.
+
+Desde la apical de cinco cámaras identifica el TSVI. Alinea el haz con el flujo
+y sitúa la muestra pulsada proximal a la válvula aórtica [mercadal2022]. Ajusta
+ganancia, escala y filtro para distinguir la envolvente; traza el borde de la
+señal densa, sin incluir ruido [orde2017]. Guarda ventana, sitio y espectro.
+
+Promedia **tres ciclos en ritmo sinusal**. Jozwiak necesitó **cinco en fibrilación
+auricular**; estudió pacientes hemodinámicamente estables, con operadores
+certificados y mediciones al final de la espiración. No supone que cinco latidos
+rescaten cualquier registro irregular [jozwiak2019].
+
+## El signo
+
+El VTI es el área bajo la curva velocidad-tiempo durante la eyección: se expresa
+en **cm**, no en mL ni L/min. El volumen sistólico se obtiene como **área del
+TSVI × VTI**; el gasto cardíaco incorpora además la frecuencia cardíaca. El área
+se estima como **π × (diámetro/2)²**: el error del diámetro se amplifica al
+elevarlo al cuadrado [orde2017].
+
+Para comparar VTI en el mismo paciente se asume que el área permanece estable.
+Eso evita remedir el diámetro en cada comparación, pero no convierte una
+distancia en volumen absoluto [mercadal2022]. Revisa
+[Doppler](https://www.biosemiotics.net/doppler-el-color-no-mide-el-angulo-decide/)
+y [Cuantificación y sus límites](https://www.biosemiotics.net/cuantificacion-y-sus-limites-de-donde-salen-los-numeros/)
+antes de interpretar diferencias.
+
+## La bifurcación
+
+**Registro dudoso:** no clasificable; repite con supervisión o deriva.
+**Registros comparables:** integra el cambio con perfusión, congestión y el
+resto de la evaluación. Un VTI aislado no identifica la causa del shock
+[mercadal2022].
+
+La elevación pasiva de piernas explora respuesta a precarga sin infundir líquido.
+Requiere partir de semisentado, bajar el tronco y elevar las piernas mediante
+la cama, medir el efecto transitorio y comprobar el retorno al basal. Dolor,
+tos o esfuerzo pueden confundirlo. Una prueba positiva no obliga a administrar
+líquidos: también deben existir necesidad hemodinámica y riesgo de sobrecarga
+aceptable [monnet2015]. Esta ficha no habilita una prueba autónoma sin poder
+mantener y leer el registro durante la maniobra.
+
+## Dónde NO confiar
+
+- **Sin equipo, entrenamiento o ventana reproducible:** no extrapoles desde
+  color ni inventes un valor. La salida en primer contacto es pedir apoyo.
+- **Ángulo o muestra distintos, ruido o envolvente truncada:** pueden simular
+  cambios. La figura compara adquisición correcta e incorrecta [orde2017].
+- **Diferencias pequeñas:** entre exámenes, Jozwiak encontró un cambio mínimo
+  significativo de **11% (rango intercuartílico 5–18%)** con el mismo operador y
+  **14% (8–26%)** con operadores diferentes. Son resultados de precisión en esa
+  población, no cortes para dar líquidos. Un pequeño aumento no demuestra
+  respuesta [jozwiak2019].
+- **Arritmia, regurgitación aórtica importante u obstrucción del TSVI:** exigen
+  interpretación especializada; el espectro puede no representar el flujo
+  efectivo que buscas [orde2017].
+- **Respuesta a precarga confundida con tolerancia a fluidos:** una prueba
+  positiva no descarta sobrecarga; si no puedes evaluar el cambio transitorio,
+  la prueba es indeterminada, no negativa [monnet2015].
+
+Los errores técnicos son falsos positivos de la medición. Una variación real
+entre latidos es variabilidad fisiológica o del ritmo: no la etiquetes como
+artefacto para seleccionar solamente el latido que te conviene [jozwiak2019].
+
+## Practica esto
+
+Con un tutor, adquiere y guarda registros repetidos antes de probar maniobras.
+Documenta posición, ritmo, frecuencia cardíaca, condiciones respiratorias,
+sitio de muestra, ciclos promediados y calidad. Compara también registros
+rechazados. El objetivo inicial es justificar **por qué puedes medir**.
+
+## Discusión abierta
+
+Si otro operador recibe tu informe, ¿puede reconstruir la medición? ¿Qué dato
+de perfusión o congestión falta antes de convertir el hallazgo en una decisión?
