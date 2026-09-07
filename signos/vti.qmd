@@ -1,6 +1,6 @@
 ---
-estado: borrador
-fecha_revision: null
+estado: revisado
+fecha_revision: 2026-09-06
 ghost_id: null
 id: signo-vti
 tipo: signo

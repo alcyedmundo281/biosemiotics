@@ -57,11 +57,12 @@ cuantitativos de la Oleada 3.
 ## 2. Estado actual (lo ya publicado)
 
 El banco contiene **44 entidades**: 17 conceptos, 26 signos y 1 caso.
-El índice conserva 42 entidades: VTI y el caso en borrador quedan excluidos
+El índice contiene 43 entidades; solo el caso en borrador queda excluido
 de las salidas públicas.
 Hay 24 signos con URL pública en Ghost; disfunción diastólica (E/e’) está
 escrita y validada, pendiente de revisión clínica, imagen y publicación.
-VTI está escrito con imagen atribuida, pendiente de revisión clínica y editorial.
+VTI está aprobado clínica y editorialmente (2026-09-06), con imagen atribuida,
+pendiente de publicación en Ghost.
 
 | signo | sistema | organo | nivel | estado |
 |---|---|---|---|---|
@@ -146,7 +147,7 @@ VTI está escrito con imagen atribuida, pendiente de revisión clínica y editor
 
 | signo | sistema | organo | nivel | escenario | decisión que cambia |
 |---|---|---|---|---|---|
-| VTI (integral velocidad-tiempo) | cardiovascular | corazon | avanzado | uci | primera entrada del recorrido por indicación de Alcy; medición reproducible e integración del flujo → reevaluación/apoyo; borrador con imagen atribuida, pendiente de revisión clínica |
+| VTI (integral velocidad-tiempo) | cardiovascular | corazon | avanzado | uci | primera entrada del recorrido por indicación de Alcy; medición reproducible e integración del flujo → reevaluación/apoyo; revisado con imagen atribuida, pendiente de publicación |
 | Disfunción diastólica (E/e') | cardiovascular | corazon | avanzado | consulta, uci | estimación integrada de presiones de llenado → evaluación formal; escrita previamente, pendiente de revisión clínica y publicación |
 | Gasto cardíaco | cardiovascular | corazon | avanzado | uci | estado hemodinámico → vasoactivos |
 | FEVI por Simpson biplano | cardiovascular | corazon | avanzado | consulta, uci | método de referencia; trazado de bordes en 2 planos |
@@ -203,8 +204,8 @@ Oleada 1 y las rutas avanzadas que reutilizarán esos conceptos.
 3. ~~Antes de los signos que lo necesiten: escribir y validar Doppler y Cuantificación y sus límites.~~ **Hecho (2026-08-15):** ambos conceptos base están escritos y validados.
 4. **Conceptos base: regla dura.** Un signo NO se publica sin su concepto base ya en el banco. El concepto base requerido se escribe y valida ANTES que el signo, no en paralelo ni después.
 5. **Oleada 3 en curso:** VTI abre el recorrido por indicación de Alcy
-   (2026-09-06), como borrador con referencias e imagen atribuida, pendiente de
-   revisión clínica y editorial. Se conserva E/e’, escrita previamente y
+   (2026-09-06), aprobado clínica y editorialmente, con referencias e imagen
+   atribuida, pendiente de publicación. Se conserva E/e’, escrita previamente y
    pendiente de revisión clínica, imagen y publicación. Siguiente ficha nueva:
    gasto cardíaco. Después: Extensiones.
 
