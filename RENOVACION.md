@@ -158,7 +158,8 @@ fusionado con CI correcta; merge `af9b752`.
 
 ## Ciclo 6 — Separar responsabilidades del código
 
-**Estado:** implementado; pendiente de CI e integración.
+**Estado:** cerrado mediante el
+[PR #73](https://github.com/alcyedmundo281/biosemiotics/pull/73), con CI correcta.
 
 - **Cambio:** extraer carga, esquema/validación, bibliografía y configuración
   a módulos comunes; dejar los scripts como interfaces de comandos.
@@ -197,7 +198,7 @@ fusionado con CI correcta; merge `af9b752`.
 | 3 | [PR #69](https://github.com/alcyedmundo281/biosemiotics/pull/69), `codex/renovacion-ciclo-3` | 59 pruebas; CI correcta | Cerrado, merge `3e9af32` |
 | 4 | [PR #70](https://github.com/alcyedmundo281/biosemiotics/pull/70), `codex/renovacion-ciclo-4` | 73 pruebas; CI correcta | Cerrado, merge `bfe3957` |
 | 5 | [PR #72](https://github.com/alcyedmundo281/biosemiotics/pull/72), `codex/renovacion-ciclo-5` | 82 pruebas; comandos desde raíz, scripts y directorio externo | Cerrado, merge `af9b752` |
-| 6 | `codex/renovacion-ciclo-6` | 84 pruebas; derivados y API histórica sin cambios | Implementado; pendiente de PR y CI |
+| 6 | [PR #73](https://github.com/alcyedmundo281/biosemiotics/pull/73), `codex/renovacion-ciclo-6` | 84 pruebas; derivados y API histórica sin cambios | Cerrado; integración registrada en el PR |
 
 ## Trabajo editorial conservado
 
