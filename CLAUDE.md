@@ -188,6 +188,22 @@ o el registro citable queda diciendo algo que el repositorio ya no dice.
 
 ## Lo primero al arrancar una sesión
 
+### Raíz y rutas de los comandos
+
+Los scripts usan por defecto la raíz real del repositorio, obtenida desde su
+propio archivo; el directorio actual no cambia el banco ni la carpeta `build/`.
+Para otro banco usa `--raiz <ruta>`. Una raíz explícita relativa se resuelve
+desde el directorio actual; `--destino`, `--proyecto`, `--salida` y `--db`
+relativos se resuelven desde esa raíz. Las rutas absolutas se conservan.
+`indice.py <raiz>` y `atlas.py <raiz>` siguen admitiendo la forma posicional
+antigua, pero no se puede combinar con `--raiz`. La forma canónica es la bandera.
+
+`consultas.py` y `senuelo.py` leen una única base, `build/atlas.db` bajo la raíz,
+y aceptan `--db` para una ruta distinta. Si falta, fallan con la ruta exacta y
+el comando de compilación. `nuevo.py` escribe siempre en la raíz seleccionada.
+Este contrato no cambia la protección de `qmd.py`: el proyecto Quarto todavía
+debe estar bajo el `build/` real del banco y no se amplía ningún permiso de borrado.
+
 1. Corre `git status` y reporta el estado. Si hay cambios sin commitear, avísalo antes de empezar.
 2. Lee `mapa-maestro-biosemiotics.md` y di **qué signo toca según la oleada** (no saltes de oleada sin que Alcy lo pida).
 3. Corre `python scripts/build.py` y reporta las alertas actuales (qué falta: abstracts, refs, urls).

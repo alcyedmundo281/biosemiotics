@@ -9,19 +9,27 @@ Crea una entidad nueva a partir de la plantilla correspondiente.
 El archivo queda con el front-matter completo y TODO: en los campos a llenar.
 Nunca deja campos fuera: los campos obligatorios ausentes son el error #1 del banco.
 """
+import argparse
 import sys
 from pathlib import Path
 
 sys.stdout.reconfigure(encoding="utf-8")
+sys.stderr.reconfigure(encoding="utf-8")
 
 BASE = Path(__file__).resolve().parent.parent
+from rutas import raiz_argumentos, raiz_desde_argumentos
 CARPETA = {"concepto": "conceptos", "signo": "signos", "caso": "casos"}
 
 
 def main():
-    if len(sys.argv) < 4:
-        sys.exit(__doc__)
-    tipo, ident, titulo = sys.argv[1], sys.argv[2], " ".join(sys.argv[3:])
+    ap = argparse.ArgumentParser(description=__doc__)
+    raiz_argumentos(ap)
+    ap.add_argument("tipo", choices=tuple(CARPETA))
+    ap.add_argument("ident")
+    ap.add_argument("titulo", nargs="+")
+    args = ap.parse_args()
+    raiz = raiz_desde_argumentos(ap, args)
+    tipo, ident, titulo = args.tipo, args.ident, " ".join(args.titulo)
     if tipo not in CARPETA:
         sys.exit(f"tipo debe ser: {', '.join(CARPETA)}")
 
@@ -33,7 +41,6 @@ def main():
     if not plantilla.exists():
         sys.exit(f"No encuentro {plantilla}")
 
-    raiz = Path.cwd()
     destino = raiz / CARPETA[tipo] / f"{ident.removeprefix('signo-')}.qmd"
     if destino.exists():
         sys.exit(f"Ya existe: {destino}")

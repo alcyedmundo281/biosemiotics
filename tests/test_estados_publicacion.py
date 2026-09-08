@@ -35,7 +35,8 @@ class EstadosPublicacionTest(unittest.TestCase):
             "---\n" + yaml.safe_dump(meta, allow_unicode=True) + "---\n" + caso["cuerpo"], encoding="utf-8")
 
     def ejecutar(self, script, *args):
-        return subprocess.run([sys.executable, str(REPO / "scripts" / script), *args],
+        return subprocess.run([sys.executable, str(REPO / "scripts" / script),
+                               "--raiz", str(self.raiz), *args],
                               cwd=self.raiz, capture_output=True, encoding="utf-8")
 
     def test_matriz_estados_y_consentimiento(self):

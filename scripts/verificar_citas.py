@@ -43,6 +43,7 @@ from pathlib import Path
 sys.stdout.reconfigure(encoding="utf-8")
 sys.path.insert(0, str(Path(__file__).parent))
 from refs import resumen  # cliente E-utilities del proyecto  # noqa: E402
+from rutas import raiz_argumentos, raiz_desde_argumentos  # noqa: E402
 
 UA = {"User-Agent": "biosemiotics-verificar/1.0 (mailto:alcyedmundo@gmail.com)"}
 
@@ -173,12 +174,16 @@ def crossref(doi: str) -> dict:
 
 def main(argv=None):
     ap = argparse.ArgumentParser()
-    ap.add_argument("--raiz", default=".")
+    raiz_argumentos(ap)
     ap.add_argument("--estricto", action="store_true",
                     help="compatibilidad: la verificación siempre es estricta (red: exit 2)")
     a = ap.parse_args(argv)
 
-    raiz = Path(a.raiz).resolve()
+    try:
+        raiz = raiz_desde_argumentos(ap, a)
+    except RuntimeError as exc:
+        print(f"✗ Entrada inválida: {exc}")
+        return 1
     bib = raiz / "refs.bib"
     try:
         refs = parse_bib(bib)

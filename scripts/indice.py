@@ -27,6 +27,7 @@ sys.stdout.reconfigure(encoding="utf-8")
 
 sys.path.insert(0, str(Path(__file__).parent))
 from build import cargar, exigir_editorial, seleccionar_publicables, estado_publicacion  # noqa: E402
+from rutas import raiz_argumentos, raiz_desde_argumentos  # noqa: E402
 
 # DOI de la obra completa (Zenodo). Se muestra bajo el buscador del atlas.
 DOI_OBRA = "10.5281/zenodo.21435362"
@@ -467,9 +468,9 @@ cargar(IDX).catch(function(){return cargar(IDX2);}).then(function(j){
 def main():
     ap = argparse.ArgumentParser(
         description="Genera index.json, atlas-inject.html, jsonld/ y jats/ del banco.")
-    ap.add_argument("raiz", nargs="?", default=".",
-                    help="raíz del banco (por defecto, el directorio actual)")
-    raiz = Path(ap.parse_args().raiz).resolve()
+    raiz_argumentos(ap, legado=True)
+    args = ap.parse_args()
+    raiz = raiz_desde_argumentos(ap, args)
     # URLs del buscador fijas en el script (URL_PRIMARIA / URL_RESPALDO, arriba):
     # primaria raw, respaldo jsDelivr. No se configuran por argumento; si algún
     # día hiciera falta, será una bandera explícita, no un positional ignorado.
