@@ -133,9 +133,8 @@ fusionado con CI correcta; merge `bfe3957`.
 
 ## Ciclo 5 — Corregir rutas y comandos de uso diario
 
-**Estado:** implementado. CI e integración registradas en el
-[PR #72](https://github.com/alcyedmundo281/biosemiotics/pull/72).
-El ciclo queda cerrado cuando ese PR se fusione con todos sus checks correctos.
+**Estado:** cerrado. [PR #72](https://github.com/alcyedmundo281/biosemiotics/pull/72)
+fusionado con CI correcta; merge `af9b752`.
 
 - **Problema:** `consultas.py` busca la base bajo `scripts/build/`.
 - **Cambio:** centralizar raíz, salidas y argumentos; revisar `--raiz`,
@@ -159,7 +158,7 @@ El ciclo queda cerrado cuando ese PR se fusione con todos sus checks correctos.
 
 ## Ciclo 6 — Separar responsabilidades del código
 
-**Estado:** pendiente.
+**Estado:** implementado; pendiente de CI e integración.
 
 - **Cambio:** extraer carga, esquema/validación, bibliografía y configuración
   a módulos comunes; dejar los scripts como interfaces de comandos.
@@ -167,6 +166,14 @@ El ciclo queda cerrado cuando ese PR se fusione con todos sus checks correctos.
   contenido y metadatos → conservar interfaces existentes.
 - **Cierre:** menos duplicación sin cambios editoriales; citas y orden de fichas
   idénticos. No introducir una base remota ni otro framework sin necesidad demostrada.
+- **Implementación:** `banco.py` concentra carga y estados; `validacion.py`, el
+  contrato editorial y la trazabilidad; `bibliografia.py`, la resolución de
+  citas; `configuracion.py`, las taxonomías y el orden canónico. `build.py`
+  queda como orquestador de SQLite, grafo y Ghost y reexporta su API histórica.
+  Los demás comandos importan directamente el módulo que necesitan.
+- **Evidencia local:** 84 pruebas; `build.py` pasa de 663 a 172 líneas. Las
+  huellas de `atlas-inject.html`, `grafo.json` y los 42 artículos Ghost-ready
+  son idénticas a las previas; `index.json` coincide con el blob versionado.
 
 ## Ciclo 7 — Hacer verificable todo el flujo editorial
 
@@ -189,7 +196,8 @@ El ciclo queda cerrado cuando ese PR se fusione con todos sus checks correctos.
 | 2 | [PR #68](https://github.com/alcyedmundo281/biosemiotics/pull/68), `codex/renovacion-ciclo-2` | 52 pruebas; CI correcta | Cerrado, merge `913e09e` |
 | 3 | [PR #69](https://github.com/alcyedmundo281/biosemiotics/pull/69), `codex/renovacion-ciclo-3` | 59 pruebas; CI correcta | Cerrado, merge `3e9af32` |
 | 4 | [PR #70](https://github.com/alcyedmundo281/biosemiotics/pull/70), `codex/renovacion-ciclo-4` | 73 pruebas; CI correcta | Cerrado, merge `bfe3957` |
-| 5 | [PR #72](https://github.com/alcyedmundo281/biosemiotics/pull/72), `codex/renovacion-ciclo-5` | 82 pruebas; comandos desde raíz, scripts y directorio externo | Implementado; cierre por merge del PR con CI correcta |
+| 5 | [PR #72](https://github.com/alcyedmundo281/biosemiotics/pull/72), `codex/renovacion-ciclo-5` | 82 pruebas; comandos desde raíz, scripts y directorio externo | Cerrado, merge `af9b752` |
+| 6 | `codex/renovacion-ciclo-6` | 84 pruebas; derivados y API histórica sin cambios | Implementado; pendiente de PR y CI |
 
 ## Trabajo editorial conservado
 

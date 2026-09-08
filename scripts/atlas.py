@@ -19,7 +19,9 @@ from pathlib import Path
 sys.stdout.reconfigure(encoding="utf-8")
 
 sys.path.insert(0, str(Path(__file__).parent))
-from build import cargar, RELS, exigir_editorial, seleccionar_publicables  # noqa: E402
+from banco import cargar, seleccionar_publicables  # noqa: E402
+from configuracion import RELS  # noqa: E402
+from validacion import exigir_editorial  # noqa: E402
 from rutas import desde_raiz, raiz_argumentos, raiz_desde_argumentos  # noqa: E402
 
 CSS = """

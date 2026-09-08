@@ -20,8 +20,8 @@ Tres decisiones que no son de estilo:
     evidencia vive sobre todo en `refs`; con citeproc el libro terminaría con
     una bibliografía global y sin la sección «Evidencia» de cada ficha, que es
     justo lo que un atlas de signos necesita. Se reutiliza el motor ya
-    verificado del proyecto —`build.resolver_citas()` y
-    `build.referencia_ghost()`— que numera por ficha y emite el estilo de la
+    verificado del proyecto —`bibliografia.resolver_citas()` y
+    `bibliografia.referencia_ghost()`— que numera por ficha y emite el estilo de la
     casa con DOI y PMID.
 3.  **Imágenes.** Se copian dentro del proyecto en lugar de referenciarse con
     `../../assets/`. Así el directorio generado es autocontenido y se puede
@@ -45,8 +45,11 @@ from collections import defaultdict
 from datetime import date
 from pathlib import Path
 
-import build as banco
+import banco
+import bibliografia as refs_bibliograficas
+import configuracion
 from rutas import desde_raiz, raiz_argumentos, resolver_raiz
+from validacion import exigir_editorial
 
 if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8")
@@ -232,14 +235,16 @@ def ficha_markdown(entidad: dict, bibliografia: dict, orden_global: list,
     # Mismo motor de citas que Ghost y que el EPUB anterior: numera por ficha
     # y devuelve el orden bibliográfico estable, incluidas las fuentes que la
     # ficha declara en `refs` pero todavía no cita en línea.
-    cuerpo = banco.quitar_bibliografia_manual(entidad["cuerpo"])
-    cuerpo, orden = banco.resolver_citas(cuerpo, entidad.get("refs") or [], bibliografia)
+    cuerpo = refs_bibliograficas.quitar_bibliografia_manual(entidad["cuerpo"])
+    cuerpo, orden = refs_bibliograficas.resolver_citas(
+        cuerpo, entidad.get("refs") or [], bibliografia)
     cuerpo = degradar(cuerpo, 1 + nivel)
 
     lineas += [cuerpo.strip(), ""]
     if orden:
         lineas += [f"{marca}# Evidencia", ""]
-        lineas += [banco.referencia_ghost(i, bibliografia[c]) for i, c in enumerate(orden, 1)]
+        lineas += [refs_bibliograficas.referencia_ghost(i, bibliografia[c])
+                   for i, c in enumerate(orden, 1)]
         lineas += [""]
 
     for clave in orden:
@@ -304,7 +309,7 @@ def bibliografia_capitulo(orden: list, bibliografia: dict) -> str:
     """Bibliografía del libro, en orden de aparición y con el estilo de la casa."""
     partes = ["# Bibliografía {.unnumbered}", ""]
     for numero, clave in enumerate(orden, 1):
-        partes += [banco.referencia_ghost(numero, bibliografia[clave]), ""]
+        partes += [refs_bibliograficas.referencia_ghost(numero, bibliografia[clave]), ""]
     return "\n".join(partes)
 
 
@@ -433,14 +438,14 @@ def estructura(entidades: list) -> list:
         for entidad in conceptos:
             por_capitulo[entidad.get("capitulo") or 99].append(entidad)
         capitulos = [
-            (banco.CAPITULOS.get(numero, f"Capítulo {numero}"), por_capitulo[numero])
+            (configuracion.CAPITULOS.get(numero, f"Capítulo {numero}"), por_capitulo[numero])
             for numero in sorted(por_capitulo)
         ]
         partes.append(("Fundamentos", capitulos))
 
     signos = [e for e in entidades if e["tipo"] == "signo"]
     ubicados = set()
-    for clave, titulo in banco.SISTEMAS:
+    for clave, titulo in configuracion.SISTEMAS:
         grupo = [e for e in signos if e.get("sistema") == clave]
         if not grupo:
             continue
@@ -450,7 +455,7 @@ def estructura(entidades: list) -> list:
             ubicados.add(entidad["id"])
         capitulos = [
             (
-                banco.nombre_organo(organo),
+                configuracion.nombre_organo(organo),
                 sorted(por_organo[organo], key=lambda e: e["titulo"]),
             )
             for organo in sorted(por_organo)
@@ -642,7 +647,7 @@ def generar(entidades: list, raiz: Path, destino: Path) -> dict:
     entidades = banco.seleccionar_publicables(entidades)
     if not entidades:
         raise RuntimeError("ninguna entidad cumple el alcance solicitado")
-    banco.exigir_editorial(entidades, raiz / "refs.bib")
+    exigir_editorial(entidades, raiz / "refs.bib")
     destino.parent.mkdir(parents=True, exist_ok=True)
     temporal = Path(tempfile.mkdtemp(prefix=".quarto-", dir=destino.parent))
     nuevo, anterior = temporal / "nuevo", temporal / "anterior"
@@ -675,7 +680,8 @@ def generar(entidades: list, raiz: Path, destino: Path) -> dict:
 
 def _generar_en(entidades: list, raiz: Path, destino: Path) -> dict:
     figuras = figuras_validadas(entidades, raiz)
-    bibliografia = bibliografia_para_libro(banco.cargar_bibliografia(raiz / "refs.bib"))
+    bibliografia = bibliografia_para_libro(
+        refs_bibliograficas.cargar_bibliografia(raiz / "refs.bib"))
     version = version_git(raiz)
 
     destino.mkdir(parents=True)

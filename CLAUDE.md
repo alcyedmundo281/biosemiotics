@@ -119,8 +119,8 @@ las pasa a pandoc *además* del `epub-metadata.xml`, dejando dos
 `dc:identifier` en el OPF.
 
 Las citas **no** pasan a citeproc: el banco cita poco en línea y su evidencia
-vive en `refs`, así que se sigue usando `build.resolver_citas()` +
-`build.referencia_ghost()`, que numeran por ficha y emiten el estilo de la casa
+vive en `refs`, así que se sigue usando `bibliografia.resolver_citas()` +
+`bibliografia.referencia_ghost()`, que numeran por ficha y emiten el estilo de la casa
 con DOI y PMID. Cada ficha conserva su sección «Evidencia» y el libro cierra
 con la bibliografía en orden de aparición.
 
@@ -128,7 +128,7 @@ El piso soportado del repositorio es Python 3.9. El generador requiere Python
 3.9 o posterior, PyYAML y Quarto o Pandoc. El job de integridad debe probar
 tanto 3.9 como la versión moderna fijada en CI; el job de citas no se duplica
 para evitar repetir llamadas a PubMed. El generador lee el banco de
-forma dinámica y hereda de `build.py` el orden de capítulos y sistemas; no usa
+forma dinámica y hereda de `configuracion.py` el orden de capítulos y sistemas; no usa
 listas manuales. El archivo resultante vive en `build/` y no se versiona. El
 workflow `.github/workflows/epub.yml` se ejecuta automáticamente en cada cambio
 relevante fusionado a `main`: instala Quarto, valida con EPUBCheck, compila el PDF

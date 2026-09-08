@@ -93,7 +93,7 @@ jobs:
           python-version: '3.13'
 
       - name: Instalar dependencias
-        # verificar_citas.py importa refs.py → build.py, que usa pyyaml.
+        # verificar_citas.py importa refs.py → banco.py, que usa pyyaml.
         run: pip install pyyaml
 
       - name: Verificar doble autoridad de refs.bib
