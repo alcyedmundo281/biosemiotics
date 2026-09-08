@@ -519,7 +519,7 @@ def quarto_yml(partes: list, archivos: dict, version: str, portada: str) -> str:
         lineas.append(f"    - {archivos[parte]}")
     lineas += [
         "  appendices:",
-        # La bibliografía se emite ya resuelta por `build.referencia_ghost()`,
+        # La bibliografía se emite ya resuelta por `bibliografia.referencia_ghost()`,
         # no por citeproc: por eso es un capítulo más y no una `bibliography:`.
         "    - bibliografia.qmd",
         "    - creditos-imagenes.qmd",

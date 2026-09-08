@@ -63,7 +63,7 @@ class ComandosDesdeOtroDirectorioTest(unittest.TestCase):
         scripts = (
             "atlas.py", "auditar_medios.py", "auditar_pegado_ghost.py", "build.py",
             "consultas.py", "epub.py", "indice.py", "libro.py", "nuevo.py",
-            "paquete_latex.py", "qmd.py", "refs.py", "senuelo.py",
+            "paquete_latex.py", "preflight.py", "qmd.py", "refs.py", "senuelo.py",
             "verificar_citas.py", "verificar_publicacion.py",
         )
         with tempfile.TemporaryDirectory() as temporal:
@@ -72,6 +72,12 @@ class ComandosDesdeOtroDirectorioTest(unittest.TestCase):
                     resultado = self.ejecutar(script, "--help", cwd=Path(temporal))
                     self.assertEqual(resultado.returncode, 0, resultado.stderr)
                     self.assertIn("usage:", resultado.stdout.lower())
+
+    def test_preflight_completo_funciona_desde_fuera_del_repo(self):
+        with tempfile.TemporaryDirectory() as temporal:
+            resultado = self.ejecutar("preflight.py", cwd=Path(temporal))
+        self.assertEqual(resultado.returncode, 0, resultado.stderr)
+        self.assertIn("Preflight listo: perfil banco", resultado.stdout)
 
     def test_nuevo_escribe_en_raiz_explicita_desde_otro_cwd(self):
         with tempfile.TemporaryDirectory() as temporal, tempfile.TemporaryDirectory() as cwd:

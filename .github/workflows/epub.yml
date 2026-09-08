@@ -35,15 +35,10 @@ on:
       - 'signos/**'
       - 'casos/**'
       - 'assets/img/**'
-      - 'scripts/build.py'
-      - 'scripts/epub.py'
-      - 'scripts/qmd.py'
-      - 'scripts/libro.py'
-      - 'scripts/indice.py'
-      - 'scripts/paquete_latex.py'
-      - 'scripts/verificar_publicacion.py'
+      - 'scripts/**'
       - 'build/index.json'
       - 'refs.bib'
+      - 'requirements.txt'
       - '.github/workflows/epub.yml'
   pull_request:
     paths:
@@ -51,15 +46,10 @@ on:
       - 'signos/**'
       - 'casos/**'
       - 'assets/img/**'
-      - 'scripts/build.py'
-      - 'scripts/epub.py'
-      - 'scripts/qmd.py'
-      - 'scripts/libro.py'
-      - 'scripts/indice.py'
-      - 'scripts/paquete_latex.py'
-      - 'scripts/verificar_publicacion.py'
+      - 'scripts/**'
       - 'build/index.json'
       - 'refs.bib'
+      - 'requirements.txt'
       - '.github/workflows/epub.yml'
   release:
     types: [published]
@@ -89,7 +79,7 @@ jobs:
           python-version: '3.13'
 
       - name: Instalar dependencias de Python
-        run: pip install pyyaml
+        run: pip install -r requirements.txt
 
       - name: Comprobar que el generador existe
         # Falla con un mensaje accionable en vez de un ModuleNotFound críptico.
@@ -128,6 +118,9 @@ jobs:
             "https://github.com/w3c/epubcheck/releases/download/v${VER}/epubcheck-${VER}.zip"
           unzip -q /tmp/epubcheck.zip -d /opt
           echo "EPUBCHECK_JAR=/opt/epubcheck-${VER}/epubcheck.jar" >> "$GITHUB_ENV"
+
+      - name: Preflight de publicación
+        run: python scripts/preflight.py --publicacion
 
       - name: Compilar el banco
         # indice.py se ejecuta aquí solo como comprobación reproducible: el PR

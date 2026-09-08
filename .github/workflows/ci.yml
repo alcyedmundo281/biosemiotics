@@ -33,7 +33,10 @@ jobs:
           python-version: ${{ matrix.python-version }}
 
       - name: Instalar dependencias
-        run: pip install pyyaml
+        run: pip install -r requirements.txt
+
+      - name: Preflight del banco
+        run: python scripts/preflight.py
 
       - name: Compilar y validar el banco (build.py)
         # Sale con código 1 si hay aristas rotas en el grafo o un caso
@@ -94,7 +97,7 @@ jobs:
 
       - name: Instalar dependencias
         # verificar_citas.py importa refs.py → banco.py, que usa pyyaml.
-        run: pip install pyyaml
+        run: pip install -r requirements.txt
 
       - name: Verificar doble autoridad de refs.bib
         # Exit 1: discrepancia/entrada inválida. Exit 2: servicio no disponible.

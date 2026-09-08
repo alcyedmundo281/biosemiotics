@@ -31,7 +31,7 @@ desintimidan —reconocimiento casi binario, alto impacto clínico.
 
 ## Cómo está hecho
 
-**Una fuente, muchas salidas.** El banco de archivos Markdown con front-matter
+**Una fuente, muchas salidas.** El banco de archivos `.qmd` con front-matter
 YAML es la única fuente de verdad. Todo lo demás se genera y se regenera.
 
 ```
@@ -41,38 +41,58 @@ proyecto-biosemiotics/
 ├── casos/         ← el paciente real
 ├── scripts/       ← el pipeline en Python
 ├── refs.bib       ← bibliografía (solo desde PubMed, verificada)
-└── build/         ← generado: SQLite, LaTeX, grafo, JSON-LD, JATS, índice
+└── build/         ← derivados; solo build/index.json se versiona
 ```
 
 De esa fuente única salen:
 
-- **`atlas.db`** — base SQLite navegable, con el grafo de relaciones entre signos y conceptos
-- **`libro.tex`** — LaTeX/BibLaTeX para compilar el libro
-- **`grafo.json`** — el grafo de conceptos
-- **`jsonld/`** — fichas schema.org (`MedicalScholarlyArticle`, `MedicalSignOrSymptom`)
-- **`jats/`** — XML JATS para depósito y archivo
-- **`index.json`** — índice tipo PubMed que alimenta el buscador facetado del sitio
-- **`atlas-inject.html`** — buscador para la página Atlas de Ghost
-- **`atlas.epub`** — edición EPUB3 con las imágenes y licencias del banco publicado
-- **`libro.pdf`** — libro compilado desde `libro.tex` con LuaLaTeX
-- **`biosemiotics-latex.zip`** — fuente compilable con bibliografía y `assets/`
+- **`build/atlas.db`** — SQLite navegable y grafo de relaciones
+- **`build/quarto/libro.tex`** — fuente LuaLaTeX junto con sus imágenes
+- **`build/grafo.json`** — grafo de conceptos
+- **`build/jsonld/`** — fichas schema.org
+- **`build/jats/`** — XML experimental de intercambio con vocabulario JATS
+- **`build/index.json`** — índice que alimenta el buscador facetado
+- **`build/atlas-inject.html`** — buscador para la página Atlas de Ghost
+- **`build/atlas.epub`** — edición EPUB3
+- **`build/libro.pdf`** — libro compilado con LuaLaTeX
+- **`build/biosemiotics-latex.zip`** — fuente compilable autocontenida
 
 GitHub Actions regenera automáticamente EPUB, PDF, TEX y el ZIP LaTeX
 autocontenido después de cada cambio relevante fusionado a `main`. Los
 artefactos quedan disponibles durante 90 días; no hace falta ejecutar el
 workflow manualmente.
 
-### Uso
+### Preparar el entorno
 
 ```bash
-pip install pyyaml
+python -m pip install -r requirements.txt
+python scripts/preflight.py
+```
 
+El preflight normal comprueba Python 3.9+, la versión fijada de PyYAML, la
+estructura del banco, el contrato editorial y la coherencia entre fuentes,
+`build/index.json` y el mapa maestro. Es de solo lectura. Para generar todos
+los artefactos editoriales, instala además Quarto 1.5.57, LuaLaTeX con
+FreeSerif, Java, `rsvg-convert` y EPUBCheck 5.1.0, y ejecuta:
+
+```bash
+python scripts/preflight.py --publicacion
+```
+
+Las versiones y paquetes usados en Linux están declarados en
+`.github/workflows/epub.yml`; ese workflow es el entorno reproducible de
+referencia para EPUB, PDF y LuaLaTeX.
+
+### Uso diario
+
+```bash
 python scripts/nuevo.py signo <id> "<título>"   # crear una entrada
 python scripts/build.py                          # compilar y validar
 python scripts/refs.py                           # auditar qué referencias faltan
 python scripts/refs.py --buscar                  # buscarlas en PubMed
 python scripts/indice.py                         # generar índice y derivados
 python scripts/epub.py --salida build/atlas.epub --solo-publicados
+python scripts/libro.py --salida build/libro.pdf --solo-publicados
 python scripts/paquete_latex.py --salida build/biosemiotics-latex.zip
 python scripts/verificar_publicacion.py --verificar-derivados --epub build/atlas.epub
 python scripts/consultas.py                      # explorar el atlas en SQL
@@ -91,6 +111,12 @@ Si falta una compilación, `consultas.py` informa la ruta exacta esperada de
 
 `build.py` no es cosmético: valida integridad referencial y bloquea la
 publicación si falta un abstract, una referencia o una sección obligatoria.
+
+El XML de `build/jats/` conserva metadatos, secciones, medios y claves de
+referencia con nombres de elementos JATS, pero no declara DTD, no expande las
+referencias bibliográficas y no se valida contra el perfil de un repositorio.
+Por ello no es un paquete listo para PMC, Crossref ni otro depósito: antes de
+enviarlo hay que adaptarlo y validarlo contra las reglas del destino.
 
 ## Las reglas que no se rompen
 
