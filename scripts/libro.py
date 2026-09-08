@@ -31,7 +31,7 @@ import subprocess
 import sys
 from pathlib import Path
 
-import build as banco
+import banco
 import qmd
 from rutas import desde_raiz, raiz_argumentos, resolver_raiz
 

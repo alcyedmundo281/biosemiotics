@@ -26,7 +26,8 @@ from pathlib import Path
 sys.stdout.reconfigure(encoding="utf-8")
 
 sys.path.insert(0, str(Path(__file__).parent))
-from build import cargar, exigir_editorial, seleccionar_publicables, estado_publicacion  # noqa: E402
+from banco import cargar, estado_publicacion, seleccionar_publicables  # noqa: E402
+from validacion import exigir_editorial  # noqa: E402
 from rutas import raiz_argumentos, raiz_desde_argumentos  # noqa: E402
 
 # DOI de la obra completa (Zenodo). Se muestra bajo el buscador del atlas.

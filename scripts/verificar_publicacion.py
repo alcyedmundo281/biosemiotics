@@ -24,7 +24,7 @@ import zipfile
 from pathlib import Path
 from typing import Optional
 
-from build import cargar, seleccionar_publicables, estado_publicacion
+from banco import cargar, estado_publicacion, seleccionar_publicables
 from indice import URL_PRIMARIA, URL_RESPALDO, XLINK_NS
 from rutas import desde_raiz, raiz_argumentos, raiz_desde_argumentos
 

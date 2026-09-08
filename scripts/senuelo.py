@@ -14,7 +14,7 @@ import argparse
 import sqlite3
 import sys
 from pathlib import Path
-from build import seleccionar_publicables
+from banco import seleccionar_publicables
 from rutas import desde_raiz, raiz_argumentos, raiz_desde_argumentos
 
 sys.stdout.reconfigure(encoding="utf-8")
