@@ -3243,6 +3243,92 @@
     "wells2006"
    ],
    "n_refs": 4
+  },
+  {
+   "id": "signo-vti",
+   "tipo": "signo",
+   "titulo": "VTI: comprobar el flujo antes de decidir sobre líquidos",
+   "estado": "revisado",
+   "fecha_revision": "2026-09-06",
+   "ghost_id": null,
+   "ghost_sha256": "58750dd4fe77f0638760378462a4f79e504bf912457519bef53de642d024dfe1",
+   "titulo_en": "Left ventricular outflow tract velocity-time integral",
+   "version": "1.0",
+   "abstract": "El trazado Doppler pulsado del tracto de salida ventricular izquierdo permite medir la integral velocidad-tiempo, una distancia relacionada con el volumen expulsado por latido. Comparar registros reproducibles ayuda a evaluar cambios de flujo. En primer contacto exige sonda sectorial, Doppler espectral y entrenamiento supervisado; orienta reevaluación o derivación, sin ordenar líquidos por sí solo. Mala alineación, arritmias y enfermedad valvular limitan su interpretación.\n",
+   "sistema": "cardiovascular",
+   "organo": "corazon",
+   "nivel": "avanzado",
+   "ventana": "apical-cinco-camaras",
+   "pregunta_clinica": "¿Puedo obtener un VTI reproducible y reconocer un cambio de flujo interpretable?",
+   "significante": "Área bajo la envolvente sistólica de velocidad-tiempo del Doppler pulsado subaórtico, expresada en centímetros.",
+   "significado": "Distancia sistólica de flujo; relacionada con volumen sistólico si se conoce el área del tracto de salida.",
+   "umbral": "Sin punto de corte terapéutico universal para primer contacto.",
+   "licencia": "CC-BY-4.0",
+   "fecha": "2026-09-06",
+   "actualizado": "2026-09-06",
+   "decision": "Comprobar calidad, integrar perfusión y congestión y pedir apoyo si la medición no es interpretable; no indicar líquidos por un VTI aislado.",
+   "sonda": [
+    "sectorial"
+   ],
+   "escenario": [
+    "uci"
+   ],
+   "descriptores": [
+    "vti",
+    "tracto-salida-vi",
+    "doppler-pulsado",
+    "respuesta-precarga"
+   ],
+   "mesh": [
+    "Echocardiography, Doppler",
+    "Stroke Volume",
+    "Hemodynamics"
+   ],
+   "falsos_positivos": [
+    "VTI aparentemente bajo por desalineación del haz o envolvente incompleta",
+    "VTI aparentemente alto por muestreo en flujo acelerado o trazado del ruido",
+    "Cambio aparente entre registros por mover la muestra o cambiar el ángulo"
+   ],
+   "se_basa_en": [
+    "doppler",
+    "cuantificacion-limites",
+    "ventanas-cardiacas"
+   ],
+   "autores": [
+    {
+     "nombre": "Alcy Edmundo Torres Guerrero",
+     "orcid": "0000-0002-9742-375X",
+     "afiliacion": "Universidad Central del Ecuador",
+     "credit": [
+      "conceptualizacion",
+      "redaccion",
+      "supervision"
+     ]
+    }
+   ],
+   "medios": [
+    {
+     "tipo": "imagen",
+     "destacada": true,
+     "id": "orde2017-fig1",
+     "descripcion": "Panel A: adquisición correcta del diámetro y VTI subaórtico; panel B: errores de adquisición que alteran el volumen sistólico calculado. Los valores son ejemplos del artículo, no umbrales terapéuticos.",
+     "credito": "Sam Orde, Michel Slama, Andrew Hilton, Konstantin Yastrebov y Anthony McLean (2017), figura 1. Conversión de GIF a PNG, sin recorte ni modificación del contenido.",
+     "fuente": "Critical Care / Springer Nature",
+     "fuente_url": "https://link.springer.com/article/10.1186/s13054-017-1866-z/figures/1",
+     "licencia_img": "CC BY 4.0",
+     "licencia_url": "https://creativecommons.org/licenses/by/4.0/",
+     "archivo_local": "assets/img/vti.png"
+    }
+   ],
+   "n_loops": 0,
+   "n_imagenes": 1,
+   "refs": [
+    "mercadal2022",
+    "orde2017",
+    "jozwiak2019",
+    "monnet2015"
+   ],
+   "n_refs": 4
   }
  ]
 }
