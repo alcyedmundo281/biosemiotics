@@ -3251,6 +3251,7 @@
    "estado": "revisado",
    "fecha_revision": "2026-09-06",
    "ghost_id": null,
+   "ghost_sha256": "58750dd4fe77f0638760378462a4f79e504bf912457519bef53de642d024dfe1",
    "titulo_en": "Left ventricular outflow tract velocity-time integral",
    "version": "1.0",
    "abstract": "El trazado Doppler pulsado del tracto de salida ventricular izquierdo permite medir la integral velocidad-tiempo, una distancia relacionada con el volumen expulsado por latido. Comparar registros reproducibles ayuda a evaluar cambios de flujo. En primer contacto exige sonda sectorial, Doppler espectral y entrenamiento supervisado; orienta reevaluación o derivación, sin ordenar líquidos por sí solo. Mala alineación, arritmias y enfermedad valvular limitan su interpretación.\n",
