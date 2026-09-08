@@ -105,9 +105,8 @@ fusionado con CI correcta; merge `3e9af32`.
 
 ## Ciclo 4 — No aprobar citas sin verificar
 
-**Estado:** implementado. CI e integración registradas en el
-[PR #70](https://github.com/alcyedmundo281/biosemiotics/pull/70).
-El ciclo queda cerrado cuando ese PR se fusione con todos sus checks correctos.
+**Estado:** cerrado. [PR #70](https://github.com/alcyedmundo281/biosemiotics/pull/70)
+fusionado con CI correcta; merge `bfe3957`.
 
 - **Problema:** un fallo de red puede producir una CI verde sin verificación.
 - **Cambio:** usar verificación estricta como requisito de integración;
@@ -134,7 +133,7 @@ El ciclo queda cerrado cuando ese PR se fusione con todos sus checks correctos.
 
 ## Ciclo 5 — Corregir rutas y comandos de uso diario
 
-**Estado:** pendiente.
+**Estado:** implementado; pendiente de CI e integración del PR de este ciclo.
 
 - **Problema:** `consultas.py` busca la base bajo `scripts/build/`.
 - **Cambio:** centralizar raíz, salidas y argumentos; revisar `--raiz`,
@@ -142,6 +141,19 @@ El ciclo queda cerrado cuando ese PR se fusione con todos sus checks correctos.
 - **Loop:** ejecutar comandos desde distintos directorios → reproducir fallos →
   unificar rutas → comprobar errores claros cuando falta una compilación.
 - **Cierre:** comandos documentados funcionales en Windows y Linux; base única.
+- **Implementación:** `rutas.py` fija la raíz por ubicación del repositorio y
+  resuelve artefactos relativos desde ella. `--raiz` queda disponible en los
+  comandos diarios; `indice.py` y `atlas.py` conservan la raíz posicional como
+  transición. `consultas.py` y `senuelo.py` comparten `build/atlas.db` y aceptan
+  `--db`; `nuevo.py` deja de escribir según el directorio actual.
+- **Contrato:** una raíz explícita relativa se interpreta desde el directorio
+  actual; destino/proyecto/salida/db relativos, desde la raíz. Las rutas absolutas
+  se respetan. Falta de raíz o base produce un error con ruta y acción sugerida.
+- **Seguridad:** no cambia `validar_destino()` ni se amplía el área reemplazable
+  de Quarto. La compatibilidad posicional no puede combinarse con `--raiz`.
+- **Evidencia:** 82 pruebas en Windows, incluidas las 15 interfaces diarias y
+  ejecuciones desde la raíz,
+  `scripts/` y un directorio externo; los mismos casos son portables a Linux.
 
 ## Ciclo 6 — Separar responsabilidades del código
 
@@ -174,7 +186,8 @@ El ciclo queda cerrado cuando ese PR se fusione con todos sus checks correctos.
 | 1 | [PR #67](https://github.com/alcyedmundo281/biosemiotics/pull/67), `codex/renovacion-ciclo-1` | 44 pruebas; CI correcta | Cerrado, merge `9164198` |
 | 2 | [PR #68](https://github.com/alcyedmundo281/biosemiotics/pull/68), `codex/renovacion-ciclo-2` | 52 pruebas; CI correcta | Cerrado, merge `913e09e` |
 | 3 | [PR #69](https://github.com/alcyedmundo281/biosemiotics/pull/69), `codex/renovacion-ciclo-3` | 59 pruebas; CI correcta | Cerrado, merge `3e9af32` |
-| 4 | [PR #70](https://github.com/alcyedmundo281/biosemiotics/pull/70), `codex/renovacion-ciclo-4` | 73 pruebas; simulaciones de red y exenciones | Implementado; cierre por merge del PR con CI correcta |
+| 4 | [PR #70](https://github.com/alcyedmundo281/biosemiotics/pull/70), `codex/renovacion-ciclo-4` | 73 pruebas; CI correcta | Cerrado, merge `bfe3957` |
+| 5 | `codex/renovacion-ciclo-5` | 82 pruebas; comandos desde raíz, scripts y directorio externo | Implementado; cierre por merge del PR con CI correcta |
 
 ## Trabajo editorial conservado
 

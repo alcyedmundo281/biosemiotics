@@ -71,12 +71,23 @@ python scripts/nuevo.py signo <id> "<título>"   # crear una entrada
 python scripts/build.py                          # compilar y validar
 python scripts/refs.py                           # auditar qué referencias faltan
 python scripts/refs.py --buscar                  # buscarlas en PubMed
-python scripts/indice.py .                       # generar índice y derivados
+python scripts/indice.py                         # generar índice y derivados
 python scripts/epub.py --salida build/atlas.epub --solo-publicados
 python scripts/paquete_latex.py --salida build/biosemiotics-latex.zip
 python scripts/verificar_publicacion.py --verificar-derivados --epub build/atlas.epub
 python scripts/consultas.py                      # explorar el atlas en SQL
 ```
+
+Los comandos localizan el repositorio por la ubicación de `scripts/`, de modo
+que producen el mismo resultado aunque se invoquen desde `scripts/` o desde otro
+directorio. `--raiz <ruta>` permite operar sobre otro banco; una raíz relativa
+se interpreta desde el directorio actual. `--destino`, `--proyecto`, `--salida`
+y `--db` relativos se interpretan desde la raíz elegida. Las rutas absolutas se
+respetan. `indice.py <raiz>` sigue aceptado por compatibilidad, pero el uso nuevo
+es `indice.py --raiz <ruta>`.
+
+Si falta una compilación, `consultas.py` informa la ruta exacta esperada de
+`build/atlas.db` y el comando para generarla.
 
 `build.py` no es cosmético: valida integridad referencial y bloquea la
 publicación si falta un abstract, una referencia o una sección obligatoria.

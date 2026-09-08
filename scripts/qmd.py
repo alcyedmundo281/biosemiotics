@@ -46,6 +46,7 @@ from datetime import date
 from pathlib import Path
 
 import build as banco
+from rutas import desde_raiz, raiz_argumentos, resolver_raiz
 
 if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8")
@@ -84,6 +85,7 @@ ENCABEZADO = re.compile(r"^(#{1,5})(\s+)", re.MULTILINE)
 
 def argumentos() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
+    raiz_argumentos(parser)
     parser.add_argument(
         "--destino",
         type=Path,
@@ -748,8 +750,8 @@ def _generar_en(entidades: list, raiz: Path, destino: Path) -> dict:
 
 def main() -> int:
     args = argumentos()
-    raiz = Path(__file__).resolve().parents[1]
-    destino = args.destino if args.destino.is_absolute() else raiz / args.destino
+    raiz = resolver_raiz(args.raiz)
+    destino = desde_raiz(raiz, args.destino)
 
     entidades = banco.cargar(raiz)
     entidades = banco.seleccionar_publicables(entidades, args.solo_publicados)

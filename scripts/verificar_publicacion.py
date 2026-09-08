@@ -26,6 +26,7 @@ from typing import Optional
 
 from build import cargar, seleccionar_publicables, estado_publicacion
 from indice import URL_PRIMARIA, URL_RESPALDO, XLINK_NS
+from rutas import desde_raiz, raiz_argumentos, raiz_desde_argumentos
 
 
 DOMINIO_PUBLICO = "https://www.biosemiotics.net/"
@@ -246,7 +247,7 @@ def comprobar_web(url: str) -> str | None:
 
 def main() -> int:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--raiz", type=Path, default=Path(__file__).resolve().parent.parent)
+    raiz_argumentos(ap)
     ap.add_argument("--id", dest="entidad_id")
     ap.add_argument("--url")
     ap.add_argument("--comprobar-web", action="store_true")
@@ -262,7 +263,7 @@ def main() -> int:
     )
     args = ap.parse_args()
 
-    raiz = args.raiz.resolve()
+    raiz = raiz_desde_argumentos(ap, args)
     entidades = cargar(raiz)
     publicables = seleccionar_publicables(entidades)
     por_id = {e["id"]: e for e in entidades}
@@ -300,7 +301,7 @@ def main() -> int:
     if args.verificar_derivados or args.epub:
         epub = args.epub
         if epub is not None and not epub.is_absolute():
-            epub = raiz / epub
+            epub = desde_raiz(raiz, epub)
         validar_derivados(raiz, publicables, errores, epub)
 
     if args.entidad_id:

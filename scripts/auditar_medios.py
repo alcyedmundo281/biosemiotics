@@ -31,6 +31,7 @@ import urllib.error
 import urllib.parse
 import urllib.request
 from pathlib import Path
+from rutas import raiz_argumentos, raiz_desde_argumentos
 
 sys.stdout.reconfigure(encoding="utf-8")
 
@@ -147,11 +148,11 @@ def resolver_fuente(medio: dict, local):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--raiz", default=".")
+    raiz_argumentos(ap)
     ap.add_argument("--escribir", action="store_true",
                     help="aplica al .md lo que se pudo verificar")
     a = ap.parse_args()
-    raiz = Path(a.raiz).resolve()
+    raiz = raiz_desde_argumentos(ap, a)
     img_dir = raiz / "assets" / "img"
     porext = {}
     for p in img_dir.iterdir() if img_dir.exists() else []:

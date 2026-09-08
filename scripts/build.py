@@ -28,6 +28,7 @@ from pathlib import Path
 from urllib.parse import urlsplit
 
 import yaml
+from rutas import raiz_argumentos, raiz_desde_argumentos
 
 sys.stdout.reconfigure(encoding="utf-8")
 sys.stderr.reconfigure(encoding="utf-8")
@@ -614,11 +615,11 @@ def validar(entidades, aristas, raiz: Path, permitir_borradores=False):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--raiz", default=".")
+    raiz_argumentos(ap)
     ap.add_argument("--solo", choices=["db", "grafo", "ghost"])
     a = ap.parse_args()
 
-    raiz = Path(a.raiz).resolve()
+    raiz = raiz_desde_argumentos(ap, a)
     build_dir = raiz / "build"
 
     ent = cargar(raiz)

@@ -17,6 +17,10 @@ import sys
 import tempfile
 import zipfile
 from pathlib import Path
+try:
+    from rutas import desde_raiz, raiz_argumentos, raiz_desde_argumentos
+except ModuleNotFoundError:  # importado como scripts.paquete_latex
+    from .rutas import desde_raiz, raiz_argumentos, raiz_desde_argumentos
 
 if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8")
@@ -95,12 +99,11 @@ def main() -> int:
     parser.add_argument(
         "--salida", type=Path, default=Path("build/biosemiotics-latex.zip")
     )
-    parser.add_argument(
-        "--raiz", type=Path, default=Path(__file__).resolve().parents[1]
-    )
+    raiz_argumentos(parser)
     args = parser.parse_args()
-    salida = args.salida if args.salida.is_absolute() else args.raiz / args.salida
-    archivos, bytes_ = crear_paquete(args.raiz, salida)
+    raiz = raiz_desde_argumentos(parser, args)
+    salida = desde_raiz(raiz, args.salida)
+    archivos, bytes_ = crear_paquete(raiz, salida)
     print(f"✓ Paquete LuaLaTeX: {archivos} archivos · {bytes_:,} bytes")
     print(f"✓ Salida: {salida}")
     return 0

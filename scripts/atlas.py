@@ -11,6 +11,7 @@ gastroenterología = agregar archivos al banco y recompilar. Cero diseño nuevo.
 El banco se embebe como JSON en el HTML: sin servidor, sin API, sin base de
 datos remota. Un archivo, se abre en cualquier parte.
 """
+import argparse
 import json
 import sys
 from pathlib import Path
@@ -19,6 +20,7 @@ sys.stdout.reconfigure(encoding="utf-8")
 
 sys.path.insert(0, str(Path(__file__).parent))
 from build import cargar, RELS, exigir_editorial, seleccionar_publicables  # noqa: E402
+from rutas import desde_raiz, raiz_argumentos, raiz_desde_argumentos  # noqa: E402
 
 CSS = """
 :root{--ink:#14181B;--mute:#5F676E;--line:#E3E7EA;--paper:#FBFCFC;
@@ -151,7 +153,11 @@ render();
 
 
 def main():
-    raiz = Path(sys.argv[1] if len(sys.argv) > 1 else ".").resolve()
+    ap = argparse.ArgumentParser(description=__doc__)
+    raiz_argumentos(ap, legado=True)
+    ap.add_argument("--salida", type=Path, default=Path("build/atlas.html"))
+    args = ap.parse_args()
+    raiz = raiz_desde_argumentos(ap, args)
     ent = cargar(raiz)
     ent = seleccionar_publicables(ent)
     exigir_editorial(ent, raiz / "refs.bib")
@@ -198,7 +204,7 @@ def main():
 <script>{JS}</script>
 </body></html>"""
 
-    out = raiz / "build" / "atlas.html"
+    out = desde_raiz(raiz, args.salida)
     out.parent.mkdir(exist_ok=True)
     out.write_text(html, encoding="utf-8")
     kb = out.stat().st_size / 1024
