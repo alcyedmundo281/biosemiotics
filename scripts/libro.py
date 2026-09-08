@@ -31,8 +31,9 @@ import subprocess
 import sys
 from pathlib import Path
 
-import build as banco
+import banco
 import qmd
+from rutas import desde_raiz, raiz_argumentos, resolver_raiz
 
 if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8")
@@ -41,6 +42,7 @@ if hasattr(sys.stdout, "reconfigure"):
 
 def argumentos() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
+    raiz_argumentos(parser)
     parser.add_argument("--salida", required=True, type=Path)
     parser.add_argument(
         "--solo-publicados",
@@ -117,9 +119,9 @@ def validar_libro(tex: Path, pdf: Path, figuras: list, enlaces_ghost: int) -> st
 
 def main() -> int:
     args = argumentos()
-    raiz = Path(__file__).resolve().parents[1]
-    salida = args.salida if args.salida.is_absolute() else raiz / args.salida
-    proyecto = args.proyecto if args.proyecto.is_absolute() else raiz / args.proyecto
+    raiz = resolver_raiz(args.raiz)
+    salida = desde_raiz(raiz, args.salida)
+    proyecto = desde_raiz(raiz, args.proyecto)
 
     quarto = shutil.which("quarto")
     if not quarto:

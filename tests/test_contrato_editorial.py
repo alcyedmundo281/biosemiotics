@@ -41,7 +41,10 @@ class ContratoEditorialTest(unittest.TestCase):
             encoding="utf-8")
 
     def ejecutar(self, script, *args):
-        return subprocess.run([sys.executable, str(SCRIPTS / script), *args],
+        argumentos = [sys.executable, str(SCRIPTS / script)]
+        if "--raiz" not in args and not (script == "indice.py" and args):
+            argumentos += ["--raiz", str(self.raiz)]
+        return subprocess.run([*argumentos, *args],
                               cwd=self.raiz, capture_output=True, encoding="utf-8")
 
     def test_contratos_por_tipo(self):

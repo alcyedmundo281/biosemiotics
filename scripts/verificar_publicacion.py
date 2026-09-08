@@ -24,8 +24,11 @@ import zipfile
 from pathlib import Path
 from typing import Optional
 
-from build import cargar, seleccionar_publicables, estado_publicacion
+from banco import cargar, estado_publicacion, seleccionar_publicables
+from bibliografia import cargar_bibliografia
+from ghost import huella_cuerpo_ghost
 from indice import URL_PRIMARIA, URL_RESPALDO, XLINK_NS
+from rutas import desde_raiz, raiz_argumentos, raiz_desde_argumentos
 
 
 DOMINIO_PUBLICO = "https://www.biosemiotics.net/"
@@ -246,14 +249,14 @@ def comprobar_web(url: str) -> str | None:
 
 def main() -> int:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--raiz", type=Path, default=Path(__file__).resolve().parent.parent)
+    raiz_argumentos(ap)
     ap.add_argument("--id", dest="entidad_id")
     ap.add_argument("--url")
     ap.add_argument("--comprobar-web", action="store_true")
     ap.add_argument(
         "--verificar-derivados",
         action="store_true",
-        help="valida atlas, JSON-LD, JATS y referencias de imagen en LaTeX",
+        help="valida atlas, JSON-LD, XML JATS experimental e imágenes en LaTeX",
     )
     ap.add_argument(
         "--epub",
@@ -262,9 +265,10 @@ def main() -> int:
     )
     args = ap.parse_args()
 
-    raiz = args.raiz.resolve()
+    raiz = raiz_desde_argumentos(ap, args)
     entidades = cargar(raiz)
     publicables = seleccionar_publicables(entidades)
+    bibliografia = cargar_bibliografia(raiz / "refs.bib")
     por_id = {e["id"]: e for e in entidades}
     indice = json.loads((raiz / "build" / "index.json").read_text(encoding="utf-8"))
     fichas = {f["id"]: f for f in indice["fichas"]}
@@ -277,7 +281,8 @@ def main() -> int:
         f = fichas.get(e["id"], {})
         for campo, valor in (("estado", estado_publicacion(e)),
                              ("fecha_revision", str(e["fecha_revision"]) if e.get("fecha_revision") else None),
-                             ("ghost_id", e.get("ghost_id"))):
+                             ("ghost_id", e.get("ghost_id")),
+                             ("ghost_sha256", huella_cuerpo_ghost(e, bibliografia))):
             if f.get(campo) != valor:
                 error(errores, f"{e['id']}: {campo} distinto entre fuente e índice")
     objetivo_verificado: str | None = None
@@ -300,7 +305,7 @@ def main() -> int:
     if args.verificar_derivados or args.epub:
         epub = args.epub
         if epub is not None and not epub.is_absolute():
-            epub = raiz / epub
+            epub = desde_raiz(raiz, epub)
         validar_derivados(raiz, publicables, errores, epub)
 
     if args.entidad_id:

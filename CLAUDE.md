@@ -12,7 +12,7 @@ Autor y responsable clínico: Dr. Alcy Torres. Toda decisión clínica final es 
 
 ## Regla de oro del sistema
 
-**Una fuente, muchas salidas.** El banco de archivos `.qmd` es la ÚNICA fuente de verdad. Todo lo demás (`build/`, el índice, el HTML, el JATS, el proyecto Quarto de `build/quarto/`) es **derivado** y se regenera. NUNCA edites archivos en `build/` a mano: el siguiente `indice.py` o `qmd.py` los sobrescribe. Si algo está mal en una salida, se arregla en el `.qmd` de origen y se recompila.
+**Una fuente, muchas salidas.** El banco de archivos `.qmd` es la ÚNICA fuente de verdad. Todo lo demás (`build/`, el índice, el HTML, el XML experimental de `build/jats/`, el proyecto Quarto de `build/quarto/`) es **derivado** y se regenera. NUNCA edites archivos en `build/` a mano: el siguiente `indice.py` o `qmd.py` los sobrescribe. Si algo está mal en una salida, se arregla en el `.qmd` de origen y se recompila.
 
 ## Mapa del repositorio
 
@@ -69,7 +69,7 @@ repositorio y traía rutas `../assets/...` que solo resolvían desde `build/`.
 `texlive-latex-extra`, `texlive-lang-spanish`, `texlive-luatex` y
 `fonts-freefont-ttf`. **`biber` ya no hace falta**: el `.tex` de Quarto no usa
 biblatex porque la bibliografía se emite ya resuelta por
-`build.referencia_ghost()`.
+`bibliografia.referencia_ghost()`.
 
 ## Compilar el EPUB (`build/atlas.epub`)
 
@@ -119,8 +119,8 @@ las pasa a pandoc *además* del `epub-metadata.xml`, dejando dos
 `dc:identifier` en el OPF.
 
 Las citas **no** pasan a citeproc: el banco cita poco en línea y su evidencia
-vive en `refs`, así que se sigue usando `build.resolver_citas()` +
-`build.referencia_ghost()`, que numeran por ficha y emiten el estilo de la casa
+vive en `refs`, así que se sigue usando `bibliografia.resolver_citas()` +
+`bibliografia.referencia_ghost()`, que numeran por ficha y emiten el estilo de la casa
 con DOI y PMID. Cada ficha conserva su sección «Evidencia» y el libro cierra
 con la bibliografía en orden de aparición.
 
@@ -128,7 +128,7 @@ El piso soportado del repositorio es Python 3.9. El generador requiere Python
 3.9 o posterior, PyYAML y Quarto o Pandoc. El job de integridad debe probar
 tanto 3.9 como la versión moderna fijada en CI; el job de citas no se duplica
 para evitar repetir llamadas a PubMed. El generador lee el banco de
-forma dinámica y hereda de `build.py` el orden de capítulos y sistemas; no usa
+forma dinámica y hereda de `configuracion.py` el orden de capítulos y sistemas; no usa
 listas manuales. El archivo resultante vive en `build/` y no se versiona. El
 workflow `.github/workflows/epub.yml` se ejecuta automáticamente en cada cambio
 relevante fusionado a `main`: instala Quarto, valida con EPUBCheck, compila el PDF
@@ -188,6 +188,34 @@ o el registro citable queda diciendo algo que el repositorio ya no dice.
 
 ## Lo primero al arrancar una sesión
 
+### Raíz y rutas de los comandos
+
+Los scripts usan por defecto la raíz real del repositorio, obtenida desde su
+propio archivo; el directorio actual no cambia el banco ni la carpeta `build/`.
+Para otro banco usa `--raiz <ruta>`. Una raíz explícita relativa se resuelve
+desde el directorio actual; `--destino`, `--proyecto`, `--salida` y `--db`
+relativos se resuelven desde esa raíz. Las rutas absolutas se conservan.
+`indice.py <raiz>` y `atlas.py <raiz>` siguen admitiendo la forma posicional
+antigua, pero no se puede combinar con `--raiz`. La forma canónica es la bandera.
+
+`consultas.py` y `senuelo.py` leen una única base, `build/atlas.db` bajo la raíz,
+y aceptan `--db` para una ruta distinta. Si falta, fallan con la ruta exacta y
+el comando de compilación. `nuevo.py` escribe siempre en la raíz seleccionada.
+Este contrato no cambia la protección de `qmd.py`: el proyecto Quarto todavía
+debe estar bajo el `build/` real del banco y no se amplía ningún permiso de borrado.
+
+Instala la dependencia Python exacta y ejecuta el preflight de solo lectura:
+
+```bash
+python -m pip install -r requirements.txt
+python scripts/preflight.py
+```
+
+Ese comando comprueba Python 3.9+, PyYAML, la estructura, el contrato editorial
+y la coherencia de publicación e índice. Antes de generar EPUB/PDF/LaTeX usa
+`python scripts/preflight.py --publicacion`; exige además Quarto, LuaLaTeX,
+Java, `rsvg-convert` y EPUBCheck. Las versiones de referencia viven en CI.
+
 1. Corre `git status` y reporta el estado. Si hay cambios sin commitear, avísalo antes de empezar.
 2. Lee `mapa-maestro-biosemiotics.md` y di **qué signo toca según la oleada** (no saltes de oleada sin que Alcy lo pida).
 3. Corre `python scripts/build.py` y reporta las alertas actuales (qué falta: abstracts, refs, urls).
@@ -196,7 +224,7 @@ o el registro citable queda diciendo algo que el repositorio ya no dice.
 
 1. **Ubícalo en el mapa maestro.** Copia su fila: `sistema`, `organo`, `nivel`, oleada. No inventes estos valores — están definidos en la taxonomía del mapa.
 2. **Crea el archivo** con `python scripts/nuevo.py signo <id> "<título>"` o partiendo de la plantilla.
-3. **Contenido:** sigue la estructura estándar del instructivo (encabezados `##` LITERALES, que el JATS mapea automáticamente). Registro: permiso para el principiante, frases cortas, español claro.
+3. **Contenido:** sigue la estructura estándar del instructivo (encabezados `##` LITERALES, que el XML de intercambio mapea automáticamente). Registro: permiso para el principiante, frases cortas, español claro.
 4. **Abstract obligatorio:** 40-80 palabras, patrón qué se ve → qué significa → qué decide → dónde falla.
 5. **`falsos_positivos` obligatorio:** un signo sin límites enseña a reconocer sin enseñar a dudar. Distingue *falso positivo* (algo que imita el signo sin serlo) de *variante* (el signo real con otra textura) — van en campos distintos.
 6. **Referencias:** ver la regla dura abajo.
@@ -253,6 +281,10 @@ La migración histórica deja ambos en `null` cuando no constan en la fuente;
 no usa la fecha del commit ni deduce un ID del slug. Estos campos se conservan
 en SQLite e índice para completarlos con evidencia durante el flujo editorial.
 Una fecha o ID sintácticamente válido no demuestra por sí solo una revisión.
+El índice añade `ghost_sha256`, calculado sobre el mismo cuerpo canónico que
+`build.py` deja en `build/ghost/`. `verificar_publicacion.py` vuelve a calcularlo
+y bloquea una deriva entre fuente, bibliografía y registro. Para comparar ese
+cuerpo con el editor de Ghost usa `auditar_pegado_ghost.py`.
 
 Compatibilidad: si falta `estado`, una URL implica `publicado`; sin URL se
 interpreta `borrador`. El booleano antiguo `publicado` solo se acepta si coincide
@@ -260,9 +292,18 @@ con estado y URL, y debe retirarse al migrar. SQLite conserva esa columna como
 valor derivado para consultas existentes. Nunca hay dos autoridades de estado.
 
 Para retirar una ficha, cambia a `borrador`, vacía la URL y regenera: Ghost-ready,
-índice, atlas y libro la excluyen; el índice retira sus JSON-LD/JATS anteriores.
+índice, atlas y libro la excluyen; el índice retira sus JSON-LD/XML anteriores.
 Esto no retira automáticamente un artículo ya publicado en Ghost ni una edición
 archivada. La operación de Ghost requiere su propio flujo editorial.
+
+### Alcance del XML de `build/jats/`
+
+Es un intercambio experimental que conserva metadatos, secciones clínicas,
+medios y claves bibliográficas con vocabulario JATS. Las fichas se marcan como
+material educativo, no como artículos de investigación. El XML no declara una
+DTD, no expande las referencias y no se valida contra las reglas de PMC,
+Crossref ni otro repositorio. Nunca lo llames «listo para depósito»: adapta y
+valida cada archivo contra el perfil concreto del destino antes de enviarlo.
 
 ### Reglas clínicas y de publicación
 
@@ -335,7 +376,7 @@ Antes de abrir Ghost:
 
 ```bash
 python scripts/auditar_pegado_ghost.py \
-  --canon build/ghost/<carpeta>/<archivo>.md
+  --canon build/ghost/<carpeta>/<archivo>.qmd
 ```
 
 - Busca el título en Ghost entre borradores y publicados. Si ya existe,
@@ -348,11 +389,11 @@ python scripts/auditar_pegado_ghost.py \
 
 ### 1. Preparar y revisar Ghost
 
-1. Usa exclusivamente `build/ghost/<carpeta>/<archivo>.md` como cuerpo. No lo
+1. Usa exclusivamente `build/ghost/<carpeta>/<archivo>.qmd` como cuerpo. No lo
    regeneres. Antes de tocar Ghost, guarda su huella esperada:
 
    ```bash
-   python scripts/auditar_pegado_ghost.py --canon build/ghost/<carpeta>/<archivo>.md
+   python scripts/auditar_pegado_ghost.py --canon build/ghost/<carpeta>/<archivo>.qmd
    ```
 
    **Pegado idempotente (obligatorio).** El cuerpo de Ghost usa Lexical y
@@ -385,7 +426,7 @@ python scripts/auditar_pegado_ghost.py \
 
    ```bash
    python scripts/auditar_pegado_ghost.py \
-     --canon build/ghost/<carpeta>/<archivo>.md \
+     --canon build/ghost/<carpeta>/<archivo>.qmd \
      --captura <texto-visible-del-editor.txt> \
      --pie "<pie observado>" --pie-esperado "<atribución canónica>"
    ```
@@ -453,7 +494,7 @@ artículo ya está vivo, los dos PR se apilan:
 
    ```bash
    python scripts/build.py
-   python scripts/indice.py .
+   python scripts/indice.py
    python scripts/epub.py --salida build/atlas.epub --solo-publicados
    python scripts/libro.py --salida build/libro.pdf --solo-publicados
    python scripts/paquete_latex.py --salida build/biosemiotics-latex.zip
@@ -464,7 +505,8 @@ artículo ya está vivo, los dos PR se apilan:
    La verificación de derivados va **al final**: comprueba
    `build/quarto/libro.tex`, que solo existe una vez renderizado el PDF.
 
-   Las salidas son `index.json`, `atlas-inject.html`, `jsonld/`, `jats/`,
+   Las salidas son `index.json`, `atlas-inject.html`, `jsonld/`, el XML
+   experimental de `jats/`,
    el proyecto Quarto `build/quarto/` (con `libro.tex` dentro), `libro.pdf`,
    `atlas.epub` y el paquete `biosemiotics-latex.zip`. Solo
    `build/index.json` se versiona; las otras se regeneran. La verificación
@@ -508,7 +550,7 @@ rama añade simultáneamente una ficha sin publicar. La autoridad es
 
 **Distinción crítica de URLs.** Hay dos clases y NO son lo mismo:
 
-- **URLs de artículos** (campo `url` de cada `.md`, y las del JSON-LD) → `www.biosemiotics.net`.
+- **URLs de artículos** (campo `url` de cada `.qmd`, y las del JSON-LD) → `www.biosemiotics.net`.
 - **URL del índice** que consume el buscador → **siempre desde GitHub, JAMÁS desde `biosemiotics.net`.** El `index.json` vive en el repositorio, no en el sitio. Apuntar el buscador al dominio lo rompe.
 
 **El índice se pide con dos fuentes, primario y respaldo** (`var IDX` e `IDX2` en atlas-inject.html):
@@ -534,7 +576,7 @@ El ciclo, para cualquier cambio:
 
 ```bash
 git switch -c <rama-descriptiva>        # p. ej. signo-neumotorax, fix-url-ecogenicidad
-# ...editas .md, corres build.py + indice.py, commiteas...
+# ...editas .qmd, corres build.py + indice.py, commiteas...
 git push -u origin <rama-descriptiva>
 gh pr create --fill                     # abre el PR
 # espera a que la CI pase (gh pr checks --watch)

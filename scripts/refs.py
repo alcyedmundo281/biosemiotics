@@ -29,7 +29,8 @@ from pathlib import Path
 sys.stdout.reconfigure(encoding="utf-8")
 
 sys.path.insert(0, str(Path(__file__).parent))
-from build import cargar  # noqa: E402
+from banco import cargar  # noqa: E402
+from rutas import raiz_argumentos, raiz_desde_argumentos  # noqa: E402
 
 EUTILS = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils"
 UA = {"User-Agent": "biosemiotics-atlas/1.0 (educational medical atlas)"}
@@ -128,7 +129,7 @@ def sugerir(clave: str) -> str:
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--raiz", default=".")
+    raiz_argumentos(ap)
     ap.add_argument("--buscar", action="store_true",
                     help="busca en PubMed cada clave faltante")
     ap.add_argument("--query", help="búsqueda libre en PubMed")
@@ -136,7 +137,7 @@ def main():
     ap.add_argument("--clave", help="clave BibLaTeX para --pmid")
     a = ap.parse_args()
 
-    raiz = Path(a.raiz).resolve()
+    raiz = raiz_desde_argumentos(ap, a)
     bib = raiz / "refs.bib"
 
     # ── modo: búsqueda libre ──────────────────────────────────────────

@@ -10,20 +10,26 @@ bloque — baratos, porque el pensamiento ya está hecho. Nunca al revés.
 Regla de oro: el señuelo NO resuelve. Es la primera mitad de una frase que el
 archivo completa. Si el clip satisface, nadie hace clic.
 """
+import argparse
 import sqlite3
 import sys
 from pathlib import Path
-from build import seleccionar_publicables
+from banco import seleccionar_publicables
+from rutas import desde_raiz, raiz_argumentos, raiz_desde_argumentos
 
 sys.stdout.reconfigure(encoding="utf-8")
+sys.stderr.reconfigure(encoding="utf-8")
 
 
 def main():
-    if len(sys.argv) < 2:
-        sys.exit(__doc__)
-    caso_id = sys.argv[1]
-
-    db = Path.cwd() / "build" / "atlas.db"
+    ap = argparse.ArgumentParser(description=__doc__)
+    raiz_argumentos(ap)
+    ap.add_argument("--db", type=Path, default=Path("build/atlas.db"))
+    ap.add_argument("caso_id")
+    args = ap.parse_args()
+    raiz = raiz_desde_argumentos(ap, args)
+    caso_id = args.caso_id
+    db = desde_raiz(raiz, args.db)
     if not db.exists():
         sys.exit("Falta build/atlas.db — corre primero: python3 scripts/build.py")
 

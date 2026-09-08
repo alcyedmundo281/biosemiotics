@@ -15,6 +15,10 @@ import json
 import re
 import sys
 from pathlib import Path
+try:
+    from rutas import desde_raiz, raiz_argumentos, raiz_desde_argumentos
+except ModuleNotFoundError:  # importado como scripts.auditar_pegado_ghost
+    from .rutas import desde_raiz, raiz_argumentos, raiz_desde_argumentos
 
 sys.stdout.reconfigure(encoding="utf-8")
 sys.stderr.reconfigure(encoding="utf-8")
@@ -75,18 +79,22 @@ def auditar(cuerpo: str, captura: str, pie: str = "", pie_esperado: str = "") ->
 
 def main() -> int:
     ap = argparse.ArgumentParser()
+    raiz_argumentos(ap)
     ap.add_argument("--canon", type=Path, required=True, help="Markdown de build/ghost")
     ap.add_argument("--captura", type=Path, help="texto visible extraído del editor")
     ap.add_argument("--pie", default="", help="pie observado en Ghost")
     ap.add_argument("--pie-esperado", default="")
     args = ap.parse_args()
+    raiz = raiz_desde_argumentos(ap, args)
+    canon = desde_raiz(raiz, args.canon)
+    captura = desde_raiz(raiz, args.captura) if args.captura else None
 
-    cuerpo = cuerpo_markdown(args.canon.read_text(encoding="utf-8"))
+    cuerpo = cuerpo_markdown(canon.read_text(encoding="utf-8"))
     resultado = huella(cuerpo)
-    if args.captura:
+    if captura:
         errores = auditar(
             cuerpo,
-            args.captura.read_text(encoding="utf-8"),
+            captura.read_text(encoding="utf-8"),
             args.pie,
             args.pie_esperado,
         )

@@ -1,12 +1,23 @@
 #!/usr/bin/env python3
 """Lo que el banco permite y Ghost NO: exploración estructurada del atlas."""
+import argparse
 import sqlite3
 import sys
 from pathlib import Path
 
 sys.stdout.reconfigure(encoding="utf-8")
+sys.stderr.reconfigure(encoding="utf-8")
+from rutas import desde_raiz, raiz_argumentos, raiz_desde_argumentos
 
-con = sqlite3.connect(Path(__file__).parent / "build" / "atlas.db")
+ap = argparse.ArgumentParser(description=__doc__)
+raiz_argumentos(ap)
+ap.add_argument("--db", type=Path, default=Path("build/atlas.db"))
+args = ap.parse_args()
+raiz = raiz_desde_argumentos(ap, args)
+db = desde_raiz(raiz, args.db)
+if not db.is_file():
+    sys.exit(f"Falta {db} — corre primero: python scripts/build.py")
+con = sqlite3.connect(db)
 con.row_factory = sqlite3.Row
 q = lambda s, *a: con.execute(s, a).fetchall()
 
@@ -82,3 +93,4 @@ for r in q("""SELECT titulo, tipo FROM entidad
     print(f"  ⚠ {r['titulo']} ({r['tipo']}) — sin BibLaTeX")
 
 print()
+con.close()

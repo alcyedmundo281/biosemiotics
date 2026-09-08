@@ -105,9 +105,8 @@ fusionado con CI correcta; merge `3e9af32`.
 
 ## Ciclo 4 — No aprobar citas sin verificar
 
-**Estado:** implementado. CI e integración registradas en el
-[PR #70](https://github.com/alcyedmundo281/biosemiotics/pull/70).
-El ciclo queda cerrado cuando ese PR se fusione con todos sus checks correctos.
+**Estado:** cerrado. [PR #70](https://github.com/alcyedmundo281/biosemiotics/pull/70)
+fusionado con CI correcta; merge `bfe3957`.
 
 - **Problema:** un fallo de red puede producir una CI verde sin verificación.
 - **Cambio:** usar verificación estricta como requisito de integración;
@@ -134,7 +133,8 @@ El ciclo queda cerrado cuando ese PR se fusione con todos sus checks correctos.
 
 ## Ciclo 5 — Corregir rutas y comandos de uso diario
 
-**Estado:** pendiente.
+**Estado:** cerrado. [PR #72](https://github.com/alcyedmundo281/biosemiotics/pull/72)
+fusionado con CI correcta; merge `af9b752`.
 
 - **Problema:** `consultas.py` busca la base bajo `scripts/build/`.
 - **Cambio:** centralizar raíz, salidas y argumentos; revisar `--raiz`,
@@ -142,10 +142,24 @@ El ciclo queda cerrado cuando ese PR se fusione con todos sus checks correctos.
 - **Loop:** ejecutar comandos desde distintos directorios → reproducir fallos →
   unificar rutas → comprobar errores claros cuando falta una compilación.
 - **Cierre:** comandos documentados funcionales en Windows y Linux; base única.
+- **Implementación:** `rutas.py` fija la raíz por ubicación del repositorio y
+  resuelve artefactos relativos desde ella. `--raiz` queda disponible en los
+  comandos diarios; `indice.py` y `atlas.py` conservan la raíz posicional como
+  transición. `consultas.py` y `senuelo.py` comparten `build/atlas.db` y aceptan
+  `--db`; `nuevo.py` deja de escribir según el directorio actual.
+- **Contrato:** una raíz explícita relativa se interpreta desde el directorio
+  actual; destino/proyecto/salida/db relativos, desde la raíz. Las rutas absolutas
+  se respetan. Falta de raíz o base produce un error con ruta y acción sugerida.
+- **Seguridad:** no cambia `validar_destino()` ni se amplía el área reemplazable
+  de Quarto. La compatibilidad posicional no puede combinarse con `--raiz`.
+- **Evidencia:** 82 pruebas en Windows, incluidas las 15 interfaces diarias y
+  ejecuciones desde la raíz,
+  `scripts/` y un directorio externo; los mismos casos son portables a Linux.
 
 ## Ciclo 6 — Separar responsabilidades del código
 
-**Estado:** pendiente.
+**Estado:** cerrado mediante el
+[PR #73](https://github.com/alcyedmundo281/biosemiotics/pull/73), con CI correcta.
 
 - **Cambio:** extraer carga, esquema/validación, bibliografía y configuración
   a módulos comunes; dejar los scripts como interfaces de comandos.
@@ -153,10 +167,19 @@ El ciclo queda cerrado cuando ese PR se fusione con todos sus checks correctos.
   contenido y metadatos → conservar interfaces existentes.
 - **Cierre:** menos duplicación sin cambios editoriales; citas y orden de fichas
   idénticos. No introducir una base remota ni otro framework sin necesidad demostrada.
+- **Implementación:** `banco.py` concentra carga y estados; `validacion.py`, el
+  contrato editorial y la trazabilidad; `bibliografia.py`, la resolución de
+  citas; `configuracion.py`, las taxonomías y el orden canónico. `build.py`
+  queda como orquestador de SQLite, grafo y Ghost y reexporta su API histórica.
+  Los demás comandos importan directamente el módulo que necesitan.
+- **Evidencia local:** 84 pruebas; `build.py` pasa de 663 a 172 líneas. Las
+  huellas de `atlas-inject.html`, `grafo.json` y los 42 artículos Ghost-ready
+  son idénticas a las previas; `index.json` coincide con el blob versionado.
 
 ## Ciclo 7 — Hacer verificable todo el flujo editorial
 
-**Estado:** pendiente.
+**Estado:** cerrado mediante el
+[PR #74](https://github.com/alcyedmundo281/biosemiotics/pull/74), con CI correcta.
 
 - **Cambio:** alinear README, LEEME y CLAUDE con `.qmd`, Quarto y rutas reales;
   documentar dependencias reproducibles y un comando de preflight.
@@ -166,6 +189,20 @@ El ciclo queda cerrado cuando ese PR se fusione con todos sus checks correctos.
   publicación, índices coherentes y pruebas de regresión de los ciclos 1–6.
 - **Revisión adicional:** comprobar si el JATS generado cumple el uso de depósito
   que se anuncia; completar referencias y formato o documentar su alcance real.
+- **Implementación:** README, LEEME y CLAUDE describen las fuentes `.qmd`, las
+  rutas y comandos actuales. `requirements.txt` fija PyYAML y
+  `preflight.py` comprueba entorno, contrato editorial, índice y publicación;
+  el perfil `--publicacion` exige también toda la toolchain de EPUB/PDF.
+- **Trazabilidad:** cada ficha del índice registra `ghost_sha256`, calculado
+  por el mismo render puro que genera el cuerpo Ghost. La verificación de
+  publicación vuelve a calcularlo y bloquea cualquier deriva.
+- **JATS:** la revisión mostró que el XML no declara DTD, no expande las
+  referencias y no valida un perfil de repositorio. Se conserva como XML
+  experimental de intercambio, marcado como material educativo, y se retira
+  toda afirmación de que esté listo para depósito.
+- **Evidencia local:** 92 pruebas; preflight correcto para 43 entidades y 186
+  relaciones; índice coherente con 41 URLs; huella global de los 42 cuerpos
+  Ghost idéntica a la del ciclo 6.
 
 ## Registro de ejecución
 
@@ -174,7 +211,10 @@ El ciclo queda cerrado cuando ese PR se fusione con todos sus checks correctos.
 | 1 | [PR #67](https://github.com/alcyedmundo281/biosemiotics/pull/67), `codex/renovacion-ciclo-1` | 44 pruebas; CI correcta | Cerrado, merge `9164198` |
 | 2 | [PR #68](https://github.com/alcyedmundo281/biosemiotics/pull/68), `codex/renovacion-ciclo-2` | 52 pruebas; CI correcta | Cerrado, merge `913e09e` |
 | 3 | [PR #69](https://github.com/alcyedmundo281/biosemiotics/pull/69), `codex/renovacion-ciclo-3` | 59 pruebas; CI correcta | Cerrado, merge `3e9af32` |
-| 4 | [PR #70](https://github.com/alcyedmundo281/biosemiotics/pull/70), `codex/renovacion-ciclo-4` | 73 pruebas; simulaciones de red y exenciones | Implementado; cierre por merge del PR con CI correcta |
+| 4 | [PR #70](https://github.com/alcyedmundo281/biosemiotics/pull/70), `codex/renovacion-ciclo-4` | 73 pruebas; CI correcta | Cerrado, merge `bfe3957` |
+| 5 | [PR #72](https://github.com/alcyedmundo281/biosemiotics/pull/72), `codex/renovacion-ciclo-5` | 82 pruebas; comandos desde raíz, scripts y directorio externo | Cerrado, merge `af9b752` |
+| 6 | [PR #73](https://github.com/alcyedmundo281/biosemiotics/pull/73), `codex/renovacion-ciclo-6` | 84 pruebas; derivados y API histórica sin cambios | Cerrado; integración registrada en el PR |
+| 7 | [PR #74](https://github.com/alcyedmundo281/biosemiotics/pull/74), `codex/renovacion-ciclo-7` | 92 pruebas; preflight, huellas Ghost y documentación verificadas | Cerrado; integración registrada en el PR |
 
 ## Trabajo editorial conservado
 
