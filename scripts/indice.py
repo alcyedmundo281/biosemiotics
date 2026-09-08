@@ -15,18 +15,21 @@ Produce en build/:
   index.json          fichas ricas → el buscador con facetas
   atlas-inject.html   code injection de la página /atlas de Ghost
   jsonld/*.json       schema.org por post (Google + sistemas de IA)
-  jats/*.xml          JATS para DEPÓSITO y archivo (NO se sube a Ghost)
+  jats/*.xml          XML experimental con vocabulario JATS (NO para depósito directo)
 """
 import argparse
 import json
 import sys
 import xml.etree.ElementTree as ET
 from pathlib import Path
+from typing import Optional
 
 sys.stdout.reconfigure(encoding="utf-8")
 
 sys.path.insert(0, str(Path(__file__).parent))
 from banco import cargar, estado_publicacion, seleccionar_publicables  # noqa: E402
+from bibliografia import cargar_bibliografia  # noqa: E402
+from ghost import huella_cuerpo_ghost  # noqa: E402
 from validacion import exigir_editorial  # noqa: E402
 from rutas import raiz_argumentos, raiz_desde_argumentos  # noqa: E402
 
@@ -46,11 +49,13 @@ ET.register_namespace("xlink", XLINK_NS)
 
 
 # ══════════════════ 1. LA FICHA (el registro tipo PubMed) ══════════════════
-def ficha(e: dict) -> dict:
+def ficha(e: dict, bibliografia: Optional[dict] = None) -> dict:
     f = {"id": e["id"], "tipo": e["tipo"], "titulo": e["titulo"]}
     f["estado"] = estado_publicacion(e)
     f["fecha_revision"] = str(e["fecha_revision"]) if e.get("fecha_revision") else None
     f["ghost_id"] = e.get("ghost_id")
+    if bibliografia is not None:
+        f["ghost_sha256"] = huella_cuerpo_ghost(e, bibliografia)
 
     for k in ("titulo_en", "url", "doi", "version", "abstract",
               "sistema", "organo", "nivel", "ventana", "pregunta_clinica",
@@ -151,7 +156,8 @@ def jsonld(e: dict) -> dict:
     return {k: v for k, v in ld.items() if v}
 
 
-# Mapeo instructivo → JATS. El núcleo archivable; la envoltura NO se deposita.
+# Mapeo instructivo → vocabulario JATS. El núcleo se conserva; la envoltura
+# comunitaria de Ghost no forma parte de este intercambio experimental.
 SEC_MAP = {
     "la pregunta clínica": "clinical-question",
     "viñeta clínica": "case-presentation",
@@ -190,9 +196,15 @@ def secciones(cuerpo: str):
     return [s for s in out if s[0]]
 
 
-# ══════════════════ 3. JATS (depósito y archivo — NO Ghost) ══════════════════
+# ═══════════ 3. XML de intercambio inspirado en JATS — NO Ghost ═══════════
 def jats(e: dict) -> str:
-    a = ET.Element("article", {"article-type": "research-article"})
+    # No se declara DTD ni perfil de un repositorio. Las fichas son material
+    # educativo, no artículos de investigación; cada destino debe completar y
+    # validar este XML contra su propia variante de JATS antes de depositarlo.
+    a = ET.Element("article", {
+        "article-type": "other",
+        "specific-use": "biosemiotics-educational-interchange",
+    })
     meta = ET.SubElement(ET.SubElement(a, "front"), "article-meta")
 
     if e.get("doi"):
@@ -264,7 +276,7 @@ def jats(e: dict) -> str:
             fig = ET.SubElement(body, "fig")
             ET.SubElement(ET.SubElement(fig, "caption"), "p").text = \
                 m.get("descripcion", "")
-            # Atribución de la imagen: viaja al archivo JATS, no solo a Ghost.
+            # La atribución viaja al XML de intercambio, no solo a Ghost.
             if m.get("credito"):
                 partes = [m["credito"]]
                 if m.get("fuente"):
@@ -488,7 +500,8 @@ def main():
             raise RuntimeError(f"directorio de derivados enlazado: {directorio}")
     b.mkdir(exist_ok=True)
 
-    fichas = [ficha(e) for e in ent]
+    bibliografia = cargar_bibliografia(raiz / "refs.bib")
+    fichas = [ficha(e, bibliografia) for e in ent]
     (b / "index.json").write_text(
         json.dumps({"fichas": fichas}, ensure_ascii=False, indent=1),
         encoding="utf-8")
@@ -530,7 +543,7 @@ def main():
     print(f"   primario  {url_primaria}")
     print(f"   respaldo  {url}")
     print(f"→ jsonld/           {len(ent)} · schema.org (Google + IA)")
-    print(f"→ jats/             {len(ent)} · XML para DEPÓSITO (no para Ghost)")
+    print(f"→ jats/             {len(ent)} · XML experimental basado en JATS")
     if fichas:
         print(f"\n   proyección: 1.000 fichas ≈ {kb / len(fichas) * 1000:.0f} KB")
     if sin_ab:

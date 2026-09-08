@@ -25,6 +25,8 @@ from pathlib import Path
 from typing import Optional
 
 from banco import cargar, estado_publicacion, seleccionar_publicables
+from bibliografia import cargar_bibliografia
+from ghost import huella_cuerpo_ghost
 from indice import URL_PRIMARIA, URL_RESPALDO, XLINK_NS
 from rutas import desde_raiz, raiz_argumentos, raiz_desde_argumentos
 
@@ -254,7 +256,7 @@ def main() -> int:
     ap.add_argument(
         "--verificar-derivados",
         action="store_true",
-        help="valida atlas, JSON-LD, JATS y referencias de imagen en LaTeX",
+        help="valida atlas, JSON-LD, XML JATS experimental e imágenes en LaTeX",
     )
     ap.add_argument(
         "--epub",
@@ -266,6 +268,7 @@ def main() -> int:
     raiz = raiz_desde_argumentos(ap, args)
     entidades = cargar(raiz)
     publicables = seleccionar_publicables(entidades)
+    bibliografia = cargar_bibliografia(raiz / "refs.bib")
     por_id = {e["id"]: e for e in entidades}
     indice = json.loads((raiz / "build" / "index.json").read_text(encoding="utf-8"))
     fichas = {f["id"]: f for f in indice["fichas"]}
@@ -278,7 +281,8 @@ def main() -> int:
         f = fichas.get(e["id"], {})
         for campo, valor in (("estado", estado_publicacion(e)),
                              ("fecha_revision", str(e["fecha_revision"]) if e.get("fecha_revision") else None),
-                             ("ghost_id", e.get("ghost_id"))):
+                             ("ghost_id", e.get("ghost_id")),
+                             ("ghost_sha256", huella_cuerpo_ghost(e, bibliografia))):
             if f.get(campo) != valor:
                 error(errores, f"{e['id']}: {campo} distinto entre fuente e índice")
     objetivo_verificado: str | None = None

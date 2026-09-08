@@ -178,7 +178,7 @@ fusionado con CI correcta; merge `af9b752`.
 
 ## Ciclo 7 — Hacer verificable todo el flujo editorial
 
-**Estado:** pendiente.
+**Estado:** implementado; pendiente de CI e integración.
 
 - **Cambio:** alinear README, LEEME y CLAUDE con `.qmd`, Quarto y rutas reales;
   documentar dependencias reproducibles y un comando de preflight.
@@ -188,6 +188,20 @@ fusionado con CI correcta; merge `af9b752`.
   publicación, índices coherentes y pruebas de regresión de los ciclos 1–6.
 - **Revisión adicional:** comprobar si el JATS generado cumple el uso de depósito
   que se anuncia; completar referencias y formato o documentar su alcance real.
+- **Implementación:** README, LEEME y CLAUDE describen las fuentes `.qmd`, las
+  rutas y comandos actuales. `requirements.txt` fija PyYAML y
+  `preflight.py` comprueba entorno, contrato editorial, índice y publicación;
+  el perfil `--publicacion` exige también toda la toolchain de EPUB/PDF.
+- **Trazabilidad:** cada ficha del índice registra `ghost_sha256`, calculado
+  por el mismo render puro que genera el cuerpo Ghost. La verificación de
+  publicación vuelve a calcularlo y bloquea cualquier deriva.
+- **JATS:** la revisión mostró que el XML no declara DTD, no expande las
+  referencias y no valida un perfil de repositorio. Se conserva como XML
+  experimental de intercambio, marcado como material educativo, y se retira
+  toda afirmación de que esté listo para depósito.
+- **Evidencia local:** 92 pruebas; preflight correcto para 43 entidades y 186
+  relaciones; índice coherente con 41 URLs; huella global de los 42 cuerpos
+  Ghost idéntica a la del ciclo 6.
 
 ## Registro de ejecución
 
@@ -199,6 +213,7 @@ fusionado con CI correcta; merge `af9b752`.
 | 4 | [PR #70](https://github.com/alcyedmundo281/biosemiotics/pull/70), `codex/renovacion-ciclo-4` | 73 pruebas; CI correcta | Cerrado, merge `bfe3957` |
 | 5 | [PR #72](https://github.com/alcyedmundo281/biosemiotics/pull/72), `codex/renovacion-ciclo-5` | 82 pruebas; comandos desde raíz, scripts y directorio externo | Cerrado, merge `af9b752` |
 | 6 | [PR #73](https://github.com/alcyedmundo281/biosemiotics/pull/73), `codex/renovacion-ciclo-6` | 84 pruebas; derivados y API histórica sin cambios | Cerrado; integración registrada en el PR |
+| 7 | `codex/renovacion-ciclo-7` | 92 pruebas; preflight, huellas Ghost y documentación verificadas | Implementado; pendiente de PR y CI |
 
 ## Trabajo editorial conservado
 

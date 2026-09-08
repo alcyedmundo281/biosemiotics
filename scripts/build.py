@@ -19,19 +19,12 @@ from bibliografia import (
     quitar_bibliografia_manual, referencia_ghost, resolver_citas,
 )
 from configuracion import CAPITULOS, NIVELES, ORGANOS, RELS, SISTEMAS, nombre_organo
+from ghost import LINEA_RETO, markdown_ghost
 from rutas import raiz_argumentos, raiz_desde_argumentos
 from validacion import SECCIONES, errores_editoriales, exigir_editorial, validar
 
 sys.stdout.reconfigure(encoding="utf-8")
 sys.stderr.reconfigure(encoding="utf-8")
-
-LINEA_RETO = (
-    "---\n"
-    "\n"
-    "**¿Reconoces este signo cuando no te avisan?** "
-    "[Ponte a prueba en el Reto](https://www.biosemiotics.net/reto/?signo={id})"
-)
-
 
 def build_sqlite(entidades, build_dir: Path) -> Path:
     estados = [estado_publicacion(e) for e in entidades]
@@ -107,23 +100,9 @@ def build_ghost(entidades, build_dir: Path, bib_path: Path) -> Path:
     destino.mkdir(parents=True)
     bib = cargar_bibliografia(bib_path)
     for entidad in entidades:
-        cuerpo = quitar_bibliografia_manual(entidad["cuerpo"])
-        cuerpo, orden = resolver_citas(cuerpo, entidad.get("refs") or [], bib)
-        referencias = [referencia_ghost(i, bib[clave])
-                       for i, clave in enumerate(orden, 1)]
-        if referencias:
-            cuerpo = cuerpo.rstrip() + "\n\n## Evidencia\n\n" + "\n".join(referencias)
-        if entidad["tipo"] == "signo":
-            cuerpo = cuerpo.rstrip() + "\n\n" + LINEA_RETO.format(id=entidad["id"])
-        cabecera = "\n".join([
-            "---",
-            f"title: {json.dumps(str(entidad['titulo']), ensure_ascii=False)}",
-            f"excerpt: {json.dumps(excerpt_ghost(entidad.get('abstract')), ensure_ascii=False)}",
-            "---", "",
-        ])
         archivo = destino / entidad["_archivo"]
         archivo.parent.mkdir(parents=True, exist_ok=True)
-        archivo.write_text(cabecera + cuerpo.rstrip() + "\n", encoding="utf-8")
+        archivo.write_text(markdown_ghost(entidad, bib), encoding="utf-8")
     return destino
 
 

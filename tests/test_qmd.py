@@ -10,7 +10,7 @@ import unittest
 from pathlib import Path
 
 # `qmd.py` y `epub.py` se ejecutan como scripts (`python scripts/qmd.py`), así
-# que importan `build` a secas. Para poder probarlos hay que poner `scripts/`
+# que importan módulos hermanos. Para poder probarlos hay que poner `scripts/`
 # en la ruta igual que lo haría el intérprete al lanzarlos.
 RAIZ = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(RAIZ / "scripts"))
