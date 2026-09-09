@@ -59,10 +59,10 @@ cuantitativos de la Oleada 3.
 El banco contiene **44 entidades**: 17 conceptos, 26 signos y 1 caso.
 El índice contiene 43 entidades; solo el caso en borrador queda excluido
 de las salidas públicas.
-Hay 24 signos con URL pública en Ghost; disfunción diastólica (E/e’) está
+Hay 25 signos con URL pública en Ghost; disfunción diastólica (E/e’) está
 escrita y validada, pendiente de revisión clínica, imagen y publicación.
-VTI está aprobado clínica y editorialmente (2026-09-06), con imagen atribuida,
-pendiente de publicación en Ghost.
+VTI está publicado en Ghost (2026-09-09), con imagen atribuida y trazabilidad
+pospublicación completa.
 
 | signo | sistema | organo | nivel | estado |
 |---|---|---|---|---|
@@ -147,7 +147,7 @@ pendiente de publicación en Ghost.
 
 | signo | sistema | organo | nivel | escenario | decisión que cambia |
 |---|---|---|---|---|---|
-| VTI (integral velocidad-tiempo) | cardiovascular | corazon | avanzado | uci | primera entrada del recorrido por indicación de Alcy; medición reproducible e integración del flujo → reevaluación/apoyo; revisado con imagen atribuida, pendiente de publicación |
+| [VTI (integral velocidad-tiempo)](https://www.biosemiotics.net/vti-comprobar-el-flujo-antes-de-decidir-sobre-liquidos/) | cardiovascular | corazon | avanzado | uci | primera entrada del recorrido por indicación de Alcy; medición reproducible e integración del flujo → reevaluación/apoyo; ✅ publicado con imagen atribuida |
 | Disfunción diastólica (E/e') | cardiovascular | corazon | avanzado | consulta, uci | estimación integrada de presiones de llenado → evaluación formal; escrita previamente, pendiente de revisión clínica y publicación |
 | Gasto cardíaco | cardiovascular | corazon | avanzado | uci | estado hemodinámico → vasoactivos |
 | FEVI por Simpson biplano | cardiovascular | corazon | avanzado | consulta, uci | método de referencia; trazado de bordes en 2 planos |
@@ -203,9 +203,8 @@ Oleada 1 y las rutas avanzadas que reutilizarán esos conceptos.
 2. **Oleada 2 publicada completa (8 de 8).** Taponamiento cardíaco, sobrecarga del ventrículo derecho / TEP, colecistitis aguda, coledocolitiasis, apendicitis, absceso de partes blandas, hernia complicada y embarazo ectópico tienen URL pública en Ghost.
 3. ~~Antes de los signos que lo necesiten: escribir y validar Doppler y Cuantificación y sus límites.~~ **Hecho (2026-08-15):** ambos conceptos base están escritos y validados.
 4. **Conceptos base: regla dura.** Un signo NO se publica sin su concepto base ya en el banco. El concepto base requerido se escribe y valida ANTES que el signo, no en paralelo ni después.
-5. **Oleada 3 en curso:** VTI abre el recorrido por indicación de Alcy
-   (2026-09-06), aprobado clínica y editorialmente, con referencias e imagen
-   atribuida, pendiente de publicación. Se conserva E/e’, escrita previamente y
+5. **Oleada 3 en curso:** VTI abrió el recorrido por indicación de Alcy y fue
+   publicado (2026-09-09), con referencias e imagen atribuida. Se conserva E/e’, escrita previamente y
    pendiente de revisión clínica, imagen y publicación. Siguiente ficha nueva:
    gasto cardíaco. Después: Extensiones.
 
@@ -214,7 +213,7 @@ Cada cifra, verificada contra PubMed antes de publicar. Cada signo, con su secci
 
 ### Conteo
 - Banco actual: **44 entidades** (17 conceptos, 26 signos y 1 caso)
-- Signos publicados: **24 de 26**
+- Signos publicados: **25 de 26**
 - Conceptos esperando URL de Ghost: **0**
 - Oleada 1 completada: **8 de 8 signos**
 - Oleada 2 **escrita completa: 8 de 8 signos** (8 publicados, 0 esperando URL). La fila «colección/absceso, hernia complicada» se desdobló en dos: son dos significantes y dos decisiones distintas
