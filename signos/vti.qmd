@@ -1,12 +1,12 @@
 ---
-estado: revisado
+estado: publicado
 fecha_revision: 2026-09-06
-ghost_id: null
+ghost_id: "6aa0a10d3a4d3c0001204989"
 id: signo-vti
 tipo: signo
 titulo: "VTI: comprobar el flujo antes de decidir sobre líquidos"
 titulo_en: "Left ventricular outflow tract velocity-time integral"
-url: ""
+url: "https://www.biosemiotics.net/vti-comprobar-el-flujo-antes-de-decidir-sobre-liquidos/"
 doi: null
 version: "1.0"
 abstract: >
