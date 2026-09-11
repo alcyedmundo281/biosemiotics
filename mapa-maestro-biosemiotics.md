@@ -57,9 +57,9 @@ cuantitativos de la Oleada 3.
 ## 2. Estado actual (lo ya publicado)
 
 El banco contiene **45 entidades**: 17 conceptos, 27 signos y 1 caso.
-El índice contiene 43 entidades; el caso y la nueva ficha de gasto cardíaco
-quedan excluidos de las salidas públicas mientras continúan en borrador. Los
-otros 26 signos tienen URL pública en Ghost. VTI fue publicado el
+El índice contiene 44 entidades; solo el caso permanece excluido de las salidas
+públicas. Gasto cardíaco fue aprobado clínicamente y está pendiente de
+publicación. Los otros 26 signos tienen URL pública en Ghost. VTI fue publicado el
 2026-09-09 y disfunción diastólica (E/e’) el 2026-09-06; ambos cuentan con imagen
 atribuida.
 
@@ -150,7 +150,7 @@ atribuida.
 |---|---|---|---|---|---|
 | [VTI (integral velocidad-tiempo)](https://www.biosemiotics.net/vti-comprobar-el-flujo-antes-de-decidir-sobre-liquidos/) | cardiovascular | corazon | avanzado | uci | primera entrada del recorrido por indicación de Alcy; medición reproducible e integración del flujo → reevaluación/apoyo; ✅ publicado con imagen atribuida |
 | [Disfunción diastólica (E/e')](https://www.biosemiotics.net/disfuncion-diastolica-e-e-orienta-no-sentencia/) | cardiovascular | corazon | avanzado | consulta, uci | estimación integrada de presiones de llenado → evaluación formal; ✅ publicado con imagen atribuida |
-| Gasto cardíaco | cardiovascular | corazon | avanzado | uci | estimación reproducible del flujo → integración hemodinámica; 📝 borrador en revisión |
+| Gasto cardíaco | cardiovascular | corazon | avanzado | uci | estimación reproducible del flujo → integración hemodinámica; ✅ aprobado con imagen original, pendiente de publicación |
 | FEVI por Simpson biplano | cardiovascular | corazon | avanzado | consulta, uci | método de referencia; trazado de bordes en 2 planos |
 | FEVI por métodos lineales (Teichholz, FA) | cardiovascular | corazon | intermedio | consulta | estimación cuantitativa rápida en modo M |
 | Protocolo VExUS (congestión venosa) | multiorgano | cava | avanzado | uci | congestión sistémica → descongestión guiada |
@@ -206,8 +206,8 @@ Oleada 1 y las rutas avanzadas que reutilizarán esos conceptos.
 4. **Conceptos base: regla dura.** Un signo NO se publica sin su concepto base ya en el banco. El concepto base requerido se escribe y valida ANTES que el signo, no en paralelo ni después.
 5. **Oleada 3 en curso:** VTI abrió el recorrido por indicación de Alcy y fue
    publicado el 2026-09-09. E/e’ está publicado desde el 2026-09-06 y su
-   trazabilidad quedó conciliada con el repositorio. Gasto cardíaco es el borrador
-   clínico actual; tras su revisión, la siguiente ficha nueva será FEVI por
+   trazabilidad quedó conciliada con el repositorio. Gasto cardíaco fue aprobado
+   clínicamente y cuenta con imagen; tras publicarlo, la siguiente ficha nueva será FEVI por
    Simpson biplano. Después: Extensiones.
 
 ### La regla que no cambia
@@ -215,7 +215,7 @@ Cada cifra, verificada contra PubMed antes de publicar. Cada signo, con su secci
 
 ### Conteo
 - Banco actual: **45 entidades** (17 conceptos, 27 signos y 1 caso)
-- Signos publicados: **26 de 27**; gasto cardíaco permanece en borrador
+- Signos publicados: **26 de 27**; gasto cardíaco está aprobado y pendiente de publicación
 - Conceptos esperando URL de Ghost: **0**
 - Oleada 1 completada: **8 de 8 signos**
 - Oleada 2 **escrita completa: 8 de 8 signos** (8 publicados, 0 esperando URL). La fila «colección/absceso, hernia complicada» se desdobló en dos: son dos significantes y dos decisiones distintas

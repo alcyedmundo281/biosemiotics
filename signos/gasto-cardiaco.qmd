@@ -1,6 +1,6 @@
 ---
-estado: borrador
-fecha_revision: null
+estado: revisado
+fecha_revision: 2026-09-10
 ghost_id: null
 id: signo-gasto-cardiaco
 tipo: signo
@@ -41,7 +41,17 @@ autores:
     orcid: "0000-0002-9742-375X"
     afiliacion: "Universidad Central del Ecuador"
     credit: [conceptualizacion, redaccion, supervision]
-medios: []
+medios:
+  - tipo: imagen
+    destacada: true
+    id: "biosemiotics:ilustracion-gasto-cardiaco-2026"
+    descripcion: "Secuencia ilustrativa desde la adquisición ecocardiográfica y la envolvente Doppler del TSVI hasta la estimación del flujo por minuto; no representa una medición de un paciente ni un umbral terapéutico."
+    credito: "Biosemiotics; ilustración original generada con OpenAI y revisada editorialmente"
+    fuente: "Biosemiotics"
+    fuente_url: "https://www.biosemiotics.net/"
+    licencia_img: "CC BY 4.0"
+    licencia_url: "https://creativecommons.org/licenses/by/4.0/"
+    archivo_local: "assets/img/gasto-cardiaco.png"
 refs: [porter2015, taub2025, wetterslev2016, zhang2019, orde2017, jozwiak2019]
 fecha: 2026-09-10
 actualizado: 2026-09-10
