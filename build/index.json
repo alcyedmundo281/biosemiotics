@@ -2195,6 +2195,98 @@
    "n_refs": 4
   },
   {
+   "id": "signo-gasto-cardiaco",
+   "tipo": "signo",
+   "titulo": "Gasto cardíaco: calcular el flujo sin ocultar el error",
+   "estado": "revisado",
+   "fecha_revision": "2026-09-10",
+   "ghost_id": null,
+   "ghost_sha256": "8ed67a24305a88551782ba8c5685309e4e373a129253b9f894c3b58cffac4fea",
+   "titulo_en": "Doppler-derived cardiac output",
+   "version": "1.0",
+   "abstract": "El diámetro del tracto de salida del ventrículo izquierdo y su VTI permiten estimar el volumen sistólico; al multiplicarlo por la frecuencia cardíaca se obtiene el gasto cardíaco. La medición ayuda a describir y seguir el flujo en pacientes críticos, pero exige adquisición reproducible e integración hemodinámica. Errores del diámetro, arritmias, valvulopatía y obstrucción del tracto pueden volver engañosa una cifra aparentemente precisa.\n",
+   "sistema": "cardiovascular",
+   "organo": "corazon",
+   "nivel": "avanzado",
+   "ventana": "paraesternal-larga-apical-cinco-camaras",
+   "pregunta_clinica": "¿Puedo estimar un gasto cardíaco reproducible y usar su tendencia para comprender el estado hemodinámico?",
+   "significante": "Diámetro del TSVI en paraesternal larga y envolvente VTI subaórtica por Doppler pulsado, combinados con la frecuencia cardíaca del mismo registro.",
+   "significado": "Estimación del volumen de sangre expulsado por minuto a través del tracto de salida del ventrículo izquierdo.",
+   "umbral": "Sin punto de corte terapéutico universal para una medición ecocardiográfica aislada.",
+   "licencia": "CC-BY-4.0",
+   "fecha": "2026-09-10",
+   "actualizado": "2026-09-10",
+   "decision": "Comprobar la calidad, describir el flujo y su tendencia e integrarlos con perfusión, resistencia vascular, congestión y causa del shock antes de ajustar líquidos o vasoactivos.",
+   "sonda": [
+    "sectorial"
+   ],
+   "escenario": [
+    "uci"
+   ],
+   "descriptores": [
+    "gasto-cardiaco",
+    "volumen-sistolico",
+    "vti",
+    "tracto-salida-vi",
+    "doppler-pulsado"
+   ],
+   "mesh": [
+    "Cardiac Output",
+    "Stroke Volume",
+    "Echocardiography, Doppler",
+    "Hemodynamics"
+   ],
+   "falsos_positivos": [
+    "Gasto aparentemente alto o bajo por medir el diámetro del TSVI en un corte oblicuo o en un nivel distinto al del Doppler",
+    "VTI sobrestimado al situar la muestra en la zona de aceleración o trazar ruido fuera de la envolvente densa",
+    "Gasto aparentemente cambiado por usar una frecuencia cardíaca no simultánea o ciclos no comparables",
+    "Flujo anterógrado que no representa gasto sistémico efectivo en regurgitación aórtica importante"
+   ],
+   "se_basa_en": [
+    "doppler",
+    "cuantificacion-limites",
+    "ventanas-cardiacas",
+    "signo-vti"
+   ],
+   "autores": [
+    {
+     "nombre": "Alcy Edmundo Torres Guerrero",
+     "orcid": "0000-0002-9742-375X",
+     "afiliacion": "Universidad Central del Ecuador",
+     "credit": [
+      "conceptualizacion",
+      "redaccion",
+      "supervision"
+     ]
+    }
+   ],
+   "medios": [
+    {
+     "tipo": "imagen",
+     "destacada": true,
+     "id": "biosemiotics:ilustracion-gasto-cardiaco-2026",
+     "descripcion": "Secuencia ilustrativa desde la adquisición ecocardiográfica y la envolvente Doppler del TSVI hasta la estimación del flujo por minuto; no representa una medición de un paciente ni un umbral terapéutico.",
+     "credito": "Biosemiotics; ilustración original generada con OpenAI y revisada editorialmente",
+     "fuente": "Biosemiotics",
+     "fuente_url": "https://www.biosemiotics.net/",
+     "licencia_img": "CC BY 4.0",
+     "licencia_url": "https://creativecommons.org/licenses/by/4.0/",
+     "archivo_local": "assets/img/gasto-cardiaco.png"
+    }
+   ],
+   "n_loops": 0,
+   "n_imagenes": 1,
+   "refs": [
+    "porter2015",
+    "taub2025",
+    "wetterslev2016",
+    "zhang2019",
+    "orde2017",
+    "jozwiak2019"
+   ],
+   "n_refs": 6
+  },
+  {
    "id": "signo-globo-vesical",
    "tipo": "signo",
    "titulo": "Globo vesical",
