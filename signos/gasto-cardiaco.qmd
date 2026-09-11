@@ -1,12 +1,12 @@
 ---
-estado: revisado
+estado: publicado
 fecha_revision: 2026-09-10
-ghost_id: null
+ghost_id: "6aa38eb6ac72030001bec309"
 id: signo-gasto-cardiaco
 tipo: signo
 titulo: "Gasto cardíaco: calcular el flujo sin ocultar el error"
 titulo_en: "Doppler-derived cardiac output"
-url: ""
+url: "https://www.biosemiotics.net/gasto-cardiaco-calcular-el-flujo-sin-ocultar-el-error/"
 doi: null
 version: "1.0"
 abstract: >
