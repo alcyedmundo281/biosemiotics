@@ -94,7 +94,7 @@ pulsado. Conserva las imágenes y trazados originales.
    oblicuo.
 2. En apical de cinco cámaras o apical larga, alinea el haz con el TSVI. Coloca
    la muestra pulsada proximal a la válvula aórtica, donde la envolvente sea
-   estrecha y definida; traza el borde de la señal densa [porter2015, orde2017].
+   estrecha y definida; traza el borde de la señal densa [porter2015] [orde2017].
 3. Usa el diámetro y el VTI obtenidos en niveles anatómicos concordantes. Registra
    ritmo, frecuencia cardíaca, posición, ventilación y momento de la medición.
 4. Promedia ciclos comparables. En ritmo irregular necesitas más ciclos y no

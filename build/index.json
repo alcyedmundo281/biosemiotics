@@ -2201,7 +2201,7 @@
    "estado": "revisado",
    "fecha_revision": "2026-09-10",
    "ghost_id": null,
-   "ghost_sha256": "8ed67a24305a88551782ba8c5685309e4e373a129253b9f894c3b58cffac4fea",
+   "ghost_sha256": "8f398fd97ef5c7d10bb7172e91093fd4df5d3a12d8552398469882c9a437427b",
    "titulo_en": "Doppler-derived cardiac output",
    "version": "1.0",
    "abstract": "El diámetro del tracto de salida del ventrículo izquierdo y su VTI permiten estimar el volumen sistólico; al multiplicarlo por la frecuencia cardíaca se obtiene el gasto cardíaco. La medición ayuda a describir y seguir el flujo en pacientes críticos, pero exige adquisición reproducible e integración hemodinámica. Errores del diámetro, arritmias, valvulopatía y obstrucción del tracto pueden volver engañosa una cifra aparentemente precisa.\n",
