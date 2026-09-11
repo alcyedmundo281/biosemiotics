@@ -1,0 +1,38 @@
+cff-version: 1.2.0
+message: "Si utiliza este material, por favor cítelo como se indica."
+title: "biosemiotics"
+abstract: >-
+  Atlas educativo de ecografía en el punto de atención (POCUS) en español,
+  dirigido al médico de primer contacto. Su tesis es semiótica: cada hallazgo
+  ecográfico se modela como un signo que une un significante (lo que se ve en
+  pantalla), un significado (la realidad clínica a la que remite) y una
+  decisión (qué cambia en el manejo del paciente). El banco de contenidos está
+  escrito en Markdown con front-matter YAML —conceptos, signos y casos
+  clínicos— y un pipeline en Python deriva de esa única fuente una base SQLite
+  navegable, LaTeX/BibLaTeX para libro, un grafo de conceptos en JSON, fichas
+  JSON-LD, XML JATS y un índice con buscador facetado. Toda cifra clínica se
+  verifica contra PubMed antes de publicarse y todo signo declara sus límites.
+type: software
+authors:
+  - family-names: "Torres Guerrero"
+    given-names: "Alcy Edmundo"
+    orcid: "https://orcid.org/0000-0002-9742-375X"
+    affiliation: "Hospital de Especialidades Carlos Andrade Marín; Universidad Central del Ecuador"
+repository-code: "https://github.com/alcyedmundo281/biosemiotics"
+url: "https://www.biosemiotics.net/"
+license: CC-BY-4.0
+keywords:
+  - POCUS
+  - point-of-care ultrasound
+  - ecografía en el punto de atención
+  - ultrasonido clínico
+  - clinical ultrasound
+  - educación médica
+  - medical education
+  - semiótica clínica
+  - clinical semiotics
+  - atlas
+  - medicina de primer contacto
+  - primary care
+  - recursos educativos abiertos
+  - open educational resources
