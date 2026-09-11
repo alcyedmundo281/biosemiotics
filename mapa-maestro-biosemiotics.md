@@ -56,11 +56,12 @@ cuantitativos de la Oleada 3.
 
 ## 2. Estado actual (lo ya publicado)
 
-El banco contiene **44 entidades**: 17 conceptos, 26 signos y 1 caso.
-El índice contiene 43 entidades; solo el caso en borrador queda excluido
-de las salidas públicas.
-Los 26 signos tienen URL pública en Ghost. VTI fue publicado el 2026-09-09 y
-disfunción diastólica (E/e’) el 2026-09-06; ambos cuentan con imagen atribuida.
+El banco contiene **45 entidades**: 17 conceptos, 27 signos y 1 caso.
+El índice contiene 43 entidades; el caso y la nueva ficha de gasto cardíaco
+quedan excluidos de las salidas públicas mientras continúan en borrador. Los
+otros 26 signos tienen URL pública en Ghost. VTI fue publicado el
+2026-09-09 y disfunción diastólica (E/e’) el 2026-09-06; ambos cuentan con imagen
+atribuida.
 
 | signo | sistema | organo | nivel | estado |
 |---|---|---|---|---|
@@ -149,7 +150,7 @@ disfunción diastólica (E/e’) el 2026-09-06; ambos cuentan con imagen atribui
 |---|---|---|---|---|---|
 | [VTI (integral velocidad-tiempo)](https://www.biosemiotics.net/vti-comprobar-el-flujo-antes-de-decidir-sobre-liquidos/) | cardiovascular | corazon | avanzado | uci | primera entrada del recorrido por indicación de Alcy; medición reproducible e integración del flujo → reevaluación/apoyo; ✅ publicado con imagen atribuida |
 | [Disfunción diastólica (E/e')](https://www.biosemiotics.net/disfuncion-diastolica-e-e-orienta-no-sentencia/) | cardiovascular | corazon | avanzado | consulta, uci | estimación integrada de presiones de llenado → evaluación formal; ✅ publicado con imagen atribuida |
-| Gasto cardíaco | cardiovascular | corazon | avanzado | uci | estado hemodinámico → vasoactivos |
+| Gasto cardíaco | cardiovascular | corazon | avanzado | uci | estimación reproducible del flujo → integración hemodinámica; 📝 borrador en revisión |
 | FEVI por Simpson biplano | cardiovascular | corazon | avanzado | consulta, uci | método de referencia; trazado de bordes en 2 planos |
 | FEVI por métodos lineales (Teichholz, FA) | cardiovascular | corazon | intermedio | consulta | estimación cuantitativa rápida en modo M |
 | Protocolo VExUS (congestión venosa) | multiorgano | cava | avanzado | uci | congestión sistémica → descongestión guiada |
@@ -205,21 +206,22 @@ Oleada 1 y las rutas avanzadas que reutilizarán esos conceptos.
 4. **Conceptos base: regla dura.** Un signo NO se publica sin su concepto base ya en el banco. El concepto base requerido se escribe y valida ANTES que el signo, no en paralelo ni después.
 5. **Oleada 3 en curso:** VTI abrió el recorrido por indicación de Alcy y fue
    publicado el 2026-09-09. E/e’ está publicado desde el 2026-09-06 y su
-   trazabilidad quedó conciliada con el repositorio. Siguiente ficha nueva:
-   gasto cardíaco. Después: Extensiones.
+   trazabilidad quedó conciliada con el repositorio. Gasto cardíaco es el borrador
+   clínico actual; tras su revisión, la siguiente ficha nueva será FEVI por
+   Simpson biplano. Después: Extensiones.
 
 ### La regla que no cambia
 Cada cifra, verificada contra PubMed antes de publicar. Cada signo, con su sección de límites ("dónde NO confiar"). El orden por oleada mantiene vivo el mensaje: *empezar es más fácil de lo que te dijeron.*
 
 ### Conteo
-- Banco actual: **44 entidades** (17 conceptos, 26 signos y 1 caso)
-- Signos publicados: **26 de 26**
+- Banco actual: **45 entidades** (17 conceptos, 27 signos y 1 caso)
+- Signos publicados: **26 de 27**; gasto cardíaco permanece en borrador
 - Conceptos esperando URL de Ghost: **0**
 - Oleada 1 completada: **8 de 8 signos**
 - Oleada 2 **escrita completa: 8 de 8 signos** (8 publicados, 0 esperando URL). La fila «colección/absceso, hernia complicada» se desdobló en dos: son dos significantes y dos decisiones distintas
 - Conceptos base pendientes: **0** — Doppler y «Cuantificación y sus límites» escritos y validados. **La Oleada 3 queda desbloqueada**
 - FAST/eFAST **completo**: 4 ventanas nuevas (Morrison, esplenorrenal, Douglas, hemotórax) + el nodo integrador `protocolo-fast` como concepto de técnica; pericardio y neumotórax se reutilizan de la Oleada 1
-- Restan **~4 entidades** para llegar a las ~48 proyectadas del atlas maduro
+- Restan **~3 entidades** para llegar a las ~48 proyectadas del atlas maduro
 
 Nota: FAST añade pocas fichas nuevas (Morrison, esplenorrenal, Douglas, hemotórax) porque reutiliza pericardio y neumotórax. El gradiente de FEVI añade 2 (lineales, Simpson) sobre el eyeball ya contado.
 

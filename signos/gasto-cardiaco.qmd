@@ -1,0 +1,153 @@
+---
+estado: borrador
+fecha_revision: null
+ghost_id: null
+id: signo-gasto-cardiaco
+tipo: signo
+titulo: "Gasto cardíaco: calcular el flujo sin ocultar el error"
+titulo_en: "Doppler-derived cardiac output"
+url: ""
+doi: null
+version: "1.0"
+abstract: >
+  El diámetro del tracto de salida del ventrículo izquierdo y su VTI permiten
+  estimar el volumen sistólico; al multiplicarlo por la frecuencia cardíaca se
+  obtiene el gasto cardíaco. La medición ayuda a describir y seguir el flujo en
+  pacientes críticos, pero exige adquisición reproducible e integración
+  hemodinámica. Errores del diámetro, arritmias, valvulopatía y obstrucción del
+  tracto pueden volver engañosa una cifra aparentemente precisa.
+sistema: cardiovascular
+organo: corazon
+nivel: avanzado
+ventana: paraesternal-larga-apical-cinco-camaras
+sonda: [sectorial]
+escenario: [uci]
+pregunta_clinica: "¿Puedo estimar un gasto cardíaco reproducible y usar su tendencia para comprender el estado hemodinámico?"
+descriptores: [gasto-cardiaco, volumen-sistolico, vti, tracto-salida-vi, doppler-pulsado]
+mesh: ["Cardiac Output", "Stroke Volume", "Echocardiography, Doppler", "Hemodynamics"]
+significante: "Diámetro del TSVI en paraesternal larga y envolvente VTI subaórtica por Doppler pulsado, combinados con la frecuencia cardíaca del mismo registro."
+significado: "Estimación del volumen de sangre expulsado por minuto a través del tracto de salida del ventrículo izquierdo."
+decision: "Comprobar la calidad, describir el flujo y su tendencia e integrarlos con perfusión, resistencia vascular, congestión y causa del shock antes de ajustar líquidos o vasoactivos."
+umbral: "Sin punto de corte terapéutico universal para una medición ecocardiográfica aislada."
+falsos_positivos:
+  - "Gasto aparentemente alto o bajo por medir el diámetro del TSVI en un corte oblicuo o en un nivel distinto al del Doppler"
+  - "VTI sobrestimado al situar la muestra en la zona de aceleración o trazar ruido fuera de la envolvente densa"
+  - "Gasto aparentemente cambiado por usar una frecuencia cardíaca no simultánea o ciclos no comparables"
+  - "Flujo anterógrado que no representa gasto sistémico efectivo en regurgitación aórtica importante"
+se_basa_en: [doppler, cuantificacion-limites, ventanas-cardiacas, signo-vti]
+contrasta_con: []
+autores:
+  - nombre: "Alcy Edmundo Torres Guerrero"
+    orcid: "0000-0002-9742-375X"
+    afiliacion: "Universidad Central del Ecuador"
+    credit: [conceptualizacion, redaccion, supervision]
+medios: []
+refs: [porter2015, taub2025, wetterslev2016, zhang2019, orde2017, jozwiak2019]
+fecha: 2026-09-10
+actualizado: 2026-09-10
+licencia: CC-BY-4.0
+---
+
+## La pregunta clínica
+
+**¿Cuánto flujo expulsa el corazón por minuto y puedo repetir la medición de
+forma comparable?** El gasto cardíaco es volumen sistólico por frecuencia
+cardíaca. La ecocardiografía lo estima a partir del flujo que cruza el tracto de
+salida del ventrículo izquierdo (TSVI); no lo observa directamente ni identifica
+por sí sola la causa de un valor alto o bajo [porter2015].
+
+Esta ficha continúa el recorrido iniciado en
+[VTI](https://www.biosemiotics.net/vti-comprobar-el-flujo-antes-de-decidir-sobre-liquidos/).
+Allí aprendiste a obtener una distancia sistólica reproducible. Aquí añades el
+área del TSVI y la frecuencia cardíaca para expresar flujo en L/min. Es una
+competencia avanzada que requiere supervisión y un equipo con Doppler espectral.
+
+## Por qué el examen físico no basta
+
+La presión arterial refleja la interacción entre flujo y resistencia vascular.
+Por eso una presión parecida puede coexistir con gastos cardíacos diferentes, y
+un gasto bajo no distingue hipovolemia, falla ventricular, obstrucción o una
+valvulopatía. El número solo adquiere sentido al integrarlo con perfusión,
+congestión, función de ambos ventrículos y anatomía valvular [porter2015].
+
+Tampoco conviertas el cálculo en una orden automática. La cifra puede apoyar una
+reevaluación seriada o motivar un estudio formal; no selecciona por sí sola
+líquidos, inotrópicos o vasopresores.
+
+## Cómo se obtiene la ventana
+
+Necesitas sonda sectorial, ECG o una frecuencia cardíaca simultánea y Doppler
+pulsado. Conserva las imágenes y trazados originales.
+
+1. En paraesternal larga, amplía el TSVI y mide su diámetro en mesosístole, de
+   borde interno a borde interno y perpendicular al eje del flujo. Evita el corte
+   oblicuo.
+2. En apical de cinco cámaras o apical larga, alinea el haz con el TSVI. Coloca
+   la muestra pulsada proximal a la válvula aórtica, donde la envolvente sea
+   estrecha y definida; traza el borde de la señal densa [porter2015, orde2017].
+3. Usa el diámetro y el VTI obtenidos en niveles anatómicos concordantes. Registra
+   ritmo, frecuencia cardíaca, posición, ventilación y momento de la medición.
+4. Promedia ciclos comparables. En ritmo irregular necesitas más ciclos y no
+   debes seleccionar solamente el latido conveniente [jozwiak2019].
+
+Si no puedes demostrar la calidad de alguno de esos componentes, informa
+**«gasto cardíaco no evaluable por este método»** y solicita apoyo.
+
+## El signo
+
+Calcula primero el área del TSVI como **π × (diámetro/2)²**. El volumen sistólico
+es **área del TSVI × VTI**. Multiplica después por la frecuencia cardíaca y divide
+entre 1000 para expresar el gasto en L/min cuando el volumen está en mL
+[porter2015]. El índice cardíaco es el gasto dividido por la superficie corporal;
+deja explícitas la superficie y la fórmula empleadas [taub2025].
+
+Ejemplo aritmético ficticio, sin inferencia clínica: diámetro 2,0 cm, área 3,14
+cm², VTI 18 cm y frecuencia 80/min producen un volumen sistólico aproximado de
+56,5 mL y un gasto de 4,5 L/min. La calculadora no sabe si el diámetro fue oblicuo,
+si la muestra estaba bien situada o si ese flujo era representativo.
+
+## La bifurcación
+
+**Medición no reproducible:** conserva la incertidumbre; repite con supervisión
+o deriva. **Medición reproducible:** describe el valor, la calidad y la tendencia,
+y pregunta qué combinación de precarga, contractilidad, poscarga, ritmo y lesión
+estructural puede explicarla.
+
+Para seguimiento, mantén técnica y condiciones comparables. Un cambio del gasto
+puede ser útil, pero no demuestra por sí solo que una intervención mejoró la
+perfusión ni que será segura. Las recomendaciones de reporte actuales incluyen
+gasto, índice y sus unidades como datos distintos; esa precisión documental no
+elimina la incertidumbre fisiológica [taub2025].
+
+## Dónde NO confiar
+
+- **Diámetro dudoso:** el área usa el diámetro al cuadrado, de modo que un error
+  pequeño se amplifica en el volumen sistólico y en el gasto [orde2017].
+- **Muestra en aceleración, mala alineación o envolvente incompleta:** el VTI deja
+  de representar el mismo sitio y el producto pierde coherencia.
+- **Arritmia, ectopia o frecuencia no simultánea:** mezclar ciclos o tiempos
+  distintos fabrica una diferencia que puede no existir [jozwiak2019].
+- **Estenosis aórtica, obstrucción dinámica del TSVI, regurgitación aórtica
+  importante, cortocircuitos o soporte circulatorio:** el flujo medido requiere
+  interpretación especializada y puede no equivaler al gasto sistémico efectivo.
+- **Intercambio directo con otro monitor:** una revisión encontró límites de
+  acuerdo amplios frente a termodilución y no apoyó tratar ambos métodos como
+  intercambiables [wetterslev2016]. Otra revisión halló poca diferencia promedio
+  bajo ciertas condiciones [zhang2019]; un promedio poblacional pequeño no
+  garantiza acuerdo suficiente en este paciente.
+- **Decisión terapéutica aislada:** integra perfusión, congestión y causa del shock;
+  no ajustes líquidos o vasoactivos por una sola cifra ecocardiográfica.
+
+## Practica esto
+
+Con un tutor, guarda por separado la vista del diámetro, la posición de la muestra,
+la envolvente trazada y la frecuencia cardíaca. Repite el cálculo sin mirar el
+resultado anterior y explica cuál componente domina la incertidumbre. Practica
+también rechazar estudios: reconocer una medición no evaluable es parte de la
+competencia.
+
+## Discusión abierta
+
+¿Tu informe permite reconstruir el cálculo? ¿Qué cambiaría si el diámetro fuera
+0,2 cm menor? Antes de proponer una intervención, ¿qué dato de perfusión,
+congestión o resistencia vascular todavía falta?
