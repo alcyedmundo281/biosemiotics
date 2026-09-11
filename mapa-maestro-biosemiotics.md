@@ -59,10 +59,8 @@ cuantitativos de la Oleada 3.
 El banco contiene **44 entidades**: 17 conceptos, 26 signos y 1 caso.
 El índice contiene 43 entidades; solo el caso en borrador queda excluido
 de las salidas públicas.
-Hay 25 signos con URL pública en Ghost; disfunción diastólica (E/e’) está
-escrita, validada y aprobada clínicamente, pendiente de imagen y publicación.
-VTI está publicado en Ghost (2026-09-09), con imagen atribuida y trazabilidad
-pospublicación completa.
+Los 26 signos tienen URL pública en Ghost. VTI fue publicado el 2026-09-09 y
+disfunción diastólica (E/e’) el 2026-09-06; ambos cuentan con imagen atribuida.
 
 | signo | sistema | organo | nivel | estado |
 |---|---|---|---|---|
@@ -90,6 +88,8 @@ pospublicación completa.
 | [Esplenorrenal](https://www.biosemiotics.net/esplenorrenal-la-ventana-que-se-escapa-por-arriba/) | multiorgano | intestino | principiante | ✅ publicado |
 | [Pelvis (Douglas)](https://www.biosemiotics.net/pelvis-el-punto-mas-bajo-y-la-vejiga-que-lo-decide/) | multiorgano | vejiga | principiante | ✅ publicado |
 | [Hemotórax en eFAST](https://www.biosemiotics.net/hemotorax-en-efast-liquido-por-encima-del-diafragma/) | respiratorio | pleura | principiante | ✅ publicado |
+| [VTI](https://www.biosemiotics.net/vti-comprobar-el-flujo-antes-de-decidir-sobre-liquidos/) | cardiovascular | corazon | avanzado | ✅ publicado |
+| [Disfunción diastólica (E/e’)](https://www.biosemiotics.net/disfuncion-diastolica-e-e-orienta-no-sentencia/) | cardiovascular | corazon | avanzado | ✅ publicado |
 
 ---
 
@@ -148,7 +148,7 @@ pospublicación completa.
 | signo | sistema | organo | nivel | escenario | decisión que cambia |
 |---|---|---|---|---|---|
 | [VTI (integral velocidad-tiempo)](https://www.biosemiotics.net/vti-comprobar-el-flujo-antes-de-decidir-sobre-liquidos/) | cardiovascular | corazon | avanzado | uci | primera entrada del recorrido por indicación de Alcy; medición reproducible e integración del flujo → reevaluación/apoyo; ✅ publicado con imagen atribuida |
-| Disfunción diastólica (E/e') | cardiovascular | corazon | avanzado | consulta, uci | estimación integrada de presiones de llenado → evaluación formal; aprobada clínicamente, pendiente de imagen y publicación |
+| [Disfunción diastólica (E/e')](https://www.biosemiotics.net/disfuncion-diastolica-e-e-orienta-no-sentencia/) | cardiovascular | corazon | avanzado | consulta, uci | estimación integrada de presiones de llenado → evaluación formal; ✅ publicado con imagen atribuida |
 | Gasto cardíaco | cardiovascular | corazon | avanzado | uci | estado hemodinámico → vasoactivos |
 | FEVI por Simpson biplano | cardiovascular | corazon | avanzado | consulta, uci | método de referencia; trazado de bordes en 2 planos |
 | FEVI por métodos lineales (Teichholz, FA) | cardiovascular | corazon | intermedio | consulta | estimación cuantitativa rápida en modo M |
@@ -204,8 +204,8 @@ Oleada 1 y las rutas avanzadas que reutilizarán esos conceptos.
 3. ~~Antes de los signos que lo necesiten: escribir y validar Doppler y Cuantificación y sus límites.~~ **Hecho (2026-08-15):** ambos conceptos base están escritos y validados.
 4. **Conceptos base: regla dura.** Un signo NO se publica sin su concepto base ya en el banco. El concepto base requerido se escribe y valida ANTES que el signo, no en paralelo ni después.
 5. **Oleada 3 en curso:** VTI abrió el recorrido por indicación de Alcy y fue
-   publicado (2026-09-09), con referencias e imagen atribuida. E/e’ fue aprobada
-   clínicamente (2026-09-10) y queda pendiente de imagen y publicación. Siguiente ficha nueva:
+   publicado el 2026-09-09. E/e’ está publicado desde el 2026-09-06 y su
+   trazabilidad quedó conciliada con el repositorio. Siguiente ficha nueva:
    gasto cardíaco. Después: Extensiones.
 
 ### La regla que no cambia
@@ -213,7 +213,7 @@ Cada cifra, verificada contra PubMed antes de publicar. Cada signo, con su secci
 
 ### Conteo
 - Banco actual: **44 entidades** (17 conceptos, 26 signos y 1 caso)
-- Signos publicados: **25 de 26**
+- Signos publicados: **26 de 26**
 - Conceptos esperando URL de Ghost: **0**
 - Oleada 1 completada: **8 de 8 signos**
 - Oleada 2 **escrita completa: 8 de 8 signos** (8 publicados, 0 esperando URL). La fila «colección/absceso, hernia complicada» se desdobló en dos: son dos significantes y dos decisiones distintas
