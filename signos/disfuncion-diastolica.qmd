@@ -1,12 +1,12 @@
 ---
-estado: revisado
+estado: publicado
 fecha_revision: 2026-09-10
-ghost_id: null
+ghost_id: "6a9d7015cb99d50001dc7569"
 id: signo-disfuncion-diastolica
 tipo: signo
 titulo: "Disfunción diastólica: E/e’ orienta, no sentencia"
 titulo_en: "Diastolic function and the E/e’ ratio"
-url: ""
+url: "https://www.biosemiotics.net/disfuncion-diastolica-e-e-orienta-no-sentencia/"
 doi: null
 version: "1.0"
 abstract: >
@@ -44,7 +44,7 @@ medios:
   - tipo: imagen
     destacada: true
     id: "wikimedia:Diastolic_function.png"
-    descripcion: "Trazados de flujo mitral E/A y Doppler tisular del anillo e’/a’ en tres patrones de llenado; imagen ilustrativa, no algoritmo diagnóstico."
+    descripcion: "Tres paneles con flujo mitral E/A arriba y velocidades tisulares del anillo e’/a’ abajo, que ilustran distintos patrones de llenado."
     credito: "Astoylen, vía Wikimedia Commons; sin modificaciones"
     fuente: "Wikimedia Commons"
     fuente_url: "https://commons.wikimedia.org/wiki/File:Diastolic_function.png"
