@@ -1615,11 +1615,12 @@
    "id": "signo-disfuncion-diastolica",
    "tipo": "signo",
    "titulo": "Disfunción diastólica: E/e’ orienta, no sentencia",
-   "estado": "revisado",
+   "estado": "publicado",
    "fecha_revision": "2026-09-10",
-   "ghost_id": null,
+   "ghost_id": "6a9d7015cb99d50001dc7569",
    "ghost_sha256": "db664c2fd9861208de5d17b5c1aaa388e3731fcb7f603467a309f53abdc7851e",
    "titulo_en": "Diastolic function and the E/e’ ratio",
+   "url": "https://www.biosemiotics.net/disfuncion-diastolica-e-e-orienta-no-sentencia/",
    "version": "1.0",
    "abstract": "La relación entre la velocidad del llenado mitral temprano y la del anillo mitral en diástole aporta una pista sobre las presiones de llenado izquierdas. Su lectura exige Doppler pulsado y tisular, trazados adecuados e integración ecocardiográfica. En primer contacto orienta la necesidad de evaluación formal; un resultado aislado no confirma insuficiencia cardíaca ni permite descartarla, especialmente con fracción de eyección preservada.\n",
    "sistema": "cardiovascular",
@@ -1674,6 +1675,22 @@
      ]
     }
    ],
+   "medios": [
+    {
+     "tipo": "imagen",
+     "destacada": true,
+     "id": "wikimedia:Diastolic_function.png",
+     "descripcion": "Tres paneles con flujo mitral E/A arriba y velocidades tisulares del anillo e’/a’ abajo, que ilustran distintos patrones de llenado.",
+     "credito": "Astoylen, vía Wikimedia Commons; sin modificaciones",
+     "fuente": "Wikimedia Commons",
+     "fuente_url": "https://commons.wikimedia.org/wiki/File:Diastolic_function.png",
+     "licencia_img": "CC BY-SA 3.0",
+     "licencia_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+     "archivo_local": "assets/img/disfuncion-diastolica.png"
+    }
+   ],
+   "n_loops": 0,
+   "n_imagenes": 1,
    "refs": [
     "nagueh2025",
     "robinson2024",
