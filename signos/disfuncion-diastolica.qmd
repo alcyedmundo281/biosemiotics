@@ -1,6 +1,6 @@
 ---
 estado: revisado
-fecha_revision: null
+fecha_revision: 2026-09-10
 ghost_id: null
 id: signo-disfuncion-diastolica
 tipo: signo
