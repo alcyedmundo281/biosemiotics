@@ -44,14 +44,14 @@ autores:
 medios:
   - tipo: imagen
     destacada: true
-    id: "biosemiotics:ilustracion-gasto-cardiaco-2026"
-    descripcion: "Secuencia ilustrativa desde la adquisición ecocardiográfica y la envolvente Doppler del TSVI hasta la estimación del flujo por minuto; no representa una medición de un paciente ni un umbral terapéutico."
-    credito: "Biosemiotics; ilustración original generada con OpenAI y revisada editorialmente"
-    fuente: "Biosemiotics"
-    fuente_url: "https://www.biosemiotics.net/"
-    licencia_img: "CC BY 4.0"
-    licencia_url: "https://creativecommons.org/licenses/by/4.0/"
-    archivo_local: "assets/img/gasto-cardiaco.png"
+    id: "commons:VTI_LVOT.png"
+    descripcion: "Trazado Doppler pulsado del tracto de salida del ventrículo izquierdo utilizado para medir la integral velocidad-tiempo (VTI)."
+    credito: "Schomynv"
+    fuente: "Wikimedia Commons"
+    fuente_url: "https://commons.wikimedia.org/wiki/File:VTI_LVOT.png"
+    licencia_img: "Dominio público"
+    licencia_url: "https://commons.wikimedia.org/wiki/File:VTI_LVOT.png#Licensing"
+    archivo_local: "assets/img/vti-lvot-wikimedia-commons.png"
 refs: [porter2015, taub2025, wetterslev2016, zhang2019, orde2017, jozwiak2019]
 fecha: 2026-09-10
 actualizado: 2026-09-10
