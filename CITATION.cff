@@ -17,6 +17,23 @@ authors:
   - family-names: "Torres Guerrero"
     given-names: "Alcy Edmundo"
     orcid: "https://orcid.org/0000-0002-9742-375X"
+# DOI de concepto: resuelve siempre a la última versión publicada.
+doi: 10.5281/zenodo.21435362
+
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.21435362
+    description: DOI de concepto, apunta a todas las versiones
+  - type: doi
+    value: 10.5281/zenodo.22065357
+    description: DOI de la versión v0.2.1
+  - type: doi
+    value: 10.5281/zenodo.22064669
+    description: DOI de la versión v0.2.0
+  - type: doi
+    value: 10.5281/zenodo.21435363
+    description: DOI de la versión v0.1.0
+
 repository-code: "https://github.com/alcyedmundo281/biosemiotics"
 url: "https://www.biosemiotics.net/"
 license: CC-BY-4.0
