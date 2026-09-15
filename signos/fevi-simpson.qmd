@@ -1,11 +1,11 @@
 ---
-estado: revisado
+estado: publicado
 fecha_revision: 2026-09-14
-ghost_id: null
+ghost_id: "6aa899c42e9f960001f0ff50"
 id: signo-fevi-simpson
 tipo: signo
 titulo: "FEVI por Simpson biplano: el número depende del contorno"
-url: ""
+url: "https://www.biosemiotics.net/fevi-por-simpson-biplano-el-numero-depende-del-contorno/"
 abstract: >
   El trazado del ventrículo izquierdo en dos vistas apicales permite estimar
   la fracción de eyección. Para el primer contacto, la decisión comienza
@@ -36,7 +36,17 @@ autores:
     orcid: "0000-0002-9742-375X"
     afiliacion: "Universidad Central del Ecuador"
     credit: [conceptualizacion, redaccion, supervision]
-medios: []
+medios:
+  - tipo: imagen
+    destacada: true
+    id: "wikimedia:Echocardiogram 4chambers"
+    descripcion: "Vista ecocardiográfica apical de cuatro cámaras utilizada para delimitar el ventrículo izquierdo"
+    credito: "Kjetil Lenes (Ekko)"
+    fuente: "Wikimedia Commons"
+    fuente_url: "https://commons.wikimedia.org/wiki/File:Echocardiogram_4chambers.jpg"
+    licencia_img: "Dominio público"
+    licencia_url: "https://commons.wikimedia.org/wiki/Commons:Licensing"
+    archivo_local: "assets/img/ventanas-cardiacas.jpg"
 refs: [lang2015, akil2025]
 fecha: 2026-09-14
 actualizado: 2026-09-14
