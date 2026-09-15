@@ -225,4 +225,3 @@ Cada cifra, verificada contra PubMed antes de publicar. Cada signo, con su secci
 Nota: FAST añade pocas fichas nuevas (Morrison, esplenorrenal, Douglas, hemotórax) porque reutiliza pericardio y neumotórax. El gradiente de FEVI añade 2 (lineales, Simpson) sobre el eyeball ya contado.
 
 A un signo por semana, el núcleo (oleadas 1-2, incluido FAST) está completo en ~4-5 meses. Ritmo sostenible para un clínico en ejercicio.
-
