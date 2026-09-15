@@ -46,7 +46,7 @@ medios:
     fuente_url: "https://commons.wikimedia.org/wiki/File:Echocardiogram_4chambers.jpg"
     licencia_img: "Dominio público"
     licencia_url: "https://commons.wikimedia.org/wiki/Commons:Licensing"
-    archivo_local: "assets/img/ventanas-cardiacas.jpg"
+    archivo_local: "assets/img/fevi-simpson-4-camaras.jpg"
 refs: [lang2015, akil2025]
 fecha: 2026-09-14
 actualizado: 2026-09-14
