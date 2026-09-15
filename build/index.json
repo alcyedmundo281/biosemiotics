@@ -2198,10 +2198,11 @@
    "id": "signo-fevi-simpson",
    "tipo": "signo",
    "titulo": "FEVI por Simpson biplano: el número depende del contorno",
-   "estado": "revisado",
+   "estado": "publicado",
    "fecha_revision": "2026-09-14",
-   "ghost_id": null,
+   "ghost_id": "6aa899c42e9f960001f0ff50",
    "ghost_sha256": "20c097e4cc5b8adf3fe2b2045ba209c2b03d9976ab4b1df0db2f0316650b99ff",
+   "url": "https://www.biosemiotics.net/fevi-por-simpson-biplano-el-numero-depende-del-contorno/",
    "abstract": "El trazado del ventrículo izquierdo en dos vistas apicales permite estimar la fracción de eyección. Para el primer contacto, la decisión comienza antes del porcentaje: reconocer si la adquisición permite cuantificar o necesita revisión experta. El cálculo no elimina la dependencia del operador; un contorno dudoso exige revisar el estudio antes de convertirlo en una decisión clínica.\n",
    "sistema": "cardiovascular",
    "organo": "corazon",
@@ -2243,6 +2244,22 @@
      ]
     }
    ],
+   "medios": [
+    {
+     "tipo": "imagen",
+     "destacada": true,
+     "id": "wikimedia:Echocardiogram 4chambers",
+     "descripcion": "Vista ecocardiográfica apical de cuatro cámaras utilizada para delimitar el ventrículo izquierdo",
+     "credito": "Kjetil Lenes (Ekko)",
+     "fuente": "Wikimedia Commons",
+     "fuente_url": "https://commons.wikimedia.org/wiki/File:Echocardiogram_4chambers.jpg",
+     "licencia_img": "Dominio público",
+     "licencia_url": "https://commons.wikimedia.org/wiki/Commons:Licensing",
+     "archivo_local": "assets/img/ventanas-cardiacas.jpg"
+    }
+   ],
+   "n_loops": 0,
+   "n_imagenes": 1,
    "refs": [
     "lang2015",
     "akil2025"
