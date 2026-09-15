@@ -1,0 +1,111 @@
+---
+estado: revisado
+fecha_revision: 2026-09-14
+ghost_id: null
+id: signo-fevi-simpson
+tipo: signo
+titulo: "FEVI por Simpson biplano: el número depende del contorno"
+url: ""
+abstract: >
+  El trazado del ventrículo izquierdo en dos vistas apicales permite estimar
+  la fracción de eyección. Para el primer contacto, la decisión comienza
+  antes del porcentaje: reconocer si la adquisición permite cuantificar o
+  necesita revisión experta. El cálculo no elimina la dependencia del operador;
+  un contorno dudoso exige revisar el estudio antes de convertirlo en una
+  decisión clínica.
+sistema: cardiovascular
+organo: corazon
+nivel: avanzado
+ventana: apical-cuatro-y-dos-camaras
+sonda: [sectorial]
+escenario: [consulta, uci]
+pregunta_clinica: "¿Puedo sostener esta medición de FEVI o necesito revisión experta?"
+significante: "Contornos del VI en apical de cuatro y dos cámaras, al final de diástole y sístole."
+significado: "Fracción del volumen telediastólico expulsada durante la sístole."
+decision: "Documentar la calidad y solicitar revisión experta si el trazado es incierto o condiciona una conducta."
+umbral: "Esta ficha no establece un umbral terapéutico autónomo."
+falsos_positivos:
+  - "Acortamiento apical que distorsiona los volúmenes"
+  - "Borde mal definido que obliga a inventar el contorno"
+  - "Selección inadecuada del fotograma o del plano"
+se_basa_en: [ventanas-cardiacas, cuantificacion-limites]
+se_relaciona: [signo-eyeball-ef]
+contrasta_con: []
+autores:
+  - nombre: "Alcy Edmundo Torres Guerrero"
+    orcid: "0000-0002-9742-375X"
+    afiliacion: "Universidad Central del Ecuador"
+    credit: [conceptualizacion, redaccion, supervision]
+medios: []
+refs: [lang2015, akil2025]
+fecha: 2026-09-14
+actualizado: 2026-09-14
+licencia: CC-BY-4.0
+---
+
+## La pregunta clínica
+
+Después del eyeball aparece una tentación: pedir al equipo un porcentaje y
+sentir que la incertidumbre terminó. La pregunta viene antes:
+**¿puedo defender cómo obtuve ese número?**
+
+Propongo usar Simpson como ejercicio de adquisición y revisión supervisada.
+El primer objetivo es reconocer qué estudio merece una segunda lectura.
+
+## Por qué el examen físico no basta
+
+La pregunta es volumétrica. Simpson utiliza imágenes del VI: el porcentaje
+se calcula a partir de sus volúmenes, no de la auscultación [lang2015].
+
+## Cómo se obtiene la ventana
+
+Adquiere apicales de cuatro y dos cámaras sin acortar el VI. Selecciona fin de
+diástole y fin de sístole; traza el borde y cierra en el anillo mitral. La guía
+recomienda medir varios ciclos [lang2015].
+
+Guarda los loops y trazados. Pide al supervisor revisar primero las imágenes
+y después el resultado. Si tu equipo o formación no permiten esta adquisición,
+registra esa limitación.
+
+## El signo
+
+**Significante:** los contornos permiten estimar volúmenes por suma de discos.
+**Significado:** FEVI (%) = (volumen telediastólico − volumen telesistólico) /
+volumen telediastólico × 100. Es el método bidimensional recomendado en el
+consenso ASE/EACVI de 2015 [lang2015].
+
+## La bifurcación
+
+Como propuesta práctica para el primer contacto:
+
+- **Puedes justificar la adquisición y el trazado:** presenta la medición con
+  sus imágenes para revisión y correlación clínica.
+- **No puedes justificarlos:** registra la limitación y solicita valoración
+  experta antes de apoyar una conducta en ese porcentaje.
+
+Cuantificar no elimina la variabilidad entre lectores. Akil y colaboradores
+hallaron mayor variabilidad entre principiantes y recomendaron una segunda
+evaluación, especialmente ante FEVI reducida [akil2025].
+
+## Dónde NO confiar
+
+- **Ápex acortado o borde perdido:** comprometen los volúmenes.
+- **Geometría fuera de los planos:** dos vistas no describen todo el ventrículo.
+- **Endocardio insuficiente:** la guía indica contraste cuando dos o más
+  segmentos contiguos se visualizan mal; sin esa capacidad, solicita un estudio
+  adecuado [lang2015].
+- **Confianza en el cálculo:** Akil evaluó imágenes de 140 pacientes con seis
+  lectores. La experiencia afectó también a Simpson; esto no valida autonomía
+  del principiante en POCUS ni establece un margen de error universal [akil2025].
+
+## Practica esto
+
+Elige con tu supervisor un estudio docente anonimizado. Traza sin ver su
+medición. Comparen dónde situaron el ápex, qué fotogramas eligieron y qué borde
+siguieron. Escribe qué corregirías antes de repetir el cálculo.
+
+## Discusión abierta
+
+¿Qué te hizo cambiar más la medición: adquirir otra vista o revisar el contorno?
+¿Qué guardarías para que otro lector pudiera auditar tu resultado?
+
