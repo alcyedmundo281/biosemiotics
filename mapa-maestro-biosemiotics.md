@@ -56,7 +56,7 @@ cuantitativos de la Oleada 3.
 
 ## 2. Estado actual (lo ya publicado)
 
-El banco contiene **45 entidades**: 17 conceptos, 27 signos y 1 caso.
+El banco contiene **46 entidades**: 17 conceptos, 28 signos y 1 caso.
 El índice contiene 44 entidades; solo el caso permanece excluido de las salidas
 públicas. Los 27 signos tienen URL pública en Ghost. Gasto cardíaco fue publicado
 el 2026-09-11, VTI el 2026-09-09 y disfunción diastólica (E/e’) el 2026-09-06;
@@ -207,21 +207,22 @@ Oleada 1 y las rutas avanzadas que reutilizarán esos conceptos.
    publicado el 2026-09-09. E/e’ está publicado desde el 2026-09-06 y su
    trazabilidad quedó conciliada con el repositorio. Gasto cardíaco fue publicado
    el 2026-09-11 con imagen de Wikimedia Commons en dominio público. La siguiente
-   ficha nueva será FEVI por Simpson biplano. Después: Extensiones.
+   ficha es FEVI por Simpson biplano: borrador preparado el 2026-09-14, pendiente de revisión clínica y publicación. Después: Extensiones.
 
 ### La regla que no cambia
 Cada cifra, verificada contra PubMed antes de publicar. Cada signo, con su sección de límites ("dónde NO confiar"). El orden por oleada mantiene vivo el mensaje: *empezar es más fácil de lo que te dijeron.*
 
 ### Conteo
-- Banco actual: **45 entidades** (17 conceptos, 27 signos y 1 caso)
-- Signos publicados: **27 de 27**
+- Banco actual: **46 entidades** (17 conceptos, 28 signos y 1 caso)
+- Signos publicados: **27 de 28**
 - Conceptos esperando URL de Ghost: **0**
 - Oleada 1 completada: **8 de 8 signos**
 - Oleada 2 **escrita completa: 8 de 8 signos** (8 publicados, 0 esperando URL). La fila «colección/absceso, hernia complicada» se desdobló en dos: son dos significantes y dos decisiones distintas
 - Conceptos base pendientes: **0** — Doppler y «Cuantificación y sus límites» escritos y validados. **La Oleada 3 queda desbloqueada**
 - FAST/eFAST **completo**: 4 ventanas nuevas (Morrison, esplenorrenal, Douglas, hemotórax) + el nodo integrador `protocolo-fast` como concepto de técnica; pericardio y neumotórax se reutilizan de la Oleada 1
-- Restan **~3 entidades** para llegar a las ~48 proyectadas del atlas maduro
+- Restan **~2 entidades** para llegar a las ~48 proyectadas del atlas maduro
 
 Nota: FAST añade pocas fichas nuevas (Morrison, esplenorrenal, Douglas, hemotórax) porque reutiliza pericardio y neumotórax. El gradiente de FEVI añade 2 (lineales, Simpson) sobre el eyeball ya contado.
 
 A un signo por semana, el núcleo (oleadas 1-2, incluido FAST) está completo en ~4-5 meses. Ritmo sostenible para un clínico en ejercicio.
+
