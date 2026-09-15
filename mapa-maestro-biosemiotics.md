@@ -207,7 +207,7 @@ Oleada 1 y las rutas avanzadas que reutilizarán esos conceptos.
    publicado el 2026-09-09. E/e’ está publicado desde el 2026-09-06 y su
    trazabilidad quedó conciliada con el repositorio. Gasto cardíaco fue publicado
    el 2026-09-11 con imagen de Wikimedia Commons en dominio público. La siguiente
-   ficha es FEVI por Simpson biplano: borrador preparado el 2026-09-14, pendiente de revisión clínica y publicación. Después: Extensiones.
+   ficha es FEVI por Simpson biplano: aprobada clínicamente el 2026-09-14 y pendiente de publicación. Después: Extensiones.
 
 ### La regla que no cambia
 Cada cifra, verificada contra PubMed antes de publicar. Cada signo, con su sección de límites ("dónde NO confiar"). El orden por oleada mantiene vivo el mensaje: *empezar es más fácil de lo que te dijeron.*
