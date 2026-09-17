@@ -159,9 +159,10 @@ forzar una decisión hoy.
 ## Dónde NO confiar
 
 - **La sensibilidad es alta, pero no absoluta.** El metaanálisis mayor da 94,6 %
-  de sensibilidad y 85,4 % de especificidad; otro, con ocho estudios, da 96,2 %
-  y 82,9 %. Son cifras buenas —de las mejores del atlas— pero una colección
-  profunda, tabicada o muy ecogénica puede escapar.
+  de sensibilidad y 85,4 % de especificidad; otro, con ocho estudios, da 95,5 %
+  y 80,3 % tras la corrección que publicaron sus autores. Son cifras buenas
+  —de las mejores del atlas— pero una colección profunda, tabicada o muy
+  ecogénica puede escapar.
 - **En niños rinde peor que en adultos.** En el mismo metaanálisis, los adultos
   alcanzaron sensibilidad de 98,7 % y especificidad de 91,0 %, y los pacientes
   pediátricos 89,9 % y 79,9 %. Sé más cauto con el niño, no menos.
