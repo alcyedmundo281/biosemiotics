@@ -184,7 +184,7 @@ var IDX2 = "https://cdn.jsdelivr.net/gh/alcyedmundo281/biosemiotics@main/build/i
 var RONDA = 8;
 
 var signos = [], preguntas = [], i = 0, aciertos = 0, racha = 0, mejorRacha = 0;
-var fallos = [], filtro = null, foco = null;
+var fallos = [], filtro = null, foco = null, fuenteIndice = "primaria";
 
 // ?signo=<id> enfoca el reto en un solo signo. Permite enlazar desde cada
 // artículo a las preguntas de ESE signo, en vez de al reto genérico.
@@ -236,14 +236,46 @@ function distractores(campo, correcto, ficha, n){
   return out;
 }
 
-// Los falsos positivos de OTROS signos son los mejores distractores para la
-// pregunta de límites: son confusiones clínicas reales, no opciones inventadas.
-function distractoresFP(correcto, ficha, n){
-  var pool = [];
+// Un límite utilizable es una frase: los identificadores tipo
+// "ascitis-subdiafragmatica" delatarían la respuesta o no se entenderían.
+function limitesLegibles(ficha){
+  return (ficha.falsos_positivos || []).filter(function(f){
+    return f && f.indexOf("TODO") === -1 && /\s/.test(f);
+  });
+}
+
+// Palabras de seis letras o más, sin tildes: bastan para notar que dos
+// límites hablan de lo mismo ("asa intestinal…" en dos fichas distintas).
+function palabras(t){
+  return String(t).toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "")
+    .split(/[^a-z0-9]+/).filter(function(w){ return w.length >= 6; });
+}
+
+// Distractores de la pregunta de límites: límites declarados por OTROS signos.
+// Que un límite pertenezca a otra ficha no demuestra que sea falso para ésta,
+// así que se descartan los candidatos con más riesgo de ser también correctos:
+// mismo sistema u órgano, signos que se contrastan entre sí y cualquier límite
+// que comparta una palabra significativa con los de esta ficha o su título.
+// El enunciado pregunta qué declara la ficha, no qué es imposible.
+function distractoresFP(ficha, n){
+  var propias = {};
+  limitesLegibles(ficha).concat([ficha.titulo]).forEach(function(t){
+    palabras(t).forEach(function(w){ propias[w] = 1; });
+  });
+  var contrasta = function(a, b){
+    return (a.contrasta_con || []).indexOf(b.id) !== -1;
+  };
+  var pool = [], vistos = {};
   signos.forEach(function(s){
-    if (s.id === ficha.id || !s.falsos_positivos) return;
-    s.falsos_positivos.forEach(function(fp){
-      if (fp && fp !== correcto && fp.indexOf("TODO") === -1) pool.push(fp);
+    if (s.id === ficha.id) return;
+    if (s.sistema && s.sistema === ficha.sistema) return;
+    if (s.organo && s.organo === ficha.organo) return;
+    if (contrasta(s, ficha) || contrasta(ficha, s)) return;
+    limitesLegibles(s).forEach(function(fp){
+      if (vistos[fp]) return;
+      if (palabras(fp).some(function(w){ return propias[w]; })) return;
+      vistos[fp] = 1;
+      pool.push(fp);
     });
   });
   return mezclar(pool).slice(0, n);
@@ -286,17 +318,17 @@ function generar(ficha){
   }
 
   // 4. Límites. La que más protege al paciente del lector.
-  if (ficha.falsos_positivos && ficha.falsos_positivos.length && ficha.titulo){
-    var fps = ficha.falsos_positivos.filter(function(f){
-      return f && f.indexOf("TODO") === -1;
-    });
+  if (ficha.titulo){
+    var fps = limitesLegibles(ficha);
     if (fps.length){
       var fp = fps[Math.floor(Math.random() * fps.length)];
       qs.push(armar(ficha, "Dónde NO confiar",
-        "Crees ver " + ficha.titulo + ". ¿Cuál de estas situaciones puede engañarte?",
-        null, fp, distractoresFP(fp, ficha, 3),
-        "Todas son confusiones reales de algún signo. Esta lo es de " +
-        ficha.titulo + "."));
+        "Crees ver " + ficha.titulo + ". ¿Cuál de estas situaciones declara " +
+        "el atlas como límite de este signo?",
+        null, fp, distractoresFP(ficha, 3),
+        "Es uno de los límites que declara la ficha de " + ficha.titulo +
+        ". Las otras opciones son límites de signos de otros sistemas: que " +
+        "no figuren aquí no demuestra que nunca puedan engañarte."));
     }
   }
 
@@ -311,15 +343,31 @@ function pintarFiltros(){
     for (var j = 0; j < signos.length; j++){
       if (signos[j].id === foco){ f = signos[j]; break; }
     }
-    if (f){
+    if (f && generar(f).length){
       $("focoBanner").innerHTML = "Reto enfocado en<br><b>" + esc(f.titulo) +
         '</b><br><a href="?">Practicar con todo el atlas →</a>';
       $("focoBanner").style.display = "block";
       $("inicio").innerHTML = '<button class="btn" id="empezar">Empezar</button>';
       $("empezar").onclick = empezar;
+      avisarAlto();
       return;
     }
-    foco = null;   // id inexistente: se ignora en silencio
+    // El artículo enlazó un signo que el Reto no puede enfocar. Justo después
+    // de publicar suele ser el índice que aún no se regeneró o sigue en caché:
+    // se dice en pantalla, en vez de caer al modo general como si nada.
+    var motivo = f
+      ? "todavía no tiene datos suficientes para armar sus preguntas"
+      : "todavía no aparece en el índice del atlas";
+    var demora = fuenteIndice === "respaldo"
+      ? "la copia de respaldo del índice puede tardar hasta 12 horas"
+      : "el índice tarda unos minutos en actualizarse";
+    $("focoBanner").innerHTML = "No se pudo enfocar el reto<br><b>" +
+      esc(f ? f.titulo : foco) + " " + motivo + ".</b><br>" +
+      "Si se acaba de publicar, " + demora + ". Mientras tanto, practicas con " +
+      "todo el atlas.";
+    $("focoBanner").style.display = "block";
+    if (window.console) console.warn("reto: foco no disponible", foco);
+    foco = null;
   }
 
   var sist = {};
@@ -373,6 +421,8 @@ function empezar(){
   }
 
   i = 0; aciertos = 0; racha = 0; mejorRacha = 0; fallos = [];
+  $("eAciertos").textContent = aciertos;
+  $("eRacha").textContent = racha;
   $("inicio").style.display = "none";
   $("fin").style.display = "none";
   $("juego").style.display = "block";
@@ -494,7 +544,10 @@ function cargar(u){
   });
 }
 
-cargar(IDX).catch(function(){ return cargar(IDX2); }).then(function(j){
+cargar(IDX).catch(function(){
+  fuenteIndice = "respaldo";
+  return cargar(IDX2);
+}).then(function(j){
   var fichas = j.fichas || j;
   signos = fichas.filter(function(f){
     return f.tipo === "signo" && f.titulo &&
