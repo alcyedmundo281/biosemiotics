@@ -42,7 +42,8 @@ Prueba lo que corresponda al cambio. Para Python usa
 del manual. No repitas pruebas correctas sin cambios o evidencia nueva. Distingue
 pruebas ejecutadas, fallos previos y verificaciones pendientes por herramientas.
 
-La skill `biosemiotics-atlas` mencionada en el manual puede no estar instalada.
-Si falta, dilo y consulta las plantillas de `assets/`, `scripts/validacion.py`
-y el manual para el contrato disponible; no inventes instrucciones ausentes.
-Si la tarea necesita material exclusivo de esa skill, identifica ese faltante.
+La guía de `biosemiotics-atlas` está incorporada en `docs/atlas/README.md` y sus
+referencias locales. Consúltalas al crear o revisar entidades. No depende de
+una skill instalada ni de archivos en Descargas. Usa las plantillas actuales
+de `assets/` y `scripts/validacion.py` para comprobar el contrato; la guía
+documenta las diferencias del paquete antiguo y los límites del XML.

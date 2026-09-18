@@ -29,7 +29,7 @@ proyecto-biosemiotics/
 └── build/                       ← GENERADO, no versionar salvo index.json
 ```
 
-La documentación de referencia (esquema completo, instructivo del artículo) vive en la skill `biosemiotics-atlas`. Consúltala si necesitas el detalle de un campo.
+La documentación de referencia está incorporada en [docs/atlas/README.md](docs/atlas/README.md): esquema de entidades, metadatos e instructivo del artículo. Consúltala para el detalle de campos y secciones. No requiere instalar la antigua skill `biosemiotics-atlas` ni conservar su archivo externo.
 
 ## Compilar el libro en PDF (`build/libro.pdf`)
 

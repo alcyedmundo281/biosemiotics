@@ -1,2 +1,5 @@
-# Modelo del proyecto; conserva esfuerzo, credenciales y permisos heredados.
+# Modelo y esfuerzo del proyecto para investigación y revisión editorial.
+# Instrucciones: AGENTS.md -> CLAUDE.md y docs/atlas/README.md.
+# No sustituye la revisión clínica ni modifica permisos o credenciales.
 model = "gpt-6-astra"
+model_reasoning_effort = "high"

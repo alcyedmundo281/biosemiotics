@@ -69,6 +69,9 @@ Codex descubre las reglas iniciales en [AGENTS.md](AGENTS.md), que remite al
 manual editorial compartido. En Windows, activa el entorno con
 `. ./activar-entorno.ps1` antes de ejecutar Python.
 
+La [guía del atlas](docs/atlas/README.md) incluye el esquema, los metadatos y
+el instructivo editorial; está versionada aquí y no requiere una skill externa.
+
 ```bash
 python -m pip install -r requirements.txt
 python scripts/preflight.py
