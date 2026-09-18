@@ -46,6 +46,9 @@ No existía configuración Codex en el proyecto ni un modelo anterior fijado aqu
 
 - Línea base con UTF-8: 92 pruebas correctas, preflight correcto y publicación
   coherente (46 entidades, 45 URLs).
+- Tras integrar `origin/main`: 103 pruebas correctas, preflight y compilación
+  del banco correctos. El TOML se analiza correctamente y
+  `codex debug prompt-input` confirma que se descubre el nuevo `AGENTS.md`.
 - Sin UTF-8: preflight falla por CP1252 y la suite registra un fallo y cinco
   errores. Se usa el activador existente; no requiere cambios del pipeline.
 - Herramientas disponibles en PATH: GitHub CLI, Codex, Python del venv,
