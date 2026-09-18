@@ -56,9 +56,9 @@ cuantitativos de la Oleada 3.
 
 ## 2. Estado actual (lo ya publicado)
 
-El banco contiene **46 entidades**: 17 conceptos, 28 signos y 1 caso.
-El índice contiene 45 entidades; solo el caso permanece excluido de las salidas
-públicas. Los 28 signos tienen URL pública en Ghost. FEVI por Simpson biplano fue
+El banco contiene **47 entidades**: 17 conceptos, 29 signos y 1 caso.
+El índice contiene 45 entidades; el caso y el borrador de FEVI por métodos lineales permanecen excluidos de las salidas
+públicas. Los 28 signos publicados tienen URL pública en Ghost. FEVI por Simpson biplano fue
 publicada el 2026-09-15, Gasto cardíaco el 2026-09-11, VTI el 2026-09-09 y
 disfunción diastólica (E/e’) el 2026-09-06; los cuatro cuentan con imagen atribuida.
 
@@ -153,7 +153,7 @@ disfunción diastólica (E/e’) el 2026-09-06; los cuatro cuentan con imagen at
 | [Disfunción diastólica (E/e')](https://www.biosemiotics.net/disfuncion-diastolica-e-e-orienta-no-sentencia/) | cardiovascular | corazon | avanzado | consulta, uci | estimación integrada de presiones de llenado → evaluación formal; ✅ publicado con imagen atribuida |
 | [Gasto cardíaco](https://www.biosemiotics.net/gasto-cardiaco-calcular-el-flujo-sin-ocultar-el-error/) | cardiovascular | corazon | avanzado | uci | estimación reproducible del flujo → integración hemodinámica; ✅ publicado con imagen de Wikimedia Commons en dominio público |
 | [FEVI por Simpson biplano](https://www.biosemiotics.net/fevi-por-simpson-biplano-el-numero-depende-del-contorno/) | cardiovascular | corazon | avanzado | consulta, uci | método de referencia; trazado de bordes en 2 planos; ✅ publicado con imagen de Wikimedia Commons en dominio público |
-| FEVI por métodos lineales (Teichholz, FA) | cardiovascular | corazon | intermedio | consulta | estimación cuantitativa rápida en modo M |
+| FEVI por métodos lineales (Teichholz, FA) | cardiovascular | corazon | intermedio | consulta | borrador piloto: distinguir FA de FEVI y reconocer los límites de Teichholz; pendiente de revisión clínica |
 | Protocolo VExUS (congestión venosa) | multiorgano | cava | avanzado | uci | congestión sistémica → descongestión guiada |
 | Weaning / disfunción diafragmática | respiratorio | diafragma | avanzado | uci | excursión diafragmática → extubar o no |
 | Coartación aórtica | cardiovascular | aorta | avanzado | consulta | flujo, gradiente → derivar |
@@ -216,14 +216,14 @@ Oleada 1 y las rutas avanzadas que reutilizarán esos conceptos.
 Cada cifra, verificada contra PubMed antes de publicar. Cada signo, con su sección de límites ("dónde NO confiar"). El orden por oleada mantiene vivo el mensaje: *empezar es más fácil de lo que te dijeron.*
 
 ### Conteo
-- Banco actual: **46 entidades** (17 conceptos, 28 signos y 1 caso)
-- Signos publicados: **28 de 28**
+- Banco actual: **47 entidades** (17 conceptos, 29 signos y 1 caso)
+- Signos publicados: **28 de 29**
 - Conceptos esperando URL de Ghost: **0**
 - Oleada 1 completada: **8 de 8 signos**
 - Oleada 2 **escrita completa: 8 de 8 signos** (8 publicados, 0 esperando URL). La fila «colección/absceso, hernia complicada» se desdobló en dos: son dos significantes y dos decisiones distintas
 - Conceptos base pendientes: **0** — Doppler y «Cuantificación y sus límites» escritos y validados. **La Oleada 3 queda desbloqueada**
 - FAST/eFAST **completo**: 4 ventanas nuevas (Morrison, esplenorrenal, Douglas, hemotórax) + el nodo integrador `protocolo-fast` como concepto de técnica; pericardio y neumotórax se reutilizan de la Oleada 1
-- Restan **~2 entidades** para llegar a las ~48 proyectadas del atlas maduro
+- Resta **~1 entidad** para llegar a las ~48 proyectadas del atlas maduro
 
 Nota: FAST añade pocas fichas nuevas (Morrison, esplenorrenal, Douglas, hemotórax) porque reutiliza pericardio y neumotórax. El gradiente de FEVI añade 2 (lineales, Simpson) sobre el eyeball ya contado.
 

@@ -1,0 +1,124 @@
+---
+estado: borrador
+fecha_revision: null
+ghost_id: null
+id: signo-fevi-lineales
+tipo: signo
+titulo: "Teichholz y fracción de acortamiento: una línea no describe todo el ventrículo"
+url: ""
+abstract: >
+  Medir cuánto cambia el diámetro del ventrículo izquierdo permite calcular
+  la fracción de acortamiento. Teichholz añade una estimación de volumen
+  basada en geometría; ambas cifras responden a preguntas distintas. Para
+  el primer contacto, el aprendizaje consiste en reconocer qué se midió y
+  cuándo el número no representa al ventrículo completo, antes de utilizarlo
+  para una decisión clínica.
+sistema: cardiovascular
+organo: corazon
+nivel: intermedio
+ventana: paraesternal-eje-largo
+sonda: [sectorial]
+escenario: [consulta]
+pregunta_clinica: "¿Este porcentaje describe acortamiento de un diámetro o una estimación válida de la función global?"
+significante: "Cambio del diámetro interno del VI entre fin de diástole y fin de sístole."
+significado: "Acortamiento de una dimensión; la estimación de volúmenes mediante Teichholz añade supuestos geométricos."
+decision: "Identificar el método y sus limitaciones; solicitar cuantificación volumétrica y revisión experta si la función global condiciona una conducta."
+umbral: "No se establece un umbral terapéutico autónomo ni equivalencia entre FA y FEVI."
+falsos_positivos:
+  - "Apariencia de función global conservada inferida de una dimensión pese a alteraciones regionales"
+  - "Porcentaje convincente obtenido con una medición oblicua"
+  - "Estimación volumétrica engañosa cuando la geometría del VI no cumple el modelo"
+se_basa_en: [ventanas-cardiacas, modo-m, cuantificacion-limites]
+relacionado_con: [signo-eyeball-ef, signo-fevi-simpson]
+contrasta_con: []
+autores:
+  - nombre: "Alcy Edmundo Torres Guerrero"
+    orcid: "0000-0002-9742-375X"
+    afiliacion: "Universidad Central del Ecuador"
+medios: []
+refs: [lang2015, teichholz1976]
+licencia: CC-BY-4.0
+---
+
+## La pregunta clínica
+
+El equipo muestra un porcentaje después de colocar dos medidas. Antes de
+leerlo como respuesta, pregunta: **¿qué calculó realmente?**
+
+Este tema continúa el recorrido entre eyeball y Simpson. La práctica propuesta
+es aprender a leer el método que acompaña al resultado: describirlo, guardar
+la adquisición y reconocer cuándo hace falta otra evaluación. No se propone
+usar Teichholz como atajo terapéutico.
+
+## Por qué el examen físico no basta
+
+Esta ficha aborda una pregunta de medición: cuánto se acorta un diámetro.
+Para responderla necesitamos identificar ese diámetro en las imágenes; tampoco
+la cifra aislada sustituye la evaluación clínica. Anota primero la pregunta
+que intentas resolver y después el método disponible para responderla.
+
+## Cómo se obtiene la ventana
+
+En eje largo paraesternal, mide el diámetro interno perpendicular al eje del
+VI, a nivel o inmediatamente por debajo de las puntas mitrales. La guía
+prefiere medidas lineales en 2D para evitar cortes oblicuos; admite modo M
+guiado por 2D [lang2015].
+
+Como ejercicio supervisado, guarda la vista y señala dónde mediste. No ajustes
+los calibradores buscando un porcentaje esperado. Si no puedes explicar la
+orientación, presenta la adquisición para revisión antes de interpretar la cifra.
+
+## El signo
+
+**Significante:** un diámetro cambia entre diástole y sístole.
+
+La fracción de acortamiento se expresa como:
+
+**FA (%) = (DD − DS) / DD × 100**, con DD y DS como diámetros internos
+telediastólico y telesistólico, medidos en la misma unidad. FEVI utiliza
+volúmenes: **(VTD − VTS) / VTD × 100** [lang2015].
+
+Ejercicio aritmético ficticio: DD de 5 cm y DS de 3,5 cm dan FA de 30 %.
+No es un paciente ni un intervalo de referencia. No significa FEVI de 30 %.
+
+Teichholz estima volúmenes a partir de una dimensión. El estudio original
+encontró mala concordancia con angiografía cuando había asinergia; su
+resultado no valida el método para cualquier ventrículo [teichholz1976].
+
+## La bifurcación
+
+La guía ASE/EACVI de 2015 desaconseja los volúmenes derivados por Teichholz
+para uso clínico y recomienda Simpson biplano para FEVI bidimensional
+[lang2015].
+
+Propuesta editorial para el primer contacto: si la conducta depende de una
+FEVI cuantitativa, solicita una evaluación volumétrica adecuada y revisión
+experta. Si el informe solo ofrece FA o Teichholz, identifica esa limitación
+en vez de cambiarle el nombre al resultado. Un informe útil explica qué se
+midió y qué queda sin responder.
+
+## Dónde NO confiar
+
+Las alteraciones regionales, incluidos trastornos de conducción, dificultan
+inferir función global desde medidas lineales [lang2015]. El trabajo original
+de Teichholz ya advertía sobre asinergia [teichholz1976].
+
+Para revisar este ejercicio, separa dos preguntas: ¿la medida está bien
+obtenida?, ¿el método responde a la pregunta clínica? Corregir la primera
+no resuelve automáticamente la segunda. No compares FA y FEVI como si fueran
+dos lecturas de la misma magnitud.
+
+## Practica esto
+
+Con un estudio docente desidentificado y supervisión, señala DD y DS,
+calcula FA y escribe el nombre del método junto al resultado. Usa el ejemplo
+ficticio anterior para comprobar la aritmética, no para clasificar pacientes.
+
+Entrega al supervisor la adquisición, los calibradores y una frase sobre
+lo que el resultado permite interpretar. Esta versión no incorpora todavía
+un loop clínico; su selección y licencia quedan pendientes de revisión.
+
+## Discusión abierta
+
+¿Qué escribirías al recibir una «FEVI» automática sin indicación del método?
+¿Qué imagen o información pedirías antes de incorporarla a una decisión?
