@@ -1,0 +1,2 @@
+# Modelo del proyecto; conserva esfuerzo, credenciales y permisos heredados.
+model = "gpt-6-astra"

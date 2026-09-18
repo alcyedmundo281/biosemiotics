@@ -64,6 +64,11 @@ workflow manualmente.
 
 ### Preparar el entorno
 
+Para trabajar con GPT-6 Astra en Codex, sigue [CODEX.md](CODEX.md).
+Codex descubre las reglas iniciales en [AGENTS.md](AGENTS.md), que remite al
+manual editorial compartido. En Windows, activa el entorno con
+`. ./activar-entorno.ps1` antes de ejecutar Python.
+
 ```bash
 python -m pip install -r requirements.txt
 python scripts/preflight.py
