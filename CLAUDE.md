@@ -568,6 +568,13 @@ Las dos URLs (primaria raw, respaldo jsDelivr) son **constantes fijas en `indice
 
 **Cuándo hay que repegar `atlas-inject.html` en Ghost:** solo si cambia la estructura del buscador (diseño, facetas, lógica de fetch). Para publicar contenido NO hace falta —basta el ciclo de arriba.
 
+**El Reto sigue la misma regla.** La página `/reto/` de Ghost ejecuta pegado el
+script de `artefactos/reto.html`; si ese archivo cambia, hay que repegarlo.
+`verificar_publicacion.py --id <id> --comprobar-web` recorre artículo → Reto
+enfocado → índice público y avisa si la página del Reto quedó con otra versión
+o si el índice aún no trae la ficha. La lógica del Reto la prueba
+`tests/test_reto.py`, que ejecuta ese mismo script en Node.
+
 ## Flujo del proveedor: ramas y Pull Requests
 
 **`main` está protegida: no se le hace push directo.** Todo cambio entra por un Pull Request que la CI debe aprobar antes de fusionar. Los dos roles se representan con ramas y PR distintos, aunque los ejecute la misma sesión.

@@ -7,17 +7,27 @@ Uso general (CI):
 Verificación dirigida después de publicar en Ghost:
   python scripts/verificar_publicacion.py --id signo-ejemplo --url https://www.biosemiotics.net/ejemplo/
 
-La comprobación web es deliberadamente opcional para que un fallo transitorio
-de red no convierta la integridad local en una prueba inestable.
+Siempre se valida, sin red, que cada signo publicable enlace a su Reto
+enfocado y que el índice permita enfocarlo (artículo → Reto → artículo).
+
+Recorrido público, deliberadamente opcional para que un fallo transitorio de
+red no convierta la integridad local en una prueba inestable:
+  python scripts/verificar_publicacion.py --id signo-ejemplo --comprobar-web
+
+Revisa el artículo (imagen destacada descargable, enlace al Reto, sección
+«Dónde NO confiar»), que la página del Reto ejecute el script actual de
+artefactos/reto.html y que el índice público ya tenga la ficha con su URL.
 """
 
 from __future__ import annotations
 
 import argparse
 import hashlib
+import html
 import json
 import re
 import sys
+import urllib.parse
 import urllib.request
 import xml.etree.ElementTree as ET
 import zipfile
@@ -26,7 +36,7 @@ from typing import Optional
 
 from banco import cargar, estado_publicacion, seleccionar_publicables
 from bibliografia import cargar_bibliografia
-from ghost import huella_cuerpo_ghost
+from ghost import URL_RETO, cuerpo_ghost, huella_cuerpo_ghost
 from indice import URL_PRIMARIA, URL_RESPALDO, XLINK_NS
 from rutas import desde_raiz, raiz_argumentos, raiz_desde_argumentos
 
@@ -40,6 +50,11 @@ CAMPOS_DESTACADA = (
     "licencia_img",
     "licencia_url",
 )
+
+
+# Mismo filtro que aplica artefactos/reto-embed.html antes de reenviar ?signo=.
+PATRON_ID_RETO = re.compile(r"^[a-z0-9áéíóúñü-]{3,60}$", re.IGNORECASE)
+RETO_LOCAL = Path("artefactos") / "reto.html"
 
 
 def error(errores: list[str], mensaje: str) -> None:
@@ -234,17 +249,152 @@ def validar_derivados(
                         )
 
 
-def comprobar_web(url: str) -> str | None:
-    solicitud = urllib.request.Request(url, headers={"User-Agent": "biosemiotics-ci/1.0"})
-    try:
-        with urllib.request.urlopen(solicitud, timeout=20) as respuesta:
-            if respuesta.status != 200:
-                return f"respondió HTTP {respuesta.status}"
-            if not respuesta.geturl().startswith(DOMINIO_PUBLICO):
-                return f"redirigió fuera del dominio público: {respuesta.geturl()}"
-    except Exception as exc:  # la opción es manual; aquí sí interesa el detalle
-        return str(exc)
+def motivo_fuera_del_reto(ficha: dict) -> str | None:
+    """Replica el filtro de carga de artefactos/reto.html para una ficha."""
+    if ficha.get("tipo") != "signo" or not ficha.get("titulo"):
+        return "no es un signo con título"
+    if not (ficha.get("significado") or ficha.get("decision") or ficha.get("pregunta_clinica")):
+        return "no tiene significado, decisión ni pregunta clínica"
     return None
+
+
+def validar_recorrido_reto(
+    publicables: list[dict],
+    fichas: dict[str, dict],
+    bibliografia: dict,
+    errores: list[str],
+) -> None:
+    """Artículo → Reto enfocado → artículo, con lo que se versiona.
+
+    El cuerpo de Ghost enlaza al Reto con el id del signo. Ese id debe pasar el
+    filtro del embed, existir en el índice que lee el Reto y superar su filtro
+    de carga; si no, el Reto abre el modo general. Que el script genere
+    preguntas y devuelva al artículo lo prueba tests/test_reto.py ejecutándolo.
+    """
+    for entidad in publicables:
+        if entidad["tipo"] != "signo":
+            continue
+        id_ = entidad["id"]
+        if URL_RETO.format(id=id_) not in cuerpo_ghost(entidad, bibliografia):
+            error(errores, f"{id_}: el cuerpo de Ghost no enlaza a su Reto enfocado")
+        if not PATRON_ID_RETO.match(id_):
+            error(errores, f"{id_}: el embed del Reto descarta ese id y abre el modo general")
+        ficha = fichas.get(id_)
+        if ficha is None:
+            error(errores, f"{id_}: ausente del índice; el Reto enfocado caería al modo general")
+            continue
+        motivo = motivo_fuera_del_reto(ficha)
+        if motivo:
+            error(errores, f"{id_}: el Reto no puede enfocarlo: {motivo}")
+
+
+def descargar(url: str) -> tuple[bytes, str, str]:
+    """Cuerpo, URL final y tipo de contenido. urllib lanza ante 4xx/5xx."""
+    solicitud = urllib.request.Request(url, headers={"User-Agent": "biosemiotics-ci/1.0"})
+    with urllib.request.urlopen(solicitud, timeout=20) as respuesta:
+        return (
+            respuesta.read(),
+            respuesta.geturl(),
+            respuesta.headers.get("Content-Type", ""),
+        )
+
+
+def scripts_reto(texto: str) -> list[str]:
+    return re.findall(r"<script>\s*(\(function\(\)\{[\s\S]*?)</script>", texto)
+
+
+def meta(texto: str, propiedad: str) -> str | None:
+    m = re.search(
+        rf'<meta\s+property="{re.escape(propiedad)}"\s+content="([^"]*)"', texto
+    )
+    return html.unescape(m.group(1)) if m else None
+
+
+def comprobar_recorrido_web(raiz: Path, entidad: dict) -> list[str]:
+    """Recorre en la web pública lo que haría un lector después de publicar.
+
+    Artículo (dominio, título, imagen destacada descargable y enlace al Reto),
+    página del Reto (responde y ejecuta el mismo script que artefactos/reto.html)
+    e índice público que ese script lee (la ficha está, con su URL, y el Reto
+    puede enfocarla). No ejecuta el JavaScript: su lógica la cubre test_reto.py.
+    """
+    problemas: list[str] = []
+    url = entidad.get("url") or ""
+    try:
+        cuerpo, final, _ = descargar(url)
+    except Exception as exc:  # la opción es manual; aquí sí interesa el detalle
+        return [f"artículo: {exc}"]
+    if not final.startswith(DOMINIO_PUBLICO):
+        return [f"artículo: redirigió fuera del dominio público: {final}"]
+    articulo = cuerpo.decode("utf-8", "replace")
+
+    # El título de Ghost puede ser más largo que el de la ficha: no se compara.
+    if not meta(articulo, "og:title"):
+        problemas.append("artículo: sin título (og:title)")
+
+    imagen = meta(articulo, "og:image")
+    if not imagen:
+        problemas.append("artículo: sin imagen destacada (og:image)")
+    else:
+        try:
+            _, _, tipo = descargar(imagen)
+            if not tipo.startswith("image/"):
+                problemas.append(f"artículo: la imagen destacada responde {tipo!r}")
+        except Exception as exc:
+            problemas.append(f"artículo: la imagen destacada no descarga: {exc}")
+
+    if entidad["tipo"] != "signo":
+        return problemas
+
+    id_ = entidad["id"]
+    enlace = URL_RETO.format(id=id_)
+    enlace_codificado = URL_RETO.format(id=urllib.parse.quote(id_))
+    texto = html.unescape(articulo)
+    if enlace not in texto and enlace_codificado not in texto:
+        problemas.append(f"artículo: no enlaza a {enlace}")
+    encabezados = re.findall(r"<h2[^>]*>([\s\S]*?)</h2>", texto)
+    if not any(re.match(r"\s*dónde no confiar", h, re.IGNORECASE) for h in encabezados):
+        problemas.append("artículo: falta la sección «Dónde NO confiar»")
+
+    try:
+        cuerpo, final, _ = descargar(enlace_codificado)
+        if not final.startswith(DOMINIO_PUBLICO):
+            problemas.append(f"Reto: redirigió fuera del dominio público: {final}")
+        local = scripts_reto((raiz / RETO_LOCAL).read_text(encoding="utf-8"))
+        publico = scripts_reto(cuerpo.decode("utf-8", "replace"))
+        if not local or local[0] not in publico:
+            problemas.append(
+                f"Reto: la página pública no ejecuta el script actual de "
+                f"{RETO_LOCAL.as_posix()}; hay que repegarlo en Ghost"
+            )
+    except Exception as exc:
+        problemas.append(f"Reto: {exc}")
+
+    fichas = None
+    for fuente in (URL_PRIMARIA, URL_RESPALDO):
+        try:
+            datos = json.loads(descargar(fuente)[0].decode("utf-8"))
+            fichas = {f["id"]: f for f in datos.get("fichas", [])}
+            break
+        except Exception as exc:
+            problemas.append(f"índice público {fuente}: {exc}")
+    if fichas is not None:
+        ficha = fichas.get(id_)
+        if ficha is None:
+            problemas.append(
+                "índice público: la ficha aún no está; el Reto enfocado caerá "
+                "al modo general hasta que se fusione y se refresque el índice"
+            )
+        else:
+            if ficha.get("url") != url:
+                problemas.append(
+                    f"índice público: URL {ficha.get('url')!r} != {url!r}; el Reto "
+                    "no devolvería al artículo"
+                )
+            motivo = motivo_fuera_del_reto(ficha)
+            if motivo:
+                problemas.append(f"índice público: el Reto no puede enfocarlo: {motivo}")
+    return problemas
 
 
 def main() -> int:
@@ -296,6 +446,7 @@ def main() -> int:
         if fichas.get(entidad["id"], {}).get("url", "") != url:
             error(errores, f"{entidad['id']}: URL distinta entre fuente e índice")
 
+    validar_recorrido_reto(publicables, fichas, bibliografia, errores)
     validar_destacadas(raiz, entidades, errores)
     validar_mapa(
         (raiz / "mapa-maestro-biosemiotics.md").read_text(encoding="utf-8"),
@@ -319,9 +470,8 @@ def main() -> int:
             if args.url and url != args.url:
                 error(errores, f"{args.entidad_id}: URL {url!r} != {args.url!r}")
             if args.comprobar_web and url:
-                problema = comprobar_web(url)
-                if problema:
-                    error(errores, f"{args.entidad_id}: URL pública inválida: {problema}")
+                for problema in comprobar_recorrido_web(raiz, entidad):
+                    error(errores, f"{args.entidad_id}: web pública: {problema}")
             objetivo_verificado = f"✓ {args.entidad_id}: {url}"
     elif args.url:
         error(errores, "--url requiere --id")
