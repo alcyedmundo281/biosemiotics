@@ -10,11 +10,12 @@ from bibliografia import (
     resolver_citas,
 )
 
+URL_RETO = "https://www.biosemiotics.net/reto/?signo={id}"
 LINEA_RETO = (
     "---\n"
     "\n"
     "**¿Reconoces este signo cuando no te avisan?** "
-    "[Ponte a prueba en el Reto](https://www.biosemiotics.net/reto/?signo={id})"
+    "[Ponte a prueba en el Reto](" + URL_RETO + ")"
 )
 
 
