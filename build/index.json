@@ -826,7 +826,7 @@
    "estado": "publicado",
    "fecha_revision": null,
    "ghost_id": null,
-   "ghost_sha256": "22114a8ed4b90399c3a26a4b5ef758cae16532d9839f5dbd8f658981cc8b90f1",
+   "ghost_sha256": "6582eaa05956517ed2238ac72dd624186fd714953ad0ac2a647db7ab8ab0ec4b",
    "titulo_en": "Soft tissue abscess: the collection the hand cannot feel",
    "url": "https://www.biosemiotics.net/absceso-de-partes-blandas-la-coleccion-que-la-mano-no-distingue/",
    "version": "1.0",
@@ -2193,6 +2193,78 @@
     "sutarjono2023"
    ],
    "n_refs": 4
+  },
+  {
+   "id": "signo-fevi-simpson",
+   "tipo": "signo",
+   "titulo": "FEVI por Simpson biplano: el número depende del contorno",
+   "estado": "publicado",
+   "fecha_revision": "2026-09-14",
+   "ghost_id": "6aa899c42e9f960001f0ff50",
+   "ghost_sha256": "20c097e4cc5b8adf3fe2b2045ba209c2b03d9976ab4b1df0db2f0316650b99ff",
+   "url": "https://www.biosemiotics.net/fevi-por-simpson-biplano-el-numero-depende-del-contorno/",
+   "abstract": "El trazado del ventrículo izquierdo en dos vistas apicales permite estimar la fracción de eyección. Para el primer contacto, la decisión comienza antes del porcentaje: reconocer si la adquisición permite cuantificar o necesita revisión experta. El cálculo no elimina la dependencia del operador; un contorno dudoso exige revisar el estudio antes de convertirlo en una decisión clínica.\n",
+   "sistema": "cardiovascular",
+   "organo": "corazon",
+   "nivel": "avanzado",
+   "ventana": "apical-cuatro-y-dos-camaras",
+   "pregunta_clinica": "¿Puedo sostener esta medición de FEVI o necesito revisión experta?",
+   "significante": "Contornos del VI en apical de cuatro y dos cámaras, al final de diástole y sístole.",
+   "significado": "Fracción del volumen telediastólico expulsada durante la sístole.",
+   "umbral": "Esta ficha no establece un umbral terapéutico autónomo.",
+   "licencia": "CC-BY-4.0",
+   "fecha": "2026-09-14",
+   "actualizado": "2026-09-14",
+   "decision": "Documentar la calidad y solicitar revisión experta si el trazado es incierto o condiciona una conducta.",
+   "sonda": [
+    "sectorial"
+   ],
+   "escenario": [
+    "consulta",
+    "uci"
+   ],
+   "falsos_positivos": [
+    "Acortamiento apical que distorsiona los volúmenes",
+    "Borde mal definido que obliga a inventar el contorno",
+    "Selección inadecuada del fotograma o del plano"
+   ],
+   "se_basa_en": [
+    "ventanas-cardiacas",
+    "cuantificacion-limites"
+   ],
+   "autores": [
+    {
+     "nombre": "Alcy Edmundo Torres Guerrero",
+     "orcid": "0000-0002-9742-375X",
+     "afiliacion": "Universidad Central del Ecuador",
+     "credit": [
+      "conceptualizacion",
+      "redaccion",
+      "supervision"
+     ]
+    }
+   ],
+   "medios": [
+    {
+     "tipo": "imagen",
+     "destacada": true,
+     "id": "wikimedia:Echocardiogram 4chambers",
+     "descripcion": "Vista ecocardiográfica apical de cuatro cámaras utilizada para delimitar el ventrículo izquierdo",
+     "credito": "Kjetil Lenes (Ekko)",
+     "fuente": "Wikimedia Commons",
+     "fuente_url": "https://commons.wikimedia.org/wiki/File:Echocardiogram_4chambers.jpg",
+     "licencia_img": "Dominio público",
+     "licencia_url": "https://commons.wikimedia.org/wiki/Commons:Licensing",
+     "archivo_local": "assets/img/fevi-simpson-4-camaras.jpg"
+    }
+   ],
+   "n_loops": 0,
+   "n_imagenes": 1,
+   "refs": [
+    "lang2015",
+    "akil2025"
+   ],
+   "n_refs": 2
   },
   {
    "id": "signo-gasto-cardiaco",
