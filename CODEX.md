@@ -6,8 +6,9 @@ investigación y mantenimiento; el pipeline Python sigue siendo determinista.
 ## Configuración
 
 `.codex/config.toml` fija `model = "gpt-6-astra"` para este proyecto de confianza.
-No fija esfuerzo de razonamiento: conserva la elección del usuario o de la app.
-Si la selección anterior es `none` o `minimal`, selecciona `low` para Astra.
+Fija `model_reasoning_effort = "high"` como elección del proyecto para el trabajo
+de investigación y revisión editorial. Es una configuración de trabajo, no una
+garantía de exactitud clínica. Puedes elegir un esfuerzo menor para tareas simples.
 No modifica credenciales, proveedor, sandbox ni permisos globales.
 
 Abre una sesión nueva en este repositorio y comprueba el modelo efectivo en el
@@ -56,9 +57,9 @@ No existía configuración Codex en el proyecto ni un modelo anterior fijado aqu
 - Preflight editorial bloqueado localmente: faltan LuaLaTeX, rsvg-convert y
   EPUBCheck. La validación completa debe quedar acreditada en CI antes del uso
   editorial de la migración.
-- No se encontró `biosemiotics-atlas` en las skills de Codex; el directorio
-  personal de skills de Claude no existe en este equipo. Su material exclusivo
-  sigue pendiente de localizar.
+- El material de `biosemiotics-atlas`, aportado posteriormente por el usuario,
+  está incorporado y actualizado en [docs/atlas/README.md](docs/atlas/README.md).
+  No hace falta instalar una skill ni conservar el paquete externo.
 
 ## Piloto y criterios de adopción
 
@@ -78,10 +79,41 @@ comparar las mismas tareas. No se ha medido todavía una mejora de calidad,
 costo o latencia. Para adoptar el flujo editorial se requieren las pruebas
 aplicables en verde, ninguna referencia ni metadato inventado y revisión clínica.
 
+## Trabajo del próximo tema
+
+Según el mapa al 2026-09-18, sigue FEVI por métodos lineales (Teichholz y FA),
+cardiovascular/corazon, nivel intermedio, dentro de la oleada 3. Comprueba de
+nuevo el mapa al comenzar: este párrafo no es una segunda cola de prioridades.
+
+1. Abrir una sesión en el proyecto, confirmar Astra y leer AGENTS, el manual,
+   el mapa y la guía incorporada. Activar UTF-8 y ejecutar preflight.
+2. Revisar las fichas existentes de eyeball y Simpson, Modo M y cuantificación.
+   Delimitar qué pregunta educativa resolverá la nueva ficha, sin duplicarlas.
+3. Buscar fuentes primarias en PubMed; comprobar DOI/Crossref y preparar una
+   tabla afirmación → fuente → pasaje o dato comprobado. Marcar las lagunas;
+   no completar fórmulas, umbrales o decisiones clínicas de memoria.
+4. Preparar el `.qmd` en `estado: borrador`, URL vacía, con abstract, ocho
+   secciones del signo, relaciones, límites y medios con licencia comprobada.
+5. Validar estructura y referencias, y entregar a Alcy el borrador junto con
+   la tabla de evidencia y las decisiones clínicas que requieren su revisión.
+   La condición de borrador permite incompletitud: un build correcto no basta;
+   revisar también las alertas de la ficha antes de presentarla como completa.
+6. Tras aprobación editorial, aplicar el cambio de estado y el flujo proveedor.
+   Publicar en Ghost solo cuando esté autorizado, registrar sus datos reales y
+   completar el traspaso publicador/proveedor y los derivados del manual.
+
+Solicitud de arranque sugerida:
+
+> Prepara el borrador del siguiente tema del mapa: FEVI por métodos lineales
+> (Teichholz y fracción de acortamiento). Sigue la guía incorporada, verifica
+> fuentes y presenta la tabla de evidencia junto al artículo para mi revisión.
+> Mantén el estado borrador y no publiques en Ghost.
+
 ## Reversión
 
-Retira solo la línea `model` de `.codex/config.toml` para volver al modelo
-heredado y abre una sesión nueva. Conserva `AGENTS.md` si deseas seguir usando
+Retira las líneas `model` y `model_reasoning_effort` de `.codex/config.toml`
+para volver a la configuración heredada y abre una sesión nueva. Conserva
+`AGENTS.md` si deseas seguir usando
 Codex con otro modelo. Para retirar toda la integración, revierte el commit de
 migración mediante un PR normal, sin reset destructivo ni cambios al contenido.
 
