@@ -1,6 +1,6 @@
 ---
-estado: borrador
-fecha_revision: null
+estado: revisado
+fecha_revision: 2026-09-18
 ghost_id: null
 id: signo-fevi-lineales
 tipo: signo
@@ -115,8 +115,7 @@ calcula FA y escribe el nombre del método junto al resultado. Usa el ejemplo
 ficticio anterior para comprobar la aritmética, no para clasificar pacientes.
 
 Entrega al supervisor la adquisición, los calibradores y una frase sobre
-lo que el resultado permite interpretar. Esta versión no incorpora todavía
-un loop clínico; su selección y licencia quedan pendientes de revisión.
+lo que el resultado permite interpretar.
 
 ## Discusión abierta
 

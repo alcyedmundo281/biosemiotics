@@ -2195,6 +2195,54 @@
    "n_refs": 4
   },
   {
+   "id": "signo-fevi-lineales",
+   "tipo": "signo",
+   "titulo": "Teichholz y fracción de acortamiento: una línea no describe todo el ventrículo",
+   "estado": "revisado",
+   "fecha_revision": "2026-09-18",
+   "ghost_id": null,
+   "ghost_sha256": "4922315822ba4d79840cc0712f38444e8610a88743ffe27ceb923d323c760a53",
+   "abstract": "Medir cuánto cambia el diámetro del ventrículo izquierdo permite calcular la fracción de acortamiento. Teichholz añade una estimación de volumen basada en geometría; ambas cifras responden a preguntas distintas. Para el primer contacto, el aprendizaje consiste en reconocer qué se midió y cuándo el número no representa al ventrículo completo, antes de utilizarlo para una decisión clínica.\n",
+   "sistema": "cardiovascular",
+   "organo": "corazon",
+   "nivel": "intermedio",
+   "ventana": "paraesternal-eje-largo",
+   "pregunta_clinica": "¿Este porcentaje describe acortamiento de un diámetro o una estimación válida de la función global?",
+   "significante": "Cambio del diámetro interno del VI entre fin de diástole y fin de sístole.",
+   "significado": "Acortamiento de una dimensión; la estimación de volúmenes mediante Teichholz añade supuestos geométricos.",
+   "umbral": "No se establece un umbral terapéutico autónomo ni equivalencia entre FA y FEVI.",
+   "licencia": "CC-BY-4.0",
+   "decision": "Identificar el método y sus limitaciones; solicitar cuantificación volumétrica y revisión experta si la función global condiciona una conducta.",
+   "sonda": [
+    "sectorial"
+   ],
+   "escenario": [
+    "consulta"
+   ],
+   "falsos_positivos": [
+    "Apariencia de función global conservada inferida de una dimensión pese a alteraciones regionales",
+    "Porcentaje convincente obtenido con una medición oblicua",
+    "Estimación volumétrica engañosa cuando la geometría del VI no cumple el modelo"
+   ],
+   "se_basa_en": [
+    "ventanas-cardiacas",
+    "modo-m",
+    "cuantificacion-limites"
+   ],
+   "autores": [
+    {
+     "nombre": "Alcy Edmundo Torres Guerrero",
+     "orcid": "0000-0002-9742-375X",
+     "afiliacion": "Universidad Central del Ecuador"
+    }
+   ],
+   "refs": [
+    "lang2015",
+    "teichholz1976"
+   ],
+   "n_refs": 2
+  },
+  {
    "id": "signo-fevi-simpson",
    "tipo": "signo",
    "titulo": "FEVI por Simpson biplano: el número depende del contorno",

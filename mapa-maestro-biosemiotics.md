@@ -57,8 +57,8 @@ cuantitativos de la Oleada 3.
 ## 2. Estado actual (lo ya publicado)
 
 El banco contiene **47 entidades**: 17 conceptos, 29 signos y 1 caso.
-El índice contiene 45 entidades; el caso y el borrador de FEVI por métodos lineales permanecen excluidos de las salidas
-públicas. Los 28 signos publicados tienen URL pública en Ghost. FEVI por Simpson biplano fue
+El índice contiene 46 entidades; el caso permanece excluido de las salidas
+públicas. FEVI por métodos lineales está revisada y pendiente de publicación. Los 28 signos publicados tienen URL pública en Ghost. FEVI por Simpson biplano fue
 publicada el 2026-09-15, Gasto cardíaco el 2026-09-11, VTI el 2026-09-09 y
 disfunción diastólica (E/e’) el 2026-09-06; los cuatro cuentan con imagen atribuida.
 
@@ -153,7 +153,7 @@ disfunción diastólica (E/e’) el 2026-09-06; los cuatro cuentan con imagen at
 | [Disfunción diastólica (E/e')](https://www.biosemiotics.net/disfuncion-diastolica-e-e-orienta-no-sentencia/) | cardiovascular | corazon | avanzado | consulta, uci | estimación integrada de presiones de llenado → evaluación formal; ✅ publicado con imagen atribuida |
 | [Gasto cardíaco](https://www.biosemiotics.net/gasto-cardiaco-calcular-el-flujo-sin-ocultar-el-error/) | cardiovascular | corazon | avanzado | uci | estimación reproducible del flujo → integración hemodinámica; ✅ publicado con imagen de Wikimedia Commons en dominio público |
 | [FEVI por Simpson biplano](https://www.biosemiotics.net/fevi-por-simpson-biplano-el-numero-depende-del-contorno/) | cardiovascular | corazon | avanzado | consulta, uci | método de referencia; trazado de bordes en 2 planos; ✅ publicado con imagen de Wikimedia Commons en dominio público |
-| FEVI por métodos lineales (Teichholz, FA) | cardiovascular | corazon | intermedio | consulta | borrador piloto: distinguir FA de FEVI y reconocer los límites de Teichholz; pendiente de revisión clínica |
+| FEVI por métodos lineales (Teichholz, FA) | cardiovascular | corazon | intermedio | consulta | revisado: distinguir FA de FEVI y reconocer los límites de Teichholz; publicación autorizada por Alcy |
 | Protocolo VExUS (congestión venosa) | multiorgano | cava | avanzado | uci | congestión sistémica → descongestión guiada |
 | Weaning / disfunción diafragmática | respiratorio | diafragma | avanzado | uci | excursión diafragmática → extubar o no |
 | Coartación aórtica | cardiovascular | aorta | avanzado | consulta | flujo, gradiente → derivar |
