@@ -58,7 +58,8 @@ cuantitativos de la Oleada 3.
 
 El banco contiene **47 entidades**: 17 conceptos, 29 signos y 1 caso.
 El índice contiene 46 entidades; el caso permanece excluido de las salidas
-públicas. FEVI por métodos lineales está revisada y pendiente de publicación. Los 28 signos publicados tienen URL pública en Ghost. FEVI por Simpson biplano fue
+públicas. Los 29 signos publicados tienen URL pública en Ghost. FEVI por métodos
+lineales fue publicada el 2026-09-19 con imagen atribuida. FEVI por Simpson biplano fue
 publicada el 2026-09-15, Gasto cardíaco el 2026-09-11, VTI el 2026-09-09 y
 disfunción diastólica (E/e’) el 2026-09-06; los cuatro cuentan con imagen atribuida.
 
@@ -92,6 +93,7 @@ disfunción diastólica (E/e’) el 2026-09-06; los cuatro cuentan con imagen at
 | [Disfunción diastólica (E/e’)](https://www.biosemiotics.net/disfuncion-diastolica-e-e-orienta-no-sentencia/) | cardiovascular | corazon | avanzado | ✅ publicado |
 | [Gasto cardíaco](https://www.biosemiotics.net/gasto-cardiaco-calcular-el-flujo-sin-ocultar-el-error/) | cardiovascular | corazon | avanzado | ✅ publicado |
 | [FEVI por Simpson biplano](https://www.biosemiotics.net/fevi-por-simpson-biplano-el-numero-depende-del-contorno/) | cardiovascular | corazon | avanzado | ✅ publicado |
+| [FEVI por métodos lineales (Teichholz, FA)](https://www.biosemiotics.net/teichholz-y-fraccion-de-acortamiento-una-linea-no-describe-todo-el-ventriculo/) | cardiovascular | corazon | intermedio | ✅ publicado |
 
 ---
 
@@ -153,7 +155,7 @@ disfunción diastólica (E/e’) el 2026-09-06; los cuatro cuentan con imagen at
 | [Disfunción diastólica (E/e')](https://www.biosemiotics.net/disfuncion-diastolica-e-e-orienta-no-sentencia/) | cardiovascular | corazon | avanzado | consulta, uci | estimación integrada de presiones de llenado → evaluación formal; ✅ publicado con imagen atribuida |
 | [Gasto cardíaco](https://www.biosemiotics.net/gasto-cardiaco-calcular-el-flujo-sin-ocultar-el-error/) | cardiovascular | corazon | avanzado | uci | estimación reproducible del flujo → integración hemodinámica; ✅ publicado con imagen de Wikimedia Commons en dominio público |
 | [FEVI por Simpson biplano](https://www.biosemiotics.net/fevi-por-simpson-biplano-el-numero-depende-del-contorno/) | cardiovascular | corazon | avanzado | consulta, uci | método de referencia; trazado de bordes en 2 planos; ✅ publicado con imagen de Wikimedia Commons en dominio público |
-| FEVI por métodos lineales (Teichholz, FA) | cardiovascular | corazon | intermedio | consulta | revisado: distinguir FA de FEVI y reconocer los límites de Teichholz; publicación autorizada por Alcy |
+| [FEVI por métodos lineales (Teichholz, FA)](https://www.biosemiotics.net/teichholz-y-fraccion-de-acortamiento-una-linea-no-describe-todo-el-ventriculo/) | cardiovascular | corazon | intermedio | consulta | distinguir FA de FEVI y reconocer los límites de Teichholz; ✅ publicado con imagen de Wikimedia Commons en dominio público |
 | Protocolo VExUS (congestión venosa) | multiorgano | cava | avanzado | uci | congestión sistémica → descongestión guiada |
 | Weaning / disfunción diafragmática | respiratorio | diafragma | avanzado | uci | excursión diafragmática → extubar o no |
 | Coartación aórtica | cardiovascular | aorta | avanzado | consulta | flujo, gradiente → derivar |
@@ -210,14 +212,17 @@ Oleada 1 y las rutas avanzadas que reutilizarán esos conceptos.
    trazabilidad quedó conciliada con el repositorio. Gasto cardíaco fue publicado
    el 2026-09-11 con imagen de Wikimedia Commons en dominio público. FEVI por
    Simpson biplano fue publicada el 2026-09-15 con imagen de Wikimedia Commons
-   en dominio público. Después: Extensiones.
+   en dominio público. FEVI por métodos lineales fue publicada el 2026-09-19
+   con imagen de Wikimedia Commons en dominio público. Sigue el protocolo
+   VExUS, después disfunción diafragmática y coartación aórtica; al cerrar la
+   oleada, Extensiones.
 
 ### La regla que no cambia
 Cada cifra, verificada contra PubMed antes de publicar. Cada signo, con su sección de límites ("dónde NO confiar"). El orden por oleada mantiene vivo el mensaje: *empezar es más fácil de lo que te dijeron.*
 
 ### Conteo
 - Banco actual: **47 entidades** (17 conceptos, 29 signos y 1 caso)
-- Signos publicados: **28 de 29**
+- Signos publicados: **29 de 29**
 - Conceptos esperando URL de Ghost: **0**
 - Oleada 1 completada: **8 de 8 signos**
 - Oleada 2 **escrita completa: 8 de 8 signos** (8 publicados, 0 esperando URL). La fila «colección/absceso, hernia complicada» se desdobló en dos: son dos significantes y dos decisiones distintas

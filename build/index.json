@@ -2198,10 +2198,11 @@
    "id": "signo-fevi-lineales",
    "tipo": "signo",
    "titulo": "Teichholz y fracción de acortamiento: una línea no describe todo el ventrículo",
-   "estado": "revisado",
+   "estado": "publicado",
    "fecha_revision": "2026-09-18",
-   "ghost_id": null,
+   "ghost_id": "6aadf9b8754e7a000181f00c",
    "ghost_sha256": "4922315822ba4d79840cc0712f38444e8610a88743ffe27ceb923d323c760a53",
+   "url": "https://www.biosemiotics.net/teichholz-y-fraccion-de-acortamiento-una-linea-no-describe-todo-el-ventriculo/",
    "abstract": "Medir cuánto cambia el diámetro del ventrículo izquierdo permite calcular la fracción de acortamiento. Teichholz añade una estimación de volumen basada en geometría; ambas cifras responden a preguntas distintas. Para el primer contacto, el aprendizaje consiste en reconocer qué se midió y cuándo el número no representa al ventrículo completo, antes de utilizarlo para una decisión clínica.\n",
    "sistema": "cardiovascular",
    "organo": "corazon",
@@ -2236,6 +2237,22 @@
      "afiliacion": "Universidad Central del Ecuador"
     }
    ],
+   "medios": [
+    {
+     "tipo": "imagen",
+     "destacada": true,
+     "id": "wikimedia:PLAX Mmode",
+     "descripcion": "Ecocardiograma paraesternal de eje largo con modo M y medición del ventrículo izquierdo; imagen ilustrativa, no corresponde al ejemplo aritmético ficticio",
+     "credito": "Kjetil Lenes (Ekko)",
+     "fuente": "Wikimedia Commons",
+     "fuente_url": "https://commons.wikimedia.org/wiki/File:PLAX_Mmode.jpg",
+     "licencia_img": "Dominio público",
+     "licencia_url": "https://commons.wikimedia.org/wiki/File:PLAX_Mmode.jpg#Licensing",
+     "archivo_local": "assets/img/fevi-lineales-plax-mmode.jpg"
+    }
+   ],
+   "n_loops": 0,
+   "n_imagenes": 1,
    "refs": [
     "lang2015",
     "teichholz1976"
