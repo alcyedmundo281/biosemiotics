@@ -823,10 +823,11 @@
    "id": "vexus",
    "tipo": "concepto",
    "titulo": "VExUS: cuando la congestión venosa llega a los órganos",
-   "estado": "revisado",
+   "estado": "publicado",
    "fecha_revision": "2026-09-21",
-   "ghost_id": null,
+   "ghost_id": "6ab2599d5555940001780574",
    "ghost_sha256": "559237a64d3c54e9aa53a0dc5b1636acbfae606bbc3a8b919e92d4884987326d",
+   "url": "https://www.biosemiotics.net/vexus-cuando-la-congestion-venosa-llega-a-los-organos/",
    "abstract": "VExUS integra el calibre de la vena cava inferior con el Doppler de las venas hepática, porta e intrarrenal para estimar cuánto se transmite la presión venosa hacia los órganos. El resultado ayuda a reconocer congestión y a reevaluarla durante el tratamiento, pero no mide volemia ni respuesta a fluidos. Debe interpretarse con la causa hemodinámica, la función renal y las limitaciones de cada ventana.\n",
    "nivel": "avanzado",
    "licencia": "CC-BY-4.0",
@@ -850,6 +851,22 @@
      ]
     }
    ],
+   "medios": [
+    {
+     "tipo": "imagen",
+     "destacada": true,
+     "id": "wikimedia:Medical ultrasound examination.JPG",
+     "descripcion": "Exploración ecográfica de tiroides en un paciente simulado; imagen ilustrativa de adquisición ecográfica, no de las ventanas VExUS",
+     "credito": "Christopher Hubenthal, U.S. Air Force",
+     "fuente": "Wikimedia Commons",
+     "fuente_url": "https://commons.wikimedia.org/wiki/File:Medical_ultrasound_examination.JPG",
+     "licencia_img": "Dominio público en Estados Unidos",
+     "licencia_url": "https://commons.wikimedia.org/wiki/File:Medical_ultrasound_examination.JPG",
+     "archivo_local": "assets/img/vexus-wikimedia.jpg"
+    }
+   ],
+   "n_loops": 0,
+   "n_imagenes": 1,
    "refs": [
     "beubiensouligny2020",
     "rola2024",
