@@ -1,11 +1,11 @@
 ---
-estado: revisado
+estado: publicado
 fecha_revision: 2026-09-21
-ghost_id: null
+ghost_id: "6ab2599d5555940001780574"
 id: vexus
 tipo: concepto
 titulo: "VExUS: cuando la congestión venosa llega a los órganos"
-url: ""
+url: "https://www.biosemiotics.net/vexus-cuando-la-congestion-venosa-llega-a-los-organos/"
 
 abstract: >
   VExUS integra el calibre de la vena cava inferior con el Doppler de las venas
@@ -29,7 +29,17 @@ autores:
     afiliacion: "Universidad Central del Ecuador"
     credit: [conceptualizacion, redaccion, supervision]
 
-medios: []
+medios:
+  - tipo: imagen
+    destacada: true
+    id: "wikimedia:Medical ultrasound examination.JPG"
+    descripcion: "Exploración ecográfica de tiroides en un paciente simulado; imagen ilustrativa de adquisición ecográfica, no de las ventanas VExUS"
+    credito: "Christopher Hubenthal, U.S. Air Force"
+    fuente: "Wikimedia Commons"
+    fuente_url: "https://commons.wikimedia.org/wiki/File:Medical_ultrasound_examination.JPG"
+    licencia_img: "Dominio público en Estados Unidos"
+    licencia_url: "https://commons.wikimedia.org/wiki/File:Medical_ultrasound_examination.JPG"
+    archivo_local: "assets/img/vexus-wikimedia.jpg"
 refs: [beubiensouligny2020, rola2024, klompmaker2026]
 licencia: CC-BY-4.0
 ---
