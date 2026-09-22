@@ -1,0 +1,215 @@
+---
+estado: revisado
+fecha_revision: 2026-09-21
+ghost_id: null
+id: vexus
+tipo: concepto
+titulo: "VExUS: cuando la congestión venosa llega a los órganos"
+url: ""
+
+abstract: >
+  VExUS integra el calibre de la vena cava inferior con el Doppler de las venas
+  hepática, porta e intrarrenal para estimar cuánto se transmite la presión
+  venosa hacia los órganos. El resultado ayuda a reconocer congestión y a
+  reevaluarla durante el tratamiento, pero no mide volemia ni respuesta a
+  fluidos. Debe interpretarse con la causa hemodinámica, la función renal y las
+  limitaciones de cada ventana.
+
+dominio: tecnica
+nivel: avanzado
+capitulo: 4
+orden: 6
+tags: [vexus, congestion-venosa, doppler, vena-cava-inferior, cardiorrenal, uci]
+relacionado_con: [doppler, cuantificacion-limites, signo-sobrecarga-vd, signo-gasto-cardiaco, signo-vti]
+prerequisito_de: []
+
+autores:
+  - nombre: "Alcy Edmundo Torres Guerrero"
+    orcid: "0000-0002-9742-375X"
+    afiliacion: "Universidad Central del Ecuador"
+    credit: [conceptualizacion, redaccion, supervision]
+
+medios: []
+refs: [beubiensouligny2020, rola2024, klompmaker2026]
+licencia: CC-BY-4.0
+---
+
+## La pregunta que VExUS sí responde
+
+La presión arterial cuenta la historia de entrada al órgano. VExUS mira el otro
+extremo del circuito: **¿la presión venosa se está transmitiendo hacia el hígado,
+el territorio portal y el riñón?**
+
+No es un signo único. Es un protocolo que combina cuatro observaciones:
+
+1. calibre de la vena cava inferior (VCI);
+2. patrón Doppler de la vena hepática;
+3. pulsatilidad de la vena porta;
+4. patrón Doppler de una vena intrarrenal.
+
+La VCI funciona como puerta de entrada y los tres territorios Doppler muestran
+si la presión retrógrada deja huella en los órganos. Por eso este nodo es un
+concepto de **técnica**, como FAST: organiza hallazgos distintos para contestar
+una pregunta clínica común.
+
+## La idea fisiológica
+
+Cuando aumenta la presión en la aurícula derecha, la circulación venosa puede
+amortiguar una parte del cambio. Si la presión persiste o la capacidad de
+amortiguación se agota, la pulsación cardíaca se transmite hacia atrás. Primero
+altera la vena hepática; puede atravesar los sinusoides y hacer pulsátil el flujo
+portal; en el riñón, interrumpe el flujo venoso continuo entre latidos.
+
+VExUS no pregunta solamente cuánto mide un vaso. Pregunta **hasta dónde llegó la
+onda de presión**. Esa integración reduce el riesgo de interpretar una VCI grande
+como sinónimo automático de sobrecarga: la cava es una pieza del protocolo, no
+la conclusión.
+
+El sistema original se desarrolló en 145 pacientes después de cirugía cardíaca,
+con 706 evaluaciones durante las primeras 72 horas. La congestión grave definida
+por VExUS se asoció con lesión renal aguda posterior incluso después de ajustar
+por el riesgo renal basal y el apoyo vasoactivo [beubiensouligny2020]. Esa
+asociación no convierte el puntaje en una prueba causal ni en una receta de
+tratamiento.
+
+## Cómo se adquiere
+
+Usa una sonda sectorial o convexa y un ajuste abdominal o cardíaco que permita
+Doppler color y pulsado. Baja la escala de velocidad y el filtro de pared hasta
+que el flujo venoso lento sea visible sin llenar la pantalla de ruido. Registra
+varios ciclos y, si el ritmo es irregular, no clasifiques a partir de un solo
+latido.
+
+**1. Vena cava inferior.** Localízala en eje largo, confirma su entrada a la
+aurícula derecha y mide el diámetro. En el algoritmo original, una VCI menor de
+2 cm corresponde a grado 0 y detiene la puntuación. Una VCI de al menos 2 cm
+abre el examen Doppler; por sí sola no diagnostica congestión lesiva.
+
+**2. Vena hepática.** Desde una ventana subcostal o intercostal derecha,
+identifica una vena hepática que desemboque en la VCI. Coloca el volumen de
+muestra dentro del vaso y reconoce las ondas sistólica (S) y diastólica (D).
+Normalmente S es mayor que D y ambas avanzan hacia el corazón. S menor que D,
+pero todavía anterógrada, es una alteración leve; la inversión de S es grave.
+
+**3. Vena porta.** Identifica la pared ecogénica de la porta y confirma el vaso
+con color antes de muestrearlo. Calcula la fracción de pulsatilidad como
+**(Vmax − Vmin) / Vmax × 100**. Menos de 30 % se considera normal; de 30 a menos
+de 50 %, leve; 50 % o más, grave [beubiensouligny2020].
+
+**4. Vena intrarrenal.** Desde el flanco, usa color para localizar vasos
+interlobares y coloca la muestra en una vena. El flujo venoso continuo es normal;
+un patrón discontinuo con fases sistólica y diastólica es leve; un flujo
+monofásico únicamente diastólico es grave. La señal arterial vecina ayuda a
+orientarse, pero no es la que se puntúa.
+
+Una ventana no obtenida se registra como **no valorable**. No la conviertas en
+normal ni completes el dato con el patrón de otro territorio.
+
+## De las ondas al grado
+
+El algoritmo conserva la VCI como puerta y cuenta cuántos territorios tienen una
+alteración **grave**:
+
+| grado | combinación |
+|---|---|
+| **0** | VCI menor de 2 cm |
+| **1, leve** | VCI de al menos 2 cm, sin patrones Doppler graves |
+| **2, moderado** | VCI de al menos 2 cm y un territorio con patrón grave |
+| **3, grave** | VCI de al menos 2 cm y dos o más territorios con patrón grave |
+
+La tabla impide sumar impresiones vagas. Una porta con 35 % de pulsatilidad es
+anormal, pero no cuenta como patrón grave. Una onda S hepática invertida sí. El
+grado resume la concordancia entre territorios; conserva también las ondas
+originales, porque el número no explica cuál de ellas cambió.
+
+## La bifurcación clínica
+
+Un VExUS alto cambia la pregunta inmediata de **“¿responde a más volumen?”** a
+**“¿tolera más volumen sin aumentar la congestión?”**. Respuesta a fluidos y
+tolerancia a fluidos son propiedades distintas: una persona puede aumentar el
+gasto cardíaco con una carga y, al mismo tiempo, transmitir una presión venosa
+dañina a sus órganos [rola2024].
+
+**VExUS 0–1 y contexto concordante** → la congestión venosa sistémica grave es
+menos probable; busca otras explicaciones para la oliguria, el edema o el shock.
+
+**VExUS 2–3 y contexto concordante** → evita administrar volumen por reflejo,
+busca la causa de la presión derecha elevada y discute una estrategia de
+descongestión o soporte hemodinámico. Revisa ventrículo derecho, válvula
+tricúspide, pericardio, presión pulmonar, ventilación mecánica y presión
+intraabdominal antes de atribuir todo a “exceso de líquido”.
+
+**Cambio seriado** → repite las mismas ventanas y conserva la configuración. La
+tendencia puede acompañar la respuesta al tratamiento, pero una mejoría del
+puntaje no sustituye presión arterial, perfusión, diuresis, creatinina, balance,
+ecografía cardíaca y pulmonar.
+
+No se trata el grado. Se identifica la fisiología que lo produjo y se trata al
+paciente.
+
+## Dónde NO confiar
+
+- **No mide volemia.** VExUS estima congestión venosa y transmisión de presión.
+  No dice por sí solo cuánto volumen intravascular tiene el paciente ni predice
+  si aumentará el gasto cardíaco con fluidos [rola2024].
+- **La evidencia no autoriza una terapia automática.** El estudio original fue
+  observacional, post hoc, de un solo centro y en pacientes de cirugía cardíaca.
+  Un puntaje alto se asoció con lesión renal; no probó que diuresis, ultrafiltración
+  o restricción de fluidos guiadas solo por VExUS mejoren resultados
+  [beubiensouligny2020].
+- **La generalización sigue siendo desigual.** Un metaanálisis de 32 estudios y
+  3 142 pacientes encontró que VExUS ≥ 2 se asociaba con lesión renal aguda y
+  mortalidad en poblaciones cardíacas, pero no demostró esas asociaciones en la
+  población crítica general; la certeza varió de moderada a muy baja según el
+  desenlace [klompmaker2026].
+- **La vena hepática tiene otros narradores.** La insuficiencia tricuspídea, las
+  arritmias y la estimulación cardíaca pueden alterar S y D sin representar el
+  mismo mecanismo ni la misma respuesta al tratamiento.
+- **La porta puede ser pulsátil sin congestión cardíaca.** Cirrosis, hipertensión
+  portal, delgadez marcada, respiración y cambios de presión abdominal modifican
+  el patrón. En hepatopatía grave, interpreta el protocolo con especial cautela.
+- **La VCI también cambia por razones no volémicas.** Ventilación con presión
+  positiva, presión intraabdominal, embarazo, anatomía y función del ventrículo
+  derecho afectan su calibre. Una cava grande aislada no es VExUS grave.
+- **La vena intrarrenal es técnicamente exigente.** Una señal débil, una ventana
+  profunda o confundir arteria y vena puede fabricar discontinuidad. Si la onda
+  no es reproducible, declárala no valorable.
+- **Una medición aislada pierde la trayectoria.** Compara con el examen clínico y
+  con estudios seriados; no persigas grado 0 si al descongestionar caen la
+  presión, la perfusión o el flujo anterógrado.
+
+## Practica esto
+
+Practica primero las cuatro adquisiciones por separado. En una persona estable,
+identifica VCI, vena hepática, porta y una vena intrarrenal; guarda tres ciclos de
+cada una y etiqueta la dirección del flujo. No calcules el grado hasta poder
+explicar qué onda estás mirando.
+
+Después usa una hoja con cuatro filas: **VCI, hepática, porta, intrarrenal**.
+Registra medida o patrón, calidad de la ventana y condición que podría engañarte.
+Solo entonces aplica la tabla. Repite el estudio sin cambiar la configuración y
+comprueba si otro operador obtiene la misma categoría.
+
+El ejercicio final es verbal: presenta el resultado sin convertirlo en una orden.
+Por ejemplo: “VCI de 2,3 cm; inversión sistólica hepática y porta con 58 % de
+pulsatilidad; vena intrarrenal bifásica: VExUS 3, compatible con congestión venosa
+grave en este contexto. Falta definir la causa y comprobar perfusión antes de
+modificar el tratamiento”.
+
+## La evidencia hasta ahora
+
+VExUS nació como un sistema para combinar señales que por separado son fáciles de
+sobreinterpretar. En la cohorte original, el grado grave tuvo una razón de riesgo
+ajustada de 2,82 para lesión renal aguda posterior y superó a la presión venosa
+central como predictor en ese escenario [beubiensouligny2020].
+
+La síntesis más reciente encontró sensibilidad de 78–95 % y especificidad de
+80–90 % para presiones venosas centrales o auriculares derechas elevadas en los
+estudios diagnósticos, que fueron demasiado heterogéneos para agrupar. En
+pacientes cardíacos, VExUS ≥ 2 se asoció con lesión renal aguda (OR 4,44) y
+mortalidad (OR 3,17); en pacientes críticos generales, esas asociaciones no
+fueron claras [klompmaker2026].
+
+La lectura útil es prudente: el protocolo aporta una representación repetible de
+la congestión, sobre todo en enfermedad cardíaca, pero todavía necesita ensayos
+que demuestren qué estrategia terapéutica guiada por sus cambios mejora resultados.
