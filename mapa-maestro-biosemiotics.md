@@ -58,7 +58,7 @@ cuantitativos de la Oleada 3.
 
 El banco contiene **48 entidades**: 18 conceptos, 29 signos y 1 caso.
 El índice contiene 47 entidades; solo el caso permanece excluido de las salidas
-públicas. VExUS está revisado y pendiente de publicación. Los 29 signos
+públicas, incluida VExUS. Los 29 signos
 publicados tienen URL pública en Ghost. FEVI por métodos
 lineales fue publicada el 2026-09-19 con imagen atribuida. FEVI por Simpson biplano fue
 publicada el 2026-09-15, Gasto cardíaco el 2026-09-11, VTI el 2026-09-09 y
@@ -157,7 +157,7 @@ disfunción diastólica (E/e’) el 2026-09-06; los cuatro cuentan con imagen at
 | [Gasto cardíaco](https://www.biosemiotics.net/gasto-cardiaco-calcular-el-flujo-sin-ocultar-el-error/) | cardiovascular | corazon | avanzado | uci | estimación reproducible del flujo → integración hemodinámica; ✅ publicado con imagen de Wikimedia Commons en dominio público |
 | [FEVI por Simpson biplano](https://www.biosemiotics.net/fevi-por-simpson-biplano-el-numero-depende-del-contorno/) | cardiovascular | corazon | avanzado | consulta, uci | método de referencia; trazado de bordes en 2 planos; ✅ publicado con imagen de Wikimedia Commons en dominio público |
 | [FEVI por métodos lineales (Teichholz, FA)](https://www.biosemiotics.net/teichholz-y-fraccion-de-acortamiento-una-linea-no-describe-todo-el-ventriculo/) | cardiovascular | corazon | intermedio | consulta | distinguir FA de FEVI y reconocer los límites de Teichholz; ✅ publicado con imagen de Wikimedia Commons en dominio público |
-| Protocolo VExUS (congestión venosa) | concepto de técnica | — | avanzado | uci | revisado: integrar congestión sistémica y tolerancia a fluidos; publicación autorizada por Alcy |
+| Protocolo VExUS (congestión venosa) | concepto de técnica | — | avanzado | uci | publicado: integrar congestión sistémica y tolerancia a fluidos; [Ghost](https://www.biosemiotics.net/vexus-cuando-la-congestion-venosa-llega-a-los-organos/) |
 | Weaning / disfunción diafragmática | respiratorio | diafragma | avanzado | uci | excursión diafragmática → extubar o no |
 | Coartación aórtica | cardiovascular | aorta | avanzado | consulta | flujo, gradiente → derivar |
 
@@ -214,8 +214,9 @@ Oleada 1 y las rutas avanzadas que reutilizarán esos conceptos.
    el 2026-09-11 con imagen de Wikimedia Commons en dominio público. FEVI por
    Simpson biplano fue publicada el 2026-09-15 con imagen de Wikimedia Commons
    en dominio público. FEVI por métodos lineales fue publicada el 2026-09-19
-   con imagen de Wikimedia Commons en dominio público. VExUS está revisado y
-   pendiente de publicación; después siguen disfunción
+   con imagen de Wikimedia Commons en dominio público. VExUS fue publicado el
+   2026-09-22 con fotografía ilustrativa de Wikimedia Commons en dominio público
+   en Estados Unidos; después siguen disfunción
    diafragmática y coartación aórtica. Al cerrar la oleada, siguen Extensiones.
 
 ### La regla que no cambia
@@ -224,7 +225,7 @@ Cada cifra, verificada contra PubMed antes de publicar. Cada signo, con su secci
 ### Conteo
 - Banco actual: **48 entidades** (18 conceptos, 29 signos y 1 caso)
 - Signos publicados: **29 de 29**
-- Conceptos esperando URL de Ghost: **1** — VExUS, revisado y autorizado
+- Conceptos esperando URL de Ghost: **0**
 - Conceptos en borrador: **0**
 - Oleada 1 completada: **8 de 8 signos**
 - Oleada 2 **escrita completa: 8 de 8 signos** (8 publicados, 0 esperando URL). La fila «colección/absceso, hernia complicada» se desdobló en dos: son dos significantes y dos decisiones distintas
