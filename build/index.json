@@ -820,6 +820,44 @@
    "n_refs": 4
   },
   {
+   "id": "vexus",
+   "tipo": "concepto",
+   "titulo": "VExUS: cuando la congestión venosa llega a los órganos",
+   "estado": "revisado",
+   "fecha_revision": "2026-09-21",
+   "ghost_id": null,
+   "ghost_sha256": "559237a64d3c54e9aa53a0dc5b1636acbfae606bbc3a8b919e92d4884987326d",
+   "abstract": "VExUS integra el calibre de la vena cava inferior con el Doppler de las venas hepática, porta e intrarrenal para estimar cuánto se transmite la presión venosa hacia los órganos. El resultado ayuda a reconocer congestión y a reevaluarla durante el tratamiento, pero no mide volemia ni respuesta a fluidos. Debe interpretarse con la causa hemodinámica, la función renal y las limitaciones de cada ventana.\n",
+   "nivel": "avanzado",
+   "licencia": "CC-BY-4.0",
+   "tags": [
+    "vexus",
+    "congestion-venosa",
+    "doppler",
+    "vena-cava-inferior",
+    "cardiorrenal",
+    "uci"
+   ],
+   "autores": [
+    {
+     "nombre": "Alcy Edmundo Torres Guerrero",
+     "orcid": "0000-0002-9742-375X",
+     "afiliacion": "Universidad Central del Ecuador",
+     "credit": [
+      "conceptualizacion",
+      "redaccion",
+      "supervision"
+     ]
+    }
+   ],
+   "refs": [
+    "beubiensouligny2020",
+    "rola2024",
+    "klompmaker2026"
+   ],
+   "n_refs": 3
+  },
+  {
    "id": "signo-absceso-partes-blandas",
    "tipo": "signo",
    "titulo": "Absceso de partes blandas: la colección que la mano no distingue",
