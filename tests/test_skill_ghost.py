@@ -6,7 +6,9 @@ publicados solo en web, sin el email a los suscriptores. La skill anterior viví
 solo en .agents/ —Claude Code no la cargaba—, no decía nada del origen de la
 imagen ni del pie, y pedía enviar el email solo si el usuario lo solicitaba.
 """
+import contextlib
 import copy
+import io
 import subprocess
 import sys
 import unittest
@@ -15,6 +17,7 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parents[1]
 SCRIPTS = REPO / "scripts"
 sys.path.insert(0, str(SCRIPTS))
+import auditar_medios  # noqa: E402
 import ghost  # noqa: E402
 import validacion  # noqa: E402
 from auditar_pegado_ghost import auditar_pie, cabecera_canonica, cuerpo_markdown, huella  # noqa: E402
@@ -71,7 +74,9 @@ class ContenidoDeLaSkillTest(unittest.TestCase):
     def test_compuerta_imagen_solo_commons_nunca_ia(self):
         self.assertIn("SOLO Wikimedia Commons", self.texto)
         self.assertIn("NUNCA generada con IA", self.texto)
-        self.assertIn("auditar_medios.py", self.texto)
+        # Sin --verificar, auditar_medios.py salta los medios completos: la
+        # skill prometía una verificación que no ocurría.
+        self.assertIn("auditar_medios.py --verificar", self.texto)
 
     def test_compuerta_pie_canonico_y_auditado(self):
         self.assertIn("pie_esperado", self.texto)
@@ -175,6 +180,48 @@ class OrigenDeImagenTest(unittest.TestCase):
         for e in cargar(REPO):
             with self.subTest(entidad=e["id"]):
                 self.assertEqual(validacion.errores_origen_imagen(e), [])
+
+
+def verificar(entidad, resolver):
+    """Llama a verificar() capturando su informe, que imprime ✓/✗."""
+    with contextlib.redirect_stdout(io.StringIO()):
+        return auditar_medios.verificar(REPO, entidad, resolver)
+
+
+class VerificarImagenContraCommonsTest(unittest.TestCase):
+    """auditar_medios.py --verificar, sin red: el resolvedor se sustituye."""
+
+    def test_la_misma_pagina_con_otra_codificacion_coincide(self):
+        self.assertTrue(auditar_medios.misma_pagina(
+            "https://commons.wikimedia.org/wiki/File:Digitales-Ultraschallger%C3%A4t.jpg",
+            "https://commons.wikimedia.org/wiki/File:Digitales-Ultraschallgerät.jpg"))
+        self.assertTrue(auditar_medios.misma_pagina(
+            "https://commons.wikimedia.org/wiki/File:A b.jpg",
+            "https://commons.wikimedia.org/wiki/File:A_b.jpg"))
+        self.assertFalse(auditar_medios.misma_pagina(None, "https://x"))
+
+    def test_imagen_que_coincide_con_su_fuente_pasa(self):
+        def resolver(medio, local):
+            return medio["fuente_url"], "titulo"
+        self.assertEqual(verificar("vexus", resolver), 0)
+
+    def test_imagen_que_commons_atribuye_a_otra_pagina_falla(self):
+        def resolver(medio, local):
+            return "https://commons.wikimedia.org/wiki/File:Otra.jpg", "sha1"
+        self.assertEqual(verificar("vexus", resolver), 1)
+
+    def test_imagen_que_commons_no_resuelve_falla(self):
+        def resolver(medio, local):
+            return None, "no-resuelve"
+        self.assertEqual(verificar("vexus", resolver), 1)
+
+    def test_la_excepcion_historica_no_se_consulta(self):
+        def resolver(medio, local):
+            raise AssertionError("no debe consultarse una imagen exenta")
+        self.assertEqual(verificar("signo-vti", resolver), 0)
+
+    def test_una_entidad_inexistente_no_pasa_en_silencio(self):
+        self.assertEqual(verificar("no-existe", lambda m, l: (None, None)), 1)
 
 
 if __name__ == "__main__":

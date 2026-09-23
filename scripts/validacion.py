@@ -18,8 +18,9 @@ SECCIONES = {
 
 
 # Las imágenes del atlas vienen SOLO de Wikimedia Commons: nunca generadas con
-# IA ni tomadas de otro sitio. `fuente_url` debe ser la página File: de Commons,
-# la misma que `auditar_medios.py` comprueba contra la API por SHA-1.
+# IA ni tomadas de otro sitio. `fuente_url` debe ser la página File: de Commons.
+# Esto comprueba la forma de la URL; `auditar_medios.py --verificar` comprueba
+# contra la API que el archivo local corresponde a esa página.
 ORIGEN_IMAGENES = "commons.wikimedia.org"
 
 # Imágenes ya publicadas antes de la regla (2026-09-23) con otra fuente abierta

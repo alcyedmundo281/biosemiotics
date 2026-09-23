@@ -422,7 +422,7 @@ python scripts/auditar_pegado_ghost.py \
    longitud cero, pega una sola vez y vuelve a leer el texto visible. Si el
    cuerpo ya coincide con el canónico, no lo toques.
 2. Selecciona una imagen de **Wikimedia Commons** (nunca generada con IA), verifícala
-   con `auditar_medios.py`, guarda una copia auditable en
+   con `auditar_medios.py --verificar --id <id>`, guarda una copia auditable en
    `assets/img/` y declárala en `medios` con `destacada: true`, descripción,
    crédito, fuente y URL, licencia y URL de licencia, y `archivo_local`. Esta
    es responsabilidad exclusiva del publicador porque debe ser exactamente la

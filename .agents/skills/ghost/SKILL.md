@@ -22,15 +22,21 @@ comprobación que la cierra; sin esa comprobación en verde, no avances.
   compongas, y no las tomes de otro sitio aunque parezcan libres.
 - Si no encuentras en Commons una imagen adecuada con licencia compatible,
   **detente y pregúntale a Alcy**. No la sustituyas por una generada.
-- Descarga el original, guárdalo en `assets/img/` y decláralo en `medios` con
-  `tipo: imagen`, `destacada: true`, `descripcion`, `credito`, `fuente`
-  (`Wikimedia Commons`), `fuente_url` (la página `File:`), `licencia_img`,
-  `licencia_url` y `archivo_local`.
-- **Comprobación:** `python scripts/auditar_medios.py` (verifica el archivo
-  contra la API de Commons por SHA-1) y luego `python scripts/build.py`.
-  `build.py` **falla** si la `fuente_url` de una imagen no es una página `File:`
-  de Commons. No se arregla con una exención: las exenciones son solo
-  históricas y las decide Alcy.
+- Descarga el archivo desde Commons —el original o una miniatura que sirva
+  Commons si el original es muy pesado; nunca lo reescales tú—, guárdalo en
+  `assets/img/` y decláralo en `medios` con `tipo: imagen`, `destacada: true`,
+  `id: "wikimedia:<título exacto del archivo en Commons>"`, `descripcion`,
+  `credito`, `fuente` (`Wikimedia Commons`), `fuente_url` (la página `File:`),
+  `licencia_img`, `licencia_url` y `archivo_local`.
+- Describe solo lo que se ve de verdad en la imagen: amplíala antes de afirmar
+  un control, un valor o una estructura. La descripción es también el alt y el
+  inicio del pie.
+- **Comprobación:** `python scripts/auditar_medios.py --verificar --id <id>`
+  debe salir con código 0: resuelve la imagen contra la API de Commons (por
+  SHA-1 si es el original, por el título del `id` si es una miniatura) y exige
+  que coincida con `fuente_url`. Luego `python scripts/build.py`, que **falla**
+  si la `fuente_url` no es una página `File:` de Commons. No se arregla con una
+  exención: las exenciones son solo históricas y las decide Alcy.
 
 ### 2. Pie de la imagen: el canónico, pegado UNA sola vez.
 
