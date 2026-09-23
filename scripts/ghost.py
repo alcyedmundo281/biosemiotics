@@ -33,14 +33,52 @@ def cuerpo_ghost(entidad: dict, bibliografia: dict) -> str:
     return cuerpo.rstrip()
 
 
+def imagen_destacada(entidad: dict):
+    """El medio `destacada: true` de tipo imagen, o None si la ficha no lo tiene."""
+    for medio in entidad.get("medios") or []:
+        if medio.get("tipo") == "imagen" and medio.get("destacada"):
+            return medio
+    return None
+
+
+def _sin_punto(texto) -> str:
+    return " ".join(str(texto or "").split()).rstrip(" .")
+
+
+def pie_ghost(medio: dict) -> str:
+    """Pie canónico de la imagen destacada, tal cual se pega en Ghost.
+
+    Reproduce el formato de la publicación más reciente (VExUS, 2026-09-22):
+    «descripción. crédito, vía fuente. licencia.». Hasta ahora no existía un
+    texto canónico —los pies publicados tenían tres formatos distintos— y sin
+    él no había contra qué comprobar que el pie quedó pegado una sola vez.
+    """
+    return (f"{_sin_punto(medio.get('descripcion'))}. "
+            f"{_sin_punto(medio.get('credito'))}, vía {_sin_punto(medio.get('fuente'))}. "
+            f"{_sin_punto(medio.get('licencia_img'))}.")
+
+
+def alt_ghost(medio: dict) -> str:
+    """Texto alternativo: la descripción, sin el resto de la atribución."""
+    return _sin_punto(medio.get("descripcion"))
+
+
 def markdown_ghost(entidad: dict, bibliografia: dict) -> str:
-    cabecera = "\n".join([
-        "---",
+    campos = [
         f"title: {json.dumps(str(entidad['titulo']), ensure_ascii=False)}",
         f"excerpt: {json.dumps(excerpt_ghost(entidad.get('abstract')), ensure_ascii=False)}",
-        "---",
-        "",
-    ])
+        f"tags: {json.dumps([str(t) for t in entidad.get('tags') or []], ensure_ascii=False)}",
+    ]
+    # La cabecera no entra en huella_cuerpo_ghost: añadir la imagen no altera
+    # el ghost_sha256 registrado en el índice.
+    medio = imagen_destacada(entidad)
+    if medio:
+        campos += [
+            f"imagen: {json.dumps(str(medio.get('archivo_local') or ''), ensure_ascii=False)}",
+            f"alt: {json.dumps(alt_ghost(medio), ensure_ascii=False)}",
+            f"pie: {json.dumps(pie_ghost(medio), ensure_ascii=False)}",
+        ]
+    cabecera = "\n".join(["---", *campos, "---", ""])
     return cabecera + cuerpo_ghost(entidad, bibliografia) + "\n"
 
 
