@@ -2,6 +2,7 @@
 
 import re
 from pathlib import Path
+from urllib.parse import urlsplit
 
 from banco import estado_publicacion
 from bibliografia import bibliografia_manual, cargar_bibliografia
@@ -14,6 +15,39 @@ SECCIONES = {
     "caso": ("Viñeta clínica", "El problema antes de la sonda", "La adquisición",
              "El signo", "La bifurcación", "Los límites", "Pregunta al parlamento"),
 }
+
+
+# Las imágenes del atlas vienen SOLO de Wikimedia Commons: nunca generadas con
+# IA ni tomadas de otro sitio. `fuente_url` debe ser la página File: de Commons,
+# la misma que `auditar_medios.py` comprueba contra la API por SHA-1.
+ORIGEN_IMAGENES = "commons.wikimedia.org"
+
+# Imágenes ya publicadas antes de la regla (2026-09-23) con otra fuente abierta
+# verificada. No es un mecanismo para añadir excepciones nuevas: cada entrada
+# requiere decisión explícita de Alcy.
+IMAGENES_EXENTAS = {
+    ("signo-vti", "orde2017-fig1"): (
+        "figura CC BY 4.0 de Orde et al. 2017, Critical Care (acceso abierto), "
+        "publicada el 2026-09-09"
+    ),
+}
+
+
+def errores_origen_imagen(entidad) -> list:
+    """Imágenes cuya fuente no es una página File: de Wikimedia Commons."""
+    errores = []
+    for medio in entidad.get("medios") or []:
+        if medio.get("tipo") != "imagen":
+            continue
+        if (entidad.get("id"), medio.get("id")) in IMAGENES_EXENTAS:
+            continue
+        url = urlsplit(str(medio.get("fuente_url") or ""))
+        if url.netloc != ORIGEN_IMAGENES or not url.path.startswith("/wiki/File:"):
+            errores.append(
+                f"[IMAGEN] {entidad.get('id')} medio {medio.get('id')}: la fuente debe "
+                f"ser una página File: de Wikimedia Commons, no "
+                f"{medio.get('fuente_url') or '(vacía)'}; nunca una imagen generada con IA")
+    return errores
 
 
 def errores_editoriales(entidades, bib_path: Path):
@@ -101,6 +135,10 @@ def validar(entidades, aristas, raiz: Path, permitir_borradores=False):
     exigidas = [e for e, estado in estados if not permitir_borradores or estado != "borrador"]
     errores.extend(errores_editoriales(exigidas, raiz / "refs.bib"))
     alertas.extend(errores_editoriales(borradores, raiz / "refs.bib"))
+    for e in exigidas:
+        errores.extend(errores_origen_imagen(e))
+    for e in borradores:
+        alertas.extend(errores_origen_imagen(e))
 
     for e in entidades:
         for medio in (e.get("medios") or []):

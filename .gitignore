@@ -6,7 +6,10 @@ build/*
 __pycache__/
 *.pyc
 .DS_Store
-.claude/
+.claude/*
+# La skill de Ghost se versiona para Claude Code (y en .agents/ para Codex);
+# settings.local.json y el resto de .claude/ siguen ignorados.
+!.claude/skills/
 tmp/
 output/
 .venv/

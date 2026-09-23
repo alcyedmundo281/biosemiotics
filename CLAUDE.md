@@ -330,10 +330,28 @@ valida cada archivo contra el perfil concreto del destino antes de enviarlo.
 - **Sección de límites obligatoria** ("Dónde NO confiar"). Sin ella, el signo no se publica. Es el firewall clínico.
 - **Consentimiento antes de publicar un caso.** El consentimiento clínico para escanear NO es consentimiento para publicar: son dos "sí" distintos. Sin `consentimiento: obtenido`, el caso no se publica. Verifica de-identificación: sin DICOM metadata, sin rostro, sin identificadores, sin señalética institucional.
 - **Nada que implique aval del HECAM/IESS.** La plataforma es independiente.
+- **Imágenes: SOLO Wikimedia Commons, NUNCA generadas con IA.** La `fuente_url`
+  de toda imagen es una página `https://commons.wikimedia.org/wiki/File:…`. No
+  se generan, dibujan ni componen imágenes con IA, ni se toman de otro sitio
+  aunque parezcan libres. Si Commons no tiene una adecuada, se detiene y se
+  pregunta a Alcy. `build.py` bloquea cualquier otro origen; la única excepción
+  es histórica (VTI, figura CC BY 4.0 de acceso abierto publicada el
+  2026-09-09) y vive en `validacion.IMAGENES_EXENTAS`. Una excepción nueva
+  requiere decisión explícita de Alcy.
+- **Toda publicación nueva sale en web y por email a los suscriptores.**
+  «Publish only» no es la opción del atlas: así salieron todas las
+  publicaciones registradas desde #75 hasta #99 (11 suscriptores). La evidencia es `Published and sent`. Si Ghost no
+  ofrece el envío, se detiene y se reporta; no se publica solo en web en
+  silencio. Actualizar un post ya publicado no reenvía el email.
 - **No edites `build/` a mano.** Regenéralo.
 - **Casos raros → composite.** Un diagnóstico infrecuente en comunidad pequeña re-identifica. Usa caso representativo y decláralo.
 
 ## Ciclo de publicación en Ghost
+
+La skill `ghost` es la lista de ejecución de este ciclo para el rol
+publicador: vive en `.claude/skills/ghost/` (Claude Code) y en
+`.agents/skills/ghost/` (Codex), con el mismo contenido, que un test obliga a
+mantener idéntico. Si la skill y este manual difieren, gana este manual.
 
 Una misma sesión conserva los dos roles del ciclo, pero nunca los mezcla en un
 mismo paso ni en un mismo commit:
@@ -403,7 +421,8 @@ python scripts/auditar_pegado_ghost.py \
    Si hay que restaurarlo: enfoca el cuerpo, `Ctrl/Cmd+A`, `Backspace`, confirma
    longitud cero, pega una sola vez y vuelve a leer el texto visible. Si el
    cuerpo ya coincide con el canónico, no lo toques.
-2. Selecciona una imagen de licencia libre, guarda una copia auditable en
+2. Selecciona una imagen de **Wikimedia Commons** (nunca generada con IA), verifícala
+   con `auditar_medios.py`, guarda una copia auditable en
    `assets/img/` y declárala en `medios` con `destacada: true`, descripción,
    crédito, fuente y URL, licencia y URL de licencia, y `archivo_local`. Esta
    es responsabilidad exclusiva del publicador porque debe ser exactamente la
@@ -413,6 +432,10 @@ python scripts/auditar_pegado_ghost.py \
    excerpt, autor y acceso. Meta title/description y tarjetas sociales pueden
    quedar vacíos solo cuando se quiere heredar título, excerpt e imagen, como
    en los artículos anteriores.
+   Tags, excerpt, alt y pie **no se componen a mano**: se copian de los campos
+   `*_esperado` que imprime `auditar_pegado_ghost.py --canon …`, calculados por
+   `build.py` desde la ficha. El pie canónico es «descripción. crédito, vía
+   fuente. licencia.», el formato publicado en VExUS.
    El pie también se reemplaza de forma idempotente: selecciona todo su valor,
    bórralo, confirma que quedó vacío e insértalo **una vez**. No encadenes
    `fill()` y `type()`. Si el control colapsado de Ghost mide 0 px, ábrelo desde
@@ -429,12 +452,17 @@ python scripts/auditar_pegado_ghost.py \
    python scripts/auditar_pegado_ghost.py \
      --canon build/ghost/<carpeta>/<archivo>.qmd \
      --captura <texto-visible-del-editor.txt> \
-     --pie "<pie observado>" --pie-esperado "<atribución canónica>"
+     --pie "<pie observado>"
    ```
-5. Justo antes del último botón, confirma explícitamente si se publicará solo
-   en web o también se enviará por email, con el número exacto de suscriptores.
-6. Después de publicar, exige evidencia de Ghost (`Published` o
-   `Published and sent`) y copia la URL pública definitiva. Nunca uses la URL
+   Sin `--pie-esperado`, el auditor compara con el pie canónico de la cabecera.
+   Debe salir con código 0 antes de publicar: detecta el pie duplicado.
+5. Una publicación nueva sale como **«Publish and email»**. Justo antes del
+   último botón, confirma explícitamente con el usuario que se publicará en web
+   **y** se enviará por email, con el número exacto de suscriptores que muestra
+   Ghost.
+6. Después de publicar, exige evidencia de Ghost (`Published and sent` en una
+   publicación nueva; `Published` solo al actualizar un post existente) y copia
+   la URL pública definitiva. Nunca uses la URL
    del editor (`/ghost/#/...`) ni una vista previa (`/p/...`).
 
 ### 2. Registrar los artefactos y cerrar la fase publicadora

@@ -25,6 +25,21 @@ def cuerpo_markdown(texto: str) -> str:
     return re.sub(r"\A---\r?\n[\s\S]*?\r?\n---\r?\n", "", texto).strip()
 
 
+def cabecera_canonica(texto: str) -> dict:
+    """Campos de la cabecera de build/ghost: title, excerpt, imagen, alt, pie.
+
+    build.py los escribe codificados en JSON, una línea cada uno, así que no
+    hace falta un analizador YAML para leerlos.
+    """
+    bloque = re.match(r"\A---\r?\n([\s\S]*?)\r?\n---\r?\n", texto)
+    campos = {}
+    for linea in (bloque.group(1).splitlines() if bloque else []):
+        clave, separador, valor = linea.partition(": ")
+        if separador and valor.startswith(('"', "[")):
+            campos[clave.strip()] = json.loads(valor)
+    return campos
+
+
 def normalizar(texto: str) -> str:
     texto = re.sub(r"[`*_>#\[\]()]", " ", texto)
     return re.sub(r"\s+", " ", texto).strip()
@@ -47,6 +62,18 @@ def huella(cuerpo: str) -> dict:
     }
 
 
+def auditar_pie(pie: str, pie_esperado: str) -> list[str]:
+    """El pie observado debe ser el canónico, exactamente una vez."""
+    errores: list[str] = []
+    observado = normalizar(pie)
+    esperado = normalizar(pie_esperado)
+    if observado != esperado:
+        errores.append("el pie no coincide exactamente con la atribución esperada")
+    if observado and observado.count(esperado) > 1:
+        errores.append("la atribución del pie está duplicada")
+    return errores
+
+
 def auditar(cuerpo: str, captura: str, pie: str = "", pie_esperado: str = "") -> list[str]:
     errores: list[str] = []
     vista = normalizar(captura)
@@ -65,12 +92,7 @@ def auditar(cuerpo: str, captura: str, pie: str = "", pie_esperado: str = "") ->
         )
 
     if pie_esperado:
-        observado = normalizar(pie)
-        esperado = normalizar(pie_esperado)
-        if observado != esperado:
-            errores.append("el pie no coincide exactamente con la atribución esperada")
-        if observado and observado.count(esperado) != 1:
-            errores.append("la atribución del pie está duplicada")
+        errores.extend(auditar_pie(pie, pie_esperado))
     return errores
 
 
@@ -87,15 +109,27 @@ def main() -> int:
     canon = desde_raiz(raiz, args.canon)
     captura = desde_raiz(raiz, args.captura) if args.captura else None
 
-    cuerpo = cuerpo_markdown(canon.read_text(encoding="utf-8"))
+    texto = canon.read_text(encoding="utf-8")
+    cuerpo = cuerpo_markdown(texto)
+    cabecera = cabecera_canonica(texto)
     resultado = huella(cuerpo)
-    if captura:
-        errores = auditar(
-            cuerpo,
-            captura.read_text(encoding="utf-8"),
-            args.pie,
-            args.pie_esperado,
-        )
+    # Lo que hay que pegar en Ghost, tal cual: el publicador copia de aquí en
+    # vez de componer el pie a mano, que es como salía duplicado o distinto.
+    for clave in ("excerpt", "tags", "imagen", "alt", "pie"):
+        if cabecera.get(clave):
+            resultado[f"{clave}_esperado"] = cabecera[clave]
+    # Sin --pie-esperado explícito, el esperado es el pie canónico.
+    pie_esperado = args.pie_esperado or (cabecera.get("pie", "") if args.pie else "")
+    if args.pie and not pie_esperado:
+        print("✗ --pie sin pie canónico: la ficha no declara imagen destacada",
+              file=sys.stderr)
+        return 1
+    if captura or args.pie:
+        if captura:
+            errores = auditar(
+                cuerpo, captura.read_text(encoding="utf-8"), args.pie, pie_esperado)
+        else:
+            errores = auditar_pie(args.pie, pie_esperado)
         resultado["errores"] = errores
         print(json.dumps(resultado, ensure_ascii=False, indent=2))
         if errores:
