@@ -13,18 +13,13 @@ from __future__ import annotations
 
 import argparse
 import os
-import sys
 import tempfile
 import zipfile
 from pathlib import Path
 try:
-    from rutas import desde_raiz, raiz_argumentos, raiz_desde_argumentos
+    from rutas import blindar_salida, desde_raiz, raiz_argumentos, raiz_desde_argumentos
 except ModuleNotFoundError:  # importado como scripts.paquete_latex
-    from .rutas import desde_raiz, raiz_argumentos, raiz_desde_argumentos
-
-if hasattr(sys.stdout, "reconfigure"):
-    sys.stdout.reconfigure(encoding="utf-8")
-    sys.stderr.reconfigure(encoding="utf-8")
+    from .rutas import blindar_salida, desde_raiz, raiz_argumentos, raiz_desde_argumentos
 
 
 INSTRUCCIONES = """# Fuente LuaLaTeX de BioSemiotics
@@ -95,6 +90,7 @@ def crear_paquete(raiz: Path, salida: Path) -> tuple[int, int]:
 
 
 def main() -> int:
+    blindar_salida()
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
         "--salida", type=Path, default=Path("build/biosemiotics-latex.zip")

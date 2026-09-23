@@ -16,13 +16,11 @@ import json
 import sys
 from pathlib import Path
 
-sys.stdout.reconfigure(encoding="utf-8")
-
 sys.path.insert(0, str(Path(__file__).parent))
 from banco import cargar, seleccionar_publicables  # noqa: E402
 from configuracion import RELS  # noqa: E402
 from validacion import exigir_editorial  # noqa: E402
-from rutas import desde_raiz, raiz_argumentos, raiz_desde_argumentos  # noqa: E402
+from rutas import blindar_salida, desde_raiz, escribir_texto, raiz_argumentos, raiz_desde_argumentos  # noqa: E402
 
 CSS = """
 :root{--ink:#14181B;--mute:#5F676E;--line:#E3E7EA;--paper:#FBFCFC;
@@ -155,6 +153,7 @@ render();
 
 
 def main():
+    blindar_salida()
     ap = argparse.ArgumentParser(description=__doc__)
     raiz_argumentos(ap, legado=True)
     ap.add_argument("--salida", type=Path, default=Path("build/atlas.html"))
@@ -208,7 +207,7 @@ def main():
 
     out = desde_raiz(raiz, args.salida)
     out.parent.mkdir(exist_ok=True)
-    out.write_text(html, encoding="utf-8")
+    escribir_texto(out, html)
     kb = out.stat().st_size / 1024
     print(f"→ {out}  ({len(nodos)} entidades, {kb:.0f} KB, sin servidor)")
 

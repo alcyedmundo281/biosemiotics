@@ -24,14 +24,12 @@ import xml.etree.ElementTree as ET
 from pathlib import Path
 from typing import Optional
 
-sys.stdout.reconfigure(encoding="utf-8")
-
 sys.path.insert(0, str(Path(__file__).parent))
 from banco import cargar, estado_publicacion, seleccionar_publicables  # noqa: E402
 from bibliografia import cargar_bibliografia  # noqa: E402
 from ghost import huella_cuerpo_ghost  # noqa: E402
 from validacion import exigir_editorial  # noqa: E402
-from rutas import raiz_argumentos, raiz_desde_argumentos  # noqa: E402
+from rutas import blindar_salida, escribir_texto, raiz_argumentos, raiz_desde_argumentos  # noqa: E402
 
 # DOI de la obra completa (Zenodo). Se muestra bajo el buscador del atlas.
 DOI_OBRA = "10.5281/zenodo.21435362"
@@ -479,6 +477,7 @@ cargar(IDX).catch(function(){return cargar(IDX2);}).then(function(j){
 
 
 def main():
+    blindar_salida()
     ap = argparse.ArgumentParser(
         description="Genera index.json, atlas-inject.html, jsonld/ y jats/ del banco.")
     raiz_argumentos(ap, legado=True)
@@ -502,9 +501,9 @@ def main():
 
     bibliografia = cargar_bibliografia(raiz / "refs.bib")
     fichas = [ficha(e, bibliografia) for e in ent]
-    (b / "index.json").write_text(
-        json.dumps({"fichas": fichas}, ensure_ascii=False, indent=1),
-        encoding="utf-8")
+    escribir_texto(
+        b / "index.json",
+        json.dumps({"fichas": fichas}, ensure_ascii=False, indent=1))
 
     (b / "jsonld").mkdir(exist_ok=True)
     (b / "jats").mkdir(exist_ok=True)
@@ -518,11 +517,13 @@ def main():
                     raise RuntimeError(f"id no seguro para un derivado: {e['id']}")
                 archivo.unlink(missing_ok=True)
     for e in ent:
-        (b / "jsonld" / f"{e['id']}.json").write_text(
-            json.dumps(jsonld(e), ensure_ascii=False, indent=2), encoding="utf-8")
-        (b / "jats" / f"{e['id']}.xml").write_text(jats(e), encoding="utf-8")
+        escribir_texto(
+            b / "jsonld" / f"{e['id']}.json",
+            json.dumps(jsonld(e), ensure_ascii=False, indent=2))
+        escribir_texto(b / "jats" / f"{e['id']}.xml", jats(e))
 
-    (b / "atlas-inject.html").write_text(
+    escribir_texto(
+        b / "atlas-inject.html",
         f"<style>{CSS}</style>\n\n"
         '<div id="bs">\n'
         f'  <p class="bsdoi">Obra citable · <a href="https://doi.org/{DOI_OBRA}">DOI: {DOI_OBRA}</a></p>\n'
@@ -531,8 +532,7 @@ def main():
         '  <p id="bsn"></p>\n'
         '  <div id="bso"></div>\n'
         '</div>\n\n'
-        f"<script>{JS.replace('%%URL%%', url_primaria).replace('%%URL2%%', url)}</script>\n",
-        encoding="utf-8")
+        f"<script>{JS.replace('%%URL%%', url_primaria).replace('%%URL2%%', url)}</script>\n")
 
     kb = (b / "index.json").stat().st_size / 1024
     sin_ab = [f["id"] for f in fichas if not f.get("abstract")]

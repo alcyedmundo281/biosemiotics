@@ -47,15 +47,21 @@ jobs:
         # build.py NO regenera index.json; eso lo hace indice.py. Si el .md
         # cambió pero no se regeneró el índice, aquí se cae —justo el desliz
         # que ocurrió dos veces trabajando en paralelo.
+        #
+        # Cubre los DOS derivados versionados. atlas-inject.html también está
+        # en git y también lo escribe indice.py, pero antes nadie comprobaba su
+        # deriva: una copia obsoleta del buscador podía fusionarse sin que CI
+        # dijera nada, y es justo el archivo que se pega en Ghost.
         run: |
           python scripts/indice.py .
-          if ! git diff --quiet -- build/index.json; then
-            echo "::error::build/index.json está desactualizado."
+          derivados='build/index.json build/atlas-inject.html'
+          if ! git diff --quiet -- $derivados; then
+            echo "::error::Los derivados versionados están desactualizados."
             echo "Corre 'python scripts/indice.py .' y commitea el resultado."
-            git --no-pager diff --stat -- build/index.json
+            git --no-pager diff --stat -- $derivados
             exit 1
           fi
-          echo "build/index.json está sincronizado con el banco."
+          echo "Los derivados versionados están sincronizados con el banco."
 
       - name: Verificar estado de publicación y mapa maestro
         # Comprueba URLs fuente↔índice, conteos del mapa y trazabilidad de toda

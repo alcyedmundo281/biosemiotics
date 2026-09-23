@@ -22,7 +22,7 @@ import sys
 from pathlib import Path
 from typing import Callable, Mapping, Sequence
 
-from rutas import raiz_argumentos, raiz_desde_argumentos
+from rutas import blindar_salida, raiz_argumentos, raiz_desde_argumentos
 
 PYTHON_MINIMO = (3, 9)
 PYYAML_REQUERIDO = "6.0.3"
@@ -136,6 +136,7 @@ def argumentos() -> tuple[argparse.ArgumentParser, argparse.Namespace]:
 
 
 def main() -> int:
+    blindar_salida()
     parser, args = argumentos()
     raiz = raiz_desde_argumentos(parser, args)
     comprobaciones = [

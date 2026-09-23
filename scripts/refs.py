@@ -26,11 +26,9 @@ import urllib.parse
 import urllib.request
 from pathlib import Path
 
-sys.stdout.reconfigure(encoding="utf-8")
-
 sys.path.insert(0, str(Path(__file__).parent))
 from banco import cargar  # noqa: E402
-from rutas import raiz_argumentos, raiz_desde_argumentos  # noqa: E402
+from rutas import blindar_salida, raiz_argumentos, raiz_desde_argumentos  # noqa: E402
 
 EUTILS = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils"
 UA = {"User-Agent": "biosemiotics-atlas/1.0 (educational medical atlas)"}
@@ -128,6 +126,7 @@ def sugerir(clave: str) -> str:
 
 
 def main():
+    blindar_salida()
     ap = argparse.ArgumentParser()
     raiz_argumentos(ap)
     ap.add_argument("--buscar", action="store_true",

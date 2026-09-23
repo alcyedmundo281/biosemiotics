@@ -5,9 +5,9 @@ import sqlite3
 import sys
 from pathlib import Path
 
-sys.stdout.reconfigure(encoding="utf-8")
-sys.stderr.reconfigure(encoding="utf-8")
-from rutas import desde_raiz, raiz_argumentos, raiz_desde_argumentos
+from rutas import blindar_salida, desde_raiz, raiz_argumentos, raiz_desde_argumentos
+
+blindar_salida()
 
 ap = argparse.ArgumentParser(description=__doc__)
 raiz_argumentos(ap)

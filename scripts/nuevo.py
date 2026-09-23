@@ -13,15 +13,13 @@ import argparse
 import sys
 from pathlib import Path
 
-sys.stdout.reconfigure(encoding="utf-8")
-sys.stderr.reconfigure(encoding="utf-8")
-
 BASE = Path(__file__).resolve().parent.parent
-from rutas import raiz_argumentos, raiz_desde_argumentos
+from rutas import blindar_salida, escribir_texto, raiz_argumentos, raiz_desde_argumentos
 CARPETA = {"concepto": "conceptos", "signo": "signos", "caso": "casos"}
 
 
 def main():
+    blindar_salida()
     ap = argparse.ArgumentParser(description=__doc__)
     raiz_argumentos(ap)
     ap.add_argument("tipo", choices=tuple(CARPETA))
@@ -49,7 +47,7 @@ def main():
     txt = (plantilla.read_text(encoding="utf-8")
            .replace("{{ID}}", ident)
            .replace("{{TITULO}}", titulo))
-    destino.write_text(txt, encoding="utf-8")
+    escribir_texto(destino, txt)
 
     print(f"✓ {destino.relative_to(raiz)}")
     print("\nLlena los TODO: y corre  python3 scripts/build.py  para validar.")

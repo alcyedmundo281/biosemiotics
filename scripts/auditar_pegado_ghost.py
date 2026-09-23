@@ -16,12 +16,9 @@ import re
 import sys
 from pathlib import Path
 try:
-    from rutas import desde_raiz, raiz_argumentos, raiz_desde_argumentos
+    from rutas import blindar_salida, desde_raiz, raiz_argumentos, raiz_desde_argumentos
 except ModuleNotFoundError:  # importado como scripts.auditar_pegado_ghost
-    from .rutas import desde_raiz, raiz_argumentos, raiz_desde_argumentos
-
-sys.stdout.reconfigure(encoding="utf-8")
-sys.stderr.reconfigure(encoding="utf-8")
+    from .rutas import blindar_salida, desde_raiz, raiz_argumentos, raiz_desde_argumentos
 
 
 def cuerpo_markdown(texto: str) -> str:
@@ -78,6 +75,7 @@ def auditar(cuerpo: str, captura: str, pie: str = "", pie_esperado: str = "") ->
 
 
 def main() -> int:
+    blindar_salida()
     ap = argparse.ArgumentParser()
     raiz_argumentos(ap)
     ap.add_argument("--canon", type=Path, required=True, help="Markdown de build/ghost")

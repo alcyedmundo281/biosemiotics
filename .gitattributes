@@ -9,6 +9,10 @@
 
 # El índice y el grafo los consumen el buscador y jsDelivr: LF siempre.
 *.json text eol=lf
+# El buscador que se pega en Ghost también es un derivado versionado. Sin
+# eol=lf, con core.autocrlf=true git lo saca en CRLF mientras indice.py lo
+# escribe en LF, y aparece modificado sin que cambie una sola línea.
+build/atlas-inject.html text eol=lf
 *.md    text
 # El banco de fichas vive en .qmd desde la migración a Quarto.
 *.qmd   text

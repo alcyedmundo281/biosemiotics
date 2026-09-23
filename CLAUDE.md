@@ -26,7 +26,8 @@ proyecto-biosemiotics/
 ├── scripts/                     ← build.py, qmd.py, epub.py, libro.py, indice.py, refs.py
 ├── refs.bib                     ← bibliografía (SOLO desde PubMed vía refs.py)
 ├── assets/                      ← plantillas para nuevo.py
-└── build/                       ← GENERADO, no versionar salvo index.json
+└── build/                       ← GENERADO; solo se versionan index.json
+                                    y atlas-inject.html
 ```
 
 La documentación de referencia está incorporada en [docs/atlas/README.md](docs/atlas/README.md): esquema de entidades, metadatos e instructivo del artículo. Consúltala para el detalle de campos y secciones. No requiere instalar la antigua skill `biosemiotics-atlas` ni conservar su archivo externo.
@@ -508,8 +509,9 @@ artículo ya está vivo, los dos PR se apilan:
    Las salidas son `index.json`, `atlas-inject.html`, `jsonld/`, el XML
    experimental de `jats/`,
    el proyecto Quarto `build/quarto/` (con `libro.tex` dentro), `libro.pdf`,
-   `atlas.epub` y el paquete `biosemiotics-latex.zip`. Solo
-   `build/index.json` se versiona; las otras se regeneran. La verificación
+   `atlas.epub` y el paquete `biosemiotics-latex.zip`. Se versionan
+   **dos**: `build/index.json` y `build/atlas-inject.html` —ambos los escribe
+   `indice.py` y CI comprueba la deriva de los dos—; las demás se regeneran. La verificación
    compara la URL en los cuatro derivados web/metadatos y exige que cada
    imagen publicada sea la declarada en `archivo_local`, tanto en LaTeX como
    dentro del contenedor EPUB. El ZIP debe conservar `libro.tex`,

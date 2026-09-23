@@ -31,9 +31,7 @@ import urllib.error
 import urllib.parse
 import urllib.request
 from pathlib import Path
-from rutas import raiz_argumentos, raiz_desde_argumentos
-
-sys.stdout.reconfigure(encoding="utf-8")
+from rutas import blindar_salida, escribir_texto, raiz_argumentos, raiz_desde_argumentos
 
 API = "https://commons.wikimedia.org/w/api.php"
 # Wikimedia exige un User-Agent identificable y con contacto; sin él responde
@@ -147,6 +145,7 @@ def resolver_fuente(medio: dict, local):
 
 
 def main():
+    blindar_salida()
     ap = argparse.ArgumentParser()
     raiz_argumentos(ap)
     ap.add_argument("--escribir", action="store_true",
@@ -211,7 +210,7 @@ def main():
                                 bloque = nb
                                 break
             if a.escribir:
-                f.write_text(texto, encoding="utf-8")
+                escribir_texto(f, texto)
 
     print(f"VERIFICADOS: {len(resueltos)}")
     for eid, campo, valor in resueltos:
