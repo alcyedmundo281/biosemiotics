@@ -44,7 +44,7 @@ autores:
 medios:
   - tipo: imagen
     destacada: true
-    id: "commons:VTI_LVOT.png"
+    id: "wikimedia:VTI LVOT.png"
     descripcion: "Trazado Doppler pulsado del tracto de salida del ventrículo izquierdo utilizado para medir la integral velocidad-tiempo (VTI)."
     credito: "Schomynv"
     fuente: "Wikimedia Commons"

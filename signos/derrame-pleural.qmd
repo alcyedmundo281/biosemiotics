@@ -52,7 +52,7 @@ autores:
 
 medios:
   - tipo: imagen
-    id: "wikimedia:Pleural effusion on lung ultrasound"
+    id: "wikimedia:Portable-bedside-ultrasound-the-visual-stethoscope-of-the-21st-century-1757-7241-20-18-S7.ogv"
     descripcion: "Ecografía pulmonar que muestra líquido pleural hipoecoico por encima del diafragma"
     credito: "Gillman L. y Kirkpatrick A. (fotograma adaptado)"
     fuente: "Wikimedia Commons"
