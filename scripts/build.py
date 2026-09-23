@@ -20,11 +20,9 @@ from bibliografia import (
 )
 from configuracion import CAPITULOS, NIVELES, ORGANOS, RELS, SISTEMAS, nombre_organo
 from ghost import LINEA_RETO, markdown_ghost
-from rutas import raiz_argumentos, raiz_desde_argumentos
+from rutas import blindar_salida, escribir_texto, raiz_argumentos, raiz_desde_argumentos
 from validacion import SECCIONES, errores_editoriales, exigir_editorial, validar
 
-sys.stdout.reconfigure(encoding="utf-8")
-sys.stderr.reconfigure(encoding="utf-8")
 
 def build_sqlite(entidades, build_dir: Path) -> Path:
     estados = [estado_publicacion(e) for e in entidades]
@@ -85,8 +83,8 @@ def build_grafo(entidades, build_dir: Path):
                for e in entidades for clase in RELS
                for destino in (e.get(clase) or [])]
     grafo = build_dir / "grafo.json"
-    grafo.write_text(json.dumps({"nodos": nodos, "aristas": aristas},
-                                ensure_ascii=False, indent=2), encoding="utf-8")
+    escribir_texto(grafo, json.dumps({"nodos": nodos, "aristas": aristas},
+                                     ensure_ascii=False, indent=2))
     return grafo, aristas
 
 
@@ -102,11 +100,12 @@ def build_ghost(entidades, build_dir: Path, bib_path: Path) -> Path:
     for entidad in entidades:
         archivo = destino / entidad["_archivo"]
         archivo.parent.mkdir(parents=True, exist_ok=True)
-        archivo.write_text(markdown_ghost(entidad, bib), encoding="utf-8")
+        escribir_texto(archivo, markdown_ghost(entidad, bib))
     return destino
 
 
 def main():
+    blindar_salida()
     ap = argparse.ArgumentParser()
     raiz_argumentos(ap)
     ap.add_argument("--solo", choices=["db", "grafo", "ghost"])

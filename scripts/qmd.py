@@ -48,12 +48,8 @@ from pathlib import Path
 import banco
 import bibliografia as refs_bibliograficas
 import configuracion
-from rutas import desde_raiz, raiz_argumentos, resolver_raiz
+from rutas import blindar_salida, desde_raiz, escribir_texto, raiz_argumentos, resolver_raiz
 from validacion import exigir_editorial
-
-if hasattr(sys.stdout, "reconfigure"):
-    sys.stdout.reconfigure(encoding="utf-8")
-    sys.stderr.reconfigure(encoding="utf-8")
 
 
 TITULO = "Biosemiótica del Cuerpo Vivo"
@@ -653,7 +649,7 @@ def generar(entidades: list, raiz: Path, destino: Path) -> dict:
     nuevo, anterior = temporal / "nuevo", temporal / "anterior"
     try:
         informe = _generar_en(entidades, raiz, nuevo)
-        (nuevo / MARCADOR_PROYECTO).write_text(MARCA_PROYECTO, encoding="utf-8")
+        escribir_texto(nuevo / MARCADOR_PROYECTO, MARCA_PROYECTO)
         validar_destino(raiz, destino)
         if destino.exists():
             destino.rename(anterior)
@@ -698,35 +694,34 @@ def _generar_en(entidades: list, raiz: Path, destino: Path) -> dict:
             sufijo += 1
         usados.add(nombre)
         archivos[parte] = nombre
-        (destino / nombre).write_text(
+        escribir_texto(
+            destino / nombre,
             parte_markdown(parte, capitulos, bibliografia, orden_global),
-            encoding="utf-8",
         )
 
-    (destino / "index.qmd").write_text(portadilla(version), encoding="utf-8")
+    escribir_texto(destino / "index.qmd", portadilla(version))
     # El manuscrito plano se arma DESPUÉS de los capítulos para heredar el
     # `orden_global` ya poblado; `resolver_citas` es determinista, así que
     # ambos caminos numeran igual.
     plano = manuscrito_plano(partes, bibliografia, orden_global, version)
     plano += "\n" + creditos_imagenes(figuras)
-    (destino / "libro-plano.md").write_text(plano, encoding="utf-8")
+    escribir_texto(destino / "libro-plano.md", plano)
 
-    (destino / "bibliografia.qmd").write_text(
-        bibliografia_capitulo(orden_global, bibliografia), encoding="utf-8"
+    escribir_texto(
+        destino / "bibliografia.qmd",
+        bibliografia_capitulo(orden_global, bibliografia),
     )
-    (destino / "creditos-imagenes.qmd").write_text(
-        creditos_imagenes(figuras), encoding="utf-8"
-    )
+    escribir_texto(destino / "creditos-imagenes.qmd", creditos_imagenes(figuras))
     svg = destino / "portada.svg"
-    svg.write_text(portada_svg(version), encoding="utf-8")
+    escribir_texto(svg, portada_svg(version))
     portada = "portada.png" if rasterizar_portada(svg, destino / "portada.png") else "portada.svg"
 
-    (destino / "_quarto.yml").write_text(
-        quarto_yml(partes, archivos, version, portada), encoding="utf-8"
+    escribir_texto(
+        destino / "_quarto.yml", quarto_yml(partes, archivos, version, portada)
     )
-    (destino / "epub.css").write_text(ESTILO, encoding="utf-8")
-    (destino / "epub-metadata.xml").write_text(
-        metadatos_epub(entidades, version), encoding="utf-8"
+    escribir_texto(destino / "epub.css", ESTILO)
+    escribir_texto(
+        destino / "epub-metadata.xml", metadatos_epub(entidades, version)
     )
     shutil.copy2(raiz / "refs.bib", destino / "refs.bib")
 
@@ -755,6 +750,7 @@ def _generar_en(entidades: list, raiz: Path, destino: Path) -> dict:
 
 
 def main() -> int:
+    blindar_salida()
     args = argumentos()
     raiz = resolver_raiz(args.raiz)
     destino = desde_raiz(raiz, args.destino)

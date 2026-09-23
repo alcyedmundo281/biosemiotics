@@ -40,10 +40,9 @@ import urllib.parse
 import urllib.request
 from pathlib import Path
 
-sys.stdout.reconfigure(encoding="utf-8")
 sys.path.insert(0, str(Path(__file__).parent))
 from refs import resumen  # cliente E-utilities del proyecto  # noqa: E402
-from rutas import raiz_argumentos, raiz_desde_argumentos  # noqa: E402
+from rutas import blindar_salida, raiz_argumentos, raiz_desde_argumentos  # noqa: E402
 
 UA = {"User-Agent": "biosemiotics-verificar/1.0 (mailto:alcyedmundo@gmail.com)"}
 
@@ -87,8 +86,14 @@ def reintentar(operacion, *args):
             return operacion(*args)
         except urllib.error.HTTPError as exc:
             fallo = RedError(f"HTTP {exc.code}", exc.code == 429 or exc.code >= 500)
-        except (urllib.error.URLError, TimeoutError, OSError, http.client.HTTPException,
-                ValueError, KeyError, TypeError, IndexError) as exc:
+        # ValueError cubre json.JSONDecodeError y los guardas de forma de
+        # `resumen()`: una respuesta truncada o inválida SÍ se reintenta.
+        # KeyError/TypeError/IndexError no: ahí no hay nada que esperar, son
+        # un defecto del código o un cambio de esquema, y disfrazarlos de fallo
+        # de red los reportaba con código 2 —«servicio no disponible, vuelve a
+        # ejecutar»— mandando a esperar a que se recupere algo que nunca cayó.
+        except (urllib.error.URLError, TimeoutError, OSError,
+                http.client.HTTPException, ValueError) as exc:
             fallo = RedError(str(exc))
         except RedError as exc:
             fallo = exc
@@ -173,6 +178,7 @@ def crossref(doi: str) -> dict:
 
 
 def main(argv=None):
+    blindar_salida()
     ap = argparse.ArgumentParser()
     raiz_argumentos(ap)
     ap.add_argument("--estricto", action="store_true",

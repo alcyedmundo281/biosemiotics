@@ -33,11 +33,7 @@ from pathlib import Path
 
 import banco
 import qmd
-from rutas import desde_raiz, raiz_argumentos, resolver_raiz
-
-if hasattr(sys.stdout, "reconfigure"):
-    sys.stdout.reconfigure(encoding="utf-8")
-    sys.stderr.reconfigure(encoding="utf-8")
+from rutas import blindar_salida, desde_raiz, raiz_argumentos, resolver_raiz
 
 
 def argumentos() -> argparse.Namespace:
@@ -118,6 +114,7 @@ def validar_libro(tex: Path, pdf: Path, figuras: list, enlaces_ghost: int) -> st
 
 
 def main() -> int:
+    blindar_salida()
     args = argumentos()
     raiz = resolver_raiz(args.raiz)
     salida = desde_raiz(raiz, args.salida)

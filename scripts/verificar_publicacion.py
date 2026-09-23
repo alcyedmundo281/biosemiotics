@@ -38,7 +38,7 @@ from banco import cargar, estado_publicacion, seleccionar_publicables
 from bibliografia import cargar_bibliografia
 from ghost import URL_RETO, cuerpo_ghost, huella_cuerpo_ghost
 from indice import URL_PRIMARIA, URL_RESPALDO, XLINK_NS
-from rutas import desde_raiz, raiz_argumentos, raiz_desde_argumentos
+from rutas import blindar_salida, desde_raiz, raiz_argumentos, raiz_desde_argumentos
 
 
 DOMINIO_PUBLICO = "https://www.biosemiotics.net/"
@@ -398,6 +398,7 @@ def comprobar_recorrido_web(raiz: Path, entidad: dict) -> list[str]:
 
 
 def main() -> int:
+    blindar_salida()
     ap = argparse.ArgumentParser()
     raiz_argumentos(ap)
     ap.add_argument("--id", dest="entidad_id")

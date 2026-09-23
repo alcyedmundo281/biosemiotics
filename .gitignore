@@ -1,5 +1,8 @@
-build/
+# build/* y no build/: git no re-incluye nada dentro de un directorio
+# excluido, así que con build/ las dos excepciones de abajo no surtían efecto.
+build/*
 !build/index.json
+!build/atlas-inject.html
 __pycache__/
 *.pyc
 .DS_Store
