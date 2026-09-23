@@ -1,7 +1,7 @@
 ---
 estado: publicado
 fecha_revision: null
-ghost_id: null
+ghost_id: "6a5c56c3f39c0b00010f47fa"
 id: knobology-ganancia
 tipo: concepto
 titulo: "Ganancia"
@@ -25,14 +25,15 @@ relacionado_con: [knobology-profundidad, ecogenicidad]
 prerequisito_de: []
 medios:
   - tipo: imagen
-    id: "wikimedia:Digitales-Ultraschallgeraet"
-    descripcion: "Equipo ultrasónico con controles y visualización de ganancia"
-    credito: "Karl Deutsch Prüf- und Messgerätebau GmbH + Co KG"
+    destacada: true
+    id: "wikimedia:Doctors Memorial Hospital Transport and Nuclear Medicine Therapy and Imagery (20240318-USDA-RD-FL-LSC-8985).jpg"
+    descripcion: "Consola de un ecógrafo clínico con una imagen en modo 2D; en pantalla se lee la ganancia aplicada (Gn 60)"
+    credito: "Lance Cheung, U.S. Department of Agriculture"
     fuente: "Wikimedia Commons"
-    fuente_url: "https://commons.wikimedia.org/wiki/File:Digitales-Ultraschallger%C3%A4t.jpg"
-    licencia_img: "CC BY 3.0 DE"
-    licencia_url: "https://creativecommons.org/licenses/by/3.0/de/"
-    archivo_local: "assets/img/knobology-ganancia.jpg"
+    fuente_url: "https://commons.wikimedia.org/wiki/File:Doctors_Memorial_Hospital_Transport_and_Nuclear_Medicine_Therapy_and_Imagery_(20240318-USDA-RD-FL-LSC-8985).jpg"
+    licencia_img: "Dominio público (obra del Gobierno federal de Estados Unidos)"
+    licencia_url: "https://commons.wikimedia.org/wiki/Commons:Copyright_rules_by_territory/United_States#Works_by_the_US_Federal_Government"
+    archivo_local: "assets/img/knobology-ganancia-usda.jpg"
 
 refs:
   - zander2020
