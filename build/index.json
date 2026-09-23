@@ -330,7 +330,7 @@
    "medios": [
     {
      "tipo": "imagen",
-     "id": "wikimedia:Annotated ultrasonography of a normal appendix",
+     "id": "wikimedia:Ultrasonography of a normal appendix, annotated.jpg",
      "descripcion": "Ecografía anotada de un apéndice normal, donde las capas de la pared muestran distintos niveles de ecogenicidad",
      "credito": "Mikael Häggström",
      "fuente": "Wikimedia Commons",
@@ -1643,7 +1643,7 @@
    "medios": [
     {
      "tipo": "imagen",
-     "id": "wikimedia:Pleural effusion on lung ultrasound",
+     "id": "wikimedia:Portable-bedside-ultrasound-the-visual-stethoscope-of-the-21st-century-1757-7241-20-18-S7.ogv",
      "descripcion": "Ecografía pulmonar que muestra líquido pleural hipoecoico por encima del diafragma",
      "credito": "Gillman L. y Kirkpatrick A. (fotograma adaptado)",
      "fuente": "Wikimedia Commons",
@@ -2458,7 +2458,7 @@
     {
      "tipo": "imagen",
      "destacada": true,
-     "id": "commons:VTI_LVOT.png",
+     "id": "wikimedia:VTI LVOT.png",
      "descripcion": "Trazado Doppler pulsado del tracto de salida del ventrículo izquierdo utilizado para medir la integral velocidad-tiempo (VTI).",
      "credito": "Schomynv",
      "fuente": "Wikimedia Commons",
@@ -3172,7 +3172,7 @@
     },
     {
      "tipo": "imagen",
-     "id": "wikimedia:Lung ultrasound a new tool for the cardiologist additional file 1",
+     "id": "wikimedia:Lung-ultrasound-a-new-tool-for-the-cardiologist-1476-7120-9-6-S1.ogv",
      "descripcion": "Patrón pulmonar normal con líneas A (artefactos horizontales repetidos)",
      "credito": "Luna Gargani",
      "fuente": "Wikimedia Commons",
