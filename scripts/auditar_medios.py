@@ -20,6 +20,14 @@ alguna no se puede comprobar, la deja vacía y la reporta:
 
   python3 auditar_medios.py            # informe, no escribe
   python3 auditar_medios.py --escribir # aplica lo verificado
+
+Los dos modos anteriores solo tocan medios a los que les FALTA un campo; un
+medio completo se salta. Para comprobar una imagen ya declarada —la que se va a
+subir a Ghost— está --verificar: resuelve cada imagen contra Commons por la
+misma vía (SHA-1 del archivo local y, si es una miniatura o un recorte, por el
+título del `id`) y exige que coincida con la `fuente_url` declarada.
+
+  python3 auditar_medios.py --verificar --id <entidad>
 """
 import argparse
 import hashlib
@@ -144,14 +152,59 @@ def resolver_fuente(medio: dict, local):
         return None, "sin-red"
 
 
+def misma_pagina(a, b) -> bool:
+    """Commons escribe la misma página con %-codificación, espacios o guiones bajos."""
+    def normal(url):
+        return urllib.parse.unquote(str(url or "")).replace(" ", "_")
+    return bool(a) and normal(a) == normal(b)
+
+
+def verificar(raiz: Path, solo=None, resolver=None) -> int:
+    """Comprueba contra Commons las imágenes ya declaradas; 1 si alguna no cuadra."""
+    from banco import cargar
+    from validacion import IMAGENES_EXENTAS
+    resolver = resolver or resolver_fuente
+    revisadas = fallos = 0
+    for e in cargar(raiz):
+        if solo and e["id"] != solo:
+            continue
+        for medio in e.get("medios") or []:
+            if medio.get("tipo") != "imagen":
+                continue
+            revisadas += 1
+            if (e["id"], medio.get("id")) in IMAGENES_EXENTAS:
+                print(f"- {e['id']:40} exenta: {IMAGENES_EXENTAS[(e['id'], medio.get('id'))]}")
+                continue
+            local = raiz / medio["archivo_local"] if medio.get("archivo_local") else None
+            url, via = resolver(medio, local)
+            if misma_pagina(url, medio.get("fuente_url")):
+                print(f"✓ {e['id']:40} [{via}] {medio['fuente_url']}")
+            else:
+                fallos += 1
+                print(f"✗ {e['id']:40} [{via}] declarada: {medio.get('fuente_url')} "
+                      f"· Commons: {url}")
+    if solo and not revisadas:
+        print(f"✗ {solo}: no existe o no declara imágenes")
+        return 1
+    print(f"\n{revisadas - fallos} de {revisadas} imágenes verificadas contra Commons")
+    return 1 if fallos else 0
+
+
 def main():
     blindar_salida()
     ap = argparse.ArgumentParser()
     raiz_argumentos(ap)
     ap.add_argument("--escribir", action="store_true",
                     help="aplica al .md lo que se pudo verificar")
+    ap.add_argument("--verificar", action="store_true",
+                    help="comprueba contra Commons las imágenes ya declaradas")
+    ap.add_argument("--id", help="con --verificar, solo esta entidad")
     a = ap.parse_args()
     raiz = raiz_desde_argumentos(ap, a)
+    if a.id and not a.verificar:
+        ap.error("--id solo se usa con --verificar")
+    if a.verificar:
+        return verificar(raiz, a.id)
     img_dir = raiz / "assets" / "img"
     porext = {}
     for p in img_dir.iterdir() if img_dir.exists() else []:
