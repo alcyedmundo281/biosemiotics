@@ -1,0 +1,205 @@
+---
+estado: borrador
+fecha_revision: null
+ghost_id: null
+id: signo-disfuncion-diafragmatica
+tipo: signo
+titulo: "Disfunción diafragmática: el músculo que debe sostener la extubación"
+titulo_en: "Diaphragm dysfunction during liberation from mechanical ventilation"
+url: ""
+doi: null
+version: "1.0"
+abstract: >
+  Una excursión diafragmática pequeña o un engrosamiento inspiratorio reducido
+  durante una prueba de respiración espontánea sugieren menor contribución del
+  diafragma. El hallazgo ayuda a explicar un destete difícil y a planificar una
+  evaluación respiratoria integrada, pero no decide la extubación por sí solo.
+  Soporte ventilatorio, mala alineación, tos, secreciones y enfermedad pulmonar
+  o cardíaca pueden cambiar la medición o el desenlace.
+sistema: respiratorio
+organo: diafragma
+nivel: avanzado
+ventana: subcostal-anterior-y-zona-de-aposicion
+sonda: [convexa, sectorial, lineal]
+escenario: [uci]
+pregunta_clinica: "¿El diafragma contribuye lo suficiente durante la prueba de respiración espontánea para sostener la liberación del ventilador?"
+descriptores: [diafragma, excursion-diafragmatica, fraccion-engrosamiento, destete, extubacion, ventilacion-mecanica]
+mesh: ["Diaphragm", "Ultrasonography", "Ventilator Weaning", "Airway Extubation"]
+significante: "Durante respiración espontánea, el domo muestra poca excursión caudal y/o el músculo aumenta poco su grosor inspiratorio en la zona de aposición."
+significado: "Contribución contráctil diafragmática reducida o reserva insuficiente frente a la carga respiratoria, dentro de una evaluación dependiente del soporte y de la técnica."
+decision: "Buscar causas de destete difícil e integrar pulmón, corazón, tos, secreciones, estado neurológico y prueba de respiración espontánea; no extubar ni posponer la extubación por una cifra aislada."
+umbral: "No existe un punto de corte universal. Excursión <10 mm o fracción de engrosamiento <30% se han usado en estudios, pero dependen de técnica, soporte y población y no constituyen una orden de extubación."
+falsos_positivos:
+  - "Excursión pequeña causada por soporte ventilatorio, mala alineación del modo M o respiración superficial durante una medición no comparable"
+  - "Fracción de engrosamiento baja por medir fuera de la zona de aposición, perder una de las pleuras o cambiar el sitio de la sonda"
+  - "Movimiento pasivo o paradójico interpretado sin comprobar esfuerzo inspiratorio y sincronía con el ventilador"
+  - "Hemidiafragma elevado por atelectasia, distensión abdominal o cirugía, sin demostrar por sí solo debilidad contráctil"
+se_basa_en: [modo-m, tipos-de-sonda, cuantificacion-limites]
+contrasta_con: []
+autores:
+  - nombre: "Alcy Edmundo Torres Guerrero"
+    orcid: "0000-0002-9742-375X"
+    afiliacion: "Universidad Central del Ecuador"
+    credit: [conceptualizacion, redaccion, supervision]
+medios: []
+refs: [goligher2015diafragma, goligher2018atrofia, vivier2019extubacion, lorenzo2021diafragma]
+fecha: 2026-09-24
+actualizado: 2026-09-24
+licencia: CC-BY-4.0
+---
+
+## La pregunta clínica
+
+**¿El diafragma está participando de forma suficiente cuando el ventilador deja
+de hacer la mayor parte del trabajo?**
+
+La ecografía diafragmática entra durante la liberación de la ventilación
+mecánica para describir dos cosas distintas: cuánto se desplaza el domo y cuánto
+se engrosa el músculo al inspirar. Ninguna equivale por sí sola a fuerza ni a
+éxito de extubación. La pregunta útil es si el hallazgo explica parte de un
+destete difícil y qué otra causa debe buscarse.
+
+La decisión real sigue siendo clínica. Una persona puede mover poco el
+diafragma y extubarse con éxito, o moverlo bien y fracasar por tos ineficaz,
+secreciones, edema pulmonar, obstrucción de la vía aérea o deterioro
+neurológico. En un estudio multicéntrico de pacientes de alto riesgo que ya
+habían superado una prueba de respiración espontánea, la disfunción definida por
+excursión menor de 10 mm o engrosamiento menor de 30 % no se asoció con fracaso
+de extubación [vivier2019extubacion].
+
+## Por qué el examen físico no basta
+
+Taquipnea, uso de músculos accesorios y respiración paradójica alertan, pero no
+separan carga pulmonar, insuficiencia cardíaca, ansiedad, debilidad general y
+disfunción diafragmática. La auscultación tampoco muestra cuánto se acorta el
+músculo ni permite seguir su grosor en el tiempo.
+
+La ventilación mecánica puede acompañarse de pérdida o aumento del grosor
+diafragmático. En una cohorte de 191 pacientes con mediciones seriadas, el grosor
+disminuyó más de 10 % en 41 % y aumentó en 24 %; ambos cambios se asociaron con
+ventilación más prolongada [goligher2018atrofia]. Esa asociación describe una
+trayectoria de enfermedad y carga, no demuestra que corregir un número aislado
+libere antes al paciente.
+
+## Cómo se obtiene la ventana
+
+Registra primero la condición exacta: modo ventilatorio, nivel de soporte,
+posición del paciente y momento de la prueba de respiración espontánea. Sin ese
+contexto, dos mediciones iguales pueden representar esfuerzos distintos.
+
+**Excursión.** Usa sonda convexa o sectorial. Desde una ventana subcostal
+anterior derecha, utiliza el hígado como ventana y dirige el haz hacia la cúpula
+posterior del hemidiafragma. En modo B confirma la línea brillante del domo;
+después coloca la línea de modo M lo más perpendicular posible al movimiento.
+Durante la inspiración espontánea normal el diafragma se desplaza hacia la
+sonda. Mide desde la línea de base espiratoria hasta el pico inspiratorio y
+guarda varios ciclos comparables.
+
+**Grosor y fracción de engrosamiento.** Usa sonda lineal en la zona de aposición,
+habitualmente entre las líneas axilares anterior y media, en un espacio
+intercostal bajo. Identifica el diafragma como una capa muscular menos ecogénica
+entre las líneas pleural y peritoneal. Mide el grosor al final de la espiración y
+al final de la inspiración en el mismo punto. La fracción se calcula así:
+
+**(grosor inspiratorio − grosor espiratorio) / grosor espiratorio × 100**.
+
+Marca el sitio si repetirás el examen. En pacientes ventilados, medir el
+hemidiafragma derecho fue factible en 95 % de los intentos y el grosor resultó
+más reproducible que la fracción de engrosamiento; el lado izquierdo fue menos
+consistente [goligher2015diafragma]. Si no distingues las dos líneas que limitan
+el músculo, registra **no valorable**.
+
+## El signo
+
+El significante es una **contracción reducida durante una condición respiratoria
+definida**:
+
+- el domo recorre poca distancia caudal o muestra movimiento paradójico en la
+  inspiración espontánea;
+- el músculo aumenta poco su grosor entre el final de la espiración y el final
+  de la inspiración;
+- en mediciones seriadas, el grosor cambia de forma relevante respecto del
+  propio valor basal.
+
+Excursión y engrosamiento no son intercambiables. La excursión depende de la
+presión, el volumen corriente, la carga y la asistencia del ventilador. El
+engrosamiento refleja actividad contráctil, pero es una diferencia pequeña entre
+dos medidas y amplifica cualquier error de borde. Goligher y colaboradores
+encontraron reproducibilidad alta para el grosor derecho, pero solo moderada
+para la fracción de engrosamiento [goligher2015diafragma].
+
+Varios estudios han usado **excursión menor de 10 mm** o **fracción de
+engrosamiento menor de 30 %** como definiciones de disfunción. Consérvalos como
+umbrales de estudio, no como fronteras universales. Un metaanálisis de 16
+estudios y 816 pacientes mostró heterogeneidad sustancial: tanto el punto de
+corte como la prevalencia de fracaso y el riesgo de sesgo cambiaban la precisión
+[lorenzo2021diafragma].
+
+## La bifurcación
+
+**Contracción reducida + prueba de respiración espontánea fallida** → considera
+al diafragma como parte del problema. Revisa sedación, electrolitos, nutrición,
+carga impuesta por el tubo y el ventilador, auto-PEEP, sepsis y debilidad
+adquirida en UCI. Integra ecografía pulmonar y cardíaca si la clínica sugiere
+congestión o pérdida de aireación. Repite la medición bajo la misma condición
+antes de afirmar una tendencia.
+
+**Contracción conservada + prueba fallida** → busca con prioridad causas no
+diafragmáticas. Un diafragma que se mueve no excluye edema pulmonar, aumento de
+poscarga cardíaca, broncoespasmo, secreciones, fiebre, anemia, dolor o delirium.
+
+**Prueba superada + contracción reducida** → no conviertas el ultrasonido en un
+veto automático. Evalúa tos, protección de vía aérea, carga de secreciones,
+oxigenación, hemodinámica y plan de soporte posterior. En la cohorte multicéntrica
+de alto riesgo, la tos ineficaz, no la medición diafragmática, fue la variable
+independientemente asociada con fracaso de extubación
+[vivier2019extubacion].
+
+**Prueba superada + contracción conservada** → el hallazgo es favorable, pero
+no garantiza éxito. La revisión sistemática encontró sensibilidad agrupada de
+0,70 para engrosamiento y 0,71 para excursión; por eso una ecografía sin
+disfunción deja pacientes con riesgo por mecanismos no diafragmáticos
+[lorenzo2021diafragma].
+
+## Dónde NO confiar
+
+- **No midas bajo condiciones mezcladas.** Comparar soporte alto con respiración
+  espontánea cambia la carga y altera excursión y engrosamiento.
+- **No uses excursión como sinónimo de fuerza.** Presión abdominal, volumen
+  pulmonar, asistencia, posición y esfuerzo del paciente modifican el recorrido.
+- **No diagnostiques atrofia con un solo grosor.** Sexo, tamaño corporal,
+  enfermedad pulmonar y el sitio de medición influyen. La tendencia exige el
+  mismo lado, punto y técnica.
+- **No confundas ausencia de movimiento con parálisis sin comprobar esfuerzo.**
+  Sedación, apnea, asincronía o una mala línea de modo M pueden producir un
+  trazo plano.
+- **No extrapoles un punto de corte entre poblaciones.** Los metaanálisis agrupan
+  protocolos, tiempos y definiciones de destete diferentes
+  [lorenzo2021diafragma].
+- **No reduzcas la extubación al diafragma.** Tos, secreciones y protección de
+  vía aérea pueden dominar el desenlace incluso después de una prueba de
+  respiración espontánea [vivier2019extubacion].
+- **No declares normalidad por una ventana unilateral dudosa.** El lado
+  izquierdo suele ser más difícil; documenta cuál lado se obtuvo y cuál no.
+
+## Practica esto
+
+Empieza en una persona que respira espontáneamente y no está conectada al
+ventilador. Obtén el hemidiafragma derecho en modo B y coloca el modo M sin
+perder la cúpula. Guarda tres ciclos tranquilos. Después localiza la zona de
+aposición con la sonda lineal y reconoce las tres capas antes de medir.
+
+En UCI, crea una hoja de repetición con cinco campos: posición, soporte,
+excursión, grosor espiratorio y grosor inspiratorio. Marca el punto de la sonda.
+Repite sin cambiar configuración y calcula cuánto varía tu propia medición. El
+objetivo inicial no es acertar un corte: es producir dos registros comparables y
+explicar qué parte depende del paciente, qué parte del ventilador y qué parte de
+tu técnica.
+
+## Discusión abierta
+
+Un paciente supera la prueba de respiración espontánea, presenta excursión
+derecha de 8 mm y fracción de engrosamiento de 24 %, pero tose con fuerza,
+maneja secreciones y está despierto. ¿Usarías esos dos valores para posponer la
+extubación, o los tratarías como una señal para reforzar vigilancia y soporte
+posterior? Explica qué dato adicional cambiaría tu decisión.

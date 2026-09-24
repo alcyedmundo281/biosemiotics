@@ -23,6 +23,7 @@ ORGANOS = {
     "aorta-abdominal": "Aorta abdominal",
     "apendice": "Apéndice",
     "corazon": "Corazón",
+    "diafragma": "Diafragma",
     "higado": "Hígado",
     "intestino": "Intestino",
     "pared": "Pared",
