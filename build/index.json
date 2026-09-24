@@ -1668,6 +1668,82 @@
    "n_refs": 8
   },
   {
+   "id": "signo-disfuncion-diafragmatica",
+   "tipo": "signo",
+   "titulo": "Disfunción diafragmática: el músculo que debe sostener la extubación",
+   "estado": "revisado",
+   "fecha_revision": "2026-09-24",
+   "ghost_id": null,
+   "ghost_sha256": "f31d9c4bd2ba405b28d46c079e870d57302bc37284215864813fd548436629cd",
+   "titulo_en": "Diaphragm dysfunction during liberation from mechanical ventilation",
+   "version": "1.0",
+   "abstract": "Una excursión diafragmática pequeña o un engrosamiento inspiratorio reducido durante una prueba de respiración espontánea sugieren menor contribución del diafragma. El hallazgo ayuda a explicar un destete difícil y a planificar una evaluación respiratoria integrada, pero no decide la extubación por sí solo. Soporte ventilatorio, mala alineación, tos, secreciones y enfermedad pulmonar o cardíaca pueden cambiar la medición o el desenlace.\n",
+   "sistema": "respiratorio",
+   "organo": "diafragma",
+   "nivel": "avanzado",
+   "ventana": "subcostal-anterior-y-zona-de-aposicion",
+   "pregunta_clinica": "¿El diafragma contribuye lo suficiente durante la prueba de respiración espontánea para sostener la liberación del ventilador?",
+   "significante": "Durante respiración espontánea, el domo muestra poca excursión caudal y/o el músculo aumenta poco su grosor inspiratorio en la zona de aposición.",
+   "significado": "Contribución contráctil diafragmática reducida o reserva insuficiente frente a la carga respiratoria, dentro de una evaluación dependiente del soporte y de la técnica.",
+   "umbral": "No existe un punto de corte universal. Excursión <10 mm o fracción de engrosamiento <30% se han usado en estudios, pero dependen de técnica, soporte y población y no constituyen una orden de extubación.",
+   "licencia": "CC-BY-4.0",
+   "fecha": "2026-09-24",
+   "actualizado": "2026-09-24",
+   "decision": "Buscar causas de destete difícil e integrar pulmón, corazón, tos, secreciones, estado neurológico y prueba de respiración espontánea; no extubar ni posponer la extubación por una cifra aislada.",
+   "sonda": [
+    "convexa",
+    "sectorial",
+    "lineal"
+   ],
+   "escenario": [
+    "uci"
+   ],
+   "descriptores": [
+    "diafragma",
+    "excursion-diafragmatica",
+    "fraccion-engrosamiento",
+    "destete",
+    "extubacion",
+    "ventilacion-mecanica"
+   ],
+   "mesh": [
+    "Diaphragm",
+    "Ultrasonography",
+    "Ventilator Weaning",
+    "Airway Extubation"
+   ],
+   "falsos_positivos": [
+    "Excursión pequeña causada por soporte ventilatorio, mala alineación del modo M o respiración superficial durante una medición no comparable",
+    "Fracción de engrosamiento baja por medir fuera de la zona de aposición, perder una de las pleuras o cambiar el sitio de la sonda",
+    "Movimiento pasivo o paradójico interpretado sin comprobar esfuerzo inspiratorio y sincronía con el ventilador",
+    "Hemidiafragma elevado por atelectasia, distensión abdominal o cirugía, sin demostrar por sí solo debilidad contráctil"
+   ],
+   "se_basa_en": [
+    "modo-m",
+    "tipos-de-sonda",
+    "cuantificacion-limites"
+   ],
+   "autores": [
+    {
+     "nombre": "Alcy Edmundo Torres Guerrero",
+     "orcid": "0000-0002-9742-375X",
+     "afiliacion": "Universidad Central del Ecuador",
+     "credit": [
+      "conceptualizacion",
+      "redaccion",
+      "supervision"
+     ]
+    }
+   ],
+   "refs": [
+    "goligher2015diafragma",
+    "goligher2018atrofia",
+    "vivier2019extubacion",
+    "lorenzo2021diafragma"
+   ],
+   "n_refs": 4
+  },
+  {
    "id": "signo-disfuncion-diastolica",
    "tipo": "signo",
    "titulo": "Disfunción diastólica: E/e’ orienta, no sentencia",
