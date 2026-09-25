@@ -97,8 +97,17 @@ def errores_editoriales(entidades, bib_path: Path):
         refs = e.get("refs")
         if isinstance(refs, list):
             for clave in refs:
-                if isinstance(clave, str) and clave not in bib:
+                if not isinstance(clave, str):
+                    continue
+                if clave not in bib:
                     error("refs", f"'{clave}' no está en refs.bib")
+                    continue
+                # Solo la forma, sin red: que el PMID exista y corresponda al
+                # artículo lo comprueba verificar_citas.py contra PubMed y Crossref.
+                if not re.fullmatch(r"[1-9]\d*", bib[clave].get("pmid", "")):
+                    error("refs", f"'{clave}' en refs.bib sin PMID numérico")
+                if not bib[clave].get("doi", "").strip():
+                    error("refs", f"'{clave}' en refs.bib sin DOI")
         cuerpo = e.get("cuerpo")
         if isinstance(cuerpo, str):
             sin_codigo = re.sub(r"(?ms)^(`{3,}|~{3,}).*?^\1\s*$", "", cuerpo)

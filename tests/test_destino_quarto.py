@@ -15,7 +15,7 @@ class DestinoQuartoTest(unittest.TestCase):
         self.temporal = tempfile.TemporaryDirectory()
         self.addCleanup(self.temporal.cleanup)
         self.raiz = Path(self.temporal.name).resolve()
-        self.bib = "@article{demo,\n title={Demo},\n}\n"
+        self.bib = "@article{demo,\n title={Demo},\n pmid={12345678},\n doi={10.1000/demo},\n}\n"
         (self.raiz / "refs.bib").write_text(self.bib, encoding="utf-8")
         self.destino = self.raiz / "build" / "quarto"
         self.entidades = [{"id": "signo-demo", "tipo": "signo", "titulo": "Demo",
