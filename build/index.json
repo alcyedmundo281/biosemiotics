@@ -1671,11 +1671,12 @@
    "id": "signo-disfuncion-diafragmatica",
    "tipo": "signo",
    "titulo": "Disfunción diafragmática: el músculo que debe sostener la extubación",
-   "estado": "revisado",
+   "estado": "publicado",
    "fecha_revision": "2026-09-24",
-   "ghost_id": null,
+   "ghost_id": "6ab5b3c53dd9a300011f6a5f",
    "ghost_sha256": "f31d9c4bd2ba405b28d46c079e870d57302bc37284215864813fd548436629cd",
    "titulo_en": "Diaphragm dysfunction during liberation from mechanical ventilation",
+   "url": "https://www.biosemiotics.net/disfuncion-diafragmatica-el-musculo-que-debe-sostener-la-extubacion/",
    "version": "1.0",
    "abstract": "Una excursión diafragmática pequeña o un engrosamiento inspiratorio reducido durante una prueba de respiración espontánea sugieren menor contribución del diafragma. El hallazgo ayuda a explicar un destete difícil y a planificar una evaluación respiratoria integrada, pero no decide la extubación por sí solo. Soporte ventilatorio, mala alineación, tos, secreciones y enfermedad pulmonar o cardíaca pueden cambiar la medición o el desenlace.\n",
    "sistema": "respiratorio",
@@ -1735,6 +1736,22 @@
      ]
     }
    ],
+   "medios": [
+    {
+     "tipo": "imagen",
+     "destacada": true,
+     "id": "wikimedia:1113 The Diaphragm.jpg",
+     "descripcion": "Vista inferior anatómica del diafragma, con el tendón central, las porciones musculares y los hiatos de la vena cava, el esófago y la aorta señalados en inglés",
+     "credito": "OpenStax; sin modificaciones",
+     "fuente": "Wikimedia Commons",
+     "fuente_url": "https://commons.wikimedia.org/wiki/File:1113_The_Diaphragm.jpg",
+     "licencia_img": "CC BY 4.0",
+     "licencia_url": "https://creativecommons.org/licenses/by/4.0/",
+     "archivo_local": "assets/img/disfuncion-diafragmatica-wikimedia.jpg"
+    }
+   ],
+   "n_loops": 0,
+   "n_imagenes": 1,
    "refs": [
     "goligher2015diafragma",
     "goligher2018atrofia",
