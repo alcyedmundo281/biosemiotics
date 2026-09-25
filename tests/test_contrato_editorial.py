@@ -19,7 +19,9 @@ class ContratoEditorialTest(unittest.TestCase):
         self.addCleanup(self.tmp.cleanup)
         self.raiz = Path(self.tmp.name).resolve()
         self.bib = self.raiz / "refs.bib"
-        self.bib.write_text("@article{demo,\n title={Demo},\n}\n", encoding="utf-8")
+        self.bib.write_text(
+            "@article{demo,\n title={Demo},\n pmid={12345678},\n doi={10.1000/demo},\n}\n",
+            encoding="utf-8")
         self.ficha = dict(
             id="demo", tipo="signo", titulo="Demo", _archivo="signos/demo.qmd",
             estado="revisado",
@@ -68,6 +70,20 @@ class ContratoEditorialTest(unittest.TestCase):
             with self.subTest(campo=campo, valor=valor):
                 errores = self.errores(dict(self.ficha, **{campo: valor}))
                 self.assertIn(campo, errores)
+                self.assertIn("signos/demo.qmd (demo)", errores)
+
+    def test_referencia_sin_pmid_numerico_o_sin_doi(self):
+        for campos, esperado in (("doi={10.1000/demo},", "sin PMID numérico"),
+                                 ("pmid={},\n doi={10.1000/demo},", "sin PMID numérico"),
+                                 ("pmid={PMC123},\n doi={10.1000/demo},", "sin PMID numérico"),
+                                 ("pmid={0123},\n doi={10.1000/demo},", "sin PMID numérico"),
+                                 ("pmid={12345678},", "sin DOI"),
+                                 ("pmid={12345678},\n doi={ },", "sin DOI")):
+            with self.subTest(campos=campos):
+                self.bib.write_text(
+                    "@article{demo,\n title={Demo},\n " + campos + "\n}\n", encoding="utf-8")
+                errores = self.errores(self.ficha)
+                self.assertIn(f"'demo' en refs.bib {esperado}", errores)
                 self.assertIn("signos/demo.qmd (demo)", errores)
 
     def test_limites_ausentes_vacios_duplicados_o_en_codigo(self):
