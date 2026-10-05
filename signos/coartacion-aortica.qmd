@@ -1,0 +1,182 @@
+---
+estado: revisado
+fecha_revision: 2026-10-03
+ghost_id: null
+id: signo-coartacion-aortica
+tipo: signo
+titulo: "Coartación aórtica: la obstrucción que hay que buscar más allá del corazón"
+titulo_en: "Aortic coarctation: recognizing obstruction beyond the heart"
+url: ""
+doi: null
+version: "1.0"
+abstract: >
+  El estrechamiento del istmo aórtico con aceleración del flujo y persistencia
+  diastólica, junto con una onda abdominal amortiguada, sugiere obstrucción
+  aórtica. Integrado con hipertensión y pulsos femorales débiles, orienta la
+  derivación para ecocardiografía completa e imagen de la aorta. En primer
+  contacto, una ventana insuficiente no descarta coartación: colaterales,
+  bajo gasto y reparación previa pueden distorsionar los gradientes.
+sistema: cardiovascular
+organo: aorta
+nivel: avanzado
+ventana: supraesternal-y-aorta-abdominal
+sonda: [sectorial, convexa]
+escenario: [consulta]
+pregunta_clinica: "¿La hipertensión y la diferencia de pulsos o presión entre brazos y piernas sugieren una obstrucción aórtica que requiere estudio especializado?"
+descriptores: [coartacion-aortica, istmo-aortico, hipertension-secundaria, ventana-supraesternal, doppler-continuo, flujo-diastolico]
+mesh: ["Aortic Coarctation", "Echocardiography, Doppler, Pulsed"]
+significante: "Estrechamiento del istmo con aceleración focal y prolongación del flujo hacia la diástole; en la aorta abdominal, ascenso sistólico tardío y menor pulsatilidad."
+significado: "Obstrucción al flujo en la aorta torácica, compatible con coartación al integrar anatomía, hemodinámica y exploración clínica."
+decision: "Derivar para ecocardiografía completa e imagen de la aorta ante sospecha concordante o persistente pese a POCUS no concluyente; activar atención urgente si hay inestabilidad o signos de complicación."
+umbral: "La guía ACC/AHA 2025 incluye diferencia sistólica brazo–pierna >20 mmHg y gradiente Doppler medio >20 mmHg entre los datos sugestivos de repercusión; no son intercambiables ni bastan para excluir enfermedad o decidir intervención."
+falsos_positivos:
+  - "Aliasing por escala de color demasiado baja interpretado como obstrucción"
+  - "Corte oblicuo del arco que simula un estrechamiento focal"
+  - "Gradiente Doppler elevado después de una reparación por rigidez arterial y recuperación de presión, sin estrechamiento significativo"
+  - "Onda abdominal amortiguada atribuida a coartación sin localizar la lesión ni evaluar otras causas de alteración del flujo"
+se_basa_en: [doppler, cuantificacion-limites, ventanas-cardiacas, tipos-de-sonda]
+contrasta_con: []
+autores:
+  - nombre: "Alcy Edmundo Torres Guerrero"
+    orcid: "0000-0002-9742-375X"
+    afiliacion: "Universidad Central del Ecuador"
+    credit: [conceptualizacion, redaccion, supervision]
+medios: []
+refs: [isselbacher2022, gurvitz2025achd, baumgartner2020achd, silvilairat2008coartacion, raza2023coartacion]
+fecha: 2026-10-03
+actualizado: 2026-10-05
+licencia: CC-BY-4.0
+---
+
+## La pregunta clínica
+
+**¿Hay una obstrucción aórtica que explique la hipertensión y la diferencia
+entre lo que llega a los brazos y a las piernas?**
+
+La coartación es un estrechamiento de la aorta, habitualmente próximo al origen
+de la subclavia izquierda. Puede descubrirse durante el estudio de hipertensión
+en una persona que llegó a la vida adulta sin diagnóstico. El problema queda
+fuera de las vistas cardíacas habituales: ver un ventrículo que se contrae no
+responde qué ocurre en el arco [isselbacher2022].
+
+Esta ficha se centra en la sospecha en consulta, especialmente en adolescentes
+y adultos. Para primer contacto, el objetivo es reconocer la discordancia,
+documentarla y solicitar el estudio apropiado. La cuantificación avanzada
+requiere equipo y entrenamiento específicos.
+
+## Por qué el examen físico no basta
+
+Empieza antes de encender el ecógrafo: compara pulsos radiales y femorales y
+mide la presión en ambos brazos y al menos una pierna, con manguitos adecuados.
+La presión menor en las piernas y el retraso radiofemoral orientan la sospecha.
+La diferencia entre brazos también importa por las variantes de las ramas del
+arco [isselbacher2022].
+
+El soplo interescapular puede ayudar, pero su ausencia no excluye una lesión
+importante. La exploración tampoco define la longitud del estrechamiento ni
+la circulación colateral [baumgartner2020achd]. Conviene guardar los valores
+y el sitio de cada medición: escribir solamente «hipertenso» pierde la pista
+que motivó el estudio.
+
+## Cómo se obtiene la ventana
+
+**Arco aórtico.** Utiliza sonda sectorial y preset cardíaco. Con el paciente en
+decúbito supino y el cuello en una posición cómoda, apoya la sonda en la
+escotadura supraesternal. Ajusta rotación e inclinación hasta seguir el arco en
+su eje largo. Identifica sus ramas y la continuidad con la aorta descendente;
+un fragmento aislado no basta para orientarse.
+
+Busca el istmo en modo B y añade color sobre el segmento sospechoso. Ajusta
+escala y ganancia antes de interpretar un mosaico. Si cuentas con Doppler
+continuo y entrenamiento, alinea el haz con el flujo para registrar la
+aceleración y su duración. El continuo recoge velocidades a lo largo del haz:
+la imagen debe aclarar de dónde viene la señal [raza2023coartacion].
+
+**Aorta abdominal.** Con sectorial o convexa, obtén un corte longitudinal
+desde el epigastrio y registra Doppler pulsado dentro de la luz. Examina el
+ascenso sistólico, la pulsatilidad y el flujo diastólico. Es una observación
+aguas abajo: añade información cuando el arco no se ve bien, pero no localiza
+por sí sola la obstrucción [silvilairat2008coartacion].
+
+Guarda imagen anatómica y espectro, indicando ventana y modalidad utilizada.
+Si no obtienes el arco o el equipo carece de Doppler continuo, documenta esa
+limitación. **«No valorable» es un resultado útil.**
+
+## El signo
+
+El **significante** combina estrechamiento anatómico y alteración del flujo.
+En la aorta descendente puede aparecer una aceleración sistólica que continúa
+en diástole; en el abdomen, una onda de ascenso tardío y menor pulsatilidad.
+El **significado** es una obstrucción proximal compatible con coartación,
+interpretada junto con la clínica [baumgartner2020achd].
+
+El estudio de Silvilairat evaluó registros de 248 pacientes con coartación y
+70 controles. La ausencia de reversión diastólica temprana y el retraso del
+pulso abdominal aportaron información sobre obstrucción. Sus conclusiones se
+refieren a pacientes sin conducto arterioso permeable; no validan una regla
+binaria de descarte para POCUS [silvilairat2008coartacion].
+
+**Tres medidas distintas.** La tabla 25 de la guía ACC/AHA de 2025 recoge como
+datos sugestivos una diferencia sistólica brazo–pierna >20 mmHg, un gradiente
+Doppler medio >20 mmHg y un gradiente invasivo pico a pico >20 mmHg. Comparten
+un número, pero miden fenómenos distintos. El pico instantáneo que muestra el
+ecógrafo no equivale al gradiente medio ni al pico a pico de cateterismo.
+Ninguna de estas cifras aisladas decide la intervención [gurvitz2025achd].
+
+## La bifurcación
+
+**Clínica y hallazgos concordantes, paciente estable** → solicita valoración
+por cardiología con experiencia en cardiopatías congénitas. La evaluación
+completa incluye ecocardiografía y caracterización de la aorta mediante
+resonancia o angiotomografía; la modalidad se elige según contexto y
+contraindicaciones [gurvitz2025achd].
+
+**Sospecha clínica persistente, POCUS normal o incompleto** → mantén la
+indicación de estudio. No conviertas una adquisición limitada en permiso para
+cerrar el diagnóstico. Anota qué segmento viste y cuál quedó pendiente.
+
+**Inestabilidad, hipoperfusión, dolor torácico o dorsal agudo, o déficit
+neurológico** → activa evaluación urgente por posible complicación. La
+coartación puede asociarse con insuficiencia cardíaca y complicaciones aórticas;
+completar el registro ecográfico no debe retrasar la atención [isselbacher2022].
+
+**Antecedente de reparación** → conserva el seguimiento especializado. La
+reparación no elimina el riesgo de hipertensión, reestrechamiento o aneurisma
+[raza2023coartacion].
+
+## Dónde NO confiar
+
+- **Gradiente bajo.** La disfunción ventricular, una estenosis aórtica grave o
+  las colaterales pueden reducirlo pese a una obstrucción relevante
+  [gurvitz2025achd].
+- **Gradiente alto después de reparar.** La rigidez y la recuperación de
+  presión pueden elevar el Doppler sin reestenosis significativa
+  [baumgartner2020achd].
+- **Color o corte aislados.** Revisa ajustes y continuidad anatómica antes de
+  atribuir un mosaico o una aparente reducción de luz a enfermedad.
+- **Onda abdominal aislada.** Es evidencia indirecta; requiere integrar el
+  arco, la función cardíaca y la exploración. Los resultados del estudio
+  citado no se trasladan a un conducto arterioso permeable
+  [silvilairat2008coartacion].
+- **Recién nacido.** Esta ruta ambulatoria no cubre la coartación crítica:
+  el cierre ductal puede precipitar colapso y exige atención pediátrica urgente
+  [raza2023coartacion].
+
+## Practica esto
+
+En una sesión supervisada, identifica primero un arco normal. Guarda su
+continuidad en modo B, localiza las ramas y explica dónde está el istmo.
+Después registra la onda abdominal. Retira la sonda y repite: comprueba si
+puedes recuperar el mismo segmento y un espectro comparable.
+
+Redacta una nota con cuatro elementos: sospecha clínica, presiones y pulsos,
+segmentos efectivamente visualizados y conducta. La práctica termina cuando
+puedes explicar qué dato sustenta la derivación y qué quedó sin evaluar.
+
+## Discusión abierta
+
+En una situación hipotética, una persona joven tiene hipertensión persistente
+y pulsos femorales retrasados. El ventrículo se contrae bien, el arco no se
+visualiza completo y la señal abdominal es dudosa. ¿Qué escribirías en el
+informe y qué estudio solicitarías? ¿Qué hallazgo te haría cambiar una
+valoración ambulatoria por atención urgente?
