@@ -57,8 +57,8 @@ cuantitativos de la Oleada 3.
 ## 2. Estado actual (lo ya publicado)
 
 El banco contiene **50 entidades**: 18 conceptos, 31 signos y 1 caso.
-El índice contiene 48 entidades; coartación aórtica y el caso permanecen
-en borrador, excluidos de las salidas públicas. Los 30 signos publicados tienen URL pública en Ghost. Disfunción
+El índice contiene 49 entidades; coartación aórtica está revisada y pendiente
+de publicación. Solo el caso permanece en borrador, excluido de las salidas públicas. Los 30 signos publicados tienen URL pública en Ghost. Disfunción
 diafragmática fue publicada el 2026-09-25 con imagen atribuida. FEVI por métodos
 lineales fue publicada el 2026-09-19 con imagen atribuida. FEVI por Simpson biplano fue
 publicada el 2026-09-15, Gasto cardíaco el 2026-09-11, VTI el 2026-09-09 y
@@ -160,7 +160,7 @@ disfunción diastólica (E/e’) el 2026-09-06; los cuatro cuentan con imagen at
 | [FEVI por métodos lineales (Teichholz, FA)](https://www.biosemiotics.net/teichholz-y-fraccion-de-acortamiento-una-linea-no-describe-todo-el-ventriculo/) | cardiovascular | corazon | intermedio | consulta | distinguir FA de FEVI y reconocer los límites de Teichholz; ✅ publicado con imagen de Wikimedia Commons en dominio público |
 | Protocolo VExUS (congestión venosa) | concepto de técnica | — | avanzado | uci | publicado: integrar congestión sistémica y tolerancia a fluidos; [Ghost](https://www.biosemiotics.net/vexus-cuando-la-congestion-venosa-llega-a-los-organos/) |
 | [Weaning / disfunción diafragmática](https://www.biosemiotics.net/disfuncion-diafragmatica-el-musculo-que-debe-sostener-la-extubacion/) | respiratorio | diafragma | avanzado | uci | excursión y engrosamiento orientan la evaluación; no deciden la extubación por sí solos; ✅ publicado con imagen atribuida |
-| Coartación aórtica | cardiovascular | aorta | avanzado | consulta | sospecha integrada → estudio especializado; borrador completo, pendiente de revisión clínica e imagen |
+| Coartación aórtica | cardiovascular | aorta | avanzado | consulta | sospecha integrada → estudio especializado; revisión clínica aprobada el 2026-10-03; pendiente de imagen y publicación |
 
 ### El gradiente de la función del VI (mismo significado, tres resoluciones)
 *Un ejemplo perfecto de semiótica clínica: el mismo referente —función sistólica del VI— leído con precisión creciente. Modelar los tres como signos vinculados, para que el atlas muestre la escalera del principiante al experto.*
@@ -219,7 +219,8 @@ Oleada 1 y las rutas avanzadas que reutilizarán esos conceptos.
    2026-09-22 con fotografía ilustrativa de Wikimedia Commons en dominio público
    en Estados Unidos. Disfunción diafragmática fue publicada el 2026-09-25
    con imagen atribuida de Wikimedia Commons. Coartación aórtica tiene un
-   borrador preparado el 2026-10-03, pendiente de revisión clínica e imagen.
+   texto preparado y aprobado clínicamente por Alcy el 2026-10-03; su estado
+   es revisado y quedan pendientes la imagen y la publicación.
    Al cerrar la oleada, siguen Extensiones; carótidas conserva su lugar e
    incluirá explícitamente adquisición dúplex, Doppler color y espectral.
 
@@ -228,7 +229,7 @@ Cada cifra, verificada contra PubMed antes de publicar. Cada signo, con su secci
 
 ### Conteo
 - Banco actual: **50 entidades** (18 conceptos, 31 signos y 1 caso)
-- Signos publicados: **30 de 31**; coartación aórtica en borrador
+- Signos publicados: **30 de 31**; coartación aórtica revisada, pendiente de publicación
 - Conceptos esperando URL de Ghost: **0**
 - Conceptos en borrador: **0**
 - Oleada 1 completada: **8 de 8 signos**

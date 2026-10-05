@@ -20,6 +20,7 @@ CAPITULOS = {
 }
 
 ORGANOS = {
+    "aorta": "Aorta",
     "aorta-abdominal": "Aorta abdominal",
     "apendice": "Apéndice",
     "corazon": "Corazón",

@@ -1,6 +1,6 @@
 ---
-estado: borrador
-fecha_revision: null
+estado: revisado
+fecha_revision: 2026-10-03
 ghost_id: null
 id: signo-coartacion-aortica
 tipo: signo
@@ -44,7 +44,7 @@ autores:
 medios: []
 refs: [isselbacher2022, gurvitz2025achd, baumgartner2020achd, silvilairat2008coartacion, raza2023coartacion]
 fecha: 2026-10-03
-actualizado: 2026-10-03
+actualizado: 2026-10-05
 licencia: CC-BY-4.0
 ---
 

@@ -1170,6 +1170,81 @@
    "n_refs": 10
   },
   {
+   "id": "signo-coartacion-aortica",
+   "tipo": "signo",
+   "titulo": "Coartación aórtica: la obstrucción que hay que buscar más allá del corazón",
+   "estado": "revisado",
+   "fecha_revision": "2026-10-03",
+   "ghost_id": null,
+   "ghost_sha256": "23f3baaa46ada1cf24b9bd6205f8f92a7fa42ac8bb1f362199d717ec869811a0",
+   "titulo_en": "Aortic coarctation: recognizing obstruction beyond the heart",
+   "version": "1.0",
+   "abstract": "El estrechamiento del istmo aórtico con aceleración del flujo y persistencia diastólica, junto con una onda abdominal amortiguada, sugiere obstrucción aórtica. Integrado con hipertensión y pulsos femorales débiles, orienta la derivación para ecocardiografía completa e imagen de la aorta. En primer contacto, una ventana insuficiente no descarta coartación: colaterales, bajo gasto y reparación previa pueden distorsionar los gradientes.\n",
+   "sistema": "cardiovascular",
+   "organo": "aorta",
+   "nivel": "avanzado",
+   "ventana": "supraesternal-y-aorta-abdominal",
+   "pregunta_clinica": "¿La hipertensión y la diferencia de pulsos o presión entre brazos y piernas sugieren una obstrucción aórtica que requiere estudio especializado?",
+   "significante": "Estrechamiento del istmo con aceleración focal y prolongación del flujo hacia la diástole; en la aorta abdominal, ascenso sistólico tardío y menor pulsatilidad.",
+   "significado": "Obstrucción al flujo en la aorta torácica, compatible con coartación al integrar anatomía, hemodinámica y exploración clínica.",
+   "umbral": "La guía ACC/AHA 2025 incluye diferencia sistólica brazo–pierna >20 mmHg y gradiente Doppler medio >20 mmHg entre los datos sugestivos de repercusión; no son intercambiables ni bastan para excluir enfermedad o decidir intervención.",
+   "licencia": "CC-BY-4.0",
+   "fecha": "2026-10-03",
+   "actualizado": "2026-10-05",
+   "decision": "Derivar para ecocardiografía completa e imagen de la aorta ante sospecha concordante o persistente pese a POCUS no concluyente; activar atención urgente si hay inestabilidad o signos de complicación.",
+   "sonda": [
+    "sectorial",
+    "convexa"
+   ],
+   "escenario": [
+    "consulta"
+   ],
+   "descriptores": [
+    "coartacion-aortica",
+    "istmo-aortico",
+    "hipertension-secundaria",
+    "ventana-supraesternal",
+    "doppler-continuo",
+    "flujo-diastolico"
+   ],
+   "mesh": [
+    "Aortic Coarctation",
+    "Echocardiography, Doppler, Pulsed"
+   ],
+   "falsos_positivos": [
+    "Aliasing por escala de color demasiado baja interpretado como obstrucción",
+    "Corte oblicuo del arco que simula un estrechamiento focal",
+    "Gradiente Doppler elevado después de una reparación por rigidez arterial y recuperación de presión, sin estrechamiento significativo",
+    "Onda abdominal amortiguada atribuida a coartación sin localizar la lesión ni evaluar otras causas de alteración del flujo"
+   ],
+   "se_basa_en": [
+    "doppler",
+    "cuantificacion-limites",
+    "ventanas-cardiacas",
+    "tipos-de-sonda"
+   ],
+   "autores": [
+    {
+     "nombre": "Alcy Edmundo Torres Guerrero",
+     "orcid": "0000-0002-9742-375X",
+     "afiliacion": "Universidad Central del Ecuador",
+     "credit": [
+      "conceptualizacion",
+      "redaccion",
+      "supervision"
+     ]
+    }
+   ],
+   "refs": [
+    "isselbacher2022",
+    "gurvitz2025achd",
+    "baumgartner2020achd",
+    "silvilairat2008coartacion",
+    "raza2023coartacion"
+   ],
+   "n_refs": 5
+  },
+  {
    "id": "signo-colecistitis-aguda",
    "tipo": "signo",
    "titulo": "Colecistitis aguda: cuando la piedra ya no es el hallazgo",
