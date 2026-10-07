@@ -57,8 +57,9 @@ cuantitativos de la Oleada 3.
 ## 2. Estado actual (lo ya publicado)
 
 El banco contiene **50 entidades**: 18 conceptos, 31 signos y 1 caso.
-El índice contiene 49 entidades; coartación aórtica está revisada y pendiente
-de publicación. Solo el caso permanece en borrador, excluido de las salidas públicas. Los 30 signos publicados tienen URL pública en Ghost. Disfunción
+El índice contiene 49 entidades publicadas. Solo el caso permanece en borrador,
+excluido de las salidas públicas. Los 31 signos tienen URL pública en Ghost.
+Coartación aórtica fue publicada el 2026-10-05 con imagen atribuida de Wikimedia Commons. Disfunción
 diafragmática fue publicada el 2026-09-25 con imagen atribuida. FEVI por métodos
 lineales fue publicada el 2026-09-19 con imagen atribuida. FEVI por Simpson biplano fue
 publicada el 2026-09-15, Gasto cardíaco el 2026-09-11, VTI el 2026-09-09 y
@@ -96,6 +97,7 @@ disfunción diastólica (E/e’) el 2026-09-06; los cuatro cuentan con imagen at
 | [FEVI por Simpson biplano](https://www.biosemiotics.net/fevi-por-simpson-biplano-el-numero-depende-del-contorno/) | cardiovascular | corazon | avanzado | ✅ publicado |
 | [FEVI por métodos lineales (Teichholz, FA)](https://www.biosemiotics.net/teichholz-y-fraccion-de-acortamiento-una-linea-no-describe-todo-el-ventriculo/) | cardiovascular | corazon | intermedio | ✅ publicado |
 | [Disfunción diafragmática](https://www.biosemiotics.net/disfuncion-diafragmatica-el-musculo-que-debe-sostener-la-extubacion/) | respiratorio | diafragma | avanzado | ✅ publicado |
+| [Coartación aórtica](https://www.biosemiotics.net/coartacion-aortica-la-obstruccion-que-hay-que-buscar-mas-alla-del-corazon/) | cardiovascular | aorta | avanzado | ✅ publicado |
 
 ---
 
@@ -160,7 +162,7 @@ disfunción diastólica (E/e’) el 2026-09-06; los cuatro cuentan con imagen at
 | [FEVI por métodos lineales (Teichholz, FA)](https://www.biosemiotics.net/teichholz-y-fraccion-de-acortamiento-una-linea-no-describe-todo-el-ventriculo/) | cardiovascular | corazon | intermedio | consulta | distinguir FA de FEVI y reconocer los límites de Teichholz; ✅ publicado con imagen de Wikimedia Commons en dominio público |
 | Protocolo VExUS (congestión venosa) | concepto de técnica | — | avanzado | uci | publicado: integrar congestión sistémica y tolerancia a fluidos; [Ghost](https://www.biosemiotics.net/vexus-cuando-la-congestion-venosa-llega-a-los-organos/) |
 | [Weaning / disfunción diafragmática](https://www.biosemiotics.net/disfuncion-diafragmatica-el-musculo-que-debe-sostener-la-extubacion/) | respiratorio | diafragma | avanzado | uci | excursión y engrosamiento orientan la evaluación; no deciden la extubación por sí solos; ✅ publicado con imagen atribuida |
-| Coartación aórtica | cardiovascular | aorta | avanzado | consulta | sospecha integrada → estudio especializado; revisión clínica aprobada el 2026-10-03; pendiente de imagen y publicación |
+| [Coartación aórtica](https://www.biosemiotics.net/coartacion-aortica-la-obstruccion-que-hay-que-buscar-mas-alla-del-corazon/) | cardiovascular | aorta | avanzado | consulta | sospecha integrada → estudio especializado; ✅ publicado con imagen atribuida de Wikimedia Commons |
 
 ### El gradiente de la función del VI (mismo significado, tres resoluciones)
 *Un ejemplo perfecto de semiótica clínica: el mismo referente —función sistólica del VI— leído con precisión creciente. Modelar los tres como signos vinculados, para que el atlas muestre la escalera del principiante al experto.*
@@ -209,7 +211,7 @@ Oleada 1 y las rutas avanzadas que reutilizarán esos conceptos.
 2. **Oleada 2 publicada completa (8 de 8).** Taponamiento cardíaco, sobrecarga del ventrículo derecho / TEP, colecistitis aguda, coledocolitiasis, apendicitis, absceso de partes blandas, hernia complicada y embarazo ectópico tienen URL pública en Ghost.
 3. ~~Antes de los signos que lo necesiten: escribir y validar Doppler y Cuantificación y sus límites.~~ **Hecho (2026-08-15):** ambos conceptos base están escritos y validados.
 4. **Conceptos base: regla dura.** Un signo NO se publica sin su concepto base ya en el banco. El concepto base requerido se escribe y valida ANTES que el signo, no en paralelo ni después.
-5. **Oleada 3 en curso:** VTI abrió el recorrido por indicación de Alcy y fue
+5. **Oleada 3 cerrada:** VTI abrió el recorrido por indicación de Alcy y fue
    publicado el 2026-09-09. E/e’ está publicado desde el 2026-09-06 y su
    trazabilidad quedó conciliada con el repositorio. Gasto cardíaco fue publicado
    el 2026-09-11 con imagen de Wikimedia Commons en dominio público. FEVI por
@@ -218,10 +220,10 @@ Oleada 1 y las rutas avanzadas que reutilizarán esos conceptos.
    con imagen de Wikimedia Commons en dominio público. VExUS fue publicado el
    2026-09-22 con fotografía ilustrativa de Wikimedia Commons en dominio público
    en Estados Unidos. Disfunción diafragmática fue publicada el 2026-09-25
-   con imagen atribuida de Wikimedia Commons. Coartación aórtica tiene un
-   texto preparado y aprobado clínicamente por Alcy el 2026-10-03; su estado
-   es revisado y quedan pendientes la imagen y la publicación.
-   Al cerrar la oleada, siguen Extensiones; carótidas conserva su lugar e
+   con imagen atribuida de Wikimedia Commons. Coartación aórtica fue
+   publicada el 2026-10-05 con imagen de Wikimedia Commons, CC BY 3.0,
+   tras la revisión clínica aprobada por Alcy el 2026-10-03.
+   Cerrada la oleada, siguen Extensiones; carótidas conserva su lugar e
    incluirá explícitamente adquisición dúplex, Doppler color y espectral.
 
 ### La regla que no cambia
@@ -229,16 +231,15 @@ Cada cifra, verificada contra PubMed antes de publicar. Cada signo, con su secci
 
 ### Conteo
 - Banco actual: **50 entidades** (18 conceptos, 31 signos y 1 caso)
-- Signos publicados: **30 de 31**; coartación aórtica revisada, pendiente de publicación
+- Signos publicados: **31 de 31**; coartación aórtica publicada
 - Conceptos esperando URL de Ghost: **0**
 - Conceptos en borrador: **0**
 - Oleada 1 completada: **8 de 8 signos**
 - Oleada 2 **escrita completa: 8 de 8 signos** (8 publicados, 0 esperando URL). La fila «colección/absceso, hernia complicada» se desdobló en dos: son dos significantes y dos decisiones distintas
-- Conceptos base pendientes: **0** — Doppler y «Cuantificación y sus límites» escritos y validados. **La Oleada 3 queda desbloqueada**
+- Conceptos base pendientes: **0** — Doppler y «Cuantificación y sus límites» escritos y validados. **La Oleada 3 está completa**
 - FAST/eFAST **completo**: 4 ventanas nuevas (Morrison, esplenorrenal, Douglas, hemotórax) + el nodo integrador `protocolo-fast` como concepto de técnica; pericardio y neumotórax se reutilizan de la Oleada 1
-- El banco superó las **~48 entidades** proyectadas; disfunción diafragmática
-  está publicada y la secuencia editorial conserva coartación aórtica antes
-  de Extensiones.
+- El banco superó las **~48 entidades** proyectadas; coartación aórtica
+  cierra la Oleada 3. La secuencia editorial continúa con Extensiones.
 
 Nota: FAST añade pocas fichas nuevas (Morrison, esplenorrenal, Douglas, hemotórax) porque reutiliza pericardio y neumotórax. El gradiente de FEVI añade 2 (lineales, Simpson) sobre el eyeball ya contado.
 

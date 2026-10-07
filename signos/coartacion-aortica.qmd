@@ -1,12 +1,12 @@
 ---
-estado: revisado
+estado: publicado
 fecha_revision: 2026-10-03
-ghost_id: null
+ghost_id: 6ac42b3448750f00010ee9ec
 id: signo-coartacion-aortica
 tipo: signo
 titulo: "Coartación aórtica: la obstrucción que hay que buscar más allá del corazón"
 titulo_en: "Aortic coarctation: recognizing obstruction beyond the heart"
-url: ""
+url: "https://www.biosemiotics.net/coartacion-aortica-la-obstruccion-que-hay-que-buscar-mas-alla-del-corazon/"
 doi: null
 version: "1.0"
 abstract: >
@@ -41,7 +41,17 @@ autores:
     orcid: "0000-0002-9742-375X"
     afiliacion: "Universidad Central del Ecuador"
     credit: [conceptualizacion, redaccion, supervision]
-medios: []
+medios:
+  - tipo: imagen
+    destacada: true
+    id: "wikimedia:Blausen 0243 CoarctationofAorta CloseUp.png"
+    descripcion: "Ilustración anatómica de coartación aórtica con detalle ampliado del estrechamiento y rótulos en inglés; no representa un registro ecográfico ni una medición Doppler"
+    credito: "BruceBlaus / Blausen Medical; sin modificaciones"
+    fuente: "Wikimedia Commons"
+    fuente_url: "https://commons.wikimedia.org/wiki/File:Blausen_0243_CoarctationofAorta_CloseUp.png"
+    licencia_img: "CC BY 3.0"
+    licencia_url: "https://creativecommons.org/licenses/by/3.0/"
+    archivo_local: "assets/img/coartacion-aortica-wikimedia.png"
 refs: [isselbacher2022, gurvitz2025achd, baumgartner2020achd, silvilairat2008coartacion, raza2023coartacion]
 fecha: 2026-10-03
 actualizado: 2026-10-05
