@@ -1173,11 +1173,12 @@
    "id": "signo-coartacion-aortica",
    "tipo": "signo",
    "titulo": "Coartación aórtica: la obstrucción que hay que buscar más allá del corazón",
-   "estado": "revisado",
+   "estado": "publicado",
    "fecha_revision": "2026-10-03",
-   "ghost_id": null,
+   "ghost_id": "6ac42b3448750f00010ee9ec",
    "ghost_sha256": "23f3baaa46ada1cf24b9bd6205f8f92a7fa42ac8bb1f362199d717ec869811a0",
    "titulo_en": "Aortic coarctation: recognizing obstruction beyond the heart",
+   "url": "https://www.biosemiotics.net/coartacion-aortica-la-obstruccion-que-hay-que-buscar-mas-alla-del-corazon/",
    "version": "1.0",
    "abstract": "El estrechamiento del istmo aórtico con aceleración del flujo y persistencia diastólica, junto con una onda abdominal amortiguada, sugiere obstrucción aórtica. Integrado con hipertensión y pulsos femorales débiles, orienta la derivación para ecocardiografía completa e imagen de la aorta. En primer contacto, una ventana insuficiente no descarta coartación: colaterales, bajo gasto y reparación previa pueden distorsionar los gradientes.\n",
    "sistema": "cardiovascular",
@@ -1235,6 +1236,22 @@
      ]
     }
    ],
+   "medios": [
+    {
+     "tipo": "imagen",
+     "destacada": true,
+     "id": "wikimedia:Blausen 0243 CoarctationofAorta CloseUp.png",
+     "descripcion": "Ilustración anatómica de coartación aórtica con detalle ampliado del estrechamiento y rótulos en inglés; no representa un registro ecográfico ni una medición Doppler",
+     "credito": "BruceBlaus / Blausen Medical; sin modificaciones",
+     "fuente": "Wikimedia Commons",
+     "fuente_url": "https://commons.wikimedia.org/wiki/File:Blausen_0243_CoarctationofAorta_CloseUp.png",
+     "licencia_img": "CC BY 3.0",
+     "licencia_url": "https://creativecommons.org/licenses/by/3.0/",
+     "archivo_local": "assets/img/coartacion-aortica-wikimedia.png"
+    }
+   ],
+   "n_loops": 0,
+   "n_imagenes": 1,
    "refs": [
     "isselbacher2022",
     "gurvitz2025achd",
