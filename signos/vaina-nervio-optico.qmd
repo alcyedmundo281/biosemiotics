@@ -1,11 +1,11 @@
 ---
-estado: revisado
+estado: publicado
 fecha_revision: 2026-10-10
-ghost_id: null
+ghost_id: 6aca4cd4447c110001dadd3b
 id: signo-vaina-nervio-optico
 tipo: signo
 titulo: "Vaina del nervio óptico: una pista de presión, no un permiso para descartar"
-url: ""
+url: "https://www.biosemiotics.net/vaina-del-nervio-optico-una-pista-de-presion-no-un-permiso-para-descartar/"
 abstract: >
   El aumento del diámetro de la vaina del nervio óptico puede acompañar la
   elevación de la presión intracraneal. Una medición reproducible, integrada
