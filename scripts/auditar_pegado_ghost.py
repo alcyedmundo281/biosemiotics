@@ -78,8 +78,9 @@ def auditar(cuerpo: str, captura: str, pie: str = "", pie_esperado: str = "") ->
     errores: list[str] = []
     vista = normalizar(captura)
     base = normalizar(cuerpo)
+    lineas = [normalizar(linea).casefold() for linea in captura.splitlines()]
     for titulo in encabezados(cuerpo):
-        apariciones = len(re.findall(re.escape(normalizar(titulo)), vista, re.I))
+        apariciones = lineas.count(normalizar(titulo).casefold())
         if apariciones != 1:
             errores.append(f"encabezado {titulo!r}: {apariciones} apariciones (esperada 1)")
 
