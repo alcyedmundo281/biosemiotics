@@ -35,6 +35,7 @@ ORGANOS = {
     "utero": "Útero",
     "vejiga": "Vejiga",
     "vena-profunda": "Vena profunda",
+    "nervio-optico": "Nervio óptico",
     "vesicula": "Vesícula",
     "via-biliar": "Vía biliar",
 }
