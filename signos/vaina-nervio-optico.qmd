@@ -42,7 +42,7 @@ nervio óptico aporta una pista que refuerce la necesidad de estudio urgente?
 La pregunta no es cuánto marca la presión en milímetros de mercurio. ONSD
 es la sigla inglesa del diámetro de la vaina del nervio óptico: una distancia
 usada como marcador indirecto, no una lectura de un monitor intracraneal.
-[@hirzallah2025artefactos]
+[hirzallah2025artefactos]
 
 Esta ficha se limita al adulto y a una evaluación complementaria. El dolor
 ocular aislado no es la puerta de entrada a este protocolo: requiere su
@@ -57,7 +57,7 @@ de Koziarz encontró utilidad diagnóstica, con limitaciones por estudios
 pequeños, imprecisión y posible sesgo de publicación. No evaluó si usar la
 prueba mejoraba los desenlaces clínicos. Por eso, encontrar una asociación
 con presión elevada no demuestra que una decisión basada solo en ONSD sea
-segura. [@koziarz2019onsd]
+segura. [koziarz2019onsd]
 
 ## Cómo se obtiene la ventana
 
@@ -66,7 +66,7 @@ con una salida acústica apropiada. Usa el preset ocular en modo B y reduce
 el tiempo de exposición al necesario. No actives Doppler para medir un
 diámetro: sus modos pueden superar los límites recomendados para el ojo.
 Una imagen nítida no demuestra seguridad acústica. Si no puedes comprobar
-la configuración, detén la adquisición. [@abramowicz2022ocular]
+la configuración, detén la adquisición. [abramowicz2022ocular]
 
 Si sospechas rotura del globo, no realices esta exploración de primer
 contacto: evita presión y solicita valoración especializada. Esta precaución
@@ -76,7 +76,7 @@ Con el paciente en decúbito y la cabeza neutra, coloca gel sobre el párpado
 cerrado y apoya suavemente la sonda lineal, sin comprimir el ojo. Identifica
 el globo y el trayecto del nervio por detrás de él. Obtén vistas en planos
 transversal y sagital; conserva la posición para poder comparar.
-[@pichamuthu2021onsd]
+[pichamuthu2021onsd]
 
 La referencia de adquisición es **3 mm detrás del globo**. Allí mide el
 ancho perpendicular al trayecto del nervio. No confundas esa distancia de
@@ -84,26 +84,26 @@ referencia con el umbral de anormalidad. Documenta el ojo, el plano y la
 convención de los bordes. Hay métodos que colocan los calibradores dentro
 de la duramadre y otros que la incluyen: no son cifras intercambiables.
 Si no reconoces los límites, informa una adquisición no interpretable.
-[@pichamuthu2021onsd; @pansell2024onsd]
+[pichamuthu2021onsd] [pansell2024onsd]
 
 Examina ambos ojos y guarda imágenes para revisión supervisada. La prioridad
 es obtener una medición reproducible con un protocolo definido; el consenso
 internacional de 2024 organiza precisamente la selección de sonda, seguridad,
-posición, imagen y medición. [@hirzallah2024onsd]
+posición, imagen y medición. [hirzallah2024onsd]
 
 ## El signo
 
 **Significante:** la vaina se mide más ancha de lo esperado para el método
 utilizado. **Significado:** puede estar distendida en relación con aumento
 de la presión intracraneal. No estás viendo la causa del aumento de presión.
-[@pichamuthu2021onsd]
+[pichamuthu2021onsd]
 
 El metaanálisis de Koziarz identificó **5,0 mm** como corte óptimo en su
 síntesis. Esa cifra describe el resultado del estudio; esta ficha no la
 adopta como frontera universal para decidir en primer contacto.
 La investigación de Pansell muestra por qué importa especificar la
 convención de medición y estudiar diferencias entre poblaciones antes de
-trasladar un corte. [@koziarz2019onsd; @pansell2024onsd]
+trasladar un corte. [koziarz2019onsd] [pansell2024onsd]
 
 ## La bifurcación
 
@@ -117,22 +117,22 @@ trasladar un corte. [@koziarz2019onsd; @pansell2024onsd]
 Esta es una aplicación conservadora de la evidencia diagnóstica al primer
 contacto. La ecografía de la vaina no sustituye las pruebas confirmatorias ni
 ha demostrado, en la revisión citada, el beneficio de una conducta guiada
-solo por su resultado. [@koziarz2019onsd]
+solo por su resultado. [koziarz2019onsd]
 
 ## Dónde NO confiar
 
 **En los bordes aparentes.** Ganancia, rango dinámico, frecuencia, armónicos
 y foco influyen en la evaluación. La sombra, la refracción y el volumen
 parcial pueden confundir los límites. Un ancho llamativo que cambia con
-los ajustes obliga a revisar la adquisición. [@hirzallah2025artefactos]
+los ajustes obliga a revisar la adquisición. [hirzallah2025artefactos]
 
 **En mezclar protocolos.** Cambiar de borde interno a externo y conservar
 el mismo corte introduce un error de interpretación. Tampoco se extrapola
-esta ficha adulta a pediatría. [@pansell2024onsd; @koziarz2019onsd]
+esta ficha adulta a pediatría. [pansell2024onsd] [koziarz2019onsd]
 
 **En asumir que todo equipo sirve para el ojo.** Los tejidos oculares son
 sensibles a efectos térmicos y mecánicos. La seguridad depende de la salida
-acústica y la exposición, no solo del tipo de sonda. [@abramowicz2022ocular]
+acústica y la exposición, no solo del tipo de sonda. [abramowicz2022ocular]
 
 ## Practica esto
 
