@@ -1,11 +1,11 @@
 ---
-estado: revisado
+estado: publicado
 fecha_revision: 2026-10-10
-ghost_id: null
+ghost_id: 6aca4cd4447c110001dadd3b
 id: signo-vaina-nervio-optico
 tipo: signo
 titulo: "Vaina del nervio óptico: una pista de presión, no un permiso para descartar"
-url: ""
+url: "https://www.biosemiotics.net/vaina-del-nervio-optico-una-pista-de-presion-no-un-permiso-para-descartar/"
 abstract: >
   El aumento del diámetro de la vaina del nervio óptico puede acompañar la
   elevación de la presión intracraneal. Una medición reproducible, integrada
@@ -30,7 +30,17 @@ falsos_positivos:
   - "Sombra o refracción que simulan los bordes de una vaina ensanchada."
   - "Inclusión de tejido vecino o uso de un borde distinto al definido por el protocolo de referencia."
   - "Ganancia y otros ajustes que desplazan los límites aparentes de la estructura."
-medios: []
+medios:
+  - tipo: imagen
+    destacada: true
+    id: "wikimedia:Gray880.png"
+    descripcion: "Lámina anatómica de la cabeza del nervio óptico y sus cubiertas meníngeas; ilustración anatómica, no una medición ecográfica"
+    credito: "Henry Vandyke Carter, Gray's Anatomy, lámina 880"
+    fuente: Wikimedia Commons
+    fuente_url: "https://commons.wikimedia.org/wiki/File:Gray880.png"
+    licencia_img: Dominio público
+    licencia_url: "https://commons.wikimedia.org/wiki/Commons:Licensing"
+    archivo_local: assets/img/onsd-gray880.png
 refs: [hirzallah2024onsd, hirzallah2025artefactos, koziarz2019onsd, abramowicz2022ocular, pansell2024onsd, pichamuthu2021onsd]
 licencia: CC BY 4.0
 ---
