@@ -3736,10 +3736,11 @@
    "id": "signo-vaina-nervio-optico",
    "tipo": "signo",
    "titulo": "Vaina del nervio óptico: una pista de presión, no un permiso para descartar",
-   "estado": "revisado",
+   "estado": "publicado",
    "fecha_revision": "2026-10-10",
-   "ghost_id": null,
+   "ghost_id": "6aca4cd4447c110001dadd3b",
    "ghost_sha256": "ee7194af6336dd481df1d3436eec9071a9f7e00275c036453f55080a5fa862be",
+   "url": "https://www.biosemiotics.net/vaina-del-nervio-optico-una-pista-de-presion-no-un-permiso-para-descartar/",
    "abstract": "El aumento del diámetro de la vaina del nervio óptico puede acompañar la elevación de la presión intracraneal. Una medición reproducible, integrada con la evaluación neurológica, refuerza la necesidad de estudio urgente. No identifica la causa ni reemplaza la neuroimagen. La seguridad ocular, los artefactos y la definición de los bordes condicionan su utilidad; una cifra aislada no autoriza a descartar enfermedad grave.\n",
    "sistema": "nervioso",
    "organo": "nervio-optico",
@@ -3774,6 +3775,22 @@
      "nombre": "Alcy Torres"
     }
    ],
+   "medios": [
+    {
+     "tipo": "imagen",
+     "destacada": true,
+     "id": "wikimedia:Gray880.png",
+     "descripcion": "Lámina anatómica de la cabeza del nervio óptico y sus cubiertas meníngeas; ilustración anatómica, no una medición ecográfica",
+     "credito": "Henry Vandyke Carter, Gray's Anatomy, lámina 880",
+     "fuente": "Wikimedia Commons",
+     "fuente_url": "https://commons.wikimedia.org/wiki/File:Gray880.png",
+     "licencia_img": "Dominio público",
+     "licencia_url": "https://commons.wikimedia.org/wiki/Commons:Licensing",
+     "archivo_local": "assets/img/onsd-gray880.png"
+    }
+   ],
+   "n_loops": 0,
+   "n_imagenes": 1,
    "refs": [
     "hirzallah2024onsd",
     "hirzallah2025artefactos",
