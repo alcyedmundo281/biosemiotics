@@ -3733,6 +3733,58 @@
    "n_refs": 4
   },
   {
+   "id": "signo-vaina-nervio-optico",
+   "tipo": "signo",
+   "titulo": "Vaina del nervio óptico: una pista de presión, no un permiso para descartar",
+   "estado": "revisado",
+   "fecha_revision": "2026-10-10",
+   "ghost_id": null,
+   "ghost_sha256": "eb55ef1ce2ef5db73668c142731f5ee1569e03f69f363931f7115fdfe4f233a3",
+   "abstract": "El aumento del diámetro de la vaina del nervio óptico puede acompañar la elevación de la presión intracraneal. Una medición reproducible, integrada con la evaluación neurológica, refuerza la necesidad de estudio urgente. No identifica la causa ni reemplaza la neuroimagen. La seguridad ocular, los artefactos y la definición de los bordes condicionan su utilidad; una cifra aislada no autoriza a descartar enfermedad grave.\n",
+   "sistema": "nervioso",
+   "organo": "nervio-optico",
+   "nivel": "intermedio",
+   "ventana": "transorbitaria-sobre-parpado-cerrado",
+   "pregunta_clinica": "¿La medición de la vaina aporta evidencia de presión intracraneal elevada en un adulto con sospecha clínica?",
+   "significante": "Diámetro aumentado y reproducible de la vaina detrás del globo ocular, con sus bordes identificados.",
+   "significado": "Posible distensión de la vaina asociada con elevación de la presión intracraneal; marcador indirecto que requiere contexto.",
+   "umbral": "Sin corte universal adoptado en esta ficha: el método de medición y la población deben concordar con la referencia utilizada.",
+   "licencia": "CC BY 4.0",
+   "decision": "Reforzar la evaluación urgente y el estudio confirmatorio ante sospecha concordante; no reducir la urgencia por una medición aislada aparentemente normal.",
+   "sonda": [
+    "lineal"
+   ],
+   "escenario": [
+    "urgencias",
+    "uci"
+   ],
+   "falsos_positivos": [
+    "Sombra o refracción que simulan los bordes de una vaina ensanchada.",
+    "Inclusión de tejido vecino o uso de un borde distinto al definido por el protocolo de referencia.",
+    "Ganancia y otros ajustes que desplazan los límites aparentes de la estructura."
+   ],
+   "se_basa_en": [
+    "tipos-de-sonda",
+    "frecuencia-profundidad",
+    "knobology-ganancia",
+    "cuantificacion-limites"
+   ],
+   "autores": [
+    {
+     "nombre": "Alcy Torres"
+    }
+   ],
+   "refs": [
+    "hirzallah2024onsd",
+    "hirzallah2025artefactos",
+    "koziarz2019onsd",
+    "abramowicz2022ocular",
+    "pansell2024onsd",
+    "pichamuthu2021onsd"
+   ],
+   "n_refs": 6
+  },
+  {
    "id": "signo-vti",
    "tipo": "signo",
    "titulo": "VTI: comprobar el flujo antes de decidir sobre líquidos",
