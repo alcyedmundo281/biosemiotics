@@ -56,9 +56,9 @@ cuantitativos de la Oleada 3.
 
 ## 2. Estado actual (lo ya publicado)
 
-El banco contiene **50 entidades**: 18 conceptos, 31 signos y 1 caso.
-El índice contiene 49 entidades publicadas. Solo el caso permanece en borrador,
-excluido de las salidas públicas. Los 31 signos tienen URL pública en Ghost.
+El banco contiene **51 entidades**: 18 conceptos, 32 signos y 1 caso.
+El índice contiene 49 entidades publicadas. El caso y el signo de vaina del nervio óptico permanecen en borrador,
+excluidos de las salidas públicas. Hay 31 signos con URL pública en Ghost.
 Coartación aórtica fue publicada el 2026-10-05 con imagen atribuida de Wikimedia Commons. Disfunción
 diafragmática fue publicada el 2026-09-25 con imagen atribuida. FEVI por métodos
 lineales fue publicada el 2026-09-19 con imagen atribuida. FEVI por Simpson biplano fue
@@ -182,7 +182,7 @@ El lector entra por el eyeball y el mismo nodo lo lleva, cuando madura, hasta Si
 
 | signo | sistema | organo | nivel | notas |
 |---|---|---|---|---|
-| Vaina del nervio óptico (ONSD) | nervioso | nervio-optico | intermedio | ya esbozado; riesgo térmico retiniano; dolor ocular como puerta |
+| Vaina del nervio óptico (ONSD) | nervioso | nervio-optico | intermedio | borrador en `signos/vaina-nervio-optico.qmd`; sospecha de presión intracraneal elevada en adultos; seguridad ocular y límites de medición; pendiente de revisión clínica |
 | Pancreatitis | digestivo | pancreas | intermedio | ventana difícil (gas); apoyo, no descarta |
 | Tiroides (nódulos, bocio) | endocrino | tiroides | intermedio | superficial, sonda lineal; TIRADS aparte |
 | Carótidas (estenosis, GIM) | vascular | carotida | avanzado | Doppler; cribado vascular |
@@ -230,8 +230,8 @@ Oleada 1 y las rutas avanzadas que reutilizarán esos conceptos.
 Cada cifra, verificada contra PubMed antes de publicar. Cada signo, con su sección de límites ("dónde NO confiar"). El orden por oleada mantiene vivo el mensaje: *empezar es más fácil de lo que te dijeron.*
 
 ### Conteo
-- Banco actual: **50 entidades** (18 conceptos, 31 signos y 1 caso)
-- Signos publicados: **31 de 31**; coartación aórtica publicada
+- Banco actual: **51 entidades** (18 conceptos, 32 signos y 1 caso)
+- Signos publicados: **31 de 32**; coartación aórtica publicada; vaina del nervio óptico en borrador
 - Conceptos esperando URL de Ghost: **0**
 - Conceptos en borrador: **0**
 - Oleada 1 completada: **8 de 8 signos**
