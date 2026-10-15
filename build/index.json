@@ -3269,6 +3269,69 @@
    "n_refs": 8
   },
   {
+   "id": "signo-pancreatitis",
+   "tipo": "signo",
+   "titulo": "Pancreatitis en POCUS: lo que el páncreas deja ver",
+   "estado": "revisado",
+   "fecha_revision": "2026-10-15",
+   "ghost_id": null,
+   "ghost_sha256": "724c5c08f7e1bd553bf0648406089b6d8d3be4779f9dd42fe367a591df165eb8",
+   "abstract": "Un páncreas aumentado y menos ecogénico puede acompañar la inflamación aguda. El hallazgo apoya la sospecha clínica y orienta a completar el estudio, mientras la exploración biliar busca una causa tratable. El gas puede ocultar la glándula y otras lesiones pueden parecer inflamación. Una ventana limitada no descarta pancreatitis; POCUS tampoco establece por sí solo su gravedad.\n",
+   "sistema": "digestivo",
+   "organo": "pancreas",
+   "nivel": "intermedio",
+   "ventana": "epigastrica-transversal-y-oblicua",
+   "pregunta_clinica": "¿Puedo reconocer alteraciones pancreáticas y orientar el estudio de una posible causa biliar?",
+   "significante": "Aumento de tamaño del páncreas visible, disminución de ecos internos y menor definición de sus límites.",
+   "significado": "Cambios compatibles con inflamación pancreática, inespecíficos fuera del contexto clínico.",
+   "umbral": "No se utiliza un diámetro pancreático aislado para confirmar o excluir pancreatitis.",
+   "licencia": "CC-BY-4.0",
+   "fecha": "2026-10-15",
+   "decision": "Integrar con clínica y laboratorio, explorar la vesícula y la vía biliar y solicitar evaluación adicional si persiste la sospecha.",
+   "sonda": [
+    "convexa"
+   ],
+   "escenario": [
+    "urgencias",
+    "hospitalizacion"
+   ],
+   "descriptores": [
+    "pancreatitis",
+    "pancreas",
+    "dolor-epigastrico",
+    "ecografia-transabdominal",
+    "pocus"
+   ],
+   "falsos_positivos": [
+    "Tumor pancreático hipoecoico interpretado como inflamación focal.",
+    "Pancreatitis autoinmune interpretada como un episodio agudo de otra causa.",
+    "Variación normal de la ecogenicidad interpretada como edema."
+   ],
+   "se_basa_en": [
+    "ecogenicidad",
+    "tipos-de-sonda",
+    "knobology-profundidad",
+    "artefacto-reverberacion"
+   ],
+   "contrasta_con": [
+    "signo-colelitiasis",
+    "signo-colecistitis-aguda",
+    "signo-coledocolitiasis"
+   ],
+   "autores": [
+    {
+     "nombre": "Alcy Torres"
+    }
+   ],
+   "refs": [
+    "tenner2024",
+    "meier2024",
+    "doust1976",
+    "cwik2013"
+   ],
+   "n_refs": 4
+  },
+  {
    "id": "signo-perfil-a",
    "tipo": "signo",
    "titulo": "Perfil A (pulmón seco)",
