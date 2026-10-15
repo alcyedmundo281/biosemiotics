@@ -37,6 +37,7 @@ ORGANOS = {
     "vena-profunda": "Vena profunda",
     "nervio-optico": "Nervio óptico",
     "vesicula": "Vesícula",
+    "pancreas": "Páncreas",
     "via-biliar": "Vía biliar",
 }
 

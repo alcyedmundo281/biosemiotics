@@ -56,8 +56,8 @@ cuantitativos de la Oleada 3.
 
 ## 2. Estado actual (lo ya publicado)
 
-El banco contiene **51 entidades**: 18 conceptos, 32 signos y 1 caso.
-El índice contiene 50 entidades: 49 publicadas y una revisada sin URL.
+El banco contiene **52 entidades**: 18 conceptos, 33 signos y 1 caso.
+El índice contiene 51 entidades: 49 publicadas y dos revisadas sin URL.
 Solo el caso permanece en borrador, excluido de las salidas públicas.
 Hay 31 signos con URL pública y ONSD tiene revisión clínica aprobada por Alcy
 el 2026-10-10, pendiente de publicación.
@@ -185,7 +185,7 @@ El lector entra por el eyeball y el mismo nodo lo lleva, cuando madura, hasta Si
 | signo | sistema | organo | nivel | notas |
 |---|---|---|---|---|
 | Vaina del nervio óptico (ONSD) | nervioso | nervio-optico | intermedio | revisado en `signos/vaina-nervio-optico.qmd`; sospecha de presión intracraneal elevada en adultos; seguridad ocular y límites de medición; revisión clínica aprobada por Alcy el 2026-10-10; pendiente de publicación |
-| Pancreatitis | digestivo | pancreas | intermedio | ventana difícil (gas); apoyo, no descarta |
+| Pancreatitis | digestivo | pancreas | intermedio | revisado en `signos/pancreatitis.qmd`; adquisición transabdominal, apoyo y búsqueda biliar; revisión clínica aprobada por Alcy el 2026-10-15; pendiente de publicación |
 | Tiroides (nódulos, bocio) | endocrino | tiroides | intermedio | superficial, sonda lineal; TIRADS aparte |
 | Carótidas (estenosis, GIM) | vascular | carotida | avanzado | Doppler; cribado vascular |
 | Arterial periférico | vascular | arteria-periferica | avanzado | Doppler; isquemia/pulsos |
@@ -232,8 +232,8 @@ Oleada 1 y las rutas avanzadas que reutilizarán esos conceptos.
 Cada cifra, verificada contra PubMed antes de publicar. Cada signo, con su sección de límites ("dónde NO confiar"). El orden por oleada mantiene vivo el mensaje: *empezar es más fácil de lo que te dijeron.*
 
 ### Conteo
-- Banco actual: **51 entidades** (18 conceptos, 32 signos y 1 caso)
-- Signos publicados: **31 de 32**; coartación aórtica publicada; vaina del nervio óptico revisada, pendiente de publicación
+- Banco actual: **52 entidades** (18 conceptos, 33 signos y 1 caso)
+- Signos publicados: **31 de 33**; coartación aórtica publicada; vaina del nervio óptico revisada, pendiente de publicación; pancreatitis revisada, pendiente de publicación
 - Conceptos esperando URL de Ghost: **0**
 - Conceptos en borrador: **0**
 - Oleada 1 completada: **8 de 8 signos**
