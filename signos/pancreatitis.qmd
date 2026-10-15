@@ -49,15 +49,15 @@ El diagnóstico integra al menos dos de tres elementos: dolor compatible,
 amilasa o lipasa mayor de tres veces el límite superior normal, e imagen
 característica. Una impresión dudosa de POCUS no satisface automáticamente
 el criterio de imagen. Si falta laboratorio, conserva la incertidumbre y
-organiza la evaluación necesaria [@tenner2024].
+organiza la evaluación necesaria [tenner2024].
 
 ## Por qué el examen físico no basta
 
 El dolor orienta, pero su localización e intensidad no establecen la gravedad
-[@tenner2024]. La sonda agrega información anatómica; también tiene límites.
+[tenner2024]. La sonda agrega información anatómica; también tiene límites.
 
 La variabilidad de la glándula normal y su difícil identificación ya aparecían
-en los estudios iniciales de ecografía pancreática [@doust1976]. Por eso, antes
+en los estudios iniciales de ecografía pancreática [doust1976]. Por eso, antes
 de interpretar una zona oscura, debes poder decir qué estructura estás viendo.
 Una descripción útil empieza por la calidad y extensión de la ventana.
 
@@ -66,14 +66,14 @@ Una descripción útil empieza por la calidad y extensión de la ventana.
 Usa sonda convexa y preset abdominal. Empieza en decúbito supino, con la sonda
 transversal en el epigastrio. Ajusta profundidad y foco al órgano. El lóbulo
 hepático izquierdo puede servir de ventana; explora también en planos oblicuos
-y longitudinales [@cwik2013].
+y longitudinales [cwik2013].
 
 Localiza el cuerpo pancreático por delante de la vena esplénica. Sigue la
 glándula hacia la derecha para buscar la cabeza y hacia la izquierda para
 buscar la cola. Esta última puede requerir una ventana intercostal junto al
 bazo. Cambiar de decúbito, coordinar la respiración y aplicar compresión suave,
 según tolerancia, puede mejorar la imagen. En urgencias no retrases la
-exploración para lograr ayuno [@meier2024].
+exploración para lograr ayuno [meier2024].
 
 Guarda barridos y anota qué segmentos reconociste. «Cabeza y cuerpo visibles;
 cola no valorable por gas» comunica mejor el alcance que «páncreas normal».
@@ -83,43 +83,43 @@ Completa la búsqueda biliar con las fichas de colelitiasis y coledocolitiasis.
 
 **Significante:** aumento de volumen, pérdida de ecos internos y límites menos
 nítidos, incluida la separación con la vena esplénica. **Significado:** cambios
-compatibles con inflamación, que necesitan concordancia clínica [@doust1976].
+compatibles con inflamación, que necesitan concordancia clínica [doust1976].
 
 Describe tamaño, contorno y textura antes de escribir un diagnóstico. Evita
 convertir «se ve oscuro» en «es pancreatitis». La ecogenicidad y las dimensiones
-varían; una comparación aislada con el hígado puede engañar [@meier2024].
+varían; una comparación aislada con el hígado puede engañar [meier2024].
 
 Una alteración focal exige especial cautela: las lesiones inflamatorias y
-neoplásicas pueden compartir una apariencia hipoecoica [@cwik2013].
+neoplásicas pueden compartir una apariencia hipoecoica [cwik2013].
 
 ## La bifurcación
 
 - **Hallazgos compatibles y sospecha clínica:** completa la evaluación clínica
   y bioquímica. La ecografía transabdominal ayuda a investigar origen biliar;
-  si resulta inconclusa, puede repetirse [@tenner2024].
+  si resulta inconclusa, puede repetirse [tenner2024].
 - **Glándula no valorable:** registra el límite. Si persiste la sospecha,
   continúa el estudio; esa imagen no permite excluir la enfermedad.
 - **Diagnóstico incierto o evolución desfavorable:** considera imagen adicional
   y valoración hospitalaria. La tomografía no se indica rutinariamente al
-  ingreso solo para graduar gravedad [@tenner2024].
+  ingreso solo para graduar gravedad [tenner2024].
 - **Lesión focal de significado incierto:** solicita caracterización formal.
-  POCUS no diferencia con seguridad inflamación y tumor [@cwik2013].
+  POCUS no diferencia con seguridad inflamación y tumor [cwik2013].
 
 ## Dónde NO confiar
 
 **Gas y segmentos ocultos.** Ver el cuerpo no demuestra que hayas evaluado la
-cola. Declara la exploración incompleta [@meier2024].
+cola. Declara la exploración incompleta [meier2024].
 
 **Una glándula oscura.** La variación normal puede imitar edema; tampoco el
-aspecto conservado sustituye la integración diagnóstica [@doust1976; @tenner2024].
+aspecto conservado sustituye la integración diagnóstica [doust1976] [tenner2024].
 
 **Otros procesos pancreáticos.** Tumores y pancreatitis autoinmune pueden
 parecer inflamación aguda. Son diagnósticos alternativos, no variantes inocuas
-del mismo episodio [@cwik2013].
+del mismo episodio [cwik2013].
 
 **Gravedad inferida por apariencia.** POCUS no demuestra por sí solo necrosis
 ni determina el destino del paciente. La valoración hemodinámica y de función
-orgánica sigue siendo necesaria [@tenner2024].
+orgánica sigue siendo necesaria [tenner2024].
 
 Esta ficha se limita a adultos y ecografía transabdominal de primer contacto.
 No enseña intervenciones, ecoendoscopia ni caracterización de colecciones.
