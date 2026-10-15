@@ -32,7 +32,17 @@ variantes:
   - "La distribución focal o difusa describe la apariencia; no establece la causa."
 se_basa_en: [ecogenicidad, tipos-de-sonda, knobology-profundidad, artefacto-reverberacion]
 contrasta_con: [signo-colelitiasis, signo-colecistitis-aguda, signo-coledocolitiasis]
-medios: []
+medios:
+  - tipo: imagen
+    destacada: true
+    id: "wikimedia:Ultrasound abdomen showing focal pancreatitis at its tail.png"
+    descripcion: "Ecografía con cola pancreática aumentada y de límites poco definidos, y Doppler color de la vena esplénica"
+    credito: "Cerevisae"
+    fuente: "Wikimedia Commons"
+    fuente_url: "https://commons.wikimedia.org/wiki/File:Ultrasound_abdomen_showing_focal_pancreatitis_at_its_tail.png"
+    licencia_img: "CC BY-SA 4.0"
+    licencia_url: "https://creativecommons.org/licenses/by-sa/4.0/"
+    archivo_local: "assets/img/pancreatitis-cola-commons.png"
 refs: [tenner2024, meier2024, doust1976, cwik2013]
 fecha: 2026-10-15
 licencia: CC-BY-4.0
