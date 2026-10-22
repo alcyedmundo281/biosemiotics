@@ -1,11 +1,11 @@
 ---
-estado: revisado
+estado: publicado
 fecha_revision: 2026-10-22
-ghost_id: null
+ghost_id: "6ada915ca45f8b0001223b58"
 id: signo-tiroides
 tipo: signo
 titulo: "Tiroides en POCUS: reconocer el hallazgo y orientar el siguiente paso"
-url: ""
+url: "https://www.biosemiotics.net/tiroides-en-pocus-reconocer-el-hallazgo-y-orientar-el-siguiente-paso/"
 abstract: >
   Una lesión focal distinguible del parénquima o una glándula aumentada orientan
   hacia un nódulo tiroideo o bocio. POCUS permite localizar y describir el
