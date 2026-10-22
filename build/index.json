@@ -3323,22 +3323,6 @@
      "nombre": "Alcy Torres"
     }
    ],
-   "medios": [
-    {
-     "tipo": "imagen",
-     "destacada": true,
-     "id": "wikimedia:Ultrasound abdomen showing focal pancreatitis at its tail.png",
-     "descripcion": "Ecografía con cola pancreática aumentada y de límites poco definidos, y Doppler color de la vena esplénica",
-     "credito": "Cerevisae",
-     "fuente": "Wikimedia Commons",
-     "fuente_url": "https://commons.wikimedia.org/wiki/File:Ultrasound_abdomen_showing_focal_pancreatitis_at_its_tail.png",
-     "licencia_img": "CC BY-SA 4.0",
-     "licencia_url": "https://creativecommons.org/licenses/by-sa/4.0/",
-     "archivo_local": "assets/img/pancreatitis-cola-commons.png"
-    }
-   ],
-   "n_loops": 0,
-   "n_imagenes": 1,
    "refs": [
     "tenner2024",
     "meier2024",
