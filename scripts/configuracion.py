@@ -38,6 +38,7 @@ ORGANOS = {
     "nervio-optico": "Nervio óptico",
     "vesicula": "Vesícula",
     "pancreas": "Páncreas",
+    "tiroides": "Tiroides",
     "via-biliar": "Vía biliar",
 }
 
