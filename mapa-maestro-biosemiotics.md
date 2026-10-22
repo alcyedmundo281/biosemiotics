@@ -57,10 +57,11 @@ cuantitativos de la Oleada 3.
 ## 2. Estado actual (lo ya publicado)
 
 El banco contiene **53 entidades**: 18 conceptos, 34 signos y 1 caso.
-El índice contiene 52 entidades: 49 publicadas y tres revisadas sin URL.
+El índice contiene 52 entidades: 50 publicadas y dos revisadas sin URL.
 Solo el caso permanece en borrador, excluido de las salidas públicas.
-Hay 31 signos con URL pública y ONSD tiene revisión clínica aprobada por Alcy
+Hay 32 signos con URL pública y ONSD tiene revisión clínica aprobada por Alcy
 el 2026-10-10, pendiente de publicación.
+Tiroides fue publicada el 2026-10-22 con imagen atribuida de Wikimedia Commons.
 Coartación aórtica fue publicada el 2026-10-05 con imagen atribuida de Wikimedia Commons. Disfunción
 diafragmática fue publicada el 2026-09-25 con imagen atribuida. FEVI por métodos
 lineales fue publicada el 2026-09-19 con imagen atribuida. FEVI por Simpson biplano fue
@@ -186,7 +187,7 @@ El lector entra por el eyeball y el mismo nodo lo lleva, cuando madura, hasta Si
 |---|---|---|---|---|
 | Vaina del nervio óptico (ONSD) | nervioso | nervio-optico | intermedio | revisado en `signos/vaina-nervio-optico.qmd`; sospecha de presión intracraneal elevada en adultos; seguridad ocular y límites de medición; revisión clínica aprobada por Alcy el 2026-10-10; pendiente de publicación |
 | Pancreatitis | digestivo | pancreas | intermedio | revisado en `signos/pancreatitis.qmd`; adquisición transabdominal, apoyo y búsqueda biliar; revisión clínica aprobada por Alcy el 2026-10-15; pendiente de publicación |
-| Tiroides (nódulos, bocio) | endocrino | tiroides | intermedio | revisado en `signos/tiroides.qmd`; adquisición con sonda lineal, nódulos y bocio en adultos; TI-RADS aparte; revisión clínica aprobada por Alcy el 2026-10-22; pendiente de publicación |
+| [Tiroides (nódulos, bocio)](https://www.biosemiotics.net/tiroides-en-pocus-reconocer-el-hallazgo-y-orientar-el-siguiente-paso/) | endocrino | tiroides | intermedio | ✅ publicado el 2026-10-22 con imagen de Wikimedia Commons, CC BY-SA 3.0; adquisición con sonda lineal, nódulos y bocio en adultos; TI-RADS aparte; revisión clínica aprobada por Alcy el 2026-10-22 |
 | Carótidas (estenosis, GIM) | vascular | carotida | avanzado | Doppler; cribado vascular |
 | Arterial periférico | vascular | arteria-periferica | avanzado | Doppler; isquemia/pulsos |
 | Rastreo ganglionar | musculoesqueletico | ganglio | intermedio | benigno vs sospechoso; sonda lineal |
@@ -233,7 +234,7 @@ Cada cifra, verificada contra PubMed antes de publicar. Cada signo, con su secci
 
 ### Conteo
 - Banco actual: **53 entidades** (18 conceptos, 34 signos y 1 caso)
-- Signos publicados: **31 de 34**; coartación aórtica publicada; vaina del nervio óptico revisada, pendiente de publicación; pancreatitis revisada, pendiente de publicación; tiroides revisada, pendiente de publicación
+- Signos publicados: **32 de 34**; coartación aórtica publicada; tiroides publicada; vaina del nervio óptico revisada, pendiente de publicación; pancreatitis revisada, pendiente de publicación
 - Conceptos esperando URL de Ghost: **0**
 - Conceptos en borrador: **0**
 - Oleada 1 completada: **8 de 8 signos**
