@@ -3323,6 +3323,22 @@
      "nombre": "Alcy Torres"
     }
    ],
+   "medios": [
+    {
+     "tipo": "imagen",
+     "destacada": true,
+     "id": "wikimedia:Ultrasound abdomen showing focal pancreatitis at its tail.png",
+     "descripcion": "Ecografía con cola pancreática aumentada y de límites poco definidos, y Doppler color de la vena esplénica",
+     "credito": "Cerevisae",
+     "fuente": "Wikimedia Commons",
+     "fuente_url": "https://commons.wikimedia.org/wiki/File:Ultrasound_abdomen_showing_focal_pancreatitis_at_its_tail.png",
+     "licencia_img": "CC BY-SA 4.0",
+     "licencia_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+     "archivo_local": "assets/img/pancreatitis-cola-commons.png"
+    }
+   ],
+   "n_loops": 0,
+   "n_imagenes": 1,
    "refs": [
     "tenner2024",
     "meier2024",
@@ -3701,6 +3717,64 @@
     "ginghina2009"
    ],
    "n_refs": 7
+  },
+  {
+   "id": "signo-tiroides",
+   "tipo": "signo",
+   "titulo": "Tiroides en POCUS: reconocer el hallazgo y orientar el siguiente paso",
+   "estado": "revisado",
+   "fecha_revision": "2026-10-22",
+   "ghost_id": null,
+   "ghost_sha256": "7025c0610e835f4c6171bbf564f024d8346329141693f0bf1793e6ab0eb13a9c",
+   "abstract": "Una lesión focal distinguible del parénquima o una glándula aumentada orientan hacia un nódulo tiroideo o bocio. POCUS permite localizar y describir el hallazgo para completar la evaluación clínica, funcional y ecográfica. No determina por sí solo malignidad ni función hormonal. Los artefactos, los pseudonódulos y las estructuras vecinas pueden engañar; una exploración limitada tampoco sustituye el estudio cervical completo.\n",
+   "sistema": "endocrino",
+   "organo": "tiroides",
+   "nivel": "intermedio",
+   "ventana": "cervical-anterior-transversal-y-longitudinal",
+   "pregunta_clinica": "¿El hallazgo corresponde a la tiroides y qué evaluación necesita después?",
+   "significante": "Lesión focal distinguible del tejido tiroideo circundante en planos ortogonales, o aumento del tamaño glandular documentado durante el barrido.",
+   "significado": "Alteración estructural focal o difusa de la tiroides; no establece por sí sola etiología, malignidad ni función hormonal.",
+   "umbral": "Esta ficha no establece un diámetro único para diagnosticar bocio ni indicar punción.",
+   "licencia": "CC-BY-4.0",
+   "fecha": "2026-10-22",
+   "decision": "Documentar el hallazgo, integrar antecedentes y TSH y completar ecografía tiroidea y cervical con estratificación formal; priorizar evaluación ante signos de alarma.",
+   "sonda": [
+    "lineal"
+   ],
+   "escenario": [
+    "consulta"
+   ],
+   "descriptores": [
+    "tiroides",
+    "nodulo-tiroideo",
+    "bocio",
+    "ecografia-cervical",
+    "pocus"
+   ],
+   "falsos_positivos": [
+    "Sombra de interfaces musculares o septos que simula una lesión hipoecoica.",
+    "Pseudonódulos de tiroiditis interpretados como nódulos discretos.",
+    "Divertículo faringoesofágico o lesión paratiroidea confundidos con un nódulo tiroideo posterior."
+   ],
+   "se_basa_en": [
+    "tipos-de-sonda",
+    "frecuencia-profundidad",
+    "ecogenicidad",
+    "knobology-profundidad",
+    "knobology-ganancia",
+    "doppler"
+   ],
+   "autores": [
+    {
+     "nombre": "Alcy Torres"
+    }
+   ],
+   "refs": [
+    "durante2023",
+    "lee2023",
+    "choi2014"
+   ],
+   "n_refs": 3
   },
   {
    "id": "signo-trombosis-venosa-profunda",
