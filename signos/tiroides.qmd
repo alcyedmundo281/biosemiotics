@@ -78,7 +78,7 @@ función hormonal.
 Usa sonda lineal de alta frecuencia y preset tiroideo o de partes blandas.
 Coloca al paciente en decúbito supino, con extensión cervical tolerable. Ajusta
 profundidad y foco a la glándula, y la ganancia para conservar sus diferencias
-de ecogenicidad [lee2023, choi2014].
+de ecogenicidad [lee2023] [choi2014].
 
 1. Comienza en transversal. Reconoce tráquea, istmo y ambos lóbulos; identifica
    los vasos laterales antes de interpretar una estructura redonda como lesión.
