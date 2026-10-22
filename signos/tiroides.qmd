@@ -1,0 +1,149 @@
+---
+estado: revisado
+fecha_revision: 2026-10-22
+ghost_id: null
+id: signo-tiroides
+tipo: signo
+titulo: "Tiroides en POCUS: reconocer el hallazgo y orientar el siguiente paso"
+url: ""
+abstract: >
+  Una lesión focal distinguible del parénquima o una glándula aumentada orientan
+  hacia un nódulo tiroideo o bocio. POCUS permite localizar y describir el
+  hallazgo para completar la evaluación clínica, funcional y ecográfica.
+  No determina por sí solo malignidad ni función hormonal. Los artefactos,
+  los pseudonódulos y las estructuras vecinas pueden engañar; una exploración
+  limitada tampoco sustituye el estudio cervical completo.
+sistema: endocrino
+organo: tiroides
+nivel: intermedio
+ventana: cervical-anterior-transversal-y-longitudinal
+sonda: [lineal]
+escenario: [consulta]
+pregunta_clinica: "¿El hallazgo corresponde a la tiroides y qué evaluación necesita después?"
+descriptores: [tiroides, nodulo-tiroideo, bocio, ecografia-cervical, pocus]
+significante: "Lesión focal distinguible del tejido tiroideo circundante en planos ortogonales, o aumento del tamaño glandular documentado durante el barrido."
+significado: "Alteración estructural focal o difusa de la tiroides; no establece por sí sola etiología, malignidad ni función hormonal."
+decision: "Documentar el hallazgo, integrar antecedentes y TSH y completar ecografía tiroidea y cervical con estratificación formal; priorizar evaluación ante signos de alarma."
+umbral: "Esta ficha no establece un diámetro único para diagnosticar bocio ni indicar punción."
+falsos_positivos:
+  - "Sombra de interfaces musculares o septos que simula una lesión hipoecoica."
+  - "Pseudonódulos de tiroiditis interpretados como nódulos discretos."
+  - "Divertículo faringoesofágico o lesión paratiroidea confundidos con un nódulo tiroideo posterior."
+variantes:
+  - "El aumento glandular puede ser difuso o acompañarse de múltiples nódulos."
+  - "Los nódulos pueden ser sólidos, quísticos o mixtos; la composición forma parte de su descripción."
+se_basa_en: [tipos-de-sonda, frecuencia-profundidad, ecogenicidad, knobology-profundidad, knobology-ganancia, doppler]
+contrasta_con: []
+medios: []
+refs: [durante2023, lee2023, choi2014]
+fecha: 2026-10-22
+licencia: CC-BY-4.0
+---
+
+## La pregunta clínica
+
+Ante un adulto con un bulto cervical anterior o un hallazgo incidental, empieza
+por una pregunta concreta: **¿puedo localizarlo en la tiroides y describirlo de
+forma reproducible?** Esta ficha aborda nódulos y bocio. La puntuación TI-RADS,
+los umbrales de punción y los intervalos de seguimiento requieren una evaluación
+formal y quedan para otra entrada.
+
+La evaluación inicial reúne antecedentes personales y familiares, examen,
+función tiroidea y ecografía cervical. Pregunta por cambios locales y estudios
+previos; solicita TSH como parte del estudio inicial del nódulo [durante2023].
+
+## Por qué el examen físico no basta
+
+La palpación no caracteriza todas las lesiones ni su distribución. La ecografía
+es más sensible para evaluar enfermedad nodular y permite registrar tamaño,
+localización y características [durante2023]. Encontrar más lesiones tampoco
+responde automáticamente cuáles necesitan intervención.
+
+La aportación de esta exploración debe quedar explícita: localizar, describir y
+comunicar qué falta por estudiar. Una imagen estructural no es una medición de
+función hormonal.
+
+## Cómo se obtiene la ventana
+
+Usa sonda lineal de alta frecuencia y preset tiroideo o de partes blandas.
+Coloca al paciente en decúbito supino, con extensión cervical tolerable. Ajusta
+profundidad y foco a la glándula, y la ganancia para conservar sus diferencias
+de ecogenicidad [lee2023, choi2014].
+
+1. Comienza en transversal. Reconoce tráquea, istmo y ambos lóbulos; identifica
+   los vasos laterales antes de interpretar una estructura redonda como lesión.
+2. Recorre cada lóbulo desde el polo superior al inferior. Gira la sonda y
+   completa el barrido longitudinal. Guarda vistas representativas de ambos
+   lóbulos y del istmo.
+3. Ante una lesión, confirma su continuidad y localización en ambos planos.
+   Registra sus diámetros anteroposterior, transversal y longitudinal. Para
+   describir aumento glandular, mide también cada lóbulo y el espesor del istmo.
+4. Documenta las zonas que no pudiste visualizar. El estudio completo incluye
+   las cadenas ganglionares cervicales; una exploración focal de la tiroides
+   no permite declarar el cuello libre de adenopatías [lee2023].
+
+Mantén contacto suave. La compresión excesiva puede cambiar la forma del nódulo
+y reducir el flujo visible. Valora su orientación con la cabeza recta; la
+rotación puede modificarla [lee2023].
+
+## El signo
+
+**Nódulo:** una lesión focal que se distingue del parénquima circundante.
+Describe ubicación, dimensiones, composición, ecogenicidad, orientación,
+márgenes y focos ecogénicos. Usa palabras descriptivas antes de asignar una
+interpretación [lee2023].
+
+**Bocio:** aumento del tamaño glandular, con o sin nódulos. Documenta medidas y
+extensión visible. El tamaño normal varía con las características del paciente;
+esta entrada no convierte una medida aislada en un umbral universal [lee2023].
+
+El significante es la alteración de la imagen. Su significado inmediato es
+estructural: todavía no has demostrado cáncer, autonomía funcional ni una
+causa específica de tiroiditis.
+
+## La bifurcación
+
+**Hallazgo estructural confirmado:** registra lo observado y organiza la
+evaluación tiroidea y cervical completa. La estratificación ecográfica, el
+tamaño y el contexto clínico orientan si corresponde punción o seguimiento.
+Ver un nódulo no equivale a indicar una biopsia [durante2023].
+
+**Síntomas locales o hallazgos preocupantes:** los cambios de voz, síntomas
+compresivos, ganglios sospechosos o posible extensión extratiroidea requieren
+valorar una evaluación especializada prioritaria. No cierres el estudio con
+una imagen focal tranquilizadora [durante2023].
+
+**Exploración incompleta o hallazgo no reproducible:** informa la limitación y
+completa el estudio si persiste la sospecha clínica. No asignes una categoría
+de riesgo a partir de una captura insuficiente.
+
+## Dónde NO confiar
+
+- **Pseudolesiones:** sombras de interfaces musculares y septos pueden parecer
+  nódulos oscuros. Cambia el ángulo y confirma en planos ortogonales antes de
+  medir una supuesta lesión [choi2014].
+- **Tiroiditis y vecinos:** los pseudonódulos inflamatorios, una lesión
+  paratiroidea o un divertículo faringoesofágico pueden confundir. Revisa la
+  relación anatómica y los cambios dinámicos; no presupongas origen tiroideo
+  por proximidad [choi2014].
+- **Un descriptor aislado:** ser hipoecoico no demuestra malignidad. Tampoco
+  el patrón vascular Doppler la confirma o excluye por sí solo [durante2023].
+- **Bocio con límite inferior oculto:** declara lo no visualizado. La extensión
+  intratorácica puede requerir otras técnicas de imagen [durante2023].
+- **Alcance:** este recorrido es introductorio y para adultos. No sustituye
+  una ecografía cervical diagnóstica, una evaluación funcional ni protocolos
+  específicos de población pediátrica.
+
+## Practica esto
+
+Con consentimiento y supervisión, realiza un barrido ordenado de ambos lóbulos
+y el istmo. Guarda planos transversal y longitudinal, identifica las
+estructuras vecinas y redacta qué pudiste evaluar y qué quedó fuera de ventana.
+Si encuentras una lesión, practica su descripción y compara tus medidas con
+las del supervisor. El objetivo es reproducir el hallazgo y reconocer límites.
+
+## Discusión abierta
+
+Cuando encuentras un nódulo incidental, ¿tu informe permite al siguiente
+profesional localizarlo y entender qué falta estudiar, o solo transmite la
+palabra «nódulo»?
