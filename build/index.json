@@ -3706,10 +3706,11 @@
    "id": "signo-tiroides",
    "tipo": "signo",
    "titulo": "Tiroides en POCUS: reconocer el hallazgo y orientar el siguiente paso",
-   "estado": "revisado",
+   "estado": "publicado",
    "fecha_revision": "2026-10-22",
-   "ghost_id": null,
+   "ghost_id": "6ada915ca45f8b0001223b58",
    "ghost_sha256": "5ad0ffbc191a2433da81cc4f19425d5cdac4c96c5bc19d6d341455c0eab480b8",
+   "url": "https://www.biosemiotics.net/tiroides-en-pocus-reconocer-el-hallazgo-y-orientar-el-siguiente-paso/",
    "abstract": "Una lesión focal distinguible del parénquima o una glándula aumentada orientan hacia un nódulo tiroideo o bocio. POCUS permite localizar y describir el hallazgo para completar la evaluación clínica, funcional y ecográfica. No determina por sí solo malignidad ni función hormonal. Los artefactos, los pseudonódulos y las estructuras vecinas pueden engañar; una exploración limitada tampoco sustituye el estudio cervical completo.\n",
    "sistema": "endocrino",
    "organo": "tiroides",
@@ -3753,6 +3754,22 @@
      "nombre": "Alcy Torres"
     }
    ],
+   "medios": [
+    {
+     "tipo": "imagen",
+     "destacada": true,
+     "id": "wikimedia:Thyroid ultrasound 110321103242 1040400.jpg",
+     "descripcion": "Ecografía de un nódulo tiroideo con ecogenicidad heterogénea y focos brillantes con sombra posterior",
+     "credito": "© Nevit Dilmen",
+     "fuente": "Wikimedia Commons",
+     "fuente_url": "https://commons.wikimedia.org/wiki/File:Thyroid_ultrasound_110321103242_1040400.jpg",
+     "licencia_img": "CC BY-SA 3.0",
+     "licencia_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+     "archivo_local": "assets/img/tiroides-nodulo-commons.jpg"
+    }
+   ],
+   "n_loops": 0,
+   "n_imagenes": 1,
    "refs": [
     "durante2023",
     "lee2023",

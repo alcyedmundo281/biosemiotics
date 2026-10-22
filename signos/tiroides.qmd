@@ -1,11 +1,11 @@
 ---
-estado: revisado
+estado: publicado
 fecha_revision: 2026-10-22
-ghost_id: null
+ghost_id: "6ada915ca45f8b0001223b58"
 id: signo-tiroides
 tipo: signo
 titulo: "Tiroides en POCUS: reconocer el hallazgo y orientar el siguiente paso"
-url: ""
+url: "https://www.biosemiotics.net/tiroides-en-pocus-reconocer-el-hallazgo-y-orientar-el-siguiente-paso/"
 abstract: >
   Una lesión focal distinguible del parénquima o una glándula aumentada orientan
   hacia un nódulo tiroideo o bocio. POCUS permite localizar y describir el
@@ -34,7 +34,17 @@ variantes:
   - "Los nódulos pueden ser sólidos, quísticos o mixtos; la composición forma parte de su descripción."
 se_basa_en: [tipos-de-sonda, frecuencia-profundidad, ecogenicidad, knobology-profundidad, knobology-ganancia, doppler]
 contrasta_con: []
-medios: []
+medios:
+  - tipo: imagen
+    destacada: true
+    id: "wikimedia:Thyroid ultrasound 110321103242 1040400.jpg"
+    descripcion: "Ecografía de un nódulo tiroideo con ecogenicidad heterogénea y focos brillantes con sombra posterior"
+    credito: "© Nevit Dilmen"
+    fuente: "Wikimedia Commons"
+    fuente_url: "https://commons.wikimedia.org/wiki/File:Thyroid_ultrasound_110321103242_1040400.jpg"
+    licencia_img: "CC BY-SA 3.0"
+    licencia_url: "https://creativecommons.org/licenses/by-sa/3.0/"
+    archivo_local: "assets/img/tiroides-nodulo-commons.jpg"
 refs: [durante2023, lee2023, choi2014]
 fecha: 2026-10-22
 licencia: CC-BY-4.0
