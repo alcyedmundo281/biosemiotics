@@ -30,6 +30,11 @@ Tres decisiones que no son de estilo:
 El contrato de figuras de CLAUDE.md se mantiene aquí sin excepción: a una
 figura le faltan datos de atribución y la generación aborta. No se omite la
 imagen ni se infiere su crédito.
+
+La declaración de uso de IA del libro NO vive aquí: es texto firmado por el
+autor y está en `paratextos/declaracion-ia.md`, la única fuente que leen EPUB
+y PDF. Su marcador `{N}` se sustituye por las citas de la edición, y la
+generación aborta si alguna no es verificable: así la frase es un hecho.
 """
 
 from __future__ import annotations
@@ -48,6 +53,7 @@ from pathlib import Path
 import banco
 import bibliografia as refs_bibliograficas
 import configuracion
+import verificar_citas
 from rutas import blindar_salida, desde_raiz, escribir_texto, raiz_argumentos, resolver_raiz
 from validacion import exigir_editorial
 
@@ -66,6 +72,17 @@ AVISO = (
     "Material exclusivamente educativo. No sustituye el juicio clínico, "
     "la evaluación integral del paciente ni los protocolos locales."
 )
+
+# Paratexto del libro, relativo a la raíz del banco. AI-USE.md remite a este
+# archivo para que la declaración larga y la del colofón no diverjan.
+DECLARACION_IA = Path("paratextos") / "declaracion-ia.md"
+MARCADOR_CITAS = "{N}"
+# Cualquier `{MAYÚSCULAS}` que sobreviva a la sustitución es un marcador que
+# nadie resolvió; `{.unnumbered}` y `{#sec-…}` no encajan.
+MARCADOR_PENDIENTE = re.compile(r"\{[A-ZÁÉÍÓÚÑ_]+\}")
+# Profundidad del índice: parte → capítulo → ficha. La misma para los tres
+# formatos; en PDF la usa el índice que emite `portadilla()`.
+TOC_PROFUNDIDAD = 2
 
 # Los mismos campos que exige el EPUB desde siempre. Si falta uno, la figura no
 # se publica: es la condición de la licencia, no una preferencia editorial.
@@ -270,7 +287,77 @@ def parte_markdown(parte: str, capitulos: list, bibliografia: dict,
     return "\n".join(bloques).rstrip() + "\n"
 
 
-def portadilla(version: str) -> str:
+def citas_verificables(orden: list, raiz: Path) -> int:
+    """Número de citas de la edición; aborta si alguna no es verificable.
+
+    El colofón afirma que las N citas se verificaron contra PubMed y Crossref.
+    Verificable es lo que `verificar_citas.py` comprueba de verdad: una entrada
+    `@article` de `refs.bib` con PMID y DOI y sin exención de Crossref. Se usa
+    su mismo lector y su misma lista de exenciones para que las dos lecturas
+    no puedan discrepar. La consulta de red sigue siendo de ese script y de la
+    CI; aquí se garantiza que ninguna cita quede fuera de su alcance.
+    """
+    entradas = {e["clave"]: e for e in verificar_citas.parse_bib(raiz / "refs.bib")}
+    exenciones = verificar_citas.cargar_exenciones(raiz)
+    errores = []
+    for clave in orden:
+        entrada = entradas.get(clave)
+        if entrada is None:
+            errores.append(f"{clave}: no es una entrada @article de refs.bib")
+        elif not entrada["pmid"] or not entrada["doi"]:
+            errores.append(f"{clave}: le falta PMID o DOI")
+        elif verificar_citas.exento(clave, entrada["doi"], exenciones):
+            errores.append(f"{clave}: exenta de Crossref en refs-sin-crossref.txt")
+    if errores:
+        detalle = "\n  - ".join(errores)
+        raise RuntimeError(
+            "Citas de la edición fuera de la verificación PubMed + Crossref; "
+            f"la declaración de uso de IA no sería cierta:\n  - {detalle}"
+        )
+    return len(orden)
+
+
+def declaracion_ia(raiz: Path, citas: int) -> str:
+    """El paratexto del banco con `{N}` resuelto; aborta ante cualquier marcador."""
+    ruta = raiz / DECLARACION_IA
+    if not ruta.is_file():
+        raise RuntimeError(
+            f"falta {DECLARACION_IA.as_posix()}: el libro no sale sin su "
+            "declaración de uso de IA"
+        )
+    texto = ruta.read_text(encoding="utf-8").strip()
+    if texto.count(MARCADOR_CITAS) != 1:
+        raise RuntimeError(
+            f"{DECLARACION_IA.as_posix()} debe contener el marcador "
+            f"{MARCADOR_CITAS} exactamente una vez"
+        )
+    texto = texto.replace(MARCADOR_CITAS, str(citas))
+    pendiente = MARCADOR_PENDIENTE.search(texto)
+    if pendiente:
+        raise RuntimeError(
+            f"{DECLARACION_IA.as_posix()}: marcador sin sustituir {pendiente.group(0)}"
+        )
+    return texto
+
+
+def titulo_declaracion(texto: str) -> str:
+    """El título del paratexto, sin almohadillas ni atributos, para validar."""
+    primera = texto.strip().splitlines()[0]
+    return re.sub(r"\s*\{[^}]*\}\s*$", "", primera.lstrip("#")).strip()
+
+
+def portadilla(version: str, declaracion: str) -> str:
+    """Portadilla, créditos y declaración de uso de IA.
+
+    En el PDF este bloque va ANTES del índice, como la página de créditos de un
+    libro impreso. Quarto pone `\\tableofcontents` justo tras la portada, así
+    que el índice automático del PDF se apaga y se emite aquí en LaTeX crudo,
+    que EPUB y HTML ignoran: ellos conservan su propio índice.
+
+    No se intenta pasar este bloque a romanos: Quarto coloca cualquier
+    contenido de este capítulo detrás de su `\\chapter*`, ya en `\\mainmatter`,
+    y reiniciar ahí la numeración duplica las anclas de página de hyperref.
+    """
     return "\n".join(
         [
             "# Portadilla {.unnumbered}",
@@ -296,6 +383,18 @@ def portadilla(version: str) -> str:
             f"**Aviso:** {AVISO}",
             "",
             "No existe afiliación, aval ni patrocinio del HECAM o del IESS.",
+            "",
+            declaracion,
+            "",
+            "```{=latex}",
+            # Lo mismo que emitía Quarto: en `book` el capítulo es el nivel 0,
+            # así que `toc-depth: 2` se traduce a `tocdepth` 1. El título
+            # «Tabla de contenidos» ya lo fija su preámbulo.
+            "{",
+            f"\\setcounter{{tocdepth}}{{{TOC_PROFUNDIDAD - 1}}}",
+            "\\tableofcontents",
+            "}",
+            "```",
             "",
         ]
     )
@@ -533,7 +632,7 @@ def quarto_yml(partes: list, archivos: dict, version: str, portada: str) -> str:
         "    toc: true",
         # Nivel 2 = parte → capítulo → ficha. Bajar más metería en el índice
         # cada "La pregunta clínica" de cada signo.
-        "    toc-depth: 2",
+        f"    toc-depth: {TOC_PROFUNDIDAD}",
         "    css: epub.css",
         f"    epub-cover-image: {portada}",
         # El mismo Dublin Core que usa la ruta pandoc: DOI con esquema,
@@ -548,19 +647,20 @@ def quarto_yml(partes: list, archivos: dict, version: str, portada: str) -> str:
         # FreeSerif es la única fuente disponible que cubre ≥ → ± sin fallback
         # silencioso. Es la misma decisión del preámbulo LuaLaTeX histórico.
         "    mainfont: FreeSerif",
-        "    toc: true",
-        "    toc-depth: 2",
+        # El índice del PDF lo emite `portadilla()` detrás de créditos y
+        # declaración de uso de IA; el automático iría antes que ellos.
+        "    toc: false",
         "    geometry: margin=2.5cm",
         "  html:",
         "    toc: true",
-        "    toc-depth: 2",
+        f"    toc-depth: {TOC_PROFUNDIDAD}",
         "",
     ]
     return "\n".join(lineas)
 
 
 def manuscrito_plano(partes: list, bibliografia: dict, orden_global: list,
-                     version: str) -> str:
+                     version: str, declaracion: str) -> str:
     """El mismo libro en un solo Markdown, para pandoc sin Quarto.
 
     No es una segunda versión del ensamblado: es la concatenación literal de
@@ -568,7 +668,7 @@ def manuscrito_plano(partes: list, bibliografia: dict, orden_global: list,
     Existe porque Quarto no siempre está disponible y porque conviene poder
     validar la salida sin él; si diverge del proyecto Quarto, es un fallo.
     """
-    bloques = [portadilla(version)]
+    bloques = [portadilla(version, declaracion)]
     for parte, capitulos in partes:
         bloques.append(parte_markdown(parte, capitulos, bibliografia, orden_global))
     bloques.append(bibliografia_capitulo(orden_global, bibliografia))
@@ -699,11 +799,15 @@ def _generar_en(entidades: list, raiz: Path, destino: Path) -> dict:
             parte_markdown(parte, capitulos, bibliografia, orden_global),
         )
 
-    escribir_texto(destino / "index.qmd", portadilla(version))
+    # {N} son las citas de ESTA edición —`orden_global`, ya poblado por los
+    # capítulos—, no las entradas de refs.bib.
+    citas = citas_verificables(orden_global, raiz)
+    declaracion = declaracion_ia(raiz, citas)
+    escribir_texto(destino / "index.qmd", portadilla(version, declaracion))
     # El manuscrito plano se arma DESPUÉS de los capítulos para heredar el
     # `orden_global` ya poblado; `resolver_citas` es determinista, así que
     # ambos caminos numeran igual.
-    plano = manuscrito_plano(partes, bibliografia, orden_global, version)
+    plano = manuscrito_plano(partes, bibliografia, orden_global, version, declaracion)
     plano += "\n" + creditos_imagenes(figuras)
     escribir_texto(destino / "libro-plano.md", plano)
 
@@ -744,6 +848,7 @@ def _generar_en(entidades: list, raiz: Path, destino: Path) -> dict:
         "capitulos": len(usados),
         "portada": portada,
         "referencias": len(orden_global),
+        "declaracion_ia": titulo_declaracion(declaracion),
         "partes": [parte for parte, _ in partes],
         "version": version,
     }

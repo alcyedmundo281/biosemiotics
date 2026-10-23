@@ -54,6 +54,27 @@ def argumentos() -> argparse.Namespace:
     return parser.parse_args()
 
 
+def validar_declaracion(fuente: str, informe: dict) -> None:
+    """La declaración de uso de IA está, resuelta, y precede al índice."""
+    titulo = informe["declaracion_ia"]
+    plano = " ".join(fuente.split())
+    frase = f"las {informe['referencias']} citas de esta edición"
+    fallos = []
+    # pandoc parte las líneas largas del .tex: se compara con espacios normalizados.
+    if titulo not in plano:
+        fallos.append("falta la declaración de uso de IA")
+    if frase not in plano:
+        fallos.append(f"no dice «{frase}»")
+    if qmd.MARCADOR_CITAS in fuente or "\\{N\\}" in fuente:
+        fallos.append(f"marcador {qmd.MARCADOR_CITAS} sin sustituir")
+    if plano.count("\\tableofcontents") != 1:
+        fallos.append("se esperaba un único \\tableofcontents")
+    elif titulo in plano and plano.index(titulo) > plano.index("\\tableofcontents"):
+        fallos.append("la declaración quedó después del índice")
+    if fallos:
+        raise RuntimeError("declaración de uso de IA en el libro: " + ", ".join(fallos))
+
+
 def validar_libro(tex: Path, pdf: Path, figuras: list, enlaces_ghost: int) -> str:
     """Comprueba el .tex y el PDF antes de darlos por buenos.
 
@@ -143,6 +164,7 @@ def main() -> int:
 
     enlaces_ghost = sum(1 for e in entidades if e.get("url"))
     validacion = validar_libro(tex, producido, informe["figuras_detalle"], enlaces_ghost)
+    validar_declaracion(tex.read_text(encoding="utf-8", errors="replace"), informe)
 
     salida.parent.mkdir(parents=True, exist_ok=True)
     os.replace(producido, salida)

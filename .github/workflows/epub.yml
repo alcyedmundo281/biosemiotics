@@ -38,6 +38,8 @@ on:
       - 'scripts/**'
       - 'build/index.json'
       - 'refs.bib'
+      - 'refs-sin-crossref.txt'
+      - 'paratextos/**'
       - 'requirements.txt'
       - '.github/workflows/epub.yml'
   pull_request:
@@ -49,6 +51,8 @@ on:
       - 'scripts/**'
       - 'build/index.json'
       - 'refs.bib'
+      - 'refs-sin-crossref.txt'
+      - 'paratextos/**'
       - 'requirements.txt'
       - '.github/workflows/epub.yml'
   release:
