@@ -204,6 +204,34 @@ def validar_epub(path: Path, entidades: int, figuras: int, enlaces_ghost: int) -
     return f"contenedor EPUB3 válido ({entidades} entidades, {figuras} figuras)"
 
 
+def validar_declaracion(path: Path, informe: dict) -> None:
+    """La declaración de uso de IA está, resuelta, y figura en la navegación."""
+    titulo = informe["declaracion_ia"]
+    frase = f"las {informe['referencias']} citas de esta edición"
+    with zipfile.ZipFile(path) as zf:
+        nombres = zf.namelist()
+        textos = "".join(
+            zf.read(n).decode("utf-8", errors="replace")
+            for n in nombres if n.endswith((".xhtml", ".html"))
+        )
+        navegacion = "".join(
+            zf.read(n).decode("utf-8", errors="replace")
+            for n in nombres if n.endswith(("nav.xhtml", ".ncx"))
+        )
+    plano = " ".join(textos.split())
+    fallos = []
+    if titulo not in plano:
+        fallos.append("falta la declaración de uso de IA")
+    if titulo not in " ".join(navegacion.split()):
+        fallos.append("la declaración no figura en la tabla de contenidos")
+    if frase not in plano:
+        fallos.append(f"no dice «{frase}»")
+    if qmd.MARCADOR_CITAS in textos:
+        fallos.append(f"marcador {qmd.MARCADOR_CITAS} sin sustituir")
+    if fallos:
+        raise RuntimeError("declaración de uso de IA en el EPUB: " + ", ".join(fallos))
+
+
 def main() -> int:
     blindar_salida()
     args = argumentos()
@@ -230,6 +258,7 @@ def main() -> int:
     validacion = validar_epub(
         producido, informe["entidades"], informe["figuras"], enlaces_ghost
     )
+    validar_declaracion(producido, informe)
     os.replace(producido, salida)
 
     print(f"✓ Motor: {nombre_motor} ({ejecutable})")

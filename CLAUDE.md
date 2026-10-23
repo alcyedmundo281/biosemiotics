@@ -25,6 +25,7 @@ proyecto-biosemiotics/
 ├── casos/*.qmd                  ← el paciente real
 ├── scripts/                     ← build.py, qmd.py, epub.py, libro.py, indice.py, refs.py
 ├── refs.bib                     ← bibliografía (SOLO desde PubMed vía refs.py)
+├── paratextos/                  ← textos fijos del libro (declaración de uso de IA)
 ├── assets/                      ← plantillas para nuevo.py
 └── build/                       ← GENERADO; solo se versionan index.json
                                     y atlas-inject.html
@@ -61,6 +62,18 @@ sin depender del checkout:
 cd build/quarto
 lualatex -halt-on-error -interaction=nonstopmode libro.tex
 ```
+
+**Declaración de uso de IA.** Su única fuente es
+`paratextos/declaracion-ia.md`. `qmd.py` la inserta en la Portadilla, detrás de
+«Créditos, licencia y uso», y sustituye `{N}` por las citas de **esta edición**,
+no por las entradas de `refs.bib`. La generación aborta
+si falta el archivo, si `{N}` no aparece exactamente una vez, si queda un
+marcador `{MAYÚSCULAS}` sin resolver o si alguna cita no es un `@article` con
+PMID y DOI sin exención de Crossref: es lo que hace cierta la frase «verificadas
+contra PubMed y Crossref». Para que créditos y declaración precedan al índice
+del PDF, el índice automático de Quarto está apagado (`toc: false`) y
+`portadilla()` emite `\tableofcontents` en LaTeX crudo, que EPUB y HTML ignoran.
+`AI-USE.md` remite a ese archivo: si cambias uno, revisa el otro.
 
 Eso es lo que empaqueta `paquete_latex.py`: el proyecto entero menos `_salida/`.
 El ZIP anterior mezclaba `build/libro.tex` con el árbol `assets/` del

@@ -6,6 +6,8 @@
 **DOI de la obra:** [10.5281/zenodo.21435362](https://doi.org/10.5281/zenodo.21435362)
 **Alcance:** el sitio biosemiotics.net, este repositorio y las ediciones derivadas
 (PDF, EPUB, LaTeX) que se publiquen a partir de él.
+**Versión del colofón:** el párrafo breve que llevan el PDF y el EPUB vive en
+`paratextos/declaracion-ia.md`; si cambia uno, revise el otro.
 **Vigente desde:** 22 de octubre de 2026 · **Última revisión:** 22 de octubre de 2026
 
 ---

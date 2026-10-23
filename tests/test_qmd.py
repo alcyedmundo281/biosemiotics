@@ -6,6 +6,7 @@ atribución de las figuras.
 """
 
 import sys
+import tempfile
 import unittest
 from pathlib import Path
 
@@ -194,6 +195,91 @@ class FigurasTest(unittest.TestCase):
     def test_los_loops_no_cuentan_como_figuras(self):
         medio = {"tipo": "loop", "id": "yt:x", "descripcion": "Clip"}
         self.assertEqual(qmd.figuras_validadas([self.entidad_con_medio(medio)], RAIZ), [])
+
+
+class DeclaracionIATest(unittest.TestCase):
+    def setUp(self):
+        temporal = tempfile.TemporaryDirectory()
+        self.addCleanup(temporal.cleanup)
+        self.raiz = Path(temporal.name)
+        (self.raiz / "paratextos").mkdir()
+
+    def paratexto(self, texto):
+        (self.raiz / qmd.DECLARACION_IA).write_text(texto, encoding="utf-8")
+
+    def test_el_paratexto_del_banco_resuelve_las_citas_de_la_edicion(self):
+        texto = qmd.declaracion_ia(RAIZ, 151)
+        self.assertIn("las 151 citas", " ".join(texto.split()))
+        self.assertNotIn(qmd.MARCADOR_CITAS, texto)
+        self.assertEqual(qmd.titulo_declaracion(texto),
+                         "DECLARACIÓN DE USO DE INTELIGENCIA ARTIFICIAL")
+
+    def test_aborta_si_falta_el_paratexto(self):
+        with self.assertRaisesRegex(RuntimeError, "declaracion-ia.md"):
+            qmd.declaracion_ia(self.raiz, 3)
+
+    def test_aborta_si_el_marcador_no_aparece_una_sola_vez(self):
+        for texto in ("## T\n\nlas 151 citas\n", "## T\n\n{N} y {N}\n"):
+            with self.subTest(texto=texto):
+                self.paratexto(texto)
+                with self.assertRaisesRegex(RuntimeError, "exactamente una vez"):
+                    qmd.declaracion_ia(self.raiz, 3)
+
+    def test_aborta_ante_otro_marcador_sin_sustituir(self):
+        self.paratexto("## T {.unnumbered}\n\nlas {N} citas, edición {FECHA}\n")
+        with self.assertRaisesRegex(RuntimeError, r"\{FECHA\}"):
+            qmd.declaracion_ia(self.raiz, 3)
+
+
+class CitasVerificablesTest(unittest.TestCase):
+    ARTICULO = "@article{{{0},\n title={{T}},\n pmid={{{1}}},\n doi={{{2}}},\n}}\n"
+
+    def setUp(self):
+        temporal = tempfile.TemporaryDirectory()
+        self.addCleanup(temporal.cleanup)
+        self.raiz = Path(temporal.name)
+
+    def bib(self, texto):
+        (self.raiz / "refs.bib").write_text(texto, encoding="utf-8")
+
+    def test_cuenta_las_citas_de_la_edicion_no_las_de_refs_bib(self):
+        self.bib(self.ARTICULO.format("a", "1", "10.1000/a")
+                 + self.ARTICULO.format("b", "2", "10.1000/b"))
+        self.assertEqual(qmd.citas_verificables(["a"], self.raiz), 1)
+
+    def test_aborta_si_una_cita_no_es_articulo_verificable(self):
+        casos = {
+            "@book{a,\n title={T},\n}\n": "no es una entrada @article",
+            self.ARTICULO.format("a", "1", ""): "PMID o DOI",
+        }
+        for texto, motivo in casos.items():
+            with self.subTest(motivo=motivo):
+                self.bib(texto)
+                with self.assertRaisesRegex(RuntimeError, motivo):
+                    qmd.citas_verificables(["a"], self.raiz)
+
+    def test_aborta_si_una_cita_esta_exenta_de_crossref(self):
+        # La frase dice «contra PubMed y Crossref»: una exención la haría falsa.
+        self.bib(self.ARTICULO.format("a", "1", "10.1000/a"))
+        (self.raiz / "refs-sin-crossref.txt").write_text(
+            "a  # revista que no deposita\n", encoding="utf-8")
+        with self.assertRaisesRegex(RuntimeError, "exenta de Crossref"):
+            qmd.citas_verificables(["a"], self.raiz)
+
+
+class PortadillaTest(unittest.TestCase):
+    def test_en_pdf_creditos_y_declaracion_preceden_al_indice(self):
+        texto = qmd.portadilla("v1", "## DECLARACIÓN {.unnumbered}\n\nTexto.")
+        self.assertLess(texto.index("Créditos, licencia y uso"), texto.index("DECLARACIÓN"))
+        self.assertLess(texto.index("DECLARACIÓN"), texto.index("\\tableofcontents"))
+        # `toc-depth: 2` en un libro es `tocdepth` 1: el capítulo es el nivel 0.
+        self.assertIn(f"\\setcounter{{tocdepth}}{{{qmd.TOC_PROFUNDIDAD - 1}}}", texto)
+
+    def test_el_pdf_no_emite_un_segundo_indice_automatico(self):
+        yml = qmd.quarto_yml([], {}, "v1", "portada.svg")
+        pdf = yml.split("  pdf:\n", 1)[1].split("  html:\n", 1)[0]
+        self.assertIn("toc: false", pdf)
+        self.assertIn("toc: true", yml.split("  epub:\n", 1)[1].split("  pdf:\n", 1)[0])
 
 
 if __name__ == "__main__":
