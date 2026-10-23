@@ -108,9 +108,9 @@ Una cita no declarada detiene la compilación. Las excepciones existen, pero exi
 razón por escrito en `refs-sin-crossref.txt`; esa exención renuncia a la segunda
 autoridad y obliga a confirmar el PMID a mano.
 
-**Última corrida de verificación:** 22 de octubre de 2026 — **169 de 169**
+**Última corrida de verificación:** 22 de octubre de 2026 — **172 de 172**
 referencias verificadas contra PubMed y Crossref, **cero exenciones declaradas**.
-El banco contiene 52 entidades, de las cuales 49 están publicadas.
+El banco contiene 53 entidades, de las cuales 50 están publicadas.
 
 La corrida marcó además 32 variantes de título entre PubMed y Crossref con DOI
 idéntico. Ninguna falla la verificación: el DOI coincidente es lo que prueba que se
