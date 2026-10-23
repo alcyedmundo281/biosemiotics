@@ -84,6 +84,18 @@ MARCADOR_PENDIENTE = re.compile(r"\{[A-ZÁÉÍÓÚÑ_]+\}")
 # formatos; en PDF la usa el índice que emite `portadilla()`.
 TOC_PROFUNDIDAD = 2
 
+# Diseño del libro impreso. El preámbulo y el filtro son del generador, no del
+# banco: se leen junto a este script aunque se use `--raiz`, y se copian al
+# proyecto. El filtro actúa SOLO en LaTeX, así que EPUB y HTML reciben
+# exactamente el mismo Markdown.
+DISENO_LIBRO = Path(__file__).resolve().parent.parent / "assets" / "libro"
+PREAMBULO_LIBRO = "preambulo-libro.tex"
+FILTRO_LIBRO = "diseno-pdf.lua"
+# Libertinus cubre ≥ → ± − ≈ ≠, griego y cirílico en serif y sans, y tiene
+# variante de portada. En Linux la aporta el paquete `fonts-libertinus`.
+FUENTE_LIBRO = "Libertinus Serif"
+FUENTE_LIBRO_SANS = "Libertinus Sans"
+
 # Los mismos campos que exige el EPUB desde siempre. Si falta uno, la figura no
 # se publica: es la condición de la licencia, no una preferencia editorial.
 REQUERIDOS_IMAGEN = (
@@ -387,11 +399,12 @@ def portadilla(version: str, declaracion: str) -> str:
             declaracion,
             "",
             "```{=latex}",
-            # Lo mismo que emitía Quarto: en `book` el capítulo es el nivel 0,
-            # así que `toc-depth: 2` se traduce a `tocdepth` 1. El título
+            # En `book` el capítulo es el nivel 0: `tocdepth` 2 llega hasta la
+            # subsección, que es la ficha. El índice impreso lista así las
+            # fichas, que es lo que se busca en un atlas. El título
             # «Tabla de contenidos» ya lo fija su preámbulo.
             "{",
-            f"\\setcounter{{tocdepth}}{{{TOC_PROFUNDIDAD - 1}}}",
+            f"\\setcounter{{tocdepth}}{{{TOC_PROFUNDIDAD}}}",
             "\\tableofcontents",
             "}",
             "```",
@@ -577,6 +590,28 @@ def estructura(entidades: list) -> list:
     return partes
 
 
+def preambulo_libro(version: str) -> str:
+    """Preámbulo de diseño del PDF, con la versión de la edición para la portada."""
+    plantilla = (DISENO_LIBRO / "preambulo.tex").read_text(encoding="utf-8")
+
+    def seguro(texto: str) -> str:
+        return re.sub(r"([\\#$%&_{}~^])", r"\\\1", texto)
+
+    # Portada y portadilla parten el título en dos líneas, como portada.svg.
+    primera, _, resto = TITULO.partition(" ")
+    macros = {
+        "titulolineas": f"{seguro(primera)}\\\\{seguro(resto)}",
+        "subtitulolibro": seguro(SUBTITULO),
+        "autorlibro": seguro(AUTOR),
+        "editoriallibro": seguro(EDITORIAL),
+        "versionlibro": seguro(version),
+    }
+    cabecera = "".join(
+        f"\\newcommand{{\\{nombre}}}{{{valor}}}\n" for nombre, valor in macros.items()
+    )
+    return cabecera + plantilla
+
+
 def yaml_texto(valor: str) -> str:
     """Escalar YAML entrecomillado; el banco trae acentos, `:` y comillas."""
     return '"' + str(valor).replace("\\", "\\\\").replace('"', '\\"') + '"'
@@ -639,18 +674,26 @@ def quarto_yml(partes: list, archivos: dict, version: str, portada: str) -> str:
         # licencia con URL, descripción y materias MeSH.
         "    epub-metadata: epub-metadata.xml",
         "  pdf:",
-        "    documentclass: book",
+        # KOMA-Script: cabeceras, índice y encabezados se configuran desde
+        # `preambulo-libro.tex` sin reescribir la plantilla de Quarto.
+        "    documentclass: scrbook",
+        "    classoption: [open=any, fontsize=10.5pt]",
         # La fuente LaTeX es un entregable, no un intermedio: alimenta el ZIP
         # autocontenido y la verificación de imágenes.
         "    keep-tex: true",
         "    pdf-engine: lualatex",
-        # FreeSerif es la única fuente disponible que cubre ≥ → ± sin fallback
-        # silencioso. Es la misma decisión del preámbulo LuaLaTeX histórico.
-        "    mainfont: FreeSerif",
+        f"    mainfont: {FUENTE_LIBRO}",
+        f"    sansfont: {FUENTE_LIBRO_SANS}",
         # El índice del PDF lo emite `portadilla()` detrás de créditos y
         # declaración de uso de IA; el automático iría antes que ellos.
         "    toc: false",
-        "    geometry: margin=2.5cm",
+        # Formato de libro, 17 × 24 cm.
+        "    geometry: [paperwidth=170mm, paperheight=240mm, inner=20mm, "
+        "outer=18mm, top=24mm, bottom=24mm, headsep=7mm, footskip=11mm]",
+        f"    include-in-header: {PREAMBULO_LIBRO}",
+        f"    filters: [{FILTRO_LIBRO}]",
+        # Cada figura queda bajo el título de su ficha, en el orden del texto.
+        "    fig-pos: H",
         "  html:",
         "    toc: true",
         f"    toc-depth: {TOC_PROFUNDIDAD}",
@@ -824,6 +867,8 @@ def _generar_en(entidades: list, raiz: Path, destino: Path) -> dict:
         destino / "_quarto.yml", quarto_yml(partes, archivos, version, portada)
     )
     escribir_texto(destino / "epub.css", ESTILO)
+    escribir_texto(destino / PREAMBULO_LIBRO, preambulo_libro(version))
+    shutil.copy2(DISENO_LIBRO / FILTRO_LIBRO, destino / FILTRO_LIBRO)
     escribir_texto(
         destino / "epub-metadata.xml", metadatos_epub(entidades, version)
     )

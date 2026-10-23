@@ -35,6 +35,7 @@ on:
       - 'signos/**'
       - 'casos/**'
       - 'assets/img/**'
+      - 'assets/libro/**'
       - 'scripts/**'
       - 'build/index.json'
       - 'refs.bib'
@@ -48,6 +49,7 @@ on:
       - 'signos/**'
       - 'casos/**'
       - 'assets/img/**'
+      - 'assets/libro/**'
       - 'scripts/**'
       - 'build/index.json'
       - 'refs.bib'
@@ -109,6 +111,21 @@ jobs:
           # y Calibre no puede extraerlas sin motor de navegador.
           echo "rsvg-convert: $(rsvg-convert --version)"
           echo "lualatex: $(lualatex --version | head -1)"
+
+      - name: Instalar Libertinus
+        # Fuente del libro impreso (serif, sans y display; cubre ≥ → ±).
+        # Ubuntu 24.04 no la empaqueta: se fija la versión, como epubcheck.
+        run: |
+          VER=7.051
+          curl -fsSL -o /tmp/libertinus.zip \
+            "https://github.com/alerque/libertinus/releases/download/v${VER}/Libertinus-${VER}.zip"
+          unzip -q /tmp/libertinus.zip -d /tmp/libertinus
+          mkdir -p ~/.local/share/fonts
+          find /tmp/libertinus -name 'Libertinus*.otf' -exec cp {} ~/.local/share/fonts/ \;
+          fc-cache -f
+          for familia in "Libertinus Serif" "Libertinus Sans" "Libertinus Serif Display"; do
+            fc-list | grep -q "$familia" || { echo "::error::Falta la fuente $familia"; exit 1; }
+          done
 
       - name: Instalar Quarto
         uses: quarto-dev/quarto-actions/setup@v2
