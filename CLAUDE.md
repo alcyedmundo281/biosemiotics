@@ -75,6 +75,15 @@ del PDF, el índice automático de Quarto está apagado (`toc: false`) y
 `portadilla()` emite `\tableofcontents` en LaTeX crudo, que EPUB y HTML ignoran.
 `AI-USE.md` remite a ese archivo: si cambias uno, revisa el otro.
 
+**Altura de figuras en el PDF.** `qmd.ALTURA_MAXIMA_FIGURA` (0.90) limita cada
+imagen al 90 % de la altura útil: el `\pandocbounded` de Quarto la llevaba a la
+página entera y, con el pie, las figuras a página completa desbordaban el
+margen inferior. Es el recorte mínimo que elimina el desborde sin mover figuras
+de página; no se baja por redondear, porque en un atlas el tamaño de la imagen
+es contenido. Que un título de ficha quede al pie con su figura en la página
+siguiente es la maqueta actual, no un defecto: no se corrige con
+`needspace` ni `\nopagebreak`, que repaginan el libro entero.
+
 Eso es lo que empaqueta `paquete_latex.py`: el proyecto entero menos `_salida/`.
 El ZIP anterior mezclaba `build/libro.tex` con el árbol `assets/` del
 repositorio y traía rutas `../assets/...` que solo resolvían desde `build/`.

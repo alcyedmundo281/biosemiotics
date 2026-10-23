@@ -83,6 +83,28 @@ MARCADOR_PENDIENTE = re.compile(r"\{[A-ZÁÉÍÓÚÑ_]+\}")
 # Profundidad del índice: parte → capítulo → ficha. La misma para los tres
 # formatos; en PDF la usa el índice que emite `portadilla()`.
 TOC_PROFUNDIDAD = 2
+# Altura máxima de una imagen en el PDF, como fracción de \textheight. El
+# `\pandocbounded` de Quarto escala hasta la altura útil entera, y una figura a
+# página completa más su pie desbordaba el margen inferior. 0.90 es el recorte
+# mínimo que elimina el desborde: en la edición actual solo toca a Eyeball EF,
+# Coartación aórtica y Ganancia, sin mover ninguna figura de página. En un
+# atlas el tamaño de la imagen es contenido: no se baja por redondear.
+ALTURA_MAXIMA_FIGURA = 0.90
+# La misma macro que define Quarto, con el tope en lugar de \textheight.
+PANDOCBOUNDED_CON_TOPE = (
+    "\\makeatletter\n"
+    "\\renewcommand*\\pandocbounded[1]{%\n"
+    "  \\sbox\\pandoc@box{#1}%\n"
+    f"  \\Gscale@div\\@tempa{{{ALTURA_MAXIMA_FIGURA}\\textheight}}"
+    "{\\dimexpr\\ht\\pandoc@box+\\dp\\pandoc@box\\relax}%\n"
+    "  \\Gscale@div\\@tempb{\\linewidth}{\\wd\\pandoc@box}%\n"
+    "  \\ifdim\\@tempb\\p@<\\@tempa\\p@\\let\\@tempa\\@tempb\\fi\n"
+    "  \\ifdim\\@tempa\\p@<\\p@\\scalebox{\\@tempa}{\\usebox\\pandoc@box}%\n"
+    "  \\else\\usebox{\\pandoc@box}%\n"
+    "  \\fi%\n"
+    "}\n"
+    "\\makeatother"
+)
 
 # Los mismos campos que exige el EPUB desde siempre. Si falta uno, la figura no
 # se publica: es la condición de la licencia, no una preferencia editorial.
@@ -651,6 +673,10 @@ def quarto_yml(partes: list, archivos: dict, version: str, portada: str) -> str:
         # declaración de uso de IA; el automático iría antes que ellos.
         "    toc: false",
         "    geometry: margin=2.5cm",
+        # Va al final del preámbulo, después de la definición de Quarto.
+        "    include-in-header:",
+        "      text: |",
+        *("        " + linea for linea in PANDOCBOUNDED_CON_TOPE.splitlines()),
         "  html:",
         "    toc: true",
         f"    toc-depth: {TOC_PROFUNDIDAD}",
