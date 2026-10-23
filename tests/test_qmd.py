@@ -275,6 +275,14 @@ class PortadillaTest(unittest.TestCase):
         # `toc-depth: 2` en un libro es `tocdepth` 1: el capítulo es el nivel 0.
         self.assertIn(f"\\setcounter{{tocdepth}}{{{qmd.TOC_PROFUNDIDAD - 1}}}", texto)
 
+    def test_el_pdf_limita_la_altura_de_las_figuras(self):
+        yml = qmd.quarto_yml([], {}, "v1", "portada.svg")
+        pdf = yml.split("  pdf:\n", 1)[1].split("  html:\n", 1)[0]
+        self.assertIn("include-in-header:", pdf)
+        self.assertIn(f"{{{qmd.ALTURA_MAXIMA_FIGURA}\\textheight}}", pdf)
+        # El EPUB no hereda la regla: es LaTeX.
+        self.assertNotIn("pandocbounded", yml.split("  pdf:\n", 1)[0])
+
     def test_el_pdf_no_emite_un_segundo_indice_automatico(self):
         yml = qmd.quarto_yml([], {}, "v1", "portada.svg")
         pdf = yml.split("  pdf:\n", 1)[1].split("  html:\n", 1)[0]
