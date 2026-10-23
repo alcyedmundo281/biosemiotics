@@ -272,14 +272,28 @@ class PortadillaTest(unittest.TestCase):
         texto = qmd.portadilla("v1", "## DECLARACIÓN {.unnumbered}\n\nTexto.")
         self.assertLess(texto.index("Créditos, licencia y uso"), texto.index("DECLARACIÓN"))
         self.assertLess(texto.index("DECLARACIÓN"), texto.index("\\tableofcontents"))
-        # `toc-depth: 2` en un libro es `tocdepth` 1: el capítulo es el nivel 0.
-        self.assertIn(f"\\setcounter{{tocdepth}}{{{qmd.TOC_PROFUNDIDAD - 1}}}", texto)
+        # En `book` el capítulo es el nivel 0: `tocdepth` 2 lista las fichas.
+        self.assertIn(f"\\setcounter{{tocdepth}}{{{qmd.TOC_PROFUNDIDAD}}}", texto)
 
     def test_el_pdf_no_emite_un_segundo_indice_automatico(self):
         yml = qmd.quarto_yml([], {}, "v1", "portada.svg")
         pdf = yml.split("  pdf:\n", 1)[1].split("  html:\n", 1)[0]
         self.assertIn("toc: false", pdf)
         self.assertIn("toc: true", yml.split("  epub:\n", 1)[1].split("  pdf:\n", 1)[0])
+
+    def test_el_diseno_del_libro_solo_toca_el_pdf(self):
+        yml = qmd.quarto_yml([], {}, "v1", "portada.svg")
+        antes, pdf = yml.split("  pdf:\n", 1)
+        pdf, html = pdf.split("  html:\n", 1)
+        for clave in (qmd.FILTRO_LIBRO, qmd.PREAMBULO_LIBRO, qmd.FUENTE_LIBRO):
+            self.assertIn(clave, pdf)
+            self.assertNotIn(clave, antes + html)
+
+    def test_el_preambulo_trae_los_datos_de_la_portada(self):
+        texto = qmd.preambulo_libro("abc_1")
+        self.assertIn("\\newcommand{\\versionlibro}{abc\\_1}", texto)
+        self.assertIn("\\newcommand{\\titulolineas}{", texto)
+        self.assertIn("\\portadaatlas", texto)
 
 
 if __name__ == "__main__":

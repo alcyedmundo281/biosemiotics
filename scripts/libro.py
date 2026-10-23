@@ -17,7 +17,7 @@ generador anterior escribía rutas `../assets/...` que solo resolvían desde
 `build/`.
 
 Requiere Quarto y LuaLaTeX. A diferencia del EPUB no hay respaldo con pandoc a
-secas: el preámbulo (fontspec con FreeSerif para `≥ → ±`, babel en español,
+secas: el preámbulo (fontspec con Libertinus para `≥ → ±`, babel en español,
 biblatex) lo arma Quarto, y reconstruirlo a mano sería volver justo a lo que
 este script jubila.
 """
@@ -94,7 +94,7 @@ def validar_libro(tex: Path, pdf: Path, figuras: list, enlaces_ghost: int) -> st
         "aviso educativo": "material educativo" in fuente.lower(),
         "bibliografía final": "Bibliografía" in fuente,
         "créditos de imágenes": "Créditos de imágenes" in fuente,
-        "fuente FreeSerif": "FreeSerif" in fuente,
+        f"fuente {qmd.FUENTE_LIBRO}": qmd.FUENTE_LIBRO in fuente,
     }
     fallos = [nombre for nombre, correcto in comprobaciones.items() if not correcto]
     if fallos:
@@ -104,7 +104,7 @@ def validar_libro(tex: Path, pdf: Path, figuras: list, enlaces_ghost: int) -> st
         if simbolo not in fuente:
             raise RuntimeError(
                 f"el símbolo Unicode {simbolo!r} no llegó al LaTeX: revisa que "
-                "el preámbulo siga usando fontspec con FreeSerif"
+                "el preámbulo siga usando fontspec con " + qmd.FUENTE_LIBRO
             )
 
     # Cada figura entra por el `archivo_local` declarado, la misma autoridad que

@@ -32,7 +32,7 @@ lualatex -halt-on-error -interaction=nonstopmode libro.tex
 lualatex -halt-on-error -interaction=nonstopmode libro.tex
 ```
 
-Requiere LuaLaTeX y FreeSerif. El banco escribe símbolos Unicode estructurales
+Requiere LuaLaTeX, KOMA-Script, tcolorbox y las fuentes Libertinus. El banco escribe símbolos Unicode estructurales
 (≥ → ±) y el preámbulo los compone con fontspec: **no compila con pdflatex**.
 
 `libro.tex` lo genera Quarto desde el proyecto de `build/quarto/`; no se edita
