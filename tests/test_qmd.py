@@ -275,6 +275,20 @@ class PortadillaTest(unittest.TestCase):
         # En `book` el capítulo es el nivel 0: `tocdepth` 2 lista las fichas.
         self.assertIn(f"\\setcounter{{tocdepth}}{{{qmd.TOC_PROFUNDIDAD}}}", texto)
 
+    def test_el_pdf_limita_la_altura_de_las_figuras(self):
+        yml = qmd.quarto_yml([], {}, "v1", "portada.svg")
+        pdf = yml.split("  pdf:\n", 1)[1].split("  html:\n", 1)[0]
+        self.assertIn(f"include-in-header: {qmd.PREAMBULO_LIBRO}", pdf)
+        preambulo = qmd.preambulo_libro("v1")
+        self.assertIn(f"={qmd.ALTURA_MAXIMA_FIGURA}\\textheight", preambulo)
+        # Las dos plantillas de Quarto: la reciente y la que fija la CI. Un
+        # \renewcommand directo rompía la CI con «\pandocbounded undefined».
+        self.assertIn("\\ifdefined\\pandocbounded", preambulo)
+        self.assertIn("\\ifdefined\\maxheight", preambulo)
+        self.assertNotIn("\\renewcommand*\\pandocbounded", preambulo)
+        # El EPUB no hereda la regla: es LaTeX.
+        self.assertNotIn("pandocbounded", yml.split("  pdf:\n", 1)[0])
+
     def test_el_pdf_no_emite_un_segundo_indice_automatico(self):
         yml = qmd.quarto_yml([], {}, "v1", "portada.svg")
         pdf = yml.split("  pdf:\n", 1)[1].split("  html:\n", 1)[0]

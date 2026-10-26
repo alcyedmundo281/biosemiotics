@@ -83,6 +83,40 @@ MARCADOR_PENDIENTE = re.compile(r"\{[A-ZÁÉÍÓÚÑ_]+\}")
 # Profundidad del índice: parte → capítulo → ficha. La misma para los tres
 # formatos; en PDF la usa el índice que emite `portadilla()`.
 TOC_PROFUNDIDAD = 2
+# Altura máxima de una imagen en el PDF, como fracción de \textheight. Cada
+# ficha abre página con título, enlace, figura y pie (diseño de #130, elegido
+# por Alcy frente al 0.90 de #129): con 0.62 caben los cuatro juntos y ninguna
+# figura salta a la página siguiente dejando el título solo. Si cambias el
+# tope, mide de nuevo que las 50 sigan en la página de apertura de su ficha.
+ALTURA_MAXIMA_FIGURA = 0.62
+# Las plantillas de Quarto escalan de dos maneras según la versión de pandoc:
+# las recientes envuelven cada imagen en `\pandocbounded`; las anteriores (la
+# CI fija Quarto 1.5) fijan `height=\maxheight` en las claves de graphicx. El
+# tope se aplica a la que exista, al empezar el documento, cuando \textheight
+# ya es definitivo y la plantilla ya definió sus macros. La macro de reemplazo
+# se define fuera del gancho para no anidar parámetros `#1` en él.
+PANDOCBOUNDED_CON_TOPE = (
+    "\\makeatletter\n"
+    "\\newdimen\\bios@alturamax\n"
+    "\\newsavebox\\bios@caja\n"
+    "\\newcommand*\\bios@pandocbounded[1]{%\n"
+    "  \\sbox\\bios@caja{#1}%\n"
+    "  \\Gscale@div\\@tempa{\\bios@alturamax}"
+    "{\\dimexpr\\ht\\bios@caja+\\dp\\bios@caja\\relax}%\n"
+    "  \\Gscale@div\\@tempb{\\linewidth}{\\wd\\bios@caja}%\n"
+    "  \\ifdim\\@tempb\\p@<\\@tempa\\p@\\let\\@tempa\\@tempb\\fi\n"
+    "  \\ifdim\\@tempa\\p@<\\p@\\scalebox{\\@tempa}{\\usebox\\bios@caja}%\n"
+    "  \\else\\usebox{\\bios@caja}%\n"
+    "  \\fi%\n"
+    "}\n"
+    "\\AtBeginDocument{%\n"
+    f"  \\bios@alturamax={ALTURA_MAXIMA_FIGURA}\\textheight\n"
+    "  \\ifdefined\\pandocbounded\\let\\pandocbounded\\bios@pandocbounded\\fi\n"
+    "  \\ifdefined\\maxheight\\def\\maxheight{\\ifdim\\Gin@nat@height>"
+    "\\bios@alturamax\\bios@alturamax\\else\\Gin@nat@height\\fi}\\fi\n"
+    "}\n"
+    "\\makeatother"
+)
 
 # Diseño del libro impreso. El preámbulo y el filtro son del generador, no del
 # banco: se leen junto a este script aunque se use `--raiz`, y se copian al
@@ -609,7 +643,8 @@ def preambulo_libro(version: str) -> str:
     cabecera = "".join(
         f"\\newcommand{{\\{nombre}}}{{{valor}}}\n" for nombre, valor in macros.items()
     )
-    return cabecera + plantilla
+    # El tope de figuras va al final, después de cualquier ajuste del diseño.
+    return cabecera + plantilla + "\n" + PANDOCBOUNDED_CON_TOPE + "\n"
 
 
 def yaml_texto(valor: str) -> str:
@@ -690,6 +725,7 @@ def quarto_yml(partes: list, archivos: dict, version: str, portada: str) -> str:
         # Formato de libro, 17 × 24 cm.
         "    geometry: [paperwidth=170mm, paperheight=240mm, inner=20mm, "
         "outer=18mm, top=24mm, bottom=24mm, headsep=7mm, footskip=11mm]",
+        # Lleva también el tope de altura de las figuras (PANDOCBOUNDED_CON_TOPE).
         f"    include-in-header: {PREAMBULO_LIBRO}",
         f"    filters: [{FILTRO_LIBRO}]",
         # Cada figura queda bajo el título de su ficha, en el orden del texto.

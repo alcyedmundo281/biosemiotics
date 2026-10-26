@@ -95,6 +95,7 @@ def validar_libro(tex: Path, pdf: Path, figuras: list, enlaces_ghost: int) -> st
         "bibliografía final": "Bibliografía" in fuente,
         "créditos de imágenes": "Créditos de imágenes" in fuente,
         f"fuente {qmd.FUENTE_LIBRO}": qmd.FUENTE_LIBRO in fuente,
+        "tope de altura de figuras": qmd.PANDOCBOUNDED_CON_TOPE in fuente,
     }
     fallos = [nombre for nombre, correcto in comprobaciones.items() if not correcto]
     if fallos:

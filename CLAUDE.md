@@ -87,6 +87,15 @@ del PDF, el índice automático de Quarto está apagado (`toc: false`) y
 `portadilla()` emite `\tableofcontents` en LaTeX crudo, que EPUB y HTML ignoran.
 `AI-USE.md` remite a ese archivo: si cambias uno, revisa el otro.
 
+**Altura de figuras en el PDF.** El tope del 62 % es `qmd.ALTURA_MAXIMA_FIGURA`;
+`qmd.preambulo_libro()` lo añade al final de `preambulo-libro.tex`. Alcy eligió
+este diseño (#130: cada ficha abre página) frente al 90 % de #129, que solo
+quitaba el desborde manteniendo la paginación anterior. El tope se aplica en
+`\AtBeginDocument` a la macro que exista: `\pandocbounded` en las plantillas
+recientes de Quarto y `\maxheight` en la de Quarto 1.5, que es la de la CI. Un
+`\renewcommand\pandocbounded` directo compila en local y rompe la CI con
+«Command \pandocbounded undefined».
+
 Eso es lo que empaqueta `paquete_latex.py`: el proyecto entero menos `_salida/`.
 El ZIP anterior mezclaba `build/libro.tex` con el árbol `assets/` del
 repositorio y traía rutas `../assets/...` que solo resolvían desde `build/`.

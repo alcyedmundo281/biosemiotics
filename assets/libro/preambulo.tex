@@ -28,17 +28,10 @@
 % Cada ficha abre página con título, enlace, figura y pie. La figura se topa
 % en el 62 % de la altura útil para que esos cuatro quepan juntos: con el tope
 % de Quarto (la página entera) las figuras verticales saltaban a la página
-% siguiente y dejaban el título solo. La misma macro de Quarto, con el tope.
-\makeatletter
-\renewcommand*\pandocbounded[1]{%
-  \sbox\pandoc@box{#1}%
-  \Gscale@div\@tempa{0.62\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
-  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
-  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi
-  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
-  \else\usebox{\pandoc@box}%
-  \fi}
-\makeatother
+% siguiente y dejaban el título solo. El tope no se define aquí: lo añade
+% `qmd.preambulo_libro()` al final de este archivo (`ALTURA_MAXIMA_FIGURA`),
+% con la variante que funciona tanto en la plantilla de Quarto que usa la CI
+% (`\maxheight`) como en las recientes (`\pandocbounded`).
 
 % Página con base libre: con `flushbottom` LaTeX estiraba el espacio entre el
 % órgano y su primera ficha y el título bajaba a media página.
