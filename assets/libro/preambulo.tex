@@ -1,0 +1,150 @@
+% Diseño del libro impreso (solo PDF). Lo copia scripts/qmd.py al proyecto
+% Quarto y Quarto lo inserta en el preámbulo de libro.tex, de modo que el
+% .tex sigue compilando solo desde build/quarto/.
+%
+% La paleta es la de la portada tipográfica (portada.svg del EPUB): tinta
+% azul noche, acento verde azulado y su versión clara.
+
+\usepackage{tikz}
+\usepackage[most]{tcolorbox}
+\usepackage{scrlayer-scrpage}
+
+\definecolor{tinta}{HTML}{071B2B}
+\definecolor{acento}{HTML}{0B7480}
+\definecolor{acentoclaro}{HTML}{69D3C5}
+\definecolor{crema}{HTML}{F4F0DF}
+\definecolor{gris}{HTML}{4A5560}
+\definecolor{fondosigno}{HTML}{EAF5F3}
+\definecolor{alerta}{HTML}{A63D2A}
+\definecolor{fondoalerta}{HTML}{FBEFEA}
+
+\newfontfamily\fuenteportada{Libertinus Serif Display}
+
+% --- Numeración: parte → capítulo → ficha. El cuerpo de la ficha no se
+% numera: «1.3.4.4 Dónde NO confiar» era ruido, no orientación.
+\setcounter{secnumdepth}{\subsectionnumdepth}
+
+% --- Figuras ----------------------------------------------------------------
+% Cada ficha abre página con título, enlace, figura y pie. La figura se topa
+% en el 62 % de la altura útil para que esos cuatro quepan juntos: con el tope
+% de Quarto (la página entera) las figuras verticales saltaban a la página
+% siguiente y dejaban el título solo. El tope no se define aquí: lo añade
+% `qmd.preambulo_libro()` al final de este archivo (`ALTURA_MAXIMA_FIGURA`),
+% con la variante que funciona tanto en la plantilla de Quarto que usa la CI
+% (`\maxheight`) como en las recientes (`\pandocbounded`).
+
+% Página con base libre: con `flushbottom` LaTeX estiraba el espacio entre el
+% órgano y su primera ficha y el título bajaba a media página.
+\raggedbottom
+
+% Sin líneas viudas ni huérfanas.
+\clubpenalty=10000
+\widowpenalty=10000
+\displaywidowpenalty=10000
+
+% --- Encabezados -----------------------------------------------------------
+\KOMAoptions{chapterprefix=false}
+\setkomafont{disposition}{\sffamily\color{tinta}}
+\setkomafont{chapter}{\sffamily\fontsize{30}{36}\selectfont\color{tinta}}
+\setkomafont{section}{\sffamily\large\color{acento}}
+\setkomafont{subsection}{\sffamily\LARGE\bfseries\color{tinta}}
+\setkomafont{subsubsection}{\sffamily\normalsize\bfseries\color{acento}}
+\setkomafont{paragraph}{\sffamily\normalsize\bfseries\color{tinta}}
+
+\renewcommand*{\chapterformat}{%
+  {\fontsize{64}{64}\selectfont\color{acento}\thechapter}\par\nobreak
+  \vspace{4pt}{\color{acentoclaro}\rule{28mm}{2.5pt}}\par\nobreak\vspace{14pt}}
+\renewcommand*{\chapterlinesformat}[3]{#2#3}
+% La parte abre en página propia; el filtro salta de página tras ella.
+\RedeclareSectionCommand[beforeskip=55mm, afterskip=12mm]{chapter}
+
+% El capítulo temático u órgano es una antesala de sus fichas: rótulo
+% espaciado sobre una línea fina.
+\renewcommand*{\sectionformat}{\thesection\enskip\textperiodcentered\enskip}
+% Órgano y ficha llevan línea; las secciones internas de la ficha, no.
+\makeatletter
+\renewcommand*{\sectionlinesformat}[4]{%
+  \Ifstr{#1}{subsubsection}{\@hangfrom{\hskip #2#3}{#4}}{%
+  \Ifstr{#1}{paragraph}{\@hangfrom{\hskip #2#3}{#4}}{%
+  \parbox{\linewidth}{\raggedright#3#4\par\vspace{2pt}%
+  {\color{acentoclaro}\rule{\linewidth}{0.6pt}}}}}}
+\makeatother
+\RedeclareSectionCommand[beforeskip=4mm, afterskip=5mm]{section}
+
+\renewcommand*{\subsectionformat}{{\color{acento}\thesubsection}\enskip}
+\RedeclareSectionCommand[beforeskip=2mm, afterskip=5mm]{subsection}
+\RedeclareSectionCommand[beforeskip=5mm, afterskip=1.5mm]{subsubsection}
+
+% --- Cabeceras y folios ----------------------------------------------------
+\pagestyle{scrheadings}
+\clearpairofpagestyles
+\automark[subsection]{chapter}
+\ohead{\headmark}
+\ofoot*{\pagemark}
+\setkomafont{pageheadfoot}{\sffamily\footnotesize\color{gris}}
+\setkomafont{pagenumber}{\sffamily\footnotesize\color{acento}}
+\KOMAoptions{headsepline=0.4pt}
+\setkomafont{headsepline}{\color{acentoclaro}}
+
+% --- Índice ----------------------------------------------------------------
+\addtokomafont{chapterentry}{\sffamily\color{tinta}}
+\addtokomafont{chapterentrypagenumber}{\color{acento}}
+\DeclareTOCStyleEntry[entryformat=\sffamily\color{acento}]{tocline}{section}
+\DeclareTOCStyleEntry[entryformat=\small, pagenumberformat=\small]{tocline}{subsection}
+
+% --- Bloques de la ficha (los abre diseno-pdf.lua) ---------------------------
+\newtcolorbox{triadasigno}{enhanced, breakable, colback=fondosigno,
+  colframe=acento, boxrule=0pt, leftrule=3pt, arc=0pt, outer arc=0pt,
+  left=10pt, right=10pt, top=7pt, bottom=7pt, before skip=8pt,
+  after skip=10pt, parbox=false}
+\newtcolorbox{alertaficha}{enhanced, breakable, colback=fondoalerta,
+  colframe=alerta, boxrule=0pt, leftrule=3pt, arc=0pt, outer arc=0pt,
+  left=10pt, right=10pt, top=7pt, bottom=7pt, before skip=4pt,
+  after skip=10pt, parbox=false}
+\newcommand{\etiquetasigno}[1]{{\sffamily\bfseries\color{acento}#1}}
+\newenvironment{evidencia}{\par\small}{\par}
+\newenvironment{enlaceficha}{\par\small\sffamily\color{gris}\raggedright}{\par}
+
+% --- Portadilla y créditos --------------------------------------------------
+\newenvironment{portadillapdf}{%
+  \thispagestyle{empty}\null\vspace*{30mm}%
+  \begin{flushleft}
+  {\fuenteportada\fontsize{34}{42}\selectfont\color{tinta}\titulolineas\par}
+  \vspace{6mm}{\color{acentoclaro}\rule{28mm}{2.5pt}}\par\vspace{8mm}
+  \sffamily\color{tinta}}
+  {\end{flushleft}\clearpage}
+\newenvironment{creditospdf}{\small}{\clearpage}
+
+% --- Portada: la misma composición que portada.svg ------------------------
+\newcommand{\portadaatlas}{%
+  \thispagestyle{empty}%
+  \begin{tikzpicture}[remember picture, overlay,
+      x=\paperwidth/1600, y=-\paperwidth/1600,
+      shift={(current page.north west)}]
+    \fill[tinta] (0,0) rectangle (1600,2260);
+    \fill[acento] (0,1620) .. controls (420,1440) and (720,1810) .. (1110,1615)
+      .. controls (1320,1510) and (1450,1480) .. (1600,1545)
+      -- (1600,2260) -- (0,2260) -- cycle;
+    \draw[acentoclaro, line width=20*\paperwidth/1600] (1260,320) circle (150);
+    \node[anchor=base west, inner sep=0, text=crema,
+          align=left, font=\fuenteportada\fontsize{44}{55}\selectfont]
+      at (120,580) {\titulolineas};
+    \node[anchor=base west, inner sep=0, text=acentoclaro,
+          font=\fuenteportada\fontsize{21}{26}\selectfont] at (125,905)
+      {\subtitulolibro};
+    \node[anchor=base west, inner sep=0, text=crema,
+          font=\sffamily\fontsize{15}{18}\selectfont] at (125,1915)
+      {\autorlibro};
+    \node[anchor=base west, inner sep=0, text=crema!80!acentoclaro,
+          font=\sffamily\fontsize{11}{14}\selectfont] at (125,2000)
+      {\editoriallibro\enskip\textperiodcentered\enskip\versionlibro};
+  \end{tikzpicture}%
+  \clearpage}
+
+\AtBeginDocument{%
+  \renewcommand{\maketitle}{\portadaatlas}%
+  \captionsetup{font={small,sf}, labelfont={bf,color=acento},
+    labelsep=period, justification=raggedright, singlelinecheck=false}%
+  \hypersetup{colorlinks=true, linkcolor=tinta, urlcolor=acento,
+    citecolor=acento}%
+}

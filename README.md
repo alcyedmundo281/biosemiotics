@@ -6,6 +6,8 @@ verificada contra la literatura y cada signo acompañado de sus límites.
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21435362.svg)](https://doi.org/10.5281/zenodo.21435362)
 [![Licencia: CC BY 4.0](https://img.shields.io/badge/Licencia-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/deed.es)
 
+📄 [Declaración de uso de inteligencia artificial](AI-USE.md)
+
 🔗 **[www.biosemiotics.net](https://www.biosemiotics.net/)**
 
 ---
