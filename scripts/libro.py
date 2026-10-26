@@ -17,7 +17,7 @@ generador anterior escribía rutas `../assets/...` que solo resolvían desde
 `build/`.
 
 Requiere Quarto y LuaLaTeX. A diferencia del EPUB no hay respaldo con pandoc a
-secas: el preámbulo (fontspec con FreeSerif para `≥ → ±`, babel en español,
+secas: el preámbulo (fontspec con Libertinus para `≥ → ±`, babel en español,
 biblatex) lo arma Quarto, y reconstruirlo a mano sería volver justo a lo que
 este script jubila.
 """
@@ -54,6 +54,27 @@ def argumentos() -> argparse.Namespace:
     return parser.parse_args()
 
 
+def validar_declaracion(fuente: str, informe: dict) -> None:
+    """La declaración de uso de IA está, resuelta, y precede al índice."""
+    titulo = informe["declaracion_ia"]
+    plano = " ".join(fuente.split())
+    frase = f"las {informe['referencias']} citas de esta edición"
+    fallos = []
+    # pandoc parte las líneas largas del .tex: se compara con espacios normalizados.
+    if titulo not in plano:
+        fallos.append("falta la declaración de uso de IA")
+    if frase not in plano:
+        fallos.append(f"no dice «{frase}»")
+    if qmd.MARCADOR_CITAS in fuente or "\\{N\\}" in fuente:
+        fallos.append(f"marcador {qmd.MARCADOR_CITAS} sin sustituir")
+    if plano.count("\\tableofcontents") != 1:
+        fallos.append("se esperaba un único \\tableofcontents")
+    elif titulo in plano and plano.index(titulo) > plano.index("\\tableofcontents"):
+        fallos.append("la declaración quedó después del índice")
+    if fallos:
+        raise RuntimeError("declaración de uso de IA en el libro: " + ", ".join(fallos))
+
+
 def validar_libro(tex: Path, pdf: Path, figuras: list, enlaces_ghost: int) -> str:
     """Comprueba el .tex y el PDF antes de darlos por buenos.
 
@@ -73,7 +94,8 @@ def validar_libro(tex: Path, pdf: Path, figuras: list, enlaces_ghost: int) -> st
         "aviso educativo": "material educativo" in fuente.lower(),
         "bibliografía final": "Bibliografía" in fuente,
         "créditos de imágenes": "Créditos de imágenes" in fuente,
-        "fuente FreeSerif": "FreeSerif" in fuente,
+        f"fuente {qmd.FUENTE_LIBRO}": qmd.FUENTE_LIBRO in fuente,
+        "tope de altura de figuras": qmd.PANDOCBOUNDED_CON_TOPE in fuente,
     }
     fallos = [nombre for nombre, correcto in comprobaciones.items() if not correcto]
     if fallos:
@@ -83,7 +105,7 @@ def validar_libro(tex: Path, pdf: Path, figuras: list, enlaces_ghost: int) -> st
         if simbolo not in fuente:
             raise RuntimeError(
                 f"el símbolo Unicode {simbolo!r} no llegó al LaTeX: revisa que "
-                "el preámbulo siga usando fontspec con FreeSerif"
+                "el preámbulo siga usando fontspec con " + qmd.FUENTE_LIBRO
             )
 
     # Cada figura entra por el `archivo_local` declarado, la misma autoridad que
@@ -143,6 +165,7 @@ def main() -> int:
 
     enlaces_ghost = sum(1 for e in entidades if e.get("url"))
     validacion = validar_libro(tex, producido, informe["figuras_detalle"], enlaces_ghost)
+    validar_declaracion(tex.read_text(encoding="utf-8", errors="replace"), informe)
 
     salida.parent.mkdir(parents=True, exist_ok=True)
     os.replace(producido, salida)

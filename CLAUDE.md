@@ -25,6 +25,7 @@ proyecto-biosemiotics/
 ├── casos/*.qmd                  ← el paciente real
 ├── scripts/                     ← build.py, qmd.py, epub.py, libro.py, indice.py, refs.py
 ├── refs.bib                     ← bibliografía (SOLO desde PubMed vía refs.py)
+├── paratextos/                  ← textos fijos del libro (declaración de uso de IA)
 ├── assets/                      ← plantillas para nuevo.py
 └── build/                       ← GENERADO; solo se versionan index.json
                                     y atlas-inject.html
@@ -48,9 +49,21 @@ divergieran. Ahora el PDF sale del **mismo proyecto Quarto** que el EPUB, y
 El compilador sigue siendo **LuaLaTeX, no pdflatex**. El banco escribe umbrales
 y decisiones con símbolos Unicode estructurales (`≥`, `→`, `±`) porque así se
 leen en la clínica. `_quarto.yml` fija `pdf-engine: lualatex` y
-`mainfont: FreeSerif`, la única fuente disponible que cubre esos glifos sin
-fallback silencioso. Con pdflatex verías `Missing character` en cuanto el texto
-traiga `≥`/`→`/`±`: no es un error del banco, es el compilador equivocado.
+`mainfont: Libertinus Serif` (con `Libertinus Sans` para encabezados), que
+cubren esos glifos, griego y cirílico sin fallback silencioso. Con pdflatex
+verías `Missing character` en cuanto el texto traiga `≥`/`→`/`±`: no es un
+error del banco, es el compilador equivocado.
+
+**Diseño del libro impreso.** Vive en `assets/libro/`: `preambulo.tex`
+(KOMA-Script `scrbook`, 17 × 24 cm, paleta de la portada, cabeceras, cajas) y
+`diseno-pdf.lua`, un filtro de Quarto declarado solo bajo `format: pdf`. El
+filtro no añade ni quita texto: convierte la Portadilla en portadilla impresa,
+saca créditos y declaración del índice, abre página en cada órgano y ficha,
+y envuelve la tríada del signo, «Dónde NO confiar» y «Evidencia» en sus
+entornos. EPUB y HTML reciben el mismo Markdown que antes. Se numera hasta la
+ficha y el índice impreso lista las fichas. Las figuras van `[H]`, bajo su
+título, topadas al 62 % de la altura útil: así las 50 quedan en la página de
+apertura de su ficha. Si cambias ese tope, mide de nuevo que ninguna salte.
 
 **La fuente LaTeX es un entregable, no un intermedio.** `keep-tex` la deja en
 **`build/quarto/libro.tex`** —no en `build/libro.tex`, que ya no existe— junto
@@ -62,13 +75,36 @@ cd build/quarto
 lualatex -halt-on-error -interaction=nonstopmode libro.tex
 ```
 
+**Declaración de uso de IA.** Su única fuente es
+`paratextos/declaracion-ia.md`. `qmd.py` la inserta en la Portadilla, detrás de
+«Créditos, licencia y uso», y sustituye `{N}` por las citas de **esta edición**,
+no por las entradas de `refs.bib`. La generación aborta
+si falta el archivo, si `{N}` no aparece exactamente una vez, si queda un
+marcador `{MAYÚSCULAS}` sin resolver o si alguna cita no es un `@article` con
+PMID y DOI sin exención de Crossref: es lo que hace cierta la frase «verificadas
+contra PubMed y Crossref». Para que créditos y declaración precedan al índice
+del PDF, el índice automático de Quarto está apagado (`toc: false`) y
+`portadilla()` emite `\tableofcontents` en LaTeX crudo, que EPUB y HTML ignoran.
+`AI-USE.md` remite a ese archivo: si cambias uno, revisa el otro.
+
+**Altura de figuras en el PDF.** El tope del 62 % es `qmd.ALTURA_MAXIMA_FIGURA`;
+`qmd.preambulo_libro()` lo añade al final de `preambulo-libro.tex`. Alcy eligió
+este diseño (#130: cada ficha abre página) frente al 90 % de #129, que solo
+quitaba el desborde manteniendo la paginación anterior. El tope se aplica en
+`\AtBeginDocument` a la macro que exista: `\pandocbounded` en las plantillas
+recientes de Quarto y `\maxheight` en la de Quarto 1.5, que es la de la CI. Un
+`\renewcommand\pandocbounded` directo compila en local y rompe la CI con
+«Command \pandocbounded undefined».
+
 Eso es lo que empaqueta `paquete_latex.py`: el proyecto entero menos `_salida/`.
 El ZIP anterior mezclaba `build/libro.tex` con el árbol `assets/` del
 repositorio y traía rutas `../assets/...` que solo resolvían desde `build/`.
 
 **Dependencias de sistema:** `texlive-latex-recommended`,
-`texlive-latex-extra`, `texlive-lang-spanish`, `texlive-luatex` y
-`fonts-freefont-ttf`. **`biber` ya no hace falta**: el `.tex` de Quarto no usa
+`texlive-latex-extra`, `texlive-lang-spanish`, `texlive-luatex`,
+`fonts-freefont-ttf` (portada SVG del EPUB) y Libertinus 7.051, que CI
+descarga del release oficial porque Ubuntu 24.04 no la empaqueta.
+**`biber` ya no hace falta**: el `.tex` de Quarto no usa
 biblatex porque la bibliografía se emite ya resuelta por
 `bibliografia.referencia_ghost()`.
 
