@@ -57,11 +57,12 @@ cuantitativos de la Oleada 3.
 ## 2. Estado actual (lo ya publicado)
 
 El banco contiene **53 entidades**: 18 conceptos, 34 signos y 1 caso.
-El índice contiene 52 entidades: 51 publicadas y una revisada sin URL.
+El índice contiene 52 entidades, todas publicadas.
 Solo el caso permanece en borrador, excluido de las salidas públicas.
-Hay 33 signos con URL pública. ONSD fue revisado y publicado el
+Hay 34 signos con URL pública. ONSD fue revisado y publicado el
 2026-10-10, con envío por email a 12 suscriptores e imagen de Wikimedia Commons.
 Tiroides fue publicada el 2026-10-22 con imagen atribuida de Wikimedia Commons.
+Pancreatitis fue publicada el 2026-10-15 con envío por email a 12 suscriptores e imagen atribuida de Wikimedia Commons.
 Coartación aórtica fue publicada el 2026-10-05 con imagen atribuida de Wikimedia Commons. Disfunción
 diafragmática fue publicada el 2026-09-25 con imagen atribuida. FEVI por métodos
 lineales fue publicada el 2026-09-19 con imagen atribuida. FEVI por Simpson biplano fue
@@ -225,7 +226,7 @@ explícitamente adquisición dúplex, Doppler color y Doppler espectral.
 | signo | sistema | organo | nivel | notas |
 |---|---|---|---|---|
 | [Vaina del nervio óptico (ONSD)](https://www.biosemiotics.net/vaina-del-nervio-optico-una-pista-de-presion-no-un-permiso-para-descartar/) | nervioso | nervio-optico | intermedio | ✅ publicado; sospecha de presión intracraneal elevada en adultos; seguridad ocular y límites de medición; imagen anatómica de Wikimedia Commons en dominio público |
-| Pancreatitis | digestivo | pancreas | intermedio | revisado en `signos/pancreatitis.qmd`; adquisición transabdominal, apoyo y búsqueda biliar; revisión clínica aprobada por Alcy el 2026-10-15; pendiente de publicación |
+| [Pancreatitis](https://www.biosemiotics.net/pancreatitis-en-pocus-lo-que-el-pancreas-deja-ver/) | digestivo | pancreas | intermedio | ✅ publicado el 2026-10-15 con imagen de Wikimedia Commons, CC BY-SA 4.0; adquisición transabdominal, apoyo y búsqueda biliar; revisión clínica aprobada por Alcy el 2026-10-15 |
 | [Tiroides (nódulos, bocio)](https://www.biosemiotics.net/tiroides-en-pocus-reconocer-el-hallazgo-y-orientar-el-siguiente-paso/) | endocrino | tiroides | intermedio | ✅ publicado el 2026-10-22 con imagen de Wikimedia Commons, CC BY-SA 3.0; adquisición con sonda lineal, nódulos y bocio en adultos; TI-RADS aparte; revisión clínica aprobada por Alcy el 2026-10-22 |
 | Carótidas (estenosis, GIM) | vascular | carotida | avanzado | adquisición dúplex, Doppler color y espectral; cribado vascular |
 | Arterial periférico | vascular | arteria-periferica | avanzado | Doppler; isquemia/pulsos |
@@ -279,7 +280,7 @@ Cada cifra, verificada contra PubMed antes de publicar. Cada signo, con su secci
 
 ### Conteo
 - Banco actual: **53 entidades** (18 conceptos, 34 signos y 1 caso)
-- Signos publicados: **33 de 34**; coartación aórtica publicada; tiroides publicada; vaina del nervio óptico publicada; pancreatitis revisada, pendiente de publicación
+- Signos publicados: **34 de 34**; coartación aórtica publicada; tiroides publicada; vaina del nervio óptico publicada; pancreatitis publicada
 - Conceptos esperando URL de Ghost: **0**
 - Conceptos en borrador: **0**
 - Oleada 1 completada: **8 de 8 signos**

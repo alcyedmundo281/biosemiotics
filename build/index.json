@@ -3272,10 +3272,11 @@
    "id": "signo-pancreatitis",
    "tipo": "signo",
    "titulo": "Pancreatitis en POCUS: lo que el páncreas deja ver",
-   "estado": "revisado",
+   "estado": "publicado",
    "fecha_revision": "2026-10-15",
-   "ghost_id": null,
+   "ghost_id": "6ad15395093d8b0001f2fe40",
    "ghost_sha256": "b83f164e1df6dea7945941f303a1d6586f0f2d6fcc4337e03e7744857432ff48",
+   "url": "https://www.biosemiotics.net/pancreatitis-en-pocus-lo-que-el-pancreas-deja-ver/",
    "abstract": "Un páncreas aumentado y menos ecogénico puede acompañar la inflamación aguda. El hallazgo apoya la sospecha clínica y orienta a completar el estudio, mientras la exploración biliar busca una causa tratable. El gas puede ocultar la glándula y otras lesiones pueden parecer inflamación. Una ventana limitada no descarta pancreatitis; POCUS tampoco establece por sí solo su gravedad.\n",
    "sistema": "digestivo",
    "organo": "pancreas",
@@ -3323,6 +3324,22 @@
      "nombre": "Alcy Torres"
     }
    ],
+   "medios": [
+    {
+     "tipo": "imagen",
+     "destacada": true,
+     "id": "wikimedia:Ultrasound abdomen showing focal pancreatitis at its tail.png",
+     "descripcion": "Ecografía con cola pancreática aumentada y de límites poco definidos, y Doppler color de la vena esplénica",
+     "credito": "Cerevisae",
+     "fuente": "Wikimedia Commons",
+     "fuente_url": "https://commons.wikimedia.org/wiki/File:Ultrasound_abdomen_showing_focal_pancreatitis_at_its_tail.png",
+     "licencia_img": "CC BY-SA 4.0",
+     "licencia_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+     "archivo_local": "assets/img/pancreatitis-cola-commons.png"
+    }
+   ],
+   "n_loops": 0,
+   "n_imagenes": 1,
    "refs": [
     "tenner2024",
     "meier2024",
