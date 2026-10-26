@@ -5,7 +5,8 @@ import unittest
 from pathlib import Path
 from unittest.mock import patch
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
+RAIZ = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(RAIZ / "scripts"))
 import qmd
 from build import SECCIONES
 
@@ -17,6 +18,11 @@ class DestinoQuartoTest(unittest.TestCase):
         self.raiz = Path(self.temporal.name).resolve()
         self.bib = "@article{demo,\n title={Demo},\n pmid={12345678},\n doi={10.1000/demo},\n}\n"
         (self.raiz / "refs.bib").write_text(self.bib, encoding="utf-8")
+        # El libro no se genera sin su declaración de uso de IA.
+        paratexto = self.raiz / qmd.DECLARACION_IA
+        paratexto.parent.mkdir()
+        paratexto.write_text(
+            (RAIZ / qmd.DECLARACION_IA).read_text(encoding="utf-8"), encoding="utf-8")
         self.destino = self.raiz / "build" / "quarto"
         self.entidades = [{"id": "signo-demo", "tipo": "signo", "titulo": "Demo",
                            "estado": "revisado",

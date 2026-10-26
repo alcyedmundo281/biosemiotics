@@ -56,9 +56,12 @@ cuantitativos de la Oleada 3.
 
 ## 2. Estado actual (lo ya publicado)
 
-El banco contiene **50 entidades**: 18 conceptos, 31 signos y 1 caso.
-El índice contiene 49 entidades publicadas. Solo el caso permanece en borrador,
-excluido de las salidas públicas. Los 31 signos tienen URL pública en Ghost.
+El banco contiene **53 entidades**: 18 conceptos, 34 signos y 1 caso.
+El índice contiene 52 entidades: 51 publicadas y una revisada sin URL.
+Solo el caso permanece en borrador, excluido de las salidas públicas.
+Hay 33 signos con URL pública. ONSD fue revisado y publicado el
+2026-10-10, con envío por email a 12 suscriptores e imagen de Wikimedia Commons.
+Tiroides fue publicada el 2026-10-22 con imagen atribuida de Wikimedia Commons.
 Coartación aórtica fue publicada el 2026-10-05 con imagen atribuida de Wikimedia Commons. Disfunción
 diafragmática fue publicada el 2026-09-25 con imagen atribuida. FEVI por métodos
 lineales fue publicada el 2026-09-19 con imagen atribuida. FEVI por Simpson biplano fue
@@ -182,7 +185,7 @@ El lector entra por el eyeball y el mismo nodo lo lleva, cuando madura, hasta Si
 
 ### 6.1. POCUS obstétrico — siguiente bloque prioritario
 
-**Decisión de Alcy (2026-10-06):** iniciar las extensiones con la evaluación
+**Decisión de Alcy (2026-10-06):** priorizar la evaluación
 POCUS de la embarazada. El próximo artículo será **POCUS en la embarazada:
 alcance, seguridad y límites**, antes de las fichas de hallazgos.
 
@@ -221,9 +224,9 @@ explícitamente adquisición dúplex, Doppler color y Doppler espectral.
 
 | signo | sistema | organo | nivel | notas |
 |---|---|---|---|---|
-| Vaina del nervio óptico (ONSD) | nervioso | nervio-optico | intermedio | ya esbozado; riesgo térmico retiniano; dolor ocular como puerta |
-| Pancreatitis | digestivo | pancreas | intermedio | ventana difícil (gas); apoyo, no descarta |
-| Tiroides (nódulos, bocio) | endocrino | tiroides | intermedio | superficial, sonda lineal; TIRADS aparte |
+| [Vaina del nervio óptico (ONSD)](https://www.biosemiotics.net/vaina-del-nervio-optico-una-pista-de-presion-no-un-permiso-para-descartar/) | nervioso | nervio-optico | intermedio | ✅ publicado; sospecha de presión intracraneal elevada en adultos; seguridad ocular y límites de medición; imagen anatómica de Wikimedia Commons en dominio público |
+| Pancreatitis | digestivo | pancreas | intermedio | revisado en `signos/pancreatitis.qmd`; adquisición transabdominal, apoyo y búsqueda biliar; revisión clínica aprobada por Alcy el 2026-10-15; pendiente de publicación |
+| [Tiroides (nódulos, bocio)](https://www.biosemiotics.net/tiroides-en-pocus-reconocer-el-hallazgo-y-orientar-el-siguiente-paso/) | endocrino | tiroides | intermedio | ✅ publicado el 2026-10-22 con imagen de Wikimedia Commons, CC BY-SA 3.0; adquisición con sonda lineal, nódulos y bocio en adultos; TI-RADS aparte; revisión clínica aprobada por Alcy el 2026-10-22 |
 | Carótidas (estenosis, GIM) | vascular | carotida | avanzado | adquisición dúplex, Doppler color y espectral; cribado vascular |
 | Arterial periférico | vascular | arteria-periferica | avanzado | Doppler; isquemia/pulsos |
 | Rastreo ganglionar | musculoesqueletico | ganglio | intermedio | benigno vs sospechoso; sonda lineal |
@@ -267,16 +270,16 @@ Oleada 1 y las rutas avanzadas que reutilizarán esos conceptos.
    2026-10-06. Escribir primero el concepto base «POCUS en la embarazada:
    alcance, seguridad y límites»; continuar con embarazo temprano, las cuatro
    unidades de segundo y tercer trimestre e integración clínica (§6.1).
-7. **Después del bloque obstétrico:** retomar las otras extensiones en su
-   orden (§6.2), comenzando por vaina del nervio óptico. Carótidas conserva
+7. **Después del bloque obstétrico:** continuar con las otras extensiones en su
+   orden (§6.2), retomando los temas aún pendientes. Carótidas conserva
    su lugar e incluirá adquisición dúplex, Doppler color y espectral.
 
 ### La regla que no cambia
 Cada cifra, verificada contra PubMed antes de publicar. Cada signo, con su sección de límites ("dónde NO confiar"). El orden por oleada mantiene vivo el mensaje: *empezar es más fácil de lo que te dijeron.*
 
 ### Conteo
-- Banco actual: **50 entidades** (18 conceptos, 31 signos y 1 caso)
-- Signos publicados: **31 de 31**; coartación aórtica publicada
+- Banco actual: **53 entidades** (18 conceptos, 34 signos y 1 caso)
+- Signos publicados: **33 de 34**; coartación aórtica publicada; tiroides publicada; vaina del nervio óptico publicada; pancreatitis revisada, pendiente de publicación
 - Conceptos esperando URL de Ghost: **0**
 - Conceptos en borrador: **0**
 - Oleada 1 completada: **8 de 8 signos**

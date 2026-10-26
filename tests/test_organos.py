@@ -29,7 +29,7 @@ class NombreOrganoTest(unittest.TestCase):
         self.assertEqual(build.nombre_organo("vena-profunda"), "Vena profunda")
 
     def test_un_organo_sin_mapear_no_rompe_la_compilacion(self):
-        self.assertEqual(build.nombre_organo("nervio-optico"), "Nervio optico")
+        self.assertEqual(build.nombre_organo("organo-desconocido"), "Organo desconocido")
 
     def test_sin_organo_cae_en_otros(self):
         self.assertEqual(build.nombre_organo(""), "Otros")
