@@ -1,11 +1,11 @@
 ---
-estado: revisado
+estado: publicado
 fecha_revision: 2026-10-15
-ghost_id: null
+ghost_id: "6ad15395093d8b0001f2fe40"
 id: signo-pancreatitis
 tipo: signo
 titulo: "Pancreatitis en POCUS: lo que el páncreas deja ver"
-url: ""
+url: "https://www.biosemiotics.net/pancreatitis-en-pocus-lo-que-el-pancreas-deja-ver/"
 abstract: >
   Un páncreas aumentado y menos ecogénico puede acompañar la inflamación aguda.
   El hallazgo apoya la sospecha clínica y orienta a completar el estudio,
