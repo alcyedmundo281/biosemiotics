@@ -279,7 +279,10 @@ class PortadillaTest(unittest.TestCase):
         yml = qmd.quarto_yml([], {}, "v1", "portada.svg")
         pdf = yml.split("  pdf:\n", 1)[1].split("  html:\n", 1)[0]
         self.assertIn("include-in-header:", pdf)
-        self.assertIn(f"{{{qmd.ALTURA_MAXIMA_FIGURA}\\textheight}}", pdf)
+        self.assertIn(f"={qmd.ALTURA_MAXIMA_FIGURA}\\textheight", pdf)
+        # Las dos plantillas de Quarto: la reciente y la que fija la CI.
+        self.assertIn("\\ifdefined\\pandocbounded", pdf)
+        self.assertIn("\\ifdefined\\maxheight", pdf)
         # El EPUB no hereda la regla: es LaTeX.
         self.assertNotIn("pandocbounded", yml.split("  pdf:\n", 1)[0])
 

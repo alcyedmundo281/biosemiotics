@@ -83,25 +83,38 @@ MARCADOR_PENDIENTE = re.compile(r"\{[A-ZÁÉÍÓÚÑ_]+\}")
 # Profundidad del índice: parte → capítulo → ficha. La misma para los tres
 # formatos; en PDF la usa el índice que emite `portadilla()`.
 TOC_PROFUNDIDAD = 2
-# Altura máxima de una imagen en el PDF, como fracción de \textheight. El
-# `\pandocbounded` de Quarto escala hasta la altura útil entera, y una figura a
-# página completa más su pie desbordaba el margen inferior. 0.90 es el recorte
-# mínimo que elimina el desborde: en la edición actual solo toca a Eyeball EF,
-# Coartación aórtica y Ganancia, sin mover ninguna figura de página. En un
-# atlas el tamaño de la imagen es contenido: no se baja por redondear.
+# Altura máxima de una imagen en el PDF, como fracción de \textheight. Quarto
+# escala hasta la altura útil entera, y una figura a página completa más su pie
+# desbordaba el margen inferior. 0.90 es el recorte mínimo que elimina el
+# desborde: en la edición actual solo toca a Eyeball EF, Coartación aórtica y
+# Ganancia, sin mover ninguna figura de página. En un atlas el tamaño de la
+# imagen es contenido: no se baja por redondear.
 ALTURA_MAXIMA_FIGURA = 0.90
-# La misma macro que define Quarto, con el tope en lugar de \textheight.
+# Las plantillas de Quarto escalan de dos maneras según la versión de pandoc:
+# las recientes envuelven cada imagen en `\pandocbounded`; las anteriores (la
+# CI fija Quarto 1.5) fijan `height=\maxheight` en las claves de graphicx. El
+# tope se aplica a la que exista, al empezar el documento, cuando \textheight
+# ya es definitivo y la plantilla ya definió sus macros. La macro de reemplazo
+# se define fuera del gancho para no anidar parámetros `#1` en él.
 PANDOCBOUNDED_CON_TOPE = (
     "\\makeatletter\n"
-    "\\renewcommand*\\pandocbounded[1]{%\n"
-    "  \\sbox\\pandoc@box{#1}%\n"
-    f"  \\Gscale@div\\@tempa{{{ALTURA_MAXIMA_FIGURA}\\textheight}}"
-    "{\\dimexpr\\ht\\pandoc@box+\\dp\\pandoc@box\\relax}%\n"
-    "  \\Gscale@div\\@tempb{\\linewidth}{\\wd\\pandoc@box}%\n"
+    "\\newdimen\\bios@alturamax\n"
+    "\\newsavebox\\bios@caja\n"
+    "\\newcommand*\\bios@pandocbounded[1]{%\n"
+    "  \\sbox\\bios@caja{#1}%\n"
+    "  \\Gscale@div\\@tempa{\\bios@alturamax}"
+    "{\\dimexpr\\ht\\bios@caja+\\dp\\bios@caja\\relax}%\n"
+    "  \\Gscale@div\\@tempb{\\linewidth}{\\wd\\bios@caja}%\n"
     "  \\ifdim\\@tempb\\p@<\\@tempa\\p@\\let\\@tempa\\@tempb\\fi\n"
-    "  \\ifdim\\@tempa\\p@<\\p@\\scalebox{\\@tempa}{\\usebox\\pandoc@box}%\n"
-    "  \\else\\usebox{\\pandoc@box}%\n"
+    "  \\ifdim\\@tempa\\p@<\\p@\\scalebox{\\@tempa}{\\usebox\\bios@caja}%\n"
+    "  \\else\\usebox{\\bios@caja}%\n"
     "  \\fi%\n"
+    "}\n"
+    "\\AtBeginDocument{%\n"
+    f"  \\bios@alturamax={ALTURA_MAXIMA_FIGURA}\\textheight\n"
+    "  \\ifdefined\\pandocbounded\\let\\pandocbounded\\bios@pandocbounded\\fi\n"
+    "  \\ifdefined\\maxheight\\def\\maxheight{\\ifdim\\Gin@nat@height>"
+    "\\bios@alturamax\\bios@alturamax\\else\\Gin@nat@height\\fi}\\fi\n"
     "}\n"
     "\\makeatother"
 )
