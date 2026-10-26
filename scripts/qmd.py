@@ -30,6 +30,11 @@ Tres decisiones que no son de estilo:
 El contrato de figuras de CLAUDE.md se mantiene aquí sin excepción: a una
 figura le faltan datos de atribución y la generación aborta. No se omite la
 imagen ni se infiere su crédito.
+
+La declaración de uso de IA del libro NO vive aquí: es texto firmado por el
+autor y está en `paratextos/declaracion-ia.md`, la única fuente que leen EPUB
+y PDF. Su marcador `{N}` se sustituye por las citas de la edición, y la
+generación aborta si alguna no es verificable: así la frase es un hecho.
 """
 
 from __future__ import annotations
@@ -48,6 +53,7 @@ from pathlib import Path
 import banco
 import bibliografia as refs_bibliograficas
 import configuracion
+import verificar_citas
 from rutas import blindar_salida, desde_raiz, escribir_texto, raiz_argumentos, resolver_raiz
 from validacion import exigir_editorial
 
@@ -66,6 +72,63 @@ AVISO = (
     "Material exclusivamente educativo. No sustituye el juicio clínico, "
     "la evaluación integral del paciente ni los protocolos locales."
 )
+
+# Paratexto del libro, relativo a la raíz del banco. AI-USE.md remite a este
+# archivo para que la declaración larga y la del colofón no diverjan.
+DECLARACION_IA = Path("paratextos") / "declaracion-ia.md"
+MARCADOR_CITAS = "{N}"
+# Cualquier `{MAYÚSCULAS}` que sobreviva a la sustitución es un marcador que
+# nadie resolvió; `{.unnumbered}` y `{#sec-…}` no encajan.
+MARCADOR_PENDIENTE = re.compile(r"\{[A-ZÁÉÍÓÚÑ_]+\}")
+# Profundidad del índice: parte → capítulo → ficha. La misma para los tres
+# formatos; en PDF la usa el índice que emite `portadilla()`.
+TOC_PROFUNDIDAD = 2
+# Altura máxima de una imagen en el PDF, como fracción de \textheight. Cada
+# ficha abre página con título, enlace, figura y pie (diseño de #130, elegido
+# por Alcy frente al 0.90 de #129): con 0.62 caben los cuatro juntos y ninguna
+# figura salta a la página siguiente dejando el título solo. Si cambias el
+# tope, mide de nuevo que las 50 sigan en la página de apertura de su ficha.
+ALTURA_MAXIMA_FIGURA = 0.62
+# Las plantillas de Quarto escalan de dos maneras según la versión de pandoc:
+# las recientes envuelven cada imagen en `\pandocbounded`; las anteriores (la
+# CI fija Quarto 1.5) fijan `height=\maxheight` en las claves de graphicx. El
+# tope se aplica a la que exista, al empezar el documento, cuando \textheight
+# ya es definitivo y la plantilla ya definió sus macros. La macro de reemplazo
+# se define fuera del gancho para no anidar parámetros `#1` en él.
+PANDOCBOUNDED_CON_TOPE = (
+    "\\makeatletter\n"
+    "\\newdimen\\bios@alturamax\n"
+    "\\newsavebox\\bios@caja\n"
+    "\\newcommand*\\bios@pandocbounded[1]{%\n"
+    "  \\sbox\\bios@caja{#1}%\n"
+    "  \\Gscale@div\\@tempa{\\bios@alturamax}"
+    "{\\dimexpr\\ht\\bios@caja+\\dp\\bios@caja\\relax}%\n"
+    "  \\Gscale@div\\@tempb{\\linewidth}{\\wd\\bios@caja}%\n"
+    "  \\ifdim\\@tempb\\p@<\\@tempa\\p@\\let\\@tempa\\@tempb\\fi\n"
+    "  \\ifdim\\@tempa\\p@<\\p@\\scalebox{\\@tempa}{\\usebox\\bios@caja}%\n"
+    "  \\else\\usebox{\\bios@caja}%\n"
+    "  \\fi%\n"
+    "}\n"
+    "\\AtBeginDocument{%\n"
+    f"  \\bios@alturamax={ALTURA_MAXIMA_FIGURA}\\textheight\n"
+    "  \\ifdefined\\pandocbounded\\let\\pandocbounded\\bios@pandocbounded\\fi\n"
+    "  \\ifdefined\\maxheight\\def\\maxheight{\\ifdim\\Gin@nat@height>"
+    "\\bios@alturamax\\bios@alturamax\\else\\Gin@nat@height\\fi}\\fi\n"
+    "}\n"
+    "\\makeatother"
+)
+
+# Diseño del libro impreso. El preámbulo y el filtro son del generador, no del
+# banco: se leen junto a este script aunque se use `--raiz`, y se copian al
+# proyecto. El filtro actúa SOLO en LaTeX, así que EPUB y HTML reciben
+# exactamente el mismo Markdown.
+DISENO_LIBRO = Path(__file__).resolve().parent.parent / "assets" / "libro"
+PREAMBULO_LIBRO = "preambulo-libro.tex"
+FILTRO_LIBRO = "diseno-pdf.lua"
+# Libertinus cubre ≥ → ± − ≈ ≠, griego y cirílico en serif y sans, y tiene
+# variante de portada. En Linux la aporta el paquete `fonts-libertinus`.
+FUENTE_LIBRO = "Libertinus Serif"
+FUENTE_LIBRO_SANS = "Libertinus Sans"
 
 # Los mismos campos que exige el EPUB desde siempre. Si falta uno, la figura no
 # se publica: es la condición de la licencia, no una preferencia editorial.
@@ -270,7 +333,77 @@ def parte_markdown(parte: str, capitulos: list, bibliografia: dict,
     return "\n".join(bloques).rstrip() + "\n"
 
 
-def portadilla(version: str) -> str:
+def citas_verificables(orden: list, raiz: Path) -> int:
+    """Número de citas de la edición; aborta si alguna no es verificable.
+
+    El colofón afirma que las N citas se verificaron contra PubMed y Crossref.
+    Verificable es lo que `verificar_citas.py` comprueba de verdad: una entrada
+    `@article` de `refs.bib` con PMID y DOI y sin exención de Crossref. Se usa
+    su mismo lector y su misma lista de exenciones para que las dos lecturas
+    no puedan discrepar. La consulta de red sigue siendo de ese script y de la
+    CI; aquí se garantiza que ninguna cita quede fuera de su alcance.
+    """
+    entradas = {e["clave"]: e for e in verificar_citas.parse_bib(raiz / "refs.bib")}
+    exenciones = verificar_citas.cargar_exenciones(raiz)
+    errores = []
+    for clave in orden:
+        entrada = entradas.get(clave)
+        if entrada is None:
+            errores.append(f"{clave}: no es una entrada @article de refs.bib")
+        elif not entrada["pmid"] or not entrada["doi"]:
+            errores.append(f"{clave}: le falta PMID o DOI")
+        elif verificar_citas.exento(clave, entrada["doi"], exenciones):
+            errores.append(f"{clave}: exenta de Crossref en refs-sin-crossref.txt")
+    if errores:
+        detalle = "\n  - ".join(errores)
+        raise RuntimeError(
+            "Citas de la edición fuera de la verificación PubMed + Crossref; "
+            f"la declaración de uso de IA no sería cierta:\n  - {detalle}"
+        )
+    return len(orden)
+
+
+def declaracion_ia(raiz: Path, citas: int) -> str:
+    """El paratexto del banco con `{N}` resuelto; aborta ante cualquier marcador."""
+    ruta = raiz / DECLARACION_IA
+    if not ruta.is_file():
+        raise RuntimeError(
+            f"falta {DECLARACION_IA.as_posix()}: el libro no sale sin su "
+            "declaración de uso de IA"
+        )
+    texto = ruta.read_text(encoding="utf-8").strip()
+    if texto.count(MARCADOR_CITAS) != 1:
+        raise RuntimeError(
+            f"{DECLARACION_IA.as_posix()} debe contener el marcador "
+            f"{MARCADOR_CITAS} exactamente una vez"
+        )
+    texto = texto.replace(MARCADOR_CITAS, str(citas))
+    pendiente = MARCADOR_PENDIENTE.search(texto)
+    if pendiente:
+        raise RuntimeError(
+            f"{DECLARACION_IA.as_posix()}: marcador sin sustituir {pendiente.group(0)}"
+        )
+    return texto
+
+
+def titulo_declaracion(texto: str) -> str:
+    """El título del paratexto, sin almohadillas ni atributos, para validar."""
+    primera = texto.strip().splitlines()[0]
+    return re.sub(r"\s*\{[^}]*\}\s*$", "", primera.lstrip("#")).strip()
+
+
+def portadilla(version: str, declaracion: str) -> str:
+    """Portadilla, créditos y declaración de uso de IA.
+
+    En el PDF este bloque va ANTES del índice, como la página de créditos de un
+    libro impreso. Quarto pone `\\tableofcontents` justo tras la portada, así
+    que el índice automático del PDF se apaga y se emite aquí en LaTeX crudo,
+    que EPUB y HTML ignoran: ellos conservan su propio índice.
+
+    No se intenta pasar este bloque a romanos: Quarto coloca cualquier
+    contenido de este capítulo detrás de su `\\chapter*`, ya en `\\mainmatter`,
+    y reiniciar ahí la numeración duplica las anclas de página de hyperref.
+    """
     return "\n".join(
         [
             "# Portadilla {.unnumbered}",
@@ -296,6 +429,19 @@ def portadilla(version: str) -> str:
             f"**Aviso:** {AVISO}",
             "",
             "No existe afiliación, aval ni patrocinio del HECAM o del IESS.",
+            "",
+            declaracion,
+            "",
+            "```{=latex}",
+            # En `book` el capítulo es el nivel 0: `tocdepth` 2 llega hasta la
+            # subsección, que es la ficha. El índice impreso lista así las
+            # fichas, que es lo que se busca en un atlas. El título
+            # «Tabla de contenidos» ya lo fija su preámbulo.
+            "{",
+            f"\\setcounter{{tocdepth}}{{{TOC_PROFUNDIDAD}}}",
+            "\\tableofcontents",
+            "}",
+            "```",
             "",
         ]
     )
@@ -478,6 +624,29 @@ def estructura(entidades: list) -> list:
     return partes
 
 
+def preambulo_libro(version: str) -> str:
+    """Preámbulo de diseño del PDF, con la versión de la edición para la portada."""
+    plantilla = (DISENO_LIBRO / "preambulo.tex").read_text(encoding="utf-8")
+
+    def seguro(texto: str) -> str:
+        return re.sub(r"([\\#$%&_{}~^])", r"\\\1", texto)
+
+    # Portada y portadilla parten el título en dos líneas, como portada.svg.
+    primera, _, resto = TITULO.partition(" ")
+    macros = {
+        "titulolineas": f"{seguro(primera)}\\\\{seguro(resto)}",
+        "subtitulolibro": seguro(SUBTITULO),
+        "autorlibro": seguro(AUTOR),
+        "editoriallibro": seguro(EDITORIAL),
+        "versionlibro": seguro(version),
+    }
+    cabecera = "".join(
+        f"\\newcommand{{\\{nombre}}}{{{valor}}}\n" for nombre, valor in macros.items()
+    )
+    # El tope de figuras va al final, después de cualquier ajuste del diseño.
+    return cabecera + plantilla + "\n" + PANDOCBOUNDED_CON_TOPE + "\n"
+
+
 def yaml_texto(valor: str) -> str:
     """Escalar YAML entrecomillado; el banco trae acentos, `:` y comillas."""
     return '"' + str(valor).replace("\\", "\\\\").replace('"', '\\"') + '"'
@@ -533,34 +702,44 @@ def quarto_yml(partes: list, archivos: dict, version: str, portada: str) -> str:
         "    toc: true",
         # Nivel 2 = parte → capítulo → ficha. Bajar más metería en el índice
         # cada "La pregunta clínica" de cada signo.
-        "    toc-depth: 2",
+        f"    toc-depth: {TOC_PROFUNDIDAD}",
         "    css: epub.css",
         f"    epub-cover-image: {portada}",
         # El mismo Dublin Core que usa la ruta pandoc: DOI con esquema,
         # licencia con URL, descripción y materias MeSH.
         "    epub-metadata: epub-metadata.xml",
         "  pdf:",
-        "    documentclass: book",
+        # KOMA-Script: cabeceras, índice y encabezados se configuran desde
+        # `preambulo-libro.tex` sin reescribir la plantilla de Quarto.
+        "    documentclass: scrbook",
+        "    classoption: [open=any, fontsize=10.5pt]",
         # La fuente LaTeX es un entregable, no un intermedio: alimenta el ZIP
         # autocontenido y la verificación de imágenes.
         "    keep-tex: true",
         "    pdf-engine: lualatex",
-        # FreeSerif es la única fuente disponible que cubre ≥ → ± sin fallback
-        # silencioso. Es la misma decisión del preámbulo LuaLaTeX histórico.
-        "    mainfont: FreeSerif",
-        "    toc: true",
-        "    toc-depth: 2",
-        "    geometry: margin=2.5cm",
+        f"    mainfont: {FUENTE_LIBRO}",
+        f"    sansfont: {FUENTE_LIBRO_SANS}",
+        # El índice del PDF lo emite `portadilla()` detrás de créditos y
+        # declaración de uso de IA; el automático iría antes que ellos.
+        "    toc: false",
+        # Formato de libro, 17 × 24 cm.
+        "    geometry: [paperwidth=170mm, paperheight=240mm, inner=20mm, "
+        "outer=18mm, top=24mm, bottom=24mm, headsep=7mm, footskip=11mm]",
+        # Lleva también el tope de altura de las figuras (PANDOCBOUNDED_CON_TOPE).
+        f"    include-in-header: {PREAMBULO_LIBRO}",
+        f"    filters: [{FILTRO_LIBRO}]",
+        # Cada figura queda bajo el título de su ficha, en el orden del texto.
+        "    fig-pos: H",
         "  html:",
         "    toc: true",
-        "    toc-depth: 2",
+        f"    toc-depth: {TOC_PROFUNDIDAD}",
         "",
     ]
     return "\n".join(lineas)
 
 
 def manuscrito_plano(partes: list, bibliografia: dict, orden_global: list,
-                     version: str) -> str:
+                     version: str, declaracion: str) -> str:
     """El mismo libro en un solo Markdown, para pandoc sin Quarto.
 
     No es una segunda versión del ensamblado: es la concatenación literal de
@@ -568,7 +747,7 @@ def manuscrito_plano(partes: list, bibliografia: dict, orden_global: list,
     Existe porque Quarto no siempre está disponible y porque conviene poder
     validar la salida sin él; si diverge del proyecto Quarto, es un fallo.
     """
-    bloques = [portadilla(version)]
+    bloques = [portadilla(version, declaracion)]
     for parte, capitulos in partes:
         bloques.append(parte_markdown(parte, capitulos, bibliografia, orden_global))
     bloques.append(bibliografia_capitulo(orden_global, bibliografia))
@@ -699,11 +878,15 @@ def _generar_en(entidades: list, raiz: Path, destino: Path) -> dict:
             parte_markdown(parte, capitulos, bibliografia, orden_global),
         )
 
-    escribir_texto(destino / "index.qmd", portadilla(version))
+    # {N} son las citas de ESTA edición —`orden_global`, ya poblado por los
+    # capítulos—, no las entradas de refs.bib.
+    citas = citas_verificables(orden_global, raiz)
+    declaracion = declaracion_ia(raiz, citas)
+    escribir_texto(destino / "index.qmd", portadilla(version, declaracion))
     # El manuscrito plano se arma DESPUÉS de los capítulos para heredar el
     # `orden_global` ya poblado; `resolver_citas` es determinista, así que
     # ambos caminos numeran igual.
-    plano = manuscrito_plano(partes, bibliografia, orden_global, version)
+    plano = manuscrito_plano(partes, bibliografia, orden_global, version, declaracion)
     plano += "\n" + creditos_imagenes(figuras)
     escribir_texto(destino / "libro-plano.md", plano)
 
@@ -720,6 +903,8 @@ def _generar_en(entidades: list, raiz: Path, destino: Path) -> dict:
         destino / "_quarto.yml", quarto_yml(partes, archivos, version, portada)
     )
     escribir_texto(destino / "epub.css", ESTILO)
+    escribir_texto(destino / PREAMBULO_LIBRO, preambulo_libro(version))
+    shutil.copy2(DISENO_LIBRO / FILTRO_LIBRO, destino / FILTRO_LIBRO)
     escribir_texto(
         destino / "epub-metadata.xml", metadatos_epub(entidades, version)
     )
@@ -744,6 +929,7 @@ def _generar_en(entidades: list, raiz: Path, destino: Path) -> dict:
         "capitulos": len(usados),
         "portada": portada,
         "referencias": len(orden_global),
+        "declaracion_ia": titulo_declaracion(declaracion),
         "partes": [parte for parte, _ in partes],
         "version": version,
     }
