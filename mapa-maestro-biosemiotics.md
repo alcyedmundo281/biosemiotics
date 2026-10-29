@@ -56,9 +56,9 @@ cuantitativos de la Oleada 3.
 
 ## 2. Estado actual (lo ya publicado)
 
-El banco contiene **53 entidades**: 18 conceptos, 34 signos y 1 caso.
+El banco contiene **54 entidades**: 19 conceptos, 34 signos y 1 caso.
 El índice contiene 52 entidades, todas publicadas.
-Solo el caso permanece en borrador, excluido de las salidas públicas.
+El caso y el concepto POCUS en la embarazada permanecen en borrador, excluidos de las salidas públicas.
 Hay 34 signos con URL pública. ONSD fue revisado y publicado el
 2026-10-10, con envío por email a 12 suscriptores e imagen de Wikimedia Commons.
 Tiroides fue publicada el 2026-10-22 con imagen atribuida de Wikimedia Commons.
@@ -198,16 +198,17 @@ forman parte del contenido de cada capítulo.
 
 | orden | capítulo | unidades previstas | dependencia y estado |
 |---|---|---|---|
-| 1 | Fundamentos de POCUS en la embarazada | Alcance de las preguntas; seguridad; adquisición transabdominal; límites; relación con la ecografía obstétrica formal | **Próximo artículo**: concepto base, `dominio: tecnica`, nivel principiante; planificado, aún sin ficha |
+| 1 | Fundamentos de POCUS en la embarazada | Alcance de las preguntas; seguridad; adquisición transabdominal; límites; relación con la ecografía obstétrica formal | **Próximo artículo**: concepto base, `dominio: tecnica`, nivel principiante; borrador en `conceptos/pocus-embarazada.qmd`, pendiente de revisión clínica |
 | 2 | Embarazo temprano | Localización del embarazo; hallazgos de desarrollo; límites de una exploración no concluyente | Después del concepto base; planificado; enlazar con embarazo ectópico ya publicado |
 | 3 | Segundo y tercer trimestre | Cuatro unidades separadas: actividad cardíaca fetal, presentación fetal, líquido amniótico y localización placentaria | Después de fundamentos y embarazo temprano; planificadas |
 | 4 | Integración clínica en la embarazada | Casos educativos que integren hallazgos, incertidumbre y necesidad de evaluación obstétrica especializada | Después de las fichas que utilicen; planificado |
 
-**Modelado y preparación:** estos son capítulos del recorrido editorial, no
-entidades ya creadas ni capítulos ya incorporados a los derivados del libro.
-El concepto base se escribirá, validará y revisará antes de publicar los
-signos. Cada unidad posterior se desglosará en fichas según su pregunta y su
-decisión; su taxonomía y nivel se fijarán en el mapa antes de crear los `.qmd`,
+**Modelado y preparación:** el concepto base ya está creado como borrador en
+`conceptos/pocus-embarazada.qmd`; requiere revisión clínica antes de incorporarlo
+a las salidas públicas. Las unidades restantes son planificación editorial,
+no entidades creadas ni capítulos ya incorporados al libro. El concepto base
+se validará y revisará antes de publicar los signos. Cada unidad posterior
+se desglosará en fichas según su pregunta y su decisión; su taxonomía y nivel se fijarán en el mapa antes de crear los `.qmd`,
 sin introducir valores no admitidos por el esquema. Los casos seguirán los
 requisitos de consentimiento, de-identificación y revisión del manual.
 
@@ -239,7 +240,7 @@ explícitamente adquisición dúplex, Doppler color y Doppler espectral.
 ## 7. Conceptos base que faltan (el "por qué")
 *Sustentan los signos de arriba. Sin ellos, el grafo tiene nodos huérfanos. Escríbelos en paralelo — son cortos.*
 
-- **POCUS en la embarazada: alcance, seguridad y límites** → concepto de técnica planificado; próximo artículo y requisito previo del bloque obstétrico.
+- **POCUS en la embarazada: alcance, seguridad y límites** → concepto de técnica en borrador (`conceptos/pocus-embarazada.qmd`); próximo artículo y requisito previo del bloque obstétrico, pendiente de revisión clínica.
 - **Doppler** (color, espectral, pulsado) → sustenta E/e', VTI, VExUS, carótidas, vascular ✓ publicado
 - **Cuantificación y sus límites** → concepto transversal: toda fórmula es poblacional ✓ publicado
 
@@ -268,7 +269,7 @@ Oleada 1 y las rutas avanzadas que reutilizarán esos conceptos.
    publicada el 2026-10-05 con imagen de Wikimedia Commons, CC BY 3.0,
    tras la revisión clínica aprobada por Alcy el 2026-10-03.
 6. **Siguiente prioridad: POCUS obstétrico**, por decisión de Alcy del
-   2026-10-06. Escribir primero el concepto base «POCUS en la embarazada:
+   2026-10-06. Revisar primero el borrador del concepto base «POCUS en la embarazada:
    alcance, seguridad y límites»; continuar con embarazo temprano, las cuatro
    unidades de segundo y tercer trimestre e integración clínica (§6.1).
 7. **Después del bloque obstétrico:** continuar con las otras extensiones en su
@@ -279,14 +280,14 @@ Oleada 1 y las rutas avanzadas que reutilizarán esos conceptos.
 Cada cifra, verificada contra PubMed antes de publicar. Cada signo, con su sección de límites ("dónde NO confiar"). El orden por oleada mantiene vivo el mensaje: *empezar es más fácil de lo que te dijeron.*
 
 ### Conteo
-- Banco actual: **53 entidades** (18 conceptos, 34 signos y 1 caso)
+- Banco actual: **54 entidades** (19 conceptos, 34 signos y 1 caso)
 - Signos publicados: **34 de 34**; coartación aórtica publicada; tiroides publicada; vaina del nervio óptico publicada; pancreatitis publicada
 - Conceptos esperando URL de Ghost: **0**
-- Conceptos en borrador: **0**
+- Conceptos en borrador: **1**, POCUS en la embarazada
 - Oleada 1 completada: **8 de 8 signos**
 - Oleada 2 **escrita completa: 8 de 8 signos** (8 publicados, 0 esperando URL). La fila «colección/absceso, hernia complicada» se desdobló en dos: son dos significantes y dos decisiones distintas
 - Conceptos base pendientes de las oleadas 1–3: **0** — Doppler y «Cuantificación y sus límites» escritos y validados. **La Oleada 3 está completa**
-- Nuevo concepto base planificado: **1**, POCUS en la embarazada; aún no forma parte del banco. Los cuatro capítulos obstétricos de §6.1 son planificación y no aumentan los conteos de entidades ni de publicaciones.
+- Nuevo concepto base en borrador: **1**, POCUS en la embarazada; ya forma parte del banco y sigue excluido de las salidas públicas. Los cuatro capítulos obstétricos de §6.1 describen el recorrido editorial; las unidades futuras no aumentan los conteos de entidades ni de publicaciones.
 - FAST/eFAST **completo**: 4 ventanas nuevas (Morrison, esplenorrenal, Douglas, hemotórax) + el nodo integrador `protocolo-fast` como concepto de técnica; pericardio y neumotórax se reutilizan de la Oleada 1
 - El banco superó las **~48 entidades** proyectadas; coartación aórtica
   cierra la Oleada 3. La secuencia editorial continúa con el bloque obstétrico

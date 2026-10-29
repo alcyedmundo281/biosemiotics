@@ -1,0 +1,86 @@
+---
+estado: borrador
+fecha_revision: null
+ghost_id: null
+id: pocus-embarazada
+tipo: concepto
+titulo: "POCUS en la embarazada: alcance, seguridad y límites"
+url: ""
+abstract: >
+  La ecografía a pie de cama puede responder preguntas concretas durante la atención de una embarazada. Su utilidad depende de una indicación definida, una adquisición reproducible y una interpretación proporcionada a lo observado. Este recorrido comienza por el alcance transabdominal, la seguridad acústica y la documentación de los límites. Una exploración no concluyente exige conservar la incertidumbre y organizar la evaluación necesaria.
+dominio: tecnica
+nivel: principiante
+capitulo: 4
+orden: 7
+tags: [pocus, embarazo, obstetricia, seguridad, tecnica]
+relacionado_con: [tipos-de-sonda, frecuencia-profundidad, modo-m, signo-embarazo-ectopico]
+prerequisito_de: []
+medios: []
+refs: [derobertis2026pocusob, aium2024obstetrico, jain2021pocusob]
+fecha: 2026-10-29
+licencia: CC BY 4.0
+---
+
+## La pregunta antes de la sonda
+
+Antes de buscar una imagen, escribe qué necesitas aclarar. POCUS es una exploración enfocada que integra adquisición e interpretación en la atención clínica. La guía ISUOG de 2026 la sitúa como complemento del estudio obstétrico especializado. Tener un ecógrafo portátil no convierte cada encuentro en una ecografía obstétrica completa. [derobertis2026pocusob]
+
+Este capítulo abre un recorrido **transabdominal para el médico de primer contacto**. Las fichas posteriores desarrollarán embarazo temprano, actividad cardíaca, presentación, líquido amniótico y localización placentaria. Aquí definimos qué pregunta se intenta responder y cómo reconocer cuándo no se ha respondido.
+
+## Una pregunta concreta tiene un alcance concreto
+
+La AIUM distingue el examen limitado del estándar: el primero responde una pregunta clínica específica; el segundo reúne una evaluación más amplia, cuyo contenido depende de la etapa del embarazo. Si corresponde un estudio estándar o detallado que aún no se ha realizado, una exploración limitada no elimina esa necesidad. [aium2024obstetrico]
+
+En esta serie, cada ficha conservará tres elementos:
+
+- **Significante:** la estructura o el movimiento que efectivamente se reconoce.
+- **Significado:** la interpretación que permite ese hallazgo en su contexto.
+- **Decisión:** la conducta que se puede fundamentar y lo que queda por evaluar.
+
+Antes de cerrar el informe, pregúntate: ¿estoy describiendo lo que vi o dando por evaluado algo que no examiné?
+
+## Adquisición: empezar por un plan
+
+La formación del operador importa. La guía canadiense reconoce que la disponibilidad de POCUS puede agilizar la atención, pero advierte que los errores de adquisición e interpretación pueden producir decisiones perjudiciales. [jain2021pocusob]
+
+Antes de explorar, acuerda con el supervisor la pregunta, la vía transabdominal y las imágenes necesarias. Durante el aprendizaje, conserva registros que permitan revisar qué estructura se identificó y cómo se obtuvo la vista. Una imagen aislada y una interpretación segura del conjunto son logros distintos.
+
+Esta introducción no proporciona criterios de diagnóstico de pérdida gestacional, umbrales de líquido ni reglas para clasificar la placenta. Cada uno requiere su propia ficha y su evidencia.
+
+## Seguridad: obtener la información necesaria con exposición mínima
+
+La AIUM recomienda una indicación médica, personal formado y una exposición prudente. Aplica **ALARA**: la menor exposición acústica razonablemente necesaria para obtener información diagnóstica. Vigila los índices térmico y mecánico y limita el tiempo de exploración. [AIUM: uso prudente y seguridad en el embarazo](https://www.aium.org/resources/official-statements/view/prudent-use-and-safety-of-diagnostic-ultrasound-in-pregnancy)
+
+Para documentar actividad cardíaca, la AIUM recomienda modo B o modo M. El Doppler pulsado no debe emplearse de rutina para observar o escuchar actividad embrionaria o fetal; su uso necesita una indicación clínica y atención a la salida acústica. [AIUM: uso prudente y seguridad en el embarazo](https://www.aium.org/resources/official-statements/view/prudent-use-and-safety-of-diagnostic-ultrasound-in-pregnancy)
+
+En una práctica supervisada, identifica dónde aparecen los índices y cómo se controlan los ajustes del equipo antes de comenzar. La enseñanza de una maniobra incluye saber cuándo terminar la adquisición.
+
+## Documentar también lo que queda pendiente
+
+La documentación forma parte del examen. Debe permitir reconstruir la indicación y los hallazgos; la AIUM exige conservar el registro y emitir un informe de la interpretación. [aium2024obstetrico]
+
+Como ejercicio de redacción, completa estas cuatro frases:
+
+1. «La pregunta de esta exploración fue…»
+2. «La vía utilizada y las estructuras reconocidas fueron…»
+3. «No se pudo valorar…»
+4. «Con estos datos, el plan es…»
+
+Es una plantilla docente, no un resultado de paciente. No la completes con un hallazgo supuesto.
+
+## Dónde NO confiar
+
+- **En una conclusión más amplia que la pregunta examinada.** Un estudio limitado conserva su alcance limitado. [aium2024obstetrico]
+- **En la seguridad subjetiva del operador.** La posibilidad de error de imagen e interpretación sigue siendo parte de la práctica. [jain2021pocusob]
+- **En prolongar la exploración sin una finalidad médica definida.** La indicación y el control de exposición deben guiar la adquisición. [AIUM: uso prudente y seguridad en el embarazo](https://www.aium.org/resources/official-statements/view/prudent-use-and-safety-of-diagnostic-ultrasound-in-pregnancy)
+- **En una ventana no concluyente presentada como evaluación completa.** El informe debe conservar la limitación y el plan para completar el estudio cuando corresponda. [aium2024obstetrico]
+
+## Practica esto
+
+Con un tutor y una indicación apropiada, formula una sola pregunta. Identifica los controles de seguridad, guarda la adquisición y redacta el informe breve. Pide al tutor que revise por separado la imagen y la conclusión: ¿ambas permiten sostener la misma respuesta?
+
+Después, revisa un registro de práctica que no puedas interpretar. Explica qué falta y cómo lo documentarías. El ejercicio termina con una descripción defendible de la incertidumbre, no con una respuesta forzada.
+
+## Discusión abierta
+
+¿Qué información necesita recibir quien continúa la atención para comprender el alcance de tu exploración? ¿Tu nota permite distinguir lo observado, lo interpretado y lo pendiente?
