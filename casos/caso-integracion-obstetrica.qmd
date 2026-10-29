@@ -17,7 +17,8 @@ decision_semiotica: null
 taller: ''
 video_lure: ''
 video_archivo: ''
-consentimiento: pendiente
+sintetico: true
+consentimiento: no_aplica
 composite: false
 doi: null
 refs: []
@@ -28,9 +29,11 @@ tags:
 - obstetrico
 ---
 
+**Caso sintético con fines docentes.** La viñeta es ficticia y no corresponde a un paciente real. Las imágenes de Wikimedia Commons, cuando se incluyan, son ilustraciones independientes y no estudios del paciente ficticio; cada una conserva su crédito y licencia.
+
 **Ficha de planificación editorial.** No contiene una redacción clínica revisada.
 
-Reserva editorial del primer caso de integración. Aún no se ha definido viñeta, paciente, hallazgos, decisión ni desenlace; el caso debe centrarse en una sola decisión y cumplir los requisitos de consentimiento y desidentificación aplicables.
+Reserva editorial del primer caso sintético de integración. Aún no se han definido la viñeta ficticia, los hallazgos, la decisión ni el desenlace educativo; el caso debe centrarse en una sola decisión. No se presentará como una experiencia clínica real.
 
 No se han asignado referencias, umbrales, hallazgos, conductas ni datos de pacientes.
 

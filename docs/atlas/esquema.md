@@ -63,11 +63,7 @@ Requiere `organo`, `decision_semiotica` y una lista no vacía de `signos`.
 `video_archivo`, `doi` y `composite` registran datos que realmente existan.
 Los campos de video usan `yt:<ID>` cuando se emplea ese proveedor.
 
-Para casos revisados o publicados se exige `consentimiento: obtenido`.
-El permiso para escanear y el permiso para publicar son distintos. El estado
-no acredita por sí mismo consentimiento ni desidentificación. Si se usa un
-caso representativo, se declara `composite: true` y se explica en el texto;
-no debe servir para ocultar un paciente identificable ni eludir los controles.
+Los casos docentes del atlas son sintéticos: viñetas ficticias que no corresponden a pacientes reales. Declara `sintetico: true`, `consentimiento: no_aplica` y el aviso visible «Caso sintético con fines docentes». Las imágenes de Commons son ilustraciones independientes, no estudios del paciente ficticio, y conservan sus créditos y licencias. Esto no convierte una imagen de un paciente real en una imagen sintética ni sustituye la verificación de su procedencia. No atribuyas al caso una evolución observada. Si se incorpora un caso real en el futuro, se exige consentimiento obtenido y desidentificación; `composite: true` tampoco equivale a un caso sintético. La revisión clínica sigue siendo obligatoria antes de publicar.
 
 ## Relaciones y consultas
 

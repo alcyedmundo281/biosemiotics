@@ -58,7 +58,7 @@ def ficha(e: dict, bibliografia: Optional[dict] = None) -> dict:
     for k in ("titulo_en", "url", "doi", "version", "abstract",
               "sistema", "organo", "nivel", "ventana", "pregunta_clinica",
               "significante", "significado", "umbral",
-              "licencia", "composite", "revisado_por"):
+              "licencia", "composite", "sintetico", "revisado_por"):
         if e.get(k):
             f[k] = e[k]
     for k in ("fecha", "actualizado"):

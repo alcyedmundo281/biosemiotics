@@ -58,7 +58,7 @@ def main():
         print("enseña a reconocer sin enseñar a dudar.")
     if tipo == "caso":
         print("\nRecuerda: una sola decisión semiótica. Si hay dos bifurcaciones,")
-        print("son dos casos. Y consentimiento: pendiente hasta que esté documentado.")
+        print("son dos casos. Declara el caso sintético; las imágenes conservan su licencia.")
 
 
 if __name__ == "__main__":

@@ -66,8 +66,9 @@ requiera, se incluye en el post como `application/ld+json`.
 La URL definitiva se registra solo después de conocerla. Sigue los roles y
 PR apilados de `CLAUDE.md` para actualizar imagen, índice y derivados.
 
-La aprobación clínica, el consentimiento para publicar y la desidentificación
-siguen siendo obligatorios. Revisa DICOM, banners, rostros, pulseras,
+Los casos docentes del atlas son sintéticos: viñetas ficticias que no corresponden a pacientes reales. Declara `sintetico: true`, `consentimiento: no_aplica` y el aviso visible «Caso sintético con fines docentes». Las imágenes de Commons son ilustraciones independientes, no estudios del paciente ficticio, y conservan sus créditos y licencias. Esto no convierte una imagen de un paciente real en una imagen sintética ni sustituye la verificación de su procedencia. No atribuyas al caso una evolución observada. Si se incorpora un caso real en el futuro, se exige consentimiento obtenido y desidentificación; `composite: true` tampoco equivale a un caso sintético. La revisión clínica sigue siendo obligatoria antes de publicar.
+
+Para material clínico real, el consentimiento y la desidentificación siguen siendo obligatorios. Revisa DICOM, banners, rostros, pulseras,
 documentos y señales institucionales. Un caso raro puede ser identificable
 sin etiquetas: no lo publiques como anónimo por haber recortado la imagen.
 Los casos representativos se declaran como tales y no eluden estos controles.
