@@ -1,0 +1,35 @@
+---
+estado: borrador
+fecha_revision: null
+ghost_id: null
+id: signo-rastreo-ganglionar
+tipo: signo
+titulo: Rastreo ganglionar en POCUS
+url: ''
+organo: ganglio
+ventana: null
+sonda: []
+nivel: intermedio
+significante: null
+significado: null
+decision: null
+umbral: ''
+se_basa_en:
+- tipos-de-sonda
+- ecogenicidad
+contrasta_con: []
+falsos_positivos: []
+medios: []
+refs: []
+sistema: musculoesqueletico
+abstract: ''
+tags:
+- planificacion-editorial
+- extensiones
+---
+
+**Ficha de planificación editorial.** No contiene una redacción clínica revisada.
+
+Desarrollar adquisición con sonda lineal, descripción ganglionar y límites de interpretación; pendiente de evidencia y revisión clínica.
+
+No se han asignado referencias, umbrales, hallazgos, conductas ni datos de pacientes.

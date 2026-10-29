@@ -1,0 +1,35 @@
+---
+estado: borrador
+fecha_revision: null
+ghost_id: null
+id: signo-presentacion-fetal
+tipo: signo
+titulo: Presentación fetal en POCUS
+url: ''
+organo: utero
+ventana: null
+sonda: []
+nivel: principiante
+significante: null
+significado: null
+decision: null
+umbral: ''
+se_basa_en:
+- pocus-embarazada
+- tipos-de-sonda
+contrasta_con: []
+falsos_positivos: []
+medios: []
+refs: []
+sistema: genitourinario
+abstract: ''
+tags:
+- planificacion-editorial
+- obstetrico
+---
+
+**Ficha de planificación editorial.** No contiene una redacción clínica revisada.
+
+Unidad propia de segundo y tercer trimestre sobre presentación fetal; definir la pregunta, la adquisición y las limitaciones antes de redactar.
+
+No se han asignado referencias, umbrales, hallazgos, conductas ni datos de pacientes.

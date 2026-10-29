@@ -4,22 +4,47 @@ fecha_revision: null
 ghost_id: null
 id: pocus-embarazada
 tipo: concepto
-titulo: "POCUS en la embarazada: alcance, seguridad y límites"
-url: ""
-abstract: >
-  La ecografía a pie de cama puede responder preguntas concretas durante la atención de una embarazada. Su utilidad depende de una indicación definida, una adquisición reproducible y una interpretación proporcionada a lo observado. Este recorrido comienza por el alcance transabdominal, la seguridad acústica y la documentación de los límites. Una exploración no concluyente exige conservar la incertidumbre y organizar la evaluación necesaria.
+titulo: 'POCUS en la embarazada: alcance, seguridad y límites'
+url: ''
+abstract: 'La ecografía a pie de cama puede responder preguntas concretas durante la atención
+  de una embarazada. Su utilidad depende de una indicación definida, una adquisición reproducible
+  y una interpretación proporcionada a lo observado. Este recorrido comienza por el alcance
+  transabdominal, la seguridad acústica y la documentación de los límites. Una exploración no
+  concluyente exige conservar la incertidumbre y organizar la evaluación necesaria.
+
+  '
 dominio: tecnica
 nivel: principiante
 capitulo: 4
 orden: 7
-tags: [pocus, embarazo, obstetricia, seguridad, tecnica]
-relacionado_con: [tipos-de-sonda, frecuencia-profundidad, modo-m, signo-embarazo-ectopico]
-prerequisito_de: []
+tags:
+- pocus
+- embarazo
+- obstetricia
+- seguridad
+- tecnica
+relacionado_con:
+- tipos-de-sonda
+- frecuencia-profundidad
+- modo-m
+- signo-embarazo-ectopico
+prerequisito_de:
+- signo-embarazo-intrauterino
+- desarrollo-embrionario
+- embarazo-temprano-no-concluyente
+- signo-actividad-cardiaca-fetal
+- signo-presentacion-fetal
+- signo-liquido-amniotico
+- signo-localizacion-placentaria
 medios: []
-refs: [derobertis2026pocusob, aium2024obstetrico, jain2021pocusob]
+refs:
+- derobertis2026pocusob
+- aium2024obstetrico
+- jain2021pocusob
 fecha: 2026-10-29
 licencia: CC BY 4.0
 ---
+
 
 ## La pregunta antes de la sonda
 

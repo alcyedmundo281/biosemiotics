@@ -1,0 +1,38 @@
+---
+estado: borrador
+fecha_revision: null
+ghost_id: null
+id: signo-colecistitis-alitiasica
+tipo: signo
+titulo: Colecistitis alitiásica en POCUS
+url: ''
+organo: vesicula
+ventana: null
+sonda: []
+nivel: intermedio
+significante: null
+significado: null
+decision: null
+umbral: ''
+se_basa_en:
+- ecogenicidad
+- tipos-de-sonda
+contrasta_con: []
+falsos_positivos: []
+medios: []
+refs: []
+sistema: digestivo
+relacionado_con:
+- signo-colecistitis-aguda
+- signo-colelitiasis
+abstract: ''
+tags:
+- planificacion-editorial
+- extensiones
+---
+
+**Ficha de planificación editorial.** No contiene una redacción clínica revisada.
+
+Unidad separada de pólipos vesiculares: desarrollar la pregunta de colecistitis alitiásica, sus límites y relación con las fichas biliares existentes.
+
+No se han asignado referencias, umbrales, hallazgos, conductas ni datos de pacientes.

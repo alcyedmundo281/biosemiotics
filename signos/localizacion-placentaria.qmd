@@ -1,0 +1,35 @@
+---
+estado: borrador
+fecha_revision: null
+ghost_id: null
+id: signo-localizacion-placentaria
+tipo: signo
+titulo: Localización placentaria en POCUS
+url: ''
+organo: utero
+ventana: null
+sonda: []
+nivel: intermedio
+significante: null
+significado: null
+decision: null
+umbral: ''
+se_basa_en:
+- pocus-embarazada
+- ecogenicidad
+contrasta_con: []
+falsos_positivos: []
+medios: []
+refs: []
+sistema: genitourinario
+abstract: ''
+tags:
+- planificacion-editorial
+- obstetrico
+---
+
+**Ficha de planificación editorial.** No contiene una redacción clínica revisada.
+
+Unidad propia sobre localización placentaria por vía transabdominal y límites de la evaluación; pendiente de redacción y revisión.
+
+No se han asignado referencias, umbrales, hallazgos, conductas ni datos de pacientes.
