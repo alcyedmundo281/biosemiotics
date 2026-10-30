@@ -576,6 +576,38 @@
    "n_refs": 3
   },
   {
+   "id": "pocus-embarazada",
+   "tipo": "concepto",
+   "titulo": "POCUS en la embarazada: alcance, seguridad y límites",
+   "estado": "revisado",
+   "fecha_revision": "2026-10-30",
+   "ghost_id": null,
+   "ghost_sha256": "f65b3b26a06120826be48837261ffee1250fd426ea31a94408e78a1e80971190",
+   "abstract": "La ecografía a pie de cama puede responder preguntas concretas durante la atención de una embarazada. Su utilidad depende de una indicación definida, una adquisición reproducible y una interpretación proporcionada a lo observado. Este recorrido comienza por el alcance transabdominal, la seguridad acústica y la documentación de los límites. Una exploración no concluyente exige conservar la incertidumbre y organizar la evaluación necesaria.\n",
+   "nivel": "principiante",
+   "licencia": "CC BY 4.0",
+   "revisado_por": "Alcy Torres",
+   "fecha": "2026-10-29",
+   "tags": [
+    "pocus",
+    "embarazo",
+    "obstetricia",
+    "seguridad",
+    "tecnica"
+   ],
+   "autores": [
+    {
+     "nombre": "Alcy Torres"
+    }
+   ],
+   "refs": [
+    "derobertis2026pocusob",
+    "aium2024obstetrico",
+    "jain2021pocusob"
+   ],
+   "n_refs": 3
+  },
+  {
    "id": "propagacion-sonido",
    "tipo": "concepto",
    "titulo": "Velocidad de propagación",
