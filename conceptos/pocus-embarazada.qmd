@@ -37,7 +37,17 @@ prerequisito_de:
 - signo-presentacion-fetal
 - signo-liquido-amniotico
 - signo-localizacion-placentaria
-medios: []
+medios:
+- tipo: imagen
+  destacada: true
+  id: 'wikimedia:Ultrasound Scan ND 058.jpg'
+  descripcion: 'Ecografía obstétrica en escala de grises, utilizada como ilustración del tema'
+  credito: 'Nevit Dilmen'
+  fuente: 'Wikimedia Commons'
+  fuente_url: 'https://commons.wikimedia.org/wiki/File:Ultrasound_Scan_ND_058.jpg'
+  licencia_img: 'CC BY-SA 3.0'
+  licencia_url: 'https://creativecommons.org/licenses/by-sa/3.0/'
+  archivo_local: 'assets/img/pocus-embarazada.jpg'
 refs:
 - derobertis2026pocusob
 - aium2024obstetrico
