@@ -45,6 +45,25 @@ class VerificarCitasTest(unittest.TestCase):
             self.assertEqual(codigo, 0)
             self.assertIn("Todas las referencias verificadas", salida)
 
+    def test_variantes_de_forma_no_avisan_y_las_de_contenido_si(self):
+        for pubmed, crossref, aviso in (
+                ("Acute Cholecystitis: A Review", "Acute Cholecystitis", False),
+                ("AAPM/RSNA physics tutorial for residents", "AAPM/RSNA physics tutorial "
+                 "for residents: topics in US", False),
+                ("A bedside ultrasound sign ruling out pneumothorax in the critically ill",
+                 "A bedside ultrasound sign ruling out pneumothorax in the critically III", False),
+                ("Acute cholecystitis", "Chronic cholecystitis", True),
+                ("The rational clinical examination", "Is this patient hypovolemic?", True),
+                ("Standards of the Polish Ultrasound Society - update",
+                 "Standardy badań ultrasonograficznych Polskiego Towarzystwa "
+                 "Ultrasonograficznego – aktualizacja", True)):
+            with self.subTest(pubmed=pubmed):
+                self.pubmed.return_value = [dict(self.pm[0], titulo=pubmed)]
+                self.crossref.return_value = dict(self.cr, title=crossref)
+                codigo, salida = self.ejecutar()
+                self.assertEqual(codigo, 0)
+                self.assertEqual("VARIANTES DE TÍTULO" in salida, aviso)
+
     def test_pubmed_timeout_bloquea_y_reintenta_tres_veces(self):
         self.pubmed.side_effect = TimeoutError("timeout simulado")
         codigo, salida = self.ejecutar()
