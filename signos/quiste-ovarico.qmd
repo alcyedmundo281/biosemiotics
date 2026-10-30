@@ -1,0 +1,37 @@
+---
+estado: borrador
+fecha_revision: null
+ghost_id: null
+id: signo-quiste-ovarico
+tipo: signo
+titulo: Quiste ovárico en POCUS
+url: ''
+organo: ovario
+ventana: null
+sonda: []
+nivel: intermedio
+significante: null
+significado: null
+decision: null
+umbral: ''
+se_basa_en:
+- ecogenicidad
+- tipos-de-sonda
+contrasta_con: []
+falsos_positivos: []
+medios: []
+refs: []
+sistema: genitourinario
+relacionado_con:
+- signo-embarazo-ectopico
+abstract: ''
+tags:
+- planificacion-editorial
+- extensiones
+---
+
+**Ficha de planificación editorial.** No contiene una redacción clínica revisada.
+
+Desarrollar la pregunta en dolor pélvico, la adquisición transabdominal y los límites; enlazar embarazo ectópico sin duplicar su ficha.
+
+No se han asignado referencias, umbrales, hallazgos, conductas ni datos de pacientes.

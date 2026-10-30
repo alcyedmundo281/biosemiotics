@@ -1,0 +1,68 @@
+---
+estado: borrador
+fecha_revision: null
+ghost_id: null
+id: caso-integracion-obstetrica
+tipo: caso
+titulo: 'Integración clínica obstétrica: caso educativo por definir'
+url: ''
+fecha: null
+organo: utero
+signos: []
+conceptos:
+- pocus-embarazada
+- embarazo-temprano-no-concluyente
+nivel: intermedio
+decision_semiotica: null
+taller: ''
+video_lure: ''
+video_archivo: ''
+sintetico: true
+consentimiento: no_aplica
+composite: false
+doi: null
+refs: []
+abstract: ''
+medios: []
+tags:
+- planificacion-editorial
+- obstetrico
+---
+
+**Caso sintético con fines docentes.** La viñeta es ficticia y no corresponde a un paciente real. Las imágenes de Wikimedia Commons, cuando se incluyan, son ilustraciones independientes y no estudios del paciente ficticio; cada una conserva su crédito y licencia.
+
+**Ficha de planificación editorial.** No contiene una redacción clínica revisada.
+
+Reserva editorial del primer caso sintético de integración. Aún no se han definido la viñeta ficticia, los hallazgos, la decisión ni el desenlace educativo; el caso debe centrarse en una sola decisión. No se presentará como una experiencia clínica real.
+
+No se han asignado referencias, umbrales, hallazgos, conductas ni datos de pacientes.
+
+## Viñeta clínica
+TODO: franja etaria, motivo de consulta, el momento de duda real.
+Sin fecha exacta, sin dato que estreche a una persona.
+
+## El problema antes de la sonda
+TODO: por qué el examen físico no basta aquí. Esta sección produce la urgencia.
+
+## La adquisición
+TODO: sonda, preset, dónde se apoya, qué buscas primero.
+Nivel principiante explícito. Aquí vive el "permiso": mira qué poco necesitaste.
+
+## El signo
+TODO: la lectura semiótica. Significante → significado.
+
+## La bifurcación
+TODO: qué cambió en el manejo. El punto entero del caso.
+
+## Los límites
+TODO: dónde NO confiar. Innegociable. Un caso sin esta sección es un caso peligroso.
+
+## La evidencia
+TODO: 2-4 referencias reales.
+
+## Pregunta al parlamento
+TODO: la pregunta abierta que convierte lectores en miembros con voz.
+
+## El puente a la práctica
+TODO: "Escanea N esta semana. Sube tu loop al hilo. El taller es el [fecha]."
+Sin este paso, produces entusiasmo, no médicos que escanean.

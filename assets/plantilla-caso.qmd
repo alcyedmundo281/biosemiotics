@@ -17,11 +17,14 @@ decision_semiotica: "TODO: LA bifurcación. Una sola. Si hay dos, son dos casos.
 taller: ""        # id del taller presencial que alimenta
 video_lure: ""    # yt:<ID>  (No listado, NO Privado)
 video_archivo: "" # yt:<ID>
-consentimiento: pendiente   # pendiente | obtenido — BLOQUEA la publicación
+sintetico: true  # viñeta ficticia; no corresponde a un paciente real
+consentimiento: no_aplica   # solo para casos sintéticos; en casos reales: pendiente | obtenido
 composite: false  # true si es caso representativo, no un paciente único
 doi: null
 refs: []
 ---
+
+**Caso sintético con fines docentes.** La viñeta es ficticia y no corresponde a un paciente real. Las imágenes de Wikimedia Commons, cuando se incluyan, son ilustraciones independientes y no estudios del paciente ficticio; cada una conserva su crédito y licencia.
 
 ## Viñeta clínica
 TODO: franja etaria, motivo de consulta, el momento de duda real.

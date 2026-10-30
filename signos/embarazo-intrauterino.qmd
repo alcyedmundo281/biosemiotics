@@ -1,0 +1,37 @@
+---
+estado: borrador
+fecha_revision: null
+ghost_id: null
+id: signo-embarazo-intrauterino
+tipo: signo
+titulo: 'Localización del embarazo: evaluación transabdominal'
+url: ''
+organo: utero
+ventana: null
+sonda: []
+nivel: principiante
+significante: null
+significado: null
+decision: null
+umbral: ''
+se_basa_en:
+- pocus-embarazada
+- desarrollo-embrionario
+contrasta_con: []
+falsos_positivos: []
+medios: []
+refs: []
+sistema: genitourinario
+relacionado_con:
+- signo-embarazo-ectopico
+abstract: ''
+tags:
+- planificacion-editorial
+- obstetrico
+---
+
+**Ficha de planificación editorial.** No contiene una redacción clínica revisada.
+
+Delimitar la pregunta de localización del embarazo por vía transabdominal y sus límites; enlazar la ficha de embarazo ectópico existente.
+
+No se han asignado referencias, umbrales, hallazgos, conductas ni datos de pacientes.

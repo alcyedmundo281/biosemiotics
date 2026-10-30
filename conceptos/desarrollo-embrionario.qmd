@@ -1,0 +1,31 @@
+---
+estado: borrador
+fecha_revision: null
+ghost_id: null
+id: desarrollo-embrionario
+tipo: concepto
+titulo: Hallazgos de desarrollo en el embarazo temprano
+url: ''
+dominio: tecnica
+nivel: principiante
+capitulo: 4
+orden: 8
+tags:
+- planificacion-editorial
+- obstetrico
+relacionado_con:
+- pocus-embarazada
+- signo-embarazo-intrauterino
+prerequisito_de:
+- signo-embarazo-intrauterino
+- embarazo-temprano-no-concluyente
+refs: []
+abstract: ''
+medios: []
+---
+
+**Ficha de planificación editorial.** No contiene una redacción clínica revisada.
+
+Preparar una introducción a los hallazgos de desarrollo y sus límites de interpretación; verificar los criterios antes de redactar o adoptar umbrales.
+
+No se han asignado referencias, umbrales, hallazgos, conductas ni datos de pacientes.

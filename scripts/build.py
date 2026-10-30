@@ -37,7 +37,7 @@ def build_sqlite(entidades, build_dir: Path) -> Path:
             significante TEXT, significado TEXT, decision TEXT, umbral TEXT,
             consentimiento TEXT, publicado INTEGER, doi TEXT,
             cuerpo TEXT, archivo TEXT, estado TEXT, url TEXT,
-            fecha_revision TEXT, ghost_id TEXT
+            fecha_revision TEXT, ghost_id TEXT, sintetico INTEGER
         );
         CREATE TABLE relacion (origen TEXT, destino TEXT, clase TEXT);
         CREATE TABLE tag (entidad TEXT, tag TEXT);
@@ -48,7 +48,7 @@ def build_sqlite(entidades, build_dir: Path) -> Path:
         );
     """)
     for e, estado in zip(entidades, estados):
-        c.execute("INSERT INTO entidad VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", (
+        c.execute("INSERT INTO entidad VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", (
             e["id"], e["tipo"], e["titulo"], e.get("nivel"), e.get("organo"),
             e.get("dominio"), e.get("capitulo"), e.get("orden"),
             e.get("significante"), e.get("significado"),
@@ -57,7 +57,7 @@ def build_sqlite(entidades, build_dir: Path) -> Path:
             int(estado == "publicado"), e.get("doi"),
             e["cuerpo"], e["_archivo"], estado, e.get("url"),
             str(e["fecha_revision"]) if e.get("fecha_revision") else None,
-            e.get("ghost_id"),
+            e.get("ghost_id"), int(e.get("sintetico", False)),
         ))
         c.execute("INSERT INTO busqueda VALUES (?,?,?)",
                   (e["id"], e["titulo"], e["cuerpo"]))

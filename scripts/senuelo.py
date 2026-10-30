@@ -42,6 +42,7 @@ def main():
     entidad = dict(caso)
     # SQLite conserva el booleano como columna derivada por compatibilidad.
     entidad.pop("publicado", None)
+    entidad["sintetico"] = bool(entidad.get("sintetico", False))
     if not seleccionar_publicables([entidad]):
         sys.exit("Caso en borrador: requiere revisión y consentimiento antes de generar señuelos")
 
@@ -91,7 +92,7 @@ def main():
     print("  · Registro: RUIDOSO. El archivo es sobrio; el señuelo puede ser filoso.")
     print("  · Mismo clip → TikTok + Reels + Shorts. Nunca una sola plataforma.")
     print(f"  · Consentimiento del caso: {caso['consentimiento']!r}", end="")
-    if caso["consentimiento"] != "obtenido":
+    if caso["consentimiento"] not in ("obtenido", "no_aplica"):
         print("  ⚠ NO PUBLICAR")
     else:
         print()
