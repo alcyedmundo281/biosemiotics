@@ -9,7 +9,8 @@ cada referencia siga siendo REAL y COHERENTE contra dos fuentes independientes:
   Crossref (por DOI)  → el DOI resuelve y coincide con el devuelto por PubMed.
 
 Los títulos se comparan normalizados como control editorial: minúsculas, sin
-puntuación y sin el subtítulo posterior al primer punto. Los catálogos antiguos
+puntuación y sin el subtítulo posterior al primer punto; un subtítulo que solo
+un catálogo incluye o un error de una o dos letras no genera aviso. Los catálogos antiguos
 pueden contener errores de OCR en el título; por eso la prueba de identidad es
 la coincidencia exacta del DOI declarado, PubMed y Crossref.
 
@@ -57,6 +58,29 @@ def norm_title(s: str) -> str:
     """Normaliza el título principal, ignorando el subtítulo tras el punto."""
     principal = re.sub(r"<[^>]+>", "", s or "").split(".", 1)[0]
     return norm(principal)
+
+
+def distancia(a: str, b: str) -> int:
+    """Distancia de edición (Levenshtein) entre dos cadenas."""
+    previa = list(range(len(b) + 1))
+    for i, ca in enumerate(a, 1):
+        actual = [i]
+        for j, cb in enumerate(b, 1):
+            actual.append(min(previa[j] + 1, actual[j - 1] + 1, previa[j - 1] + (ca != cb)))
+        previa = actual
+    return previa[-1]
+
+
+def titulos_equivalentes(a: str, b: str) -> bool:
+    """Títulos ya normalizados que solo difieren en forma, no en contenido.
+
+    Un catálogo puede añadir el subtítulo que el otro omite («…: a systematic
+    review») o arrastrar un error de OCR de una o dos letras («ill»/«iii»).
+    Eso no merece aviso; un título distinto (otra lengua, el nombre de la
+    serie en vez del artículo) sí se sigue informando.
+    """
+    corto, largo = sorted((a, b), key=len)
+    return corto == largo or largo.startswith(corto + " ") or distancia(a, b) <= 2
 
 
 def parse_bib(path: Path) -> list:
@@ -251,7 +275,7 @@ def main(argv=None):
                 if p and cr["title"] and doi_pm == doi_ref == doi_cr:
                     a1 = norm_title(p.get("titulo"))
                     b1 = norm_title(cr["title"])
-                    if a1 and b1 and a1 == b1:
+                    if a1 and b1 and titulos_equivalentes(a1, b1):
                         ok_x += 1
                     else:
                         # Un DOI idéntico en ambas autoridades demuestra la
