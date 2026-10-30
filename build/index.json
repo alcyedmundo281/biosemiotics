@@ -579,10 +579,11 @@
    "id": "pocus-embarazada",
    "tipo": "concepto",
    "titulo": "POCUS en la embarazada: alcance, seguridad y límites",
-   "estado": "revisado",
+   "estado": "publicado",
    "fecha_revision": "2026-10-30",
-   "ghost_id": null,
+   "ghost_id": "6ae4b6a666cd0900012a2dd0",
    "ghost_sha256": "f65b3b26a06120826be48837261ffee1250fd426ea31a94408e78a1e80971190",
+   "url": "https://www.biosemiotics.net/pocus-en-la-embarazada-alcance-seguridad-y-limites/",
    "abstract": "La ecografía a pie de cama puede responder preguntas concretas durante la atención de una embarazada. Su utilidad depende de una indicación definida, una adquisición reproducible y una interpretación proporcionada a lo observado. Este recorrido comienza por el alcance transabdominal, la seguridad acústica y la documentación de los límites. Una exploración no concluyente exige conservar la incertidumbre y organizar la evaluación necesaria.\n",
    "nivel": "principiante",
    "licencia": "CC BY 4.0",
@@ -600,6 +601,22 @@
      "nombre": "Alcy Torres"
     }
    ],
+   "medios": [
+    {
+     "tipo": "imagen",
+     "destacada": true,
+     "id": "wikimedia:Ultrasound Scan ND 058.jpg",
+     "descripcion": "Ecografía obstétrica en escala de grises, utilizada como ilustración del tema",
+     "credito": "Nevit Dilmen",
+     "fuente": "Wikimedia Commons",
+     "fuente_url": "https://commons.wikimedia.org/wiki/File:Ultrasound_Scan_ND_058.jpg",
+     "licencia_img": "CC BY-SA 3.0",
+     "licencia_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+     "archivo_local": "assets/img/pocus-embarazada.jpg"
+    }
+   ],
+   "n_loops": 0,
+   "n_imagenes": 1,
    "refs": [
     "derobertis2026pocusob",
     "aium2024obstetrico",

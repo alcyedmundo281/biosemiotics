@@ -57,8 +57,8 @@ cuantitativos de la Oleada 3.
 ## 2. Estado actual (lo ya publicado)
 
 El banco contiene **68 entidades**: 21 conceptos, 45 signos y 2 casos.
-El índice contiene 52 entidades, todas publicadas.
-Hay **16 borradores**: 3 conceptos, 11 signos y 2 casos, excluidos de las salidas públicas. Incluyen 14 fichas de planificación sin redacción clínica.
+El índice contiene 53 entidades, todas publicadas.
+Hay **15 borradores**: 2 conceptos, 11 signos y 2 casos, excluidos de las salidas públicas. Incluyen 14 fichas de planificación sin redacción clínica.
 Hay 34 signos con URL pública. ONSD fue revisado y publicado el
 2026-10-10, con envío por email a 12 suscriptores e imagen de Wikimedia Commons.
 Tiroides fue publicada el 2026-10-22 con imagen atribuida de Wikimedia Commons.
@@ -198,20 +198,21 @@ forman parte del contenido de cada capítulo.
 
 | orden | capítulo | unidades previstas | dependencia y estado |
 |---|---|---|---|
-| 1 | Fundamentos de POCUS en la embarazada | Alcance de las preguntas; seguridad; adquisición transabdominal; límites; relación con la ecografía obstétrica formal | **Próximo artículo**: concepto base, `dominio: tecnica`, nivel principiante; borrador en `conceptos/pocus-embarazada.qmd`, pendiente de revisión clínica |
+| 1 | Fundamentos de POCUS en la embarazada | Alcance de las preguntas; seguridad; adquisición transabdominal; límites; relación con la ecografía obstétrica formal | **Publicado el 2026-10-30**: concepto base, `dominio: tecnica`, nivel principiante; revisión clínica aprobada por Alcy y envío a 12 suscriptores; fuente en `conceptos/pocus-embarazada.qmd` |
 | 2 | Embarazo temprano | Localización del embarazo; hallazgos de desarrollo; límites de una exploración no concluyente | Tres fichas de planificación registradas abajo; después del concepto base; reutilizar embarazo ectópico publicado |
 | 3 | Segundo y tercer trimestre | Cuatro unidades separadas: actividad cardíaca fetal, presentación fetal, líquido amniótico y localización placentaria | Cuatro signos en borrador de planificación; después de fundamentos y embarazo temprano |
-| 4 | Integración clínica en la embarazada | Casos educativos que integren hallazgos, incertidumbre y necesidad de evaluación obstétrica especializada | Primer espacio de caso registrado como borrador, sin viñeta ni paciente definidos; después de las fichas que utilice |
+| 4 | Integración clínica en la embarazada | Casos educativos que integren hallazgos, incertidumbre y necesidad de evaluación obstétrica especializada | Primer espacio de caso registrado como borrador, sin viñeta sintética definida; después de las fichas que utilice |
 
-**Modelado y preparación:** el concepto base ya está creado como borrador en
-`conceptos/pocus-embarazada.qmd`; requiere revisión clínica antes de incorporarlo
-a las salidas públicas. Las ocho unidades restantes tienen fichas de
+**Modelado y preparación:** el concepto base `conceptos/pocus-embarazada.qmd`
+fue aprobado y publicado el 2026-10-30, con imagen de Commons verificada y envío
+a 12 suscriptores. URL: https://www.biosemiotics.net/pocus-en-la-embarazada-alcance-seguridad-y-limites/. Las ocho unidades restantes tienen fichas de
 planificación en estado `borrador`; sus títulos, tipos, taxonomía y niveles
 se fijan en el registro siguiente. Representan trabajo pendiente, no capítulos
 ya incorporados al libro ni contenido clínico revisado. El concepto base
-se validará y revisará antes de publicar los signos. Las preguntas, hallazgos,
-decisiones y referencias se redactarán y verificarán por unidad. Los casos seguirán los
-requisitos de consentimiento, de-identificación y revisión del manual.
+ya fue validado y revisado; los signos requieren su propia revisión antes de publicarse. Las preguntas, hallazgos,
+decisiones y referencias se redactarán y verificarán por unidad. Los casos se declararán sintéticos, sin corresponder a pacientes reales; las imágenes
+de Commons son ilustraciones independientes, con su crédito y licencia. La revisión
+clínica sigue siendo obligatoria.
 
 **Enlace existente:** [Embarazo ectópico](https://www.biosemiotics.net/embarazo-ectopico-el-utero-vacio-no-es-el-signo/)
 pertenece a la Oleada 2 y se reutiliza en el capítulo de embarazo temprano;
@@ -236,7 +237,7 @@ de técnica. El caso no representa todavía un paciente ni acredita consentimien
 | Presentación fetal en POCUS | `signo-presentacion-fetal` | signo | genitourinario / utero | principiante | [borrador](signos/presentacion-fetal.qmd) |
 | Líquido amniótico en POCUS | `signo-liquido-amniotico` | signo | genitourinario / utero | intermedio | [borrador](signos/liquido-amniotico.qmd) |
 | Localización placentaria en POCUS | `signo-localizacion-placentaria` | signo | genitourinario / utero | intermedio | [borrador](signos/localizacion-placentaria.qmd) |
-| Integración clínica obstétrica: caso educativo por definir | `caso-integracion-obstetrica` | caso | utero; consentimiento pendiente | intermedio | [borrador](casos/caso-integracion-obstetrica.qmd) |
+| Integración clínica obstétrica: caso educativo por definir | `caso-integracion-obstetrica` | caso | utero; caso sintético, consentimiento no aplica | intermedio | [borrador](casos/caso-integracion-obstetrica.qmd) |
 
 El embarazo ectópico conserva su entidad publicada y no se duplica. Las
 dependencias de aprendizaje se registran en `prerequisito_de`, `se_basa_en`
@@ -264,7 +265,7 @@ explícitamente adquisición dúplex, Doppler color y Doppler espectral.
 ## 7. Conceptos base que faltan (el "por qué")
 *Sustentan los signos de arriba. Sin ellos, el grafo tiene nodos huérfanos. Escríbelos en paralelo — son cortos.*
 
-- **POCUS en la embarazada: alcance, seguridad y límites** → concepto de técnica en borrador (`conceptos/pocus-embarazada.qmd`); próximo artículo y requisito previo del bloque obstétrico, pendiente de revisión clínica.
+- **POCUS en la embarazada: alcance, seguridad y límites** → concepto de técnica publicado el 2026-10-30 (`conceptos/pocus-embarazada.qmd`), con revisión clínica aprobada y envío a 12 suscriptores; requisito previo del bloque obstétrico.
 - **Doppler** (color, espectral, pulsado) → sustenta E/e', VTI, VExUS, carótidas, vascular ✓ publicado
 - **Cuantificación y sus límites** → concepto transversal: toda fórmula es poblacional ✓ publicado
 
@@ -293,8 +294,8 @@ Oleada 1 y las rutas avanzadas que reutilizarán esos conceptos.
    publicada el 2026-10-05 con imagen de Wikimedia Commons, CC BY 3.0,
    tras la revisión clínica aprobada por Alcy el 2026-10-03.
 6. **Siguiente prioridad: POCUS obstétrico**, por decisión de Alcy del
-   2026-10-06. Revisar primero el borrador del concepto base «POCUS en la embarazada:
-   alcance, seguridad y límites»; continuar con embarazo temprano, las cuatro
+   2026-10-06. El concepto base «POCUS en la embarazada: alcance, seguridad y límites»
+   fue publicado el 2026-10-30; continuar con embarazo temprano, las cuatro
    unidades de segundo y tercer trimestre e integración clínica (§6.1).
 7. **Después del bloque obstétrico:** continuar con las otras extensiones en su
    orden (§6.2), retomando los temas aún pendientes. Carótidas conserva
@@ -307,11 +308,11 @@ Cada cifra, verificada contra PubMed antes de publicar. Cada signo, con su secci
 - Banco actual: **68 entidades** (21 conceptos, 45 signos y 2 casos)
 - Signos publicados: **34 de 45**; 11 signos planificados en borrador; coartación aórtica publicada; tiroides publicada; vaina del nervio óptico publicada; pancreatitis publicada
 - Conceptos esperando URL de Ghost: **0**
-- Conceptos en borrador: **3**: POCUS en la embarazada, desarrollo embrionario y embarazo temprano no concluyente
+- Conceptos en borrador: **2**: desarrollo embrionario y embarazo temprano no concluyente
 - Oleada 1 completada: **8 de 8 signos**
 - Oleada 2 **escrita completa: 8 de 8 signos** (8 publicados, 0 esperando URL). La fila «colección/absceso, hernia complicada» se desdobló en dos: son dos significantes y dos decisiones distintas
 - Conceptos base pendientes de las oleadas 1–3: **0** — Doppler y «Cuantificación y sus límites» escritos y validados. **La Oleada 3 está completa**
-- Concepto base en borrador: **1**, POCUS en la embarazada. Además se registraron **14 fichas de planificación** (2 conceptos, 11 signos y 1 caso), incluidas en el conteo del banco y excluidas de las salidas públicas. Las 52 fichas públicas no cambian.
+- Concepto base POCUS en la embarazada: **publicado**. Permanecen **14 fichas de planificación** (2 conceptos, 11 signos y 1 caso), incluidas en el banco y excluidas de las salidas públicas. Hay **53 fichas públicas**.
 - FAST/eFAST **completo**: 4 ventanas nuevas (Morrison, esplenorrenal, Douglas, hemotórax) + el nodo integrador `protocolo-fast` como concepto de técnica; pericardio y neumotórax se reutilizan de la Oleada 1
 - El banco superó las **~48 entidades** proyectadas; coartación aórtica
   cierra la Oleada 3. La secuencia editorial continúa con el bloque obstétrico

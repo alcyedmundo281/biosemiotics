@@ -1,12 +1,12 @@
 ---
-estado: revisado
+estado: publicado
 fecha_revision: 2026-10-30
 revisado_por: Alcy Torres
-ghost_id: null
+ghost_id: 6ae4b6a666cd0900012a2dd0
 id: pocus-embarazada
 tipo: concepto
 titulo: 'POCUS en la embarazada: alcance, seguridad y límites'
-url: ''
+url: 'https://www.biosemiotics.net/pocus-en-la-embarazada-alcance-seguridad-y-limites/'
 abstract: 'La ecografía a pie de cama puede responder preguntas concretas durante la atención
   de una embarazada. Su utilidad depende de una indicación definida, una adquisición reproducible
   y una interpretación proporcionada a lo observado. Este recorrido comienza por el alcance
@@ -37,7 +37,17 @@ prerequisito_de:
 - signo-presentacion-fetal
 - signo-liquido-amniotico
 - signo-localizacion-placentaria
-medios: []
+medios:
+- tipo: imagen
+  destacada: true
+  id: 'wikimedia:Ultrasound Scan ND 058.jpg'
+  descripcion: 'Ecografía obstétrica en escala de grises, utilizada como ilustración del tema'
+  credito: 'Nevit Dilmen'
+  fuente: 'Wikimedia Commons'
+  fuente_url: 'https://commons.wikimedia.org/wiki/File:Ultrasound_Scan_ND_058.jpg'
+  licencia_img: 'CC BY-SA 3.0'
+  licencia_url: 'https://creativecommons.org/licenses/by-sa/3.0/'
+  archivo_local: 'assets/img/pocus-embarazada.jpg'
 refs:
 - derobertis2026pocusob
 - aium2024obstetrico
