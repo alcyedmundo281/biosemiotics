@@ -1,12 +1,12 @@
 ---
-estado: revisado
+estado: publicado
 fecha_revision: 2026-10-30
 revisado_por: Alcy Torres
-ghost_id: null
+ghost_id: 6ae4b6a666cd0900012a2dd0
 id: pocus-embarazada
 tipo: concepto
 titulo: 'POCUS en la embarazada: alcance, seguridad y límites'
-url: ''
+url: 'https://www.biosemiotics.net/pocus-en-la-embarazada-alcance-seguridad-y-limites/'
 abstract: 'La ecografía a pie de cama puede responder preguntas concretas durante la atención
   de una embarazada. Su utilidad depende de una indicación definida, una adquisición reproducible
   y una interpretación proporcionada a lo observado. Este recorrido comienza por el alcance
