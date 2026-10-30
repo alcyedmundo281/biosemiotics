@@ -8,7 +8,7 @@
 (PDF, EPUB, LaTeX) que se publiquen a partir de él.
 **Versión del colofón:** el párrafo breve que llevan el PDF y el EPUB vive en
 `paratextos/declaracion-ia.md`; si cambia uno, revise el otro.
-**Vigente desde:** 22 de octubre de 2026 · **Última revisión:** 22 de octubre de 2026
+**Vigente desde:** 22 de octubre de 2026 · **Última revisión:** 30 de octubre de 2026
 
 ---
 
@@ -55,9 +55,14 @@ gobiernan cada sesión de trabajo (`CLAUDE.md`, `AGENTS.md`,
 - **No aporta cifras clínicas.** Todo umbral, tasa o fórmula debe tener una fuente que
   lo diga exactamente. Si un modelo «recuerda» un dato, se trata como falso hasta
   probarlo en la fuente primaria.
-- **No sustituye el consentimiento.** El consentimiento para escanear no es
-  consentimiento para publicar: son dos «sí» distintos. Sin `consentimiento: obtenido`,
-  un caso no se publica.
+- **No inventa pacientes, porque no hay pacientes.** Esta obra no
+  usa historias clínicas ni datos de personas reales. Los casos
+  son viñetas sintéticas con fines docentes, declaradas como tales
+  en el propio caso y marcadas `sintetico: true` en el banco. Las
+  imágenes proceden de Wikimedia Commons y son ilustraciones
+  independientes, no estudios del paciente ficticio. El régimen de
+  consentimiento del manual se conserva como salvaguarda por si
+  alguna vez se incorporara un caso real.
 - **No autoriza publicaciones.** Preparar un borrador no equivale a aprobarlo. La
   validación estructural no demuestra revisión clínica.
 
