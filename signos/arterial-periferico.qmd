@@ -1,0 +1,36 @@
+---
+estado: borrador
+fecha_revision: null
+ghost_id: null
+id: signo-arterial-periferico
+tipo: signo
+titulo: Evaluación arterial periférica con Doppler
+url: ''
+organo: arteria-periferica
+ventana: null
+sonda: []
+nivel: avanzado
+significante: null
+significado: null
+decision: null
+umbral: ''
+se_basa_en:
+- doppler
+- tipos-de-sonda
+- cuantificacion-limites
+contrasta_con: []
+falsos_positivos: []
+medios: []
+refs: []
+sistema: vascular
+abstract: ''
+tags:
+- planificacion-editorial
+- extensiones
+---
+
+**Ficha de planificación editorial.** No contiene una redacción clínica revisada.
+
+Desarrollar la evaluación arterial periférica y el alcance de la pregunta de isquemia y pulsos; sin incorporar umbrales o decisiones hasta verificar sus fuentes.
+
+No se han asignado referencias, umbrales, hallazgos, conductas ni datos de pacientes.

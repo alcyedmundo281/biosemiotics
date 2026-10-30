@@ -56,10 +56,15 @@ cuantitativos de la Oleada 3.
 
 ## 2. Estado actual (lo ya publicado)
 
-El banco contiene **48 entidades**: 18 conceptos, 29 signos y 1 caso.
-El índice contiene 47 entidades; solo el caso permanece excluido de las salidas
-públicas, incluida VExUS. Los 29 signos
-publicados tienen URL pública en Ghost. FEVI por métodos
+El banco contiene **68 entidades**: 21 conceptos, 45 signos y 2 casos.
+El índice contiene 53 entidades, todas publicadas.
+Hay **15 borradores**: 2 conceptos, 11 signos y 2 casos, excluidos de las salidas públicas. Incluyen 14 fichas de planificación sin redacción clínica.
+Hay 34 signos con URL pública. ONSD fue revisado y publicado el
+2026-10-10, con envío por email a 12 suscriptores e imagen de Wikimedia Commons.
+Tiroides fue publicada el 2026-10-22 con imagen atribuida de Wikimedia Commons.
+Pancreatitis fue publicada el 2026-10-15 con envío por email a 12 suscriptores e imagen atribuida de Wikimedia Commons.
+Coartación aórtica fue publicada el 2026-10-05 con imagen atribuida de Wikimedia Commons. Disfunción
+diafragmática fue publicada el 2026-09-25 con imagen atribuida. FEVI por métodos
 lineales fue publicada el 2026-09-19 con imagen atribuida. FEVI por Simpson biplano fue
 publicada el 2026-09-15, Gasto cardíaco el 2026-09-11, VTI el 2026-09-09 y
 disfunción diastólica (E/e’) el 2026-09-06; los cuatro cuentan con imagen atribuida.
@@ -95,6 +100,8 @@ disfunción diastólica (E/e’) el 2026-09-06; los cuatro cuentan con imagen at
 | [Gasto cardíaco](https://www.biosemiotics.net/gasto-cardiaco-calcular-el-flujo-sin-ocultar-el-error/) | cardiovascular | corazon | avanzado | ✅ publicado |
 | [FEVI por Simpson biplano](https://www.biosemiotics.net/fevi-por-simpson-biplano-el-numero-depende-del-contorno/) | cardiovascular | corazon | avanzado | ✅ publicado |
 | [FEVI por métodos lineales (Teichholz, FA)](https://www.biosemiotics.net/teichholz-y-fraccion-de-acortamiento-una-linea-no-describe-todo-el-ventriculo/) | cardiovascular | corazon | intermedio | ✅ publicado |
+| [Disfunción diafragmática](https://www.biosemiotics.net/disfuncion-diafragmatica-el-musculo-que-debe-sostener-la-extubacion/) | respiratorio | diafragma | avanzado | ✅ publicado |
+| [Coartación aórtica](https://www.biosemiotics.net/coartacion-aortica-la-obstruccion-que-hay-que-buscar-mas-alla-del-corazon/) | cardiovascular | aorta | avanzado | ✅ publicado |
 
 ---
 
@@ -158,8 +165,8 @@ disfunción diastólica (E/e’) el 2026-09-06; los cuatro cuentan con imagen at
 | [FEVI por Simpson biplano](https://www.biosemiotics.net/fevi-por-simpson-biplano-el-numero-depende-del-contorno/) | cardiovascular | corazon | avanzado | consulta, uci | método de referencia; trazado de bordes en 2 planos; ✅ publicado con imagen de Wikimedia Commons en dominio público |
 | [FEVI por métodos lineales (Teichholz, FA)](https://www.biosemiotics.net/teichholz-y-fraccion-de-acortamiento-una-linea-no-describe-todo-el-ventriculo/) | cardiovascular | corazon | intermedio | consulta | distinguir FA de FEVI y reconocer los límites de Teichholz; ✅ publicado con imagen de Wikimedia Commons en dominio público |
 | Protocolo VExUS (congestión venosa) | concepto de técnica | — | avanzado | uci | publicado: integrar congestión sistémica y tolerancia a fluidos; [Ghost](https://www.biosemiotics.net/vexus-cuando-la-congestion-venosa-llega-a-los-organos/) |
-| Weaning / disfunción diafragmática | respiratorio | diafragma | avanzado | uci | revisado: excursión y engrosamiento orientan la evaluación; no deciden la extubación por sí solos |
-| Coartación aórtica | cardiovascular | aorta | avanzado | consulta | flujo, gradiente → derivar |
+| [Weaning / disfunción diafragmática](https://www.biosemiotics.net/disfuncion-diafragmatica-el-musculo-que-debe-sostener-la-extubacion/) | respiratorio | diafragma | avanzado | uci | excursión y engrosamiento orientan la evaluación; no deciden la extubación por sí solos; ✅ publicado con imagen atribuida |
+| [Coartación aórtica](https://www.biosemiotics.net/coartacion-aortica-la-obstruccion-que-hay-que-buscar-mas-alla-del-corazon/) | cardiovascular | aorta | avanzado | consulta | sospecha integrada → estudio especializado; ✅ publicado con imagen atribuida de Wikimedia Commons |
 
 ### El gradiente de la función del VI (mismo significado, tres resoluciones)
 *Un ejemplo perfecto de semiótica clínica: el mismo referente —función sistólica del VI— leído con precisión creciente. Modelar los tres como signos vinculados, para que el atlas muestre la escalera del principiante al experto.*
@@ -175,24 +182,90 @@ El lector entra por el eyeball y el mismo nodo lo lleva, cuando madura, hasta Si
 ---
 
 ## 6. EXTENSIONES — otros territorios
-*Fuera de los dos cursos base, pero en tu lista. Se integran cuando el núcleo esté maduro. Cada uno abre un órgano/sistema nuevo.*
+*El núcleo de las oleadas 1–3 está completo. Las extensiones amplían el recorrido para el médico de primer contacto.*
+
+### 6.1. POCUS obstétrico — siguiente bloque prioritario
+
+**Decisión de Alcy (2026-10-06):** priorizar la evaluación
+POCUS de la embarazada. El próximo artículo será **POCUS en la embarazada:
+alcance, seguridad y límites**, antes de las fichas de hallazgos.
+
+El recorrido mantiene el alcance **transabdominal y de primer contacto**.
+Debe enseñar preguntas concretas, adquisición, significante → significado →
+decisión y límites de una exploración no concluyente. La diferencia frente a
+la ecografía obstétrica formal y la necesidad de evaluación especializada
+forman parte del contenido de cada capítulo.
+
+| orden | capítulo | unidades previstas | dependencia y estado |
+|---|---|---|---|
+| 1 | Fundamentos de POCUS en la embarazada | Alcance de las preguntas; seguridad; adquisición transabdominal; límites; relación con la ecografía obstétrica formal | **Publicado el 2026-10-30**: concepto base, `dominio: tecnica`, nivel principiante; revisión clínica aprobada por Alcy y envío a 12 suscriptores; fuente en `conceptos/pocus-embarazada.qmd` |
+| 2 | Embarazo temprano | Localización del embarazo; hallazgos de desarrollo; límites de una exploración no concluyente | Tres fichas de planificación registradas abajo; después del concepto base; reutilizar embarazo ectópico publicado |
+| 3 | Segundo y tercer trimestre | Cuatro unidades separadas: actividad cardíaca fetal, presentación fetal, líquido amniótico y localización placentaria | Cuatro signos en borrador de planificación; después de fundamentos y embarazo temprano |
+| 4 | Integración clínica en la embarazada | Casos educativos que integren hallazgos, incertidumbre y necesidad de evaluación obstétrica especializada | Primer espacio de caso registrado como borrador, sin viñeta sintética definida; después de las fichas que utilice |
+
+**Modelado y preparación:** el concepto base `conceptos/pocus-embarazada.qmd`
+fue aprobado y publicado el 2026-10-30, con imagen de Commons verificada y envío
+a 12 suscriptores. URL: https://www.biosemiotics.net/pocus-en-la-embarazada-alcance-seguridad-y-limites/. Las ocho unidades restantes tienen fichas de
+planificación en estado `borrador`; sus títulos, tipos, taxonomía y niveles
+se fijan en el registro siguiente. Representan trabajo pendiente, no capítulos
+ya incorporados al libro ni contenido clínico revisado. El concepto base
+ya fue validado y revisado; los signos requieren su propia revisión antes de publicarse. Las preguntas, hallazgos,
+decisiones y referencias se redactarán y verificarán por unidad. Los casos se declararán sintéticos, sin corresponder a pacientes reales; las imágenes
+de Commons son ilustraciones independientes, con su crédito y licencia. La revisión
+clínica sigue siendo obligatoria.
+
+**Enlace existente:** [Embarazo ectópico](https://www.biosemiotics.net/embarazo-ectopico-el-utero-vacio-no-es-el-signo/)
+pertenece a la Oleada 2 y se reutiliza en el capítulo de embarazo temprano;
+no se crea un duplicado. Las referencias, cifras y criterios clínicos del
+nuevo bloque se verificarán durante la preparación de cada ficha. Esta
+aprobación del mapa define el orden editorial, no una revisión clínica de
+artículos todavía no escritos.
+
+#### Registro de unidades obstétricas en el banco
+
+Las fichas siguientes están planificadas, sin redacción ni revisión clínica.
+Para estas unidades, `utero` agrupa el recorrido transabdominal en la
+taxonomía genitourinaria vigente. Los dos conceptos pertenecen al capítulo 4
+de técnica. El caso no representa todavía un paciente ni acredita consentimiento.
+
+| Unidad | ID | Tipo | Sistema / órgano o dominio | Nivel | Fuente |
+|---|---|---|---|---|---|
+| Localización del embarazo: evaluación transabdominal | `signo-embarazo-intrauterino` | signo | genitourinario / utero | principiante | [borrador](signos/embarazo-intrauterino.qmd) |
+| Hallazgos de desarrollo en el embarazo temprano | `desarrollo-embrionario` | concepto | tecnica | principiante | [borrador](conceptos/desarrollo-embrionario.qmd) |
+| Embarazo temprano: límites de una exploración no concluyente | `embarazo-temprano-no-concluyente` | concepto | tecnica | principiante | [borrador](conceptos/embarazo-temprano-no-concluyente.qmd) |
+| Actividad cardíaca fetal en POCUS | `signo-actividad-cardiaca-fetal` | signo | genitourinario / utero | principiante | [borrador](signos/actividad-cardiaca-fetal.qmd) |
+| Presentación fetal en POCUS | `signo-presentacion-fetal` | signo | genitourinario / utero | principiante | [borrador](signos/presentacion-fetal.qmd) |
+| Líquido amniótico en POCUS | `signo-liquido-amniotico` | signo | genitourinario / utero | intermedio | [borrador](signos/liquido-amniotico.qmd) |
+| Localización placentaria en POCUS | `signo-localizacion-placentaria` | signo | genitourinario / utero | intermedio | [borrador](signos/localizacion-placentaria.qmd) |
+| Integración clínica obstétrica: caso educativo por definir | `caso-integracion-obstetrica` | caso | utero; caso sintético, consentimiento no aplica | intermedio | [borrador](casos/caso-integracion-obstetrica.qmd) |
+
+El embarazo ectópico conserva su entidad publicada y no se duplica. Las
+dependencias de aprendizaje se registran en `prerequisito_de`, `se_basa_en`
+y `conceptos`; no implican que una competencia clínica ya haya sido adquirida.
+
+### 6.2. Otras extensiones — después del bloque obstétrico
+
+Se conserva el orden relativo de los temas pendientes. Carótidas incluirá
+explícitamente adquisición dúplex, Doppler color y Doppler espectral.
 
 | signo | sistema | organo | nivel | notas |
 |---|---|---|---|---|
-| Vaina del nervio óptico (ONSD) | nervioso | nervio-optico | intermedio | ya esbozado; riesgo térmico retiniano; dolor ocular como puerta |
-| Pancreatitis | digestivo | pancreas | intermedio | ventana difícil (gas); apoyo, no descarta |
-| Tiroides (nódulos, bocio) | endocrino | tiroides | intermedio | superficial, sonda lineal; TIRADS aparte |
-| Carótidas (estenosis, GIM) | vascular | carotida | avanzado | Doppler; cribado vascular |
-| Arterial periférico | vascular | arteria-periferica | avanzado | Doppler; isquemia/pulsos |
-| Rastreo ganglionar | musculoesqueletico | ganglio | intermedio | benigno vs sospechoso; sonda lineal |
-| Colecistitis alitiásica / pólipos | digestivo | vesicula | intermedio | variantes del signo vesical |
-| Quiste ovárico | genitourinario | ovario | intermedio | dolor pélvico; distinguir de ectópico |
+| [Vaina del nervio óptico (ONSD)](https://www.biosemiotics.net/vaina-del-nervio-optico-una-pista-de-presion-no-un-permiso-para-descartar/) | nervioso | nervio-optico | intermedio | ✅ publicado; sospecha de presión intracraneal elevada en adultos; seguridad ocular y límites de medición; imagen anatómica de Wikimedia Commons en dominio público |
+| [Pancreatitis](https://www.biosemiotics.net/pancreatitis-en-pocus-lo-que-el-pancreas-deja-ver/) | digestivo | pancreas | intermedio | ✅ publicado el 2026-10-15 con imagen de Wikimedia Commons, CC BY-SA 4.0; adquisición transabdominal, apoyo y búsqueda biliar; revisión clínica aprobada por Alcy el 2026-10-15 |
+| [Tiroides (nódulos, bocio)](https://www.biosemiotics.net/tiroides-en-pocus-reconocer-el-hallazgo-y-orientar-el-siguiente-paso/) | endocrino | tiroides | intermedio | ✅ publicado el 2026-10-22 con imagen de Wikimedia Commons, CC BY-SA 3.0; adquisición con sonda lineal, nódulos y bocio en adultos; TI-RADS aparte; revisión clínica aprobada por Alcy el 2026-10-22 |
+| Carótidas (estenosis, GIM) | vascular | carotida | avanzado | Planificación en [signo-carotidas](signos/carotidas.qmd); adquisición dúplex, Doppler color y espectral |
+| Arterial periférico | vascular | arteria-periferica | avanzado | Planificación en [signo-arterial-periferico](signos/arterial-periferico.qmd); Doppler, isquemia/pulsos |
+| Rastreo ganglionar | musculoesqueletico | ganglio | intermedio | Planificación en [signo-rastreo-ganglionar](signos/rastreo-ganglionar.qmd); descripción y límites |
+| Colecistitis alitiásica | digestivo | vesicula | intermedio | Planificación en [signo-colecistitis-alitiasica](signos/colecistitis-alitiasica.qmd); unidad independiente |
+| Pólipos vesiculares | digestivo | vesicula | intermedio | Planificación en [signo-polipos-vesiculares](signos/polipos-vesiculares.qmd); unidad independiente |
+| Quiste ovárico | genitourinario | ovario | intermedio | Planificación en [signo-quiste-ovarico](signos/quiste-ovarico.qmd); dolor pélvico y enlace con ectópico |
 
 ---
 
 ## 7. Conceptos base que faltan (el "por qué")
 *Sustentan los signos de arriba. Sin ellos, el grafo tiene nodos huérfanos. Escríbelos en paralelo — son cortos.*
 
+- **POCUS en la embarazada: alcance, seguridad y límites** → concepto de técnica publicado el 2026-10-30 (`conceptos/pocus-embarazada.qmd`), con revisión clínica aprobada y envío a 12 suscriptores; requisito previo del bloque obstétrico.
 - **Doppler** (color, espectral, pulsado) → sustenta E/e', VTI, VExUS, carótidas, vascular ✓ publicado
 - **Cuantificación y sus límites** → concepto transversal: toda fórmula es poblacional ✓ publicado
 
@@ -208,7 +281,7 @@ Oleada 1 y las rutas avanzadas que reutilizarán esos conceptos.
 2. **Oleada 2 publicada completa (8 de 8).** Taponamiento cardíaco, sobrecarga del ventrículo derecho / TEP, colecistitis aguda, coledocolitiasis, apendicitis, absceso de partes blandas, hernia complicada y embarazo ectópico tienen URL pública en Ghost.
 3. ~~Antes de los signos que lo necesiten: escribir y validar Doppler y Cuantificación y sus límites.~~ **Hecho (2026-08-15):** ambos conceptos base están escritos y validados.
 4. **Conceptos base: regla dura.** Un signo NO se publica sin su concepto base ya en el banco. El concepto base requerido se escribe y valida ANTES que el signo, no en paralelo ni después.
-5. **Oleada 3 en curso:** VTI abrió el recorrido por indicación de Alcy y fue
+5. **Oleada 3 cerrada:** VTI abrió el recorrido por indicación de Alcy y fue
    publicado el 2026-09-09. E/e’ está publicado desde el 2026-09-06 y su
    trazabilidad quedó conciliada con el repositorio. Gasto cardíaco fue publicado
    el 2026-09-11 con imagen de Wikimedia Commons en dominio público. FEVI por
@@ -216,23 +289,33 @@ Oleada 1 y las rutas avanzadas que reutilizarán esos conceptos.
    en dominio público. FEVI por métodos lineales fue publicada el 2026-09-19
    con imagen de Wikimedia Commons en dominio público. VExUS fue publicado el
    2026-09-22 con fotografía ilustrativa de Wikimedia Commons en dominio público
-   en Estados Unidos; después siguen disfunción
-   diafragmática y coartación aórtica. Al cerrar la oleada, siguen Extensiones.
+   en Estados Unidos. Disfunción diafragmática fue publicada el 2026-09-25
+   con imagen atribuida de Wikimedia Commons. Coartación aórtica fue
+   publicada el 2026-10-05 con imagen de Wikimedia Commons, CC BY 3.0,
+   tras la revisión clínica aprobada por Alcy el 2026-10-03.
+6. **Siguiente prioridad: POCUS obstétrico**, por decisión de Alcy del
+   2026-10-06. El concepto base «POCUS en la embarazada: alcance, seguridad y límites»
+   fue publicado el 2026-10-30; continuar con embarazo temprano, las cuatro
+   unidades de segundo y tercer trimestre e integración clínica (§6.1).
+7. **Después del bloque obstétrico:** continuar con las otras extensiones en su
+   orden (§6.2), retomando los temas aún pendientes. Carótidas conserva
+   su lugar e incluirá adquisición dúplex, Doppler color y espectral.
 
 ### La regla que no cambia
 Cada cifra, verificada contra PubMed antes de publicar. Cada signo, con su sección de límites ("dónde NO confiar"). El orden por oleada mantiene vivo el mensaje: *empezar es más fácil de lo que te dijeron.*
 
 ### Conteo
-- Banco actual: **49 entidades** (18 conceptos, 30 signos y 1 caso)
-- Signos publicados: **29 de 30**
+- Banco actual: **68 entidades** (21 conceptos, 45 signos y 2 casos)
+- Signos publicados: **34 de 45**; 11 signos planificados en borrador; coartación aórtica publicada; tiroides publicada; vaina del nervio óptico publicada; pancreatitis publicada
 - Conceptos esperando URL de Ghost: **0**
-- Conceptos en borrador: **0**
+- Conceptos en borrador: **2**: desarrollo embrionario y embarazo temprano no concluyente
 - Oleada 1 completada: **8 de 8 signos**
 - Oleada 2 **escrita completa: 8 de 8 signos** (8 publicados, 0 esperando URL). La fila «colección/absceso, hernia complicada» se desdobló en dos: son dos significantes y dos decisiones distintas
-- Conceptos base pendientes: **0** — Doppler y «Cuantificación y sus límites» escritos y validados. **La Oleada 3 queda desbloqueada**
+- Conceptos base pendientes de las oleadas 1–3: **0** — Doppler y «Cuantificación y sus límites» escritos y validados. **La Oleada 3 está completa**
+- Concepto base POCUS en la embarazada: **publicado**. Permanecen **14 fichas de planificación** (2 conceptos, 11 signos y 1 caso), incluidas en el banco y excluidas de las salidas públicas. Hay **53 fichas públicas**.
 - FAST/eFAST **completo**: 4 ventanas nuevas (Morrison, esplenorrenal, Douglas, hemotórax) + el nodo integrador `protocolo-fast` como concepto de técnica; pericardio y neumotórax se reutilizan de la Oleada 1
-- El banco superó las **~48 entidades** proyectadas; disfunción diafragmática
-  está revisada y la secuencia editorial conserva coartación aórtica antes
+- El banco superó las **~48 entidades** proyectadas; coartación aórtica
+  cierra la Oleada 3. La secuencia editorial continúa con el bloque obstétrico
   de Extensiones.
 
 Nota: FAST añade pocas fichas nuevas (Morrison, esplenorrenal, Douglas, hemotórax) porque reutiliza pericardio y neumotórax. El gradiente de FEVI añade 2 (lineales, Simpson) sobre el eyeball ya contado.

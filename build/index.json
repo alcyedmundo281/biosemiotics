@@ -576,6 +576,55 @@
    "n_refs": 3
   },
   {
+   "id": "pocus-embarazada",
+   "tipo": "concepto",
+   "titulo": "POCUS en la embarazada: alcance, seguridad y límites",
+   "estado": "publicado",
+   "fecha_revision": "2026-10-30",
+   "ghost_id": "6ae4b6a666cd0900012a2dd0",
+   "ghost_sha256": "f65b3b26a06120826be48837261ffee1250fd426ea31a94408e78a1e80971190",
+   "url": "https://www.biosemiotics.net/pocus-en-la-embarazada-alcance-seguridad-y-limites/",
+   "abstract": "La ecografía a pie de cama puede responder preguntas concretas durante la atención de una embarazada. Su utilidad depende de una indicación definida, una adquisición reproducible y una interpretación proporcionada a lo observado. Este recorrido comienza por el alcance transabdominal, la seguridad acústica y la documentación de los límites. Una exploración no concluyente exige conservar la incertidumbre y organizar la evaluación necesaria.\n",
+   "nivel": "principiante",
+   "licencia": "CC BY 4.0",
+   "revisado_por": "Alcy Torres",
+   "fecha": "2026-10-29",
+   "tags": [
+    "pocus",
+    "embarazo",
+    "obstetricia",
+    "seguridad",
+    "tecnica"
+   ],
+   "autores": [
+    {
+     "nombre": "Alcy Torres"
+    }
+   ],
+   "medios": [
+    {
+     "tipo": "imagen",
+     "destacada": true,
+     "id": "wikimedia:Ultrasound Scan ND 058.jpg",
+     "descripcion": "Ecografía obstétrica en escala de grises, utilizada como ilustración del tema",
+     "credito": "Nevit Dilmen",
+     "fuente": "Wikimedia Commons",
+     "fuente_url": "https://commons.wikimedia.org/wiki/File:Ultrasound_Scan_ND_058.jpg",
+     "licencia_img": "CC BY-SA 3.0",
+     "licencia_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+     "archivo_local": "assets/img/pocus-embarazada.jpg"
+    }
+   ],
+   "n_loops": 0,
+   "n_imagenes": 1,
+   "refs": [
+    "derobertis2026pocusob",
+    "aium2024obstetrico",
+    "jain2021pocusob"
+   ],
+   "n_refs": 3
+  },
+  {
    "id": "propagacion-sonido",
    "tipo": "concepto",
    "titulo": "Velocidad de propagación",
@@ -1170,6 +1219,98 @@
    "n_refs": 10
   },
   {
+   "id": "signo-coartacion-aortica",
+   "tipo": "signo",
+   "titulo": "Coartación aórtica: la obstrucción que hay que buscar más allá del corazón",
+   "estado": "publicado",
+   "fecha_revision": "2026-10-03",
+   "ghost_id": "6ac42b3448750f00010ee9ec",
+   "ghost_sha256": "23f3baaa46ada1cf24b9bd6205f8f92a7fa42ac8bb1f362199d717ec869811a0",
+   "titulo_en": "Aortic coarctation: recognizing obstruction beyond the heart",
+   "url": "https://www.biosemiotics.net/coartacion-aortica-la-obstruccion-que-hay-que-buscar-mas-alla-del-corazon/",
+   "version": "1.0",
+   "abstract": "El estrechamiento del istmo aórtico con aceleración del flujo y persistencia diastólica, junto con una onda abdominal amortiguada, sugiere obstrucción aórtica. Integrado con hipertensión y pulsos femorales débiles, orienta la derivación para ecocardiografía completa e imagen de la aorta. En primer contacto, una ventana insuficiente no descarta coartación: colaterales, bajo gasto y reparación previa pueden distorsionar los gradientes.\n",
+   "sistema": "cardiovascular",
+   "organo": "aorta",
+   "nivel": "avanzado",
+   "ventana": "supraesternal-y-aorta-abdominal",
+   "pregunta_clinica": "¿La hipertensión y la diferencia de pulsos o presión entre brazos y piernas sugieren una obstrucción aórtica que requiere estudio especializado?",
+   "significante": "Estrechamiento del istmo con aceleración focal y prolongación del flujo hacia la diástole; en la aorta abdominal, ascenso sistólico tardío y menor pulsatilidad.",
+   "significado": "Obstrucción al flujo en la aorta torácica, compatible con coartación al integrar anatomía, hemodinámica y exploración clínica.",
+   "umbral": "La guía ACC/AHA 2025 incluye diferencia sistólica brazo–pierna >20 mmHg y gradiente Doppler medio >20 mmHg entre los datos sugestivos de repercusión; no son intercambiables ni bastan para excluir enfermedad o decidir intervención.",
+   "licencia": "CC-BY-4.0",
+   "fecha": "2026-10-03",
+   "actualizado": "2026-10-05",
+   "decision": "Derivar para ecocardiografía completa e imagen de la aorta ante sospecha concordante o persistente pese a POCUS no concluyente; activar atención urgente si hay inestabilidad o signos de complicación.",
+   "sonda": [
+    "sectorial",
+    "convexa"
+   ],
+   "escenario": [
+    "consulta"
+   ],
+   "descriptores": [
+    "coartacion-aortica",
+    "istmo-aortico",
+    "hipertension-secundaria",
+    "ventana-supraesternal",
+    "doppler-continuo",
+    "flujo-diastolico"
+   ],
+   "mesh": [
+    "Aortic Coarctation",
+    "Echocardiography, Doppler, Pulsed"
+   ],
+   "falsos_positivos": [
+    "Aliasing por escala de color demasiado baja interpretado como obstrucción",
+    "Corte oblicuo del arco que simula un estrechamiento focal",
+    "Gradiente Doppler elevado después de una reparación por rigidez arterial y recuperación de presión, sin estrechamiento significativo",
+    "Onda abdominal amortiguada atribuida a coartación sin localizar la lesión ni evaluar otras causas de alteración del flujo"
+   ],
+   "se_basa_en": [
+    "doppler",
+    "cuantificacion-limites",
+    "ventanas-cardiacas",
+    "tipos-de-sonda"
+   ],
+   "autores": [
+    {
+     "nombre": "Alcy Edmundo Torres Guerrero",
+     "orcid": "0000-0002-9742-375X",
+     "afiliacion": "Universidad Central del Ecuador",
+     "credit": [
+      "conceptualizacion",
+      "redaccion",
+      "supervision"
+     ]
+    }
+   ],
+   "medios": [
+    {
+     "tipo": "imagen",
+     "destacada": true,
+     "id": "wikimedia:Blausen 0243 CoarctationofAorta CloseUp.png",
+     "descripcion": "Ilustración anatómica de coartación aórtica con detalle ampliado del estrechamiento y rótulos en inglés; no representa un registro ecográfico ni una medición Doppler",
+     "credito": "BruceBlaus / Blausen Medical; sin modificaciones",
+     "fuente": "Wikimedia Commons",
+     "fuente_url": "https://commons.wikimedia.org/wiki/File:Blausen_0243_CoarctationofAorta_CloseUp.png",
+     "licencia_img": "CC BY 3.0",
+     "licencia_url": "https://creativecommons.org/licenses/by/3.0/",
+     "archivo_local": "assets/img/coartacion-aortica-wikimedia.png"
+    }
+   ],
+   "n_loops": 0,
+   "n_imagenes": 1,
+   "refs": [
+    "isselbacher2022",
+    "gurvitz2025achd",
+    "baumgartner2020achd",
+    "silvilairat2008coartacion",
+    "raza2023coartacion"
+   ],
+   "n_refs": 5
+  },
+  {
    "id": "signo-colecistitis-aguda",
    "tipo": "signo",
    "titulo": "Colecistitis aguda: cuando la piedra ya no es el hallazgo",
@@ -1671,11 +1812,12 @@
    "id": "signo-disfuncion-diafragmatica",
    "tipo": "signo",
    "titulo": "Disfunción diafragmática: el músculo que debe sostener la extubación",
-   "estado": "revisado",
+   "estado": "publicado",
    "fecha_revision": "2026-09-24",
-   "ghost_id": null,
+   "ghost_id": "6ab5b3c53dd9a300011f6a5f",
    "ghost_sha256": "f31d9c4bd2ba405b28d46c079e870d57302bc37284215864813fd548436629cd",
    "titulo_en": "Diaphragm dysfunction during liberation from mechanical ventilation",
+   "url": "https://www.biosemiotics.net/disfuncion-diafragmatica-el-musculo-que-debe-sostener-la-extubacion/",
    "version": "1.0",
    "abstract": "Una excursión diafragmática pequeña o un engrosamiento inspiratorio reducido durante una prueba de respiración espontánea sugieren menor contribución del diafragma. El hallazgo ayuda a explicar un destete difícil y a planificar una evaluación respiratoria integrada, pero no decide la extubación por sí solo. Soporte ventilatorio, mala alineación, tos, secreciones y enfermedad pulmonar o cardíaca pueden cambiar la medición o el desenlace.\n",
    "sistema": "respiratorio",
@@ -1735,6 +1877,22 @@
      ]
     }
    ],
+   "medios": [
+    {
+     "tipo": "imagen",
+     "destacada": true,
+     "id": "wikimedia:1113 The Diaphragm.jpg",
+     "descripcion": "Vista inferior anatómica del diafragma, con el tendón central, las porciones musculares y los hiatos de la vena cava, el esófago y la aorta señalados en inglés",
+     "credito": "OpenStax; sin modificaciones",
+     "fuente": "Wikimedia Commons",
+     "fuente_url": "https://commons.wikimedia.org/wiki/File:1113_The_Diaphragm.jpg",
+     "licencia_img": "CC BY 4.0",
+     "licencia_url": "https://creativecommons.org/licenses/by/4.0/",
+     "archivo_local": "assets/img/disfuncion-diafragmatica-wikimedia.jpg"
+    }
+   ],
+   "n_loops": 0,
+   "n_imagenes": 1,
    "refs": [
     "goligher2015diafragma",
     "goligher2018atrofia",
@@ -3160,6 +3318,86 @@
    "n_refs": 8
   },
   {
+   "id": "signo-pancreatitis",
+   "tipo": "signo",
+   "titulo": "Pancreatitis en POCUS: lo que el páncreas deja ver",
+   "estado": "publicado",
+   "fecha_revision": "2026-10-15",
+   "ghost_id": "6ad15395093d8b0001f2fe40",
+   "ghost_sha256": "b83f164e1df6dea7945941f303a1d6586f0f2d6fcc4337e03e7744857432ff48",
+   "url": "https://www.biosemiotics.net/pancreatitis-en-pocus-lo-que-el-pancreas-deja-ver/",
+   "abstract": "Un páncreas aumentado y menos ecogénico puede acompañar la inflamación aguda. El hallazgo apoya la sospecha clínica y orienta a completar el estudio, mientras la exploración biliar busca una causa tratable. El gas puede ocultar la glándula y otras lesiones pueden parecer inflamación. Una ventana limitada no descarta pancreatitis; POCUS tampoco establece por sí solo su gravedad.\n",
+   "sistema": "digestivo",
+   "organo": "pancreas",
+   "nivel": "intermedio",
+   "ventana": "epigastrica-transversal-y-oblicua",
+   "pregunta_clinica": "¿Puedo reconocer alteraciones pancreáticas y orientar el estudio de una posible causa biliar?",
+   "significante": "Aumento de tamaño del páncreas visible, disminución de ecos internos y menor definición de sus límites.",
+   "significado": "Cambios compatibles con inflamación pancreática, inespecíficos fuera del contexto clínico.",
+   "umbral": "No se utiliza un diámetro pancreático aislado para confirmar o excluir pancreatitis.",
+   "licencia": "CC-BY-4.0",
+   "fecha": "2026-10-15",
+   "decision": "Integrar con clínica y laboratorio, explorar la vesícula y la vía biliar y solicitar evaluación adicional si persiste la sospecha.",
+   "sonda": [
+    "convexa"
+   ],
+   "escenario": [
+    "urgencias",
+    "hospitalizacion"
+   ],
+   "descriptores": [
+    "pancreatitis",
+    "pancreas",
+    "dolor-epigastrico",
+    "ecografia-transabdominal",
+    "pocus"
+   ],
+   "falsos_positivos": [
+    "Tumor pancreático hipoecoico interpretado como inflamación focal.",
+    "Pancreatitis autoinmune interpretada como un episodio agudo de otra causa.",
+    "Variación normal de la ecogenicidad interpretada como edema."
+   ],
+   "se_basa_en": [
+    "ecogenicidad",
+    "tipos-de-sonda",
+    "knobology-profundidad",
+    "artefacto-reverberacion"
+   ],
+   "contrasta_con": [
+    "signo-colelitiasis",
+    "signo-colecistitis-aguda",
+    "signo-coledocolitiasis"
+   ],
+   "autores": [
+    {
+     "nombre": "Alcy Torres"
+    }
+   ],
+   "medios": [
+    {
+     "tipo": "imagen",
+     "destacada": true,
+     "id": "wikimedia:Ultrasound abdomen showing focal pancreatitis at its tail.png",
+     "descripcion": "Ecografía con cola pancreática aumentada y de límites poco definidos, y Doppler color de la vena esplénica",
+     "credito": "Cerevisae",
+     "fuente": "Wikimedia Commons",
+     "fuente_url": "https://commons.wikimedia.org/wiki/File:Ultrasound_abdomen_showing_focal_pancreatitis_at_its_tail.png",
+     "licencia_img": "CC BY-SA 4.0",
+     "licencia_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+     "archivo_local": "assets/img/pancreatitis-cola-commons.png"
+    }
+   ],
+   "n_loops": 0,
+   "n_imagenes": 1,
+   "refs": [
+    "tenner2024",
+    "meier2024",
+    "doust1976",
+    "cwik2013"
+   ],
+   "n_refs": 4
+  },
+  {
    "id": "signo-perfil-a",
    "tipo": "signo",
    "titulo": "Perfil A (pulmón seco)",
@@ -3531,6 +3769,81 @@
    "n_refs": 7
   },
   {
+   "id": "signo-tiroides",
+   "tipo": "signo",
+   "titulo": "Tiroides en POCUS: reconocer el hallazgo y orientar el siguiente paso",
+   "estado": "publicado",
+   "fecha_revision": "2026-10-22",
+   "ghost_id": "6ada915ca45f8b0001223b58",
+   "ghost_sha256": "5ad0ffbc191a2433da81cc4f19425d5cdac4c96c5bc19d6d341455c0eab480b8",
+   "url": "https://www.biosemiotics.net/tiroides-en-pocus-reconocer-el-hallazgo-y-orientar-el-siguiente-paso/",
+   "abstract": "Una lesión focal distinguible del parénquima o una glándula aumentada orientan hacia un nódulo tiroideo o bocio. POCUS permite localizar y describir el hallazgo para completar la evaluación clínica, funcional y ecográfica. No determina por sí solo malignidad ni función hormonal. Los artefactos, los pseudonódulos y las estructuras vecinas pueden engañar; una exploración limitada tampoco sustituye el estudio cervical completo.\n",
+   "sistema": "endocrino",
+   "organo": "tiroides",
+   "nivel": "intermedio",
+   "ventana": "cervical-anterior-transversal-y-longitudinal",
+   "pregunta_clinica": "¿El hallazgo corresponde a la tiroides y qué evaluación necesita después?",
+   "significante": "Lesión focal distinguible del tejido tiroideo circundante en planos ortogonales, o aumento del tamaño glandular documentado durante el barrido.",
+   "significado": "Alteración estructural focal o difusa de la tiroides; no establece por sí sola etiología, malignidad ni función hormonal.",
+   "umbral": "Esta ficha no establece un diámetro único para diagnosticar bocio ni indicar punción.",
+   "licencia": "CC-BY-4.0",
+   "fecha": "2026-10-22",
+   "decision": "Documentar el hallazgo, integrar antecedentes y TSH y completar ecografía tiroidea y cervical con estratificación formal; priorizar evaluación ante signos de alarma.",
+   "sonda": [
+    "lineal"
+   ],
+   "escenario": [
+    "consulta"
+   ],
+   "descriptores": [
+    "tiroides",
+    "nodulo-tiroideo",
+    "bocio",
+    "ecografia-cervical",
+    "pocus"
+   ],
+   "falsos_positivos": [
+    "Sombra de interfaces musculares o septos que simula una lesión hipoecoica.",
+    "Pseudonódulos de tiroiditis interpretados como nódulos discretos.",
+    "Divertículo faringoesofágico o lesión paratiroidea confundidos con un nódulo tiroideo posterior."
+   ],
+   "se_basa_en": [
+    "tipos-de-sonda",
+    "frecuencia-profundidad",
+    "ecogenicidad",
+    "knobology-profundidad",
+    "knobology-ganancia",
+    "doppler"
+   ],
+   "autores": [
+    {
+     "nombre": "Alcy Torres"
+    }
+   ],
+   "medios": [
+    {
+     "tipo": "imagen",
+     "destacada": true,
+     "id": "wikimedia:Thyroid ultrasound 110321103242 1040400.jpg",
+     "descripcion": "Ecografía de un nódulo tiroideo con ecogenicidad heterogénea y focos brillantes con sombra posterior",
+     "credito": "© Nevit Dilmen",
+     "fuente": "Wikimedia Commons",
+     "fuente_url": "https://commons.wikimedia.org/wiki/File:Thyroid_ultrasound_110321103242_1040400.jpg",
+     "licencia_img": "CC BY-SA 3.0",
+     "licencia_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+     "archivo_local": "assets/img/tiroides-nodulo-commons.jpg"
+    }
+   ],
+   "n_loops": 0,
+   "n_imagenes": 1,
+   "refs": [
+    "durante2023",
+    "lee2023",
+    "choi2014"
+   ],
+   "n_refs": 3
+  },
+  {
    "id": "signo-trombosis-venosa-profunda",
    "tipo": "signo",
    "titulo": "TVP por compresión: la vena que no desaparece",
@@ -3622,6 +3935,75 @@
     "wells2006"
    ],
    "n_refs": 4
+  },
+  {
+   "id": "signo-vaina-nervio-optico",
+   "tipo": "signo",
+   "titulo": "Vaina del nervio óptico: una pista de presión, no un permiso para descartar",
+   "estado": "publicado",
+   "fecha_revision": "2026-10-10",
+   "ghost_id": "6aca4cd4447c110001dadd3b",
+   "ghost_sha256": "ee7194af6336dd481df1d3436eec9071a9f7e00275c036453f55080a5fa862be",
+   "url": "https://www.biosemiotics.net/vaina-del-nervio-optico-una-pista-de-presion-no-un-permiso-para-descartar/",
+   "abstract": "El aumento del diámetro de la vaina del nervio óptico puede acompañar la elevación de la presión intracraneal. Una medición reproducible, integrada con la evaluación neurológica, refuerza la necesidad de estudio urgente. No identifica la causa ni reemplaza la neuroimagen. La seguridad ocular, los artefactos y la definición de los bordes condicionan su utilidad; una cifra aislada no autoriza a descartar enfermedad grave.\n",
+   "sistema": "nervioso",
+   "organo": "nervio-optico",
+   "nivel": "intermedio",
+   "ventana": "transorbitaria-sobre-parpado-cerrado",
+   "pregunta_clinica": "¿La medición de la vaina aporta evidencia de presión intracraneal elevada en un adulto con sospecha clínica?",
+   "significante": "Diámetro aumentado y reproducible de la vaina detrás del globo ocular, con sus bordes identificados.",
+   "significado": "Posible distensión de la vaina asociada con elevación de la presión intracraneal; marcador indirecto que requiere contexto.",
+   "umbral": "Sin corte universal adoptado en esta ficha: el método de medición y la población deben concordar con la referencia utilizada.",
+   "licencia": "CC BY 4.0",
+   "decision": "Reforzar la evaluación urgente y el estudio confirmatorio ante sospecha concordante; no reducir la urgencia por una medición aislada aparentemente normal.",
+   "sonda": [
+    "lineal"
+   ],
+   "escenario": [
+    "urgencias",
+    "uci"
+   ],
+   "falsos_positivos": [
+    "Sombra o refracción que simulan los bordes de una vaina ensanchada.",
+    "Inclusión de tejido vecino o uso de un borde distinto al definido por el protocolo de referencia.",
+    "Ganancia y otros ajustes que desplazan los límites aparentes de la estructura."
+   ],
+   "se_basa_en": [
+    "tipos-de-sonda",
+    "frecuencia-profundidad",
+    "knobology-ganancia",
+    "cuantificacion-limites"
+   ],
+   "autores": [
+    {
+     "nombre": "Alcy Torres"
+    }
+   ],
+   "medios": [
+    {
+     "tipo": "imagen",
+     "destacada": true,
+     "id": "wikimedia:Gray880.png",
+     "descripcion": "Lámina anatómica de la cabeza del nervio óptico y sus cubiertas meníngeas; ilustración anatómica, no una medición ecográfica",
+     "credito": "Henry Vandyke Carter, Gray's Anatomy, lámina 880",
+     "fuente": "Wikimedia Commons",
+     "fuente_url": "https://commons.wikimedia.org/wiki/File:Gray880.png",
+     "licencia_img": "Dominio público",
+     "licencia_url": "https://commons.wikimedia.org/wiki/Commons:Licensing",
+     "archivo_local": "assets/img/onsd-gray880.png"
+    }
+   ],
+   "n_loops": 0,
+   "n_imagenes": 1,
+   "refs": [
+    "hirzallah2024onsd",
+    "hirzallah2025artefactos",
+    "koziarz2019onsd",
+    "abramowicz2022ocular",
+    "pansell2024onsd",
+    "pichamuthu2021onsd"
+   ],
+   "n_refs": 6
   },
   {
    "id": "signo-vti",

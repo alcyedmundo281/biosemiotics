@@ -1,0 +1,35 @@
+---
+estado: borrador
+fecha_revision: null
+ghost_id: null
+id: signo-liquido-amniotico
+tipo: signo
+titulo: Líquido amniótico en POCUS
+url: ''
+organo: utero
+ventana: null
+sonda: []
+nivel: intermedio
+significante: null
+significado: null
+decision: null
+umbral: ''
+se_basa_en:
+- pocus-embarazada
+- cuantificacion-limites
+contrasta_con: []
+falsos_positivos: []
+medios: []
+refs: []
+sistema: genitourinario
+abstract: ''
+tags:
+- planificacion-editorial
+- obstetrico
+---
+
+**Ficha de planificación editorial.** No contiene una redacción clínica revisada.
+
+Unidad propia sobre evaluación del líquido amniótico; método, población y cualquier umbral se fijarán con evidencia verificada.
+
+No se han asignado referencias, umbrales, hallazgos, conductas ni datos de pacientes.

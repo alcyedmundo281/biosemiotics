@@ -25,6 +25,8 @@ class EstadosPublicacionTest(unittest.TestCase):
         self.caso = copy.deepcopy(next(e for e in build.cargar(REPO) if e["tipo"] == "caso"))
         self.caso.update(estado="borrador", url="", fecha_revision=None, ghost_id=None)
         self.caso.pop("publicado", None)
+        self.caso.pop("sintetico", None)
+        self.caso["consentimiento"] = "pendiente"
         (self.raiz / "refs.bib").write_text((REPO / "refs.bib").read_text(encoding="utf-8"), encoding="utf-8")
 
     def guardar(self, caso):

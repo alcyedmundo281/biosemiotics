@@ -1,12 +1,12 @@
 ---
-estado: revisado
+estado: publicado
 fecha_revision: 2026-09-24
-ghost_id: null
+ghost_id: "6ab5b3c53dd9a300011f6a5f"
 id: signo-disfuncion-diafragmatica
 tipo: signo
 titulo: "Disfunción diafragmática: el músculo que debe sostener la extubación"
 titulo_en: "Diaphragm dysfunction during liberation from mechanical ventilation"
-url: ""
+url: "https://www.biosemiotics.net/disfuncion-diafragmatica-el-musculo-que-debe-sostener-la-extubacion/"
 doi: null
 version: "1.0"
 abstract: >
@@ -41,7 +41,17 @@ autores:
     orcid: "0000-0002-9742-375X"
     afiliacion: "Universidad Central del Ecuador"
     credit: [conceptualizacion, redaccion, supervision]
-medios: []
+medios:
+  - tipo: imagen
+    destacada: true
+    id: "wikimedia:1113 The Diaphragm.jpg"
+    descripcion: "Vista inferior anatómica del diafragma, con el tendón central, las porciones musculares y los hiatos de la vena cava, el esófago y la aorta señalados en inglés"
+    credito: "OpenStax; sin modificaciones"
+    fuente: "Wikimedia Commons"
+    fuente_url: "https://commons.wikimedia.org/wiki/File:1113_The_Diaphragm.jpg"
+    licencia_img: "CC BY 4.0"
+    licencia_url: "https://creativecommons.org/licenses/by/4.0/"
+    archivo_local: "assets/img/disfuncion-diafragmatica-wikimedia.jpg"
 refs: [goligher2015diafragma, goligher2018atrofia, vivier2019extubacion, lorenzo2021diafragma]
 fecha: 2026-09-24
 actualizado: 2026-09-24

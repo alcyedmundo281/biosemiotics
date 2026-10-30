@@ -57,8 +57,17 @@ def estado_publicacion(e):
     if "publicado" in e and (not isinstance(e["publicado"], bool) or
                             e["publicado"] != (estado == "publicado")):
         fallo("publicado legado contradice estado/URL; elimina el booleano tras migrar")
-    if e.get("tipo") == "caso" and estado != "borrador" and e.get("consentimiento") != "obtenido":
-        fallo("consentimiento: obtenido es obligatorio para un caso revisado o publicado")
+    if e.get("tipo") == "caso":
+        sintetico = e.get("sintetico", False)
+        if not isinstance(sintetico, bool):
+            fallo("sintetico debe ser booleano")
+        if sintetico:
+            if e.get("consentimiento") != "no_aplica":
+                fallo("un caso sintético requiere consentimiento: no_aplica")
+            if "**Caso sintético con fines docentes.**" not in e.get("cuerpo", ""):
+                fallo("un caso sintético requiere declaración visible en el cuerpo")
+        elif estado != "borrador" and e.get("consentimiento") != "obtenido":
+            fallo("consentimiento: obtenido es obligatorio para un caso real revisado o publicado")
     revision = e.get("fecha_revision")
     if revision is not None:
         try:

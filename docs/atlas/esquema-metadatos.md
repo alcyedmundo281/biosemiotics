@@ -79,7 +79,7 @@ a localizar literatura primaria, pero no sustituyen la evidencia verificada.
 
 `fecha`, `actualizado` y `revisado_por` describen hechos reales, si constan.
 El texto del atlas usa CC BY 4.0; las imágenes conservan sus propias licencias.
-Los casos necesitan además consentimiento y desidentificación.
+Los casos docentes del atlas son sintéticos: viñetas ficticias que no corresponden a pacientes reales. Declara `sintetico: true`, `consentimiento: no_aplica` y el aviso visible «Caso sintético con fines docentes». Las imágenes de Commons son ilustraciones independientes, no estudios del paciente ficticio, y conservan sus créditos y licencias. Esto no convierte una imagen de un paciente real en una imagen sintética ni sustituye la verificación de su procedencia. No atribuyas al caso una evolución observada. Si se incorpora un caso real en el futuro, se exige consentimiento obtenido y desidentificación; `composite: true` tampoco equivale a un caso sintético. La revisión clínica sigue siendo obligatoria antes de publicar.
 
 JSON-LD y XML son derivados. El XML usa vocabulario JATS experimental; no
 garantiza conformidad con un perfil de depósito ni expande por sí solo toda

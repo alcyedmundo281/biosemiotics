@@ -12,25 +12,28 @@ abstract: >
   primero la línea pleural y se lee la bifurcación: líneas B difusas bilaterales
   indican diuretizar; un perfil A, no hacerlo, porque ese paciente empeora si se
   le diuretiza. Los límites se heredan de las líneas B: fibrosis, neumonía,
-  SDRA. Viñeta pendiente de captura prospectiva.
+  SDRA. Viñeta sintética pendiente de redacción.
 
-fecha: 2026-08-01
+fecha: null
 organo: pulmon
 signos: [signo-lineas-b, signo-perfil-a]
 conceptos: [artefacto-reverberacion, ecogenicidad, tipos-de-sonda]
 nivel: principiante
 decision_semiotica: "Líneas B difusas bilaterales → diurético. Perfil A → NO diurético."
 taller: taller-01-pulmon
-video_lure: "yt:UNLISTED_ID_1"
-video_archivo: "yt:UNLISTED_ID_2"
-consentimiento: pendiente
+video_lure: ''
+video_archivo: ''
+sintetico: true
+consentimiento: no_aplica
 doi: null
 refs: [lichtenstein2008, volpicelli2012]
 licencia: CC-BY-4.0
 ---
 
+**Caso sintético con fines docentes.** La viñeta es ficticia y no corresponde a un paciente real. Las imágenes de Wikimedia Commons, cuando se incluyan, son ilustraciones independientes y no estudios del paciente ficticio; cada una conserva su crédito y licencia.
+
 ## Viñeta clínica
-(pendiente de captura prospectiva)
+(viñeta sintética pendiente de redacción)
 
 ## El problema antes de la sonda
 El examen físico no distingue con fiabilidad al paciente húmedo del seco.

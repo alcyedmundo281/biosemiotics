@@ -20,6 +20,11 @@ CAPITULOS = {
 }
 
 ORGANOS = {
+    "arteria-periferica": "Arteria periférica",
+    "carotida": "Carótida",
+    "ganglio": "Ganglio",
+    "ovario": "Ovario",
+    "aorta": "Aorta",
     "aorta-abdominal": "Aorta abdominal",
     "apendice": "Apéndice",
     "corazon": "Corazón",
@@ -34,7 +39,10 @@ ORGANOS = {
     "utero": "Útero",
     "vejiga": "Vejiga",
     "vena-profunda": "Vena profunda",
+    "nervio-optico": "Nervio óptico",
     "vesicula": "Vesícula",
+    "pancreas": "Páncreas",
+    "tiroides": "Tiroides",
     "via-biliar": "Vía biliar",
 }
 
