@@ -55,7 +55,7 @@ verías `Missing character` en cuanto el texto traiga `≥`/`→`/`±`: no es un
 error del banco, es el compilador equivocado.
 
 **Diseño del libro impreso.** Vive en `assets/libro/`: `preambulo.tex`
-(KOMA-Script `scrbook`, 17 × 24 cm, paleta de la portada, cabeceras, cajas) y
+(KOMA-Script `scrbook`, 170 × 244 mm (6,69 × 9,61 in, catálogo KDP/IngramSpark; caja de texto 132 × 192 mm), paleta de la portada, cabeceras, cajas) y
 `diseno-pdf.lua`, un filtro de Quarto declarado solo bajo `format: pdf`. El
 filtro no añade ni quita texto: convierte la Portadilla en portadilla impresa,
 saca créditos y declaración del índice, abre página en cada órgano y ficha,

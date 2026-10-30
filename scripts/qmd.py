@@ -722,9 +722,12 @@ def quarto_yml(partes: list, archivos: dict, version: str, portada: str) -> str:
         # El índice del PDF lo emite `portadilla()` detrás de créditos y
         # declaración de uso de IA; el automático iría antes que ellos.
         "    toc: false",
-        # Formato de libro, 17 × 24 cm.
-        "    geometry: [paperwidth=170mm, paperheight=240mm, inner=20mm, "
-        "outer=18mm, top=24mm, bottom=24mm, headsep=7mm, footskip=11mm]",
+        # 6,69 × 9,61 pulgadas = 170 × 244 mm, tamaño de catálogo de KDP e
+        # IngramSpark. Los 4 mm extra respecto a la maqueta de 240 mm van a
+        # los márgenes superior e inferior (+2 mm c/u): la caja de texto sigue
+        # en 132 × 192 mm y la paginación no cambia.
+        "    geometry: [paperwidth=170mm, paperheight=244mm, inner=20mm, "
+        "outer=18mm, top=26mm, bottom=26mm, headsep=7mm, footskip=11mm]",
         # Lleva también el tope de altura de las figuras (PANDOCBOUNDED_CON_TOPE).
         f"    include-in-header: {PREAMBULO_LIBRO}",
         f"    filters: [{FILTRO_LIBRO}]",
