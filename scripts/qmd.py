@@ -41,10 +41,10 @@ from __future__ import annotations
 
 import argparse
 import re
+import secrets
 import shutil
 import subprocess
 import sys
-import tempfile
 import unicodedata
 from collections import defaultdict
 from datetime import date
@@ -814,6 +814,24 @@ def validar_destino(raiz: Path, destino: Path) -> Path:
     return destino
 
 
+def _temporal_heredable(padre: Path) -> Path:
+    """Crea el directorio de ensamblado con los permisos heredados de `padre`.
+
+    No usa `tempfile.mkdtemp`: en Windows crea el directorio con una ACL
+    protegida solo para su dueño (modo 0o700), y al renombrar el proyecto a
+    `build/quarto` quedaba inaccesible para cualquier otra cuenta que regenere
+    el libro, como el sandbox de Codex (WinError 5).
+    """
+    for _ in range(100):
+        candidato = padre / f".quarto-{secrets.token_hex(6)}"
+        try:
+            candidato.mkdir()
+        except FileExistsError:
+            continue
+        return candidato
+    raise RuntimeError(f"No se pudo crear un directorio temporal en {padre}")
+
+
 def generar(entidades: list, raiz: Path, destino: Path) -> dict:
     """Ensambla primero; conserva el proyecto previo si falla la generación.
 
@@ -827,7 +845,7 @@ def generar(entidades: list, raiz: Path, destino: Path) -> dict:
         raise RuntimeError("ninguna entidad cumple el alcance solicitado")
     exigir_editorial(entidades, raiz / "refs.bib")
     destino.parent.mkdir(parents=True, exist_ok=True)
-    temporal = Path(tempfile.mkdtemp(prefix=".quarto-", dir=destino.parent))
+    temporal = _temporal_heredable(destino.parent)
     nuevo, anterior = temporal / "nuevo", temporal / "anterior"
     try:
         informe = _generar_en(entidades, raiz, nuevo)
