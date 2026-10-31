@@ -70,6 +70,14 @@ class DestinoQuartoTest(unittest.TestCase):
         self.assertFalse((self.destino / "obsoleto.txt").exists())
         self.assertEqual(list(self.destino.parent.glob(".quarto-*")), [])
 
+    def test_temporal_no_usa_mkdtemp(self):
+        # En Windows, mkdtemp deja una ACL solo para su dueño que el proyecto
+        # conservaba al renombrarse: otra cuenta no podía regenerarlo.
+        with patch.object(tempfile, "mkdtemp", side_effect=AssertionError("mkdtemp")):
+            self.generar()
+        self.assertTrue((self.destino / "_quarto.yml").is_file())
+        self.assertEqual(list(self.destino.parent.glob(".quarto-*")), [])
+
     def test_admite_ruta_relativa_y_personalizada_marcada(self):
         ruta = Path("build") / "edicion-prueba"
         self.generar(ruta)
