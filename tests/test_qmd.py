@@ -126,7 +126,7 @@ class EnlacesTest(unittest.TestCase):
 class MetadatosTest(unittest.TestCase):
     def test_declara_doi_dereferenciable_y_licencia_con_url(self):
         xml = qmd.metadatos_epub([], "v1")
-        self.assertIn("https://doi.org/" + qmd.DOI, xml)
+        self.assertIn("https://doi.org/" + qmd.DOI_CONCEPTO, xml)
         self.assertIn(qmd.LICENCIA_URL, xml)
         self.assertIn("<dc:rights>", xml)
         # El título y el autor los aporta pandoc: duplicarlos deja dos
