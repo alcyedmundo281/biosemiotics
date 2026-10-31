@@ -5,8 +5,6 @@ cadena equivocada no rompe el render, así que se fija aquí y en los validadore
 de `libro.py` y `epub.py`.
 """
 
-import shutil
-import subprocess
 import sys
 import tempfile
 import unittest
@@ -124,28 +122,6 @@ class PrologoTest(unittest.TestCase):
                 (self.raiz / qmd.PROLOGO).write_text(contenido, encoding="utf-8")
                 with self.assertRaisesRegex(RuntimeError, motivo):
                     qmd.prologo(self.raiz)
-
-
-@unittest.skipUnless(shutil.which("pandoc"), "requiere pandoc")
-class CodigoSinCorteTest(unittest.TestCase):
-    """El PDF no parte `AI-USE.md` ni un id de ficha por sus guiones."""
-
-    def convertir(self, formato):
-        return subprocess.run(
-            ["pandoc", "-f", "markdown", "-t", formato, "--lua-filter",
-             str(qmd.DISENO_LIBRO / qmd.FILTRO_LIBRO)],
-            input="en `AI-USE.md` y [`github.com/a/b`](https://github.com/a/b) y texto-libre\n",
-            capture_output=True, text=True, encoding="utf-8", check=True,
-        ).stdout
-
-    def test_en_latex_el_guion_del_codigo_no_admite_corte(self):
-        latex = self.convertir("latex")
-        self.assertIn("\\texttt{AI\\mbox{-}USE.md}", latex)
-        self.assertIn("\\href{https://github.com/a/b}{\\texttt{github.com/a/b}}", latex)
-        self.assertIn("texto-libre", latex)
-
-    def test_el_epub_recibe_el_codigo_intacto(self):
-        self.assertIn("<code>AI-USE.md</code>", self.convertir("html"))
 
 
 class ValidadoresTest(unittest.TestCase):

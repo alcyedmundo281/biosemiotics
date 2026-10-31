@@ -13,7 +13,6 @@ solo se envuelven bloques en los entornos que define `preambulo.tex`.
     misma página.
   - Significante / significado / decisión / umbral van en un recuadro.
   - «Dónde NO confiar» va en un recuadro de aviso; «Evidencia», en letra menor.
-  - El código en línea no se parte por sus guiones.
 ]]
 
 local ETIQUETAS_SIGNO = {
@@ -30,18 +29,6 @@ end
 
 local function es_latex()
   return FORMAT:match("latex") ~= nil
-end
-
--- Nombres de archivo e id de ficha: LuaTeX corta tras un «-» explícito aun en
--- monoespaciada, y «AI-» / «USE.md» parecía una palabra dividida. Dentro de
--- \mbox el guion no admite corte; los espacios del código sí.
-function Code(el)
-  if not es_latex() or not el.text:find("-", 1, true) then
-    return nil
-  end
-  local texto = pandoc.write(pandoc.Pandoc({pandoc.Plain({el})}), "latex")
-  texto = texto:gsub("%s+$", ""):gsub("%-", "\\mbox{-}")
-  return pandoc.RawInline("latex", texto)
 end
 
 -- Encabezado no numerado y fuera del índice, con su texto en LaTeX.
