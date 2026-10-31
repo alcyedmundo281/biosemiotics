@@ -59,7 +59,11 @@ from validacion import exigir_editorial
 
 
 TITULO = "Biosemiótica del Cuerpo Vivo"
-SUBTITULO = "Atlas de POCUS para el clínico"
+SUBTITULO = "Atlas de POCUS para el médico de primer contacto"
+# Quiebre de las dos portadas, SVG y PDF: después de «POCUS», sin partir
+# «médico de primer contacto». SUBTITULO sigue siendo la cadena canónica de
+# metadatos y créditos; un test exige que las dos coincidan.
+SUBTITULO_PORTADA = ("Atlas de POCUS", "para el médico de primer contacto")
 AUTOR = "Dr. Alcy Edmundo Torres Guerrero"
 ORCID = "0000-0002-9742-375X"
 # El ISBN está registrado a nombre de este sello: cualquier otra cadena en
@@ -589,7 +593,7 @@ def metadatos_epub(entidades: list, version: str) -> str:
 
 def portada_svg(version: str) -> str:
     seguro = escapar_xml(version)
-    subtitulo = escapar_xml(SUBTITULO)
+    subtitulo1, subtitulo2 = (escapar_xml(linea) for linea in SUBTITULO_PORTADA)
     editorial = escapar_xml(EDITORIAL)
     return f'''<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="2560" viewBox="0 0 1600 2560">
 <rect width="1600" height="2560" fill="#071b2b"/>
@@ -597,7 +601,8 @@ def portada_svg(version: str) -> str:
 <circle cx="1260" cy="360" r="170" fill="none" stroke="#69d3c5" stroke-width="20"/>
 <text x="120" y="650" fill="#f4f0df" font-family="FreeSerif,serif" font-size="150">Biosemiótica</text>
 <text x="120" y="825" fill="#f4f0df" font-family="FreeSerif,serif" font-size="150">del Cuerpo Vivo</text>
-<text x="125" y="1020" fill="#69d3c5" font-family="FreeSerif,serif" font-size="72">{subtitulo}</text>
+<text x="125" y="1020" fill="#69d3c5" font-family="FreeSerif,serif" font-size="72">{subtitulo1}</text>
+<text x="125" y="1110" fill="#69d3c5" font-family="FreeSerif,serif" font-size="72">{subtitulo2}</text>
 <text x="125" y="2170" fill="#f4f0df" font-family="FreeSerif,serif" font-size="58">Dr. Alcy Edmundo Torres Guerrero</text>
 <text x="125" y="2270" fill="#b9ddd8" font-family="FreeSerif,serif" font-size="40">{editorial} · {seguro}</text>
 </svg>
@@ -690,11 +695,12 @@ def preambulo_libro(version: str) -> str:
     def seguro(texto: str) -> str:
         return re.sub(r"([\\#$%&_{}~^])", r"\\\1", texto)
 
-    # Portada y portadilla parten el título en dos líneas, como portada.svg.
+    # Portada y portadilla parten el título en dos líneas, como portada.svg;
+    # el subtítulo de portada, por el mismo quiebre que el SVG.
     primera, _, resto = TITULO.partition(" ")
     macros = {
         "titulolineas": f"{seguro(primera)}\\\\{seguro(resto)}",
-        "subtitulolibro": seguro(SUBTITULO),
+        "subtitulolibro": "\\\\".join(seguro(linea) for linea in SUBTITULO_PORTADA),
         "autorlibro": seguro(AUTOR),
         "editoriallibro": seguro(EDITORIAL),
         "versionlibro": seguro(version),

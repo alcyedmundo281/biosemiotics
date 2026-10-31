@@ -54,11 +54,23 @@ class CreditosTest(unittest.TestCase):
         self.assertLess(self.texto.index(edicion), self.texto.index("Compilación"))
         self.assertIn("versión `abc1234`", self.texto)
 
+    def test_el_quiebre_de_portada_reproduce_el_subtitulo(self):
+        # Si cambia el subtítulo y nadie toca la portada, la CI lo para.
+        self.assertEqual(" ".join(qmd.SUBTITULO_PORTADA), qmd.SUBTITULO)
+        self.assertEqual(qmd.SUBTITULO_PORTADA[1], "para el médico de primer contacto")
+
     def test_la_portada_svg_usa_las_constantes(self):
         svg = qmd.portada_svg("abc1234")
-        self.assertIn(f">{qmd.SUBTITULO}</text>", svg)
+        for linea in qmd.SUBTITULO_PORTADA:
+            self.assertIn(f">{linea}</text>", svg)
+        self.assertLess(svg.index(qmd.SUBTITULO_PORTADA[0]),
+                        svg.index(qmd.SUBTITULO_PORTADA[1]))
         self.assertIn(f">{qmd.EDITORIAL} · abc1234</text>", svg)
         self.assertNotIn("BioSemiotics", svg)
+
+    def test_la_portada_pdf_parte_el_subtitulo_igual(self):
+        macro = "\\newcommand{\\subtitulolibro}{%s}" % "\\\\".join(qmd.SUBTITULO_PORTADA)
+        self.assertIn(macro, qmd.preambulo_libro("abc1234"))
 
     def test_el_opf_declara_el_sello(self):
         self.assertIn("<dc:publisher>Powersemiotics</dc:publisher>",
