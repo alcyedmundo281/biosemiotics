@@ -59,14 +59,29 @@ from validacion import exigir_editorial
 
 
 TITULO = "Biosemiótica del Cuerpo Vivo"
-SUBTITULO = "Atlas de POCUS para el clínico"
+SUBTITULO = "Atlas de POCUS para el médico de primer contacto"
+# Quiebre de las dos portadas, SVG y PDF: después de «POCUS», sin partir
+# «médico de primer contacto». SUBTITULO sigue siendo la cadena canónica de
+# metadatos y créditos; un test exige que las dos coincidan.
+SUBTITULO_PORTADA = ("Atlas de POCUS", "para el médico de primer contacto")
 AUTOR = "Dr. Alcy Edmundo Torres Guerrero"
 ORCID = "0000-0002-9742-375X"
-EDITORIAL = "BioSemiotics"
-DOI = "10.5281/zenodo.21435362"
+# El ISBN está registrado a nombre de este sello: cualquier otra cadena en
+# créditos o metadatos es una incoherencia de catalogación.
+EDITORIAL = "Powersemiotics"
+ISBN_EPUB = "979-8-953844-01-7"
+ISBN_RUSTICA = "979-8-953844-00-0"
+# El DOI de concepto resuelve siempre a la versión más reciente: identifica la
+# obra, no esta edición. `DOI_EDICION` es el depósito de ESTA edición y queda en
+# None hasta que exista; entonces los créditos pasan a citarlo.
+DOI_CONCEPTO = "10.5281/zenodo.21435362"
+DOI_EDICION = None
+# Las entradas publicadas hasta esta fecha forman la primera edición.
+FECHA_CORTE = "2026-11-13"
+OBRA_EN_LINEA = "biosemiotics — atlas de POCUS para el médico de primer contacto"
 LICENCIA = "CC BY 4.0"
 LICENCIA_URL = "https://creativecommons.org/licenses/by/4.0/"
-DOI_URL = f"https://doi.org/{DOI}"
+DOI_URL = f"https://doi.org/{DOI_CONCEPTO}"
 LICENCIA_LARGA = f"{LICENCIA} — {LICENCIA_URL}"
 AVISO = (
     "Material exclusivamente educativo. No sustituye el juicio clínico, "
@@ -76,6 +91,8 @@ AVISO = (
 # Paratexto del libro, relativo a la raíz del banco. AI-USE.md remite a este
 # archivo para que la declaración larga y la del colofón no diverjan.
 DECLARACION_IA = Path("paratextos") / "declaracion-ia.md"
+# Opcional: mientras no exista, el libro sale sin prólogo y sin advertencias.
+PROLOGO = Path("paratextos") / "prologo.md"
 MARCADOR_CITAS = "{N}"
 # Cualquier `{MAYÚSCULAS}` que sobreviva a la sustitución es un marcador que
 # nadie resolvió; `{.unnumbered}` y `{#sec-…}` no encajan.
@@ -392,6 +409,54 @@ def titulo_declaracion(texto: str) -> str:
     return re.sub(r"\s*\{[^}]*\}\s*$", "", primera.lstrip("#")).strip()
 
 
+MESES = ("enero", "febrero", "marzo", "abril", "mayo", "junio", "julio",
+         "agosto", "septiembre", "octubre", "noviembre", "diciembre")
+
+
+def fecha_larga(iso: str) -> str:
+    """`2026-11-13` → `13 de noviembre de 2026`."""
+    dia = date.fromisoformat(iso)
+    return f"{dia.day} de {MESES[dia.month - 1]} de {dia.year}"
+
+
+def prologo(raiz: Path) -> str | None:
+    """El prólogo del banco con su encabezado, o None si aún no existe.
+
+    El archivo trae solo el texto y la firma; el encabezado sin numerar lo pone
+    el generador para que el prólogo sea un capítulo propio, detrás del índice.
+    """
+    ruta = raiz / PROLOGO
+    if not ruta.is_file():
+        return None
+    texto = ruta.read_text(encoding="utf-8").strip()
+    if not texto:
+        raise RuntimeError(f"{PROLOGO.as_posix()} está vacío")
+    pendiente = MARCADOR_PENDIENTE.search(texto)
+    if pendiente:
+        raise RuntimeError(
+            f"{PROLOGO.as_posix()}: marcador sin sustituir {pendiente.group(0)}"
+        )
+    return f"# Prólogo {{.unnumbered}}\n\n{texto}\n"
+
+
+def creditos_identificadores() -> str:
+    """ISBN de las dos ediciones y el DOI que corresponde citar.
+
+    Cada identificador va en su propia línea: en un párrafo corrido LaTeX
+    partía el ISBN por sus guiones, y un catálogo lo copiaba roto.
+    """
+    lineas = []
+    if DOI_EDICION:
+        lineas.append(f"DOI de esta edición: [{DOI_EDICION}](https://doi.org/{DOI_EDICION}).")
+    lineas += [
+        f"DOI de la obra: [{DOI_CONCEPTO}]({DOI_URL}).",
+        f"ISBN EPUB: {ISBN_EPUB}.",
+        f"ISBN tapa blanda: {ISBN_RUSTICA}.",
+    ]
+    # Barra invertida al final de línea: salto de línea forzado de pandoc.
+    return "\\\n".join(lineas)
+
+
 def portadilla(version: str, declaracion: str) -> str:
     """Portadilla, créditos y declaración de uso de IA.
 
@@ -412,6 +477,9 @@ def portadilla(version: str, declaracion: str) -> str:
             "",
             f"{AUTOR} · ORCID [{ORCID}](https://orcid.org/{ORCID})",
             "",
+            "Primera edición. Contiene las entradas publicadas hasta el "
+            f"{fecha_larga(FECHA_CORTE)}.",
+            "",
             f"{EDITORIAL} · Compilación {date.today().isoformat()} · "
             f"versión `{version}`",
             "",
@@ -419,8 +487,9 @@ def portadilla(version: str, declaracion: str) -> str:
             "",
             f"Autor: {AUTOR}. Editorial: {EDITORIAL}. Idioma: español.",
             "",
-            f"Identificador DOI: [{DOI}](https://doi.org/{DOI}). "
-            "ISBN EPUB: pendiente.",
+            f"Edición impresa derivada del atlas en línea *{OBRA_EN_LINEA}*.",
+            "",
+            creditos_identificadores(),
             "",
             f"El conjunto se distribuye bajo [{LICENCIA}]({LICENCIA_URL}). "
             "Las figuras conservan sus licencias propias, declaradas en cada "
@@ -530,17 +599,21 @@ def metadatos_epub(entidades: list, version: str) -> str:
     return "\n".join(lineas) + "\n"
 
 
-def portada_svg(version: str) -> str:
-    seguro = version.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+def portada_svg() -> str:
+    # Sin hash de commit: la portada es la cara del libro y en un PR mostraba
+    # el commit de prueba de GitHub. La versión va en la portadilla.
+    subtitulo1, subtitulo2 = (escapar_xml(linea) for linea in SUBTITULO_PORTADA)
+    editorial = escapar_xml(EDITORIAL)
     return f'''<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="2560" viewBox="0 0 1600 2560">
 <rect width="1600" height="2560" fill="#071b2b"/>
 <path d="M0 1840 C420 1640 720 2050 1110 1830 C1320 1710 1450 1680 1600 1750 L1600 2560 L0 2560 Z" fill="#0b7480"/>
 <circle cx="1260" cy="360" r="170" fill="none" stroke="#69d3c5" stroke-width="20"/>
 <text x="120" y="650" fill="#f4f0df" font-family="FreeSerif,serif" font-size="150">Biosemiótica</text>
 <text x="120" y="825" fill="#f4f0df" font-family="FreeSerif,serif" font-size="150">del Cuerpo Vivo</text>
-<text x="125" y="1020" fill="#69d3c5" font-family="FreeSerif,serif" font-size="72">Atlas de POCUS para el clínico</text>
+<text x="125" y="1020" fill="#69d3c5" font-family="FreeSerif,serif" font-size="72">{subtitulo1}</text>
+<text x="125" y="1110" fill="#69d3c5" font-family="FreeSerif,serif" font-size="72">{subtitulo2}</text>
 <text x="125" y="2170" fill="#f4f0df" font-family="FreeSerif,serif" font-size="58">Dr. Alcy Edmundo Torres Guerrero</text>
-<text x="125" y="2270" fill="#b9ddd8" font-family="FreeSerif,serif" font-size="40">BioSemiotics · {seguro}</text>
+<text x="125" y="2270" fill="#b9ddd8" font-family="FreeSerif,serif" font-size="40">{editorial}</text>
 </svg>
 '''
 
@@ -624,21 +697,21 @@ def estructura(entidades: list) -> list:
     return partes
 
 
-def preambulo_libro(version: str) -> str:
-    """Preámbulo de diseño del PDF, con la versión de la edición para la portada."""
+def preambulo_libro() -> str:
+    """Preámbulo de diseño del PDF, con los datos de la portada."""
     plantilla = (DISENO_LIBRO / "preambulo.tex").read_text(encoding="utf-8")
 
     def seguro(texto: str) -> str:
         return re.sub(r"([\\#$%&_{}~^])", r"\\\1", texto)
 
-    # Portada y portadilla parten el título en dos líneas, como portada.svg.
+    # Portada y portadilla parten el título en dos líneas, como portada.svg;
+    # el subtítulo de portada, por el mismo quiebre que el SVG.
     primera, _, resto = TITULO.partition(" ")
     macros = {
         "titulolineas": f"{seguro(primera)}\\\\{seguro(resto)}",
-        "subtitulolibro": seguro(SUBTITULO),
+        "subtitulolibro": "\\\\".join(seguro(linea) for linea in SUBTITULO_PORTADA),
         "autorlibro": seguro(AUTOR),
         "editoriallibro": seguro(EDITORIAL),
-        "versionlibro": seguro(version),
     }
     cabecera = "".join(
         f"\\newcommand{{\\{nombre}}}{{{valor}}}\n" for nombre, valor in macros.items()
@@ -652,7 +725,8 @@ def yaml_texto(valor: str) -> str:
     return '"' + str(valor).replace("\\", "\\\\").replace('"', '\\"') + '"'
 
 
-def quarto_yml(partes: list, archivos: dict, version: str, portada: str) -> str:
+def quarto_yml(partes: list, archivos: dict, version: str, portada: str,
+               con_prologo: bool = False) -> str:
     lineas = [
         "# GENERADO por scripts/qmd.py — no editar a mano.",
         "# La fuente de verdad es el banco .qmd de conceptos/, signos/ y casos/.",
@@ -677,6 +751,10 @@ def quarto_yml(partes: list, archivos: dict, version: str, portada: str) -> str:
         "  chapters:",
         "    - index.qmd",
     ]
+    # El prólogo va detrás de `index.qmd`, que cierra con el índice del PDF, y
+    # antes del primer capítulo.
+    if con_prologo:
+        lineas.append("    - prologo.qmd")
     # Lista plana de capítulos, sin `part:`: el escritor de EPUB de Quarto no
     # emite páginas divisorias de parte, así que declararlas ahí borraba
     # "Fundamentos" y las ocho partes de sistema del contenedor y del índice.
@@ -742,7 +820,8 @@ def quarto_yml(partes: list, archivos: dict, version: str, portada: str) -> str:
 
 
 def manuscrito_plano(partes: list, bibliografia: dict, orden_global: list,
-                     version: str, declaracion: str) -> str:
+                     version: str, declaracion: str,
+                     texto_prologo: str | None = None) -> str:
     """El mismo libro en un solo Markdown, para pandoc sin Quarto.
 
     No es una segunda versión del ensamblado: es la concatenación literal de
@@ -751,6 +830,8 @@ def manuscrito_plano(partes: list, bibliografia: dict, orden_global: list,
     validar la salida sin él; si diverge del proyecto Quarto, es un fallo.
     """
     bloques = [portadilla(version, declaracion)]
+    if texto_prologo:
+        bloques.append(texto_prologo)
     for parte, capitulos in partes:
         bloques.append(parte_markdown(parte, capitulos, bibliografia, orden_global))
     bloques.append(bibliografia_capitulo(orden_global, bibliografia))
@@ -904,10 +985,14 @@ def _generar_en(entidades: list, raiz: Path, destino: Path) -> dict:
     citas = citas_verificables(orden_global, raiz)
     declaracion = declaracion_ia(raiz, citas)
     escribir_texto(destino / "index.qmd", portadilla(version, declaracion))
+    texto_prologo = prologo(raiz)
+    if texto_prologo:
+        escribir_texto(destino / "prologo.qmd", texto_prologo)
     # El manuscrito plano se arma DESPUÉS de los capítulos para heredar el
     # `orden_global` ya poblado; `resolver_citas` es determinista, así que
     # ambos caminos numeran igual.
-    plano = manuscrito_plano(partes, bibliografia, orden_global, version, declaracion)
+    plano = manuscrito_plano(partes, bibliografia, orden_global, version, declaracion,
+                             texto_prologo)
     plano += "\n" + creditos_imagenes(figuras)
     escribir_texto(destino / "libro-plano.md", plano)
 
@@ -917,14 +1002,15 @@ def _generar_en(entidades: list, raiz: Path, destino: Path) -> dict:
     )
     escribir_texto(destino / "creditos-imagenes.qmd", creditos_imagenes(figuras))
     svg = destino / "portada.svg"
-    escribir_texto(svg, portada_svg(version))
+    escribir_texto(svg, portada_svg())
     portada = "portada.png" if rasterizar_portada(svg, destino / "portada.png") else "portada.svg"
 
     escribir_texto(
-        destino / "_quarto.yml", quarto_yml(partes, archivos, version, portada)
+        destino / "_quarto.yml",
+        quarto_yml(partes, archivos, version, portada, bool(texto_prologo)),
     )
     escribir_texto(destino / "epub.css", ESTILO)
-    escribir_texto(destino / PREAMBULO_LIBRO, preambulo_libro(version))
+    escribir_texto(destino / PREAMBULO_LIBRO, preambulo_libro())
     shutil.copy2(DISENO_LIBRO / FILTRO_LIBRO, destino / FILTRO_LIBRO)
     escribir_texto(
         destino / "epub-metadata.xml", metadatos_epub(entidades, version)
@@ -951,6 +1037,7 @@ def _generar_en(entidades: list, raiz: Path, destino: Path) -> dict:
         "portada": portada,
         "referencias": len(orden_global),
         "declaracion_ia": titulo_declaracion(declaracion),
+        "prologo": bool(texto_prologo),
         "partes": [parte for parte, _ in partes],
         "version": version,
     }

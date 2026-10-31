@@ -146,8 +146,10 @@ def validar_epub(path: Path, entidades: int, figuras: int, enlaces_ghost: int) -
         comprobaciones = {
             "citas sin resolver ([?])": b"[?]" not in textos,
             "marcadores TODO": b"TODO" not in textos,
-            "DOI": qmd.DOI.encode() in textos,
-            "ISBN pendiente": b"ISBN EPUB: pendiente" in textos,
+            "DOI de la obra": qmd.DOI_CONCEPTO.encode() in textos,
+            "ISBN EPUB y tapa blanda": (qmd.ISBN_EPUB.encode() in textos
+                                        and qmd.ISBN_RUSTICA.encode() in textos),
+            "sello editorial": qmd.EDITORIAL.encode() in textos,
             "aviso educativo": b"material educativo" in textos.lower(),
             "bibliografía final": "Bibliografía".encode() in textos,
             "créditos de imágenes": "Créditos de imágenes".encode() in textos,

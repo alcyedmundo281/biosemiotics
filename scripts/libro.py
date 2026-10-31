@@ -89,8 +89,9 @@ def validar_libro(tex: Path, pdf: Path, figuras: list, enlaces_ghost: int) -> st
     comprobaciones = {
         "citas sin resolver ([?])": "[?]" not in fuente,
         "marcadores TODO": "TODO" not in fuente,
-        "DOI": qmd.DOI in fuente,
-        "ISBN pendiente": "ISBN EPUB: pendiente" in fuente,
+        "DOI de la obra": qmd.DOI_CONCEPTO in fuente,
+        "ISBN EPUB y tapa blanda": qmd.ISBN_EPUB in fuente and qmd.ISBN_RUSTICA in fuente,
+        "sello editorial": qmd.EDITORIAL in fuente,
         "aviso educativo": "material educativo" in fuente.lower(),
         "bibliografía final": "Bibliografía" in fuente,
         "créditos de imágenes": "Créditos de imágenes" in fuente,
