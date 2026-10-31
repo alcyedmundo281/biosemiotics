@@ -440,13 +440,21 @@ def prologo(raiz: Path) -> str | None:
 
 
 def creditos_identificadores() -> str:
-    """ISBN de las dos ediciones y el DOI que corresponde citar."""
+    """ISBN de las dos ediciones y el DOI que corresponde citar.
+
+    Cada identificador va en su propia línea: en un párrafo corrido LaTeX
+    partía el ISBN por sus guiones, y un catálogo lo copiaba roto.
+    """
+    lineas = []
     if DOI_EDICION:
-        doi = (f"DOI de esta edición: [{DOI_EDICION}](https://doi.org/{DOI_EDICION}). "
-               f"DOI de la obra: [{DOI_CONCEPTO}]({DOI_URL}).")
-    else:
-        doi = f"DOI de la obra: [{DOI_CONCEPTO}]({DOI_URL})."
-    return f"{doi} ISBN EPUB: {ISBN_EPUB}. ISBN tapa blanda: {ISBN_RUSTICA}."
+        lineas.append(f"DOI de esta edición: [{DOI_EDICION}](https://doi.org/{DOI_EDICION}).")
+    lineas += [
+        f"DOI de la obra: [{DOI_CONCEPTO}]({DOI_URL}).",
+        f"ISBN EPUB: {ISBN_EPUB}.",
+        f"ISBN tapa blanda: {ISBN_RUSTICA}.",
+    ]
+    # Barra invertida al final de línea: salto de línea forzado de pandoc.
+    return "\\\n".join(lineas)
 
 
 def portadilla(version: str, declaracion: str) -> str:
@@ -591,8 +599,9 @@ def metadatos_epub(entidades: list, version: str) -> str:
     return "\n".join(lineas) + "\n"
 
 
-def portada_svg(version: str) -> str:
-    seguro = escapar_xml(version)
+def portada_svg() -> str:
+    # Sin hash de commit: la portada es la cara del libro y en un PR mostraba
+    # el commit de prueba de GitHub. La versión va en la portadilla.
     subtitulo1, subtitulo2 = (escapar_xml(linea) for linea in SUBTITULO_PORTADA)
     editorial = escapar_xml(EDITORIAL)
     return f'''<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="2560" viewBox="0 0 1600 2560">
@@ -604,7 +613,7 @@ def portada_svg(version: str) -> str:
 <text x="125" y="1020" fill="#69d3c5" font-family="FreeSerif,serif" font-size="72">{subtitulo1}</text>
 <text x="125" y="1110" fill="#69d3c5" font-family="FreeSerif,serif" font-size="72">{subtitulo2}</text>
 <text x="125" y="2170" fill="#f4f0df" font-family="FreeSerif,serif" font-size="58">Dr. Alcy Edmundo Torres Guerrero</text>
-<text x="125" y="2270" fill="#b9ddd8" font-family="FreeSerif,serif" font-size="40">{editorial} · {seguro}</text>
+<text x="125" y="2270" fill="#b9ddd8" font-family="FreeSerif,serif" font-size="40">{editorial}</text>
 </svg>
 '''
 
@@ -688,8 +697,8 @@ def estructura(entidades: list) -> list:
     return partes
 
 
-def preambulo_libro(version: str) -> str:
-    """Preámbulo de diseño del PDF, con la versión de la edición para la portada."""
+def preambulo_libro() -> str:
+    """Preámbulo de diseño del PDF, con los datos de la portada."""
     plantilla = (DISENO_LIBRO / "preambulo.tex").read_text(encoding="utf-8")
 
     def seguro(texto: str) -> str:
@@ -703,7 +712,6 @@ def preambulo_libro(version: str) -> str:
         "subtitulolibro": "\\\\".join(seguro(linea) for linea in SUBTITULO_PORTADA),
         "autorlibro": seguro(AUTOR),
         "editoriallibro": seguro(EDITORIAL),
-        "versionlibro": seguro(version),
     }
     cabecera = "".join(
         f"\\newcommand{{\\{nombre}}}{{{valor}}}\n" for nombre, valor in macros.items()
@@ -994,7 +1002,7 @@ def _generar_en(entidades: list, raiz: Path, destino: Path) -> dict:
     )
     escribir_texto(destino / "creditos-imagenes.qmd", creditos_imagenes(figuras))
     svg = destino / "portada.svg"
-    escribir_texto(svg, portada_svg(version))
+    escribir_texto(svg, portada_svg())
     portada = "portada.png" if rasterizar_portada(svg, destino / "portada.png") else "portada.svg"
 
     escribir_texto(
@@ -1002,7 +1010,7 @@ def _generar_en(entidades: list, raiz: Path, destino: Path) -> dict:
         quarto_yml(partes, archivos, version, portada, bool(texto_prologo)),
     )
     escribir_texto(destino / "epub.css", ESTILO)
-    escribir_texto(destino / PREAMBULO_LIBRO, preambulo_libro(version))
+    escribir_texto(destino / PREAMBULO_LIBRO, preambulo_libro())
     shutil.copy2(DISENO_LIBRO / FILTRO_LIBRO, destino / FILTRO_LIBRO)
     escribir_texto(
         destino / "epub-metadata.xml", metadatos_epub(entidades, version)

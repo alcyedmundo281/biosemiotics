@@ -279,7 +279,7 @@ class PortadillaTest(unittest.TestCase):
         yml = qmd.quarto_yml([], {}, "v1", "portada.svg")
         pdf = yml.split("  pdf:\n", 1)[1].split("  html:\n", 1)[0]
         self.assertIn(f"include-in-header: {qmd.PREAMBULO_LIBRO}", pdf)
-        preambulo = qmd.preambulo_libro("v1")
+        preambulo = qmd.preambulo_libro()
         self.assertIn(f"={qmd.ALTURA_MAXIMA_FIGURA}\\textheight", preambulo)
         # Las dos plantillas de Quarto: la reciente y la que fija la CI. Un
         # \renewcommand directo rompía la CI con «\pandocbounded undefined».
@@ -304,8 +304,9 @@ class PortadillaTest(unittest.TestCase):
             self.assertNotIn(clave, antes + html)
 
     def test_el_preambulo_trae_los_datos_de_la_portada(self):
-        texto = qmd.preambulo_libro("abc_1")
-        self.assertIn("\\newcommand{\\versionlibro}{abc\\_1}", texto)
+        texto = qmd.preambulo_libro()
+        # La versión va en la portadilla, no en la portada.
+        self.assertNotIn("versionlibro", texto)
         self.assertIn("\\newcommand{\\titulolineas}{", texto)
         self.assertIn("\\portadaatlas", texto)
 

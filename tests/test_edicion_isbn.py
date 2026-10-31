@@ -26,6 +26,15 @@ class CreditosTest(unittest.TestCase):
     def setUp(self):
         self.texto = qmd.portadilla("abc1234", DECLARACION)
 
+    def test_cada_identificador_va_en_su_linea(self):
+        # En un párrafo corrido LaTeX partía el ISBN por sus guiones.
+        lineas = qmd.creditos_identificadores().split("\\\n")
+        self.assertEqual(lineas, [
+            f"DOI de la obra: [{qmd.DOI_CONCEPTO}]({qmd.DOI_URL}).",
+            "ISBN EPUB: 979-8-953844-01-7.",
+            "ISBN tapa blanda: 979-8-953844-00-0.",
+        ])
+
     def test_declara_el_sello_y_los_dos_isbn(self):
         self.assertIn("Editorial: Powersemiotics.", self.texto)
         self.assertIn("ISBN EPUB: 979-8-953844-01-7.", self.texto)
@@ -60,17 +69,17 @@ class CreditosTest(unittest.TestCase):
         self.assertEqual(qmd.SUBTITULO_PORTADA[1], "para el médico de primer contacto")
 
     def test_la_portada_svg_usa_las_constantes(self):
-        svg = qmd.portada_svg("abc1234")
+        svg = qmd.portada_svg()
         for linea in qmd.SUBTITULO_PORTADA:
             self.assertIn(f">{linea}</text>", svg)
         self.assertLess(svg.index(qmd.SUBTITULO_PORTADA[0]),
                         svg.index(qmd.SUBTITULO_PORTADA[1]))
-        self.assertIn(f">{qmd.EDITORIAL} · abc1234</text>", svg)
+        self.assertIn(f">{qmd.EDITORIAL}</text>", svg)
         self.assertNotIn("BioSemiotics", svg)
 
     def test_la_portada_pdf_parte_el_subtitulo_igual(self):
         macro = "\\newcommand{\\subtitulolibro}{%s}" % "\\\\".join(qmd.SUBTITULO_PORTADA)
-        self.assertIn(macro, qmd.preambulo_libro("abc1234"))
+        self.assertIn(macro, qmd.preambulo_libro())
 
     def test_el_opf_declara_el_sello(self):
         self.assertIn("<dc:publisher>Powersemiotics</dc:publisher>",
