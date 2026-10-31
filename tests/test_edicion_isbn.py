@@ -86,6 +86,15 @@ class CreditosTest(unittest.TestCase):
                       qmd.metadatos_epub([], "v1"))
 
 
+class DeclaracionTest(unittest.TestCase):
+    def test_el_nombre_de_archivo_no_se_parte_en_su_guion(self):
+        # U+2011: LuaTeX corta tras un guion normal aun en monoespaciada, y el
+        # PDF mostraba «AI-» / «USE.md».
+        texto = (RAIZ / qmd.DECLARACION_IA).read_text(encoding="utf-8")
+        self.assertIn("`AI‑USE.md`", texto)
+        self.assertNotIn("AI-USE.md", texto)
+
+
 class PrologoTest(unittest.TestCase):
     def setUp(self):
         temporal = tempfile.TemporaryDirectory()
