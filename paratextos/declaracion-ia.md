@@ -17,5 +17,5 @@ obra y no puede serlo: no puede asumir responsabilidad.
 
 La declaración completa —herramientas, etapas, prohibiciones y cómo
 auditarlas— está en `AI-USE.md`, que acompaña a esta edición en su
-depósito de Zenodo y se mantiene en
+depósito de Zenodo y se mantiene en\
 [`github.com/alcyedmundo281/biosemiotics`](https://github.com/alcyedmundo281/biosemiotics)
