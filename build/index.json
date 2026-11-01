@@ -244,6 +244,33 @@
    "n_refs": 8
   },
   {
+   "id": "desarrollo-embrionario",
+   "tipo": "concepto",
+   "titulo": "Hallazgos de desarrollo en el embarazo temprano",
+   "estado": "revisado",
+   "fecha_revision": "2026-10-31",
+   "ghost_id": null,
+   "ghost_sha256": "e5e29b3c8fd81dc3b1a54555f8d0c67a412b86bae1deacb2e36a4486c6914481",
+   "abstract": "Reconocer las estructuras del embarazo temprano permite describir lo observado con precisión, pero exige distinguir hallazgo, interpretación y límites. Este concepto introduce el vocabulario que precede a la ficha de localización y mantiene el alcance transabdominal del recorrido. Una imagen insuficiente o una fecha menstrual aislada no deben convertirse en una conclusión definitiva; la documentación debe expresar qué falta por evaluar.",
+   "nivel": "principiante",
+   "licencia": "CC BY 4.0",
+   "revisado_por": "Alcy Torres",
+   "tags": [
+    "obstetrico",
+    "embarazo-temprano",
+    "tecnica"
+   ],
+   "autores": [
+    {
+     "nombre": "Alcy Torres"
+    }
+   ],
+   "refs": [
+    "rodgers2024lexico"
+   ],
+   "n_refs": 1
+  },
+  {
    "id": "doppler",
    "tipo": "concepto",
    "titulo": "Doppler: el color no mide, el ángulo decide",
