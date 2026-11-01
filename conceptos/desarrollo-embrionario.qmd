@@ -1,12 +1,12 @@
 ---
-estado: revisado
+estado: publicado
 fecha_revision: 2026-10-31
 revisado_por: Alcy Torres
-ghost_id: null
+ghost_id: 6ae69e5468e68c0001680672
 id: desarrollo-embrionario
 tipo: concepto
 titulo: Hallazgos de desarrollo en el embarazo temprano
-url: ''
+url: 'https://www.biosemiotics.net/hallazgos-de-desarrollo-en-el-embarazo-temprano/'
 dominio: tecnica
 nivel: principiante
 capitulo: 4
@@ -24,7 +24,17 @@ prerequisito_de:
 refs:
 - rodgers2024lexico
 abstract: 'Reconocer las estructuras del embarazo temprano permite describir lo observado con precisión, pero exige distinguir hallazgo, interpretación y límites. Este concepto introduce el vocabulario que precede a la ficha de localización y mantiene el alcance transabdominal del recorrido. Una imagen insuficiente o una fecha menstrual aislada no deben convertirse en una conclusión definitiva; la documentación debe expresar qué falta por evaluar.'
-medios: []
+medios:
+- tipo: imagen
+  destacada: true
+  id: 'wikimedia:Embryo at 5 weeks.JPG'
+  descripcion: 'Ecografía del embarazo temprano con saco gestacional y marcadores de medición sobre el embrión; imagen estática que no documenta actividad cardíaca'
+  credito: 'X. Compagnion'
+  fuente: 'Wikimedia Commons'
+  fuente_url: 'https://commons.wikimedia.org/wiki/File:Embryo_at_5_weeks.JPG'
+  licencia_img: 'CC BY 2.5'
+  licencia_url: 'https://creativecommons.org/licenses/by/2.5/'
+  archivo_local: 'assets/img/desarrollo-embrionario-commons.jpg'
 licencia: CC BY 4.0
 ---
 
