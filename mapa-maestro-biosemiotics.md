@@ -221,9 +221,23 @@ nuevo bloque se verificarán durante la preparación de cada ficha. Esta
 aprobación del mapa define el orden editorial, no una revisión clínica de
 artículos todavía no escritos.
 
+#### Oleada de embarazo temprano — hasta el 13 de noviembre de 2026
+
+Bloque confirmado por Alcy el 2026-10-31. Fechas objetivo propuestas para
+organizar la preparación y la revisión; no son publicaciones programadas.
+
+| Fecha objetivo | Unidad | Estado del trabajo |
+|---|---|---|
+| 2026-11-04 | Hallazgos de desarrollo en el embarazo temprano | Primera redacción en borrador; pendiente de revisión clínica e imagen |
+| 2026-11-08 | Localización del embarazo: evaluación transabdominal | Planificación; requiere el concepto de desarrollo preparado y validado |
+| 2026-11-13 | Embarazo temprano: límites de una exploración no concluyente | Planificación; cierre del bloque |
+
+La revisión de cada ficha precede a su publicación. Las unidades de segundo
+y tercer trimestre y el caso de integración quedan para el bloque posterior.
+
 #### Registro de unidades obstétricas en el banco
 
-Las fichas siguientes están planificadas, sin redacción ni revisión clínica.
+Las fichas siguientes permanecen en borrador, sin revisión clínica. Desarrollo embrionario tiene una primera redacción; las restantes conservan fichas de planificación.
 Para estas unidades, `utero` agrupa el recorrido transabdominal en la
 taxonomía genitourinaria vigente. Los dos conceptos pertenecen al capítulo 4
 de técnica. El caso no representa todavía un paciente ni acredita consentimiento.

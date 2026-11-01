@@ -11,21 +11,68 @@ nivel: principiante
 capitulo: 4
 orden: 8
 tags:
-- planificacion-editorial
 - obstetrico
+- embarazo-temprano
+- tecnica
 relacionado_con:
 - pocus-embarazada
 - signo-embarazo-intrauterino
 prerequisito_de:
 - signo-embarazo-intrauterino
 - embarazo-temprano-no-concluyente
-refs: []
-abstract: ''
+refs:
+- rodgers2024lexico
+abstract: 'Reconocer las estructuras del embarazo temprano permite describir lo observado con precisión, pero exige distinguir hallazgo, interpretación y límites. Este concepto introduce el vocabulario que precede a la ficha de localización y mantiene el alcance transabdominal del recorrido. Una imagen insuficiente o una fecha menstrual aislada no deben convertirse en una conclusión definitiva; la documentación debe expresar qué falta por evaluar.'
 medios: []
+licencia: CC BY 4.0
 ---
 
-**Ficha de planificación editorial.** No contiene una redacción clínica revisada.
+## La pregunta antes del calendario
 
-Preparar una introducción a los hallazgos de desarrollo y sus límites de interpretación; verificar los criterios antes de redactar o adoptar umbrales.
+Antes de preguntar «¿corresponde a las semanas?», describe la imagen. El ejercicio de esta ficha es aprender a nombrar estructuras y separar esa descripción de la conclusión clínica. La adquisición transabdominal se estudia desde el concepto base «POCUS en la embarazada»; la localización se desarrollará en su propia ficha.
 
-No se han asignado referencias, umbrales, hallazgos, conductas ni datos de pacientes.
+## Cómo nombrar lo que aparece
+
+El consenso de la Society of Radiologists in Ultrasound distingue saco gestacional, saco vitelino, embrión y actividad cardíaca. [rodgers2024lexico]
+
+| Estructura o hallazgo | Descripción e interpretación |
+|---|---|
+| Saco gestacional | Colección líquida redonda u oval con borde ecogénico; sin saco vitelino ni embrión, se describe como probable. |
+| Saco vitelino | Estructura circular de borde fino dentro del saco; su identificación confirma que la colección corresponde a una gestación. |
+| Embrión y actividad cardíaca | Deben describirse por separado. El consenso prefiere «actividad cardíaca» y evita llamar «viable» al embarazo temprano. |
+
+La certeza de una gestación y su localización son preguntas relacionadas, pero distintas: el saco también puede encontrarse en una implantación ectópica. [rodgers2024lexico]
+
+## La vía de exploración cambia el alcance
+
+Los tiempos de visualización y las medidas del consenso se refieren a ecografía **transvaginal**. No son un calendario diagnóstico para esta exploración transabdominal. Tampoco un solo saco, antes de identificar embriones, demuestra una gestación única. [rodgers2024lexico]
+
+NICE recomienda explicar las limitaciones de la vía transabdominal cuando se ofrece como alternativa a una exploración transvaginal no aceptada. También indica que la fecha de última menstruación, por sí sola, no determina si debería observarse actividad cardíaca. La variabilidad del ciclo importa. [NICE NG126](https://www.nice.org.uk/guidance/NG126/chapter/diagnosis-of-viable-intrauterine-pregnancy-and-of-tubal-ectopic-pregnancy)
+
+## Observar con exposición prudente
+
+Para documentar actividad cardíaca, la AIUM recomienda modo B o M. El Doppler pulsado no debe utilizarse de rutina con esta finalidad. Mantén la exposición y el tiempo tan bajos como permita obtener la información necesaria, con vigilancia de los índices de seguridad y formación apropiada. [AIUM: seguridad en el embarazo](https://www.aium.org/resources/official-statements/view/prudent-use-and-safety-of-diagnostic-ultrasound-in-pregnancy)
+
+## Del significante a una decisión documentada
+
+Usa esta plantilla de razonamiento durante la revisión con tu tutor:
+
+- **Significante:** «En el registro identifico…». Nombra la estructura y señala dónde aparece.
+- **Significado:** «Este hallazgo permite sostener…». Explica qué evidencia respalda la interpretación.
+- **Decisión:** «Para responder la pregunta pendiente hace falta…». Documenta el siguiente paso acordado con el equipo responsable.
+
+Esta ficha no establece umbrales de pérdida gestacional ni un intervalo universal de seguimiento. La evaluación de una exploración no concluyente requiere su propio desarrollo y revisión.
+
+## Dónde NO confiar
+
+- En una fecha menstrual convertida en prueba de lo que debería verse. [NICE NG126](https://www.nice.org.uk/guidance/NG126/chapter/diagnosis-of-viable-intrauterine-pregnancy-and-of-tubal-ectopic-pregnancy)
+- En trasladar a la vía abdominal los tiempos de visualización transvaginales. [rodgers2024lexico]
+- En un informe que omita la vía, las limitaciones y la pregunta pendiente. La AIUM exige documentación e interpretación formal del examen. [AIUM: seguridad en el embarazo](https://www.aium.org/resources/official-statements/view/prudent-use-and-safety-of-diagnostic-ultrasound-in-pregnancy)
+
+## Practica esto
+
+Con registros docentes autorizados y un tutor, prepara dos columnas: «lo que identifico» y «lo que todavía no puedo afirmar». Revisa cada frase de la segunda columna antes de redactar una conclusión. El objetivo es que otra persona pueda seguir tu razonamiento a partir de las imágenes conservadas.
+
+## Discusión abierta
+
+¿Qué palabra de tu informe expresa una observación y cuál expresa una interpretación? ¿Qué dato faltante cambiaría esa interpretación?
