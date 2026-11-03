@@ -2131,6 +2131,55 @@
    "n_refs": 6
   },
   {
+   "id": "signo-embarazo-intrauterino",
+   "tipo": "signo",
+   "titulo": "Localización del embarazo: evaluación transabdominal",
+   "estado": "revisado",
+   "fecha_revision": "2026-11-03",
+   "ghost_id": null,
+   "ghost_sha256": "55f06e20758c81c4bf93f5da14c95270b7431f219a3a08548b57ac735faa87fd",
+   "abstract": "Identificar un saco vitelino o un embrión dentro de un saco permite reconocer una gestación; demostrar su localización exige relacionarla con la anatomía uterina. Esta ficha enseña la adquisición transabdominal y la documentación que orienta la evaluación obstétrica. Si la ventana o los hallazgos no son concluyentes, la localización sigue pendiente; los síntomas y la estabilidad determinan la urgencia.\n",
+   "sistema": "genitourinario",
+   "organo": "utero",
+   "nivel": "principiante",
+   "ventana": "suprapubica-transabdominal",
+   "pregunta_clinica": "¿Puedo demostrar un embarazo en localización intrauterina normal con esta exploración transabdominal?",
+   "significante": "Saco con saco vitelino o embrión, cuya relación con el endometrio y la anatomía uterina se reconoce en dos planos.",
+   "significado": "Gestación identificada; la localización intrauterina normal requiere comprobar el sitio de implantación.",
+   "licencia": "CC BY 4.0",
+   "revisado_por": "Alcy Torres",
+   "decision": "Documentar lo demostrado e integrar los síntomas; si la localización no es concluyente, asegurar evaluación obstétrica y continuidad del estudio. La inestabilidad requiere atención urgente.",
+   "sonda": [
+    "convexa"
+   ],
+   "escenario": [
+    "urgencias",
+    "consulta"
+   ],
+   "tags": [
+    "obstetrico",
+    "embarazo-temprano",
+    "genitourinario"
+   ],
+   "falsos_positivos": [
+    "Líquido intracavitario interpretado como saco gestacional confirmado sin identificar estructuras gestacionales.",
+    "Implantación intersticial o en cicatriz de cesárea interpretada como localización intrauterina normal por su cercanía al útero."
+   ],
+   "se_basa_en": [
+    "pocus-embarazada",
+    "desarrollo-embrionario"
+   ],
+   "autores": [
+    {
+     "nombre": "Alcy Torres"
+    }
+   ],
+   "refs": [
+    "rodgers2024lexico"
+   ],
+   "n_refs": 1
+  },
+  {
    "id": "signo-eyeball-ef",
    "tipo": "signo",
    "titulo": "Función sistólica del VI a ojo (Eyeball EF)",
