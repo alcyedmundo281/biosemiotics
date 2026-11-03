@@ -1,12 +1,12 @@
 ---
-estado: revisado
+estado: publicado
 fecha_revision: 2026-11-03
 revisado_por: Alcy Torres
 ghost_id: 6aea683e556c260001d6e064
 id: embarazo-temprano-no-concluyente
 tipo: concepto
 titulo: 'Embarazo temprano: límites de una exploración no concluyente'
-url: ''
+url: 'https://www.biosemiotics.net/embarazo-temprano-limites-de-una-exploracion-no-concluyente/'
 dominio: tecnica
 nivel: principiante
 capitulo: 4
