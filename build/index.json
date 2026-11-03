@@ -2134,10 +2134,11 @@
    "id": "signo-embarazo-intrauterino",
    "tipo": "signo",
    "titulo": "Localización del embarazo: evaluación transabdominal",
-   "estado": "revisado",
+   "estado": "publicado",
    "fecha_revision": "2026-11-03",
-   "ghost_id": null,
+   "ghost_id": "6aea5b92556c260001d6e009",
    "ghost_sha256": "55f06e20758c81c4bf93f5da14c95270b7431f219a3a08548b57ac735faa87fd",
+   "url": "https://www.biosemiotics.net/localizacion-del-embarazo-evaluacion-transabdominal/",
    "abstract": "Identificar un saco vitelino o un embrión dentro de un saco permite reconocer una gestación; demostrar su localización exige relacionarla con la anatomía uterina. Esta ficha enseña la adquisición transabdominal y la documentación que orienta la evaluación obstétrica. Si la ventana o los hallazgos no son concluyentes, la localización sigue pendiente; los síntomas y la estabilidad determinan la urgencia.\n",
    "sistema": "genitourinario",
    "organo": "utero",
@@ -2174,6 +2175,22 @@
      "nombre": "Alcy Torres"
     }
    ],
+   "medios": [
+    {
+     "tipo": "imagen",
+     "destacada": true,
+     "id": "wikimedia:Doubleringandyoke.PNG",
+     "descripcion": "Ecografía de embarazo temprano con saco gestacional, saco vitelino y flechas sobre sus bordes; esta imagen aislada no demuestra por sí sola la localización",
+     "credito": "James Heilman, MD",
+     "fuente": "Wikimedia Commons",
+     "fuente_url": "https://commons.wikimedia.org/wiki/File:Doubleringandyoke.PNG",
+     "licencia_img": "CC BY-SA 3.0",
+     "licencia_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+     "archivo_local": "assets/img/localizacion-embarazo-commons.png"
+    }
+   ],
+   "n_loops": 0,
+   "n_imagenes": 1,
    "refs": [
     "rodgers2024lexico"
    ],
