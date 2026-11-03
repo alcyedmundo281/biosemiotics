@@ -205,8 +205,8 @@ forman parte del contenido de cada capítulo.
 
 **Modelado y preparación:** el concepto base `conceptos/pocus-embarazada.qmd`
 fue aprobado y publicado el 2026-10-30, con imagen de Commons verificada y envío
-a 12 suscriptores. URL: https://www.biosemiotics.net/pocus-en-la-embarazada-alcance-seguridad-y-limites/. De las ocho unidades restantes, desarrollo embrionario fue revisado y aprobado por Alcy el 2026-10-31 y publicado en Ghost el 2026-11-01 UTC (2026-10-31 en America/Bogota), con envío a 12 miembros; siete conservan fichas de planificación en estado `borrador`; sus títulos, tipos, taxonomía y niveles
-se fijan en el registro siguiente. Las siete fichas de planificación representan trabajo pendiente, no capítulos
+a 12 suscriptores. URL: https://www.biosemiotics.net/pocus-en-la-embarazada-alcance-seguridad-y-limites/. De las ocho unidades restantes, desarrollo embrionario fue revisado y aprobado por Alcy el 2026-10-31 y publicado en Ghost el 2026-11-01 UTC (2026-10-31 en America/Bogota), con envío a 12 miembros. Localización del embarazo tiene un borrador redactado el 2026-11-03, pendiente de revisión clínica; seis unidades conservan fichas de planificación en estado `borrador`. Sus títulos, tipos, taxonomía y niveles
+se fijan en el registro siguiente. Las siete unidades pendientes no son capítulos
 publicados; solo desarrollo embrionario cuenta ya con revisión clínica. El concepto base
 ya fue validado y revisado; los signos requieren su propia revisión antes de publicarse. Las preguntas, hallazgos,
 decisiones y referencias se redactarán y verificarán por unidad. Los casos se declararán sintéticos, sin corresponder a pacientes reales; las imágenes
@@ -228,7 +228,7 @@ organizar la preparación y la revisión; no son publicaciones programadas.
 | Fecha objetivo | Unidad | Estado del trabajo |
 |---|---|---|
 | 2026-11-04 | Hallazgos de desarrollo en el embarazo temprano | Publicado y enviado a 12 miembros; Ghost: 2026-11-01 UTC; fecha local: 2026-10-31; imagen de Commons CC BY 2.5 |
-| 2026-11-08 | Localización del embarazo: evaluación transabdominal | Planificación; requiere el concepto de desarrollo preparado y validado |
+| 2026-11-08 | Localización del embarazo: evaluación transabdominal | Borrador redactado el 2026-11-03; contrato estructural validado y referencia principal comprobada en PubMed y Crossref; pendiente de revisión clínica |
 | 2026-11-13 | Embarazo temprano: límites de una exploración no concluyente | Planificación; cierre del bloque |
 
 La revisión de cada ficha precede a su publicación. Las unidades de segundo
@@ -236,7 +236,7 @@ y tercer trimestre y el caso de integración quedan para el bloque posterior.
 
 #### Registro de unidades obstétricas en el banco
 
-Desarrollo embrionario está publicado, con aprobación clínica de Alcy el 2026-10-31 y envío a 12 miembros confirmado en Ghost. Las restantes fichas conservan borradores de planificación sin revisión clínica.
+Desarrollo embrionario está publicado, con aprobación clínica de Alcy el 2026-10-31 y envío a 12 miembros confirmado en Ghost. Localización del embarazo tiene un borrador redactado pendiente de revisión clínica; las otras seis unidades conservan fichas de planificación.
 Para estas unidades, `utero` agrupa el recorrido transabdominal en la
 taxonomía genitourinaria vigente. Los dos conceptos pertenecen al capítulo 4
 de técnica. El caso no representa todavía un paciente ni acredita consentimiento.

@@ -7,31 +7,88 @@ tipo: signo
 titulo: 'Localización del embarazo: evaluación transabdominal'
 url: ''
 organo: utero
-ventana: null
-sonda: []
+sistema: genitourinario
+ventana: suprapubica-transabdominal
+sonda: [convexa]
 nivel: principiante
-significante: null
-significado: null
-decision: null
+pregunta_clinica: '¿Puedo demostrar un embarazo en localización intrauterina normal con esta exploración transabdominal?'
+escenario: [urgencias, consulta]
+significante: 'Saco con saco vitelino o embrión, cuya relación con el endometrio y la anatomía uterina se reconoce en dos planos.'
+significado: 'Gestación identificada; la localización intrauterina normal requiere comprobar el sitio de implantación.'
+decision: 'Documentar lo demostrado e integrar los síntomas; si la localización no es concluyente, asegurar evaluación obstétrica y continuidad del estudio. La inestabilidad requiere atención urgente.'
 umbral: ''
 se_basa_en:
 - pocus-embarazada
 - desarrollo-embrionario
 contrasta_con: []
-falsos_positivos: []
-medios: []
-refs: []
-sistema: genitourinario
+falsos_positivos:
+- 'Líquido intracavitario interpretado como saco gestacional confirmado sin identificar estructuras gestacionales.'
+- 'Implantación intersticial o en cicatriz de cesárea interpretada como localización intrauterina normal por su cercanía al útero.'
 relacionado_con:
 - signo-embarazo-ectopico
-abstract: ''
+medios: []
+refs:
+- rodgers2024lexico
+abstract: >
+  Identificar un saco vitelino o un embrión dentro de un saco permite reconocer
+  una gestación; demostrar su localización exige relacionarla con la anatomía
+  uterina. Esta ficha enseña la adquisición transabdominal y la documentación
+  que orienta la evaluación obstétrica. Si la ventana o los hallazgos no son
+  concluyentes, la localización sigue pendiente; los síntomas y la estabilidad
+  determinan la urgencia.
 tags:
-- planificacion-editorial
 - obstetrico
+- embarazo-temprano
+- genitourinario
+licencia: CC BY 4.0
 ---
 
-**Ficha de planificación editorial.** No contiene una redacción clínica revisada.
+## La pregunta clínica
 
-Delimitar la pregunta de localización del embarazo por vía transabdominal y sus límites; enlazar la ficha de embarazo ectópico existente.
+**¿Puedo demostrar que este embarazo tiene una localización intrauterina normal?** Es la pregunta de esta ficha. El vocabulario de saco, saco vitelino y embrión se desarrolla en [Hallazgos de desarrollo en el embarazo temprano](https://www.biosemiotics.net/hallazgos-de-desarrollo-en-el-embarazo-temprano/).
 
-No se han asignado referencias, umbrales, hallazgos, conductas ni datos de pacientes.
+Localización y actividad cardíaca se documentan por separado. El consenso define la localización normal por el sitio de implantación, no solo por encontrar una gestación cerca del útero. [rodgers2024lexico]
+
+## Por qué el examen físico no basta
+
+La historia y el examen físico no suelen resolver por sí solos la localización. La ecografía aporta información anatómica que debe integrarse con ellos. [ACEP: embarazo temprano](https://www.acep.org/sonoguide/basic/early-pregnancy)
+
+La estabilidad se evalúa desde el inicio. NICE recomienda atención directa en urgencias ante inestabilidad hemodinámica o preocupación importante por el dolor o el sangrado. [NICE NG126](https://www.nice.org.uk/guidance/ng126/chapter/recommendations)
+
+## Cómo se obtiene la ventana
+
+Explica la pregunta del estudio y sus límites. En decúbito supino, usa una sonda convexa sobre el pubis. La vejiga llena favorece la ventana transabdominal. Comienza en transversal, con el marcador hacia la derecha de la paciente; identifica la vejiga y el útero posterior a ella. Barre el órgano completo. Gira al plano sagital, con el marcador hacia la cabeza, y barre de lado a lado. Reconoce cuello, cuerpo, fondo y endometrio antes de interpretar el contenido. [ACEP: técnica transabdominal](https://www.acep.org/sonoguide/basic/early-pregnancy)
+
+Usa el preset obstétrico y los ajustes de seguridad que aprendiste con supervisión. Obtén la información necesaria con la menor exposición y tiempo posibles; vigila los índices de seguridad. Para documentar actividad cardíaca, si corresponde, utiliza modo B o M; el Doppler pulsado no se emplea de rutina con este fin. Conserva imágenes y un informe de la exploración. [AIUM: uso prudente](https://www.aium.org/resources/official-statements/view/prudent-use-and-safety-of-diagnostic-ultrasound-in-pregnancy)
+
+## El signo
+
+**Significante:** reconoce el saco y busca saco vitelino o embrión en su interior. Comprueba su relación con el endometrio y la anatomía uterina en dos planos. **Significado:** identificar estructuras gestacionales demuestra una gestación; comprobar su implantación en el endometrio de la cavidad uterina permite valorar la localización normal. Un saco sin saco vitelino ni embrión puede ser probable, pero no ofrece la misma certeza. [rodgers2024lexico]
+
+Una implantación intersticial o en cicatriz de cesárea no es una localización normal aunque parezca estar dentro del contorno uterino. El consenso también prefiere describir «líquido intracavitario» y evitar «seudosaco»: esa colección no demuestra por sí sola un ectópico. [rodgers2024lexico]
+
+## La bifurcación
+
+- **Localización normal demostrada:** registra las estructuras y los planos que la sustentan. Integra los síntomas; considerar un embarazo heterotópico sigue siendo necesario, especialmente tras reproducción asistida. [ACEP](https://www.acep.org/sonoguide/basic/early-pregnancy)
+- **Localización no concluyente y paciente estable:** explica la limitación y asegura evaluación obstétrica. La ecografía transvaginal puede ser necesaria; cuando no se acepta y se utiliza la abdominal, deben explicarse sus limitaciones. El seguimiento debe incluir instrucciones escritas sobre síntomas nuevos o crecientes y acceso a atención urgente. [NICE NG126](https://www.nice.org.uk/guidance/NG126/chapter/diagnosis-of-viable-intrauterine-pregnancy-and-of-tubal-ectopic-pregnancy)
+- **Inestabilidad o preocupación importante por dolor o sangrado:** activa atención urgente. La exploración no debe convertirse en una espera para completar imágenes. [NICE NG126](https://www.nice.org.uk/guidance/ng126/chapter/recommendations)
+
+El recorrido de urgencias continúa en [Embarazo ectópico: el útero vacío no es el signo](https://www.biosemiotics.net/embarazo-ectopico-el-utero-vacio-no-es-el-signo/).
+
+## Dónde NO confiar
+
+- **En una colección aislada:** no equivale a una gestación confirmada. [rodgers2024lexico]
+- **En trasladar calendarios entre vías:** los tiempos de visualización del consenso corresponden a ecografía transvaginal. Una exploración abdominal insuficiente debe describirse como tal; la categoría formal de embarazo de localización desconocida se define tras la evaluación transvaginal correspondiente. [rodgers2024lexico]
+- **En una conclusión que ignore los síntomas:** su cambio exige reevaluación aunque existan resultados previos. La hCG sérica no determina por sí sola la localización. [NICE NG126](https://www.nice.org.uk/guidance/NG126/chapter/diagnosis-of-viable-intrauterine-pregnancy-and-of-tubal-ectopic-pregnancy)
+
+Esta ficha no establece umbrales para diagnosticar pérdida gestacional ni sustituye el estudio obstétrico formal.
+
+## Practica esto
+
+Con registros docentes autorizados y un tutor, prepara una descripción en tres líneas: anatomía identificada, estructuras gestacionales reconocidas y pregunta pendiente. Señala en las imágenes qué sostiene cada frase.
+
+Ensaya también un informe no concluyente: «Exploración transabdominal limitada por…; no se demuestra la localización con este registro; se acuerda evaluación por…». Completa el destino y la continuidad del estudio con el equipo responsable antes de dar por terminado el ejercicio.
+
+## Discusión abierta
+
+¿Qué imagen conservada permite a otra persona comprobar la localización que afirmas? Si no puedes mostrarla, ¿cómo cambiarías tu informe y el siguiente paso?
