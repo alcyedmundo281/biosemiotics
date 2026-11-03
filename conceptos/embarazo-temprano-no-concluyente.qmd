@@ -1,6 +1,7 @@
 ---
-estado: borrador
-fecha_revision: null
+estado: revisado
+fecha_revision: 2026-11-03
+revisado_por: Alcy Torres
 ghost_id: null
 id: embarazo-temprano-no-concluyente
 tipo: concepto

@@ -438,6 +438,35 @@
    "n_refs": 5
   },
   {
+   "id": "embarazo-temprano-no-concluyente",
+   "tipo": "concepto",
+   "titulo": "Embarazo temprano: límites de una exploración no concluyente",
+   "estado": "revisado",
+   "fecha_revision": "2026-11-03",
+   "ghost_id": null,
+   "ghost_sha256": "5657166df63ae05226d5be46fbbb599ba3b81400bc4cc53eb8e37991241a2555",
+   "abstract": "Una exploración transabdominal puede terminar sin responder la pregunta clínica. Reconocer esa incertidumbre permite separar la limitación de la imagen, la localización pendiente y la actividad cardíaca no documentada. Este concepto enseña a conservar lo observado, explicar lo que falta y organizar la evaluación siguiente. Los síntomas y la estabilidad orientan la urgencia; una imagen insuficiente no demuestra normalidad ni pérdida gestacional.\n",
+   "nivel": "principiante",
+   "licencia": "CC BY 4.0",
+   "revisado_por": "Alcy Torres",
+   "tags": [
+    "obstetrico",
+    "embarazo-temprano",
+    "tecnica"
+   ],
+   "autores": [
+    {
+     "nombre": "Alcy Torres"
+    }
+   ],
+   "refs": [
+    "derobertis2026pocusob",
+    "aium2024obstetrico",
+    "rodgers2024lexico"
+   ],
+   "n_refs": 3
+  },
+  {
    "id": "frecuencia-profundidad",
    "tipo": "concepto",
    "titulo": "Frecuencia vs. profundidad",
