@@ -2,7 +2,7 @@
 estado: revisado
 fecha_revision: 2026-11-03
 revisado_por: Alcy Torres
-ghost_id: null
+ghost_id: 6aea5b92556c260001d6e009
 id: signo-embarazo-intrauterino
 tipo: signo
 titulo: 'Localización del embarazo: evaluación transabdominal'
@@ -27,7 +27,17 @@ falsos_positivos:
 - 'Implantación intersticial o en cicatriz de cesárea interpretada como localización intrauterina normal por su cercanía al útero.'
 relacionado_con:
 - signo-embarazo-ectopico
-medios: []
+medios:
+- tipo: imagen
+  destacada: true
+  id: 'wikimedia:Doubleringandyoke.PNG'
+  descripcion: 'Ecografía de embarazo temprano con saco gestacional, saco vitelino y flechas sobre sus bordes; esta imagen aislada no demuestra por sí sola la localización'
+  credito: 'James Heilman, MD'
+  fuente: 'Wikimedia Commons'
+  fuente_url: 'https://commons.wikimedia.org/wiki/File:Doubleringandyoke.PNG'
+  licencia_img: 'CC BY-SA 3.0'
+  licencia_url: 'https://creativecommons.org/licenses/by-sa/3.0/'
+  archivo_local: 'assets/img/localizacion-embarazo-commons.png'
 refs:
 - rodgers2024lexico
 abstract: >
