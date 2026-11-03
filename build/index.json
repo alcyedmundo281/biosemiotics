@@ -441,10 +441,11 @@
    "id": "embarazo-temprano-no-concluyente",
    "tipo": "concepto",
    "titulo": "Embarazo temprano: límites de una exploración no concluyente",
-   "estado": "revisado",
+   "estado": "publicado",
    "fecha_revision": "2026-11-03",
-   "ghost_id": null,
+   "ghost_id": "6aea683e556c260001d6e064",
    "ghost_sha256": "5657166df63ae05226d5be46fbbb599ba3b81400bc4cc53eb8e37991241a2555",
+   "url": "https://www.biosemiotics.net/embarazo-temprano-limites-de-una-exploracion-no-concluyente/",
    "abstract": "Una exploración transabdominal puede terminar sin responder la pregunta clínica. Reconocer esa incertidumbre permite separar la limitación de la imagen, la localización pendiente y la actividad cardíaca no documentada. Este concepto enseña a conservar lo observado, explicar lo que falta y organizar la evaluación siguiente. Los síntomas y la estabilidad orientan la urgencia; una imagen insuficiente no demuestra normalidad ni pérdida gestacional.\n",
    "nivel": "principiante",
    "licencia": "CC BY 4.0",
@@ -459,6 +460,22 @@
      "nombre": "Alcy Torres"
     }
    ],
+   "medios": [
+    {
+     "tipo": "imagen",
+     "destacada": true,
+     "id": "wikimedia:Gestational sac.svg",
+     "descripcion": "Esquema del saco gestacional (A), longitud cráneo-rabadilla del embrión (B), saco amniótico (C) y saco vitelino (D); ilustración anatómica sin umbrales diagnósticos",
+     "credito": "Nevit Dilmen",
+     "fuente": "Wikimedia Commons",
+     "fuente_url": "https://commons.wikimedia.org/wiki/File:Gestational_sac.svg",
+     "licencia_img": "CC BY-SA 3.0",
+     "licencia_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+     "archivo_local": "assets/img/embarazo-no-concluyente-commons.png"
+    }
+   ],
+   "n_loops": 0,
+   "n_imagenes": 1,
    "refs": [
     "derobertis2026pocusob",
     "aium2024obstetrico",
