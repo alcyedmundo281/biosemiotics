@@ -11,11 +11,13 @@ nivel: principiante
 capitulo: 4
 orden: 9
 tags:
-- planificacion-editorial
 - obstetrico
+- embarazo-temprano
+- tecnica
 relacionado_con:
 - pocus-embarazada
 - desarrollo-embrionario
+- signo-embarazo-intrauterino
 - signo-embarazo-ectopico
 prerequisito_de:
 - signo-actividad-cardiaca-fetal
@@ -23,13 +25,96 @@ prerequisito_de:
 - signo-liquido-amniotico
 - signo-localizacion-placentaria
 - caso-integracion-obstetrica
-refs: []
-abstract: ''
+refs:
+- derobertis2026pocusob
+- aium2024obstetrico
+- rodgers2024lexico
+abstract: >
+  Una exploración transabdominal puede terminar sin responder la pregunta
+  clínica. Reconocer esa incertidumbre permite separar la limitación de la
+  imagen, la localización pendiente y la actividad cardíaca no documentada.
+  Este concepto enseña a conservar lo observado, explicar lo que falta y
+  organizar la evaluación siguiente. Los síntomas y la estabilidad orientan
+  la urgencia; una imagen insuficiente no demuestra normalidad ni pérdida
+  gestacional.
 medios: []
+licencia: CC BY 4.0
 ---
 
-**Ficha de planificación editorial.** No contiene una redacción clínica revisada.
+## La pregunta que sigue abierta
 
-Desarrollar la documentación de la incertidumbre y la necesidad de completar la evaluación; no trasladar criterios de otras vías de adquisición sin verificación.
+Terminar de explorar no siempre equivale a haber respondido. Puedes haber obtenido imágenes y seguir sin demostrar la localización del embarazo, o reconocer estructuras sin haber documentado actividad cardíaca. La tarea es identificar **qué pregunta quedó abierta** y dejarla visible para quien continúa la atención.
 
-No se han asignado referencias, umbrales, hallazgos, conductas ni datos de pacientes.
+POCUS responde preguntas concretas y complementa la ecografía especializada. Esa utilidad no exige convertir cada exploración en un diagnóstico definitivo. [derobertis2026pocusob]
+
+Esta ficha continúa [Localización del embarazo: evaluación transabdominal](https://www.biosemiotics.net/localizacion-del-embarazo-evaluacion-transabdominal/). Aquí el objetivo es aprender a documentar el resultado cuando esa pregunta todavía no tiene una respuesta defendible.
+
+## Separa la adquisición de la interpretación
+
+Un examen limitado conserva su alcance: no sustituye automáticamente la evaluación estándar o detallada que corresponda. La AIUM pide documentación suficiente de la exploración y de su interpretación. [aium2024obstetrico]
+
+Para revisar tu registro con un tutor, utiliza estas preguntas:
+
+| Pregunta | Qué necesitas poder mostrar | Si no puedes sostener la respuesta |
+|---|---|---|
+| ¿Qué anatomía reconocí? | Las estructuras y los planos conservados | Describe qué no se logró visualizar y la limitación observada. |
+| ¿Qué hallazgo identifiqué? | La imagen que respalda el nombre utilizado | Conserva una descripción; no completes la estructura por expectativa. |
+| ¿Qué conclusión permite? | La relación entre la imagen y la pregunta inicial | Escribe cuál sigue pendiente y qué evaluación se necesita para resolverla. |
+
+La tabla es una herramienta docente para revisar el razonamiento, no una clasificación diagnóstica.
+
+## No todas las incertidumbres tienen el mismo nombre
+
+**Una ventana limitada** describe un problema de adquisición. En el informe, precisa qué parte de la pregunta no pudiste evaluar. No atribuyas a un órgano no visualizado un resultado normal. La exigencia de documentar el estudio no desaparece porque sea limitado. [aium2024obstetrico]
+
+**Una colección sin saco vitelino ni embrión** no tiene la misma certeza que una gestación con esas estructuras identificadas. El consenso distingue hallazgos probables y definitivos. **Localización y actividad cardíaca son observaciones separadas**: que una quede pendiente no borra lo que sí lograste documentar. [rodgers2024lexico]
+
+**Embarazo de localización desconocida** tiene una definición formal: prueba de embarazo positiva, sin hallazgos de gestación intrauterina o ectópica probable o definitiva en la evaluación transvaginal. Una exploración abdominal insuficiente no basta para aplicar esa categoría. En primer contacto, puedes describir honestamente «localización no demostrada en esta exploración transabdominal». [rodgers2024lexico]
+
+## Del significante a una decisión explícita
+
+Como ejercicio de revisión, enlaza estas frases con el registro:
+
+- **Significante:** «En la adquisición transabdominal conservada identifico…; no logro valorar…».
+- **Significado:** «Este hallazgo permite sostener…; la limitación impide concluir…».
+- **Decisión:** «Para responder lo pendiente se acuerda evaluación por…; la continuidad se organiza mediante…».
+
+No rellenes los espacios con hallazgos supuestos. Pide al tutor que compruebe si la imagen respalda la interpretación y si el siguiente paso responde a la pregunta pendiente. La guía ISUOG sitúa POCUS dentro de la evaluación clínica de las complicaciones del embarazo temprano, como complemento del examen especializado. [derobertis2026pocusob]
+
+## La urgencia se decide también fuera de la pantalla
+
+NICE recomienda atención directa en urgencias ante inestabilidad hemodinámica o preocupación importante por dolor o sangrado. Una imagen no concluyente no es un motivo para demorar esa atención. [NICE NG126: evaluación inicial](https://www.nice.org.uk/guidance/ng126/chapter/recommendations)
+
+En una paciente estable, organiza la evaluación obstétrica que falta. NICE indica explicar las limitaciones cuando se emplea la vía transabdominal como alternativa a una exploración transvaginal no aceptada. En el seguimiento de una localización desconocida, los cambios de síntomas exigen reevaluación; la hCG sérica no determina por sí sola dónde está implantado el embarazo. [NICE NG126: diagnóstico y seguimiento](https://www.nice.org.uk/guidance/NG126/chapter/diagnosis-of-viable-intrauterine-pregnancy-and-of-tubal-ectopic-pregnancy)
+
+## El informe debe permitir continuar la atención
+
+Como plantilla docente, deja escritos:
+
+1. La pregunta inicial y la vía utilizada.
+2. Las estructuras identificadas y las imágenes conservadas.
+3. La limitación concreta y la conclusión que todavía no se puede sostener.
+4. El servicio que continuará la evaluación y cómo se realizará el contacto.
+5. La fecha o condición de reevaluación acordada por el equipo responsable.
+6. Las instrucciones para buscar atención si aparecen síntomas nuevos o empeoran.
+
+NICE recomienda información escrita sobre síntomas nuevos o crecientes y cómo acceder a atención urgente en el seguimiento de una localización desconocida. Explica el plan en palabras comprensibles para la paciente. [NICE NG126](https://www.nice.org.uk/guidance/NG126/chapter/diagnosis-of-viable-intrauterine-pregnancy-and-of-tubal-ectopic-pregnancy)
+
+## Dónde NO confiar
+
+- **En la fecha menstrual como prueba de lo que debería verse.** NICE advierte que no basta para determinar si tendría que observarse actividad cardíaca. [NICE NG126](https://www.nice.org.uk/guidance/NG126/chapter/diagnosis-of-viable-intrauterine-pregnancy-and-of-tubal-ectopic-pregnancy)
+- **En trasladar criterios entre vías.** Los tiempos y medidas de visualización temprana del consenso corresponden a ecografía transvaginal. [rodgers2024lexico]
+- **En una etiqueta que exceda el registro.** «Probable», «definitivo» y «localización desconocida» no son intercambiables. [rodgers2024lexico]
+- **En una exploración enfocada presentada como estudio completo.** Mantén visible la necesidad de evaluación adicional cuando corresponda. [aium2024obstetrico]
+
+Esta ficha no establece un intervalo universal de seguimiento ni criterios para diagnosticar pérdida gestacional. La evaluación de esa posibilidad requiere el estudio apropiado y su interpretación especializada.
+
+## Practica esto
+
+Con registros docentes autorizados y un tutor, elige una exploración en la que falte información. Escribe una columna con lo demostrado y otra con lo pendiente. Revisa cada afirmación señalando la imagen que la respalda.
+
+Después redacta una nota de continuidad: qué falta, quién lo evaluará y cómo se accede a esa evaluación. Pide a otra persona que la lea sin explicaciones adicionales. Si no puede reconstruir el siguiente paso, revisa la nota.
+
+## Discusión abierta
+
+Cuando tu exploración no responde la pregunta inicial, ¿qué información permite a quien recibe a la paciente continuar sin confundir una limitación con un resultado negativo?
