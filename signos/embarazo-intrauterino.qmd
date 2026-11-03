@@ -1,12 +1,12 @@
 ---
-estado: revisado
+estado: publicado
 fecha_revision: 2026-11-03
 revisado_por: Alcy Torres
 ghost_id: 6aea5b92556c260001d6e009
 id: signo-embarazo-intrauterino
 tipo: signo
 titulo: 'Localización del embarazo: evaluación transabdominal'
-url: ''
+url: 'https://www.biosemiotics.net/localizacion-del-embarazo-evaluacion-transabdominal/'
 organo: utero
 sistema: genitourinario
 ventana: suprapubica-transabdominal
