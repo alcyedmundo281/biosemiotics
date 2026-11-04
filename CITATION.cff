@@ -21,6 +21,9 @@ authors:
 doi: 10.5281/zenodo.21435362
 
 identifiers:
+  - type: other
+    value: "3144-7813"
+    description: "ISSN del seriado biosemiotics (en línea); no identifica las ediciones con ISBN"
   - type: doi
     value: 10.5281/zenodo.21435362
     description: DOI de concepto, apunta a todas las versiones

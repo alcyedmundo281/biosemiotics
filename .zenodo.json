@@ -41,6 +41,11 @@
       "relation": "isSupplementTo",
       "resource_type": "software",
       "scheme": "url"
+    },
+    {
+      "identifier": "3144-7813",
+      "relation": "isDerivedFrom",
+      "scheme": "issn"
     }
   ],
   "notes": "Plataforma independiente. El contenido no implica aval ni representación de ninguna institución sanitaria."

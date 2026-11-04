@@ -34,6 +34,11 @@ from rutas import blindar_salida, escribir_texto, raiz_argumentos, raiz_desde_ar
 # DOI de la obra completa (Zenodo). Se muestra bajo el buscador del atlas.
 DOI_OBRA = "10.5281/zenodo.21435362"
 
+# Identidad del seriado; no pertenece a las ediciones del libro con ISBN.
+TITULO_SERIADO = "biosemiotics — atlas de POCUS para el médico de primer contacto"
+ISSN_SERIADO = "3144-7813"
+URL_SERIADO = "https://www.biosemiotics.net/"
+
 # Las DOS fuentes del MISMO index.json que consume el buscador. Son constantes
 # DISTINTAS a propósito, no se derivan del argumento: si ambas ranuras salen
 # iguales, el fallback queda anulado.
@@ -91,11 +96,25 @@ def ficha(e: dict, bibliografia: Optional[dict] = None) -> dict:
 
 
 # ══════════════════ 2. JSON-LD (Google + sistemas de IA) ══════════════════
+def jsonld_seriado() -> dict:
+    """Identidad estable del seriado, compartida por todas las fichas."""
+    return {
+        "@type": "Periodical",
+        "@id": URL_SERIADO + "#seriado",
+        "name": TITULO_SERIADO,
+        "issn": ISSN_SERIADO,
+        "url": URL_SERIADO,
+        "inLanguage": "es",
+        "publisher": {"@type": "Organization", "name": "Powersemiotics"},
+    }
+
+
 def jsonld(e: dict) -> dict:
     autores = e.get("autores") or [{"nombre": "Alcy Torres"}]
     ld = {
         "@context": "https://schema.org",
-        "@type": "MedicalScholarlyArticle",
+        "@type": "ScholarlyArticle",
+        "isPartOf": jsonld_seriado(),
         "headline": e["titulo"],
         "inLanguage": "es",
         "author": [
@@ -108,7 +127,7 @@ def jsonld(e: dict) -> dict:
                                 if a.get("afiliacion") else None),
             }.items() if v} for a in autores
         ],
-        "publisher": {"@type": "Organization", "name": "biosemiotics"},
+        "publisher": {"@type": "Organization", "name": "Powersemiotics"},
         "isAccessibleForFree": True,
         "audience": {"@type": "MedicalAudience", "audienceType": "Physician"},
         "learningResourceType": "Clinical education",

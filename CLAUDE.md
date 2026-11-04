@@ -10,6 +10,21 @@ Un atlas educativo de POCUS (ecografía en el punto de atención) para el médic
 
 Autor y responsable clínico: Dr. Alcy Torres. Toda decisión clínica final es suya.
 
+## Identidad del seriado e ISSN
+
+El título **biosemiotics — atlas de POCUS para el médico de primer contacto**,
+subtítulo incluido, está vinculado al **ISSN 3144-7813 (en línea)**, asignado
+el 04/11/2026 por el U.S. ISSN Center (solicitud APPL0007942).
+Cambiar ese título exige avisar previamente a la Library of Congress y puede
+requerir un ISSN nuevo. **No se modifica sin decisión explícita de Alcy.**
+
+El ISSN identifica el seriado en línea, no las ediciones del libro con ISBN:
+no se añade a sus créditos ni a su línea de filiación. En el sitio se exhibe
+como «ISSN 3144-7813 (en línea)». En JSON-LD las fichas son `ScholarlyArticle`
+con `isPartOf` hacia el nodo `Periodical`, que lleva el título exacto e `issn`.
+La licencia editorial es CC BY 4.0; las licencias `licencia_img` de Commons
+pertenecen a las imágenes y no se sustituyen por la licencia del texto.
+
 ## Regla de oro del sistema
 
 **Una fuente, muchas salidas.** El banco de archivos `.qmd` es la ÚNICA fuente de verdad. Todo lo demás (`build/`, el índice, el HTML, el XML experimental de `build/jats/`, el proyecto Quarto de `build/quarto/`) es **derivado** y se regenera. NUNCA edites archivos en `build/` a mano: el siguiente `indice.py` o `qmd.py` los sobrescribe. Si algo está mal en una salida, se arregla en el `.qmd` de origen y se recompila.
@@ -634,6 +649,20 @@ Las dos sirven **el mismo archivo del mismo repositorio**. El buscador pide la p
 Las dos URLs (primaria raw, respaldo jsDelivr) son **constantes fijas en `indice.py`** (`URL_PRIMARIA` / `URL_RESPALDO`); NO se pasan por argumento. El comando es `python scripts/indice.py .` a secas —si le pasas una URL, falla con `unrecognized arguments` en vez de ignorarla en silencio. `indice.py` imprime las dos al terminar; verifícalas ahí. Si algún día hay que reconfigurarlas, será una bandera explícita, no un positional.
 
 **Cuándo hay que repegar `atlas-inject.html` en Ghost:** solo si cambia la estructura del buscador (diseño, facetas, lógica de fetch). Para publicar contenido NO hace falta —basta el ciclo de arriba.
+
+**Pie global e identidad del seriado:** `artefactos/ghost-pie.html` es la
+fuente del bloque pegado manualmente en **Ghost → Settings → Code injection
+→ Site footer**. Incluye el pie visible y el JSON-LD estático `Periodical`
+con ISSN. Ghost sirve esa copia guardada: fusionar un PR o ejecutar
+`indice.py` **no la actualiza**. Si cambia el archivo, hay que repegar el
+bloque completo una sola vez y guardar, igual que con `atlas-inject.html`
+y `reto.html` cuando cambian sus fuentes. Después se verifica el HTML crudo
+público: una sola copia de `Periodical`, `issn` igual a `3144-7813` y `name`
+exactamente «biosemiotics — atlas de POCUS para el médico de primer contacto»
+(inicial minúscula y raya U+2014). `tests/test_seriado.py` comprueba que esta
+fuente y el nodo generado por `indice.py` conservan la misma identidad.
+Las fichas JSON-LD de `build/jsonld/` tampoco se instalan automáticamente en
+Ghost; regenerarlas no sustituye los bloques nativos `Article` del sitio.
 
 **El Reto sigue la misma regla.** La página `/reto/` de Ghost ejecuta pegado el
 script de `artefactos/reto.html`; si ese archivo cambia, hay que repegarlo.
