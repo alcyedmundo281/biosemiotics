@@ -650,6 +650,20 @@ Las dos URLs (primaria raw, respaldo jsDelivr) son **constantes fijas en `indice
 
 **Cuándo hay que repegar `atlas-inject.html` en Ghost:** solo si cambia la estructura del buscador (diseño, facetas, lógica de fetch). Para publicar contenido NO hace falta —basta el ciclo de arriba.
 
+**Pie global e identidad del seriado:** `artefactos/ghost-pie.html` es la
+fuente del bloque pegado manualmente en **Ghost → Settings → Code injection
+→ Site footer**. Incluye el pie visible y el JSON-LD estático `Periodical`
+con ISSN. Ghost sirve esa copia guardada: fusionar un PR o ejecutar
+`indice.py` **no la actualiza**. Si cambia el archivo, hay que repegar el
+bloque completo una sola vez y guardar, igual que con `atlas-inject.html`
+y `reto.html` cuando cambian sus fuentes. Después se verifica el HTML crudo
+público: una sola copia de `Periodical`, `issn` igual a `3144-7813` y `name`
+exactamente «biosemiotics — atlas de POCUS para el médico de primer contacto»
+(inicial minúscula y raya U+2014). `tests/test_seriado.py` comprueba que esta
+fuente y el nodo generado por `indice.py` conservan la misma identidad.
+Las fichas JSON-LD de `build/jsonld/` tampoco se instalan automáticamente en
+Ghost; regenerarlas no sustituye los bloques nativos `Article` del sitio.
+
 **El Reto sigue la misma regla.** La página `/reto/` de Ghost ejecuta pegado el
 script de `artefactos/reto.html`; si ese archivo cambia, hay que repegarlo.
 `verificar_publicacion.py --id <id> --comprobar-web` recorre artículo → Reto
