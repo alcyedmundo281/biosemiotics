@@ -1,0 +1,446 @@
+{
+  "fecha": "2026-11-04",
+  "alcance": "HTML crudo público de portada y todas las URLs de los sitemaps; no incluye borradores ni archivos privados de Ghost",
+  "sitemaps": {
+    "sitemap-pages.xml": 5,
+    "sitemap-posts.xml": 56,
+    "sitemap-authors.xml": 1,
+    "sitemap-tags.xml": 42
+  },
+  "resultados": [
+    {
+      "url": "https://www.biosemiotics.net/",
+      "matches": []
+    },
+    {
+      "url": "https://www.biosemiotics.net/about/",
+      "matches": []
+    },
+    {
+      "url": "https://www.biosemiotics.net/ia/",
+      "matches": []
+    },
+    {
+      "url": "https://www.biosemiotics.net/reto/",
+      "matches": []
+    },
+    {
+      "url": "https://www.biosemiotics.net/atlas/",
+      "matches": []
+    },
+    {
+      "url": "https://www.biosemiotics.net/embarazo-temprano-limites-de-una-exploracion-no-concluyente/",
+      "matches": []
+    },
+    {
+      "url": "https://www.biosemiotics.net/localizacion-del-embarazo-evaluacion-transabdominal/",
+      "matches": []
+    },
+    {
+      "url": "https://www.biosemiotics.net/hallazgos-de-desarrollo-en-el-embarazo-temprano/",
+      "matches": []
+    },
+    {
+      "url": "https://www.biosemiotics.net/pocus-en-la-embarazada-alcance-seguridad-y-limites/",
+      "matches": []
+    },
+    {
+      "url": "https://www.biosemiotics.net/tiroides-en-pocus-reconocer-el-hallazgo-y-orientar-el-siguiente-paso/",
+      "matches": []
+    },
+    {
+      "url": "https://www.biosemiotics.net/pancreatitis-en-pocus-lo-que-el-pancreas-deja-ver/",
+      "matches": []
+    },
+    {
+      "url": "https://www.biosemiotics.net/vaina-del-nervio-optico-una-pista-de-presion-no-un-permiso-para-descartar/",
+      "matches": []
+    },
+    {
+      "url": "https://www.biosemiotics.net/coartacion-aortica-la-obstruccion-que-hay-que-buscar-mas-alla-del-corazon/",
+      "matches": []
+    },
+    {
+      "url": "https://www.biosemiotics.net/disfuncion-diafragmatica-el-musculo-que-debe-sostener-la-extubacion/",
+      "matches": []
+    },
+    {
+      "url": "https://www.biosemiotics.net/ganancia-ultrasonido/",
+      "matches": []
+    },
+    {
+      "url": "https://www.biosemiotics.net/vexus-cuando-la-congestion-venosa-llega-a-los-organos/",
+      "matches": []
+    },
+    {
+      "url": "https://www.biosemiotics.net/teichholz-y-fraccion-de-acortamiento-una-linea-no-describe-todo-el-ventriculo/",
+      "matches": []
+    },
+    {
+      "url": "https://www.biosemiotics.net/absceso-de-partes-blandas-la-coleccion-que-la-mano-no-distingue/",
+      "matches": []
+    },
+    {
+      "url": "https://www.biosemiotics.net/fevi-por-simpson-biplano-el-numero-depende-del-contorno/",
+      "matches": []
+    },
+    {
+      "url": "https://www.biosemiotics.net/gasto-cardiaco-calcular-el-flujo-sin-ocultar-el-error/",
+      "matches": []
+    },
+    {
+      "url": "https://www.biosemiotics.net/vti-comprobar-el-flujo-antes-de-decidir-sobre-liquidos/",
+      "matches": []
+    },
+    {
+      "url": "https://www.biosemiotics.net/disfuncion-diastolica-e-e-orienta-no-sentencia/",
+      "matches": []
+    },
+    {
+      "url": "https://www.biosemiotics.net/hemotorax-en-efast-liquido-por-encima-del-diafragma/",
+      "matches": []
+    },
+    {
+      "url": "https://www.biosemiotics.net/pelvis-el-punto-mas-bajo-y-la-vejiga-que-lo-decide/",
+      "matches": []
+    },
+    {
+      "url": "https://www.biosemiotics.net/esplenorrenal-la-ventana-que-se-escapa-por-arriba/",
+      "matches": []
+    },
+    {
+      "url": "https://www.biosemiotics.net/morrison-la-primera-ventana-del-fast/",
+      "matches": []
+    },
+    {
+      "url": "https://www.biosemiotics.net/protocolo-fast-efast-la-secuencia-no-el-catalogo/",
+      "matches": []
+    },
+    {
+      "url": "https://www.biosemiotics.net/embarazo-ectopico-el-utero-vacio-no-es-el-signo/",
+      "matches": []
+    },
+    {
+      "url": "https://www.biosemiotics.net/hernia-complicada-distinguir-el-bulto-que-espera-del-que-no/",
+      "matches": []
+    },
+    {
+      "url": "https://www.biosemiotics.net/cuantificacion-y-sus-limites-de-donde-salen-los-numeros/",
+      "matches": []
+    },
+    {
+      "url": "https://www.biosemiotics.net/doppler-el-color-no-mide-el-angulo-decide/",
+      "matches": []
+    },
+    {
+      "url": "https://www.biosemiotics.net/apendicitis-el-apendice-que-no-se-aplasta/",
+      "matches": []
+    },
+    {
+      "url": "https://www.biosemiotics.net/coledocolitiasis-cuando-el-signo-es-el-conducto-no-la-piedra/",
+      "matches": []
+    },
+    {
+      "url": "https://www.biosemiotics.net/colecistitis-aguda-cuando-la-piedra-ya-no-es-el-hallazgo/",
+      "matches": []
+    },
+    {
+      "url": "https://www.biosemiotics.net/aneurisma-aortico-abdominal-en-pocus-medir-antes-de-que-el-dolor-engane/",
+      "matches": []
+    },
+    {
+      "url": "https://www.biosemiotics.net/tvp-por-compresion-la-vena-que-no-desaparece/",
+      "matches": []
+    },
+    {
+      "url": "https://www.biosemiotics.net/taponamiento-cardiaco-el-derrame-que-impide-el-llenado/",
+      "matches": []
+    },
+    {
+      "url": "https://www.biosemiotics.net/sobrecarga-del-ventriculo-derecho-tep/",
+      "matches": []
+    },
+    {
+      "url": "https://www.biosemiotics.net/rinon-cronico-ultrasonido/",
+      "matches": []
+    },
+    {
+      "url": "https://www.biosemiotics.net/perfil-a-leer-el-pulmon-seco-sin-confundirlo-con-neumotorax/",
+      "matches": []
+    },
+    {
+      "url": "https://www.biosemiotics.net/neumotorax-en-pocus-la-ausencia-de-sliding-no-basta/",
+      "matches": []
+    },
+    {
+      "url": "https://www.biosemiotics.net/hidronefrosis-en-pocus-detectar-dilatacion-no-adivinar-la-piedra/",
+      "matches": []
+    },
+    {
+      "url": "https://www.biosemiotics.net/globo-vesical-en-pocus-confirmar-retencion-antes-de-sondar/",
+      "matches": []
+    },
+    {
+      "url": "https://www.biosemiotics.net/funcion-sistolica-del-vi-a-ojo-clasificar-antes-de-cuantificar/",
+      "matches": []
+    },
+    {
+      "url": "https://www.biosemiotics.net/derrame-pleural-ultrasonido/",
+      "matches": []
+    },
+    {
+      "url": "https://www.biosemiotics.net/derrame-pericardico-en-pocus-reconocer-liquido-sin-confundirlo-con-taponamiento/",
+      "matches": []
+    },
+    {
+      "url": "https://www.biosemiotics.net/colelitiasis-calculo-movil-con-sombra-posterior/",
+      "matches": []
+    },
+    {
+      "url": "https://www.biosemiotics.net/lineas-b-ultrasonido-pulmonar/",
+      "matches": []
+    },
+    {
+      "url": "https://www.biosemiotics.net/sliding-pleural-y-lung-point-movimiento-antes-que-diagnostico/",
+      "matches": []
+    },
+    {
+      "url": "https://www.biosemiotics.net/modo-m-convertir-movimiento-en-una-linea-de-tiempo/",
+      "matches": []
+    },
+    {
+      "url": "https://www.biosemiotics.net/compresibilidad-venosa-una-prueba-dinamica-no-una-foto/",
+      "matches": []
+    },
+    {
+      "url": "https://www.biosemiotics.net/efecto-piezoelectrico-ultrasonido/",
+      "matches": []
+    },
+    {
+      "url": "https://www.biosemiotics.net/frecuencia-profundidad-ultrasonido/",
+      "matches": []
+    },
+    {
+      "url": "https://www.biosemiotics.net/sombra-acustica-ultrasonido/",
+      "matches": []
+    },
+    {
+      "url": "https://www.biosemiotics.net/refuerzo-acustico-posterior-ultrasonido/",
+      "matches": []
+    },
+    {
+      "url": "https://www.biosemiotics.net/reverberacion-ultrasonido/",
+      "matches": []
+    },
+    {
+      "url": "https://www.biosemiotics.net/profundidad-ultrasonido/",
+      "matches": []
+    },
+    {
+      "url": "https://www.biosemiotics.net/velocidad-propagacion-ultrasonido/",
+      "matches": []
+    },
+    {
+      "url": "https://www.biosemiotics.net/sondas-orientacion-ultrasonido/",
+      "matches": []
+    },
+    {
+      "url": "https://www.biosemiotics.net/ventanas-cardiacas-en-pocus-orientar-el-corazon-antes-de-interpretar/",
+      "matches": []
+    },
+    {
+      "url": "https://www.biosemiotics.net/aprender-a-leer-el-cuerpo-vivo/",
+      "matches": []
+    },
+    {
+      "url": "https://www.biosemiotics.net/author/alcy/",
+      "matches": []
+    },
+    {
+      "url": "https://www.biosemiotics.net/tag/genitourinario/",
+      "matches": []
+    },
+    {
+      "url": "https://www.biosemiotics.net/tag/embarazo-temprano/",
+      "matches": []
+    },
+    {
+      "url": "https://www.biosemiotics.net/tag/obstetrico/",
+      "matches": []
+    },
+    {
+      "url": "https://www.biosemiotics.net/tag/tecnica/",
+      "matches": []
+    },
+    {
+      "url": "https://www.biosemiotics.net/tag/seguridad/",
+      "matches": []
+    },
+    {
+      "url": "https://www.biosemiotics.net/tag/obstetricia/",
+      "matches": []
+    },
+    {
+      "url": "https://www.biosemiotics.net/tag/embarazo/",
+      "matches": []
+    },
+    {
+      "url": "https://www.biosemiotics.net/tag/vena-cava-inferior/",
+      "matches": []
+    },
+    {
+      "url": "https://www.biosemiotics.net/tag/cardiorrenal/",
+      "matches": []
+    },
+    {
+      "url": "https://www.biosemiotics.net/tag/uci/",
+      "matches": []
+    },
+    {
+      "url": "https://www.biosemiotics.net/tag/vexus/",
+      "matches": []
+    },
+    {
+      "url": "https://www.biosemiotics.net/tag/congestion-venosa/",
+      "matches": []
+    },
+    {
+      "url": "https://www.biosemiotics.net/tag/doppler/",
+      "matches": []
+    },
+    {
+      "url": "https://www.biosemiotics.net/tag/intermedio/",
+      "matches": []
+    },
+    {
+      "url": "https://www.biosemiotics.net/tag/lineas-a/",
+      "matches": []
+    },
+    {
+      "url": "https://www.biosemiotics.net/tag/orientacion/",
+      "matches": []
+    },
+    {
+      "url": "https://www.biosemiotics.net/tag/velocidad-de-propagacion/",
+      "matches": []
+    },
+    {
+      "url": "https://www.biosemiotics.net/tag/profundidad/",
+      "matches": []
+    },
+    {
+      "url": "https://www.biosemiotics.net/tag/reverberacion/",
+      "matches": []
+    },
+    {
+      "url": "https://www.biosemiotics.net/tag/refuerzo-acustico-posterior/",
+      "matches": []
+    },
+    {
+      "url": "https://www.biosemiotics.net/tag/sombra-acustica/",
+      "matches": []
+    },
+    {
+      "url": "https://www.biosemiotics.net/tag/artefactos/",
+      "matches": []
+    },
+    {
+      "url": "https://www.biosemiotics.net/tag/ganancia/",
+      "matches": []
+    },
+    {
+      "url": "https://www.biosemiotics.net/tag/knobology/",
+      "matches": []
+    },
+    {
+      "url": "https://www.biosemiotics.net/tag/frecuencia/",
+      "matches": []
+    },
+    {
+      "url": "https://www.biosemiotics.net/tag/resolucion/",
+      "matches": []
+    },
+    {
+      "url": "https://www.biosemiotics.net/tag/transductores/",
+      "matches": []
+    },
+    {
+      "url": "https://www.biosemiotics.net/tag/fisica-del-ultrasonido/",
+      "matches": []
+    },
+    {
+      "url": "https://www.biosemiotics.net/tag/efecto-piezoelectrico/",
+      "matches": []
+    },
+    {
+      "url": "https://www.biosemiotics.net/tag/enfermedad-renal-cronica/",
+      "matches": []
+    },
+    {
+      "url": "https://www.biosemiotics.net/tag/nefrologia/",
+      "matches": []
+    },
+    {
+      "url": "https://www.biosemiotics.net/tag/ultrasonido-renal/",
+      "matches": []
+    },
+    {
+      "url": "https://www.biosemiotics.net/tag/rinon-cronico/",
+      "matches": []
+    },
+    {
+      "url": "https://www.biosemiotics.net/tag/toracocentesis/",
+      "matches": []
+    },
+    {
+      "url": "https://www.biosemiotics.net/tag/derrame-pleural/",
+      "matches": []
+    },
+    {
+      "url": "https://www.biosemiotics.net/tag/ultrasonido-pulmonar/",
+      "matches": []
+    },
+    {
+      "url": "https://www.biosemiotics.net/tag/lineas-b/",
+      "matches": []
+    },
+    {
+      "url": "https://www.biosemiotics.net/tag/pocus/",
+      "matches": []
+    },
+    {
+      "url": "https://www.biosemiotics.net/tag/edema-pulmonar/",
+      "matches": []
+    },
+    {
+      "url": "https://www.biosemiotics.net/tag/disnea/",
+      "matches": []
+    },
+    {
+      "url": "https://www.biosemiotics.net/tag/fundamentos/",
+      "matches": []
+    },
+    {
+      "url": "https://www.biosemiotics.net/tag/principiante/",
+      "matches": []
+    }
+  ],
+  "about_body_license": "CC BY 4.0",
+  "about_body_license_url": "https://creativecommons.org/licenses/by/4.0/deed.es",
+  "about_editor": "Publicado por Powersemiotics · Wellesley, Massachusetts, EE. UU.",
+  "issn": "3144-7813",
+  "jsonld": {
+    "https://www.biosemiotics.net/": [
+      "WebSite",
+      "Periodical"
+    ],
+    "https://www.biosemiotics.net/about/": [
+      "Article",
+      "Periodical"
+    ],
+    "https://www.biosemiotics.net/atlas/": [
+      "Article",
+      "Periodical"
+    ]
+  }
+}

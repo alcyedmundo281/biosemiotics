@@ -10,6 +10,21 @@ Un atlas educativo de POCUS (ecografía en el punto de atención) para el médic
 
 Autor y responsable clínico: Dr. Alcy Torres. Toda decisión clínica final es suya.
 
+## Identidad del seriado e ISSN
+
+El título **biosemiotics — atlas de POCUS para el médico de primer contacto**,
+subtítulo incluido, está vinculado al **ISSN 3144-7813 (en línea)**, asignado
+el 04/11/2026 por el U.S. ISSN Center (solicitud APPL0007942).
+Cambiar ese título exige avisar previamente a la Library of Congress y puede
+requerir un ISSN nuevo. **No se modifica sin decisión explícita de Alcy.**
+
+El ISSN identifica el seriado en línea, no las ediciones del libro con ISBN:
+no se añade a sus créditos ni a su línea de filiación. En el sitio se exhibe
+como «ISSN 3144-7813 (en línea)». En JSON-LD las fichas son `ScholarlyArticle`
+con `isPartOf` hacia el nodo `Periodical`, que lleva el título exacto e `issn`.
+La licencia editorial es CC BY 4.0; las licencias `licencia_img` de Commons
+pertenecen a las imágenes y no se sustituyen por la licencia del texto.
+
 ## Regla de oro del sistema
 
 **Una fuente, muchas salidas.** El banco de archivos `.qmd` es la ÚNICA fuente de verdad. Todo lo demás (`build/`, el índice, el HTML, el XML experimental de `build/jats/`, el proyecto Quarto de `build/quarto/`) es **derivado** y se regenera. NUNCA edites archivos en `build/` a mano: el siguiente `indice.py` o `qmd.py` los sobrescribe. Si algo está mal en una salida, se arregla en el `.qmd` de origen y se recompila.
