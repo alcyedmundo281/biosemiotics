@@ -104,7 +104,7 @@ jobs:
           sudo apt-get update -qq
           sudo apt-get install -y --no-install-recommends \
             pandoc fonts-freefont-ttf default-jre-headless librsvg2-bin \
-            texlive-latex-recommended texlive-latex-extra \
+            texlive-latex-recommended texlive-latex-extra poppler-utils \
             texlive-bibtex-extra texlive-lang-spanish texlive-luatex
           echo "pandoc: $(pandoc --version | head -1)"
           # rsvg-convert rasteriza la portada: Kindle no admite portadas SVG
@@ -140,6 +140,19 @@ jobs:
           unzip -q /tmp/epubcheck.zip -d /opt
           echo "EPUBCHECK_JAR=/opt/epubcheck-${VER}/epubcheck.jar" >> "$GITHUB_ENV"
 
+      - name: Auditoría temporal del corte de edición
+        if: github.event_name == 'pull_request' && github.head_ref == 'codex/conteos-declaracion-ia'
+        run: |
+          git fetch --no-tags origin 852236f78b04b6a16ee0b4b9b65ff8378a63595d
+          python docs/auditorias/2026-11-06-corte-edicion/comparar_pdf.py 852236f78b04b6a16ee0b4b9b65ff8378a63595d
+
+      - name: Conservar auditoría temporal del corte
+        if: always() && github.event_name == 'pull_request' && github.head_ref == 'codex/conteos-declaracion-ia'
+        uses: actions/upload-artifact@v7
+        with:
+          name: auditoria-corte-edicion
+          path: build/auditoria-corte/
+          retention-days: 30
       - name: Preflight de publicación
         run: python scripts/preflight.py --publicacion
 

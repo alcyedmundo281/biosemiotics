@@ -124,7 +124,7 @@ class ContratoEditorialTest(unittest.TestCase):
         anterior = quarto / "anterior.md"
         anterior.write_text("Conservar")
         with self.assertRaisesRegex(RuntimeError, "abstract"):
-            qmd.generar([ficha], self.raiz, quarto)
+            qmd.generar([dict(ficha, estado="publicado", numero=1, url="https://example.org/demo/", fecha_publicacion="2026-11-06T12:00:00.000+00:00")], self.raiz, quarto, fecha_corte=qmd.FECHA_CORTE)
         self.assertEqual(anterior.read_text(), "Conservar")
 
     def test_comandos_publicos_fallan_antes_de_escribir(self):
