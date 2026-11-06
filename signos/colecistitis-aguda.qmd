@@ -1,6 +1,7 @@
 ---
 estado: publicado
 numero: 29
+fecha_publicacion: "2026-08-15T15:11:34.000+00:00"
 fecha_revision: null
 ghost_id: 6a807e4fefcf7600015d53dd
 id: signo-colecistitis-aguda

@@ -1,6 +1,7 @@
 ---
 estado: publicado
 numero: 31
+fecha_publicacion: "2026-08-15T16:02:28.000+00:00"
 fecha_revision: null
 ghost_id: 6a808c1defcf7600015d542b
 id: signo-apendicitis

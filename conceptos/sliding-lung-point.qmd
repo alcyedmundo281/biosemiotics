@@ -1,6 +1,7 @@
 ---
 estado: publicado
 numero: 26
+fecha_publicacion: "2026-08-02T03:22:44.000+00:00"
 fecha_revision: null
 ghost_id: 6a6eb7d48506ae000139c8b0
 id: sliding-lung-point

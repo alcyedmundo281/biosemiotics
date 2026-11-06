@@ -1,6 +1,7 @@
 ---
 estado: publicado
 numero: 45
+fecha_publicacion: "2026-09-15T01:11:47.000+00:00"
 fecha_revision: 2026-09-14
 ghost_id: "6aa899c42e9f960001f0ff50"
 id: signo-fevi-simpson

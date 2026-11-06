@@ -1,6 +1,7 @@
 ---
 estado: publicado
 numero: 41
+fecha_publicacion: "2026-08-23T16:04:23.000+00:00"
 fecha_revision: null
 ghost_id: 6a8b19c1cc588400019b5155
 id: signo-hemotorax

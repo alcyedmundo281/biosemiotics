@@ -1,6 +1,7 @@
 ---
 estado: publicado
 numero: 4
+fecha_publicacion: "2026-07-18T12:49:48.000+00:00"
 fecha_revision: null
 ghost_id: 6a5b75d7f39c0b00010f4753
 id: signo-riñon-cronico

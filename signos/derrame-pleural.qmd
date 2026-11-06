@@ -1,6 +1,7 @@
 ---
 estado: publicado
 numero: 3
+fecha_publicacion: "2026-07-18T00:50:37.000+00:00"
 fecha_revision: null
 ghost_id: 6a5acd00fe9c8200010c8ea1
 id: signo-derrame-pleural

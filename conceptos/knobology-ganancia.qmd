@@ -1,6 +1,7 @@
 ---
 estado: publicado
 numero: 7
+fecha_publicacion: "2026-07-19T04:50:12.000+00:00"
 fecha_revision: null
 ghost_id: "6a5c56c3f39c0b00010f47fa"
 id: knobology-ganancia

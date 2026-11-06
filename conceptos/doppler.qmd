@@ -1,6 +1,7 @@
 ---
 estado: publicado
 numero: 33
+fecha_publicacion: "2026-08-18T15:04:56.000+00:00"
 fecha_revision: null
 ghost_id: 6a8471a80b23a20001c8f26e
 id: doppler

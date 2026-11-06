@@ -1,6 +1,7 @@
 ---
 estado: publicado
 numero: 21
+fecha_publicacion: "2026-07-29T16:49:41.000+00:00"
 fecha_revision: null
 ghost_id: 6a6a2efdc1349f000193b22a
 id: signo-aneurisma-aortico-abdominal

@@ -2,7 +2,7 @@
 
 import re
 import sys
-from datetime import date
+from datetime import date, datetime
 from pathlib import Path
 from urllib.parse import urlsplit
 
@@ -80,6 +80,18 @@ def estado_publicacion(e):
     if ghost_id is not None and (not isinstance(ghost_id, str) or
                                not re.fullmatch(r"[0-9a-f]{24}", ghost_id)):
         fallo("ghost_id debe ser el identificador real de 24 caracteres hexadecimales o null")
+    if estado == "publicado":
+        numero = e.get("numero")
+        if type(numero) is not int or numero < 1:
+            fallo("numero debe ser un entero positivo en toda ficha publicada")
+        fecha = e.get("fecha_publicacion")
+        if not isinstance(fecha, str) or not re.fullmatch(
+                r"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:Z|[+-]\d{2}:\d{2})", fecha):
+            fallo("fecha_publicacion debe ser una cadena ISO completa con zona, entre comillas en YAML")
+        try:
+            datetime.fromisoformat(fecha.replace("Z", "+00:00"))
+        except ValueError:
+            fallo("fecha_publicacion contiene un timestamp inválido")
     return estado
 
 

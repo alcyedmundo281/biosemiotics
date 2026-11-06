@@ -1,6 +1,7 @@
 ---
 estado: publicado
 numero: 11
+fecha_publicacion: "2026-07-24T18:12:33.000+00:00"
 fecha_revision: null
 ghost_id: 6a63a4d17daff4000136f257
 id: knobology-profundidad

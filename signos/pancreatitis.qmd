@@ -1,6 +1,7 @@
 ---
 estado: publicado
 numero: 51
+fecha_publicacion: "2026-10-15T22:30:17.000+00:00"
 fecha_revision: 2026-10-15
 ghost_id: "6ad15395093d8b0001f2fe40"
 id: signo-pancreatitis

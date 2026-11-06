@@ -1,6 +1,7 @@
 ---
 estado: publicado
 numero: 49
+fecha_publicacion: "2026-10-05T22:59:56.000+00:00"
 fecha_revision: 2026-10-03
 ghost_id: 6ac42b3448750f00010ee9ec
 id: signo-coartacion-aortica

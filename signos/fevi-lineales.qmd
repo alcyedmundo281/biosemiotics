@@ -1,6 +1,7 @@
 ---
 estado: publicado
 numero: 46
+fecha_publicacion: "2026-09-19T03:03:50.000+00:00"
 fecha_revision: 2026-09-18
 ghost_id: "6aadf9b8754e7a000181f00c"
 id: signo-fevi-lineales

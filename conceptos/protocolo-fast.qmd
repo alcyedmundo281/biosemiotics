@@ -1,6 +1,7 @@
 ---
 estado: publicado
 numero: 37
+fecha_publicacion: "2026-08-23T15:35:53.000+00:00"
 fecha_revision: null
 ghost_id: 6a8b12e0cc588400019b50c7
 id: protocolo-fast

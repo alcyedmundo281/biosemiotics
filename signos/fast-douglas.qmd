@@ -1,6 +1,7 @@
 ---
 estado: publicado
 numero: 40
+fecha_publicacion: "2026-08-23T16:00:32.000+00:00"
 fecha_revision: null
 ghost_id: 6a8b18decc588400019b5131
 id: signo-fast-douglas

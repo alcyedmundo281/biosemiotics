@@ -1,6 +1,7 @@
 ---
 estado: publicado
 numero: 19
+fecha_publicacion: "2026-07-29T16:46:09.000+00:00"
 fecha_revision: null
 ghost_id: 6a6a2dcec1349f000193b1e1
 id: signo-colelitiasis

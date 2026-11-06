@@ -1,6 +1,7 @@
 ---
 estado: publicado
 numero: 44
+fecha_publicacion: "2026-09-11T05:46:02.000+00:00"
 fecha_revision: 2026-09-10
 ghost_id: "6aa38eb6ac72030001bec309"
 id: signo-gasto-cardiaco

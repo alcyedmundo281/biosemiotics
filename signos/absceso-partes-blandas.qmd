@@ -1,6 +1,7 @@
 ---
 estado: publicado
 numero: 32
+fecha_publicacion: "2026-08-15T16:57:39.000+00:00"
 fecha_revision: null
 ghost_id: 6a8098c5efcf7600015d5458
 id: signo-absceso-partes-blandas
