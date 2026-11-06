@@ -750,3 +750,14 @@ ramas remotas ya fusionadas sí puede eliminarlas quien fusiona el PR.
 ## El norte
 
 Cada cifra verificada. Cada signo con sus límites. El orden por oleada mantiene vivo el mensaje del proyecto: *empezar POCUS es más fácil de lo que te dijeron.* La arquitectura ya está hecha; tu trabajo es hacerla crecer sin degradar su rigor.
+
+
+**Garantía de integración del seriado.** `python scripts/verificar_numeracion.py`
+exige que los números de todas las fichas publicadas, sin separar por volumen,
+sean únicos y exactamente 1..N, sin huecos. CI lo ejecuta tanto sobre el merge
+de prueba de cada PR como en cada push a `main`, dentro de la matriz cuyo
+agregador «Integridad del banco e índice» es obligatorio. La protección de
+`main` exige además actualizar la base (`strict: true`): si otra rama publicó
+el mismo número, la rama pendiente debe actualizarse y volver a pasar el
+control combinado antes de fusionarse. No se corrige un conflicto recalculando
+una designación ya publicada.
