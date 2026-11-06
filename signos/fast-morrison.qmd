@@ -1,7 +1,9 @@
 ---
 estado: publicado
+numero: 38
+fecha_publicacion: "2026-08-23T15:44:37.000+00:00"
 fecha_revision: null
-ghost_id: null
+ghost_id: 6a8b1486cc588400019b50e9
 id: signo-fast-morrison
 tipo: signo
 titulo: "Morrison: la primera ventana del FAST"

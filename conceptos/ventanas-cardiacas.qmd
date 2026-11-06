@@ -1,7 +1,9 @@
 ---
 estado: publicado
+numero: 15
+fecha_publicacion: "2026-07-26T04:05:56.000+00:00"
 fecha_revision: null
-ghost_id: null
+ghost_id: 6a65874e5aa3610001e68cfe
 id: ventanas-cardiacas
 tipo: concepto
 titulo: "Ventanas cardíacas"

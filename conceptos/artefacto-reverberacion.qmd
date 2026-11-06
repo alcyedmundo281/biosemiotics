@@ -1,7 +1,9 @@
 ---
 estado: publicado
+numero: 10
+fecha_publicacion: "2026-07-24T18:12:20.000+00:00"
 fecha_revision: null
-ghost_id: null
+ghost_id: 6a63a3547daff4000136f24a
 id: artefacto-reverberacion
 tipo: concepto
 titulo: "Reverberación"

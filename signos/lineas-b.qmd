@@ -1,7 +1,9 @@
 ---
 estado: publicado
+numero: 2
+fecha_publicacion: "2026-07-17T23:35:51.000+00:00"
 fecha_revision: null
-ghost_id: null
+ghost_id: 6a5ab6f68539bf00012ae967
 id: signo-lineas-b
 tipo: signo
 titulo: "Líneas B (pulmón húmedo)"

@@ -1,5 +1,7 @@
 ---
 estado: publicado
+numero: 43
+fecha_publicacion: "2026-09-09T00:11:02.000+00:00"
 fecha_revision: 2026-09-06
 ghost_id: "6aa0a10d3a4d3c0001204989"
 id: signo-vti

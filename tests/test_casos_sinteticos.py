@@ -14,7 +14,8 @@ class CasosSinteticosTest(unittest.TestCase):
     def test_sintetico_declarado_admite_revision_y_publicacion(self):
         e = self.caso()
         self.assertEqual(estado_publicacion(e), "revisado")
-        e.update(estado="publicado", url="https://example.org/caso/")
+        e.update(estado="publicado", url="https://example.org/caso/",
+                 numero=1, fecha_publicacion="2026-11-03T23:10:01.000+00:00")
         self.assertEqual(estado_publicacion(e), "publicado")
 
     def test_no_aplica_no_exime_caso_real(self):

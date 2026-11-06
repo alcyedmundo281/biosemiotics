@@ -1,7 +1,9 @@
 ---
 estado: publicado
+numero: 20
+fecha_publicacion: "2026-07-29T16:48:22.000+00:00"
 fecha_revision: null
-ghost_id: null
+ghost_id: 6a6a2e8dc1349f000193b206
 id: signo-hidronefrosis
 tipo: signo
 titulo: "Hidronefrosis en POCUS: detectar dilatación, no adivinar la piedra"

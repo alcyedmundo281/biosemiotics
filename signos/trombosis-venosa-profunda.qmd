@@ -1,7 +1,9 @@
 ---
 estado: publicado
+numero: 23
+fecha_publicacion: "2026-07-29T16:53:19.000+00:00"
 fecha_revision: null
-ghost_id: null
+ghost_id: 6a6a2fc5c1349f000193b272
 id: signo-trombosis-venosa-profunda
 tipo: signo
 titulo: "TVP por compresión: la vena que no desaparece"

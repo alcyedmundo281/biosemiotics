@@ -24,6 +24,7 @@ class EstadosPublicacionTest(unittest.TestCase):
         self.raiz = Path(self.tmp.name).resolve()
         self.caso = copy.deepcopy(next(e for e in build.cargar(REPO) if e["tipo"] == "caso"))
         self.caso.update(estado="borrador", url="", fecha_revision=None, ghost_id=None)
+        self.caso.update(numero=1, fecha_publicacion="2026-11-03T23:10:01.000+00:00")
         self.caso.pop("publicado", None)
         self.caso.pop("sintetico", None)
         self.caso["consentimiento"] = "pendiente"

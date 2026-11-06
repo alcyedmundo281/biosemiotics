@@ -1,7 +1,9 @@
 ---
 estado: publicado
+numero: 5
+fecha_publicacion: "2026-07-19T04:26:41.000+00:00"
 fecha_revision: null
-ghost_id: null
+ghost_id: 6a5c5145f39c0b00010f4798
 id: efecto-piezoelectrico
 tipo: concepto
 titulo: "Efecto piezoeléctrico"

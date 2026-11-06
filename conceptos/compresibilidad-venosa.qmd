@@ -1,7 +1,9 @@
 ---
 estado: publicado
+numero: 24
+fecha_publicacion: "2026-08-02T03:20:36.000+00:00"
 fecha_revision: null
-ghost_id: null
+ghost_id: 6a6eb6348506ae000139c86f
 id: compresibilidad-venosa
 tipo: concepto
 titulo: "Compresibilidad venosa: una prueba dinámica, no una foto"

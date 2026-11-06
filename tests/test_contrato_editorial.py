@@ -151,7 +151,8 @@ class ContratoEditorialTest(unittest.TestCase):
             self.assertIn("abstract", resultado.stdout)
         for estado in ({"estado": "publicado", "url": "https://example.org/demo/"},
                        {"estado": "publicado", "publicado": True, "url": "https://example.org/demo/"}):
-            self.guardar(dict(ficha, **estado))
+            self.guardar(dict(ficha, numero=1,
+                              fecha_publicacion="2026-11-03T23:10:01.000+00:00", **estado))
             resultado = self.ejecutar("build.py", "--solo", "db")
             self.assertNotEqual(resultado.returncode, 0)
             self.assertIn("abstract", resultado.stderr)

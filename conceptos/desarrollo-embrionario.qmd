@@ -1,5 +1,7 @@
 ---
 estado: publicado
+numero: 54
+fecha_publicacion: "2026-11-01T02:11:42.000+00:00"
 fecha_revision: 2026-10-31
 revisado_por: Alcy Torres
 ghost_id: 6ae69e5468e68c0001680672

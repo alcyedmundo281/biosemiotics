@@ -1,7 +1,9 @@
 ---
 estado: publicado
+numero: 9
+fecha_publicacion: "2026-07-24T18:12:08.000+00:00"
 fecha_revision: null
-ghost_id: null
+ghost_id: 6a63a1147daff4000136f23e
 id: artefacto-refuerzo-posterior
 tipo: concepto
 titulo: "Refuerzo acústico posterior"
