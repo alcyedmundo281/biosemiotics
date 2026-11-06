@@ -2,7 +2,7 @@
 
 import re
 import sys
-from datetime import date, datetime
+from datetime import date, datetime, time, timedelta, timezone
 from pathlib import Path
 from urllib.parse import urlsplit
 
@@ -100,3 +100,22 @@ def seleccionar_publicables(entidades, solo_publicados=False):
     estados = [(e, estado_publicacion(e)) for e in entidades]
     permitidos = ("publicado",) if solo_publicados else ("revisado", "publicado")
     return [e for e, estado in estados if estado in permitidos]
+
+
+def limite_edicion(fecha_corte):
+    """Límite exclusivo: medianoche UTC siguiente al día de corte inclusivo."""
+    try:
+        if not isinstance(fecha_corte, str) or not re.fullmatch(r"\d{4}-\d{2}-\d{2}", fecha_corte):
+            raise ValueError
+        dia = date.fromisoformat(fecha_corte)
+        return datetime.combine(dia + timedelta(days=1), time.min, timezone.utc)
+    except (ValueError, OverflowError):
+        raise RuntimeError("FECHA_CORTE es obligatoria y debe ser una fecha válida YYYY-MM-DD")
+
+
+def seleccionar_edicion(entidades, fecha_corte):
+    """El libro con ISBN: publicadas hasta el corte. El seriado no usa esto."""
+    limite = limite_edicion(fecha_corte)
+    publicadas = seleccionar_publicables(entidades, solo_publicados=True)
+    return [e for e in publicadas
+            if datetime.fromisoformat(e["fecha_publicacion"].replace("Z", "+00:00")) < limite]

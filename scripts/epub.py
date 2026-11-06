@@ -44,7 +44,7 @@ def argumentos() -> argparse.Namespace:
     parser.add_argument(
         "--solo-publicados",
         action="store_true",
-        help="incluye únicamente fichas con URL pública de Ghost",
+        help="compatibilidad: el libro siempre usa publicadas hasta FECHA_CORTE",
     )
     parser.add_argument(
         "--motor",
@@ -242,12 +242,13 @@ def main() -> int:
     proyecto = desde_raiz(raiz, args.proyecto)
 
     entidades = banco.cargar(raiz)
-    entidades = banco.seleccionar_publicables(entidades, args.solo_publicados)
+    fecha_corte = getattr(qmd, "FECHA_CORTE", None)
+    entidades = banco.seleccionar_edicion(entidades, fecha_corte)
     if not entidades:
         raise RuntimeError("ninguna entidad cumple el alcance solicitado")
 
     nombre_motor, ejecutable = elegir_motor(args.motor)
-    informe = qmd.generar(entidades, raiz, proyecto)
+    informe = qmd.generar(entidades, raiz, proyecto, fecha_corte=fecha_corte)
 
     salida.parent.mkdir(parents=True, exist_ok=True)
     temporal = proyecto / "atlas-temporal.epub"
