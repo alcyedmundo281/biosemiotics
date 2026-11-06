@@ -4,7 +4,7 @@ La única entrada de asignación fue `propuesta-numeracion.csv`, aprobado por Al
 
 Antes de escribir se validaron 56 IDs publicados existentes y únicos, ausencia total de `numero`, rango exacto sin huecos ni duplicados, slug de URL y coincidencia de los 16 IDs existentes. El RSS público se recuperó de nuevo: 15/15 coincidencias exactas de fecha/hora y orden contra el CSV, registradas en `rss-comparacion.json`.
 
-En las fichas solo se añadió `numero` y se reemplazaron los 40 IDs nulos. Una auditoría inversa del commit reprodujo byte por byte las fichas base. Se regeneró `build/index.json` únicamente por las reparaciones de IDs. No se modificaron generadores ni plantillas del libro.
+En la primera pasada solo se añadió `numero` y se reemplazaron los 40 IDs nulos. La enmienda descrita abajo añade únicamente `fecha_publicacion`. Una auditoría inversa del commit reprodujo byte por byte las fichas base. Se regeneró `build/index.json` únicamente por las reparaciones de IDs. No se modificaron generadores ni plantillas del libro.
 
 ## Comprobación del libro terminada en Linux
 
@@ -35,3 +35,17 @@ Preflight del banco, `build.py`, `verificar_publicacion.py` y 182 pruebas locale
 El cargador YAML y los validadores no imponen orden alfabético de claves ni rechazan el campo adicional `numero`. Se conserva `numero` inmediatamente después de `estado`, tal como fue revisado. Su reubicación por criterio alfabético queda como deuda de formato; no se rehacen 56 hunks por estética.
 
 Sin `--admin`, sin omitir protección de rama. Las ramas se conservan hasta confirmación de Alcy.
+
+## Enmienda: fecha de publicación canónica
+
+En el commit `e8610ba1e9a43c45d3f18ff351dbce22947f1165` se añadió a cada una de las 56 fichas publicadas una sola línea: `fecha_publicacion: "<published_at>"`, inmediatamente después de `numero`. La entrada única fue el mismo CSV aprobado de esta carpeta; no se consultó Ghost. La lectura YAML se verificó explícitamente como `str`, idéntica al CSV carácter por carácter, sin normalizar el timestamp o su zona. No se modificaron los números, IDs ni otros campos.
+
+El validador compartido `estado_publicacion` exige para toda ficha publicada un `numero` entero positivo y una `fecha_publicacion` de tipo cadena ISO completa con zona. La ausencia o invalidez bloquea los generadores. Las pruebas incluyen omisiones, datetime YAML implícito y la comparación de las 56 filas con el CSV. Preflight, build y 185 pruebas correctos, también bajo Python 3.9 y 3.13 en Linux.
+
+Comprobación complementaria con los PDF de artifacts **normales** `atlas-epub-latex`, leídos con Poppler `pdfinfo`:
+
+- Antes: [ejecución 42265491211](https://github.com/alcyedmundo281/biosemiotics/actions/runs/42265491211), head `f3aaac87a4e183790ab96bd60119b9a048d5349f`, **264 páginas**. Sus entradas del libro eran idénticas a las del padre de esta enmienda (solo habían cambiado CI y documentación).
+- Después: [ejecución 42278414219](https://github.com/alcyedmundo281/biosemiotics/actions/runs/42278414219), head `e8610ba1e9a43c45d3f18ff351dbce22947f1165`, **264 páginas**. Job «Generar EPUB, PDF y fuente LuaLaTeX» verde: preflight de publicación, EPUBCheck y validadores editoriales correctos.
+- Mismo tamaño de página: 481.89 × 691.654 puntos. Para esta enmienda se verificó el recuento, no se repitió la comparación por página a 150 dpi, según el criterio aprobado.
+
+No se modificó ningún workflow ni se repuso un paso temporal. `build/index.json` no necesita este campo para sus consumidores actuales: el banco es su fuente canónica y permite futuras exportaciones bibliográficas sin consultar Ghost. Regenerar el índice con esta enmienda produjo cero cambios; la proyección del nuevo metadato queda para cuando un consumidor la necesite.
