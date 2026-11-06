@@ -15,7 +15,7 @@ class MetadatosSeriadoTest(unittest.TestCase):
         path=ROOT/'docs/auditorias/2026-11-06-numeracion/propuesta-numeracion.csv'
         with path.open(encoding='utf-8-sig',newline='') as f:
             rows=list(csv.DictReader(f))
-        bank={e['id']:e for e in cargar(ROOT)}
+        bank={e['id']:e for e in cargar(ROOT) if e.get('estado')=='publicado'}
         self.assertEqual(len(rows),56)
         self.assertTrue({r['id_banco'] for r in rows}.issubset(bank))
         for row in rows:
@@ -32,6 +32,16 @@ class MetadatosSeriadoTest(unittest.TestCase):
         nuevos = actuales + [dict(id='articulo-57', estado='publicado', numero=57)]
         with patch(__name__ + '.cargar', return_value=nuevos):
             self.test_banco_coincide_caracter_por_caracter_con_csv()
+
+    def test_el_lote_historico_no_admite_retirar_una_publicada(self):
+        from unittest.mock import patch
+        actuales = cargar(ROOT)
+        historica = next(e for e in actuales if e.get('estado') == 'publicado')
+        alterados = [dict(e, estado='borrador') if e['id'] == historica['id'] else e
+                     for e in actuales]
+        with patch(__name__ + '.cargar', return_value=alterados):
+            with self.assertRaises(AssertionError):
+                self.test_banco_coincide_caracter_por_caracter_con_csv()
 
     def test_publicado_exige_metadatos_validos(self):
         valid=dict(id='nuevo',tipo='concepto',estado='publicado',

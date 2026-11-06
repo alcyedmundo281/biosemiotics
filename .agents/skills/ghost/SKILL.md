@@ -168,3 +168,14 @@ licencia, archivos cambiados y PR.
 - Inventar o editar el slug, o usar URLs del editor o de vista previa como `url`.
 - Repetir `fill`/`type`/pegar sobre un campo que ya contiene texto.
 - Introducir credenciales, o publicar sin el sí explícito del usuario.
+
+
+**Garantía de integración del seriado.** `python scripts/verificar_numeracion.py`
+exige que los números de todas las fichas publicadas, sin separar por volumen,
+sean únicos y exactamente 1..N, sin huecos. CI lo ejecuta tanto sobre el merge
+de prueba de cada PR como en cada push a `main`, dentro de la matriz cuyo
+agregador «Integridad del banco e índice» es obligatorio. La protección de
+`main` exige además actualizar la base (`strict: true`): si otra rama publicó
+el mismo número, la rama pendiente debe actualizarse y volver a pasar el
+control combinado antes de fusionarse. No se corrige un conflicto recalculando
+una designación ya publicada.
