@@ -8,7 +8,7 @@
 (PDF, EPUB, LaTeX) que se publiquen a partir de él.
 **Versión del colofón:** el párrafo breve que llevan el PDF y el EPUB vive en
 `paratextos/declaracion-ia.md`; si cambia uno, revise el otro.
-**Vigente desde:** 22 de octubre de 2026 · **Última revisión:** 30 de octubre de 2026
+**Vigente desde:** 22 de octubre de 2026 · **Última revisión:** 6 de noviembre de 2026
 
 ---
 
@@ -113,15 +113,29 @@ Una cita no declarada detiene la compilación. Las excepciones existen, pero exi
 razón por escrito en `refs-sin-crossref.txt`; esa exención renuncia a la segunda
 autoridad y obliga a confirmar el PMID a mano.
 
-**Última corrida de verificación:** 22 de octubre de 2026 — **172 de 172**
-referencias verificadas contra PubMed y Crossref, **cero exenciones declaradas**.
-El banco contiene 53 entidades, de las cuales 50 están publicadas.
+**Inventario del banco al 6 de noviembre de 2026:** 68 entidades en total.
+Por estado, son 56 fichas publicadas, 12 fichas en borrador y 0 fichas revisadas
+pendientes de publicación. La primera edición incluye las 56 fichas publicadas;
+los 12 borradores no forman parte de esa edición.
 
-La corrida marcó además 32 variantes de título entre PubMed y Crossref con DOI
-idéntico. Ninguna falla la verificación: el DOI coincidente es lo que prueba que se
-trata del mismo artículo. Son subtítulos ausentes en uno de los registros, diferencias
-de grafía y un caso con el título en inglés en PubMed y en polaco en Crossref. Se
-revisan una por una; eso es criterio editorial, no automatización ciega.
+**Inventario bibliográfico al mismo corte:** `refs.bib` contiene 176 entradas.
+Las 56 fichas de la primera edición citan 165 referencias distintas de ese archivo.
+El total de entradas bibliográficas del banco y el total de referencias citadas por
+la edición son magnitudes diferentes.
+
+**Verificación de referencias del banco:** en la
+[ejecución de CI del 6 de noviembre de 2026](https://github.com/alcyedmundo281/biosemiotics/actions/runs/42283670412),
+PubMed confirmó 176 de las 176 entradas de `refs.bib` y Crossref confirmó las mismas
+176 de 176. No hay exenciones declaradas. Esa ejecución informó 5 variantes de
+título con DOI idéntico; esas variantes no se trataron como errores de identidad.
+
+Estas cifras son una instantánea fechada, no constantes del compilador. El colofón
+de PDF y EPUB se genera desde `paratextos/declaracion-ia.md`: `{N}` cuenta las
+referencias distintas citadas por la edición; `{FICHAS_EDICION}` cuenta sus fichas;
+`{ENTIDADES_BANCO}`, `{PUBLICADAS_BANCO}`, `{REVISADAS_BANCO}` y
+`{BORRADORES_BANCO}` cuentan el banco completo por estado;
+`{REFERENCIAS_BANCO}` cuenta las entradas de `refs.bib`. El build sustituye esos
+marcadores desde sus fuentes y aborta si alguno queda sin resolver.
 
 Si encuentra un error, ábralo como *issue*. Es exactamente lo que esta declaración
 pide.

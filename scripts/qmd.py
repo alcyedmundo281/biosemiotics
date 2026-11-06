@@ -380,8 +380,25 @@ def citas_verificables(orden: list, raiz: Path) -> int:
     return len(orden)
 
 
-def declaracion_ia(raiz: Path, citas: int) -> str:
-    """El paratexto del banco con `{N}` resuelto; aborta ante cualquier marcador."""
+MARCADORES_CONTEOS = (
+    "{FICHAS_EDICION}", "{ENTIDADES_BANCO}", "{PUBLICADAS_BANCO}",
+    "{REVISADAS_BANCO}", "{BORRADORES_BANCO}", "{REFERENCIAS_BANCO}",
+)
+
+
+def conteos_declaracion(raiz: Path, fichas_edicion: int) -> dict:
+    """Distingue la selección editorial del inventario completo del banco."""
+    entidades = banco.cargar(raiz)
+    estados = [banco.estado_publicacion(e) for e in entidades]
+    return dict(zip(MARCADORES_CONTEOS, (
+        fichas_edicion, len(entidades), estados.count("publicado"),
+        estados.count("revisado"), estados.count("borrador"),
+        len(refs_bibliograficas.cargar_bibliografia(raiz / "refs.bib")),
+    )))
+
+
+def declaracion_ia(raiz: Path, citas: int, fichas_edicion=None) -> str:
+    """Resuelve citas de la edición y conteos del banco, sin cifras manuales."""
     ruta = raiz / DECLARACION_IA
     if not ruta.is_file():
         raise RuntimeError(
@@ -395,6 +412,15 @@ def declaracion_ia(raiz: Path, citas: int) -> str:
             f"{MARCADOR_CITAS} exactamente una vez"
         )
     texto = texto.replace(MARCADOR_CITAS, str(citas))
+    if any(m in texto for m in MARCADORES_CONTEOS):
+        if fichas_edicion is None:
+            fichas_edicion = len(banco.seleccionar_publicables(banco.cargar(raiz)))
+        for marcador, valor in conteos_declaracion(raiz, fichas_edicion).items():
+            if texto.count(marcador) != 1:
+                raise RuntimeError(
+                    f"{DECLARACION_IA.as_posix()}: {marcador} debe aparecer exactamente una vez"
+                )
+            texto = texto.replace(marcador, str(valor))
     pendiente = MARCADOR_PENDIENTE.search(texto)
     if pendiente:
         raise RuntimeError(
@@ -983,7 +1009,7 @@ def _generar_en(entidades: list, raiz: Path, destino: Path) -> dict:
     # {N} son las citas de ESTA edición —`orden_global`, ya poblado por los
     # capítulos—, no las entradas de refs.bib.
     citas = citas_verificables(orden_global, raiz)
-    declaracion = declaracion_ia(raiz, citas)
+    declaracion = declaracion_ia(raiz, citas, len(entidades))
     escribir_texto(destino / "index.qmd", portadilla(version, declaracion))
     texto_prologo = prologo(raiz)
     if texto_prologo:

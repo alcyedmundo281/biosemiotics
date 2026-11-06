@@ -2,6 +2,7 @@
 import sys
 import tempfile
 import unittest
+import yaml
 from pathlib import Path
 from unittest.mock import patch
 
@@ -34,6 +35,12 @@ class DestinoQuartoTest(unittest.TestCase):
                            "significante": "Imagen", "significado": "Interpretación",
                            "decision": "Decisión",
                            "sistema": "cardiovascular", "organo": "corazon"}]
+        for entidad in self.entidades:
+            archivo = self.raiz / entidad['_archivo']
+            archivo.parent.mkdir(parents=True, exist_ok=True)
+            meta = {k: v for k, v in entidad.items() if k not in ('cuerpo', '_archivo')}
+            archivo.write_text('---\n' + yaml.safe_dump(meta, allow_unicode=True) +
+                               '---\n' + entidad['cuerpo'], encoding='utf-8')
         self.raster = patch.object(qmd, "rasterizar_portada", return_value=False)
         self.raster.start()
         self.addCleanup(self.raster.stop)
@@ -138,7 +145,7 @@ class DestinoQuartoTest(unittest.TestCase):
     def test_rechaza_enlace_en_destino_o_ancestro(self):
         self.destino.parent.mkdir(parents=True)
         fuente = self.raiz / "signos"
-        fuente.mkdir()
+        fuente.mkdir(exist_ok=True)
         nota = fuente / "nota.txt"
         nota.write_text("conservar")
         enlace = self.destino.parent / "enlace"
