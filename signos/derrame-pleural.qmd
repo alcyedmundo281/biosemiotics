@@ -1,7 +1,8 @@
 ---
 estado: publicado
+numero: 3
 fecha_revision: null
-ghost_id: null
+ghost_id: 6a5acd00fe9c8200010c8ea1
 id: signo-derrame-pleural
 tipo: signo
 titulo: "Derrame pleural"

@@ -1,5 +1,6 @@
 ---
 estado: publicado
+numero: 48
 fecha_revision: 2026-09-24
 ghost_id: "6ab5b3c53dd9a300011f6a5f"
 id: signo-disfuncion-diafragmatica

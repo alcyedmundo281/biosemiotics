@@ -1,7 +1,8 @@
 ---
 estado: publicado
+numero: 11
 fecha_revision: null
-ghost_id: null
+ghost_id: 6a63a4d17daff4000136f257
 id: knobology-profundidad
 tipo: concepto
 titulo: "Profundidad"

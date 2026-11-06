@@ -1,7 +1,8 @@
 ---
 estado: publicado
+numero: 14
 fecha_revision: null
-ghost_id: null
+ghost_id: 6a656b875aa3610001e68cc5
 id: signo-perfil-a
 tipo: signo
 titulo: "Perfil A (pulmón seco)"

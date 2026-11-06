@@ -1,7 +1,8 @@
 ---
 estado: publicado
+numero: 34
 fecha_revision: null
-ghost_id: null
+ghost_id: 6a89084f781f8d000129cc05
 id: cuantificacion-limites
 tipo: concepto
 titulo: "Cuantificación y sus límites: de dónde salen los números"

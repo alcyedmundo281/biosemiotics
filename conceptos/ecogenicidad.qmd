@@ -1,7 +1,8 @@
 ---
 estado: publicado
+numero: 1
 fecha_revision: null
-ghost_id: null
+ghost_id: 6a5580898e1e420001c28c90
 id: ecogenicidad
 tipo: concepto
 titulo: "El lenguaje de la ecogenicidad"

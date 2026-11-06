@@ -1,5 +1,6 @@
 ---
 estado: publicado
+numero: 52
 fecha_revision: 2026-10-22
 ghost_id: "6ada915ca45f8b0001223b58"
 id: signo-tiroides

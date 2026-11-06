@@ -1,5 +1,6 @@
 ---
 estado: publicado
+numero: 55
 fecha_revision: 2026-11-03
 revisado_por: Alcy Torres
 ghost_id: 6aea5b92556c260001d6e009

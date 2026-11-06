@@ -1,0 +1,9 @@
+Congela los números 1–56 de las fichas publicadas a partir del CSV aprobado, incluido byte por byte en `docs/auditorias/2026-11-06-numeracion/propuesta-numeracion.csv`. Repara los 40 `ghost_id: null`; los otros 16 ya coincidían. No se volvió a consultar Ghost ni se derivaron números nuevos.
+
+Antes de escribir se validaron las 56 filas contra el banco: IDs publicados existentes y únicos, ausencia total de `numero`, rango exacto 1–56, slug de URL y coincidencia de los 16 IDs. El RSS público se recuperó de nuevo: 15/15 coincidencias exactas de fecha/hora y orden contra el CSV; evidencia en `rss-comparacion.json`.
+
+En las fichas solo se añade `numero` y se reemplazan los 40 IDs nulos, preservando el resto de bytes. Se regenera `build/index.json` por las reparaciones de IDs, como exige CI. No se cambia ningún generador ni plantilla del libro. El cargador admite el campo adicional y los validadores del banco y las 182 pruebas pasan.
+
+Comprobación del PDF: pendiente del job Linux; este PR permanece en borrador hasta obtener el resultado. El job compila base y propuesta con Quarto/LuaLaTeX y compara todas las páginas renderizadas a 150 dpi. Controla únicamente la etiqueta de versión Git impresa, idéntica en ambas compilaciones, y la fecha de reproducibilidad. Cualquier página distinta falla el job y conserva PNG y hashes como artifact `comparacion-numeracion-pdf`. No se afirma igualdad binaria de PDFs con metadatos de compilación diferentes.
+
+Validación local: preflight del banco, build.py, verificar_publicacion.py y 182 pruebas correctas; 176 alertas previas de borradores. Preflight de publicación local bloqueado por ausencia de rsvg-convert y EPUBCheck; Linux es la autoridad para los artefactos con ISBN. Los checks habituales de integridad Python 3.9/3.13, citas y edición permanecen obligatorios. Sin bypass de protección ni --admin.

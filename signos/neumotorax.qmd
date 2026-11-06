@@ -1,7 +1,8 @@
 ---
 estado: publicado
+numero: 22
 fecha_revision: null
-ghost_id: null
+ghost_id: 6a6a2f44c1349f000193b24e
 id: signo-neumotorax
 tipo: signo
 titulo: "Neumotórax en POCUS: la ausencia de sliding no basta"

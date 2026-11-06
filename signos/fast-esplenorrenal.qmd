@@ -1,7 +1,8 @@
 ---
 estado: publicado
+numero: 39
 fecha_revision: null
-ghost_id: null
+ghost_id: 6a8b165fcc588400019b510d
 id: signo-fast-esplenorrenal
 tipo: signo
 titulo: "Esplenorrenal: la ventana que se escapa por arriba"

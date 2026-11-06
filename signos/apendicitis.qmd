@@ -1,7 +1,8 @@
 ---
 estado: publicado
+numero: 31
 fecha_revision: null
-ghost_id: null
+ghost_id: 6a808c1defcf7600015d542b
 id: signo-apendicitis
 tipo: signo
 titulo: "Apendicitis: el apéndice que no se aplasta"

@@ -1,7 +1,8 @@
 ---
 estado: publicado
+numero: 28
 fecha_revision: null
-ghost_id: null
+ghost_id: 6a763014ef685b00018b9234
 id: signo-sobrecarga-vd
 tipo: signo
 titulo: "Ventrículo derecho dilatado (sobrecarga aguda de presión)"

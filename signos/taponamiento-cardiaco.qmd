@@ -1,7 +1,8 @@
 ---
 estado: publicado
+numero: 27
 fecha_revision: null
-ghost_id: null
+ghost_id: 6a762fa2ef685b00018b9229
 id: signo-taponamiento-cardiaco
 tipo: signo
 titulo: "Taponamiento cardíaco (el derrame que impide el llenado)"

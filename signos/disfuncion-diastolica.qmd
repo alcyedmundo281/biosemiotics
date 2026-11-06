@@ -1,5 +1,6 @@
 ---
 estado: publicado
+numero: 42
 fecha_revision: 2026-09-10
 ghost_id: "6a9d7015cb99d50001dc7569"
 id: signo-disfuncion-diastolica

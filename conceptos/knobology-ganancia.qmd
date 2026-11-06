@@ -1,5 +1,6 @@
 ---
 estado: publicado
+numero: 7
 fecha_revision: null
 ghost_id: "6a5c56c3f39c0b00010f47fa"
 id: knobology-ganancia

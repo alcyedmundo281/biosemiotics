@@ -1,7 +1,8 @@
 ---
 estado: publicado
+numero: 29
 fecha_revision: null
-ghost_id: null
+ghost_id: 6a807e4fefcf7600015d53dd
 id: signo-colecistitis-aguda
 tipo: signo
 titulo: "Colecistitis aguda: cuando la piedra ya no es el hallazgo"

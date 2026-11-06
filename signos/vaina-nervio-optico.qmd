@@ -1,5 +1,6 @@
 ---
 estado: publicado
+numero: 50
 fecha_revision: 2026-10-10
 ghost_id: 6aca4cd4447c110001dadd3b
 id: signo-vaina-nervio-optico
