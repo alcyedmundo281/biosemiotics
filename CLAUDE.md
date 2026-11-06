@@ -430,7 +430,8 @@ compilación y Git cuando la tarea solicitada sea publicar un artículo.
 
 El publicador puede usar la sesión autorizada de Ghost y, sobre una ficha `.qmd`
 **ya creada, revisada y validada durante la fase proveedora**, modificar `url`,
-`estado` y `ghost_id` para registrar la publicación real, además de `medios`;
+`estado`, `ghost_id`, `numero`, `volumen` y `fecha_publicacion` para registrar
+la publicación real, además de `medios`;
 puede añadir el archivo licenciado a `assets/img/`, ejecutar
 `build.py`, verificar el libro con `libro.py` y entregar esos cambios en
 una rama/PR de publicación.
@@ -462,7 +463,8 @@ python scripts/auditar_pegado_ghost.py \
   auditoría es de lectura; no genera ni reescribe archivos.
 - Confirma que la ficha fuente ya existe y no tiene cambios editoriales
   pendientes. Crea una rama de publicación; en ella solo podrán cambiar
-  `url`, `estado`, `ghost_id`, `medios`, `assets/img/` y las salidas LuaLaTeX correspondientes.
+  `url`, `estado`, `ghost_id`, `numero`, `volumen`, `fecha_publicacion`,
+  `medios`, `assets/img/` y las salidas LuaLaTeX correspondientes.
 
 ### 1. Preparar y revisar Ghost
 
@@ -525,9 +527,26 @@ python scripts/auditar_pegado_ghost.py \
 
 ### 2. Registrar los artefactos y cerrar la fase publicadora
 
-1. Registra `estado: publicado`, el `ghost_id` real y la URL pública definitiva
-   en `url` de la ficha existente. No
-   cambies ningún otro campo salvo `medios`.
+1. Para una publicación nueva, conserva el JSON exacto de respuesta de Ghost
+   Admin API al publicar y ejecuta:
+
+   ```bash
+   python scripts/registrar_publicacion.py --id <id> --respuesta <respuesta-admin.json>
+   ```
+
+   En una sola escritura atómica registra `estado: publicado`, `url`,
+   `ghost_id`, `numero`, `volumen` y `fecha_publicacion`. La fecha es el
+   `published_at` exacto de la respuesta, completo, con zona y entre comillas.
+   Si falta, falla sin escribir: nunca usa el reloj, el título ni el slug.
+   El número es máximo global existente + 1, incluidos números de fichas
+   retiradas; no rellena huecos ni reinicia por volumen. El volumen es el año
+   de esa fecha menos 2025: 2026 es volumen 1. Una ficha con `numero` previo
+   o una colisión bloquean el registro; no se recalcula ni se reintenta con
+   otro número. Actualiza desde `main` y serializa las publicaciones entre
+   ramas/checkouts; el comando bloquea registros simultáneos del mismo checkout.
+   Conserva la designación al retirar una ficha. Actualizar un post existente
+   conserva sus campos y no pasa por este asignador de primeras publicaciones.
+   No cambies ningún otro campo salvo `medios`.
 2. Ejecuta `build.py` y `libro.py`, y valida que `build/quarto/libro.tex` use exactamente el
    `archivo_local` subido a Ghost y compila LuaLaTeX si está disponible. La
    misma imagen debe poder entrar en el EPUB. **No ejecutes `indice.py` ni

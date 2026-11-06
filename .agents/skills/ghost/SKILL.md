@@ -1,6 +1,6 @@
 ---
 name: ghost
-description: Publica o actualiza un artículo del atlas biosemiotics en Ghost (www.biosemiotics.net) mediante el navegador. Úsala siempre que la tarea toque Ghost — "publica X en Ghost", "sube el artículo", "pon la imagen destacada", "pega el cuerpo en Ghost", "configura tags/excerpt/pie", "envía a los suscriptores", "obtén el ghost_id", "revisa el post en Ghost" — y también en inglés ("publish on Ghost", "Ghost admin", "featured image"). Contiene las tres compuertas que se incumplían una y otra vez: imagen solo de Wikimedia Commons (nunca generada con IA), pie pegado una sola vez y publicación con envío por email a los suscriptores.
+description: "Publica o actualiza un artículo del atlas biosemiotics en Ghost (www.biosemiotics.net) mediante el navegador. Úsala siempre que la tarea toque Ghost — \"publica X en Ghost\", \"sube el artículo\", \"pon la imagen destacada\", \"pega el cuerpo en Ghost\", \"configura tags/excerpt/pie\", \"envía a los suscriptores\", \"obtén el ghost_id\", \"revisa el post en Ghost\" — y también en inglés (\"publish on Ghost\", \"Ghost admin\", \"featured image\"). Contiene las tres compuertas que se incumplían una y otra vez: imagen solo de Wikimedia Commons (nunca generada con IA), pie pegado una sola vez y publicación con envío por email a los suscriptores."
 ---
 
 # Publicar en Ghost — biosemiotics
@@ -124,11 +124,29 @@ introduzcas credenciales ni resuelvas 2FA.
 
 ### 2. Después de publicar
 
-1. Copia la URL pública definitiva (nunca `/ghost/#/…` ni una vista previa
-   `/p/…`) y el `ghost_id`: los 24 caracteres hexadecimales del final de
-   `/ghost/#/editor/post/<ghost_id>`.
-2. En la ficha, cambia **solo** `estado: publicado`, `url` y `ghost_id` (y
-   `medios` si hizo falta). Nada del cuerpo, `refs`, PMID ni DOI.
+1. Para una publicación **nueva**, conserva la respuesta JSON exacta de Ghost
+   Admin API al publicar (`posts` con un post `status: published`, `id`, `url`
+   y `published_at`). No deduzcas la fecha de la interfaz ni del reloj local.
+   Si falta `published_at`, detente: no adivines ni publiques otra ficha.
+2. Registra todos los metadatos juntos mediante:
+
+   ```bash
+   python scripts/registrar_publicacion.py --id <id-banco> --respuesta <respuesta-admin.json>
+   ```
+
+   La ficha debe estar `revisado`. El comando escribe atómicamente `estado`,
+   `url`, `ghost_id`, `numero`, `volumen` y `fecha_publicacion`; conserva los
+   demás bytes. Asigna máximo global del banco + 1, sin rellenar huecos ni
+   reiniciar por volumen. Volumen = año de `published_at` − 2025 (2026 → 1).
+   Conserva el timestamp exacto entre comillas, como cadena YAML.
+   Falla si falta fecha, ya existe `numero` en la ficha, hay colisión o cambia
+   el banco durante el registro. Nunca reintentes calculando otro número para
+   ocultar un conflicto. El bloqueo serializa registros de este checkout;
+   no publiques simultáneamente desde ramas o checkouts distintos. Actualiza
+   desde `main` antes de cada publicación nueva y conserva las designaciones
+   incluso al retirar una ficha: no se reutilizan números.
+   Al actualizar un post existente, conserva su designación; este comando es
+   solo para la primera publicación. Nada del cuerpo, `refs`, PMID ni DOI.
 3. `python scripts/build.py` y `python scripts/libro.py --salida build/libro.pdf --solo-publicados`.
    **No** ejecutes `indice.py` ni toques `build/index.json` en este rol.
 4. Abre el **PR padre en borrador** y luego cambia al rol proveedor para el PR
