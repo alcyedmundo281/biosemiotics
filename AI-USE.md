@@ -129,13 +129,13 @@ PubMed confirmó 176 de las 176 entradas de `refs.bib` y Crossref confirmó las 
 176 de 176. No hay exenciones declaradas. Esa ejecución informó 5 variantes de
 título con DOI idéntico; esas variantes no se trataron como errores de identidad.
 
-Estas cifras son una instantánea fechada, no constantes del compilador. El colofón
-de PDF y EPUB se genera desde `paratextos/declaracion-ia.md`: `{N}` cuenta las
-referencias distintas citadas por la edición; `{FICHAS_EDICION}` cuenta sus fichas;
-`{ENTIDADES_BANCO}`, `{PUBLICADAS_BANCO}`, `{REVISADAS_BANCO}` y
-`{BORRADORES_BANCO}` cuentan el banco completo por estado;
-`{REFERENCIAS_BANCO}` cuenta las entradas de `refs.bib`. El build sustituye esos
-marcadores desde sus fuentes y aborta si alguno queda sin resolver.
+Estas cifras son una instantánea fechada del banco completo. El colofón impreso
+solo describe la edición congelada: `paratextos/declaracion-ia.md` usa `{N}` para
+las referencias distintas citadas por la edición, `{FICHAS_EDICION}` para sus
+fichas y `{FECHA_CORTE}` para su límite de publicación. Los conteos del banco
+vivo permanecen únicamente en esta instantánea y no se imprimen en el libro.
+El build sustituye los marcadores desde el alcance de la edición y aborta ante
+marcadores desconocidos, ausentes o duplicados.
 
 Si encuentra un error, ábralo como *issue*. Es exactamente lo que esta declaración
 pide.

@@ -207,67 +207,31 @@ class DeclaracionIATest(unittest.TestCase):
     def paratexto(self, texto):
         (self.raiz / qmd.DECLARACION_IA).write_text(texto, encoding="utf-8")
 
-    def test_el_paratexto_del_banco_resuelve_las_citas_de_la_edicion(self):
-        texto = qmd.declaracion_ia(RAIZ, 151)
-        self.assertIn("las 151 citas", " ".join(texto.split()))
-        self.assertNotIn(qmd.MARCADOR_CITAS, texto)
-        self.assertEqual(qmd.titulo_declaracion(texto),
-                         "DECLARACIÓN DE USO DE INTELIGENCIA ARTIFICIAL")
+    def resolver(self, raiz=None):
+        return qmd.declaracion_ia(raiz or self.raiz, 165, 56, "2026-11-13")
 
-    def banco_con_conteos(self):
-        import yaml
-        carpeta = self.raiz / "conceptos"
-        carpeta.mkdir()
-        for estado in ("publicado", "revisado", "borrador"):
-            meta = dict(id=estado, tipo="concepto", titulo=estado, estado=estado,
-                        url="https://example.org/ficha/" if estado == "publicado" else "")
-            if estado == "publicado":
-                meta.update(numero=1, fecha_publicacion="2026-11-06T12:00:00.000+00:00")
-            (carpeta / (estado + ".qmd")).write_text(
-                "---\n" + yaml.safe_dump(meta) + "---\nCuerpo", encoding="utf-8")
-        (self.raiz / "refs.bib").write_text(
-            "@article{citada,\n title={Citada},\n}\n"
-            "@book{no_citada,\n title={No citada},\n}\n", encoding="utf-8")
-        self.paratexto((RAIZ / qmd.DECLARACION_IA).read_text(encoding="utf-8"))
-
-    def test_separa_seleccion_de_edicion_inventario_y_referencias(self):
-        self.banco_con_conteos()
-        conteos = qmd.conteos_declaracion(self.raiz, 1)
-        self.assertEqual(list(conteos.values()), [1, 3, 1, 1, 1, 2])
-        texto = " ".join(qmd.declaracion_ia(self.raiz, 1, 1).split())
-        self.assertIn("edición contiene 1 fichas", texto)
-        self.assertIn("completo contiene 3 entidades", texto)
-        self.assertIn("`refs.bib` contiene 2 entradas", texto)
-        self.assertIn("las 1 citas", texto)
+    def test_solo_cuenta_fichas_y_referencias_de_la_edicion(self):
+        texto = " ".join(self.resolver(RAIZ).split())
+        self.assertIn("56 fichas publicadas hasta el 13 de noviembre de 2026", texto)
+        self.assertIn("las 165 citas", texto)
+        self.assertNotIn("68", texto)
+        self.assertNotIn("176", texto)
         self.assertIsNone(qmd.MARCADOR_PENDIENTE.search(texto))
-        otra = qmd.declaracion_ia(self.raiz, 2, 2)
-        self.assertIn("edición contiene 2 fichas", otra)
-        self.assertIn("las 2 citas", otra)
-
-    def test_aborta_si_conteo_falta_o_se_duplica(self):
-        self.banco_con_conteos()
-        ruta = self.raiz / qmd.DECLARACION_IA
-        original = ruta.read_text(encoding="utf-8")
-        for reemplazo in ("", "{FICHAS_EDICION} {FICHAS_EDICION}"):
-            self.paratexto(original.replace("{FICHAS_EDICION}", reemplazo))
-            with self.assertRaisesRegex(RuntimeError, "exactamente una vez"):
-                qmd.declaracion_ia(self.raiz, 1, 1)
 
     def test_aborta_si_falta_el_paratexto(self):
         with self.assertRaisesRegex(RuntimeError, "declaracion-ia.md"):
-            qmd.declaracion_ia(self.raiz, 3)
+            self.resolver()
 
-    def test_aborta_si_el_marcador_no_aparece_una_sola_vez(self):
-        for texto in ("## T\n\nlas 151 citas\n", "## T\n\n{N} y {N}\n"):
-            with self.subTest(texto=texto):
-                self.paratexto(texto)
-                with self.assertRaisesRegex(RuntimeError, "exactamente una vez"):
-                    qmd.declaracion_ia(self.raiz, 3)
-
-    def test_aborta_ante_otro_marcador_sin_sustituir(self):
-        self.paratexto("## T {.unnumbered}\n\nlas {N} citas, edición {FECHA}\n")
-        with self.assertRaisesRegex(RuntimeError, r"\{FECHA\}"):
-            qmd.declaracion_ia(self.raiz, 3)
+    def test_marcadores_faltantes_duplicados_y_huerfanos(self):
+        original = (RAIZ / qmd.DECLARACION_IA).read_text(encoding="utf-8")
+        for marcador in ("{N}", "{FICHAS_EDICION}", "{FECHA_CORTE}"):
+            for cambio in ("", marcador + marcador):
+                self.paratexto(original.replace(marcador, cambio))
+                with self.subTest(marcador=marcador, cambio=cambio), self.assertRaisesRegex(RuntimeError, "exactamente una vez"):
+                    self.resolver()
+        self.paratexto(original + "\n{PUBLICADAS_BANCO}")
+        with self.assertRaisesRegex(RuntimeError, "sin sustituir"):
+            self.resolver()
 
 
 class CitasVerificablesTest(unittest.TestCase):

@@ -93,11 +93,10 @@ lualatex -halt-on-error -interaction=nonstopmode libro.tex
 **Declaración de uso de IA.** Su única fuente es
 `paratextos/declaracion-ia.md`. `qmd.py` la inserta en la Portadilla, detrás de
 «Créditos, licencia y uso», y sustituye `{N}` por las citas de **esta edición**,
-no por las entradas de `refs.bib`. Los marcadores `{FICHAS_EDICION}`,
-`{ENTIDADES_BANCO}`, `{PUBLICADAS_BANCO}`, `{REVISADAS_BANCO}`,
-`{BORRADORES_BANCO}` y `{REFERENCIAS_BANCO}` separan las fichas de la edición
-del inventario completo por estado y de las entradas bibliográficas del banco;
-se calculan en cada build, no se mantienen a mano. La generación aborta
+no por las entradas de `refs.bib`. Los marcadores `{FICHAS_EDICION}` y
+`{FECHA_CORTE}` describen únicamente las fichas y el corte de esa edición.
+El colofón no incluye inventarios vivos del banco: esos conteos permanecen
+en la instantánea fechada de `AI-USE.md`. La generación aborta
 si falta el archivo, si `{N}` no aparece exactamente una vez, si queda un
 marcador `{MAYÚSCULAS}` sin resolver o si alguna cita no es un `@article` con
 PMID y DOI sin exención de Crossref: es lo que hace cierta la frase «verificadas

@@ -380,52 +380,21 @@ def citas_verificables(orden: list, raiz: Path) -> int:
     return len(orden)
 
 
-MARCADORES_CONTEOS = (
-    "{FICHAS_EDICION}", "{ENTIDADES_BANCO}", "{PUBLICADAS_BANCO}",
-    "{REVISADAS_BANCO}", "{BORRADORES_BANCO}", "{REFERENCIAS_BANCO}",
-)
-
-
-def conteos_declaracion(raiz: Path, fichas_edicion: int) -> dict:
-    """Distingue la selección editorial del inventario completo del banco."""
-    entidades = banco.cargar(raiz)
-    estados = [banco.estado_publicacion(e) for e in entidades]
-    return dict(zip(MARCADORES_CONTEOS, (
-        fichas_edicion, len(entidades), estados.count("publicado"),
-        estados.count("revisado"), estados.count("borrador"),
-        len(refs_bibliograficas.cargar_bibliografia(raiz / "refs.bib")),
-    )))
-
-
-def declaracion_ia(raiz: Path, citas: int, fichas_edicion=None) -> str:
-    """Resuelve citas de la edición y conteos del banco, sin cifras manuales."""
+def declaracion_ia(raiz: Path, citas: int, fichas_edicion: int, fecha_corte: str) -> str:
+    """El colofón solo describe la edición, nunca el inventario vivo del banco."""
     ruta = raiz / DECLARACION_IA
     if not ruta.is_file():
-        raise RuntimeError(
-            f"falta {DECLARACION_IA.as_posix()}: el libro no sale sin su "
-            "declaración de uso de IA"
-        )
+        raise RuntimeError(f"falta {DECLARACION_IA.as_posix()}: el libro no sale sin su declaración de uso de IA")
     texto = ruta.read_text(encoding="utf-8").strip()
-    if texto.count(MARCADOR_CITAS) != 1:
-        raise RuntimeError(
-            f"{DECLARACION_IA.as_posix()} debe contener el marcador "
-            f"{MARCADOR_CITAS} exactamente una vez"
-        )
-    texto = texto.replace(MARCADOR_CITAS, str(citas))
-    if any(m in texto for m in MARCADORES_CONTEOS):
-        if fichas_edicion is None:
-            fichas_edicion = len(banco.seleccionar_publicables(banco.cargar(raiz)))
-        for marcador, valor in conteos_declaracion(raiz, fichas_edicion).items():
-            if texto.count(marcador) != 1:
-                raise RuntimeError(
-                    f"{DECLARACION_IA.as_posix()}: {marcador} debe aparecer exactamente una vez"
-                )
-            texto = texto.replace(marcador, str(valor))
+    valores = {MARCADOR_CITAS: str(citas), "{FICHAS_EDICION}": str(fichas_edicion),
+               "{FECHA_CORTE}": fecha_larga(fecha_corte)}
+    for marcador, valor in valores.items():
+        if texto.count(marcador) != 1:
+            raise RuntimeError(f"{DECLARACION_IA.as_posix()}: {marcador} debe aparecer exactamente una vez")
+        texto = texto.replace(marcador, valor)
     pendiente = MARCADOR_PENDIENTE.search(texto)
     if pendiente:
-        raise RuntimeError(
-            f"{DECLARACION_IA.as_posix()}: marcador sin sustituir {pendiente.group(0)}"
-        )
+        raise RuntimeError(f"{DECLARACION_IA.as_posix()}: marcador sin sustituir {pendiente.group(0)}")
     return texto
 
 
@@ -1009,7 +978,7 @@ def _generar_en(entidades: list, raiz: Path, destino: Path) -> dict:
     # {N} son las citas de ESTA edición —`orden_global`, ya poblado por los
     # capítulos—, no las entradas de refs.bib.
     citas = citas_verificables(orden_global, raiz)
-    declaracion = declaracion_ia(raiz, citas, len(entidades))
+    declaracion = declaracion_ia(raiz, citas, len(entidades), FECHA_CORTE)
     escribir_texto(destino / "index.qmd", portadilla(version, declaracion))
     texto_prologo = prologo(raiz)
     if texto_prologo:

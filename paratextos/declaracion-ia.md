@@ -4,11 +4,8 @@ En la preparación de esta obra se usó asistencia de inteligencia
 artificial en la redacción, la búsqueda bibliográfica y el
 mantenimiento del código.
 
-Esta edición contiene {FICHAS_EDICION} fichas. El banco fuente completo
-contiene {ENTIDADES_BANCO} entidades: {PUBLICADAS_BANCO} publicadas,
-{REVISADAS_BANCO} revisadas pendientes de publicación y {BORRADORES_BANCO}
-en borrador. El archivo `refs.bib` contiene {REFERENCIAS_BANCO} entradas
-bibliográficas; las citas de esta edición son una selección de ese archivo.
+Esta edición contiene {FICHAS_EDICION} fichas publicadas hasta el
+{FECHA_CORTE}.
 
 Ninguna imagen fue generada con inteligencia artificial: todas las
 figuras proceden de Wikimedia Commons con crédito, fuente y licencia
