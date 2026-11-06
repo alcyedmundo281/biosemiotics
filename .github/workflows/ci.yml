@@ -20,7 +20,7 @@ permissions:
 jobs:
   integridad:
     name: Integridad Python ${{ matrix.python-version }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     strategy:
       fail-fast: false
       matrix:
@@ -78,7 +78,7 @@ jobs:
     name: Integridad del banco e índice
     needs: [integridad, citas]
     if: always()
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - name: Exigir integridad y verificación completa
         run: |
@@ -90,7 +90,7 @@ jobs:
 
   citas:
     name: Verificación de citas (PubMed + Crossref)
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 10
     # En cada push a main no: evita martillar PubMed. Sí en PR, semanal y a mano.
     if: github.event_name != 'push'
