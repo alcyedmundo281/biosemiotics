@@ -174,7 +174,7 @@ def argumentos() -> argparse.Namespace:
     parser.add_argument(
         "--solo-publicados",
         action="store_true",
-        help="incluye únicamente fichas con URL pública de Ghost",
+        help="compatibilidad: el libro siempre usa publicadas hasta FECHA_CORTE",
     )
     return parser.parse_args()
 

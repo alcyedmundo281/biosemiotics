@@ -214,8 +214,11 @@ enlaces a Ghost y la portada declarada— y aborta si algo se perdió.
 Cada figura debe declarar en `medios`: descripción, crédito, fuente y URL,
 licencia y URL, y `archivo_local`. La ausencia de cualquiera de esos datos o
 del archivo local aborta la compilación: no se omiten imágenes ni se infiere su
-atribución. Para una edición futura con todo el banco se omite
-`--solo-publicados`, únicamente después de la revisión editorial pendiente.
+atribución. El libro con ISBN siempre usa fichas publicadas hasta FECHA_CORTE, incluido
+el día de corte completo en UTC. El selector del seriado no tiene ese límite.
+--solo-publicados se conserva por compatibilidad: omitirlo no abre el alcance
+de la primera edición. Cambiar el corte para otra edición requiere una decisión
+editorial y los identificadores que correspondan.
 
 Metadatos actuales: DOI `10.5281/zenodo.21435362`; ISBN EPUB pendiente. La
 portada tipográfica es original, CC BY 4.0, sin logos ni identidad visual del
