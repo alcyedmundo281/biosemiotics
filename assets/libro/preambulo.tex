@@ -105,6 +105,7 @@
 % Las listas bibliográficas del atlas usan patrones ingleses. El entorno
 % solo cambia la silabación, no los rótulos ni el idioma del cuerpo.
 \AddToHook{package/babel/after}{\babelprovide[import]{english}}
+\AddToHook{package/babel/after}{\babelhyphenation[english]{Ballesteros Fernández Prada Peña Enferm}}
 \newenvironment{silabacionreferencias}{\begin{hyphenrules}{english}}{\par\end{hyphenrules}}
 \newenvironment{evidencia}{\par\small\begin{silabacionreferencias}}{\end{silabacionreferencias}}
 \newenvironment{enlaceficha}{\par\small\sffamily\color{gris}\raggedright}{\par}
