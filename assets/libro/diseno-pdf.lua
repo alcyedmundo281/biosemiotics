@@ -66,8 +66,9 @@ local function contiene_indice(bloque)
   return bloque.t == "RawBlock" and bloque.text:find("\\tableofcontents", 1, true) ~= nil
 end
 
--- Conserva el guion impreso de un compuesto y permite también silabar
--- sus componentes. Los DOI y otros identificadores quedan fuera.
+-- Conserva el guion impreso y permite silabar componentes largos.
+-- Los compuestos de palabras cortas retienen su corte normal en el guion;
+-- los DOI y otros identificadores quedan fuera.
 local function guiones_compuestos(str)
   local texto = str.text
   if not texto:match("^[%a%(%)%-%.,;:!?]+$") then
@@ -76,7 +77,9 @@ local function guiones_compuestos(str)
   local partes = pandoc.List()
   local desde = 1
   for posicion in texto:gmatch("()%-%f[%a]") do
-    if posicion > 1 and texto:sub(posicion - 1, posicion - 1):match("%a") then
+    local anterior = texto:sub(1, posicion - 1):match("%a+$")
+    local siguiente = texto:sub(posicion + 1):match("^%a+")
+    if anterior and (#anterior >= 6 or #siguiente >= 6) then
       partes:insert(pandoc.Str(texto:sub(desde, posicion - 1)))
       partes:insert(pandoc.RawInline("latex", "\\babelhyphen{hard}"))
       desde = posicion + 1
