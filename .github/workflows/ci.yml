@@ -38,6 +38,11 @@ jobs:
       - name: Preflight del banco
         run: python scripts/preflight.py
 
+      - name: Verificar designaciones globales del seriado
+        # Se ejecuta en el merge de prueba del PR y en cada push a main.
+        # El agregador requerido bloquea si alguna versión falla este control.
+        run: python scripts/verificar_numeracion.py
+
       - name: Compilar y validar el banco (build.py)
         # Sale con código 1 si hay aristas rotas en el grafo o un caso
         # publicado sin consentimiento. Esos ERRORES bloquean el merge.
@@ -69,7 +74,7 @@ jobs:
         run: python scripts/verificar_publicacion.py
 
       - name: Probar salvaguardas del pegado en Ghost
-        run: python -m unittest discover -s tests
+        run: python -m unittest discover -s tests -v
 
   integridad-requerida:
     # Conserva el nombre histórico exigido por la protección de `main`. Este
