@@ -129,6 +129,21 @@ PubMed confirmó 176 de las 176 entradas de `refs.bib` y Crossref confirmó las 
 176 de 176. No hay exenciones declaradas. Esa ejecución informó 5 variantes de
 título con DOI idéntico; esas variantes no se trataron como errores de identidad.
 
+**Divergencias declaradas de título (07/11/2026).** Alcy decidió conservar la
+forma corta del título en estas dos entradas del banco:
+
+- `adler2015`, [PMID 26320112](https://pubmed.ncbi.nlm.nih.gov/26320112/),
+  DOI `10.1093/eurheartj/ehv318`. PubMed añade el subtítulo del grupo de
+  trabajo de la ESC y el aval de la EACTS. En ese registro, PubMed devuelve
+  `(ESC)Endorsed` sin espacio.
+- `konstantinides2019`, [PMID 31473594](https://pubmed.ncbi.nlm.nih.gov/31473594/),
+  DOI `10.1183/13993003.01647-2019`. PubMed añade el subtítulo del grupo de
+  trabajo de la ESC.
+
+Se conservan las formas cortas para evitar reproducir artefactos del catálogo.
+El PMID y el DOI identifican cada obra y la comprobación con ambas autoridades
+sigue vigente.
+
 Estas cifras son una instantánea fechada del banco completo. El colofón impreso
 solo describe la edición congelada: `paratextos/declaracion-ia.md` usa `{N}` para
 las referencias distintas citadas por la edición, `{FICHAS_EDICION}` para sus
