@@ -43,7 +43,7 @@ jobs:
     steps:
       - uses: actions/checkout@v7
         with:
-          ref: c5ca8e38956d14bde887fc207fdfea53dfae41b6
+          ref: dd9bab1718e2356c37c6bb9b73be485b41a9c447
           fetch-depth: 1
 
       - uses: actions/setup-python@v7
@@ -121,7 +121,20 @@ jobs:
           fi
           exec "$AUDIT_QUARTO_REAL" "$@"
           SH
-          chmod +x "$RUNNER_TEMP/quarto-audit/quarto"
+          export AUDIT_LUALATEX_REAL
+          AUDIT_LUALATEX_REAL=$(command -v lualatex)
+          cat > "$RUNNER_TEMP/quarto-audit/lualatex" <<'SH'
+          #!/usr/bin/env bash
+          "$AUDIT_LUALATEX_REAL" "$@"
+          status=$?
+          if [ -n "$AUDIT_LOG_FILE" ]; then
+            log=$(find "$PWD" -maxdepth 4 -type f -name '*.log' -printf '%T@ %p\n' \
+              | sort -nr | head -n 1 | cut -d ' ' -f 2-)
+            if [ -n "$log" ]; then cp "$log" "$AUDIT_LOG_FILE"; fi
+          fi
+          exit "$status"
+          SH
+          chmod +x "$RUNNER_TEMP/quarto-audit/"{quarto,lualatex}
           export PATH="$RUNNER_TEMP/quarto-audit:$PATH"
           out="$GITHUB_WORKSPACE/build/auditoria-silabacion"
           mkdir -p "$out"
@@ -131,11 +144,15 @@ jobs:
             git worktree add --detach "$checkout" "$ref"
             (
               cd "$checkout"
+              export AUDIT_LOG_FILE="$out/$modo.log"
               python -c 'import sys; sys.path.insert(0,"scripts"); import qmd, libro; qmd.compilacion_git = lambda _: ("auditoria-silabacion", {"SOURCE_DATE_EPOCH":"1794081295","TZ":"UTC"}); sys.argv=["libro.py","--solo-publicados","--salida","build/libro.pdf"]; raise SystemExit(libro.main())'
             )
-            log=$(find "$checkout/build/quarto" -type f -name libro.log -print -quit)
-            test -n "$log"
-            cp "$log" "$out/$modo.log"
+            if [ ! -s "$out/$modo.log" ]; then
+              log=$(find "$checkout/build/quarto" -type f -name '*.log' -print -quit)
+              test -n "$log"
+              cp "$log" "$out/$modo.log"
+            fi
+            grep -E '^Output written on .+ \([0-9]+ pages' "$out/$modo.log"
             cp "$checkout/build/quarto/libro.tex" "$out/$modo.tex"
             cp "$checkout/build/libro.pdf" "$out/$modo.pdf"
             pdfinfo "$out/$modo.pdf" | grep -E '^(Pages:|Page size:|Producer:)'
