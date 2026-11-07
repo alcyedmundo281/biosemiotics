@@ -30,7 +30,9 @@ class CreditosTest(unittest.TestCase):
         # En un párrafo corrido LaTeX partía el ISBN por sus guiones.
         lineas = qmd.creditos_identificadores().split("\\\n")
         self.assertEqual(lineas, [
-            f"DOI de la obra: [{qmd.DOI_CONCEPTO}]({qmd.DOI_URL}).",
+            f"DOI de esta edición (versión fija): "
+            f"[{qmd.DOI_EDICION}](https://doi.org/{qmd.DOI_EDICION}).",
+            f"DOI de la obra (versión más reciente): [{qmd.DOI_CONCEPTO}]({qmd.DOI_URL}).",
             "ISBN EPUB: 979-8-953844-01-7.",
             "ISBN tapa blanda: 979-8-953844-00-0.",
         ])
@@ -47,14 +49,16 @@ class CreditosTest(unittest.TestCase):
         self.assertNotIn("ISSN", self.texto)
 
     def test_sin_deposito_de_edicion_cita_el_doi_de_la_obra(self):
-        self.assertIn(f"DOI de la obra: [{qmd.DOI_CONCEPTO}]", self.texto)
-        self.assertNotIn("DOI de esta edición", self.texto)
+        with patch.object(qmd, "DOI_EDICION", None):
+            texto = qmd.portadilla("abc1234", DECLARACION)
+        self.assertIn(f"DOI de la obra (versión más reciente): [{qmd.DOI_CONCEPTO}]", texto)
+        self.assertNotIn("DOI de esta edición", texto)
 
     def test_con_deposito_de_edicion_lo_cita_y_conserva_el_de_la_obra(self):
         with patch.object(qmd, "DOI_EDICION", "10.5281/zenodo.1"):
             texto = qmd.portadilla("abc1234", DECLARACION)
-        self.assertIn("DOI de esta edición: [10.5281/zenodo.1]", texto)
-        self.assertIn(f"DOI de la obra: [{qmd.DOI_CONCEPTO}]", texto)
+        self.assertIn("DOI de esta edición (versión fija): [10.5281/zenodo.1]", texto)
+        self.assertIn(f"DOI de la obra (versión más reciente): [{qmd.DOI_CONCEPTO}]", texto)
 
     def test_declara_la_edicion_sobre_la_linea_de_compilacion(self):
         edicion = ("Primera edición. Contiene las entradas publicadas hasta el "
