@@ -175,7 +175,7 @@ def argumentos() -> argparse.Namespace:
     parser.add_argument(
         "--solo-publicados",
         action="store_true",
-        help="incluye únicamente fichas con URL pública de Ghost",
+        help="compatibilidad: el libro siempre usa publicadas hasta FECHA_CORTE",
     )
     return parser.parse_args()
 
@@ -416,26 +416,21 @@ def citas_verificables(orden: list, raiz: Path) -> int:
     return len(orden)
 
 
-def declaracion_ia(raiz: Path, citas: int) -> str:
-    """El paratexto del banco con `{N}` resuelto; aborta ante cualquier marcador."""
+def declaracion_ia(raiz: Path, citas: int, fichas_edicion: int, fecha_corte: str) -> str:
+    """El colofón solo describe la edición, nunca el inventario vivo del banco."""
     ruta = raiz / DECLARACION_IA
     if not ruta.is_file():
-        raise RuntimeError(
-            f"falta {DECLARACION_IA.as_posix()}: el libro no sale sin su "
-            "declaración de uso de IA"
-        )
+        raise RuntimeError(f"falta {DECLARACION_IA.as_posix()}: el libro no sale sin su declaración de uso de IA")
     texto = ruta.read_text(encoding="utf-8").strip()
-    if texto.count(MARCADOR_CITAS) != 1:
-        raise RuntimeError(
-            f"{DECLARACION_IA.as_posix()} debe contener el marcador "
-            f"{MARCADOR_CITAS} exactamente una vez"
-        )
-    texto = texto.replace(MARCADOR_CITAS, str(citas))
+    valores = {MARCADOR_CITAS: str(citas), "{FICHAS_EDICION}": str(fichas_edicion),
+               "{FECHA_CORTE}": fecha_larga(fecha_corte)}
+    for marcador, valor in valores.items():
+        if texto.count(marcador) != 1:
+            raise RuntimeError(f"{DECLARACION_IA.as_posix()}: {marcador} debe aparecer exactamente una vez")
+        texto = texto.replace(marcador, valor)
     pendiente = MARCADOR_PENDIENTE.search(texto)
     if pendiente:
-        raise RuntimeError(
-            f"{DECLARACION_IA.as_posix()}: marcador sin sustituir {pendiente.group(0)}"
-        )
+        raise RuntimeError(f"{DECLARACION_IA.as_posix()}: marcador sin sustituir {pendiente.group(0)}")
     return texto
 
 
@@ -493,7 +488,7 @@ def creditos_identificadores() -> str:
     return "\\\n".join(lineas)
 
 
-def portadilla(version: str, declaracion: str,
+def portadilla(version: str, declaracion: str, fecha_corte=None,
                *, entorno: dict[str, str] | None = None) -> str:
     """Portadilla, créditos y declaración de uso de IA.
 
@@ -515,7 +510,7 @@ def portadilla(version: str, declaracion: str,
             f"{AUTOR} · ORCID [{ORCID}](https://orcid.org/{ORCID})",
             "",
             "Primera edición. Contiene las entradas publicadas hasta el "
-            f"{fecha_larga(FECHA_CORTE)}.",
+            f"{fecha_larga(fecha_corte if fecha_corte is not None else FECHA_CORTE)}.",
             "",
             marca_compilacion(version, entorno),
             "",
@@ -863,7 +858,7 @@ def quarto_yml(partes: list, archivos: dict, version: str, portada: str,
 
 def manuscrito_plano(partes: list, bibliografia: dict, orden_global: list,
                      version: str, declaracion: str,
-                     texto_prologo: str | None = None,
+                     texto_prologo: str | None = None, fecha_corte=None,
                      *, entorno: dict[str, str] | None = None) -> str:
     """El mismo libro en un solo Markdown, para pandoc sin Quarto.
 
@@ -872,7 +867,7 @@ def manuscrito_plano(partes: list, bibliografia: dict, orden_global: list,
     Existe porque Quarto no siempre está disponible y porque conviene poder
     validar la salida sin él; si diverge del proyecto Quarto, es un fallo.
     """
-    bloques = [portadilla(version, declaracion, entorno=entorno)]
+    bloques = [portadilla(version, declaracion, fecha_corte, entorno=entorno)]
     if texto_prologo:
         bloques.append(texto_prologo)
     for parte, capitulos in partes:
@@ -958,7 +953,7 @@ def _temporal_heredable(padre: Path) -> Path:
     raise RuntimeError(f"No se pudo crear un directorio temporal en {padre}")
 
 
-def generar(entidades: list, raiz: Path, destino: Path) -> dict:
+def generar(entidades: list, raiz: Path, destino: Path, *, fecha_corte=None) -> dict:
     """Ensambla primero; conserva el proyecto previo si falla la generación.
 
     El intercambio usa renombres en el mismo filesystem. No garantiza una
@@ -966,7 +961,7 @@ def generar(entidades: list, raiz: Path, destino: Path) -> dict:
     """
     raiz = raiz.resolve()
     destino = validar_destino(raiz, destino)
-    entidades = banco.seleccionar_publicables(entidades)
+    entidades = banco.seleccionar_edicion(entidades, fecha_corte)
     if not entidades:
         raise RuntimeError("ninguna entidad cumple el alcance solicitado")
     exigir_editorial(entidades, raiz / "refs.bib")
@@ -974,7 +969,7 @@ def generar(entidades: list, raiz: Path, destino: Path) -> dict:
     temporal = _temporal_heredable(destino.parent)
     nuevo, anterior = temporal / "nuevo", temporal / "anterior"
     try:
-        informe = _generar_en(entidades, raiz, nuevo)
+        informe = _generar_en(entidades, raiz, nuevo, fecha_corte)
         escribir_texto(nuevo / MARCADOR_PROYECTO, MARCA_PROYECTO)
         validar_destino(raiz, destino)
         if destino.exists():
@@ -1000,7 +995,7 @@ def generar(entidades: list, raiz: Path, destino: Path) -> dict:
             shutil.rmtree(temporal)
 
 
-def _generar_en(entidades: list, raiz: Path, destino: Path) -> dict:
+def _generar_en(entidades: list, raiz: Path, destino: Path, fecha_corte: str) -> dict:
     figuras = figuras_validadas(entidades, raiz)
     bibliografia = bibliografia_para_libro(
         refs_bibliograficas.cargar_bibliografia(raiz / "refs.bib"))
@@ -1028,8 +1023,9 @@ def _generar_en(entidades: list, raiz: Path, destino: Path) -> dict:
     # {N} son las citas de ESTA edición —`orden_global`, ya poblado por los
     # capítulos—, no las entradas de refs.bib.
     citas = citas_verificables(orden_global, raiz)
-    declaracion = declaracion_ia(raiz, citas)
-    escribir_texto(destino / "index.qmd", portadilla(version, declaracion, entorno=entorno))
+    declaracion = declaracion_ia(raiz, citas, len(entidades), fecha_corte)
+    escribir_texto(destino / "index.qmd",
+                   portadilla(version, declaracion, fecha_corte, entorno=entorno))
     texto_prologo = prologo(raiz)
     if texto_prologo:
         escribir_texto(destino / "prologo.qmd", texto_prologo)
@@ -1037,7 +1033,7 @@ def _generar_en(entidades: list, raiz: Path, destino: Path) -> dict:
     # `orden_global` ya poblado; `resolver_citas` es determinista, así que
     # ambos caminos numeran igual.
     plano = manuscrito_plano(partes, bibliografia, orden_global, version, declaracion,
-                             texto_prologo, entorno=entorno)
+                             texto_prologo, fecha_corte=fecha_corte, entorno=entorno)
     plano += "\n" + creditos_imagenes(figuras)
     escribir_texto(destino / "libro-plano.md", plano)
 
@@ -1096,11 +1092,12 @@ def main() -> int:
     destino = desde_raiz(raiz, args.destino)
 
     entidades = banco.cargar(raiz)
-    entidades = banco.seleccionar_publicables(entidades, args.solo_publicados)
+    fecha_corte = globals().get("FECHA_CORTE")
+    entidades = banco.seleccionar_edicion(entidades, fecha_corte)
     if not entidades:
         raise RuntimeError("ninguna entidad cumple el alcance solicitado")
 
-    informe = generar(entidades, raiz, destino)
+    informe = generar(entidades, raiz, destino, fecha_corte=fecha_corte)
 
     print(f"→ {destino.relative_to(raiz)}/")
     print(f"  {informe['entidades']} entidades · {informe['capitulos']} capítulos "
