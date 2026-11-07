@@ -43,7 +43,7 @@ jobs:
     steps:
       - uses: actions/checkout@v7
         with:
-          ref: 12347ac4001d46bb120bcc22b059c066026c59c8
+          ref: 9ff8f47899a54a1791df91356c55f1b3b8882fcb
           fetch-depth: 1
 
       - uses: actions/setup-python@v7
@@ -106,41 +106,66 @@ jobs:
           unzip -q /tmp/epubcheck.zip -d /opt
           echo "EPUBCHECK_JAR=/opt/epubcheck-${VER}/epubcheck.jar" >> "$GITHUB_ENV"
 
-      - name: Auditar dos renders del mismo commit con un tag local
+      - name: Comparar el corte por hash con procedencia fija
         run: |
-          sudo apt-get install -y --no-install-recommends poppler-utils qpdf
-          candidate=$(git rev-parse HEAD)
-          test "$candidate" = "12347ac4001d46bb120bcc22b059c066026c59c8"
-          git tag v1.0.0 "$candidate"
-          git worktree add --detach "$RUNNER_TEMP/repro-local" "$candidate"
-          git show -s --format='Commit %H%nEpoch %ct%nFecha %cI' HEAD
-          python scripts/preflight.py --publicacion
+          sudo apt-get install -y --no-install-recommends poppler-utils
+          commit=$(git rev-parse HEAD)
+          git show -s --format='Commit %H%nSOURCE_DATE_EPOCH %ct' HEAD
+          git tag auditoria-corte "$commit"
+          out="$GITHUB_WORKSPACE/build/auditoria-hash"
+          mkdir -p "$out"
+          cat > "$RUNNER_TEMP/auditar_corte.py" <<'PY'
+          from pathlib import Path
+          import sys
 
-          printf 'Reloj de la primera compilación: '; TZ=UTC date --iso-8601=seconds
-          env -u SOURCE_DATE_EPOCH -u FORCE_SOURCE_DATE GITHUB_REF_TYPE=tag GITHUB_REF_NAME=v1.0.0 TZ=UTC \
-            python scripts/libro.py --solo-publicados --salida build/repro-actions.pdf
-          printf 'Reloj de la segunda compilación: '; TZ=Pacific/Kiritimati date --iso-8601=seconds
-          (
-            cd "$RUNNER_TEMP/repro-local"
-            env -u SOURCE_DATE_EPOCH -u FORCE_SOURCE_DATE -u GITHUB_ACTIONS TZ=Pacific/Kiritimati \
-              python scripts/libro.py --solo-publicados --salida "$GITHUB_WORKSPACE/build/repro-local.pdf"
-          )
+          sys.path.insert(0, str(Path.cwd() / 'scripts'))
+          import banco
+          import libro
+          import qmd
 
-          for pdf in build/repro-actions.pdf build/repro-local.pdf; do
-            pdfinfo -rawdates "$pdf" | tee "$pdf.info"
-            pdfinfo "$pdf" | awk '/^Pages:/ { if ($2 != 264) exit 1; ok=1 } END { if (!ok) exit 1 }'
-            pdftotext -enc UTF-8 -f 3 -l 3 "$pdf" - | tee "$pdf.portadilla.txt"
-            qpdf --show-object=trailer "$pdf" | tee "$pdf.trailer"
+          modo, salida = sys.argv[1:]
+          if modo == 'con_futura':
+              Path('conceptos/auditoria-futura.qmd').write_text(
+                  '---\nid: auditoria-futura\ntipo: concepto\ntitulo: FICHA FICTICIA POSTERIOR\n'
+                  'estado: publicado\nnumero: 57\nvolumen: 1\n'
+                  'ghost_id: abcdef0123456789abcdef01\n'
+                  'url: "https://example.org/auditoria-futura/"\n'
+                  'fecha_publicacion: "2026-11-20T12:00:00.000+00:00"\n'
+                  '---\nEsta ficha ficticia no puede entrar en el libro.\n', encoding='utf-8')
+          if modo == 'sin_filtro':
+              banco.seleccionar_edicion = lambda entidades, _: banco.seleccionar_publicables(entidades, True)
+
+          version, entorno = qmd.compilacion_git(Path.cwd())
+          assert version == 'auditoria-corte' and entorno['SOURCE_DATE_EPOCH'] and entorno['TZ'] == 'UTC'
+          entidades = banco.cargar(Path.cwd())
+          libro_entidades = banco.seleccionar_edicion(entidades, qmd.FECHA_CORTE)
+          seriado = banco.seleccionar_publicables(entidades, True)
+          assert len(libro_entidades) == 56
+          assert len(seriado) == (57 if modo == 'con_futura' else 56)
+          assert not any(e['id'] == 'auditoria-futura' for e in libro_entidades)
+          print(f'{modo}: {len(libro_entidades)} fichas en el libro; {len(seriado)} en el seriado; {version}; epoch {entorno["SOURCE_DATE_EPOCH"]}', flush=True)
+          sys.argv = ['libro.py', '--solo-publicados', '--salida', salida]
+          raise SystemExit(libro.main())
+          PY
+          for modo in sin_filtro con_filtro con_futura; do
+            checkout="$RUNNER_TEMP/corte-$modo"
+            git worktree add --detach "$checkout" "$commit"
+            (
+              cd "$checkout"
+              env -u GITHUB_ACTIONS -u SOURCE_DATE_EPOCH \
+                python "$RUNNER_TEMP/auditar_corte.py" "$modo" "$out/$modo.pdf"
+            )
+            pdfinfo "$out/$modo.pdf" | awk '/^Pages:/ { print; if ($2 != 264) exit 1; ok=1 } END { if (!ok) exit 1 }'
           done
-          sha256sum build/repro-{actions,local}.pdf | tee build/sha256.txt
-          cmp build/repro-actions.pdf build/repro-local.pdf
+          sha256sum "$out"/*.pdf | tee "$out/sha256.txt"
+          cmp "$out/sin_filtro.pdf" "$out/con_filtro.pdf"
+          cmp "$out/con_filtro.pdf" "$out/con_futura.pdf"
+          echo 'Los tres PDF son idénticos byte por byte.'
 
       - name: Conservar evidencia de la auditoría
         if: always()
         uses: actions/upload-artifact@v7
         with:
-          name: auditoria-pdf-etiquetado
-          path: |
-            build/repro-*.pdf*
-            build/sha256.txt
+          name: auditoria-hash-corte
+          path: build/auditoria-hash/
           retention-days: 14
