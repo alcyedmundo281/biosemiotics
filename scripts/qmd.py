@@ -212,7 +212,7 @@ def compilacion_git(raiz: Path) -> tuple[str, dict[str, str]]:
     epoch = subprocess.check_output(
         ["git", "show", "-s", "--format=%ct", "HEAD"], cwd=raiz, text=True,
     ).strip()
-    return tag, {"SOURCE_DATE_EPOCH": epoch}
+    return tag, {"SOURCE_DATE_EPOCH": epoch, "TZ": "UTC"}
 
 
 def fecha_compilacion(entorno: dict[str, str] | None = None) -> str:
