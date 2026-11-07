@@ -43,7 +43,7 @@ jobs:
     steps:
       - uses: actions/checkout@v7
         with:
-          ref: c7f3b6fd678765c2843657cfcc34b18127c407dc
+          ref: 71fb28404790538ae8cc9d16518052db742241d2
           fetch-depth: 1
 
       - uses: actions/setup-python@v7
@@ -110,7 +110,7 @@ jobs:
         run: |
           sudo apt-get install -y --no-install-recommends poppler-utils qpdf
           candidate=$(git rev-parse HEAD)
-          test "$candidate" = "c7f3b6fd678765c2843657cfcc34b18127c407dc"
+          test "$candidate" = "71fb28404790538ae8cc9d16518052db742241d2"
           git tag v1.0.0 "$candidate"
           git worktree add --detach "$RUNNER_TEMP/repro-local" "$candidate"
           git show -s --format='Commit %H%nEpoch %ct%nFecha %cI' HEAD
@@ -127,7 +127,7 @@ jobs:
           )
 
           for pdf in build/repro-actions.pdf build/repro-local.pdf; do
-            pdfinfo -isodates "$pdf" | tee "$pdf.info"
+            pdfinfo -rawdates "$pdf" | tee "$pdf.info"
             pdfinfo "$pdf" | awk '/^Pages:/ { if ($2 != 264) exit 1; ok=1 } END { if (!ok) exit 1 }'
             pdftotext -enc UTF-8 -f 3 -l 3 "$pdf" - | tee "$pdf.portadilla.txt"
             qpdf --show-object=trailer "$pdf" | tee "$pdf.trailer"
