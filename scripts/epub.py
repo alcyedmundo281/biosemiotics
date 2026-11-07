@@ -29,7 +29,6 @@ import shutil
 import subprocess
 import sys
 import zipfile
-from datetime import date
 from pathlib import Path
 
 import banco
@@ -44,7 +43,7 @@ def argumentos() -> argparse.Namespace:
     parser.add_argument(
         "--solo-publicados",
         action="store_true",
-        help="incluye únicamente fichas con URL pública de Ghost",
+        help="compatibilidad: el libro siempre usa publicadas hasta FECHA_CORTE",
     )
     parser.add_argument(
         "--motor",
@@ -87,6 +86,7 @@ def elegir_motor(preferido: str) -> tuple:
 
 
 def render_pandoc(ejecutable: str, proyecto: Path, destino: Path, informe: dict) -> Path:
+    entorno = informe["entorno_render"]
     comando = [
         ejecutable,
         "libro-plano.md",
@@ -115,9 +115,10 @@ def render_pandoc(ejecutable: str, proyecto: Path, destino: Path, informe: dict)
         f"--metadata=subtitle:{qmd.SUBTITULO}",
         f"--metadata=author:{qmd.AUTOR}",
         "--metadata=lang:es",
-        f"--metadata=date:{date.today().isoformat()}",
+        f"--metadata=date:{qmd.fecha_compilacion(entorno)}",
     ]
-    subprocess.run(comando, cwd=proyecto, check=True)
+    subprocess.run(comando, cwd=proyecto, check=True,
+                   env={**os.environ, **entorno} if entorno else None)
     return destino
 
 
@@ -242,17 +243,19 @@ def main() -> int:
     proyecto = desde_raiz(raiz, args.proyecto)
 
     entidades = banco.cargar(raiz)
-    entidades = banco.seleccionar_publicables(entidades, args.solo_publicados)
+    fecha_corte = getattr(qmd, "FECHA_CORTE", None)
+    entidades = banco.seleccionar_edicion(entidades, fecha_corte)
     if not entidades:
         raise RuntimeError("ninguna entidad cumple el alcance solicitado")
 
     nombre_motor, ejecutable = elegir_motor(args.motor)
-    informe = qmd.generar(entidades, raiz, proyecto)
+    informe = qmd.generar(entidades, raiz, proyecto, fecha_corte=fecha_corte)
 
     salida.parent.mkdir(parents=True, exist_ok=True)
     temporal = proyecto / "atlas-temporal.epub"
     if nombre_motor == "quarto":
-        producido = qmd.render(ejecutable, proyecto, "epub", ".epub")
+        producido = qmd.render(ejecutable, proyecto, "epub", ".epub",
+                               entorno=informe["entorno_render"])
     else:
         producido = render_pandoc(ejecutable, proyecto, temporal, informe)
 
@@ -271,7 +274,8 @@ def main() -> int:
     print(f"✓ Enlaces al artículo en Ghost: {enlaces_ghost}")
     print(f"✓ Portada: {informe['portada']}")
     print(f"✓ Referencias: {informe['referencias']}")
-    print(f"✓ Versión: {informe['version']} · fecha: {date.today().isoformat()}")
+    fecha = qmd.fecha_compilacion(informe["entorno_render"])
+    print(f"✓ Versión: {informe['version']} · fecha: {fecha}")
     print(f"✓ Tamaño: {salida.stat().st_size:,} bytes")
     print(f"✓ Validación interna: {validacion}")
     print(f"✓ Salida: {salida}")

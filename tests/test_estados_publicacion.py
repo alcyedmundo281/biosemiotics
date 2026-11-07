@@ -113,7 +113,7 @@ class EstadosPublicacionTest(unittest.TestCase):
         self.assertEqual(resultado.returncode, 0, resultado.stderr)
         self.assertNotIn(self.caso["titulo"], (destino / "atlas.html").read_text(encoding="utf-8"))
         with self.assertRaisesRegex(RuntimeError, "ninguna entidad"):
-            qmd.generar([self.caso], self.raiz, destino / "quarto")
+            qmd.generar([self.caso], self.raiz, destino / "quarto", fecha_corte=qmd.FECHA_CORTE)
         self.assertFalse((destino / "quarto").exists())
 
     def test_caso_con_url_sin_consentimiento_bloquea_antes_de_escribir(self):
@@ -130,7 +130,7 @@ class EstadosPublicacionTest(unittest.TestCase):
         with self.assertRaisesRegex(RuntimeError, "consentimiento"):
             build.build_ghost([e], destino, self.raiz / "refs.bib")
         with self.assertRaisesRegex(RuntimeError, "consentimiento"):
-            qmd.generar([e], self.raiz, destino / "quarto")
+            qmd.generar([e], self.raiz, destino / "quarto", fecha_corte=qmd.FECHA_CORTE)
         with self.assertRaisesRegex(RuntimeError, "consentimiento"):
             build.build_sqlite([e], destino)
 

@@ -40,6 +40,7 @@ generación aborta si alguna no es verificable: así la frase es un hecho.
 from __future__ import annotations
 
 import argparse
+import os
 import re
 import secrets
 import shutil
@@ -47,7 +48,7 @@ import subprocess
 import sys
 import unicodedata
 from collections import defaultdict
-from datetime import date
+from datetime import date, datetime, timezone
 from pathlib import Path
 
 import banco
@@ -174,7 +175,7 @@ def argumentos() -> argparse.Namespace:
     parser.add_argument(
         "--solo-publicados",
         action="store_true",
-        help="incluye únicamente fichas con URL pública de Ghost",
+        help="compatibilidad: el libro siempre usa publicadas hasta FECHA_CORTE",
     )
     return parser.parse_args()
 
@@ -182,7 +183,7 @@ def argumentos() -> argparse.Namespace:
 def version_git(raiz: Path) -> str:
     try:
         return subprocess.run(
-            ["git", "describe", "--always", "--dirty"],
+            ["git", "describe", "--always", "--dirty", "--exclude=*"],
             cwd=raiz,
             check=True,
             capture_output=True,
@@ -190,6 +191,41 @@ def version_git(raiz: Path) -> str:
         ).stdout.strip()
     except (OSError, subprocess.CalledProcessError):
         return "sin-versión-git"
+
+
+def compilacion_git(raiz: Path) -> tuple[str, dict[str, str]]:
+    """Identifica el checkout y fija el reloj de los renders etiquetados."""
+    if os.environ.get("GITHUB_ACTIONS") == "true":
+        # Equivalentes de github.ref_type y github.ref_name, incluso sin tags locales.
+        tag = (os.environ["GITHUB_REF_NAME"]
+               if os.environ.get("GITHUB_REF_TYPE") == "tag" else "")
+    else:
+        try:
+            tag = subprocess.check_output(
+                ["git", "describe", "--exact-match", "--tags", "HEAD"],
+                cwd=raiz, stderr=subprocess.DEVNULL, text=True,
+            ).strip()
+        except (OSError, subprocess.CalledProcessError):
+            tag = ""
+    if not tag:
+        return version_git(raiz), {}
+    epoch = subprocess.check_output(
+        ["git", "show", "-s", "--format=%ct", "HEAD"], cwd=raiz, text=True,
+    ).strip()
+    return tag, {"SOURCE_DATE_EPOCH": epoch, "TZ": "UTC"}
+
+
+def fecha_compilacion(entorno: dict[str, str] | None = None) -> str:
+    if entorno:
+        epoch = int(entorno["SOURCE_DATE_EPOCH"])
+        return datetime.fromtimestamp(epoch, timezone.utc).date().isoformat()
+    return date.today().isoformat()
+
+
+def marca_compilacion(version: str, entorno: dict[str, str] | None = None) -> str:
+    if entorno:
+        return f"{EDITORIAL} · versión `{version}`"
+    return f"{EDITORIAL} · Compilación {fecha_compilacion()} · versión `{version}`"
 
 
 def slug(texto: str) -> str:
@@ -380,26 +416,21 @@ def citas_verificables(orden: list, raiz: Path) -> int:
     return len(orden)
 
 
-def declaracion_ia(raiz: Path, citas: int) -> str:
-    """El paratexto del banco con `{N}` resuelto; aborta ante cualquier marcador."""
+def declaracion_ia(raiz: Path, citas: int, fichas_edicion: int, fecha_corte: str) -> str:
+    """El colofón solo describe la edición, nunca el inventario vivo del banco."""
     ruta = raiz / DECLARACION_IA
     if not ruta.is_file():
-        raise RuntimeError(
-            f"falta {DECLARACION_IA.as_posix()}: el libro no sale sin su "
-            "declaración de uso de IA"
-        )
+        raise RuntimeError(f"falta {DECLARACION_IA.as_posix()}: el libro no sale sin su declaración de uso de IA")
     texto = ruta.read_text(encoding="utf-8").strip()
-    if texto.count(MARCADOR_CITAS) != 1:
-        raise RuntimeError(
-            f"{DECLARACION_IA.as_posix()} debe contener el marcador "
-            f"{MARCADOR_CITAS} exactamente una vez"
-        )
-    texto = texto.replace(MARCADOR_CITAS, str(citas))
+    valores = {MARCADOR_CITAS: str(citas), "{FICHAS_EDICION}": str(fichas_edicion),
+               "{FECHA_CORTE}": fecha_larga(fecha_corte)}
+    for marcador, valor in valores.items():
+        if texto.count(marcador) != 1:
+            raise RuntimeError(f"{DECLARACION_IA.as_posix()}: {marcador} debe aparecer exactamente una vez")
+        texto = texto.replace(marcador, valor)
     pendiente = MARCADOR_PENDIENTE.search(texto)
     if pendiente:
-        raise RuntimeError(
-            f"{DECLARACION_IA.as_posix()}: marcador sin sustituir {pendiente.group(0)}"
-        )
+        raise RuntimeError(f"{DECLARACION_IA.as_posix()}: marcador sin sustituir {pendiente.group(0)}")
     return texto
 
 
@@ -460,7 +491,8 @@ def creditos_identificadores() -> str:
     return "\\\n".join(lineas)
 
 
-def portadilla(version: str, declaracion: str) -> str:
+def portadilla(version: str, declaracion: str, fecha_corte=None,
+               *, entorno: dict[str, str] | None = None) -> str:
     """Portadilla, créditos y declaración de uso de IA.
 
     En el PDF este bloque va ANTES del índice, como la página de créditos de un
@@ -481,10 +513,9 @@ def portadilla(version: str, declaracion: str) -> str:
             f"{AUTOR} · ORCID [{ORCID}](https://orcid.org/{ORCID})",
             "",
             "Primera edición. Contiene las entradas publicadas hasta el "
-            f"{fecha_larga(FECHA_CORTE)}.",
+            f"{fecha_larga(fecha_corte if fecha_corte is not None else FECHA_CORTE)}.",
             "",
-            f"{EDITORIAL} · Compilación {date.today().isoformat()} · "
-            f"versión `{version}`",
+            marca_compilacion(version, entorno),
             "",
             "## Créditos, licencia y uso {.unnumbered}",
             "",
@@ -567,7 +598,8 @@ def rasterizar_portada(svg: Path, png: Path) -> bool:
     return png.is_file() and png.stat().st_size > 0
 
 
-def metadatos_epub(entidades: list, version: str) -> str:
+def metadatos_epub(entidades: list, version: str,
+                   *, entorno: dict[str, str] | None = None) -> str:
     """Dublin Core del contenedor, para `pandoc --epub-metadata`.
 
     Aporta SOLO lo que pandoc no genera por su cuenta: el DOI con su esquema,
@@ -593,7 +625,7 @@ def metadatos_epub(entidades: list, version: str) -> str:
         "Las figuras conservan sus licencias propias, declaradas en cada pie y "
         "en los créditos finales.</dc:rights>",
         f"<dc:description>{escapar_xml(SUBTITULO)}. {escapar_xml(AVISO)} "
-        f"Compilación {date.today().isoformat()}, versión {escapar_xml(version)}."
+        f"Compilación {fecha_compilacion(entorno)}, versión {escapar_xml(version)}."
         "</dc:description>",
         f"<dc:source>{escapar_xml(DOI_URL)}</dc:source>",
         "<dc:type>Text</dc:type>",
@@ -700,7 +732,7 @@ def estructura(entidades: list) -> list:
     return partes
 
 
-def preambulo_libro() -> str:
+def preambulo_libro(*, reproducible: bool = False) -> str:
     """Preámbulo de diseño del PDF, con los datos de la portada."""
     plantilla = (DISENO_LIBRO / "preambulo.tex").read_text(encoding="utf-8")
 
@@ -719,6 +751,9 @@ def preambulo_libro() -> str:
     cabecera = "".join(
         f"\\newcommand{{\\{nombre}}}{{{valor}}}\n" for nombre, valor in macros.items()
     )
+    if reproducible:
+        # LuaTeX incluye el directorio de trabajo en el ID opcional del PDF.
+        cabecera += "\\pdfvariable suppressoptionalinfo 512\\relax\n"
     # El tope de figuras va al final, después de cualquier ajuste del diseño.
     return cabecera + plantilla + "\n" + PANDOCBOUNDED_CON_TOPE + "\n"
 
@@ -729,7 +764,9 @@ def yaml_texto(valor: str) -> str:
 
 
 def quarto_yml(partes: list, archivos: dict, version: str, portada: str,
-               con_prologo: bool = False) -> str:
+               con_prologo: bool = False,
+               *, entorno: dict[str, str] | None = None) -> str:
+    fecha = fecha_compilacion(entorno)
     lineas = [
         "# GENERADO por scripts/qmd.py — no editar a mano.",
         "# La fuente de verdad es el banco .qmd de conceptos/, signos/ y casos/.",
@@ -743,7 +780,7 @@ def quarto_yml(partes: list, archivos: dict, version: str, portada: str,
         "  author:",
         f"    - name: {yaml_texto(AUTOR)}",
         f"      orcid: {yaml_texto(ORCID)}",
-        f"  date: {yaml_texto(date.today().isoformat())}",
+        f"  date: {yaml_texto(fecha)}",
         f"  publisher: {yaml_texto(EDITORIAL)}",
         "  language: es",
         # En un libro Quarto el nombre de salida se declara aquí, no bajo el
@@ -775,7 +812,7 @@ def quarto_yml(partes: list, archivos: dict, version: str, portada: str,
         # Quarto las pasa a pandoc ADEMÁS del `epub-metadata.xml`, con lo que
         # el OPF sale con dos `dc:identifier`. El XML es la única autoridad.
         "lang: es",
-        f"date-meta: {yaml_texto(date.today().isoformat())}",
+        f"date-meta: {yaml_texto(fecha)}",
         f"version: {yaml_texto(version)}",
         "",
         "format:",
@@ -824,7 +861,8 @@ def quarto_yml(partes: list, archivos: dict, version: str, portada: str,
 
 def manuscrito_plano(partes: list, bibliografia: dict, orden_global: list,
                      version: str, declaracion: str,
-                     texto_prologo: str | None = None) -> str:
+                     texto_prologo: str | None = None, fecha_corte=None,
+                     *, entorno: dict[str, str] | None = None) -> str:
     """El mismo libro en un solo Markdown, para pandoc sin Quarto.
 
     No es una segunda versión del ensamblado: es la concatenación literal de
@@ -832,7 +870,7 @@ def manuscrito_plano(partes: list, bibliografia: dict, orden_global: list,
     Existe porque Quarto no siempre está disponible y porque conviene poder
     validar la salida sin él; si diverge del proyecto Quarto, es un fallo.
     """
-    bloques = [portadilla(version, declaracion)]
+    bloques = [portadilla(version, declaracion, fecha_corte, entorno=entorno)]
     if texto_prologo:
         bloques.append(texto_prologo)
     for parte, capitulos in partes:
@@ -841,7 +879,8 @@ def manuscrito_plano(partes: list, bibliografia: dict, orden_global: list,
     return "\n".join(bloques)
 
 
-def render(ejecutable: str, proyecto: Path, formato: str, sufijo: str) -> Path:
+def render(ejecutable: str, proyecto: Path, formato: str, sufijo: str,
+           *, entorno: dict[str, str] | None = None) -> Path:
     """Renderiza el proyecto a un formato y devuelve el archivo producido.
 
     Compartida por `epub.py` y `libro.py` para que las dos ediciones salgan
@@ -850,6 +889,7 @@ def render(ejecutable: str, proyecto: Path, formato: str, sufijo: str) -> Path:
     subprocess.run(
         [ejecutable, "render", str(proyecto), "--to", formato],
         cwd=proyecto,
+        env={**os.environ, **entorno} if entorno else None,
         check=True,
     )
     salidas = sorted((proyecto / "_salida").glob(f"*{sufijo}"))
@@ -916,7 +956,7 @@ def _temporal_heredable(padre: Path) -> Path:
     raise RuntimeError(f"No se pudo crear un directorio temporal en {padre}")
 
 
-def generar(entidades: list, raiz: Path, destino: Path) -> dict:
+def generar(entidades: list, raiz: Path, destino: Path, *, fecha_corte=None) -> dict:
     """Ensambla primero; conserva el proyecto previo si falla la generación.
 
     El intercambio usa renombres en el mismo filesystem. No garantiza una
@@ -924,7 +964,7 @@ def generar(entidades: list, raiz: Path, destino: Path) -> dict:
     """
     raiz = raiz.resolve()
     destino = validar_destino(raiz, destino)
-    entidades = banco.seleccionar_publicables(entidades)
+    entidades = banco.seleccionar_edicion(entidades, fecha_corte)
     if not entidades:
         raise RuntimeError("ninguna entidad cumple el alcance solicitado")
     exigir_editorial(entidades, raiz / "refs.bib")
@@ -932,7 +972,7 @@ def generar(entidades: list, raiz: Path, destino: Path) -> dict:
     temporal = _temporal_heredable(destino.parent)
     nuevo, anterior = temporal / "nuevo", temporal / "anterior"
     try:
-        informe = _generar_en(entidades, raiz, nuevo)
+        informe = _generar_en(entidades, raiz, nuevo, fecha_corte)
         escribir_texto(nuevo / MARCADOR_PROYECTO, MARCA_PROYECTO)
         validar_destino(raiz, destino)
         if destino.exists():
@@ -958,11 +998,11 @@ def generar(entidades: list, raiz: Path, destino: Path) -> dict:
             shutil.rmtree(temporal)
 
 
-def _generar_en(entidades: list, raiz: Path, destino: Path) -> dict:
+def _generar_en(entidades: list, raiz: Path, destino: Path, fecha_corte: str) -> dict:
     figuras = figuras_validadas(entidades, raiz)
     bibliografia = bibliografia_para_libro(
         refs_bibliograficas.cargar_bibliografia(raiz / "refs.bib"))
-    version = version_git(raiz)
+    version, entorno = compilacion_git(raiz)
 
     destino.mkdir(parents=True)
 
@@ -986,8 +1026,9 @@ def _generar_en(entidades: list, raiz: Path, destino: Path) -> dict:
     # {N} son las citas de ESTA edición —`orden_global`, ya poblado por los
     # capítulos—, no las entradas de refs.bib.
     citas = citas_verificables(orden_global, raiz)
-    declaracion = declaracion_ia(raiz, citas)
-    escribir_texto(destino / "index.qmd", portadilla(version, declaracion))
+    declaracion = declaracion_ia(raiz, citas, len(entidades), fecha_corte)
+    escribir_texto(destino / "index.qmd",
+                   portadilla(version, declaracion, fecha_corte, entorno=entorno))
     texto_prologo = prologo(raiz)
     if texto_prologo:
         escribir_texto(destino / "prologo.qmd", texto_prologo)
@@ -995,7 +1036,7 @@ def _generar_en(entidades: list, raiz: Path, destino: Path) -> dict:
     # `orden_global` ya poblado; `resolver_citas` es determinista, así que
     # ambos caminos numeran igual.
     plano = manuscrito_plano(partes, bibliografia, orden_global, version, declaracion,
-                             texto_prologo)
+                             texto_prologo, fecha_corte=fecha_corte, entorno=entorno)
     plano += "\n" + creditos_imagenes(figuras)
     escribir_texto(destino / "libro-plano.md", plano)
 
@@ -1010,13 +1051,13 @@ def _generar_en(entidades: list, raiz: Path, destino: Path) -> dict:
 
     escribir_texto(
         destino / "_quarto.yml",
-        quarto_yml(partes, archivos, version, portada, bool(texto_prologo)),
+        quarto_yml(partes, archivos, version, portada, bool(texto_prologo), entorno=entorno),
     )
     escribir_texto(destino / "epub.css", ESTILO)
-    escribir_texto(destino / PREAMBULO_LIBRO, preambulo_libro())
+    escribir_texto(destino / PREAMBULO_LIBRO, preambulo_libro(reproducible=bool(entorno)))
     shutil.copy2(DISENO_LIBRO / FILTRO_LIBRO, destino / FILTRO_LIBRO)
     escribir_texto(
-        destino / "epub-metadata.xml", metadatos_epub(entidades, version)
+        destino / "epub-metadata.xml", metadatos_epub(entidades, version, entorno=entorno)
     )
     shutil.copy2(raiz / "refs.bib", destino / "refs.bib")
 
@@ -1043,6 +1084,7 @@ def _generar_en(entidades: list, raiz: Path, destino: Path) -> dict:
         "prologo": bool(texto_prologo),
         "partes": [parte for parte, _ in partes],
         "version": version,
+        "entorno_render": entorno,
     }
 
 
@@ -1053,11 +1095,12 @@ def main() -> int:
     destino = desde_raiz(raiz, args.destino)
 
     entidades = banco.cargar(raiz)
-    entidades = banco.seleccionar_publicables(entidades, args.solo_publicados)
+    fecha_corte = globals().get("FECHA_CORTE")
+    entidades = banco.seleccionar_edicion(entidades, fecha_corte)
     if not entidades:
         raise RuntimeError("ninguna entidad cumple el alcance solicitado")
 
-    informe = generar(entidades, raiz, destino)
+    informe = generar(entidades, raiz, destino, fecha_corte=fecha_corte)
 
     print(f"→ {destino.relative_to(raiz)}/")
     print(f"  {informe['entidades']} entidades · {informe['capitulos']} capítulos "

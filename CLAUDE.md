@@ -93,7 +93,10 @@ lualatex -halt-on-error -interaction=nonstopmode libro.tex
 **Declaración de uso de IA.** Su única fuente es
 `paratextos/declaracion-ia.md`. `qmd.py` la inserta en la Portadilla, detrás de
 «Créditos, licencia y uso», y sustituye `{N}` por las citas de **esta edición**,
-no por las entradas de `refs.bib`. La generación aborta
+no por las entradas de `refs.bib`. Los marcadores `{FICHAS_EDICION}` y
+`{FECHA_CORTE}` describen únicamente las fichas y el corte de esa edición.
+El colofón no incluye inventarios vivos del banco: esos conteos permanecen
+en la instantánea fechada de `AI-USE.md`. La generación aborta
 si falta el archivo, si `{N}` no aparece exactamente una vez, si queda un
 marcador `{MAYÚSCULAS}` sin resolver o si alguna cita no es un `@article` con
 PMID y DOI sin exención de Crossref: es lo que hace cierta la frase «verificadas
@@ -211,8 +214,11 @@ enlaces a Ghost y la portada declarada— y aborta si algo se perdió.
 Cada figura debe declarar en `medios`: descripción, crédito, fuente y URL,
 licencia y URL, y `archivo_local`. La ausencia de cualquiera de esos datos o
 del archivo local aborta la compilación: no se omiten imágenes ni se infiere su
-atribución. Para una edición futura con todo el banco se omite
-`--solo-publicados`, únicamente después de la revisión editorial pendiente.
+atribución. El libro con ISBN siempre usa fichas publicadas hasta FECHA_CORTE, incluido
+el día de corte completo en UTC. El selector del seriado no tiene ese límite.
+--solo-publicados se conserva por compatibilidad: omitirlo no abre el alcance
+de la primera edición. Cambiar el corte para otra edición requiere una decisión
+editorial y los identificadores que correspondan.
 
 Metadatos actuales: DOI `10.5281/zenodo.21435362`; ISBN EPUB pendiente. La
 portada tipográfica es original, CC BY 4.0, sin logos ni identidad visual del
@@ -424,7 +430,8 @@ compilación y Git cuando la tarea solicitada sea publicar un artículo.
 
 El publicador puede usar la sesión autorizada de Ghost y, sobre una ficha `.qmd`
 **ya creada, revisada y validada durante la fase proveedora**, modificar `url`,
-`estado` y `ghost_id` para registrar la publicación real, además de `medios`;
+`estado`, `ghost_id`, `numero`, `volumen` y `fecha_publicacion` para registrar
+la publicación real, además de `medios`;
 puede añadir el archivo licenciado a `assets/img/`, ejecutar
 `build.py`, verificar el libro con `libro.py` y entregar esos cambios en
 una rama/PR de publicación.
@@ -456,7 +463,8 @@ python scripts/auditar_pegado_ghost.py \
   auditoría es de lectura; no genera ni reescribe archivos.
 - Confirma que la ficha fuente ya existe y no tiene cambios editoriales
   pendientes. Crea una rama de publicación; en ella solo podrán cambiar
-  `url`, `estado`, `ghost_id`, `medios`, `assets/img/` y las salidas LuaLaTeX correspondientes.
+  `url`, `estado`, `ghost_id`, `numero`, `volumen`, `fecha_publicacion`,
+  `medios`, `assets/img/` y las salidas LuaLaTeX correspondientes.
 
 ### 1. Preparar y revisar Ghost
 
@@ -519,9 +527,26 @@ python scripts/auditar_pegado_ghost.py \
 
 ### 2. Registrar los artefactos y cerrar la fase publicadora
 
-1. Registra `estado: publicado`, el `ghost_id` real y la URL pública definitiva
-   en `url` de la ficha existente. No
-   cambies ningún otro campo salvo `medios`.
+1. Para una publicación nueva, conserva el JSON exacto de respuesta de Ghost
+   Admin API al publicar y ejecuta:
+
+   ```bash
+   python scripts/registrar_publicacion.py --id <id> --respuesta <respuesta-admin.json>
+   ```
+
+   En una sola escritura atómica registra `estado: publicado`, `url`,
+   `ghost_id`, `numero`, `volumen` y `fecha_publicacion`. La fecha es el
+   `published_at` exacto de la respuesta, completo, con zona y entre comillas.
+   Si falta, falla sin escribir: nunca usa el reloj, el título ni el slug.
+   El número es máximo global existente + 1, incluidos números de fichas
+   retiradas; no rellena huecos ni reinicia por volumen. El volumen es el año
+   de esa fecha menos 2025: 2026 es volumen 1. Una ficha con `numero` previo
+   o una colisión bloquean el registro; no se recalcula ni se reintenta con
+   otro número. Actualiza desde `main` y serializa las publicaciones entre
+   ramas/checkouts; el comando bloquea registros simultáneos del mismo checkout.
+   Conserva la designación al retirar una ficha. Actualizar un post existente
+   conserva sus campos y no pasa por este asignador de primeras publicaciones.
+   No cambies ningún otro campo salvo `medios`.
 2. Ejecuta `build.py` y `libro.py`, y valida que `build/quarto/libro.tex` use exactamente el
    `archivo_local` subido a Ghost y compila LuaLaTeX si está disponible. La
    misma imagen debe poder entrar en el EPUB. **No ejecutes `indice.py` ni
@@ -731,3 +756,14 @@ ramas remotas ya fusionadas sí puede eliminarlas quien fusiona el PR.
 ## El norte
 
 Cada cifra verificada. Cada signo con sus límites. El orden por oleada mantiene vivo el mensaje del proyecto: *empezar POCUS es más fácil de lo que te dijeron.* La arquitectura ya está hecha; tu trabajo es hacerla crecer sin degradar su rigor.
+
+
+**Garantía de integración del seriado.** `python scripts/verificar_numeracion.py`
+exige que los números de todas las fichas publicadas, sin separar por volumen,
+sean únicos y exactamente 1..N, sin huecos. CI lo ejecuta tanto sobre el merge
+de prueba de cada PR como en cada push a `main`, dentro de la matriz cuyo
+agregador «Integridad del banco e índice» es obligatorio. La protección de
+`main` exige además actualizar la base (`strict: true`): si otra rama publicó
+el mismo número, la rama pendiente debe actualizarse y volver a pasar el
+control combinado antes de fusionarse. No se corrige un conflicto recalculando
+una designación ya publicada.
