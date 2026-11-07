@@ -31,6 +31,7 @@ on: workflow_dispatch
 
 permissions:
   contents: read
+  actions: read
 
 concurrency:
   group: editorial-${{ github.workflow }}-${{ github.ref }}
@@ -43,7 +44,7 @@ jobs:
     steps:
       - uses: actions/checkout@v7
         with:
-          ref: dd9bab1718e2356c37c6bb9b73be485b41a9c447
+          ref: 95442dc1169515c7cb29ab44086adb860659c033
           fetch-depth: 1
 
       - uses: actions/setup-python@v7
@@ -106,11 +107,11 @@ jobs:
           unzip -q /tmp/epubcheck.zip -d /opt
           echo "EPUBCHECK_JAR=/opt/epubcheck-${VER}/epubcheck.jar" >> "$GITHUB_ENV"
 
-      - name: Compilar ambos PDF y conservar el log final
+      - name: Reusar el PDF base y compilar el candidato con su log final
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           sudo apt-get install -y --no-install-recommends poppler-utils
-          base=eda169d57ad44dfbaa0e4b410c2505a84b9dbae2
-          git fetch --no-tags --depth=1 origin "$base"
           export AUDIT_QUARTO_REAL
           AUDIT_QUARTO_REAL=$(command -v quarto)
           mkdir -p "$RUNNER_TEMP/quarto-audit"
@@ -138,8 +139,10 @@ jobs:
           export PATH="$RUNNER_TEMP/quarto-audit:$PATH"
           out="$GITHUB_WORKSPACE/build/auditoria-silabacion"
           mkdir -p "$out"
-          for modo in antes despues; do
-            if [ "$modo" = antes ]; then ref="$base"; else ref=$(git rev-parse HEAD); fi
+          gh run download 42411114815 --repo "$GITHUB_REPOSITORY" --name auditoria-silabacion-pdf --dir "$RUNNER_TEMP/base"
+          cp "$RUNNER_TEMP/base/"antes.{pdf,log,tex} "$out/"
+          for modo in despues; do
+            ref=$(git rev-parse HEAD)
             checkout="$RUNNER_TEMP/silabacion-$modo"
             git worktree add --detach "$checkout" "$ref"
             (
