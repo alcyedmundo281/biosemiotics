@@ -732,7 +732,7 @@ def estructura(entidades: list) -> list:
     return partes
 
 
-def preambulo_libro() -> str:
+def preambulo_libro(*, reproducible: bool = False) -> str:
     """Preámbulo de diseño del PDF, con los datos de la portada."""
     plantilla = (DISENO_LIBRO / "preambulo.tex").read_text(encoding="utf-8")
 
@@ -751,6 +751,9 @@ def preambulo_libro() -> str:
     cabecera = "".join(
         f"\\newcommand{{\\{nombre}}}{{{valor}}}\n" for nombre, valor in macros.items()
     )
+    if reproducible:
+        # LuaTeX incluye el directorio de trabajo en el ID opcional del PDF.
+        cabecera += "\\pdfvariable suppressoptionalinfo 512\\relax\n"
     # El tope de figuras va al final, después de cualquier ajuste del diseño.
     return cabecera + plantilla + "\n" + PANDOCBOUNDED_CON_TOPE + "\n"
 
@@ -1050,7 +1053,7 @@ def _generar_en(entidades: list, raiz: Path, destino: Path) -> dict:
         quarto_yml(partes, archivos, version, portada, bool(texto_prologo), entorno=entorno),
     )
     escribir_texto(destino / "epub.css", ESTILO)
-    escribir_texto(destino / PREAMBULO_LIBRO, preambulo_libro())
+    escribir_texto(destino / PREAMBULO_LIBRO, preambulo_libro(reproducible=bool(entorno)))
     shutil.copy2(DISENO_LIBRO / FILTRO_LIBRO, destino / FILTRO_LIBRO)
     escribir_texto(
         destino / "epub-metadata.xml", metadatos_epub(entidades, version, entorno=entorno)
