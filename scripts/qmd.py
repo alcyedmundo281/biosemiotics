@@ -223,7 +223,9 @@ def fecha_compilacion(entorno: dict[str, str] | None = None) -> str:
 
 
 def marca_compilacion(version: str, entorno: dict[str, str] | None = None) -> str:
-    return f"{EDITORIAL} · Compilación {fecha_compilacion(entorno)} · versión `{version}`"
+    if entorno:
+        return f"{EDITORIAL} · versión `{version}`"
+    return f"{EDITORIAL} · Compilación {fecha_compilacion()} · versión `{version}`"
 
 
 def slug(texto: str) -> str:

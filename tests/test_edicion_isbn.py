@@ -23,11 +23,11 @@ DECLARACION = "## DECLARACIÓN {.unnumbered}\n\nTexto."
 
 
 class MarcaCompilacionTest(unittest.TestCase):
-    def test_build_etiquetada_usa_la_fecha_utc_del_commit(self):
+    def test_build_etiquetada_imprime_solo_la_version(self):
         entorno = {"SOURCE_DATE_EPOCH": "1794528000"}
         self.assertEqual(
             qmd.marca_compilacion("v1.0.0", entorno),
-            "Powersemiotics · Compilación 2026-11-13 · versión `v1.0.0`",
+            "Powersemiotics · versión `v1.0.0`",
         )
 
 
