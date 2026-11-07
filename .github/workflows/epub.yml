@@ -43,7 +43,8 @@ jobs:
     steps:
       - uses: actions/checkout@v7
         with:
-          fetch-depth: 2
+          ref: c7f3b6fd678765c2843657cfcc34b18127c407dc
+          fetch-depth: 1
 
       - uses: actions/setup-python@v7
         with:
@@ -108,8 +109,8 @@ jobs:
       - name: Auditar dos renders del mismo commit con un tag local
         run: |
           sudo apt-get install -y --no-install-recommends poppler-utils qpdf
-          candidate=$(git rev-parse HEAD^)
-          git switch --detach "$candidate"
+          candidate=$(git rev-parse HEAD)
+          test "$candidate" = "c7f3b6fd678765c2843657cfcc34b18127c407dc"
           git tag v1.0.0 "$candidate"
           git worktree add --detach "$RUNNER_TEMP/repro-local" "$candidate"
           git show -s --format='Commit %H%nEpoch %ct%nFecha %cI' HEAD
