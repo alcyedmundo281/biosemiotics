@@ -44,7 +44,7 @@ jobs:
     steps:
       - uses: actions/checkout@v7
         with:
-          ref: 565f45bc779377f36719bad187ed3e774328a822
+          ref: 299e0f31e3f57e04a26f100f5cfa23076767c280
           fetch-depth: 1
 
       - uses: actions/setup-python@v7
@@ -107,169 +107,26 @@ jobs:
           unzip -q /tmp/epubcheck.zip -d /opt
           echo "EPUBCHECK_JAR=/opt/epubcheck-${VER}/epubcheck.jar" >> "$GITHUB_ENV"
 
-      - name: Reusar el PDF base y compilar el candidato con su log final
+      - name: Comprobar que la nota deja el PDF idéntico
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           sudo apt-get install -y --no-install-recommends poppler-utils
-          export AUDIT_QUARTO_REAL
-          AUDIT_QUARTO_REAL=$(command -v quarto)
-          mkdir -p "$RUNNER_TEMP/quarto-audit"
-          cat > "$RUNNER_TEMP/quarto-audit/quarto" <<'SH'
-          #!/usr/bin/env bash
-          if [ "$1" = render ]; then
-            exec "$AUDIT_QUARTO_REAL" "$@" --metadata latex-clean:false
+          base=c4657a57c4bed84543a64194e63782c702efac06
+          git fetch --no-tags --depth=1 origin "$base"
+          test "$(git diff --name-only "$base" HEAD)" = AI-USE.md
+          gh run download 42412636969 --repo "$GITHUB_REPOSITORY" --name auditoria-silabacion-pdf --dir "$RUNNER_TEMP/base-pdf"
+          antes="$RUNNER_TEMP/base-pdf/despues.pdf"
+          codigo='import sys; sys.path.insert(0,"scripts"); import qmd, libro; qmd.compilacion_git = lambda _: ("auditoria-silabacion", {"SOURCE_DATE_EPOCH":"1794081295","TZ":"UTC"}); sys.argv=["libro.py","--solo-publicados","--salida","build/libro.pdf"]; raise SystemExit(libro.main())'
+          python -c "$codigo"
+          if ! cmp -s "$antes" build/libro.pdf; then
+            git worktree add --detach "$RUNNER_TEMP/base-fuente" "$base"
+            (cd "$RUNNER_TEMP/base-fuente"; python -c "$codigo")
+            antes="$RUNNER_TEMP/base-fuente/build/libro.pdf"
           fi
-          exec "$AUDIT_QUARTO_REAL" "$@"
-          SH
-          export AUDIT_LUALATEX_REAL
-          AUDIT_LUALATEX_REAL=$(command -v lualatex)
-          cat > "$RUNNER_TEMP/quarto-audit/lualatex" <<'SH'
-          #!/usr/bin/env bash
-          "$AUDIT_LUALATEX_REAL" "$@"
-          status=$?
-          if [ -n "$AUDIT_LOG_FILE" ]; then
-            log=$(find "$PWD" -maxdepth 4 -type f -name '*.log' -printf '%T@ %p\n' \
-              | sort -nr | head -n 1 | cut -d ' ' -f 2-)
-            if [ -n "$log" ]; then cp "$log" "$AUDIT_LOG_FILE"; fi
-          fi
-          exit "$status"
-          SH
-          chmod +x "$RUNNER_TEMP/quarto-audit/"{quarto,lualatex}
-          export PATH="$RUNNER_TEMP/quarto-audit:$PATH"
-          out="$GITHUB_WORKSPACE/build/auditoria-silabacion"
-          mkdir -p "$out"
-          gh run download 42411626826 --repo "$GITHUB_REPOSITORY" --name auditoria-silabacion-pdf --dir "$RUNNER_TEMP/base"
-          for extension in pdf log tex; do
-            cp "$RUNNER_TEMP/base/despues.$extension" "$out/antes.$extension"
+          for pdf in "$antes" build/libro.pdf; do
+            pdfinfo "$pdf" | awk '/^Pages:/ { print; if ($2 != 264) exit 1; ok=1 } END { if (!ok) exit 1 }'
           done
-          for modo in despues; do
-            ref=$(git rev-parse HEAD)
-            checkout="$RUNNER_TEMP/silabacion-$modo"
-            git worktree add --detach "$checkout" "$ref"
-            (
-              cd "$checkout"
-              export AUDIT_LOG_FILE="$out/$modo.log"
-              python -c 'import sys; sys.path.insert(0,"scripts"); import qmd, libro; qmd.compilacion_git = lambda _: ("auditoria-silabacion", {"SOURCE_DATE_EPOCH":"1794081295","TZ":"UTC"}); sys.argv=["libro.py","--solo-publicados","--salida","build/libro.pdf"]; raise SystemExit(libro.main())'
-            )
-            if [ ! -s "$out/$modo.log" ]; then
-              log=$(find "$checkout/build/quarto" -type f -name '*.log' -print -quit)
-              test -n "$log"
-              cp "$log" "$out/$modo.log"
-            fi
-            grep -E '^Output written on .+ \([0-9]+ pages' "$out/$modo.log"
-            cp "$checkout/build/quarto/libro.tex" "$out/$modo.tex"
-            cp "$checkout/build/libro.pdf" "$out/$modo.pdf"
-            pdfinfo "$out/$modo.pdf" | grep -E '^(Pages:|Page size:|Producer:)'
-          done
-
-      - name: Comprobar que LuaLaTeX registra las cinco excepciones en inglés
-        run: |
-          out="$GITHUB_WORKSPACE/build/auditoria-silabacion"
-          mkdir -p "$RUNNER_TEMP/prueba-excepciones"
-          cd "$RUNNER_TEMP/prueba-excepciones"
-          {
-            printf '%s\n' '\documentclass{article}'
-            grep -F '\AddToHook{package/babel/after}{\babel' "$out/despues.tex"
-            cat <<'TEX'
-          \usepackage[bidi=basic]{babel}
-          \babelprovide[main,import]{spanish}
-          \begin{document}
-          \begin{hyphenrules}{english}
-          \directlua{
-            local exceptions = unicode.utf8.lower(lang.hyphenation(lang.new(tex.language)) or "")
-            for _, word in ipairs({"ballesteros","fernández","prada","peña","enferm"}) do
-              assert(exceptions:find(word,1,true), "Excepción ausente: " .. word)
-            end
-            texio.write_nl("term and log", "Cinco excepciones verificadas en el idioma activo.")
-          }
-          \end{hyphenrules}
-          \end{document}
-          TEX
-          } > excepciones.tex
-          lualatex -interaction=nonstopmode -halt-on-error excepciones.tex > "$out/excepciones.log"
-          grep -F 'Cinco excepciones verificadas' "$out/excepciones.log"
-
-      - name: Inventariar las cajas y comparar las páginas
-        run: |
-          python - <<'PY'
-          from collections import Counter
-          from concurrent.futures import ThreadPoolExecutor
-          from hashlib import sha256
-          import json
-          from pathlib import Path
-          import re
-          import subprocess
-          import tempfile
-
-          out = Path('build/auditoria-silabacion')
-          warning = re.compile(r'^(Overfull|Underfull) \\([hv])box[^\n]*', re.M)
-          report = {}
-          for modo in ('antes', 'despues'):
-              pdf = out / f'{modo}.pdf'
-              log = (out / f'{modo}.log').read_text(encoding='utf-8', errors='replace')
-              tex = (out / f'{modo}.tex').read_text(encoding='utf-8').splitlines()
-              info = subprocess.check_output(['pdfinfo', str(pdf)], text=True)
-              count = int(re.search(r'^Pages:\s+(\d+)', info, re.M)[1])
-              stats = Counter()
-              complete = []
-              target = []
-              for match in warning.finditer(log):
-                  stats[f'{match[1]} {match[2]}box'] += 1
-                  end = log.find('\n\n', match.end())
-                  record = log[match.start(): end if end >= 0 else match.end()].strip()
-                  span = re.search(r'at lines? (\d+)(?:--(\d+))?', match[0])
-                  context = ''
-                  if span:
-                      lo, hi = int(span[1]), int(span[2] or span[1])
-                      context = '\n'.join(tex[max(0, lo - 3):min(len(tex), hi + 2)])
-                  if re.search(r'Teichholz|echocardiographic-angiographic', record + context, re.I):
-                      target.append(match[0])
-                  complete.append(f'Log, línea {log.count(chr(10), 0, match.start()) + 1}\n{record}'
-                                  + (f'\nFuente TeX:\n{context}' if context else ''))
-              (out / f'cajas-{modo}.txt').write_text(
-                  f'{modo}: {count} páginas, {len(complete)} avisos.\n'
-                  + '\n'.join(f'{name}: {stats[name]}' for name in
-                              ('Overfull hbox', 'Overfull vbox', 'Underfull hbox', 'Underfull vbox'))
-                  + '\n\n' + '\n\n'.join(complete) + '\n', encoding='utf-8')
-              report[modo] = dict(paginas=count, cajas=dict(stats), teichholz=target)
-              print(modo, report[modo], flush=True)
-          digest = {modo: sha256((out / f'{modo}.pdf').read_bytes()).hexdigest()
-                    for modo in ('antes', 'despues')}
-          report['sha256'] = digest
-          if digest['antes'] == digest['despues']:
-              report['paginas_distintas_150dpi'] = []
-          else:
-              with tempfile.TemporaryDirectory() as temp:
-                  root = Path(temp)
-                  def render(task):
-                      modo, lo, hi = task
-                      directory = root / modo
-                      directory.mkdir(exist_ok=True)
-                      subprocess.run(['pdftoppm', '-r', '150', '-f', str(lo), '-l', str(hi),
-                                      '-png', str(out / f'{modo}.pdf'), str(directory / 'pagina')], check=True)
-
-                  tasks = [(modo, lo, min(lo + 65, report[modo]['paginas']))
-                           for modo in ('antes', 'despues')
-                           for lo in range(1, report[modo]['paginas'] + 1, 66)]
-                  with ThreadPoolExecutor(max_workers=4) as pool:
-                      list(pool.map(render, tasks))
-                  def hashes(modo):
-                      result = {int(f.stem.split('-')[-1]): sha256(f.read_bytes()).hexdigest()
-                                for f in (root / modo).glob('*.png')}
-                      assert set(result) == set(range(1, report[modo]['paginas'] + 1))
-                      return result
-                  a, b = hashes('antes'), hashes('despues')
-                  report['paginas_distintas_150dpi'] = [p for p in sorted(a.keys() | b.keys()) if a.get(p) != b.get(p)]
-          (out / 'resultado.json').write_text(json.dumps(report, ensure_ascii=False, indent=2) + '\n',
-                                             encoding='utf-8')
-          print(json.dumps(report, ensure_ascii=False))
-          PY
-
-      - name: Conservar ambos PDF y el inventario de cajas
-        if: always()
-        uses: actions/upload-artifact@v7
-        with:
-          name: auditoria-silabacion-pdf
-          path: build/auditoria-silabacion/
-          retention-days: 30
+          sha256sum "$antes" build/libro.pdf
+          cmp "$antes" build/libro.pdf
+          echo 'PDF idéntico byte por byte. El único archivo cambiado es AI-USE.md.'
