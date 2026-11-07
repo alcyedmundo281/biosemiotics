@@ -66,16 +66,43 @@ local function contiene_indice(bloque)
   return bloque.t == "RawBlock" and bloque.text:find("\\tableofcontents", 1, true) ~= nil
 end
 
+-- Conserva el guion impreso de un compuesto y permite también silabar
+-- sus componentes. Los DOI y otros identificadores quedan fuera.
+local function guiones_compuestos(str)
+  local texto = str.text
+  if not texto:match("^[%a%(%)%-%.,;:!?]+$") then
+    return nil
+  end
+  local partes = pandoc.List()
+  local desde = 1
+  for posicion in texto:gmatch("()%-%f[%a]") do
+    if posicion > 1 and texto:sub(posicion - 1, posicion - 1):match("%a") then
+      partes:insert(pandoc.Str(texto:sub(desde, posicion - 1)))
+      partes:insert(pandoc.RawInline("latex", "\\babelhyphen{hard}"))
+      desde = posicion + 1
+    end
+  end
+  if desde == 1 then
+    return nil
+  end
+  partes:insert(pandoc.Str(texto:sub(desde)))
+  return partes
+end
+
+local function silabar_referencia(bloque)
+  return bloque:walk({Str = guiones_compuestos})
+end
+
 -- Copia los bloques desde `i` hasta el siguiente encabezado de nivel <= `nivel`
 -- (o el final) dentro de `entorno`. Devuelve el índice siguiente.
-local function envolver_seccion(bloques, i, nivel, entorno, salida)
+local function envolver_seccion(bloques, i, nivel, entorno, salida, procesar)
   salida:insert(latex("\\begin{" .. entorno .. "}"))
   while i <= #bloques do
     local b = bloques[i]
     if b.t == "Header" and b.level <= nivel then
       break
     end
-    salida:insert(b)
+    salida:insert(procesar and procesar(b) or b)
     i = i + 1
   end
   salida:insert(latex("\\end{" .. entorno .. "}"))
@@ -131,9 +158,9 @@ function Pandoc(doc)
       if texto == "Dónde NO confiar" then
         i = envolver_seccion(bloques, i, b.level, "alertaficha", salida)
       elseif texto == "Evidencia" then
-        i = envolver_seccion(bloques, i, b.level, "evidencia", salida)
+        i = envolver_seccion(bloques, i, b.level, "evidencia", salida, silabar_referencia)
       elseif texto == "Bibliografía" then
-        i = envolver_seccion(bloques, i, b.level, "silabacionreferencias", salida)
+        i = envolver_seccion(bloques, i, b.level, "silabacionreferencias", salida, silabar_referencia)
       end
 
     elseif etiqueta_signo(b) then
