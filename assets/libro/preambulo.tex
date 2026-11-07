@@ -102,7 +102,11 @@
   left=10pt, right=10pt, top=7pt, bottom=7pt, before skip=4pt,
   after skip=10pt, parbox=false}
 \newcommand{\etiquetasigno}[1]{{\sffamily\bfseries\color{acento}#1}}
-\newenvironment{evidencia}{\par\small}{\par}
+% Las listas bibliográficas del atlas usan patrones ingleses. El entorno
+% solo cambia la silabación, no los rótulos ni el idioma del cuerpo.
+\AddToHook{package/babel/after}{\babelprovide[import]{english}}
+\newenvironment{silabacionreferencias}{\begin{hyphenrules}{english}}{\par\end{hyphenrules}}
+\newenvironment{evidencia}{\par\small\begin{silabacionreferencias}}{\end{silabacionreferencias}}
 \newenvironment{enlaceficha}{\par\small\sffamily\color{gris}\raggedright}{\par}
 
 % --- Portadilla y créditos --------------------------------------------------

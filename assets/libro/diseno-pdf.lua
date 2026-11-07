@@ -132,6 +132,8 @@ function Pandoc(doc)
         i = envolver_seccion(bloques, i, b.level, "alertaficha", salida)
       elseif texto == "Evidencia" then
         i = envolver_seccion(bloques, i, b.level, "evidencia", salida)
+      elseif texto == "Bibliografía" then
+        i = envolver_seccion(bloques, i, b.level, "silabacionreferencias", salida)
       end
 
     elseif etiqueta_signo(b) then
