@@ -43,7 +43,7 @@ jobs:
     steps:
       - uses: actions/checkout@v7
         with:
-          ref: 71fb28404790538ae8cc9d16518052db742241d2
+          ref: 12347ac4001d46bb120bcc22b059c066026c59c8
           fetch-depth: 1
 
       - uses: actions/setup-python@v7
@@ -110,7 +110,7 @@ jobs:
         run: |
           sudo apt-get install -y --no-install-recommends poppler-utils qpdf
           candidate=$(git rev-parse HEAD)
-          test "$candidate" = "71fb28404790538ae8cc9d16518052db742241d2"
+          test "$candidate" = "12347ac4001d46bb120bcc22b059c066026c59c8"
           git tag v1.0.0 "$candidate"
           git worktree add --detach "$RUNNER_TEMP/repro-local" "$candidate"
           git show -s --format='Commit %H%nEpoch %ct%nFecha %cI' HEAD
