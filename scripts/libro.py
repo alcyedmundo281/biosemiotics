@@ -161,7 +161,8 @@ def main() -> int:
         raise RuntimeError("ninguna entidad cumple el alcance solicitado")
 
     informe = qmd.generar(entidades, raiz, proyecto)
-    producido = qmd.render(quarto, proyecto, "pdf", ".pdf")
+    producido = qmd.render(quarto, proyecto, "pdf", ".pdf",
+                           entorno=informe["entorno_render"])
     tex = proyecto / "libro.tex"
 
     enlaces_ghost = sum(1 for e in entidades if e.get("url"))
