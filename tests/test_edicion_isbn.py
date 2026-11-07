@@ -22,6 +22,15 @@ import qmd  # noqa: E402
 DECLARACION = "## DECLARACIÓN {.unnumbered}\n\nTexto."
 
 
+class MarcaCompilacionTest(unittest.TestCase):
+    def test_build_etiquetada_usa_la_fecha_utc_del_commit(self):
+        entorno = {"SOURCE_DATE_EPOCH": "1794528000"}
+        self.assertEqual(
+            qmd.marca_compilacion("v1.0.0", entorno),
+            "Powersemiotics · Compilación 2026-11-13 · versión `v1.0.0`",
+        )
+
+
 class CreditosTest(unittest.TestCase):
     def setUp(self):
         self.texto = qmd.portadilla("abc1234", DECLARACION)
