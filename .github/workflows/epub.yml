@@ -43,7 +43,7 @@ jobs:
     steps:
       - uses: actions/checkout@v7
         with:
-          ref: 9ff8f47899a54a1791df91356c55f1b3b8882fcb
+          ref: c5ca8e38956d14bde887fc207fdfea53dfae41b6
           fetch-depth: 1
 
       - uses: actions/setup-python@v7
@@ -106,66 +106,115 @@ jobs:
           unzip -q /tmp/epubcheck.zip -d /opt
           echo "EPUBCHECK_JAR=/opt/epubcheck-${VER}/epubcheck.jar" >> "$GITHUB_ENV"
 
-      - name: Comparar el corte por hash con procedencia fija
+      - name: Compilar ambos PDF y conservar el log final
         run: |
           sudo apt-get install -y --no-install-recommends poppler-utils
-          commit=$(git rev-parse HEAD)
-          git show -s --format='Commit %H%nSOURCE_DATE_EPOCH %ct' HEAD
-          git tag auditoria-corte "$commit"
-          out="$GITHUB_WORKSPACE/build/auditoria-hash"
+          base=eda169d57ad44dfbaa0e4b410c2505a84b9dbae2
+          git fetch --no-tags --depth=1 origin "$base"
+          export AUDIT_QUARTO_REAL
+          AUDIT_QUARTO_REAL=$(command -v quarto)
+          mkdir -p "$RUNNER_TEMP/quarto-audit"
+          cat > "$RUNNER_TEMP/quarto-audit/quarto" <<'SH'
+          #!/usr/bin/env bash
+          if [ "$1" = render ]; then
+            exec "$AUDIT_QUARTO_REAL" "$@" --metadata latex-clean:false
+          fi
+          exec "$AUDIT_QUARTO_REAL" "$@"
+          SH
+          chmod +x "$RUNNER_TEMP/quarto-audit/quarto"
+          export PATH="$RUNNER_TEMP/quarto-audit:$PATH"
+          out="$GITHUB_WORKSPACE/build/auditoria-silabacion"
           mkdir -p "$out"
-          cat > "$RUNNER_TEMP/auditar_corte.py" <<'PY'
-          from pathlib import Path
-          import sys
-
-          sys.path.insert(0, str(Path.cwd() / 'scripts'))
-          import banco
-          import libro
-          import qmd
-
-          modo, salida = sys.argv[1:]
-          if modo == 'con_futura':
-              Path('conceptos/auditoria-futura.qmd').write_text(
-                  '---\nid: auditoria-futura\ntipo: concepto\ntitulo: FICHA FICTICIA POSTERIOR\n'
-                  'estado: publicado\nnumero: 57\nvolumen: 1\n'
-                  'ghost_id: abcdef0123456789abcdef01\n'
-                  'url: "https://example.org/auditoria-futura/"\n'
-                  'fecha_publicacion: "2026-11-20T12:00:00.000+00:00"\n'
-                  '---\nEsta ficha ficticia no puede entrar en el libro.\n', encoding='utf-8')
-          if modo == 'sin_filtro':
-              banco.seleccionar_edicion = lambda entidades, _: banco.seleccionar_publicables(entidades, True)
-
-          version, entorno = qmd.compilacion_git(Path.cwd())
-          assert version == 'auditoria-corte' and entorno['SOURCE_DATE_EPOCH'] and entorno['TZ'] == 'UTC'
-          entidades = banco.cargar(Path.cwd())
-          libro_entidades = banco.seleccionar_edicion(entidades, qmd.FECHA_CORTE)
-          seriado = banco.seleccionar_publicables(entidades, True)
-          assert len(libro_entidades) == 56
-          assert len(seriado) == (57 if modo == 'con_futura' else 56)
-          assert not any(e['id'] == 'auditoria-futura' for e in libro_entidades)
-          print(f'{modo}: {len(libro_entidades)} fichas en el libro; {len(seriado)} en el seriado; {version}; epoch {entorno["SOURCE_DATE_EPOCH"]}', flush=True)
-          sys.argv = ['libro.py', '--solo-publicados', '--salida', salida]
-          raise SystemExit(libro.main())
-          PY
-          for modo in sin_filtro con_filtro con_futura; do
-            checkout="$RUNNER_TEMP/corte-$modo"
-            git worktree add --detach "$checkout" "$commit"
+          for modo in antes despues; do
+            if [ "$modo" = antes ]; then ref="$base"; else ref=$(git rev-parse HEAD); fi
+            checkout="$RUNNER_TEMP/silabacion-$modo"
+            git worktree add --detach "$checkout" "$ref"
             (
               cd "$checkout"
-              env -u GITHUB_ACTIONS -u SOURCE_DATE_EPOCH \
-                python "$RUNNER_TEMP/auditar_corte.py" "$modo" "$out/$modo.pdf"
+              python -c 'import sys; sys.path.insert(0,"scripts"); import qmd, libro; qmd.compilacion_git = lambda _: ("auditoria-silabacion", {"SOURCE_DATE_EPOCH":"1794081295","TZ":"UTC"}); sys.argv=["libro.py","--solo-publicados","--salida","build/libro.pdf"]; raise SystemExit(libro.main())'
             )
-            pdfinfo "$out/$modo.pdf" | awk '/^Pages:/ { print; if ($2 != 264) exit 1; ok=1 } END { if (!ok) exit 1 }'
+            log=$(find "$checkout/build/quarto" -type f -name libro.log -print -quit)
+            test -n "$log"
+            cp "$log" "$out/$modo.log"
+            cp "$checkout/build/quarto/libro.tex" "$out/$modo.tex"
+            cp "$checkout/build/libro.pdf" "$out/$modo.pdf"
+            pdfinfo "$out/$modo.pdf" | grep -E '^(Pages:|Page size:|Producer:)'
           done
-          sha256sum "$out"/*.pdf | tee "$out/sha256.txt"
-          cmp "$out/sin_filtro.pdf" "$out/con_filtro.pdf"
-          cmp "$out/con_filtro.pdf" "$out/con_futura.pdf"
-          echo 'Los tres PDF son idénticos byte por byte.'
 
-      - name: Conservar evidencia de la auditoría
+      - name: Inventariar las cajas y comparar las páginas
+        run: |
+          python - <<'PY'
+          from collections import Counter
+          from concurrent.futures import ThreadPoolExecutor
+          from hashlib import sha256
+          import json
+          from pathlib import Path
+          import re
+          import subprocess
+          import tempfile
+
+          out = Path('build/auditoria-silabacion')
+          warning = re.compile(r'^(Overfull|Underfull) \\([hv])box[^\n]*', re.M)
+          report = {}
+          for modo in ('antes', 'despues'):
+              pdf = out / f'{modo}.pdf'
+              log = (out / f'{modo}.log').read_text(encoding='utf-8', errors='replace')
+              tex = (out / f'{modo}.tex').read_text(encoding='utf-8').splitlines()
+              info = subprocess.check_output(['pdfinfo', str(pdf)], text=True)
+              count = int(re.search(r'^Pages:\s+(\d+)', info, re.M)[1])
+              stats = Counter()
+              complete = []
+              target = []
+              for match in warning.finditer(log):
+                  stats[f'{match[1]} {match[2]}box'] += 1
+                  end = log.find('\n\n', match.end())
+                  record = log[match.start(): end if end >= 0 else match.end()].strip()
+                  span = re.search(r'at lines? (\d+)(?:--(\d+))?', match[0])
+                  context = ''
+                  if span:
+                      lo, hi = int(span[1]), int(span[2] or span[1])
+                      context = '\n'.join(tex[max(0, lo - 3):min(len(tex), hi + 2)])
+                  if re.search(r'Teichholz|echocardiographic-angiographic', record + context, re.I):
+                      target.append(match[0])
+                  complete.append(f'Log, línea {log.count(chr(10), 0, match.start()) + 1}\n{record}'
+                                  + (f'\nFuente TeX:\n{context}' if context else ''))
+              (out / f'cajas-{modo}.txt').write_text(
+                  f'{modo}: {count} páginas, {len(complete)} avisos.\n'
+                  + '\n'.join(f'{name}: {stats[name]}' for name in
+                              ('Overfull hbox', 'Overfull vbox', 'Underfull hbox', 'Underfull vbox'))
+                  + '\n\n' + '\n\n'.join(complete) + '\n', encoding='utf-8')
+              report[modo] = dict(paginas=count, cajas=dict(stats), teichholz=target)
+              print(modo, report[modo], flush=True)
+          with tempfile.TemporaryDirectory() as temp:
+              root = Path(temp)
+              def render(task):
+                  modo, lo, hi = task
+                  directory = root / modo
+                  directory.mkdir(exist_ok=True)
+                  subprocess.run(['pdftoppm', '-r', '150', '-f', str(lo), '-l', str(hi),
+                                  '-png', str(out / f'{modo}.pdf'), str(directory / 'pagina')], check=True)
+
+              tasks = [(modo, lo, min(lo + 65, report[modo]['paginas']))
+                       for modo in ('antes', 'despues')
+                       for lo in range(1, report[modo]['paginas'] + 1, 66)]
+              with ThreadPoolExecutor(max_workers=4) as pool:
+                  list(pool.map(render, tasks))
+              def hashes(modo):
+                  result = {int(f.stem.split('-')[-1]): sha256(f.read_bytes()).hexdigest()
+                            for f in (root / modo).glob('*.png')}
+                  assert set(result) == set(range(1, report[modo]['paginas'] + 1))
+                  return result
+              a, b = hashes('antes'), hashes('despues')
+              report['paginas_distintas_150dpi'] = [p for p in sorted(a.keys() | b.keys()) if a.get(p) != b.get(p)]
+          (out / 'resultado.json').write_text(json.dumps(report, ensure_ascii=False, indent=2) + '\n',
+                                             encoding='utf-8')
+          print(json.dumps(report, ensure_ascii=False))
+          PY
+
+      - name: Conservar ambos PDF y el inventario de cajas
         if: always()
         uses: actions/upload-artifact@v7
         with:
-          name: auditoria-hash-corte
-          path: build/auditoria-hash/
-          retention-days: 14
+          name: auditoria-silabacion-pdf
+          path: build/auditoria-silabacion/
+          retention-days: 30
