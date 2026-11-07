@@ -76,7 +76,7 @@ ISBN_RUSTICA = "979-8-953844-00-0"
 # obra, no esta edición. `DOI_EDICION` es el depósito de ESTA edición y queda en
 # None hasta que exista; entonces los créditos pasan a citarlo.
 DOI_CONCEPTO = "10.5281/zenodo.21435362"
-DOI_EDICION = None
+DOI_EDICION = "10.5281/zenodo.24036621"
 # Las entradas publicadas hasta esta fecha forman la primera edición.
 FECHA_CORTE = "2026-11-13"
 OBRA_EN_LINEA = "biosemiotics — atlas de POCUS para el médico de primer contacto"
@@ -478,9 +478,12 @@ def creditos_identificadores() -> str:
     """
     lineas = []
     if DOI_EDICION:
-        lineas.append(f"DOI de esta edición: [{DOI_EDICION}](https://doi.org/{DOI_EDICION}).")
+        lineas.append(
+            f"DOI de esta edición (versión fija): "
+            f"[{DOI_EDICION}](https://doi.org/{DOI_EDICION})."
+        )
     lineas += [
-        f"DOI de la obra: [{DOI_CONCEPTO}]({DOI_URL}).",
+        f"DOI de la obra (versión más reciente): [{DOI_CONCEPTO}]({DOI_URL}).",
         f"ISBN EPUB: {ISBN_EPUB}.",
         f"ISBN tapa blanda: {ISBN_RUSTICA}.",
     ]
