@@ -4,6 +4,9 @@ En la preparación de esta obra se usó asistencia de inteligencia
 artificial en la redacción, la búsqueda bibliográfica y el
 mantenimiento del código.
 
+Esta edición contiene {FICHAS_EDICION} fichas publicadas hasta el
+{FECHA_CORTE}.
+
 Ninguna imagen fue generada con inteligencia artificial: todas las
 figuras proceden de Wikimedia Commons con crédito, fuente y licencia
 verificables. Ninguna referencia procede de un modelo: las {N} citas

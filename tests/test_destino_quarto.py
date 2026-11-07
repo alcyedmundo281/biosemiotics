@@ -2,6 +2,7 @@
 import sys
 import tempfile
 import unittest
+import yaml
 from pathlib import Path
 from unittest.mock import patch
 
@@ -25,7 +26,9 @@ class DestinoQuartoTest(unittest.TestCase):
             (RAIZ / qmd.DECLARACION_IA).read_text(encoding="utf-8"), encoding="utf-8")
         self.destino = self.raiz / "build" / "quarto"
         self.entidades = [{"id": "signo-demo", "tipo": "signo", "titulo": "Demo",
-                           "estado": "revisado",
+                           "estado": "publicado", "numero": 1,
+                           "fecha_publicacion": "2026-11-06T12:00:00.000+00:00",
+                           "url": "https://example.org/demo/",
                            "_archivo": "signos/demo.qmd",
                            "cuerpo": "\n\n".join("## " + s + "\nTexto." for s in SECCIONES["signo"]),
                            "abstract": "palabra " * 40, "refs": ["demo"],
@@ -34,12 +37,18 @@ class DestinoQuartoTest(unittest.TestCase):
                            "significante": "Imagen", "significado": "Interpretación",
                            "decision": "Decisión",
                            "sistema": "cardiovascular", "organo": "corazon"}]
+        for entidad in self.entidades:
+            archivo = self.raiz / entidad['_archivo']
+            archivo.parent.mkdir(parents=True, exist_ok=True)
+            meta = {k: v for k, v in entidad.items() if k not in ('cuerpo', '_archivo')}
+            archivo.write_text('---\n' + yaml.safe_dump(meta, allow_unicode=True) +
+                               '---\n' + entidad['cuerpo'], encoding='utf-8')
         self.raster = patch.object(qmd, "rasterizar_portada", return_value=False)
         self.raster.start()
         self.addCleanup(self.raster.stop)
 
     def generar(self, destino=None):
-        return qmd.generar(self.entidades, self.raiz, destino or self.destino)
+        return qmd.generar(self.entidades, self.raiz, destino or self.destino, fecha_corte=qmd.FECHA_CORTE)
 
     def test_rechaza_fuentes_raiz_build_y_escape_sin_tocarlos(self):
         for ruta in (self.raiz, self.raiz / "build", self.raiz / "signos",
@@ -138,7 +147,7 @@ class DestinoQuartoTest(unittest.TestCase):
     def test_rechaza_enlace_en_destino_o_ancestro(self):
         self.destino.parent.mkdir(parents=True)
         fuente = self.raiz / "signos"
-        fuente.mkdir()
+        fuente.mkdir(exist_ok=True)
         nota = fuente / "nota.txt"
         nota.write_text("conservar")
         enlace = self.destino.parent / "enlace"

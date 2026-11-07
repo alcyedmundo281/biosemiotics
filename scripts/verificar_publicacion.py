@@ -34,7 +34,8 @@ import zipfile
 from pathlib import Path
 from typing import Optional
 
-from banco import cargar, estado_publicacion, seleccionar_publicables
+import qmd
+from banco import cargar, estado_publicacion, seleccionar_publicables, seleccionar_edicion
 from bibliografia import cargar_bibliografia
 from ghost import URL_RETO, cuerpo_ghost, huella_cuerpo_ghost
 from indice import URL_PRIMARIA, URL_RESPALDO, XLINK_NS
@@ -175,6 +176,7 @@ def validar_derivados(
     junto a las imágenes que `qmd.py` copia ahí, así que la ruta va sin el
     `../` que necesitaba el generador propio para salir de `build/`.
     """
+    ids_edicion = {e["id"] for e in seleccionar_edicion(entidades, getattr(qmd, "FECHA_CORTE", None))}
     build = raiz / "build"
     atlas = build / "atlas-inject.html"
     tex = build / "quarto" / "libro.tex"
@@ -229,6 +231,8 @@ def validar_derivados(
             except ET.ParseError as exc:
                 error(errores, f"{entidad['id']}: JATS inválido: {exc}")
 
+        if entidad["id"] not in ids_edicion:
+            continue
         for medio in entidad.get("medios") or []:
             if medio.get("tipo") != "imagen" or not medio.get("archivo_local"):
                 continue
