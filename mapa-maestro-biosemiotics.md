@@ -200,7 +200,7 @@ forman parte del contenido de cada capítulo.
 |---|---|---|---|
 | 1 | Fundamentos de POCUS en la embarazada | Alcance de las preguntas; seguridad; adquisición transabdominal; límites; relación con la ecografía obstétrica formal | **Publicado el 2026-10-30**: concepto base, `dominio: tecnica`, nivel principiante; revisión clínica aprobada por Alcy y envío a 12 suscriptores; fuente en `conceptos/pocus-embarazada.qmd` |
 | 2 | Embarazo temprano | Localización del embarazo; hallazgos de desarrollo; límites de una exploración no concluyente | Desarrollo embrionario y localización del embarazo publicados; concepto de exploración no concluyente publicado; bloque de embarazo temprano completo; después del concepto base; reutilizar embarazo ectópico publicado |
-| 3 | Segundo y tercer trimestre | Cuatro unidades separadas: actividad cardíaca fetal, presentación fetal, líquido amniótico y localización placentaria | Cuatro signos en borrador de planificación; después de fundamentos y embarazo temprano |
+| 3 | Segundo y tercer trimestre | Cuatro unidades separadas: actividad cardíaca fetal, presentación fetal, líquido amniótico y localización placentaria | Actividad cardíaca fetal redactada en borrador; otras tres unidades en planificación; después de fundamentos y embarazo temprano |
 | 4 | Integración clínica en la embarazada | Casos educativos que integren hallazgos, incertidumbre y necesidad de evaluación obstétrica especializada | Primer espacio de caso registrado como borrador, sin viñeta sintética definida; después de las fichas que utilice |
 
 **Modelado y preparación:** el concepto base `conceptos/pocus-embarazada.qmd`
@@ -246,11 +246,13 @@ de técnica. El caso no representa todavía un paciente ni acredita consentimien
 | Localización del embarazo: evaluación transabdominal | `signo-embarazo-intrauterino` | signo | genitourinario / utero | principiante | [publicado](https://www.biosemiotics.net/localizacion-del-embarazo-evaluacion-transabdominal/) |
 | Hallazgos de desarrollo en el embarazo temprano | `desarrollo-embrionario` | concepto | tecnica | principiante | [publicado](https://www.biosemiotics.net/hallazgos-de-desarrollo-en-el-embarazo-temprano/) |
 | Embarazo temprano: límites de una exploración no concluyente | `embarazo-temprano-no-concluyente` | concepto | tecnica | principiante | [publicado](https://www.biosemiotics.net/embarazo-temprano-limites-de-una-exploracion-no-concluyente/) |
-| Actividad cardíaca fetal en POCUS | `signo-actividad-cardiaca-fetal` | signo | genitourinario / utero | principiante | [borrador](signos/actividad-cardiaca-fetal.qmd) |
+| Actividad cardíaca fetal en POCUS | `signo-actividad-cardiaca-fetal` | signo | genitourinario / utero | principiante | [revisado, pendiente de publicación](signos/actividad-cardiaca-fetal.qmd) |
 | Presentación fetal en POCUS | `signo-presentacion-fetal` | signo | genitourinario / utero | principiante | [borrador](signos/presentacion-fetal.qmd) |
 | Líquido amniótico en POCUS | `signo-liquido-amniotico` | signo | genitourinario / utero | intermedio | [borrador](signos/liquido-amniotico.qmd) |
 | Localización placentaria en POCUS | `signo-localizacion-placentaria` | signo | genitourinario / utero | intermedio | [borrador](signos/localizacion-placentaria.qmd) |
 | Integración clínica obstétrica: caso educativo por definir | `caso-integracion-obstetrica` | caso | utero; caso sintético, consentimiento no aplica | intermedio | [borrador](casos/caso-integracion-obstetrica.qmd) |
+
+**Preparación del 2026-11-14:** actividad cardíaca fetal cuenta ya con un borrador redactado, tres referencias verificadas contra PubMed y Crossref y una imagen de modo M de Wikimedia Commons atribuida. Alcy aprobó clínica y editorialmente el texto el 2026-11-14; queda `revisado`, pendiente de publicación. Las otras cuatro unidades pendientes conservan su planificación; el seriado mantiene 56 fichas publicadas.
 
 El embarazo ectópico conserva su entidad publicada y no se duplica. Las
 dependencias de aprendizaje se registran en `prerequisito_de`, `se_basa_en`

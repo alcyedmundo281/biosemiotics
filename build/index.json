@@ -1116,6 +1116,79 @@
    "n_refs": 3
   },
   {
+   "id": "signo-actividad-cardiaca-fetal",
+   "tipo": "signo",
+   "titulo": "Actividad cardíaca fetal: reconocer el latido sin dar por evaluado el bienestar",
+   "estado": "revisado",
+   "fecha_revision": "2026-11-14",
+   "ghost_id": null,
+   "ghost_sha256": "61eef676b95e80bcd32ded29bb2d950ad24dce036f45e2b6cfad1981f1ebdf0a",
+   "abstract": "El movimiento repetitivo dentro del corazón fetal puede reconocerse en modo B y documentarse con modo M. Identificarlo permite afirmar que existe actividad cardíaca durante la exploración, pero no demuestra bienestar ni anatomía normal. La decisión depende de la calidad de la ventana y del contexto clínico: registrar lo observado, reconocer una frecuencia o un ritmo sospechosos y solicitar evaluación obstétrica cuando la respuesta sea incierta o insuficiente.\n",
+   "sistema": "genitourinario",
+   "organo": "utero",
+   "nivel": "principiante",
+   "ventana": "transabdominal-sobre-torax-fetal",
+   "pregunta_clinica": "¿Identifico actividad cardíaca dentro del tórax fetal y qué queda por evaluar?",
+   "significante": "Movimiento cardíaco repetitivo localizado en el tórax fetal, visible en modo B y registrable como un trazado temporal en modo M",
+   "significado": "Actividad mecánica del corazón fetal durante el intervalo observado; no equivale a una evaluación del bienestar fetal",
+   "umbral": "Esta ficha no utiliza un número aislado para declarar bienestar, indicar el alta o diagnosticar muerte fetal",
+   "licencia": "CC BY 4.0",
+   "revisado_por": "Alcy Torres",
+   "fecha": "2026-11-14",
+   "actualizado": "2026-11-14",
+   "decision": "Documentar actividad y límites si la adquisición es interpretable; solicitar evaluación obstétrica si no se identifica, la ventana es insuficiente o se sospecha una alteración de frecuencia o ritmo",
+   "sonda": [
+    "convexa"
+   ],
+   "escenario": [
+    "consulta",
+    "urgencias"
+   ],
+   "tags": [
+    "pocus",
+    "obstetricia",
+    "embarazo",
+    "actividad-cardiaca-fetal",
+    "modo-m"
+   ],
+   "falsos_positivos": [
+    "Confundir una pulsación vascular materna con actividad cardíaca fetal",
+    "Atribuir al latido fetal el movimiento global producido por la sonda o por el feto",
+    "Aceptar una frecuencia automática sin comprobar que el registro procede del corazón fetal"
+   ],
+   "se_basa_en": [
+    "pocus-embarazada",
+    "modo-m"
+   ],
+   "autores": [
+    {
+     "nombre": "Alcy Torres"
+    }
+   ],
+   "medios": [
+    {
+     "tipo": "imagen",
+     "destacada": true,
+     "id": "wikimedia:Pregnancy ultrasound 110302092152 0934210.jpg",
+     "descripcion": "Ecografía obstétrica con cursor sobre el corazón fetal y trazado en modo M; la lectura de 156 lpm es un ejemplo de adquisición, no un umbral de bienestar",
+     "credito": "© Nevit Dilmen",
+     "fuente": "Wikimedia Commons",
+     "fuente_url": "https://commons.wikimedia.org/wiki/File:Pregnancy_ultrasound_110302092152_0934210.jpg",
+     "licencia_img": "CC BY-SA 3.0",
+     "licencia_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+     "archivo_local": "assets/img/actividad-cardiaca-fetal-modo-m.jpg"
+    }
+   ],
+   "n_loops": 0,
+   "n_imagenes": 1,
+   "refs": [
+    "derobertis2026pocusob",
+    "aium2024obstetrico",
+    "carvalho2023cardiofetal"
+   ],
+   "n_refs": 3
+  },
+  {
    "id": "signo-aneurisma-aortico-abdominal",
    "tipo": "signo",
    "titulo": "Aneurisma aórtico abdominal en POCUS: medir antes de que el dolor engañe",

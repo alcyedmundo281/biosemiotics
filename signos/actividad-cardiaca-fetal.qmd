@@ -1,35 +1,159 @@
 ---
-estado: borrador
-fecha_revision: null
+estado: revisado
+fecha_revision: 2026-11-14
+revisado_por: Alcy Torres
 ghost_id: null
 id: signo-actividad-cardiaca-fetal
 tipo: signo
-titulo: Actividad cardíaca fetal en POCUS
+titulo: 'Actividad cardíaca fetal: reconocer el latido sin dar por evaluado el bienestar'
 url: ''
-organo: utero
-ventana: null
-sonda: []
-nivel: principiante
-significante: null
-significado: null
-decision: null
-umbral: ''
-se_basa_en:
-- pocus-embarazada
-- modo-m
-contrasta_con: []
-falsos_positivos: []
-medios: []
-refs: []
 sistema: genitourinario
-abstract: ''
-tags:
-- planificacion-editorial
-- obstetrico
+organo: utero
+ventana: transabdominal-sobre-torax-fetal
+sonda: [convexa]
+nivel: principiante
+escenario: [consulta, urgencias]
+pregunta_clinica: '¿Identifico actividad cardíaca dentro del tórax fetal y qué queda por evaluar?'
+abstract: >
+  El movimiento repetitivo dentro del corazón fetal puede reconocerse en modo B
+  y documentarse con modo M. Identificarlo permite afirmar que existe actividad
+  cardíaca durante la exploración, pero no demuestra bienestar ni anatomía normal.
+  La decisión depende de la calidad de la ventana y del contexto clínico: registrar
+  lo observado, reconocer una frecuencia o un ritmo sospechosos y solicitar
+  evaluación obstétrica cuando la respuesta sea incierta o insuficiente.
+significante: 'Movimiento cardíaco repetitivo localizado en el tórax fetal, visible en modo B y registrable como un trazado temporal en modo M'
+significado: 'Actividad mecánica del corazón fetal durante el intervalo observado; no equivale a una evaluación del bienestar fetal'
+decision: 'Documentar actividad y límites si la adquisición es interpretable; solicitar evaluación obstétrica si no se identifica, la ventana es insuficiente o se sospecha una alteración de frecuencia o ritmo'
+umbral: 'Esta ficha no utiliza un número aislado para declarar bienestar, indicar el alta o diagnosticar muerte fetal'
+se_basa_en: [pocus-embarazada, modo-m]
+se_relaciona: [embarazo-temprano-no-concluyente, desarrollo-embrionario]
+contrasta_con: []
+falsos_positivos:
+  - 'Confundir una pulsación vascular materna con actividad cardíaca fetal'
+  - 'Atribuir al latido fetal el movimiento global producido por la sonda o por el feto'
+  - 'Aceptar una frecuencia automática sin comprobar que el registro procede del corazón fetal'
+medios:
+  - tipo: imagen
+    destacada: true
+    id: 'wikimedia:Pregnancy ultrasound 110302092152 0934210.jpg'
+    descripcion: 'Ecografía obstétrica con cursor sobre el corazón fetal y trazado en modo M; la lectura de 156 lpm es un ejemplo de adquisición, no un umbral de bienestar'
+    credito: '© Nevit Dilmen'
+    fuente: 'Wikimedia Commons'
+    fuente_url: 'https://commons.wikimedia.org/wiki/File:Pregnancy_ultrasound_110302092152_0934210.jpg'
+    licencia_img: 'CC BY-SA 3.0'
+    licencia_url: 'https://creativecommons.org/licenses/by-sa/3.0/'
+    archivo_local: 'assets/img/actividad-cardiaca-fetal-modo-m.jpg'
+refs: [derobertis2026pocusob, aium2024obstetrico, carvalho2023cardiofetal]
+tags: [pocus, obstetricia, embarazo, actividad-cardiaca-fetal, modo-m]
+fecha: 2026-11-14
+actualizado: 2026-11-14
+licencia: CC BY 4.0
 ---
 
-**Ficha de planificación editorial.** No contiene una redacción clínica revisada.
+## La pregunta clínica
 
-Unidad propia de segundo y tercer trimestre sobre actividad cardíaca fetal, adquisición, seguridad y límites; pendiente de referencias y revisión.
+En una embarazada de segundo o tercer trimestre no logras identificar con
+claridad el latido fetal. La pregunta enfocada es: **¿reconozco actividad
+cardíaca en el tórax fetal?** La guía ISUOG sugiere POCUS cuando existe
+incertidumbre sobre esa actividad; es una recomendación condicional, no una
+indicación de ecografía repetida sin motivo clínico. [derobertis2026pocusob]
 
-No se han asignado referencias, umbrales, hallazgos, conductas ni datos de pacientes.
+Esta ficha mantiene la vía transabdominal y el alcance del médico de primer
+contacto. No desarrolla el diagnóstico de pérdida gestacional temprana.
+
+## Por qué el examen físico no basta
+
+Una auscultación difícil no equivale a ausencia de actividad. La ecografía
+puede localizar el corazón cuando la señal es incierta y ayudar a distinguir
+la frecuencia fetal de la materna. Su utilidad depende de reconocer de dónde
+procede el registro. [derobertis2026pocusob]
+
+La exploración limitada responde una pregunta específica. No reemplaza el
+estudio obstétrico estándar ni permite declarar normal lo que no se ha
+examinado. [aium2024obstetrico]
+
+## Cómo se obtiene la ventana
+
+Trabaja con formación y supervisión acordes al procedimiento. Usa la sonda
+convexa y un preset obstétrico por vía abdominal. Localiza al feto y su tórax
+antes de interpretar un movimiento como cardíaco. Ajusta profundidad y foco
+para reconocer el corazón dentro de ese tórax; observa en modo B y conserva
+un registro que permita revisar la estructura identificada.
+
+Para documentar actividad o medir frecuencia, la AIUM recomienda **modo B o
+modo M**, con la menor exposición necesaria. En modo M, comprueba en la
+imagen bidimensional que el cursor atraviesa el corazón; revisa el trazado
+antes de aceptar la medición automática. Mover el cursor fuera del corazón
+cambia lo que estás registrando. [AIUM: seguridad y evaluación de frecuencia
+fetal](https://www.aium.org/resources/official-statements/view/prudent-use-and-safety-of-diagnostic-ultrasound-in-pregnancy)
+
+Vigila los índices de salida y limita el tiempo de exploración. No actives
+Doppler espectral solo para escuchar el latido: su empleo requiere indicación
+clínica. Obtener una respuesta documentable es el objetivo, no prolongar la
+exposición para conseguir una imagen más vistosa. [AIUM: uso
+prudente](https://www.aium.org/resources/official-statements/view/prudent-use-and-safety-of-diagnostic-ultrasound-in-pregnancy)
+
+## El signo
+
+**Significante:** reconoces movimiento repetitivo dentro del corazón fetal.
+El modo M representa a lo largo del tiempo el movimiento de las estructuras
+atravesadas por su cursor. La imagen ilustrativa muestra esa relación entre
+cursor y trazado; el valor impreso no constituye un objetivo de normalidad.
+
+**Significado:** existe actividad mecánica cardíaca durante ese registro.
+No has demostrado por ello que toda la anatomía cardíaca sea normal, ni has
+realizado una evaluación completa del ritmo. El cribado cardíaco formal exige
+vistas y comprobaciones adicionales. [carvalho2023cardiofetal]
+
+Distingue dos frases: «identifico actividad» describe un hallazgo; «el feto
+está bien» afirma una evaluación mucho más amplia. La primera no autoriza
+por sí sola la segunda. [derobertis2026pocusob]
+
+## La bifurcación
+
+- **Identificas actividad en una adquisición interpretable:** registra qué
+  viste, cómo lo documentaste y, si mediste frecuencia, conserva el trazado.
+  Continúa la evaluación indicada por el motivo de consulta; una exploración
+  limitada no cierra otras preguntas obstétricas. [aium2024obstetrico]
+- **No identificas actividad o no consigues una ventana interpretable:**
+  solicita evaluación obstétrica sin demorarla con intentos repetidos que no
+  resuelven la duda. Distingue en el informe «no identificada» de «no
+  valorable»; una exploración técnicamente insuficiente no confirma muerte
+  fetal. La confirmación y la conducta requieren evaluación competente.
+  [derobertis2026pocusob]
+- **Sospechas una frecuencia persistentemente anómala o irregularidad:**
+  requiere valoración obstétrica y, según el hallazgo, evaluación cardíaca
+  fetal especializada. No diagnostiques una arritmia por un único número
+  automático. [carvalho2023cardiofetal]
+
+## Dónde NO confiar
+
+- **En una cifra sin localización anatómica:** comprueba que procede del
+  corazón fetal y contrástala con el pulso materno si existe duda.
+  [derobertis2026pocusob]
+- **En movimiento inespecífico:** el desplazamiento del feto o de la sonda no
+  sustituye la identificación del movimiento cardíaco dentro del tórax.
+- **En una imagen fija para demostrar actividad:** conserva una adquisición
+  temporal interpretable, en modo B o M. [AIUM: evaluación de frecuencia
+  fetal](https://www.aium.org/resources/official-statements/view/prudent-use-and-safety-of-diagnostic-ultrasound-in-pregnancy)
+- **En la falsa tranquilidad de encontrar latido:** una consulta por reducción
+  de movimientos fetales sigue necesitando atención clínica aunque observes
+  actividad cardíaca. [derobertis2026pocusob]
+- **En extrapolar este hallazgo a anatomía normal:** actividad y cribado
+  cardíaco son preguntas distintas. [carvalho2023cardiofetal]
+
+## Practica esto
+
+Con un tutor, una indicación apropiada y consentimiento para la exploración,
+identifica el tórax fetal y señala el corazón antes de medir nada. Guarda el
+registro y pide al tutor que compruebe de dónde procede el movimiento.
+
+Redacta tres líneas: qué identificaste, qué no pudiste valorar y qué plan
+responde al motivo de consulta. Después revisa una adquisición no concluyente
+sin forzar una cifra: el ejercicio termina cuando puedes explicar su límite.
+
+## Discusión abierta
+
+Si observas actividad cardíaca pero la embarazada refiere que el feto se
+mueve menos, ¿qué pregunta has respondido y cuál sigue pendiente? ¿Tu informe
+permite distinguir ambas?
