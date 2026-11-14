@@ -148,6 +148,11 @@ function Pandoc(doc)
 
     elseif b.t == "Header" then
       local texto = pandoc.utils.stringify(b.content)
+      -- Quarto promueve el primer encabezado de un archivo a capítulo.
+      -- El prólogo conserva el nivel de sección de los demás paratextos.
+      if texto == "PRÓLOGO" then
+        b.level = 2
+      end
       -- La parte ocupa su propia página. El capítulo temático u órgano abre
       -- página y la ficha también, salvo la primera, que va bajo su órgano.
       local tras_organo = anterior ~= nil and anterior.t == "Header"
