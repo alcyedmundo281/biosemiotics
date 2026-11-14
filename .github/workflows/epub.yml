@@ -44,7 +44,7 @@ jobs:
     steps:
       - uses: actions/checkout@v7
         with:
-          ref: 206f41914e8eab858c2105e608267f2a22bf6e09
+          ref: 44e10e941fdd7624799f11d37af68f5b3ce94987
           fetch-depth: 1
 
       - uses: actions/setup-python@v7
@@ -112,9 +112,9 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           sudo apt-get install -y --no-install-recommends poppler-utils
-          out="$GITHUB_WORKSPACE/build/auditoria-prologo"
+          out="$GITHUB_WORKSPACE/build/auditoria-pies"
           mkdir -p "$out" "$RUNNER_TEMP/motor-audit"
-          gh run download 42412636969 --repo "$GITHUB_REPOSITORY" --name auditoria-silabacion-pdf --dir "$RUNNER_TEMP/base-pdf"
+          gh run download 43554227559 --repo "$GITHUB_REPOSITORY" --name auditoria-prologo --dir "$RUNNER_TEMP/base-pdf"
           cp "$RUNNER_TEMP/base-pdf/despues.pdf" "$out/antes.pdf"
           cp "$RUNNER_TEMP/base-pdf/despues.log" "$out/antes.log"
           cp "$RUNNER_TEMP/base-pdf/despues.tex" "$out/antes.tex"
@@ -144,9 +144,9 @@ jobs:
           assert sha256(original).hexdigest()=='ce585c2cc796c83f36224a738edf955b3a47bda8727e2b3e1681f8aca1da5211'
           assert qmd.prologo(Path.cwd()).encode('utf-8')==original
           qmd.compilacion_git=lambda _: ('auditoria-silabacion',{'SOURCE_DATE_EPOCH':'1794081295','TZ':'UTC'})
-          sys.argv=['epub.py','--solo-publicados','--salida','build/auditoria-prologo/despues.epub']
+          sys.argv=['epub.py','--solo-publicados','--salida','build/auditoria-pies/despues.epub']
           assert epub.main()==0
-          sys.argv=['libro.py','--solo-publicados','--salida','build/auditoria-prologo/despues.pdf']
+          sys.argv=['libro.py','--solo-publicados','--salida','build/auditoria-pies/despues.pdf']
           assert libro.main()==0
           assert Path('build/quarto/prologo.qmd').read_bytes()==original
           es=banco.seleccionar_edicion(banco.cargar(Path.cwd()),qmd.FECHA_CORTE)
@@ -160,7 +160,7 @@ jobs:
           from xml.etree import ElementTree as ET
           import json, re, subprocess, zipfile
 
-          out=Path('build/auditoria-prologo')
+          out=Path('build/auditoria-pies')
           report={'fichas':56,'fecha_corte':'2026-11-13'}
           warning=re.compile(r'^(Overfull|Underfull) \\([hv])box[^\n]*',re.M)
           for scenario in ('antes','despues'):
@@ -217,6 +217,27 @@ jobs:
               navxml=ET.fromstring(z.read(str(root/nav.get('href'))))
               report['prologo']['epub_en_navegacion']=any('PRÓLOGO' in ''.join(a.itertext()) for a in navxml.iter() if a.tag.endswith('}a'))
               assert report['prologo']['epub_en_navegacion']
+          assert report['despues']['paginas']==266, 'DETENER: cambió el recuento de 266 páginas'
+          captions=[]
+          for i,page in enumerate(pages,1):
+              normalized=' '.join(page.split())
+              if 'mostrada con el ápex abajo' in normalized:
+                  captions.append({'pagina_fisica':i,'texto':normalized})
+                  subprocess.run(['pdftoppm','-f',str(i),'-l',str(i),'-r','125','-png','-singlefile',str(out/'despues.pdf'),str(out/f'pie-{i}')],check=True)
+          assert len(captions)==2
+          report['pies_pdf']=captions
+          with zipfile.ZipFile(out/'despues.epub') as z:
+              captions_epub=[]
+              for name in z.namelist():
+                  if not name.endswith('.xhtml'): continue
+                  root=ET.fromstring(z.read(name))
+                  for node in root.iter():
+                      if node.tag.split('}')[-1]!='figcaption': continue
+                      text=' '.join(''.join(node.itertext()).split())
+                      if 'mostrada con el ápex abajo' in text:
+                          captions_epub.append({'archivo':name,'texto':text,'enlaces':[a.get('href') for a in node.iter() if a.tag.endswith('}a')]})
+              assert len(captions_epub)==2
+              report['pies_epub']=captions_epub
           (out/'resultado.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n')
           print(json.dumps(report,ensure_ascii=False,indent=2))
           PY
@@ -225,6 +246,6 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v7
         with:
-          name: auditoria-prologo
-          path: build/auditoria-prologo/
+          name: auditoria-pies
+          path: build/auditoria-pies/
           retention-days: 30
