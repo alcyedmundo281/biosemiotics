@@ -123,6 +123,24 @@ class EnlacesTest(unittest.TestCase):
         self.assertIn("[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)", pie)
 
 
+    def test_solo_creditos_imprimen_la_url_completa_de_la_fuente(self):
+        url = "https://commons.wikimedia.org/wiki/File:Un_nombre_muy_largo.jpg"
+        medio = {
+            "descripcion": "Una vista", "credito": "Alguien",
+            "fuente": "Wikimedia Commons", "fuente_url": url,
+            "licencia_img": "CC BY 4.0",
+            "licencia_url": "https://creativecommons.org/licenses/by/4.0/",
+            "archivo_local": "assets/img/x.jpg",
+        }
+        creditos = qmd.creditos_imagenes([({"titulo": "Demo"}, medio, Path("x.jpg"))])
+        self.assertIn(f"[Wikimedia Commons]({url})", creditos)
+        # El autolink se convierte en URL imprimible y divisible en LaTeX;
+        # el span limita la regla de salto del EPUB a estos créditos.
+        self.assertIn(f"[Fuente: <{url}>]{{.fuente-imagen}}", creditos)
+        self.assertNotIn(f"<{url}>", qmd.figura_markdown(medio))
+        self.assertIn(".fuente-imagen a{overflow-wrap:anywhere;word-wrap:break-word}", qmd.ESTILO)
+
+
 class MetadatosTest(unittest.TestCase):
     def test_declara_doi_dereferenciable_y_licencia_con_url(self):
         xml = qmd.metadatos_epub([], "v1")

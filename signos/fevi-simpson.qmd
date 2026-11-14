@@ -2,7 +2,7 @@
 estado: publicado
 numero: 45
 fecha_publicacion: "2026-09-15T01:11:47.000+00:00"
-fecha_revision: 2026-09-14
+fecha_revision: 2026-11-14
 ghost_id: "6aa899c42e9f960001f0ff50"
 id: signo-fevi-simpson
 tipo: signo
@@ -42,7 +42,7 @@ medios:
   - tipo: imagen
     destacada: true
     id: "wikimedia:Echocardiogram 4chambers"
-    descripcion: "Vista ecocardiográfica apical de cuatro cámaras utilizada para delimitar el ventrículo izquierdo"
+    descripcion: "Vista ecocardiográfica apical de cuatro cámaras utilizada para delimitar el ventrículo izquierdo, mostrada con el ápex abajo: el ventrículo izquierdo es la cavidad inferior derecha de la imagen. La presentación más extendida es la inversa, con el ápex arriba"
     credito: "Kjetil Lenes (Ekko)"
     fuente: "Wikimedia Commons"
     fuente_url: "https://commons.wikimedia.org/wiki/File:Echocardiogram_4chambers.jpg"
@@ -51,7 +51,7 @@ medios:
     archivo_local: "assets/img/fevi-simpson-4-camaras.jpg"
 refs: [lang2015, akil2025]
 fecha: 2026-09-14
-actualizado: 2026-09-14
+actualizado: 2026-11-14
 licencia: CC-BY-4.0
 ---
 
