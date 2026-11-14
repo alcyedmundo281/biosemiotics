@@ -298,13 +298,18 @@ class PortadillaTest(unittest.TestCase):
         self.assertIn("toc: false", pdf)
         self.assertIn("toc: true", yml.split("  epub:\n", 1)[1].split("  pdf:\n", 1)[0])
 
-    def test_el_diseno_del_libro_solo_toca_el_pdf(self):
+    def test_el_diseno_latex_solo_toca_el_pdf_y_el_nivel_se_comparte_con_epub(self):
         yml = qmd.quarto_yml([], {}, "v1", "portada.svg")
         antes, pdf = yml.split("  pdf:\n", 1)
         pdf, html = pdf.split("  html:\n", 1)
-        for clave in (qmd.FILTRO_LIBRO, qmd.PREAMBULO_LIBRO, qmd.FUENTE_LIBRO):
+        for clave in (qmd.PREAMBULO_LIBRO, qmd.FUENTE_LIBRO):
             self.assertIn(clave, pdf)
             self.assertNotIn(clave, antes + html)
+        # El filtro comparte solo el nivel del prólogo con el EPUB; sus
+        # transformaciones LaTeX conservan la guarda de formato.
+        self.assertIn(qmd.FILTRO_LIBRO, antes)
+        self.assertIn(qmd.FILTRO_LIBRO, pdf)
+        self.assertNotIn(qmd.FILTRO_LIBRO, html)
 
     def test_el_preambulo_trae_los_datos_de_la_portada(self):
         texto = qmd.preambulo_libro()
