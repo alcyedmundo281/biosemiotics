@@ -566,7 +566,8 @@ def creditos_imagenes(figuras: list) -> str:
         partes.append(
             f"- **{entidad['titulo']}:** {medio['descripcion']}. "
             f"{medio['credito']}. [{medio['fuente']}]({medio['fuente_url']}). "
-            f"[{medio['licencia_img']}]({medio['licencia_url']})."
+            f"[{medio['licencia_img']}]({medio['licencia_url']}). "
+            f"[Fuente: <{medio['fuente_url']}>]{{.fuente-imagen}}."
         )
     partes.append("")
     return "\n".join(partes)
@@ -660,6 +661,7 @@ def portada_svg() -> str:
 # contenedor pero invisible en pantalla. `max-width` en porcentaje más
 # `height:auto` funciona en todos.
 ESTILO = (
+    ".fuente-imagen a{overflow-wrap:anywhere;word-wrap:break-word}"
     "body{font-family:FreeSerif,serif;line-height:1.45;color:#17212b}"
     "h1{color:#075f69;page-break-before:always}h2{color:#16485a}"
     "h3{color:#071b2b}"
