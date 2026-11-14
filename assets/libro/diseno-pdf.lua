@@ -1,9 +1,10 @@
 --[[
-Diseño del libro impreso y nivel del prólogo compartido con el EPUB.
+Diseño del libro impreso: filtro de Quarto que solo actúa en la salida LaTeX.
 
-`Header` conserva el nivel del prólogo en ambos formatos. `Pandoc` solo
-envuelve los bloques del PDF en los entornos de `preambulo.tex`; en el EPUB
-sale sin cambios. El manuscrito fuente conserva su texto íntegro.
+`qmd.py` lo declara únicamente bajo `format: pdf`, y además cada función sale
+sin tocar nada si el formato no es LaTeX. El EPUB y el manuscrito plano siguen
+recibiendo exactamente el mismo Markdown: aquí no se añade ni se quita texto,
+solo se envuelven bloques en los entornos que define `preambulo.tex`.
 
   - Portadilla: el encabezado «Portadilla» se convierte en la página de
     título, y créditos + declaración de uso de IA en una página de créditos
@@ -111,15 +112,6 @@ local function envolver_seccion(bloques, i, nivel, entorno, salida, procesar)
   return i
 end
 
--- El primer encabezado de un archivo se promueve en Quarto. El prólogo
--- conserva nivel 2 tanto en el PDF como en el EPUB, igual que la declaración.
-function Header(h)
-  if pandoc.utils.stringify(h.content) == "PRÓLOGO" then
-    h.level = 2
-    return h
-  end
-end
-
 function Pandoc(doc)
   if not es_latex() then
     return nil
@@ -164,9 +156,6 @@ function Pandoc(doc)
         salida:insert(latex("\\clearpage"))
       end
       salida:insert(b)
-      if texto == "PRÓLOGO" then
-        salida:insert(latex("\\markboth{PRÓLOGO}{PRÓLOGO}"))
-      end
       anterior = b
       i = i + 1
       if texto == "Dónde NO confiar" then

@@ -1,4 +1,4 @@
-## PRÓLOGO {.unnumbered}
+# PRÓLOGO {.unnumbered}
 
 *Biosemiótica del Cuerpo Vivo · Atlas de POCUS para el médico de
 primer contacto*

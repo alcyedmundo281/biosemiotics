@@ -824,8 +824,6 @@ def quarto_yml(partes: list, archivos: dict, version: str, portada: str,
         # cada "La pregunta clínica" de cada signo.
         f"    toc-depth: {TOC_PROFUNDIDAD}",
         "    css: epub.css",
-        # Conserva el nivel del encabezado firmado del prólogo tras Quarto.
-        f"    filters: [{FILTRO_LIBRO}]",
         f"    epub-cover-image: {portada}",
         # El mismo Dublin Core que usa la ruta pandoc: DOI con esquema,
         # licencia con URL, descripción y materias MeSH.

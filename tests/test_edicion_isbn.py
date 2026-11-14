@@ -143,7 +143,7 @@ class PrologoTest(unittest.TestCase):
         original = ruta.read_bytes()
         self.assertFalse(original.startswith(b"\xef\xbb\xbf"))
         self.assertTrue(original.endswith(b"\n"))
-        self.assertTrue(original.decode("utf-8").startswith("## PRÓLOGO {.unnumbered}\n"))
+        self.assertTrue(original.decode("utf-8").startswith("# PRÓLOGO {.unnumbered}\n"))
         self.assertNotIn(".unlisted", original.decode("utf-8"))
         self.assertEqual(qmd.prologo(RAIZ).encode("utf-8"), original)
 
