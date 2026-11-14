@@ -138,6 +138,15 @@ class PrologoTest(unittest.TestCase):
         plano = qmd.manuscrito_plano([], {}, [], "v1", DECLARACION, texto)
         self.assertLess(plano.index("\\tableofcontents"), plano.index("# Prólogo"))
 
+    def test_prologo_firmado_se_conserva_integro_y_con_su_encabezado(self):
+        ruta = RAIZ / qmd.PROLOGO
+        original = ruta.read_bytes()
+        self.assertFalse(original.startswith(b"\xef\xbb\xbf"))
+        self.assertTrue(original.endswith(b"\n"))
+        self.assertTrue(original.decode("utf-8").startswith("## PRÓLOGO {.unnumbered}\n"))
+        self.assertNotIn(".unlisted", original.decode("utf-8"))
+        self.assertEqual(qmd.prologo(RAIZ).encode("utf-8"), original)
+
     def test_aborta_si_esta_vacio_o_trae_un_marcador(self):
         for contenido, motivo in (("  \n", "vacío"), ("Texto {FIRMA}\n", r"\{FIRMA\}")):
             with self.subTest(motivo=motivo):

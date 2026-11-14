@@ -453,21 +453,23 @@ def fecha_larga(iso: str) -> str:
 def prologo(raiz: Path) -> str | None:
     """El prólogo del banco con su encabezado, o None si aún no existe.
 
-    El archivo trae solo el texto y la firma; el encabezado sin numerar lo pone
-    el generador para que el prólogo sea un capítulo propio, detrás del índice.
+    Conserva el texto con su encabezado propio, detrás del índice.
+    Para archivos anteriores sin encabezado, añade el título sin numerar.
     """
     ruta = raiz / PROLOGO
     if not ruta.is_file():
         return None
-    texto = ruta.read_text(encoding="utf-8").strip()
-    if not texto:
+    texto = ruta.read_text(encoding="utf-8")
+    if not texto.strip():
         raise RuntimeError(f"{PROLOGO.as_posix()} está vacío")
     pendiente = MARCADOR_PENDIENTE.search(texto)
     if pendiente:
         raise RuntimeError(
             f"{PROLOGO.as_posix()}: marcador sin sustituir {pendiente.group(0)}"
         )
-    return f"# Prólogo {{.unnumbered}}\n\n{texto}\n"
+    if re.match(r"^#{1,6}\s+", texto):
+        return texto
+    return f"# Prólogo {{.unnumbered}}\n\n{texto.strip()}\n"
 
 
 def creditos_identificadores() -> str:
