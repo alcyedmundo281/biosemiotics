@@ -112,6 +112,15 @@ local function envolver_seccion(bloques, i, nivel, entorno, salida, procesar)
   return i
 end
 
+-- El primer encabezado de un archivo se promueve en Quarto. El prólogo
+-- conserva nivel 2 tanto en el PDF como en el EPUB, igual que la declaración.
+function Header(h)
+  if pandoc.utils.stringify(h.content) == "PRÓLOGO" then
+    h.level = 2
+    return h
+  end
+end
+
 function Pandoc(doc)
   if not es_latex() then
     return nil
@@ -148,11 +157,6 @@ function Pandoc(doc)
 
     elseif b.t == "Header" then
       local texto = pandoc.utils.stringify(b.content)
-      -- Quarto promueve el primer encabezado de un archivo a capítulo.
-      -- El prólogo conserva el nivel de sección de los demás paratextos.
-      if texto == "PRÓLOGO" then
-        b.level = 2
-      end
       -- La parte ocupa su propia página. El capítulo temático u órgano abre
       -- página y la ficha también, salvo la primera, que va bajo su órgano.
       local tras_organo = anterior ~= nil and anterior.t == "Header"
@@ -161,6 +165,9 @@ function Pandoc(doc)
         salida:insert(latex("\\clearpage"))
       end
       salida:insert(b)
+      if texto == "PRÓLOGO" then
+        salida:insert(latex("\\markboth{PRÓLOGO}{PRÓLOGO}"))
+      end
       anterior = b
       i = i + 1
       if texto == "Dónde NO confiar" then
