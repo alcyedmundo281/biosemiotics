@@ -1,10 +1,9 @@
 --[[
-Diseño del libro impreso: filtro de Quarto que solo actúa en la salida LaTeX.
+Diseño del libro impreso y nivel del prólogo compartido con el EPUB.
 
-`qmd.py` lo declara únicamente bajo `format: pdf`, y además cada función sale
-sin tocar nada si el formato no es LaTeX. El EPUB y el manuscrito plano siguen
-recibiendo exactamente el mismo Markdown: aquí no se añade ni se quita texto,
-solo se envuelven bloques en los entornos que define `preambulo.tex`.
+`Header` conserva el nivel del prólogo en ambos formatos. `Pandoc` solo
+envuelve los bloques del PDF en los entornos de `preambulo.tex`; en el EPUB
+sale sin cambios. El manuscrito fuente conserva su texto íntegro.
 
   - Portadilla: el encabezado «Portadilla» se convierte en la página de
     título, y créditos + declaración de uso de IA en una página de créditos
