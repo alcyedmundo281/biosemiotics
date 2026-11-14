@@ -44,7 +44,7 @@ jobs:
     steps:
       - uses: actions/checkout@v7
         with:
-          ref: 44e10e941fdd7624799f11d37af68f5b3ce94987
+          ref: f154ef3ca2b2cf96aeebf6ca0833a1b8a20f482d
           fetch-depth: 1
 
       - uses: actions/setup-python@v7
@@ -112,9 +112,9 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           sudo apt-get install -y --no-install-recommends poppler-utils
-          out="$GITHUB_WORKSPACE/build/auditoria-pies"
+          out="$GITHUB_WORKSPACE/build/auditoria-creditos"
           mkdir -p "$out" "$RUNNER_TEMP/motor-audit"
-          gh run download 43554227559 --repo "$GITHUB_REPOSITORY" --name auditoria-prologo --dir "$RUNNER_TEMP/base-pdf"
+          gh run download 43604344913 --repo "$GITHUB_REPOSITORY" --name auditoria-pies --dir "$RUNNER_TEMP/base-pdf"
           cp "$RUNNER_TEMP/base-pdf/despues.pdf" "$out/antes.pdf"
           cp "$RUNNER_TEMP/base-pdf/despues.log" "$out/antes.log"
           cp "$RUNNER_TEMP/base-pdf/despues.tex" "$out/antes.tex"
@@ -144,9 +144,9 @@ jobs:
           assert sha256(original).hexdigest()=='ce585c2cc796c83f36224a738edf955b3a47bda8727e2b3e1681f8aca1da5211'
           assert qmd.prologo(Path.cwd()).encode('utf-8')==original
           qmd.compilacion_git=lambda _: ('auditoria-silabacion',{'SOURCE_DATE_EPOCH':'1794081295','TZ':'UTC'})
-          sys.argv=['epub.py','--solo-publicados','--salida','build/auditoria-pies/despues.epub']
+          sys.argv=['epub.py','--solo-publicados','--salida','build/auditoria-creditos/despues.epub']
           assert epub.main()==0
-          sys.argv=['libro.py','--solo-publicados','--salida','build/auditoria-pies/despues.pdf']
+          sys.argv=['libro.py','--solo-publicados','--salida','build/auditoria-creditos/despues.pdf']
           assert libro.main()==0
           assert Path('build/quarto/prologo.qmd').read_bytes()==original
           es=banco.seleccionar_edicion(banco.cargar(Path.cwd()),qmd.FECHA_CORTE)
@@ -160,7 +160,7 @@ jobs:
           from xml.etree import ElementTree as ET
           import json, re, subprocess, zipfile
 
-          out=Path('build/auditoria-pies')
+          out=Path('build/auditoria-creditos')
           report={'fichas':56,'fecha_corte':'2026-11-13'}
           warning=re.compile(r'^(Overfull|Underfull) \\([hv])box[^\n]*',re.M)
           for scenario in ('antes','despues'):
@@ -217,11 +217,11 @@ jobs:
               navxml=ET.fromstring(z.read(str(root/nav.get('href'))))
               report['prologo']['epub_en_navegacion']=any('PRÓLOGO' in ''.join(a.itertext()) for a in navxml.iter() if a.tag.endswith('}a'))
               assert report['prologo']['epub_en_navegacion']
-          assert report['despues']['paginas']==266, 'DETENER: cambió el recuento de 266 páginas'
+          report['creditos_pdf']=[i for i,page in enumerate(pages,1) if ' '.join(page.split()).startswith('Créditos de imágenes')]
           captions=[]
           for i,page in enumerate(pages,1):
               normalized=' '.join(page.split())
-              if 'mostrada con el ápex abajo' in normalized:
+              if 'mostrada con el ápex abajo' in normalized and i<min(report['creditos_pdf']):
                   captions.append({'pagina_fisica':i,'texto':normalized})
                   subprocess.run(['pdftoppm','-f',str(i),'-l',str(i),'-r','125','-png','-singlefile',str(out/'despues.pdf'),str(out/f'pie-{i}')],check=True)
           assert len(captions)==2
@@ -238,6 +238,21 @@ jobs:
                           captions_epub.append({'archivo':name,'texto':text,'enlaces':[a.get('href') for a in node.iter() if a.tag.endswith('}a')]})
               assert len(captions_epub)==2
               report['pies_epub']=captions_epub
+          for page in report['creditos_pdf']:
+              subprocess.run(['pdftoppm','-f',str(page),'-l',str(page),'-r','100','-png','-singlefile',str(out/'despues.pdf'),str(out/f'credito-{page}')],check=True)
+          with zipfile.ZipFile(out/'despues.epub') as z:
+              fuentes=[]
+              for name in z.namelist():
+                  if not name.endswith('.xhtml'): continue
+                  root=ET.fromstring(z.read(name))
+                  for node in root.iter():
+                      if 'fuente-imagen' in node.get('class','').split():
+                          a=node.find('.//{*}a')
+                          assert a is not None and ''.join(a.itertext())==a.get('href')
+                          fuentes.append({'archivo':name,'url':a.get('href')})
+              assert len(fuentes)==56
+              assert len({f['archivo'] for f in fuentes})==1
+              report['urls_visibles_epub']=fuentes
           (out/'resultado.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n')
           print(json.dumps(report,ensure_ascii=False,indent=2))
           PY
@@ -246,6 +261,6 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v7
         with:
-          name: auditoria-pies
-          path: build/auditoria-pies/
+          name: auditoria-creditos
+          path: build/auditoria-creditos/
           retention-days: 30
