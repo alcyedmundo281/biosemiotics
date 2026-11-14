@@ -2,7 +2,7 @@
 estado: publicado
 numero: 15
 fecha_publicacion: "2026-07-26T04:05:56.000+00:00"
-fecha_revision: null
+fecha_revision: 2026-11-14
 ghost_id: 6a65874e5aa3610001e68cfe
 id: ventanas-cardiacas
 tipo: concepto
@@ -27,7 +27,7 @@ prerequisito_de: [signo-derrame-pericardico, signo-eyeball-ef, signo-taponamient
 medios:
   - tipo: imagen
     id: "wikimedia:Echocardiogram 4chambers"
-    descripcion: "Vista apical de cuatro cámaras en ecocardiografía"
+    descripcion: "Vista apical de cuatro cámaras en ecocardiografía, mostrada con el ápex abajo: los ventrículos quedan en la parte inferior de la imagen y las aurículas en la superior, con el corazón izquierdo a la derecha. La presentación más extendida es la inversa, con el ápex arriba"
     credito: "Kjetil Lenes (Ekko)"
     fuente: "Wikimedia Commons"
     licencia_img: "Dominio público"
@@ -36,6 +36,7 @@ medios:
     archivo_local: "assets/img/ventanas-cardiacas.jpg"
 
 refs: [via2014, beraud2013, perezcasares2017, blanco2016]
+actualizado: 2026-11-14
 licencia: CC-BY-4.0
 ---
 
