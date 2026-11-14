@@ -44,7 +44,7 @@ jobs:
     steps:
       - uses: actions/checkout@v7
         with:
-          ref: 4219e0bf95e24a7d652bb8bc5d7660ce200f243e
+          ref: 206f41914e8eab858c2105e608267f2a22bf6e09
           fetch-depth: 1
 
       - uses: actions/setup-python@v7
@@ -141,7 +141,7 @@ jobs:
           import banco, qmd, epub, libro
 
           original=Path('paratextos/prologo.md').read_bytes()
-          assert sha256(original).hexdigest()=='414190ca658935577ef277fcb090e7c5fc63dda345eb1725315f038c63a2a730'
+          assert sha256(original).hexdigest()=='ce585c2cc796c83f36224a738edf955b3a47bda8727e2b3e1681f8aca1da5211'
           assert qmd.prologo(Path.cwd()).encode('utf-8')==original
           qmd.compilacion_git=lambda _: ('auditoria-silabacion',{'SOURCE_DATE_EPOCH':'1794081295','TZ':'UTC'})
           sys.argv=['epub.py','--solo-publicados','--salida','build/auditoria-prologo/despues.epub']
