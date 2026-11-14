@@ -246,13 +246,13 @@ de técnica. El caso no representa todavía un paciente ni acredita consentimien
 | Localización del embarazo: evaluación transabdominal | `signo-embarazo-intrauterino` | signo | genitourinario / utero | principiante | [publicado](https://www.biosemiotics.net/localizacion-del-embarazo-evaluacion-transabdominal/) |
 | Hallazgos de desarrollo en el embarazo temprano | `desarrollo-embrionario` | concepto | tecnica | principiante | [publicado](https://www.biosemiotics.net/hallazgos-de-desarrollo-en-el-embarazo-temprano/) |
 | Embarazo temprano: límites de una exploración no concluyente | `embarazo-temprano-no-concluyente` | concepto | tecnica | principiante | [publicado](https://www.biosemiotics.net/embarazo-temprano-limites-de-una-exploracion-no-concluyente/) |
-| Actividad cardíaca fetal en POCUS | `signo-actividad-cardiaca-fetal` | signo | genitourinario / utero | principiante | [borrador redactado, pendiente de revisión](signos/actividad-cardiaca-fetal.qmd) |
+| Actividad cardíaca fetal en POCUS | `signo-actividad-cardiaca-fetal` | signo | genitourinario / utero | principiante | [revisado, pendiente de publicación](signos/actividad-cardiaca-fetal.qmd) |
 | Presentación fetal en POCUS | `signo-presentacion-fetal` | signo | genitourinario / utero | principiante | [borrador](signos/presentacion-fetal.qmd) |
 | Líquido amniótico en POCUS | `signo-liquido-amniotico` | signo | genitourinario / utero | intermedio | [borrador](signos/liquido-amniotico.qmd) |
 | Localización placentaria en POCUS | `signo-localizacion-placentaria` | signo | genitourinario / utero | intermedio | [borrador](signos/localizacion-placentaria.qmd) |
 | Integración clínica obstétrica: caso educativo por definir | `caso-integracion-obstetrica` | caso | utero; caso sintético, consentimiento no aplica | intermedio | [borrador](casos/caso-integracion-obstetrica.qmd) |
 
-**Preparación del 2026-11-14:** actividad cardíaca fetal cuenta ya con un borrador redactado, tres referencias verificadas contra PubMed y Crossref y una imagen de modo M de Wikimedia Commons atribuida. Sigue en `borrador`, sin aprobación clínica ni publicación. Las otras cuatro unidades pendientes conservan su planificación; el seriado mantiene 56 fichas publicadas.
+**Preparación del 2026-11-14:** actividad cardíaca fetal cuenta ya con un borrador redactado, tres referencias verificadas contra PubMed y Crossref y una imagen de modo M de Wikimedia Commons atribuida. Alcy aprobó clínica y editorialmente el texto el 2026-11-14; queda `revisado`, pendiente de publicación. Las otras cuatro unidades pendientes conservan su planificación; el seriado mantiene 56 fichas publicadas.
 
 El embarazo ectópico conserva su entidad publicada y no se duplica. Las
 dependencias de aprendizaje se registran en `prerequisito_de`, `se_basa_en`
