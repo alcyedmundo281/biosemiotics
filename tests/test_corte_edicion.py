@@ -49,11 +49,13 @@ class CorteEdicionTest(unittest.TestCase):
                 qmd.generar([],root,out)
             self.assertFalse(out.exists())
 
-    def test_edicion_real_sigue_en_56_con_articulo_57_del_20(self):
+    def test_edicion_real_sigue_en_56_con_una_publicacion_futura(self):
         entidades=banco.cargar(ROOT)
         antes=banco.seleccionar_edicion(entidades,'2026-11-13')
-        futura=ficha(57,'2026-11-20T12:00:00.000+00:00')
+        publicadas=banco.seleccionar_publicables(entidades,True)
+        siguiente=max(e['numero'] for e in publicadas)+1
+        futura=ficha(siguiente,'2026-11-20T12:00:00.000+00:00')
         despues=banco.seleccionar_edicion(entidades+[futura],'2026-11-13')
         self.assertEqual(len(antes),56)
         self.assertEqual(despues,antes)
-        self.assertEqual(len(banco.seleccionar_publicables(entidades+[futura],True)),57)
+        self.assertEqual(len(banco.seleccionar_publicables(entidades+[futura],True)),len(publicadas)+1)

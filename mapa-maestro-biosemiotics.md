@@ -58,8 +58,8 @@ cuantitativos de la Oleada 3.
 
 El banco contiene **68 entidades**: 21 conceptos, 45 signos y 2 casos.
 El índice contiene 57 entidades, todas publicadas.
-Hay **12 borradores**: 10 signos y 2 casos, excluidos de las salidas públicas. Incluyen 11 fichas de planificación sin redacción clínica; el concepto de exploración no concluyente fue aprobado y publicado el 2026-11-03 con envío a 12 suscriptores.
-Hay 35 signos con URL pública. ONSD fue revisado y publicado el
+Hay **11 borradores**: 9 signos y 2 casos, excluidos de las salidas públicas. Incluyen 10 fichas de planificación sin redacción clínica; el concepto de exploración no concluyente fue aprobado y publicado el 2026-11-03 con envío a 12 suscriptores.
+Hay 36 signos con URL pública. ONSD fue revisado y publicado el
 2026-10-10, con envío por email a 12 suscriptores e imagen de Wikimedia Commons.
 Tiroides fue publicada el 2026-10-22 con imagen atribuida de Wikimedia Commons.
 Pancreatitis fue publicada el 2026-10-15 con envío por email a 12 suscriptores e imagen atribuida de Wikimedia Commons.
@@ -205,7 +205,7 @@ forman parte del contenido de cada capítulo.
 
 **Modelado y preparación:** el concepto base `conceptos/pocus-embarazada.qmd`
 fue aprobado y publicado el 2026-10-30, con imagen de Commons verificada y envío
-a 12 suscriptores. URL: https://www.biosemiotics.net/pocus-en-la-embarazada-alcance-seguridad-y-limites/. De las ocho unidades restantes, desarrollo embrionario fue revisado y aprobado por Alcy el 2026-10-31 y publicado en Ghost el 2026-11-01 UTC (2026-10-31 en America/Bogota), con envío a 12 miembros. Localización del embarazo fue revisada y aprobada clínica y editorialmente por Alcy el 2026-11-03, y publicada ese día en Ghost con envío a 12 suscriptores e imagen de Commons CC BY-SA 3.0; el concepto de exploración no concluyente fue aprobado clínica y editorialmente por Alcy el 2026-11-03 y publicado ese día, a las 23:10 UTC (18:10 America/Bogota), con envío a 12 suscriptores e ilustración de Commons CC BY-SA 3.0, actividad cardíaca fetal se publicó el 2026-11-16 UTC (2026-11-15 en America/Bogota), con envío a 12 suscriptores e imagen de Commons CC BY-SA 3.0, y las otras cuatro unidades conservan fichas de planificación en estado `borrador`. Sus títulos, tipos, taxonomía y niveles
+a 12 suscriptores. URL: https://www.biosemiotics.net/pocus-en-la-embarazada-alcance-seguridad-y-limites/. De las ocho unidades restantes, desarrollo embrionario fue revisado y aprobado por Alcy el 2026-10-31 y publicado en Ghost el 2026-11-01 UTC (2026-10-31 en America/Bogota), con envío a 12 miembros. Localización del embarazo fue revisada y aprobada clínica y editorialmente por Alcy el 2026-11-03, y publicada ese día en Ghost con envío a 12 suscriptores e imagen de Commons CC BY-SA 3.0; el concepto de exploración no concluyente fue aprobado clínica y editorialmente por Alcy el 2026-11-03 y publicado ese día, a las 23:10 UTC (18:10 America/Bogota), con envío a 12 suscriptores e ilustración de Commons CC BY-SA 3.0; actividad cardíaca fetal se publicó el 2026-11-16 UTC (2026-11-15 en America/Bogota), con envío a 12 suscriptores e imagen de Commons CC BY-SA 3.0, y las otras cuatro unidades conservan fichas de planificación en estado `borrador`. Sus títulos, tipos, taxonomía y niveles
 se fijan en el registro siguiente. Las cuatro unidades pendientes no son capítulos
 publicados; desarrollo embrionario, localización del embarazo y exploración no concluyente cuentan ya con revisión clínica. El concepto base
 ya fue validado y revisado; los signos requieren su propia revisión antes de publicarse. Las preguntas, hallazgos,
