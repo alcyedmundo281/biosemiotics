@@ -1,12 +1,15 @@
 ---
-estado: revisado
+estado: publicado
+numero: 57
+volumen: 1
+fecha_publicacion: "2026-11-16T01:04:59.000Z"
 fecha_revision: 2026-11-14
 revisado_por: Alcy Torres
-ghost_id: null
+ghost_id: "6af89d032979dc00012aa815"
 id: signo-actividad-cardiaca-fetal
 tipo: signo
 titulo: 'Actividad cardíaca fetal: reconocer el latido sin dar por evaluado el bienestar'
-url: ''
+url: "https://www.biosemiotics.net/actividad-cardiaca-fetal-reconocer-el-latido-sin-dar-por-evaluado-el-bienestar/"
 sistema: genitourinario
 organo: utero
 ventana: transabdominal-sobre-torax-fetal
