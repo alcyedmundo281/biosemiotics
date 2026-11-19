@@ -57,8 +57,8 @@ cuantitativos de la Oleada 3.
 ## 2. Estado actual (lo ya publicado)
 
 El banco contiene **68 entidades**: 21 conceptos, 45 signos y 2 casos.
-El índice contiene 57 entidades, todas publicadas.
-Hay **11 borradores**: 9 signos y 2 casos, excluidos de las salidas públicas. Incluyen 9 fichas de planificación sin redacción clínica; el concepto de exploración no concluyente fue aprobado y publicado el 2026-11-03 con envío a 12 suscriptores.
+El índice contiene 58 entidades, 57 publicadas y una revisada pendiente de publicación.
+Hay **10 borradores**: 8 signos y 2 casos, excluidos de las salidas públicas. Incluyen 9 fichas de planificación sin redacción clínica; el concepto de exploración no concluyente fue aprobado y publicado el 2026-11-03 con envío a 12 suscriptores.
 Hay 36 signos con URL pública. ONSD fue revisado y publicado el
 2026-10-10, con envío por email a 12 suscriptores e imagen de Wikimedia Commons.
 Tiroides fue publicada el 2026-10-22 con imagen atribuida de Wikimedia Commons.
@@ -200,12 +200,12 @@ forman parte del contenido de cada capítulo.
 |---|---|---|---|
 | 1 | Fundamentos de POCUS en la embarazada | Alcance de las preguntas; seguridad; adquisición transabdominal; límites; relación con la ecografía obstétrica formal | **Publicado el 2026-10-30**: concepto base, `dominio: tecnica`, nivel principiante; revisión clínica aprobada por Alcy y envío a 12 suscriptores; fuente en `conceptos/pocus-embarazada.qmd` |
 | 2 | Embarazo temprano | Localización del embarazo; hallazgos de desarrollo; límites de una exploración no concluyente | Desarrollo embrionario y localización del embarazo publicados; concepto de exploración no concluyente publicado; bloque de embarazo temprano completo; después del concepto base; reutilizar embarazo ectópico publicado |
-| 3 | Segundo y tercer trimestre | Cuatro unidades separadas: actividad cardíaca fetal, presentación fetal, líquido amniótico y localización placentaria | Actividad cardíaca fetal publicada; presentación fetal en borrador redactado; dos unidades en planificación; después de fundamentos y embarazo temprano |
+| 3 | Segundo y tercer trimestre | Cuatro unidades separadas: actividad cardíaca fetal, presentación fetal, líquido amniótico y localización placentaria | Actividad cardíaca fetal publicada; presentación fetal revisada y pendiente de publicación; dos unidades en planificación; después de fundamentos y embarazo temprano |
 | 4 | Integración clínica en la embarazada | Casos educativos que integren hallazgos, incertidumbre y necesidad de evaluación obstétrica especializada | Primer espacio de caso registrado como borrador, sin viñeta sintética definida; después de las fichas que utilice |
 
 **Modelado y preparación:** el concepto base `conceptos/pocus-embarazada.qmd`
 fue aprobado y publicado el 2026-10-30, con imagen de Commons verificada y envío
-a 12 suscriptores. URL: https://www.biosemiotics.net/pocus-en-la-embarazada-alcance-seguridad-y-limites/. De las ocho unidades restantes, desarrollo embrionario fue revisado y aprobado por Alcy el 2026-10-31 y publicado en Ghost el 2026-11-01 UTC (2026-10-31 en America/Bogota), con envío a 12 miembros. Localización del embarazo fue revisada y aprobada clínica y editorialmente por Alcy el 2026-11-03, y publicada ese día en Ghost con envío a 12 suscriptores e imagen de Commons CC BY-SA 3.0; el concepto de exploración no concluyente fue aprobado clínica y editorialmente por Alcy el 2026-11-03 y publicado ese día, a las 23:10 UTC (18:10 America/Bogota), con envío a 12 suscriptores e ilustración de Commons CC BY-SA 3.0; actividad cardíaca fetal se publicó el 2026-11-16 UTC (2026-11-15 en America/Bogota), con envío a 12 suscriptores e imagen de Commons CC BY-SA 3.0, y las otras cuatro unidades siguen en estado `borrador`. Presentación fetal ya está redactada y pendiente de revisión clínica. Sus títulos, tipos, taxonomía y niveles
+a 12 suscriptores. URL: https://www.biosemiotics.net/pocus-en-la-embarazada-alcance-seguridad-y-limites/. De las ocho unidades restantes, desarrollo embrionario fue revisado y aprobado por Alcy el 2026-10-31 y publicado en Ghost el 2026-11-01 UTC (2026-10-31 en America/Bogota), con envío a 12 miembros. Localización del embarazo fue revisada y aprobada clínica y editorialmente por Alcy el 2026-11-03, y publicada ese día en Ghost con envío a 12 suscriptores e imagen de Commons CC BY-SA 3.0; el concepto de exploración no concluyente fue aprobado clínica y editorialmente por Alcy el 2026-11-03 y publicado ese día, a las 23:10 UTC (18:10 America/Bogota), con envío a 12 suscriptores e ilustración de Commons CC BY-SA 3.0; actividad cardíaca fetal se publicó el 2026-11-16 UTC (2026-11-15 en America/Bogota), con envío a 12 suscriptores e imagen de Commons CC BY-SA 3.0, y presentación fetal fue aprobada por Alcy el 2026-11-19 y las otras tres unidades siguen en estado `borrador`. Sus títulos, tipos, taxonomía y niveles
 se fijan en el registro siguiente. Las cuatro unidades pendientes no son capítulos
 publicados; desarrollo embrionario, localización del embarazo y exploración no concluyente cuentan ya con revisión clínica. El concepto base
 ya fue validado y revisado; los signos requieren su propia revisión antes de publicarse. Las preguntas, hallazgos,
@@ -236,7 +236,7 @@ y tercer trimestre y el caso de integración quedan para el bloque posterior.
 
 #### Registro de unidades obstétricas en el banco
 
-Desarrollo embrionario está publicado, con aprobación clínica de Alcy el 2026-10-31 y envío a 12 miembros confirmado en Ghost. Localización del embarazo fue aprobada clínica y editorialmente por Alcy el 2026-11-03 y publicada ese día con envío a 12 suscriptores; el concepto de exploración no concluyente fue aprobado y publicado el 2026-11-03 con envío a 12 suscriptores; actividad cardíaca fetal fue publicada el 2026-11-16 UTC (2026-11-15 en America/Bogota), con aprobación de Alcy y envío a 12 miembros; presentación fetal está redactada y tres unidades conservan fichas de planificación.
+Desarrollo embrionario está publicado, con aprobación clínica de Alcy el 2026-10-31 y envío a 12 miembros confirmado en Ghost. Localización del embarazo fue aprobada clínica y editorialmente por Alcy el 2026-11-03 y publicada ese día con envío a 12 suscriptores; el concepto de exploración no concluyente fue aprobado y publicado el 2026-11-03 con envío a 12 suscriptores; actividad cardíaca fetal fue publicada el 2026-11-16 UTC (2026-11-15 en America/Bogota), con aprobación de Alcy y envío a 12 miembros; presentación fetal está revisada desde el 2026-11-19 y tres unidades conservan fichas de planificación.
 Para estas unidades, `utero` agrupa el recorrido transabdominal en la
 taxonomía genitourinaria vigente. Los dos conceptos pertenecen al capítulo 4
 de técnica. El caso no representa todavía un paciente ni acredita consentimiento.
@@ -247,7 +247,7 @@ de técnica. El caso no representa todavía un paciente ni acredita consentimien
 | Hallazgos de desarrollo en el embarazo temprano | `desarrollo-embrionario` | concepto | tecnica | principiante | [publicado](https://www.biosemiotics.net/hallazgos-de-desarrollo-en-el-embarazo-temprano/) |
 | Embarazo temprano: límites de una exploración no concluyente | `embarazo-temprano-no-concluyente` | concepto | tecnica | principiante | [publicado](https://www.biosemiotics.net/embarazo-temprano-limites-de-una-exploracion-no-concluyente/) |
 | Actividad cardíaca fetal en POCUS | `signo-actividad-cardiaca-fetal` | signo | genitourinario / utero | principiante | [publicado](https://www.biosemiotics.net/actividad-cardiaca-fetal-reconocer-el-latido-sin-dar-por-evaluado-el-bienestar/) |
-| Presentación fetal en POCUS | `signo-presentacion-fetal` | signo | genitourinario / utero | principiante | [borrador redactado](signos/presentacion-fetal.qmd) |
+| Presentación fetal en POCUS | `signo-presentacion-fetal` | signo | genitourinario / utero | principiante | [revisado](signos/presentacion-fetal.qmd) |
 | Líquido amniótico en POCUS | `signo-liquido-amniotico` | signo | genitourinario / utero | intermedio | [borrador](signos/liquido-amniotico.qmd) |
 | Localización placentaria en POCUS | `signo-localizacion-placentaria` | signo | genitourinario / utero | intermedio | [borrador](signos/localizacion-placentaria.qmd) |
 | Integración clínica obstétrica: caso educativo por definir | `caso-integracion-obstetrica` | caso | utero; caso sintético, consentimiento no aplica | intermedio | [borrador](casos/caso-integracion-obstetrica.qmd) |
@@ -321,7 +321,7 @@ Cada cifra, verificada contra PubMed antes de publicar. Cada signo, con su secci
 
 ### Conteo
 - Banco actual: **68 entidades** (21 conceptos, 45 signos y 2 casos)
-- Signos publicados: **36 de 45**; 9 signos en borrador; actividad cardíaca fetal publicada; coartación aórtica publicada; tiroides publicada; vaina del nervio óptico publicada; pancreatitis publicada
+- Signos publicados: **36 de 45**; 1 signo revisado pendiente de publicación y 8 signos en borrador; actividad cardíaca fetal publicada; coartación aórtica publicada; tiroides publicada; vaina del nervio óptico publicada; pancreatitis publicada
 - Conceptos esperando URL de Ghost: **0**
 - Conceptos en borrador: **0**; embarazo temprano no concluyente está publicado
 - Oleada 1 completada: **8 de 8 signos**

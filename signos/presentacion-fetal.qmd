@@ -1,6 +1,7 @@
 ---
-estado: borrador
-fecha_revision: null
+estado: revisado
+fecha_revision: 2026-11-19
+revisado_por: Alcy Torres
 ghost_id: null
 id: signo-presentacion-fetal
 tipo: signo
