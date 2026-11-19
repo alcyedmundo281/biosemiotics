@@ -1,12 +1,15 @@
 ---
-estado: revisado
+estado: publicado
+numero: 58
+volumen: 1
+fecha_publicacion: "2026-11-19T22:51:44.000Z"
 fecha_revision: 2026-11-19
 revisado_por: Alcy Torres
-ghost_id: null
+ghost_id: "6aff7c1ec124c200012175d8"
 id: signo-presentacion-fetal
 tipo: signo
 titulo: Presentación fetal en POCUS
-url: ''
+url: "https://www.biosemiotics.net/presentacion-fetal-en-pocus/"
 sistema: genitourinario
 organo: utero
 ventana: transabdominal-del-fondo-uterino-al-segmento-inferior
@@ -30,7 +33,17 @@ falsos_positivos:
   - 'Confundir el contorno redondo del abdomen fetal con el cráneo en un único corte'
   - 'Interpretar una cabeza lateral como polo inferior por la orientación de la pantalla'
   - 'Clasificar como podálica cualquier imagen de un pie cerca de la pelvis sin ubicar la cabeza y seguir el tronco'
-medios: []
+medios:
+  - tipo: imagen
+    destacada: true
+    id: 'wikimedia:Frank breech.jpg'
+    descripcion: 'Ilustración de presentación de nalgas, con las caderas flexionadas y los pies cerca de la cara fetal'
+    credito: '© Bonnie Urquhart Gruenberg'
+    fuente: 'Wikimedia Commons'
+    fuente_url: 'https://commons.wikimedia.org/wiki/File:Frank_breech.jpg'
+    licencia_img: 'CC BY-SA 4.0'
+    licencia_url: 'https://creativecommons.org/licenses/by-sa/4.0/'
+    archivo_local: 'assets/img/presentacion-fetal-podalica.jpg'
 refs: [derobertis2026pocusob, nassar2006presentacion, aium2024obstetrico, kato2023presentacion]
 tags: [pocus, obstetricia, embarazo, presentacion-fetal]
 fecha: 2026-11-19
