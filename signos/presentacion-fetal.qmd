@@ -1,35 +1,140 @@
 ---
-estado: borrador
-fecha_revision: null
+estado: revisado
+fecha_revision: 2026-11-19
+revisado_por: Alcy Torres
 ghost_id: null
 id: signo-presentacion-fetal
 tipo: signo
 titulo: Presentación fetal en POCUS
 url: ''
-organo: utero
-ventana: null
-sonda: []
-nivel: principiante
-significante: null
-significado: null
-decision: null
-umbral: ''
-se_basa_en:
-- pocus-embarazada
-- tipos-de-sonda
-contrasta_con: []
-falsos_positivos: []
-medios: []
-refs: []
 sistema: genitourinario
-abstract: ''
-tags:
-- planificacion-editorial
-- obstetrico
+organo: utero
+ventana: transabdominal-del-fondo-uterino-al-segmento-inferior
+sonda: [convexa]
+nivel: principiante
+escenario: [consulta, urgencias]
+pregunta_clinica: '¿Qué parte fetal está más próxima a la entrada de la pelvis materna?'
+abstract: >
+  El barrido transabdominal ubica la cabeza, el tronco y el polo pélvico fetal
+  en relación con la pelvis materna. Así se distingue una presentación
+  cefálica o podálica de una situación transversa u oblicua. Cerca del término,
+  un hallazgo no cefálico o indeterminado orienta la valoración obstétrica.
+  La presentación puede cambiar, y una vista parcial no permite clasificarla
+  con seguridad ni decidir la vía del parto.
+significante: 'Cabeza, tronco y polo pélvico fetal identificados durante el barrido en relación con el segmento uterino inferior'
+significado: 'Situación fetal y parte que se orienta hacia la entrada de la pelvis materna durante la exploración'
+decision: 'Documentar el hallazgo; cerca del término, coordinar valoración obstétrica si es no cefálico o indeterminado y priorizar la atención obstétrica si hay síntomas de urgencia'
+se_basa_en: [pocus-embarazada, tipos-de-sonda]
+relacionado_con: [signo-actividad-cardiaca-fetal]
+falsos_positivos:
+  - 'Confundir el contorno redondo del abdomen fetal con el cráneo en un único corte'
+  - 'Interpretar una cabeza lateral como polo inferior por la orientación de la pantalla'
+  - 'Clasificar como podálica cualquier imagen de un pie cerca de la pelvis sin ubicar la cabeza y seguir el tronco'
+medios: []
+refs: [derobertis2026pocusob, nassar2006presentacion, aium2024obstetrico, kato2023presentacion]
+tags: [pocus, obstetricia, embarazo, presentacion-fetal]
+fecha: 2026-11-19
+actualizado: 2026-11-19
+licencia: CC BY 4.0
 ---
 
-**Ficha de planificación editorial.** No contiene una redacción clínica revisada.
+## La pregunta clínica
 
-Unidad propia de segundo y tercer trimestre sobre presentación fetal; definir la pregunta, la adquisición y las limitaciones antes de redactar.
+En una gestación única cercana al término, la palpación deja dudas sobre
+qué parte fetal está hacia la pelvis materna. **¿Puedes identificar la
+presentación con un barrido transabdominal?** La ISUOG recomienda POCUS cerca
+del término cuando el examen clínico deja indeterminada la presentación.
+Durante el segundo trimestre se puede describir lo que se ve, teniendo en
+cuenta que la disposición fetal puede cambiar antes del parto.
+[derobertis2026pocusob] [kato2023presentacion]
 
-No se han asignado referencias, umbrales, hallazgos, conductas ni datos de pacientes.
+## Por qué el examen físico no basta
+
+Las maniobras de Leopold orientan la exploración. En un estudio de gestaciones
+únicas al final del embarazo, la palpación pasó por alto parte de las
+presentaciones no cefálicas que la ecografía identificó. Cuando al palpar
+dudas entre la cabeza y las nalgas, la imagen permite seguir el tronco y
+reconocer ambos polos. [nassar2006presentacion]
+
+## Cómo se obtiene la ventana
+
+Explica la pregunta del examen y obtén consentimiento. Coloca a la embarazada
+semirreclinada, con inclinación lateral izquierda si no tolera el decúbito.
+Usa una sonda convexa, preset obstétrico y modo B. Ajusta la profundidad para
+seguir el trayecto fetal con la menor exposición necesaria.
+[aium2024obstetrico]
+
+1. **Fija la orientación materna.** Desde el abdomen bajo, orienta el
+   marcador en longitudinal hacia la cabeza materna. Identifica el segmento
+   uterino inferior sobre la pelvis y barre hacia el fondo. Si un polo queda
+   fuera del plano, amplía el barrido hacia los flancos.
+2. **Reconoce los polos.** Localiza el cráneo por su contorno óseo y sigue
+   la columna a través del tronco hasta la pelvis fetal. Usa un plano
+   perpendicular para confirmar estructuras dudosas y para comprobar si
+   el eje fetal cruza el eje materno.
+3. **Vuelve a la pelvis materna.** Comprueba qué parte fetal se aproxima a
+   ella. Si los polos salen del mismo campo, guarda vistas complementarias
+   orientadas que permitan reconstruir la relación. Si el recorrido no es
+   interpretable, informa «presentación indeterminada».
+
+## El signo
+
+**Significante.** El barrido muestra dónde quedan la cabeza y la pelvis
+fetal respecto del segmento uterino inferior. El trayecto del tronco
+establece el eje fetal.
+
+**Significado.** La **situación** describe cómo se orienta el eje fetal
+respecto del eje materno. La **presentación** indica qué parte está más
+próxima a la entrada de la pelvis materna.
+
+- **Situación longitudinal, presentación cefálica.** La cabeza está hacia
+  la pelvis materna y el polo pélvico se encuentra hacia el fondo.
+- **Situación longitudinal, presentación podálica o de nalgas.** El polo
+  pélvico está hacia la pelvis materna y la cabeza queda hacia el fondo.
+  Pueden verse nalgas, pies o ambos en el polo inferior.
+- **Situación transversa u oblicua.** El tronco cruza el útero o lo recorre
+  en diagonal. Describe el eje y la parte baja solo si logras identificarla.
+
+[ISUOG: situación y presentación fetal](https://www.isuog.org/clinical-resources/patient-information-series/patient-information-pregnancy-conditions/patient-information-general-ultrasound-background/fetal-lie-and-presentation.html)
+
+## La bifurcación
+
+- **Cefálica en un examen interpretable.** Registra el hallazgo y continúa
+  la evaluación indicada por el motivo de consulta. La presentación solo
+  responde una de las preguntas de la evaluación obstétrica.
+  [aium2024obstetrico]
+- **No cefálica o indeterminada cerca del término.** Documenta qué
+  reconociste y qué quedó incierto. Coordina valoración obstétrica para
+  confirmar el hallazgo y planificar el nacimiento según el contexto.
+  [derobertis2026pocusob]
+- **Sospecha de trabajo de parto, rotura de membranas o sangrado.** Prioriza
+  la valoración obstétrica conforme al circuito de urgencias. Evita demorarla
+  intentando completar el barrido.
+  [NICE: atención intraparto](https://www.nice.org.uk/guidance/NG235/chapter/recommendations)
+
+## Dónde NO confiar
+
+- **En un solo corte redondo.** El abdomen fetal puede parecer una cabeza
+  en una imagen parcial. Comprueba el contorno óseo del cráneo y su continuidad
+  con el cuello y el tronco.
+- **En la ubicación en pantalla o en un pie aislado.** Reconstruye la
+  orientación materna y ubica los dos polos antes de clasificar la presentación.
+- **En una imagen antigua.** El hallazgo describe el momento del examen.
+  Una presentación no cefálica en el segundo trimestre no predice por sí
+  sola la presentación al parto. [kato2023presentacion]
+- **En «cefálica» como evaluación completa.** Quedan por valorar asuntos
+  distintos como el encajamiento, el bienestar fetal y la vía del parto.
+  La ficha se limita a una gestación única. [aium2024obstetrico]
+
+## Practica esto
+
+Revisa con un tutor tres barridos orientados: cefálico, podálico y transverso.
+Antes de clasificar cada uno, señala la pelvis materna, la cabeza y el
+trayecto de la columna. Después revisa un corte aislado donde solo se vea
+un pie y nombra qué vistas faltan para sostener una conclusión.
+
+## Discusión abierta
+
+Cerca del término encuentras la cabeza en un flanco, pero pierdes el
+trayecto del tronco. ¿Qué dejarías escrito en el informe y qué necesita
+confirmar el equipo obstétrico?

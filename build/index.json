@@ -3737,6 +3737,62 @@
    "n_refs": 3
   },
   {
+   "id": "signo-presentacion-fetal",
+   "tipo": "signo",
+   "titulo": "Presentación fetal en POCUS",
+   "estado": "revisado",
+   "fecha_revision": "2026-11-19",
+   "ghost_id": null,
+   "ghost_sha256": "3ccadd2cd3c8973a647cecef52c75ab764ecb40dc9b501ddde1fc7d99368f27b",
+   "abstract": "El barrido transabdominal ubica la cabeza, el tronco y el polo pélvico fetal en relación con la pelvis materna. Así se distingue una presentación cefálica o podálica de una situación transversa u oblicua. Cerca del término, un hallazgo no cefálico o indeterminado orienta la valoración obstétrica. La presentación puede cambiar, y una vista parcial no permite clasificarla con seguridad ni decidir la vía del parto.\n",
+   "sistema": "genitourinario",
+   "organo": "utero",
+   "nivel": "principiante",
+   "ventana": "transabdominal-del-fondo-uterino-al-segmento-inferior",
+   "pregunta_clinica": "¿Qué parte fetal está más próxima a la entrada de la pelvis materna?",
+   "significante": "Cabeza, tronco y polo pélvico fetal identificados durante el barrido en relación con el segmento uterino inferior",
+   "significado": "Situación fetal y parte que se orienta hacia la entrada de la pelvis materna durante la exploración",
+   "licencia": "CC BY 4.0",
+   "revisado_por": "Alcy Torres",
+   "fecha": "2026-11-19",
+   "actualizado": "2026-11-19",
+   "decision": "Documentar el hallazgo; cerca del término, coordinar valoración obstétrica si es no cefálico o indeterminado y priorizar la atención obstétrica si hay síntomas de urgencia",
+   "sonda": [
+    "convexa"
+   ],
+   "escenario": [
+    "consulta",
+    "urgencias"
+   ],
+   "tags": [
+    "pocus",
+    "obstetricia",
+    "embarazo",
+    "presentacion-fetal"
+   ],
+   "falsos_positivos": [
+    "Confundir el contorno redondo del abdomen fetal con el cráneo en un único corte",
+    "Interpretar una cabeza lateral como polo inferior por la orientación de la pantalla",
+    "Clasificar como podálica cualquier imagen de un pie cerca de la pelvis sin ubicar la cabeza y seguir el tronco"
+   ],
+   "se_basa_en": [
+    "pocus-embarazada",
+    "tipos-de-sonda"
+   ],
+   "autores": [
+    {
+     "nombre": "Alcy Torres"
+    }
+   ],
+   "refs": [
+    "derobertis2026pocusob",
+    "nassar2006presentacion",
+    "aium2024obstetrico",
+    "kato2023presentacion"
+   ],
+   "n_refs": 4
+  },
+  {
    "id": "signo-riñon-cronico",
    "tipo": "signo",
    "titulo": "Riñón crónico",
