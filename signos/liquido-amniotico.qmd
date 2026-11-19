@@ -6,30 +6,153 @@ id: signo-liquido-amniotico
 tipo: signo
 titulo: Líquido amniótico en POCUS
 url: ''
-organo: utero
-ventana: null
-sonda: []
-nivel: intermedio
-significante: null
-significado: null
-decision: null
-umbral: ''
-se_basa_en:
-- pocus-embarazada
-- cuantificacion-limites
-contrasta_con: []
-falsos_positivos: []
-medios: []
-refs: []
 sistema: genitourinario
-abstract: ''
-tags:
-- planificacion-editorial
-- obstetrico
+organo: utero
+ventana: transabdominal-con-barrido-de-la-cavidad-amniotica
+sonda: [convexa]
+nivel: intermedio
+escenario: [consulta, urgencias]
+pregunta_clinica: '¿El bolsillo vertical más profundo sugiere líquido amniótico disminuido o aumentado?'
+abstract: >
+  El barrido transabdominal permite medir la profundidad del mayor bolsillo
+  vertical de líquido amniótico libre de cordón y partes fetales. Esa medida
+  estima de forma indirecta si el líquido está disminuido o aumentado en una
+  gestación única. Un valor alterado orienta la valoración obstétrica.
+  Un barrido incompleto deja la medida indeterminada. Si hay pérdida vaginal
+  de líquido, la evaluación de las membranas sigue indicada aunque el bolsillo
+  esté dentro del intervalo de referencia.
+significante: 'Mayor distancia vertical entre los bordes de un bolsillo amniótico de al menos 1 cm de ancho, libre de cordón y partes fetales'
+significado: 'Estimación semicuantitativa de la cantidad de líquido amniótico en una gestación única'
+decision: 'Documentar la técnica y el valor en centímetros; coordinar valoración obstétrica ante una medida alterada o indeterminada cuando persiste la indicación; con sospecha de rotura de membranas, priorizar su evaluación clínica'
+umbral: 'Criterios ISUOG para el bolsillo vertical más profundo en gestación única: ≤ 2 cm, disminuido; > 2 y ≤ 8 cm, intervalo de referencia; > 8 cm, aumentado'
+se_basa_en: [pocus-embarazada, cuantificacion-limites]
+relacionado_con: [signo-presentacion-fetal]
+falsos_positivos:
+  - 'Sobreestimar el bolsillo al incluir un asa de cordón, una extremidad o espacios separados'
+  - 'Sobreestimar la profundidad al medir la diagonal de un bolsillo oblicuo'
+  - 'Sugerir poco líquido por medir el primer bolsillo pequeño sin completar el barrido'
+medios: []
+refs: [derobertis2026pocusob, salomon2022segundotrimestre, khalil2024tercertrimestre, kehl2016safe, gallot2018membranas]
+tags: [pocus, obstetricia, embarazo, liquido-amniotico]
+fecha: 2026-11-19
+actualizado: 2026-11-19
+licencia: CC BY 4.0
 ---
 
-**Ficha de planificación editorial.** No contiene una redacción clínica revisada.
+## La pregunta clínica
 
-Unidad propia sobre evaluación del líquido amniótico; método, población y cualquier umbral se fijarán con evidencia verificada.
+En una gestación única, ¿puedes medir un bolsillo vertical de líquido
+amniótico que oriente si la cantidad está disminuida o aumentada? La técnica
+forma parte del estudio obstétrico del segundo y tercer trimestre. Para POCUS,
+la ISUOG sugiere la evaluación cuantitativa en el término tardío y el
+postérmino. Acota el examen a esa pregunta y considera el motivo de consulta
+antes de empezar. [salomon2022segundotrimestre] [khalil2024tercertrimestre]
+[derobertis2026pocusob]
 
-No se han asignado referencias, umbrales, hallazgos, conductas ni datos de pacientes.
+## Por qué el examen físico no basta
+
+La palpación y la altura uterina pueden motivar una evaluación, pero la
+profundidad de una columna de líquido se obtiene con la imagen. El POCUS
+aporta esa medida al examen clínico. Si la paciente consulta por salida
+vaginal de líquido, la historia y la evaluación de las membranas orientan el
+diagnóstico, con pruebas complementarias cuando corresponda.
+[derobertis2026pocusob] [gallot2018membranas]
+
+## Cómo se obtiene la ventana
+
+Explica la pregunta y pide consentimiento. Coloca a la embarazada semirreclinada,
+con inclinación lateral izquierda si el decúbito le produce síntomas. Usa la
+sonda convexa, preset obstétrico y modo B. Mantén la sonda perpendicular al
+abdomen materno al medir y usa la menor exposición necesaria.
+[khalil2024tercertrimestre]
+
+1. **Barre toda la cavidad amniótica.** Explora el útero desde el fondo al
+   segmento inferior y de un flanco al otro. Identifica varios espacios de
+   líquido antes de elegir el más profundo.
+2. **Confirma un bolsillo libre.** Busca bordes superior e inferior
+   visibles y un ancho de al menos **1 cm**. Excluye las partes fetales
+   y las asas de cordón. Si dudas de que esté libre, usa brevemente
+   Doppler color para identificar un asa. Si persiste la duda, busca
+   otro bolsillo claramente libre
+   y documenta la limitación. Si el bolsillo dudoso era más profundo y
+   podría cambiar la categoría, informa una medición indeterminada.
+3. **Mide la profundidad vertical.** Coloca los cálipers en los bordes
+   internos superior e inferior de la misma columna de líquido. Guarda la
+   imagen con los cálipers y registra la medida en centímetros.
+   [salomon2022segundotrimestre] [khalil2024tercertrimestre]
+
+## El signo
+
+**Significante.** La mayor columna vertical de líquido que cumple los
+criterios de ancho y está libre de cordón y partes fetales a lo largo de
+la medición.
+
+**Significado.** El **bolsillo vertical más profundo** estima la cantidad de
+líquido de forma semicuantitativa. Los límites de ISUOG para esta técnica
+en la gestación única son los siguientes.
+[salomon2022segundotrimestre] [khalil2024tercertrimestre]
+
+| Bolsillo vertical más profundo | Interpretación |
+|---|---|
+| ≤ 2 cm | Líquido disminuido |
+| > 2 cm y ≤ 8 cm | Dentro del intervalo de referencia |
+| > 8 cm | Líquido aumentado |
+
+El índice de líquido amniótico (ILA) suma la profundidad del mayor bolsillo
+válido de cada uno de los cuatro cuadrantes y
+tiene sus propios umbrales. En el ensayo SAFE, en gestaciones únicas a
+término, el ILA identificó más casos de oligohidramnios y llevó a más
+inducciones por ese hallazgo, con tasas similares de ingreso neonatal.
+Un informe útil deja claro qué método se empleó. [kehl2016safe]
+
+## La bifurcación
+
+- **Medida dentro del intervalo en un barrido interpretable.** Registra
+  el valor y sigue la evaluación indicada por el motivo de consulta.
+  La medición evalúa un componente de la valoración fetal.
+  [derobertis2026pocusob] [khalil2024tercertrimestre]
+- **Líquido disminuido o aumentado.** Coordina evaluación obstétrica
+  para confirmar el hallazgo y estudiar su causa. Si parece disminuido,
+  pregunta específicamente por pérdida vaginal de líquido. La edad
+  gestacional y los hallazgos asociados orientan la evaluación adicional.
+  [khalil2024tercertrimestre]
+- **Barrido incompleto o bolsillo dudoso.** Informa «medición
+  indeterminada» y describe qué impidió valorar. Si la pregunta sigue
+  siendo relevante para la conducta, solicita una evaluación obstétrica
+  con una adquisición adecuada. [derobertis2026pocusob]
+- **Pérdida vaginal de líquido.** Prioriza la valoración obstétrica de
+  posible rotura de membranas, incluso con una medida dentro del
+  intervalo. La evaluación clínica y, según el caso, la especuloscopia u
+  otras pruebas responden esa pregunta. [gallot2018membranas]
+
+## Dónde NO confiar
+
+- **En una diagonal o en una columna que contiene un asa.** Ambas pueden
+  aumentar la medida aparente. Verifica que los cálipers midan una
+  profundidad vertical continua y revisa el interior del bolsillo.
+  [khalil2024tercertrimestre]
+- **En el primer bolsillo pequeño.** Un barrido parcial puede pasar por
+  alto el mayor. Si la ventana impide revisar la cavidad, declara la
+  limitación en el informe. [khalil2024tercertrimestre]
+- **En cambios pequeños cerca de un umbral.** La reproducibilidad tiene
+  límites. Revisa la técnica y la concordancia con el cuadro clínico
+  antes de interpretar un cambio como real. [khalil2024tercertrimestre]
+- **En un número aislado para explicar la causa, descartar rotura o
+  decidir el nacimiento.** El bolsillo estima líquido, y la conducta
+  integra la edad gestacional, los síntomas y la evaluación obstétrica.
+  Esta ficha se limita a gestaciones únicas. [khalil2024tercertrimestre]
+  [gallot2018membranas]
+
+## Practica esto
+
+Con un tutor, revisa un barrido que muestre dos bolsillos. En el que
+parece más profundo, busca primero un asa de cordón o partes fetales.
+Elige el mayor bolsillo válido y marca sus bordes. Compara tu medida
+con la del tutor y explica dónde la sonda y los cálipers podrían
+cambiarla. Si el barrido está incompleto, practica cómo consignarlo.
+
+## Discusión abierta
+
+La paciente consulta por pérdida vaginal de líquido y el bolsillo mayor
+queda dentro del intervalo de referencia. ¿Qué dato puedes documentar
+y qué evaluación sigue pendiente?
