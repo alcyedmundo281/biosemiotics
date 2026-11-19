@@ -3443,6 +3443,64 @@
    "n_refs": 5
   },
   {
+   "id": "signo-liquido-amniotico",
+   "tipo": "signo",
+   "titulo": "Líquido amniótico en POCUS",
+   "estado": "revisado",
+   "fecha_revision": "2026-11-19",
+   "ghost_id": null,
+   "ghost_sha256": "886439195ae486c728e78ad3f1d304cb506a6ee20e70c9b9c2cc5b90f16c00c8",
+   "abstract": "El barrido transabdominal permite medir la profundidad del mayor bolsillo vertical de líquido amniótico libre de cordón y partes fetales. Esa medida estima de forma indirecta si el líquido está disminuido o aumentado en una gestación única. Un valor alterado orienta la valoración obstétrica. Un barrido incompleto deja la medida indeterminada. Si hay pérdida vaginal de líquido, la evaluación de las membranas sigue indicada aunque el bolsillo esté dentro del intervalo de referencia.\n",
+   "sistema": "genitourinario",
+   "organo": "utero",
+   "nivel": "intermedio",
+   "ventana": "transabdominal-con-barrido-de-la-cavidad-amniotica",
+   "pregunta_clinica": "¿El bolsillo vertical más profundo sugiere líquido amniótico disminuido o aumentado?",
+   "significante": "Mayor distancia vertical entre los bordes de un bolsillo amniótico de al menos 1 cm de ancho, libre de cordón y partes fetales",
+   "significado": "Estimación semicuantitativa de la cantidad de líquido amniótico en una gestación única",
+   "umbral": "Criterios ISUOG para el bolsillo vertical más profundo en gestación única: ≤ 2 cm, disminuido; > 2 y ≤ 8 cm, intervalo de referencia; > 8 cm, aumentado",
+   "licencia": "CC BY 4.0",
+   "revisado_por": "Alcy Torres",
+   "fecha": "2026-11-19",
+   "actualizado": "2026-11-19",
+   "decision": "Documentar la técnica y el valor en centímetros; coordinar valoración obstétrica ante una medida alterada o indeterminada cuando persiste la indicación; con sospecha de rotura de membranas, priorizar su evaluación clínica",
+   "sonda": [
+    "convexa"
+   ],
+   "escenario": [
+    "consulta",
+    "urgencias"
+   ],
+   "tags": [
+    "pocus",
+    "obstetricia",
+    "embarazo",
+    "liquido-amniotico"
+   ],
+   "falsos_positivos": [
+    "Sobreestimar el bolsillo al incluir un asa de cordón, una extremidad o espacios separados",
+    "Sobreestimar la profundidad al medir la diagonal de un bolsillo oblicuo",
+    "Sugerir poco líquido por medir el primer bolsillo pequeño sin completar el barrido"
+   ],
+   "se_basa_en": [
+    "pocus-embarazada",
+    "cuantificacion-limites"
+   ],
+   "autores": [
+    {
+     "nombre": "Alcy Torres"
+    }
+   ],
+   "refs": [
+    "derobertis2026pocusob",
+    "salomon2022segundotrimestre",
+    "khalil2024tercertrimestre",
+    "kehl2016safe",
+    "gallot2018membranas"
+   ],
+   "n_refs": 5
+  },
+  {
    "id": "signo-neumotorax",
    "tipo": "signo",
    "titulo": "Neumotórax en POCUS: la ausencia de sliding no basta",
