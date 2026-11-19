@@ -3740,10 +3740,11 @@
    "id": "signo-presentacion-fetal",
    "tipo": "signo",
    "titulo": "Presentación fetal en POCUS",
-   "estado": "revisado",
+   "estado": "publicado",
    "fecha_revision": "2026-11-19",
-   "ghost_id": null,
+   "ghost_id": "6aff7c1ec124c200012175d8",
    "ghost_sha256": "3ccadd2cd3c8973a647cecef52c75ab764ecb40dc9b501ddde1fc7d99368f27b",
+   "url": "https://www.biosemiotics.net/presentacion-fetal-en-pocus/",
    "abstract": "El barrido transabdominal ubica la cabeza, el tronco y el polo pélvico fetal en relación con la pelvis materna. Así se distingue una presentación cefálica o podálica de una situación transversa u oblicua. Cerca del término, un hallazgo no cefálico o indeterminado orienta la valoración obstétrica. La presentación puede cambiar, y una vista parcial no permite clasificarla con seguridad ni decidir la vía del parto.\n",
    "sistema": "genitourinario",
    "organo": "utero",
@@ -3784,6 +3785,22 @@
      "nombre": "Alcy Torres"
     }
    ],
+   "medios": [
+    {
+     "tipo": "imagen",
+     "destacada": true,
+     "id": "wikimedia:Frank breech.jpg",
+     "descripcion": "Ilustración de presentación de nalgas, con las caderas flexionadas y los pies cerca de la cara fetal",
+     "credito": "© Bonnie Urquhart Gruenberg",
+     "fuente": "Wikimedia Commons",
+     "fuente_url": "https://commons.wikimedia.org/wiki/File:Frank_breech.jpg",
+     "licencia_img": "CC BY-SA 4.0",
+     "licencia_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+     "archivo_local": "assets/img/presentacion-fetal-podalica.jpg"
+    }
+   ],
+   "n_loops": 0,
+   "n_imagenes": 1,
    "refs": [
     "derobertis2026pocusob",
     "nassar2006presentacion",
