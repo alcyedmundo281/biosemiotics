@@ -1,12 +1,15 @@
 ---
-estado: revisado
+estado: publicado
+numero: 59
+volumen: 1
+fecha_publicacion: "2026-11-20T00:13:18.000Z"
 fecha_revision: 2026-11-19
 revisado_por: Alcy Torres
-ghost_id: null
+ghost_id: "6aff9000c124c20001217612"
 id: signo-liquido-amniotico
 tipo: signo
 titulo: Líquido amniótico en POCUS
-url: ''
+url: "https://www.biosemiotics.net/liquido-amniotico-en-pocus/"
 sistema: genitourinario
 organo: utero
 ventana: transabdominal-con-barrido-de-la-cavidad-amniotica
@@ -32,7 +35,17 @@ falsos_positivos:
   - 'Sobreestimar el bolsillo al incluir un asa de cordón, una extremidad o espacios separados'
   - 'Sobreestimar la profundidad al medir la diagonal de un bolsillo oblicuo'
   - 'Sugerir poco líquido por medir el primer bolsillo pequeño sin completar el barrido'
-medios: []
+medios:
+  - tipo: imagen
+    destacada: true
+    id: 'wikimedia:Ultrasound Scan ND 145330 1455290 cr.png'
+    descripcion: 'Ecografía obstétrica en modo B con un espacio amplio de líquido anecoico alrededor de una sección fetal, sin cálipers de medición'
+    credito: '© Nevit Dilmen'
+    fuente: 'Wikimedia Commons'
+    fuente_url: 'https://commons.wikimedia.org/wiki/File:Ultrasound_Scan_ND_145330_1455290_cr.png'
+    licencia_img: 'CC BY-SA 3.0'
+    licencia_url: 'https://creativecommons.org/licenses/by-sa/3.0/'
+    archivo_local: 'assets/img/liquido-amniotico-modo-b.png'
 refs: [derobertis2026pocusob, salomon2022segundotrimestre, khalil2024tercertrimestre, kehl2016safe, gallot2018membranas]
 tags: [pocus, obstetricia, embarazo, liquido-amniotico]
 fecha: 2026-11-19
