@@ -3446,10 +3446,11 @@
    "id": "signo-liquido-amniotico",
    "tipo": "signo",
    "titulo": "Líquido amniótico en POCUS",
-   "estado": "revisado",
+   "estado": "publicado",
    "fecha_revision": "2026-11-19",
-   "ghost_id": null,
+   "ghost_id": "6aff9000c124c20001217612",
    "ghost_sha256": "886439195ae486c728e78ad3f1d304cb506a6ee20e70c9b9c2cc5b90f16c00c8",
+   "url": "https://www.biosemiotics.net/liquido-amniotico-en-pocus/",
    "abstract": "El barrido transabdominal permite medir la profundidad del mayor bolsillo vertical de líquido amniótico libre de cordón y partes fetales. Esa medida estima de forma indirecta si el líquido está disminuido o aumentado en una gestación única. Un valor alterado orienta la valoración obstétrica. Un barrido incompleto deja la medida indeterminada. Si hay pérdida vaginal de líquido, la evaluación de las membranas sigue indicada aunque el bolsillo esté dentro del intervalo de referencia.\n",
    "sistema": "genitourinario",
    "organo": "utero",
@@ -3491,6 +3492,22 @@
      "nombre": "Alcy Torres"
     }
    ],
+   "medios": [
+    {
+     "tipo": "imagen",
+     "destacada": true,
+     "id": "wikimedia:Ultrasound Scan ND 145330 1455290 cr.png",
+     "descripcion": "Ecografía obstétrica en modo B con un espacio amplio de líquido anecoico alrededor de una sección fetal, sin cálipers de medición",
+     "credito": "© Nevit Dilmen",
+     "fuente": "Wikimedia Commons",
+     "fuente_url": "https://commons.wikimedia.org/wiki/File:Ultrasound_Scan_ND_145330_1455290_cr.png",
+     "licencia_img": "CC BY-SA 3.0",
+     "licencia_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+     "archivo_local": "assets/img/liquido-amniotico-modo-b.png"
+    }
+   ],
+   "n_loops": 0,
+   "n_imagenes": 1,
    "refs": [
     "derobertis2026pocusob",
     "salomon2022segundotrimestre",
