@@ -3521,10 +3521,11 @@
    "id": "signo-localizacion-placentaria",
    "tipo": "signo",
    "titulo": "Localización placentaria en POCUS",
-   "estado": "revisado",
+   "estado": "publicado",
    "fecha_revision": "2026-11-20",
-   "ghost_id": null,
+   "ghost_id": "6b010c4ec124c20001217646",
    "ghost_sha256": "48e9ef4a96fd6b22745896c89b231fd48d66cf3e619dbe494ad911674e57292b",
+   "url": "https://www.biosemiotics.net/localizacion-placentaria-en-pocus/",
    "abstract": "El barrido transabdominal ubica la placenta y busca su borde inferior respecto del orificio cervical interno. Un borde cercano o que alcanza el orificio orienta la evaluación obstétrica. Si falta un reparo anatómico, la relación queda indeterminada. En presencia de sangrado, el POCUS complementa la valoración urgente y una imagen tranquilizadora no permite descartar desprendimiento placentario ni otras causas.\n",
    "sistema": "genitourinario",
    "organo": "utero",
@@ -3566,6 +3567,22 @@
      "nombre": "Alcy Torres"
     }
    ],
+   "medios": [
+    {
+     "tipo": "imagen",
+     "destacada": true,
+     "id": "wikimedia:Placenta Previa.png",
+     "descripcion": "Ilustración anatómica en corte sagital con la placenta alejada del cuello arriba y una placenta previa que cubre el orificio cervical interno abajo",
+     "credito": "© BruceBlaus",
+     "fuente": "Wikimedia Commons",
+     "fuente_url": "https://commons.wikimedia.org/wiki/File:Placenta_Previa.png",
+     "licencia_img": "CC BY-SA 4.0",
+     "licencia_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+     "archivo_local": "assets/img/localizacion-placentaria-previa.png"
+    }
+   ],
+   "n_loops": 0,
+   "n_imagenes": 1,
    "refs": [
     "derobertis2026pocusob",
     "khalil2024tercertrimestre",
