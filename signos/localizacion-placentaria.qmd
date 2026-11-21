@@ -1,12 +1,15 @@
 ---
-estado: revisado
+estado: publicado
+numero: 60
+volumen: 1
+fecha_publicacion: "2026-11-21T03:15:45.000Z"
 fecha_revision: 2026-11-20
 revisado_por: Alcy Torres
-ghost_id: null
+ghost_id: "6b010c4ec124c20001217646"
 id: signo-localizacion-placentaria
 tipo: signo
 titulo: Localización placentaria en POCUS
-url: ''
+url: "https://www.biosemiotics.net/localizacion-placentaria-en-pocus/"
 sistema: genitourinario
 organo: utero
 ventana: transabdominal-suprapubica-en-planos-sagital-y-transversal
@@ -31,7 +34,17 @@ falsos_positivos:
   - 'Interpretar el engrosamiento transitorio del segmento inferior por una contracción como tejido placentario'
   - 'Interpretar como inserción baja una proximidad aparente al orificio causada por distensión vesical'
   - 'Sobreestimar la separación entre el borde y el orificio por un plano oblicuo o incompleto'
-medios: []
+medios:
+  - tipo: imagen
+    destacada: true
+    id: 'wikimedia:Placenta Previa.png'
+    descripcion: 'Ilustración anatómica en corte sagital con la placenta alejada del cuello arriba y una placenta previa que cubre el orificio cervical interno abajo'
+    credito: '© BruceBlaus'
+    fuente: 'Wikimedia Commons'
+    fuente_url: 'https://commons.wikimedia.org/wiki/File:Placenta_Previa.png'
+    licencia_img: 'CC BY-SA 4.0'
+    licencia_url: 'https://creativecommons.org/licenses/by-sa/4.0/'
+    archivo_local: 'assets/img/localizacion-placentaria-previa.png'
 refs: [derobertis2026pocusob, khalil2024tercertrimestre, jauniaux2026placenta, westerway2017bordeplacentario, farras2024contracciones]
 tags: [pocus, obstetricia, embarazo, localizacion-placentaria]
 fecha: 2026-11-20
