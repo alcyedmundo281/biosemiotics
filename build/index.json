@@ -3518,6 +3518,64 @@
    "n_refs": 5
   },
   {
+   "id": "signo-localizacion-placentaria",
+   "tipo": "signo",
+   "titulo": "Localización placentaria en POCUS",
+   "estado": "revisado",
+   "fecha_revision": "2026-11-20",
+   "ghost_id": null,
+   "ghost_sha256": "48e9ef4a96fd6b22745896c89b231fd48d66cf3e619dbe494ad911674e57292b",
+   "abstract": "El barrido transabdominal ubica la placenta y busca su borde inferior respecto del orificio cervical interno. Un borde cercano o que alcanza el orificio orienta la evaluación obstétrica. Si falta un reparo anatómico, la relación queda indeterminada. En presencia de sangrado, el POCUS complementa la valoración urgente y una imagen tranquilizadora no permite descartar desprendimiento placentario ni otras causas.\n",
+   "sistema": "genitourinario",
+   "organo": "utero",
+   "nivel": "intermedio",
+   "ventana": "transabdominal-suprapubica-en-planos-sagital-y-transversal",
+   "pregunta_clinica": "¿Se distinguen el borde placentario inferior y el orificio cervical interno, y qué relación guardan?",
+   "significante": "Borde placentario más próximo al cuello y orificio cervical interno identificados en un barrido del segmento uterino inferior",
+   "significado": "Relación visible entre la placenta y el orificio cervical interno; puede sugerir inserción baja, previa o quedar indeterminada",
+   "umbral": "El umbral de 20 mm pertenece a la evaluación obstétrica formal; una distancia transabdominal aislada no descarta inserción baja",
+   "licencia": "CC BY 4.0",
+   "revisado_por": "Alcy Torres",
+   "fecha": "2026-11-20",
+   "actualizado": "2026-11-20",
+   "decision": "Documentar la relación observada y solicitar confirmación obstétrica si el borde parece bajo o la ventana es indeterminada; ante sangrado, priorizar la valoración urgente",
+   "sonda": [
+    "convexa"
+   ],
+   "escenario": [
+    "consulta",
+    "urgencias"
+   ],
+   "tags": [
+    "pocus",
+    "obstetricia",
+    "embarazo",
+    "localizacion-placentaria"
+   ],
+   "falsos_positivos": [
+    "Interpretar el engrosamiento transitorio del segmento inferior por una contracción como tejido placentario",
+    "Interpretar como inserción baja una proximidad aparente al orificio causada por distensión vesical",
+    "Sobreestimar la separación entre el borde y el orificio por un plano oblicuo o incompleto"
+   ],
+   "se_basa_en": [
+    "pocus-embarazada",
+    "ecogenicidad"
+   ],
+   "autores": [
+    {
+     "nombre": "Alcy Torres"
+    }
+   ],
+   "refs": [
+    "derobertis2026pocusob",
+    "khalil2024tercertrimestre",
+    "jauniaux2026placenta",
+    "westerway2017bordeplacentario",
+    "farras2024contracciones"
+   ],
+   "n_refs": 5
+  },
+  {
    "id": "signo-neumotorax",
    "tipo": "signo",
    "titulo": "Neumotórax en POCUS: la ausencia de sliding no basta",

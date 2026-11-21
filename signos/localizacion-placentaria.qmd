@@ -1,35 +1,156 @@
 ---
-estado: borrador
-fecha_revision: null
+estado: revisado
+fecha_revision: 2026-11-20
+revisado_por: Alcy Torres
 ghost_id: null
 id: signo-localizacion-placentaria
 tipo: signo
 titulo: Localización placentaria en POCUS
 url: ''
-organo: utero
-ventana: null
-sonda: []
-nivel: intermedio
-significante: null
-significado: null
-decision: null
-umbral: ''
-se_basa_en:
-- pocus-embarazada
-- ecogenicidad
-contrasta_con: []
-falsos_positivos: []
-medios: []
-refs: []
 sistema: genitourinario
-abstract: ''
-tags:
-- planificacion-editorial
-- obstetrico
+organo: utero
+ventana: transabdominal-suprapubica-en-planos-sagital-y-transversal
+sonda: [convexa]
+nivel: intermedio
+escenario: [consulta, urgencias]
+pregunta_clinica: '¿Se distinguen el borde placentario inferior y el orificio cervical interno, y qué relación guardan?'
+abstract: >
+  El barrido transabdominal ubica la placenta y busca su borde inferior
+  respecto del orificio cervical interno. Un borde cercano o que alcanza
+  el orificio orienta la evaluación obstétrica. Si falta un reparo anatómico,
+  la relación queda indeterminada. En presencia de sangrado, el POCUS
+  complementa la valoración urgente y una imagen tranquilizadora no permite
+  descartar desprendimiento placentario ni otras causas.
+significante: 'Borde placentario más próximo al cuello y orificio cervical interno identificados en un barrido del segmento uterino inferior'
+significado: 'Relación visible entre la placenta y el orificio cervical interno; puede sugerir inserción baja, previa o quedar indeterminada'
+decision: 'Documentar la relación observada y solicitar confirmación obstétrica si el borde parece bajo o la ventana es indeterminada; ante sangrado, priorizar la valoración urgente'
+umbral: 'El umbral de 20 mm pertenece a la evaluación obstétrica formal; una distancia transabdominal aislada no descarta inserción baja'
+se_basa_en: [pocus-embarazada, ecogenicidad]
+relacionado_con: [signo-presentacion-fetal, signo-liquido-amniotico]
+falsos_positivos:
+  - 'Interpretar el engrosamiento transitorio del segmento inferior por una contracción como tejido placentario'
+  - 'Interpretar como inserción baja una proximidad aparente al orificio causada por distensión vesical'
+  - 'Sobreestimar la separación entre el borde y el orificio por un plano oblicuo o incompleto'
+medios: []
+refs: [derobertis2026pocusob, khalil2024tercertrimestre, jauniaux2026placenta, westerway2017bordeplacentario, farras2024contracciones]
+tags: [pocus, obstetricia, embarazo, localizacion-placentaria]
+fecha: 2026-11-20
+actualizado: 2026-11-20
+licencia: CC BY 4.0
 ---
 
-**Ficha de planificación editorial.** No contiene una redacción clínica revisada.
+## La pregunta clínica
 
-Unidad propia sobre localización placentaria por vía transabdominal y límites de la evaluación; pendiente de redacción y revisión.
+En el segundo o tercer trimestre, puedes reconocer en qué pared se inserta
+la placenta. La pregunta que cambia la conducta es más concreta.
+**¿Puedes ver su borde más cercano al cuello y el orificio cervical
+interno?** El orificio cervical interno es el extremo del canal cervical
+que comunica con el útero. [khalil2024tercertrimestre]
 
-No se han asignado referencias, umbrales, hallazgos, conductas ni datos de pacientes.
+En el sangrado anteparto, la ISUOG sugiere el POCUS como complemento de
+la valoración urgente a partir de **24+0 semanas**, en el escenario que
+estudió la guía. El sangrado requiere valoración obstétrica según el cuadro
+clínico, también antes de esa edad gestacional. Si la paciente está
+inestable, prioriza estabilización y traslado, sin esperar una imagen.
+[derobertis2026pocusob]
+
+## Por qué el examen físico no basta
+
+La historia y el examen inicial orientan la urgencia. La relación entre la
+placenta y el cuello se establece con imagen. Incluso una placenta claramente
+anterior o posterior puede extenderse hacia el segmento inferior, por lo que
+la descripción de la pared de inserción deja abierta la pregunta sobre el
+orificio cervical interno. [jauniaux2026placenta] [khalil2024tercertrimestre]
+
+Si hay sangrado y la placenta previa sigue siendo posible, evita el tacto
+vaginal digital hasta que se descarte de forma adecuada. Una vista
+transabdominal dudosa deja esa precaución vigente.
+[RCOG, guía de hemorragia anteparto](https://www.rcog.org.uk/guidance/browse-all-guidance/green-top-guidelines/antepartum-haemorrhage-green-top-guideline-no-63/)
+
+## Cómo se obtiene la ventana
+
+Explica el objetivo, pide consentimiento y usa una sonda convexa con preset
+obstétrico en modo B. Adapta la posición a la tolerancia materna. La espera
+por una ventana mejor tiene sentido si la situación clínica lo permite.
+[derobertis2026pocusob] [khalil2024tercertrimestre]
+
+1. **Localiza la placenta.** Barre el útero en longitudinal y transversal.
+   Describe su pared de inserción y sigue el tejido placentario en
+   continuidad hacia el segmento uterino inferior.
+2. **Ubica el orificio interno.** Desde suprapúbico, busca en el plano
+   sagital el canal cervical y síguelo hacia el útero hasta su extremo
+   interno. Usa la vejiga como reparo anterior. Una vejiga demasiado llena
+   puede deformar el segmento inferior.
+3. **Comprueba la relación.** Intenta mostrar en la misma vista el
+   orificio y el borde placentario que más se le aproxima. Barre a ambos
+   lados del plano sagital y confirma el hallazgo en transversal cuando
+   la ventana lo permita. Guarda una imagen que señale ambos reparos.
+   Si falta uno, documenta «relación con el orificio interno indeterminada».
+   [khalil2024tercertrimestre] [westerway2017bordeplacentario]
+
+## El signo
+
+**Significante.** Ves tejido placentario en continuidad hasta su borde
+inferior y puedes ubicarlo respecto del orificio cervical interno.
+Describe si se ve claramente separado, próximo o si parece alcanzar o
+cubrir el orificio. [khalil2024tercertrimestre]
+
+**Significado.** Un borde que parece alcanzar o cubrir el orificio hace
+sospechar placenta previa. Un borde próximo que no lo cubre hace sospechar
+inserción baja. El RCOG define placenta de inserción baja, después de las
+**16 semanas**, cuando el borde queda a **menos de 20 mm** del orificio
+sin alcanzarlo. Esa clasificación corresponde al estudio obstétrico
+formal. Cuando hay sospecha, la vía transvaginal permite precisar la
+relación. La distancia obtenida por vía abdominal puede resultar mayor
+que la medida por vía transvaginal. [jauniaux2026placenta]
+[westerway2017bordeplacentario]
+
+## La bifurcación
+
+- **Hallazgo incidental con borde claramente separado y ambos reparos
+  visibles.** Registra lo observado y mantén el estudio obstétrico
+  previsto para la edad gestacional. [khalil2024tercertrimestre]
+- **Borde próximo, sobre el orificio o relación indeterminada.** Coordina
+  confirmación obstétrica, por vía transvaginal cuando corresponda.
+  Si ya existe un diagnóstico formal de placenta baja o previa en el
+  segundo trimestre, conserva el seguimiento obstétrico programado.
+  [jauniaux2026placenta] [khalil2024tercertrimestre]
+- **Sangrado.** Prioriza la valoración obstétrica urgente con independencia
+  de lo que muestre la placenta en POCUS. Comunica la localización visible
+  o la limitación en el traslado. Menciona antecedentes de cesárea si el
+  borde parece bajo, porque orientan la evaluación especializada del
+  espectro de acretismo placentario. [derobertis2026pocusob]
+  [jauniaux2026placenta]
+
+## Dónde NO confiar
+
+- **En un segmento inferior deformado.** Una vejiga demasiado llena puede
+  alterar la relación aparente. Una contracción focal puede engrosar
+  transitoriamente el miometrio en el segmento inferior y simular
+  proximidad placentaria. Si la paciente está estable, reevalúa tras
+  corregir la distensión o cuando ceda la contracción. Una duda persistente
+  se documenta como indeterminada. [khalil2024tercertrimestre]
+  [farras2024contracciones]
+- **En una placenta posterior con el borde oculto.** La sombra de la
+  presentación fetal puede interponerse entre la sonda y la región
+  cervical. Informa qué reparo falta y solicita evaluación formal si
+  la localización importa para la conducta. [khalil2024tercertrimestre]
+  [westerway2017bordeplacentario]
+- **En una medida abdominal para autorizar tacto o decidir la vía
+  del parto.** Precisa la ubicación del borde con el estudio obstétrico
+  indicado. Una placenta alejada del orificio en POCUS tampoco descarta
+  desprendimiento como causa de sangrado. [jauniaux2026placenta]
+  [derobertis2026pocusob]
+
+## Practica esto
+
+Con un tutor, revisa un barrido sagital y señala el canal cervical,
+el orificio interno y el borde placentario más próximo. Repite el
+ejercicio con una placenta posterior cuyo borde quede oculto. Formula
+un informe de una línea que documente qué viste y qué quedó indeterminado.
+
+## Discusión abierta
+
+Una embarazada con sangrado tiene placenta posterior. En el barrido se ve
+el canal cervical, pero la sombra fetal oculta el borde placentario.
+¿Qué comunicarías al equipo obstétrico y qué decisión sigue pendiente?
