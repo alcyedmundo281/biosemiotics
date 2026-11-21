@@ -58,7 +58,7 @@ cuantitativos de la Oleada 3.
 
 El banco contiene **68 entidades**: 21 conceptos, 45 signos y 2 casos.
 El índice contiene 59 entidades, todas publicadas.
-Hay **9 borradores**: 7 signos y 2 casos, excluidos de las salidas públicas. Incluyen 8 fichas de planificación sin redacción clínica; el concepto de exploración no concluyente fue aprobado y publicado el 2026-11-03 con envío a 12 suscriptores.
+Hay **9 borradores**: 7 signos y 2 casos, excluidos de las salidas públicas. Incluyen 7 fichas de planificación sin redacción clínica; el concepto de exploración no concluyente fue aprobado y publicado el 2026-11-03 con envío a 12 suscriptores.
 Hay 38 signos con URL pública. ONSD fue revisado y publicado el
 2026-10-10, con envío por email a 12 suscriptores e imagen de Wikimedia Commons.
 Tiroides fue publicada el 2026-10-22 con imagen atribuida de Wikimedia Commons.
@@ -200,7 +200,7 @@ forman parte del contenido de cada capítulo.
 |---|---|---|---|
 | 1 | Fundamentos de POCUS en la embarazada | Alcance de las preguntas; seguridad; adquisición transabdominal; límites; relación con la ecografía obstétrica formal | **Publicado el 2026-10-30**: concepto base, `dominio: tecnica`, nivel principiante; revisión clínica aprobada por Alcy y envío a 12 suscriptores; fuente en `conceptos/pocus-embarazada.qmd` |
 | 2 | Embarazo temprano | Localización del embarazo; hallazgos de desarrollo; límites de una exploración no concluyente | Desarrollo embrionario y localización del embarazo publicados; concepto de exploración no concluyente publicado; bloque de embarazo temprano completo; después del concepto base; reutilizar embarazo ectópico publicado |
-| 3 | Segundo y tercer trimestre | Cuatro unidades separadas: actividad cardíaca fetal, presentación fetal, líquido amniótico y localización placentaria | Actividad cardíaca fetal, presentación fetal y líquido amniótico publicados; localización placentaria en planificación; después de fundamentos y embarazo temprano |
+| 3 | Segundo y tercer trimestre | Cuatro unidades separadas: actividad cardíaca fetal, presentación fetal, líquido amniótico y localización placentaria | Actividad cardíaca fetal, presentación fetal y líquido amniótico publicados; localización placentaria en borrador redactado; después de fundamentos y embarazo temprano |
 | 4 | Integración clínica en la embarazada | Casos educativos que integren hallazgos, incertidumbre y necesidad de evaluación obstétrica especializada | Primer espacio de caso registrado como borrador, sin viñeta sintética definida; después de las fichas que utilice |
 
 **Modelado y preparación:** el concepto base `conceptos/pocus-embarazada.qmd`
@@ -236,7 +236,7 @@ y tercer trimestre y el caso de integración quedan para el bloque posterior.
 
 #### Registro de unidades obstétricas en el banco
 
-Desarrollo embrionario está publicado, con aprobación clínica de Alcy el 2026-10-31 y envío a 12 miembros confirmado en Ghost. Localización del embarazo fue aprobada clínica y editorialmente por Alcy el 2026-11-03 y publicada ese día con envío a 12 suscriptores; el concepto de exploración no concluyente fue aprobado y publicado el 2026-11-03 con envío a 12 suscriptores; actividad cardíaca fetal fue publicada el 2026-11-16 UTC (2026-11-15 en America/Bogota), con aprobación de Alcy y envío a 12 miembros; presentación fetal se publicó el 2026-11-19 a las 22:51:44 UTC (17:51:44 en America/Bogota), con envío a 12 suscriptores, como ficha 58 del seriado. Líquido amniótico se publicó el 2026-11-20 a las 00:13:18 UTC (19 de noviembre, 19:13:18 en America/Bogota), con envío a 12 suscriptores, como ficha 59 del seriado. Dos unidades conservan fichas de planificación.
+Desarrollo embrionario está publicado, con aprobación clínica de Alcy el 2026-10-31 y envío a 12 miembros confirmado en Ghost. Localización del embarazo fue aprobada clínica y editorialmente por Alcy el 2026-11-03 y publicada ese día con envío a 12 suscriptores; el concepto de exploración no concluyente fue aprobado y publicado el 2026-11-03 con envío a 12 suscriptores; actividad cardíaca fetal fue publicada el 2026-11-16 UTC (2026-11-15 en America/Bogota), con aprobación de Alcy y envío a 12 miembros; presentación fetal se publicó el 2026-11-19 a las 22:51:44 UTC (17:51:44 en America/Bogota), con envío a 12 suscriptores, como ficha 58 del seriado. Líquido amniótico se publicó el 2026-11-20 a las 00:13:18 UTC (19 de noviembre, 19:13:18 en America/Bogota), con envío a 12 suscriptores, como ficha 59 del seriado. Localización placentaria está redactada y pendiente de revisión. El caso de integración conserva su ficha de planificación.
 Para estas unidades, `utero` agrupa el recorrido transabdominal en la
 taxonomía genitourinaria vigente. Los dos conceptos pertenecen al capítulo 4
 de técnica. El caso no representa todavía un paciente ni acredita consentimiento.
@@ -249,7 +249,7 @@ de técnica. El caso no representa todavía un paciente ni acredita consentimien
 | Actividad cardíaca fetal en POCUS | `signo-actividad-cardiaca-fetal` | signo | genitourinario / utero | principiante | [publicado](https://www.biosemiotics.net/actividad-cardiaca-fetal-reconocer-el-latido-sin-dar-por-evaluado-el-bienestar/) |
 | Presentación fetal en POCUS | `signo-presentacion-fetal` | signo | genitourinario / utero | principiante | [publicado](https://www.biosemiotics.net/presentacion-fetal-en-pocus/) |
 | Líquido amniótico en POCUS | `signo-liquido-amniotico` | signo | genitourinario / utero | intermedio | [publicado](https://www.biosemiotics.net/liquido-amniotico-en-pocus/) |
-| Localización placentaria en POCUS | `signo-localizacion-placentaria` | signo | genitourinario / utero | intermedio | [borrador](signos/localizacion-placentaria.qmd) |
+| Localización placentaria en POCUS | `signo-localizacion-placentaria` | signo | genitourinario / utero | intermedio | [borrador redactado](signos/localizacion-placentaria.qmd) |
 | Integración clínica obstétrica: caso educativo por definir | `caso-integracion-obstetrica` | caso | utero; caso sintético, consentimiento no aplica | intermedio | [borrador](casos/caso-integracion-obstetrica.qmd) |
 
 **Preparación del 2026-11-14:** actividad cardíaca fetal cuenta ya con un borrador redactado, tres referencias verificadas contra PubMed y Crossref y una imagen de modo M de Wikimedia Commons atribuida. Alcy aprobó clínica y editorialmente el texto el 2026-11-14; se publicó y envió a 12 suscriptores el 2026-11-16T01:04:59.000Z (15 de noviembre, 20:04:59 America/Bogota). Es la ficha 57 del seriado y queda fuera del corte de la primera edición.
@@ -326,7 +326,7 @@ Cada cifra, verificada contra PubMed antes de publicar. Cada signo, con su secci
 - Oleada 1 completada: **8 de 8 signos**
 - Oleada 2 **escrita completa: 8 de 8 signos** (8 publicados, 0 esperando URL). La fila «colección/absceso, hernia complicada» se desdobló en dos: son dos significantes y dos decisiones distintas
 - Conceptos base pendientes de las oleadas 1–3: **0** — Doppler y «Cuantificación y sus límites» escritos y validados. **La Oleada 3 está completa**
-- Concepto base POCUS en la embarazada: **publicado**. Permanecen **8 fichas de planificación** (7 signos y 1 caso), incluidas en el banco y excluidas de las salidas públicas. El bloque de embarazo temprano está publicado completo. Hay **59 fichas publicadas**, incluidas actividad cardíaca fetal, presentación fetal y líquido amniótico. La primera edición conserva sus **56 fichas hasta el 2026-11-13**.
+- Concepto base POCUS en la embarazada: **publicado**. Permanecen **7 fichas de planificación** (6 signos y 1 caso), incluidas en el banco y excluidas de las salidas públicas. El bloque de embarazo temprano está publicado completo. Hay **59 fichas publicadas**, incluidas actividad cardíaca fetal, presentación fetal y líquido amniótico. La primera edición conserva sus **56 fichas hasta el 2026-11-13**.
 - FAST/eFAST **completo**: 4 ventanas nuevas (Morrison, esplenorrenal, Douglas, hemotórax) + el nodo integrador `protocolo-fast` como concepto de técnica; pericardio y neumotórax se reutilizan de la Oleada 1
 - El banco superó las **~48 entidades** proyectadas; coartación aórtica
   cierra la Oleada 3. La secuencia editorial continúa con el bloque obstétrico
