@@ -1,12 +1,15 @@
 ---
-estado: revisado
+estado: publicado
+numero: 61
+volumen: 1
+fecha_publicacion: "2026-11-25T02:19:23.000Z"
 fecha_revision: 2026-11-24
 revisado_por: Alcy Torres
-ghost_id: null
+ghost_id: "6b064399ad31b70001fc33fd"
 id: caso-integracion-obstetrica
 tipo: caso
 titulo: 'Sangrado en el tercer trimestre: el borde placentario que no se ve'
-url: ''
+url: "https://www.biosemiotics.net/sangrado-en-el-tercer-trimestre-el-borde-placentario-que-no-se-ve/"
 fecha: 2026-11-24
 organo: utero
 signos: [signo-localizacion-placentaria, signo-actividad-cardiaca-fetal]
@@ -26,7 +29,17 @@ abstract: >
   El caso enseña a comunicar ese límite al equipo receptor, mantener
   la derivación obstétrica urgente y diferir el tacto vaginal digital
   mientras siga siendo posible una placenta previa.
-medios: []
+medios:
+  - tipo: imagen
+    destacada: true
+    id: 'wikimedia:Placenta Previa.png'
+    descripcion: 'Ilustración anatómica independiente de la viñeta, con la placenta alejada del cuello arriba y una placenta previa abajo'
+    credito: '© BruceBlaus'
+    fuente: 'Wikimedia Commons'
+    fuente_url: 'https://commons.wikimedia.org/wiki/File:Placenta_Previa.png'
+    licencia_img: 'CC BY-SA 4.0'
+    licencia_url: 'https://creativecommons.org/licenses/by-sa/4.0/'
+    archivo_local: 'assets/img/localizacion-placentaria-previa.png'
 tags: [pocus, obstetricia, sangrado-anteparto, caso-clinico]
 licencia: CC BY 4.0
 ---
