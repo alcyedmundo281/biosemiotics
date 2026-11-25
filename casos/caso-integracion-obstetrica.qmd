@@ -4,65 +4,117 @@ fecha_revision: null
 ghost_id: null
 id: caso-integracion-obstetrica
 tipo: caso
-titulo: 'Integración clínica obstétrica: caso educativo por definir'
+titulo: 'Sangrado en el tercer trimestre: el borde placentario que no se ve'
 url: ''
-fecha: null
+fecha: 2026-11-24
 organo: utero
-signos: []
-conceptos:
-- pocus-embarazada
-- embarazo-temprano-no-concluyente
+signos: [signo-localizacion-placentaria, signo-actividad-cardiaca-fetal]
+conceptos: [pocus-embarazada]
 nivel: intermedio
-decision_semiotica: null
-taller: ''
-video_lure: ''
-video_archivo: ''
+decision_semiotica: 'Ante sangrado del tercer trimestre y relación placentaria con el orificio cervical interno indeterminada, mantener la derivación obstétrica urgente y diferir el tacto vaginal digital hasta descartar placenta previa de forma adecuada'
 sintetico: true
 consentimiento: no_aplica
 composite: false
 doi: null
-refs: []
-abstract: ''
+refs: [derobertis2026pocusob, jauniaux2026placenta, westerway2017bordeplacentario]
+abstract: >
+  Una gestante del tercer trimestre consulta por sangrado vaginal. En el
+  barrido transabdominal se observa actividad cardíaca fetal y una
+  placenta posterior, pero la sombra fetal oculta el borde inferior.
+  La relación con el orificio cervical interno queda indeterminada.
+  El caso enseña a comunicar ese límite al equipo receptor, mantener
+  la derivación obstétrica urgente y diferir el tacto vaginal digital
+  mientras siga siendo posible una placenta previa.
 medios: []
-tags:
-- planificacion-editorial
-- obstetrico
+tags: [pocus, obstetricia, sangrado-anteparto, caso-clinico]
+licencia: CC BY 4.0
 ---
 
-**Caso sintético con fines docentes.** La viñeta es ficticia y no corresponde a un paciente real. Las imágenes de Wikimedia Commons, cuando se incluyan, son ilustraciones independientes y no estudios del paciente ficticio; cada una conserva su crédito y licencia.
-
-**Ficha de planificación editorial.** No contiene una redacción clínica revisada.
-
-Reserva editorial del primer caso sintético de integración. Aún no se han definido la viñeta ficticia, los hallazgos, la decisión ni el desenlace educativo; el caso debe centrarse en una sola decisión. No se presentará como una experiencia clínica real.
-
-No se han asignado referencias, umbrales, hallazgos, conductas ni datos de pacientes.
+**Caso sintético con fines docentes.** La viñeta es ficticia y no corresponde a una paciente real. Las imágenes de Wikimedia Commons, cuando se incluyan, son ilustraciones independientes y no estudios de la paciente ficticia.
 
 ## Viñeta clínica
-TODO: franja etaria, motivo de consulta, el momento de duda real.
-Sin fecha exacta, sin dato que estreche a una persona.
+
+Una gestante de entre 25 y 35 años, al inicio del tercer trimestre,
+consulta en un centro de primer nivel por sangrado vaginal de inicio
+reciente. Refiere que ha disminuido desde que salió de casa y
+todavía nota movimientos fetales. En la evaluación inicial está
+hemodinámicamente estable. El equipo desconoce la relación de
+la placenta con el cuello y empieza a coordinar la valoración
+obstétrica urgente.
 
 ## El problema antes de la sonda
-TODO: por qué el examen físico no basta aquí. Esta sección produce la urgencia.
+
+Que el sangrado haya disminuido permite describir su evolución hasta
+ese momento. La localización placentaria sigue siendo desconocida.
+La pregunta del POCUS es «¿puedo ver el borde placentario que más se
+acerca al orificio cervical interno y ubicar ambos en la misma vista?».
+La ISUOG contempla el ultrasonido enfocado como complemento de la
+valoración del sangrado anteparto. [derobertis2026pocusob]
+
+Mientras siga siendo posible una placenta previa, se difiere el tacto
+vaginal digital hasta excluirla de forma adecuada.
+[RCOG, guía de hemorragia anteparto](https://www.rcog.org.uk/guidance/browse-all-guidance/green-top-guidelines/antepartum-haemorrhage-green-top-guideline-no-63/)
 
 ## La adquisición
-TODO: sonda, preset, dónde se apoya, qué buscas primero.
-Nivel principiante explícito. Aquí vive el "permiso": mira qué poco necesitaste.
+
+Mientras se organiza la derivación, se explica la exploración a la
+gestante y, con su consentimiento, se realiza un barrido breve con sonda
+convexa, preset obstétrico y modo B. Se observa actividad cardíaca en
+el tórax fetal. Al seguir la placenta posterior hacia el segmento
+inferior, el plano suprapúbico muestra el canal cervical y su extremo
+interno. La sombra de la presentación fetal oculta el borde placentario
+más próximo al cuello, incluso al variar el plano. Se guarda una vista
+que documenta la limitación y se termina la exploración.
+[derobertis2026pocusob] [westerway2017bordeplacentario]
 
 ## El signo
-TODO: la lectura semiótica. Significante → significado.
+
+**Significante.** El tejido placentario se reconoce en la pared
+posterior. Se identifica el orificio cervical interno, pero el borde
+placentario que habría que relacionar con él queda fuera de la vista
+útil. También se observa movimiento cardíaco fetal durante el barrido.
+
+**Significado.** «Placenta posterior» describe la pared de inserción.
+La relación con el orificio interno es **indeterminada**. El movimiento
+cardíaco documenta actividad en ese momento. La evaluación del bienestar
+fetal y la causa del sangrado siguen abiertas. [derobertis2026pocusob]
+[jauniaux2026placenta]
 
 ## La bifurcación
-TODO: qué cambió en el manejo. El punto entero del caso.
+
+La decisión docente es **continuar la derivación obstétrica urgente sin
+tacto vaginal digital**. En el escenario simulado, el equipo receptor
+recibe este resumen: «Sangrado del tercer trimestre. Actividad cardíaca
+fetal visible en el barrido. Placenta posterior. Sombra fetal impide ver
+el borde inferior y determinar su relación con el orificio cervical
+interno». En obstetricia se valorará el sangrado y se precisará la
+localización con el estudio indicado, habitualmente transvaginal si
+persiste la sospecha. La viñeta termina con esa entrega clínica.
+[derobertis2026pocusob] [jauniaux2026placenta]
 
 ## Los límites
-TODO: dónde NO confiar. Innegociable. Un caso sin esta sección es un caso peligroso.
 
-## La evidencia
-TODO: 2-4 referencias reales.
+- **Un borde oculto deja una pregunta sin responder.** La imagen no
+  permite afirmar que el borde esté lejos del cuello ni estimar una
+  distancia. La vía transabdominal puede sobreestimar esa separación
+  incluso cuando ambos reparos parecen visibles. [westerway2017bordeplacentario]
+- **El latido visible aporta un dato puntual.** La evaluación obstétrica
+  sigue indicada aunque haya actividad cardíaca y el sangrado haya
+  disminuido. Un POCUS sin hallazgos de desprendimiento tampoco lo descarta.
+  [derobertis2026pocusob]
+- **La exploración tiene un límite de tiempo.** Si cambia la estabilidad
+  materna, prioriza las medidas de estabilización y el traslado. En el
+  centro de primer contacto, el estudio enfocado acompaña esa valoración.
+  [derobertis2026pocusob]
 
 ## Pregunta al parlamento
-TODO: la pregunta abierta que convierte lectores en miembros con voz.
+
+El equipo receptor pregunta si se descartó placenta previa. ¿Cómo le
+responderías en una frase que incluya el reparo ausente y la conducta?
 
 ## El puente a la práctica
-TODO: "Escanea N esta semana. Sube tu loop al hilo. El taller es el [fecha]."
-Sin este paso, produces entusiasmo, no médicos que escanean.
+
+Con un tutor, revisa dos barridos suprapúbicos. Identifica el orificio
+interno y el borde inferior cuando ambos se vean. En la vista limitada,
+practica un informe que nombre la estructura oculta y la pregunta que
+debe resolver la ecografía obstétrica.
