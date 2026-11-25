@@ -4545,6 +4545,47 @@
     "monnet2015"
    ],
    "n_refs": 4
+  },
+  {
+   "id": "caso-integracion-obstetrica",
+   "tipo": "caso",
+   "titulo": "Sangrado en el tercer trimestre: el borde placentario que no se ve",
+   "estado": "revisado",
+   "fecha_revision": "2026-11-24",
+   "ghost_id": null,
+   "ghost_sha256": "ebdb64fff1bd85ac39193366f84227275342de0a1ef727718f02058d58c23164",
+   "abstract": "Una gestante del tercer trimestre consulta por sangrado vaginal. En el barrido transabdominal se observa actividad cardíaca fetal y una placenta posterior, pero la sombra fetal oculta el borde inferior. La relación con el orificio cervical interno queda indeterminada. El caso enseña a comunicar ese límite al equipo receptor, mantener la derivación obstétrica urgente y diferir el tacto vaginal digital mientras siga siendo posible una placenta previa.\n",
+   "organo": "utero",
+   "nivel": "intermedio",
+   "licencia": "CC BY 4.0",
+   "sintetico": true,
+   "revisado_por": "Alcy Torres",
+   "fecha": "2026-11-24",
+   "decision": "Ante sangrado del tercer trimestre y relación placentaria con el orificio cervical interno indeterminada, mantener la derivación obstétrica urgente y diferir el tacto vaginal digital hasta descartar placenta previa de forma adecuada",
+   "tags": [
+    "pocus",
+    "obstetricia",
+    "sangrado-anteparto",
+    "caso-clinico"
+   ],
+   "signos": [
+    "signo-localizacion-placentaria",
+    "signo-actividad-cardiaca-fetal"
+   ],
+   "conceptos": [
+    "pocus-embarazada"
+   ],
+   "autores": [
+    {
+     "nombre": "Alcy Torres"
+    }
+   ],
+   "refs": [
+    "derobertis2026pocusob",
+    "jauniaux2026placenta",
+    "westerway2017bordeplacentario"
+   ],
+   "n_refs": 3
   }
  ]
 }
