@@ -4550,10 +4550,11 @@
    "id": "caso-integracion-obstetrica",
    "tipo": "caso",
    "titulo": "Sangrado en el tercer trimestre: el borde placentario que no se ve",
-   "estado": "revisado",
+   "estado": "publicado",
    "fecha_revision": "2026-11-24",
-   "ghost_id": null,
+   "ghost_id": "6b064399ad31b70001fc33fd",
    "ghost_sha256": "ebdb64fff1bd85ac39193366f84227275342de0a1ef727718f02058d58c23164",
+   "url": "https://www.biosemiotics.net/sangrado-en-el-tercer-trimestre-el-borde-placentario-que-no-se-ve/",
    "abstract": "Una gestante del tercer trimestre consulta por sangrado vaginal. En el barrido transabdominal se observa actividad cardíaca fetal y una placenta posterior, pero la sombra fetal oculta el borde inferior. La relación con el orificio cervical interno queda indeterminada. El caso enseña a comunicar ese límite al equipo receptor, mantener la derivación obstétrica urgente y diferir el tacto vaginal digital mientras siga siendo posible una placenta previa.\n",
    "organo": "utero",
    "nivel": "intermedio",
@@ -4580,6 +4581,22 @@
      "nombre": "Alcy Torres"
     }
    ],
+   "medios": [
+    {
+     "tipo": "imagen",
+     "destacada": true,
+     "id": "wikimedia:Placenta Previa.png",
+     "descripcion": "Ilustración anatómica independiente de la viñeta, con la placenta alejada del cuello arriba y una placenta previa abajo",
+     "credito": "© BruceBlaus",
+     "fuente": "Wikimedia Commons",
+     "fuente_url": "https://commons.wikimedia.org/wiki/File:Placenta_Previa.png",
+     "licencia_img": "CC BY-SA 4.0",
+     "licencia_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+     "archivo_local": "assets/img/localizacion-placentaria-previa.png"
+    }
+   ],
+   "n_loops": 0,
+   "n_imagenes": 1,
    "refs": [
     "derobertis2026pocusob",
     "jauniaux2026placenta",
